@@ -4,15 +4,15 @@
 
 ## CURRENT OBJECTIVE
 
-为 P2 FLOWER 与 P3 HIVE 分别建立至少两个 M1 机构概念，同时定义可共享的 T04/T05 物体链接口和粗资源预算；不进入详细 CAD。
+为 P3 HIVE 建立至少两个可调 M1 发射概念，定义 T04/T05 共享物体链接口；同时只评估 P4 相对 P3 的 FLOWER 增量资源与兼容性，不进入详细 CAD。
 
 ## CURRENT MODULE
 
-系统级 S00；下一步激活 T04/T05 共享链和 T06/T07 两个概念分支。T01/P1 为共同底座。
+系统级 S00；下一步激活 T04/T05 共享链与 T06 HIVE 主分支，T07 FLOWER 仅作为 P4 增量接口研究。T01/P1 为共同底座。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任务包筛选完成。T01：M0 共同底座。T04–T07：允许进入 M1，尚未生成机构概念；其余模块 M0。
+S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S00-001 v0.2 完成。T01：M0 共同底座。T04–T06：允许进入 M1，尚未生成机构概念；T07 保持 M0 增量接口研究；其余模块 M0。
 
 ## COMPLETED
 
@@ -31,9 +31,11 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任�
 - 用户批准 Requirements Baseline v0.1 和 Architecture Baseline v0.1。
 - 完成 TS-S00-001 P1–P4 加权比较、四种权重敏感性分析及可复算 Python 脚本。
 - 建立初始 FTC/系统工程设计先例目录，并记录可迁移原则与赛季差异。
-- 形成首轮策略：P1 是共同底座；P2/P3 并行进入 M1；P4 暂缓且不进入详细集成 CAD。
+- 曾形成 TS-S00-001 v0.1 首轮策略（P2/P3 并行、P4 暂缓）；该策略已由 v0.2/DEC-0010 明确取代，保留本条仅作变更历史。
 - 配置仓库本地提交署名 `yutian <wagnyutian923@126.com>`、GitHub `origin` 和 `main` 上游分支；首个工程基线已安全推送。
 - Git Credential Manager 使用 Windows Credential Manager 保存认证；已启用每天 20:00（America/Chicago）的安全检查点自动化，重要验证节点立即推送。
+- 按用户要求把战略总权重从 25% 提高到 70%，并用 TU01 分值、RP、时间窗口与解锁关系重建 TS-S00-001 v0.2。
+- 修订任务包方向：P3 为主 M1、P4 为资源关口约束的扩展、P2 为 HIVE 风险回退；P1 仅作为共同底座。
 
 ## VALIDATED
 
@@ -44,28 +46,28 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任�
 - STEP 压缩包、文件身份、架构版本和单位元数据已检查；尚未测量代理包络。
 - `config/parameters.yaml` 已人工结构审查；当前环境仍无 YAML 解析库，机器解析测试保留为待办且未伪报通过。
 - 电池图纸包络 124 × 47.8 × 43 mm、120 mm 线束、XT30、16 AWG 和 20 A 保险丝已目视核验。
-- `calculations/task_package_trade.py` 已执行；权重总和、评分范围和向量长度断言通过。
-- 脚本输出与 `calculations/task_package_trade_results.csv` 完全一致。
-- 任务包敏感性结果：P3 仅在“得分优先”场景第一；P1 在其余三种场景第一；P4 在全部场景第四。
+- TS-S00-001 v0.2 的脚本输出与保存 CSV 完全一致；权重总和、战略默认权重 70%、评分范围和半分增量断言通过。
+- 战略权重为 60%、70%、80% 时，P3 均为第一、P4 均为第二；默认得分 P3 84.8、P4 78.2、P2 55.7、P1 55.4。
+- PDF 文本与已渲染 pp.83–91 交叉核验了比赛阶段、HIVE/FLOWER/GARDEN 规则及 Table 10-2/10-3。
 
 ## OPEN QUESTIONS
 
 无未关闭 CRITICAL 信息项。
 
-方案比较权重、项目时间表、预算、性能目标、软件栈和维护目标仍为 IMPORTANT；当前可在明确假设下进入 M1，见 `docs/requirements.md` 与 ASM-004。
+项目时间表、预算、性能目标、软件栈和维护目标仍为 IMPORTANT；战略优先级已关闭，工程评分仍需 M1/M2/L6 证据替换，见 ASM-005。
 
 ## KNOWN PROBLEMS
 
 - 规则仅为 TU01；后续 Team Update 可能改变阈值或合法性要求。
 - 底盘轮距/轴距及底盘、电机、Control Hub 代理包络尚未从 STEP/实物测量，不能用于尺寸承诺。
-- 缺少性能目标、时间表、预算和方案比较权重。
-- TS-S00-001 的评分为工程判断，不是测量；不能用来预测比赛成绩或冻结最终任务组合。
+- 缺少性能目标、时间表和预算。
+- TS-S00-001 v0.2 的战略输入来自规则，但工程评分仍是证据锚定的假设，不是测量；不能用来预测比赛成绩或冻结最终机构。
 - FTC 先例多来自不同赛季和不同形状物体，所有机构原则必须针对 BIOBUZZ 重新验证。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
 ## ASSUMPTIONS
 
-- ASM-004：首轮任务包采用中性权重和 1–5 序数评分，仅用于筛选 M1 分支。
+- ASM-005：默认战略总权重 70%，工程评分在无台架数据时采用规则/几何锚定判断，并用 60%–80% 敏感性检查。
 - 坐标方向是可撤销的工程约定，见 `docs/module_interfaces.md`。
 
 ## FILES MODIFIED
@@ -84,8 +86,8 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.3.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.1；Robot design：M1 概念工作待开始。
+Framework v0.3.1；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.2；Robot design：P3 主分支 M1 概念工作待开始。
 
 ## NEXT ACTION
 
-为 P2 与 P3 各建立至少两个不绑定具体尺寸的 M1 机构概念；先定义 T04/T05 共享物体交接接口，再给出粗质量、体积、功率、执行器和主要失效模式预算。用 L1/L2/L3 方法筛选需制作的最小 L6 原型，仍不生成详细机构 CAD。
+为 P3 建立至少两个不绑定具体尺寸的可调发射概念；先定义 T04/T05→T06 交接接口，再给出粗质量、体积、功率、执行器和主要失效模式预算。并计算 P4 增加 T07 的资源增量与接口冲突，决定是否允许其进入完整 M1；仍不生成详细机构 CAD。

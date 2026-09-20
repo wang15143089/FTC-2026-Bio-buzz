@@ -1,13 +1,13 @@
 # FTC 机器人长期工程项目
 
-本仓库用于从需求到制造发布的模块化、参数化、可追溯 FTC 机器人开发。BIOBUZZ 2026–2027 的 Requirements v0.1 与 Architecture v0.1 已批准；当前正由系统级 M0 进入 P2/P3 的 M1 概念筛选，尚未选择具体机构或详细尺寸。
+本仓库用于从需求到制造发布的模块化、参数化、可追溯 FTC 机器人开发。BIOBUZZ 2026–2027 的 Requirements v0.1 与 Architecture v0.1 已批准；当前正由系统级 M0 进入 P3 HIVE 主分支的 M1 概念筛选，尚未选择具体机构或详细尺寸。
 
 ## 当前状态
 
 - `KNOWN`：当前规则基线为 Competition Manual TU01；采用轻量化、模块化、验证优先和 Git 兼容工作流。
 - `KNOWN`：已有 3209-0001-0007 Strafer 底盘；必须保持轮距、轴距和四轮布局，只允许最低限度拆分重组。
 - `KNOWN`：使用 REV Control Hub + Expansion Hub 和 goBILDA 3100-0012-0020 电池；5203-2402-0051 仅作通用电机包络参考。
-- `CALCULATED`：首轮任务包比较支持先建立 P1 共同底座，并让 P2 FLOWER、P3 HIVE 并行进入 M1；P4 暂缓。
+- `CALCULATED`：证据锚定的任务包比较以 70% 战略权重选择 P3 HIVE 为主 M1 方向、P4 为受资源关口约束的扩展；P1 是共同底座，P2 是风险回退。
 - `TBD`：最终任务组合、性能目标、机构电机选型、时间表和预算。
 - 详细恢复点见 `PROJECT_STATUS.md`。
 

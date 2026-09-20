@@ -90,6 +90,16 @@
 - Reversible?: 是；原型数据、赛程或用户权重可触发重评。
 - Date/version: 2026-09-19 / Trade Study TS-S00-001 v0.1
 
+## DEC-0010 — 战略主导且证据锚定的任务包筛选
+
+- Decision: TS-S00-001 v0.2 将战略总权重提高至 70%，用 TU01 的分值、RP、计分窗口和解锁关系锚定战略评分；P3 为主 M1 方向，P4 为受资源关口约束的扩展，P2 为风险回退。此决策取代 DEC-0009 中 P2/P3 等量并行的安排。
+- Reason: v0.1 的战略权重只有 25%，使低复杂度 P1 在总分中失真地领先；用户要求战略价值显著主导且每项评分有证据。
+- Alternatives considered: 仅调高原“战略价值”单项而保留其余主观评分；直接选择 P4；完全忽略工程交付风险。
+- Evidence/calculation: TU01 §10.1、§10.4、§10.5 及 Table 10-2/10-3；`docs/task_package_trade_study.md`；`calculations/task_package_trade.py`。战略权重 60%–80% 时 P3 均第一、P4 均第二。
+- Impact: 研发资源优先用于 HIVE 发射与共享物体链；FLOWER 先做 P4 增量兼容研究，不与 P3 平分资源。
+- Reversible?: 是；官方 RP 阈值、M1 资源预算或 L6 原型数据可触发重评。
+- Date/version: 2026-09-19 / Trade Study TS-S00-001 v0.2
+
 ## 新条目模板
 
 ```text
