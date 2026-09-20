@@ -1,5 +1,5 @@
 {
-  "model_version": "T04-INTAKE-0.1",
+  "model_version": "T04-INTAKE-0.2",
   "gamepiece": {
     "pollen_nominal_diameter_m": 0.071,
     "nectar_nominal_diameter_m": 0.091,
@@ -10,6 +10,7 @@
     "retrieval_opening_height_m": 0.09,
     "retrieval_opening_depth_m": 0.091,
     "bottom_ring_thickness_m": 0.013,
+    "bottom_ring_inner_diameter_m": 0.071,
     "status": "KNOWN_APPROXIMATE",
     "source": "BIOBUZZ TU01 section 9.7 and Figure 9-12"
   },
@@ -35,6 +36,35 @@
     "series_spring_max_compression_m": 0.02,
     "status": "PROVISIONAL_M1_M2"
   },
+  "side_sweep_mechanism": {
+    "architecture": "C04-B1_bottom_opening_side_sweep_plus_standard_roller",
+    "powered_motor_count": 0,
+    "servo_count_nominal": 1,
+    "servo_count_with_separate_deploy": 2,
+    "paddle_face_up_angle_deg_range": [20.0, 30.0],
+    "paddle_sweep_stroke_m_range": [0.04, 0.07],
+    "effective_force_lever_arm_m": 0.07,
+    "design_contact_force_n": 10.0,
+    "structural_safety_factor": 2.0,
+    "nominal_sweep_time_s": 0.35,
+    "series_spring_rate_n_m": 500.0,
+    "series_spring_max_compression_m": 0.02,
+    "exit_path_constraint": "ball_must_remain_in_bottom_retrieval_opening_until_clear_of_flower",
+    "status": "PROVISIONAL_M1_L1_CONDITIONAL"
+  },
+  "trade_study": {
+    "status": "ASSUMED_EVIDENCE_RATING_FOR_PROTOTYPE_ORDER_ONLY",
+    "hard_gate": "G418_bottom_exit_and_no_G415_attachment",
+    "criteria": {
+      "current_geometry_evidence": {"weight": 0.25, "C04-A": 4.0, "C04-B1": 2.0},
+      "actuator_resources": {"weight": 0.15, "C04-A": 3.0, "C04-B1": 5.0},
+      "standard_intake_decoupling": {"weight": 0.15, "C04-A": 2.0, "C04-B1": 5.0},
+      "jam_recovery": {"weight": 0.15, "C04-A": 4.0, "C04-B1": 3.0},
+      "motion_cycle_simplicity": {"weight": 0.10, "C04-A": 2.0, "C04-B1": 4.0},
+      "field_and_ball_tolerance": {"weight": 0.10, "C04-A": 3.0, "C04-B1": 2.0},
+      "manufacturing_debug_complexity": {"weight": 0.10, "C04-A": 2.0, "C04-B1": 4.0}
+    }
+  },
   "motor": {
     "candidate_sku": "5203-2402-0019",
     "no_load_speed_rpm": 312.0,
@@ -59,6 +89,9 @@
     "rake width requires official CAD and physical field fit verification",
     "10 N extraction load is a prototype force limit, not measured field resistance",
     "servo linkage geometry and actual torque remain TBD until L3 layout",
-    "motor current uses a linear torque-current endpoint model and excludes transmission loss"
+    "motor current uses a linear torque-current endpoint model and excludes transmission loss",
+    "the 13 mm ring is treated as an ideal vertical step only to obtain a conservative first kinematic bound",
+    "official STEP has been identified but the FLOWER lateral free-space section has not yet been isolated or measured",
+    "C04-B1 is legal only if the complete ball exit remains through the bottom Retrieval Opening; a true side exit is excluded"
   ]
 }

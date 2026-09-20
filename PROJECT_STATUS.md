@@ -4,15 +4,15 @@
 
 ## CURRENT OBJECTIVE
 
-完成 C04-A 单电机拨杆—转轮复合 intake 的M1/M2前期定义，验证从FLOWER底部取POLLEN的名义几何、限力、速度和电机资源；下一步从官方STEP关闭拨叉横向避障并建立1:1夹具，不进入最终制造CAD。
+完成用户C04-B“标准roller + FLOWER专用侧拨杆”的规则拆分、L1/L2可行性和C04-A对照；下一步从官方STEP关闭C04-B1底部开口边界/侧管扫掠，再用同一1:1夹具随机比较A/B，不进入最终制造CAD。
 
 ## CURRENT MODULE
 
-T04 intake 主模块，关联T05/T06/T08；T06继续采用C06-B双飞轮主原型。T07顶部放球仍仅作P4增量接口研究。
+T04 intake 主模块，C04-B1为首个原型、C04-A为回退，关联T05/T06/T08；T06继续采用C06-B双飞轮主原型。T07顶部放球仍仅作P4增量接口研究。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与接口已建立，部分M2计算完成；拨叉横向尺寸、实际取出力和L6循环尚未关闭。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究，顶部放球未纳入基线。
+S00：M0通过。T04：M1 ACTIVE，C04-A/B1概念比较和部分M2名义计算完成；B1规则路径、横向尺寸、实际取出力和L6循环尚未关闭。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究，顶部放球未纳入基线。
 
 ## COMPLETED
 
@@ -49,6 +49,10 @@ S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与�
 - 将T04 roller与短预输送合并为1个带编码器电机动力源，单球节拍由舵机闸门承担；与四电机底盘、双飞轮合计7个电机，保留1端口。
 - 建立T04-INTAKE-0.1输入、复算脚本、CSV、单元测试、IF-T04-FLOWER-01 v0.2、IF-T04-T05-01及VAL-T04-002/003。
 - 建立可交互的FLOWER取球动作侧视示意，覆盖对位、上方伸入、落钩、回拉和roller接管五个状态。
+- 按用户草图把C04-B定义为标准roller之外的FLOWER补充拨杆，并拆分为只经底部Retrieval Opening离开的C04-B1与规则排除的真实侧出口C04-B2。
+- 完成T04-INTAKE-0.2名义台阶/斜面运动学、舵机力矩和资源复算；建立C04-A/B1证据评分、规则硬门槛和预登记A/B夹具方案。
+- 将C04-B1提升为首个L3/L6原型，C04-A保留回退；更新IF-T04-FLOWER-01 v0.3、VAL-T04-004/005和DEC-0015。
+- 建立C04-B1双通道、底部边界和抬升动作交互示意。
 
 ## VALIDATED
 
@@ -72,17 +76,20 @@ S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与�
 - `CALCULATED` 两球名义直径差 20 mm；固定间隙的压缩量相差 20 mm；单侧调隙的局部球心移动 10 mm，对称调隙保持名义中心线。
 - `CALCULATED_NOMINAL` FLOWER 顶口对 POLLEN/NECTAR 径向余量为 15.25/5.25 mm；底部取 POLLEN 的名义高度余量为 19 mm；只证明名义几何未排除，不替代实体试验。
 - `KNOWN` TU01 G418 已核对：得分物体只能从顶部进入 FLOWER，且只能从底部取出 POLLEN；G410 禁止最后 60 秒前让 NECTAR 进入 FLOWER 计分体积。
-- 项目单元测试现为17/17通过；T01/T04生成CSV与脚本可重复生成。
+- 项目单元测试现为21/21通过；T01/T04生成CSV与脚本可重复生成。
 - `CALCULATED` C04-A的4 mm拨叉从名义Ø71 mm POLLEN上方通过90 mm开口时剩余15 mm总间隙；名义Ø91 mm NECTAR比开口高1 mm，控制与几何均排除底部取NECTAR。
 - `CALCULATED` Ø60 mm roller在80–160 rpm FLOWER模式表面速度为0.251–0.503 m/s；10 N假设回拉力对应0.30 N·m轴矩和约1.38 A线性模型电流。
 - `CALCULATED` 10 N、80 mm力臂和2.0结构安全系数要求1.6 N·m拨叉校核力矩；0.5 N/mm×20 mm串联弹簧把刚性接触限制在约10 N。
 - `CALCULATED` 两电机差速相对当前底盘释放2端口/移除874 g电机，但理想峰值轴功率和电机限制牵引力均减半；C04-A共享动力已使换底盘不再是释放shooter端口的必要条件。
+- `KNOWN` G418规则门槛已用于区分侧向运动与侧面出口：C04-B1必须在球完全离开FLOWER前保持于底部Retrieval Opening边界；C04-B2不进入设计。
+- `CALCULATED_IDEAL_STEP` 名义Ø71 mm球跨越13 mm理想环唇需要27.46 mm水平行程，初始无摩擦水平推力为球重的1.22倍；20–30°工作面提供13 mm抬升需要26.00–38.01 mm理想路径。
+- `CALCULATED_FROM_ASSUMED_LOAD` C04-B1按10 N、70 mm力臂和2.0安全系数校核为1.40 N·m；不增加直流电机，名义使用1个专用舵机。
 
 ## OPEN QUESTIONS
 
 无未关闭 CRITICAL 信息项。
 
-项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。C04-A还需要实际POLLEN尺寸、FLOWER夹具、取出力和拨叉横向空间数据；不阻塞1:1夹具设计，但阻塞M3几何冻结。
+项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。C04-A/B1都需要实际POLLEN尺寸、FLOWER夹具和取出力；B1还需官方STEP确认侧管横向净空与底部边界。它们不阻塞1:1夹具设计，但阻塞M3几何冻结。
 
 ## KNOWN PROBLEMS
 
@@ -96,6 +103,7 @@ S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与�
 - C06-B配合C04-A共享intake/prefeed动力后使用7个电机并保留1端口；该余量尚未分配。相对C06-A至少增加的396 g只含电机，不含第二轮组、支架和护罩。
 - FLOWER 名义尺寸为约数且场地存在制造变化；5.25 mm NECTAR 顶口径向余量不足以支持未测量的可靠性承诺。
 - C04-A的40 mm拨叉宽度、70–105 mm伸入范围、12 mm落钩和10 N限力均为原型参数，不是制造尺寸；必须从官方STEP/实体夹具验证管件和环避让。
+- C04-B1的20–30°工作面、40–70 mm侧扫、10 N限力和单舵机假设均为原型参数；完整球体若穿越FLOWER侧边界即违反方案定义，理想台阶计算不能替代STEP与实物证明。
 - 单电机共驱roller与短预输送可能在闸门关闭时压缩球列；需要打滑张紧、舵机离合或其他卸载设计和混合球循环试验。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
@@ -105,6 +113,7 @@ S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与�
 - ASM-006..008：P3 采用真空弹道、0.65 轮面传递比及 0.75–2.0 m/50–60° 参数扫参，均待 L3/L6 证据替换。
 - P3-LAUNCHER-CMP-0.3的无滑移双平面接触模型只用于证明拓扑运动学；实际球速、自旋和散布必须按方案分别实测。
 - T04-INTAKE-0.1采用10 N原型限力、4 mm拨叉、60 mm roller和80–160 rpm FLOWER速度；均须由L3/L6替换或确认。
+- ASM-009：C04-B1暂用13 mm刚性台阶、20/25/30°工作面和40/55/70 mm侧扫试验水平，待VAL-T04-004/005关闭。
 - 坐标方向是可撤销的工程约定，见 `docs/module_interfaces.md`。
 
 ## FILES MODIFIED
@@ -131,14 +140,15 @@ S00：M0通过。T04：M1 ACTIVE，C04-A概念、规则边界、名义参数与�
 - `calculations/t01_drive_trade_inputs.json` / `t01_drive_trade.py` / `t01_drive_trade_results.csv`
 - `tests/test_t01_drive_trade.py`
 - `docs/t04_intake_concept.md`
+- `docs/t04_intake_side_sweep_trade.md`
 - `calculations/t04_intake_inputs.json` / `t04_intake.py` / `t04_intake_results.csv`
 - `tests/test_t04_intake.py`
 - `.gitignore`
 
 ## LATEST DESIGN VERSION
 
-Framework v0.6.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.1 ACTIVE；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
+Framework v0.6.1；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.2 / T04-INTAKE-CMP-0.1 ACTIVE；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-从官方场地STEP提取FLOWER Retrieval Opening周边低细节实体，建立C04-A拨叉70–105 mm伸入、12 mm落钩和25 mm浮动roller的L3扫掠模型；随后制作透明侧板1:1夹具，先测实际取出力，再冻结拨叉宽度/路径与servo linkage。并行保留C06-A/C06-B共用发射台架任务；仍不发布最终制造CAD。
+从官方场地STEP隔离FLOWER Retrieval Opening、底环、侧管与连接件，先建立C04-B1完整球体在底部边界内的20/25/30°、40/55/70 mm L3扫掠；同时保留C04-A扫掠。通过后制作同一透明1:1夹具，随机比较A/B的力、周期、卡球与规则接触，再决定基线；仍不发布最终制造CAD。

@@ -140,6 +140,16 @@
 - Reversible?: 是，但属于用户已冻结底盘不变量的变更，执行前必须再次批准并完成L6路径/牵引测试。
 - Date/version: 2026-09-20 / T01-DRIVE-TRADE-0.1
 
+## DEC-0015 — C04-B1底部开口内侧拨优先原型
+
+- Decision: 将用户提出的C04-B拆分为合法性待验证的C04-B1“底部Retrieval Opening内侧拨、出底部边界后导入标准roller”和被规则排除的C04-B2“穿过FLOWER侧面离开”。C04-B1成为首个L3/L6原型，C04-A保留为并行回退；当前不冻结最终方案。
+- Reason: B1名义上只需一个专用舵机、不增加电机，并把FLOWER解锁动作与普通roller解耦。理想台阶模型证明40 mm侧扫能覆盖13 mm环唇所需的27.46 mm水平跨越，20–30°工作面可在26.00–38.01 mm路径内提供13 mm抬升；但横向侧管净空尚未从官方STEP关闭。
+- Alternatives considered: 保持C04-A为唯一方案；把任何侧向球速都误判为侧面取出；采用真正穿过侧管间隙的C04-B2；立即冻结B1制造尺寸。
+- Evidence/calculation: TU01 G415/G418；`docs/t04_intake_side_sweep_trade.md`；T04-INTAKE-0.2 INT-014..022；用户草图与说明2026-09-20。
+- Impact: IF-T04-FLOWER-01升至v0.3；新增VAL-T04-004/005。下一步优先隔离官方STEP底部截面并建立A/B同夹具对照。未通过规则边界或发生不可恢复侧向楔球时回退C04-A。
+- Reversible?: 是；按预登记L3/L6门槛选择，不凭加权分单独冻结。
+- Date/version: 2026-09-20 / T04-INTAKE-CMP-0.1
+
 ## 新条目模板
 
 ```text

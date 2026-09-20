@@ -12,3 +12,14 @@ INT-010,minimum servo/linkage torque with safety factor,1.6000,N.m,CALCULATED_FR
 INT-011,series spring force limit,10.0000,N,CALCULATED,0.5 N/mm over 20 mm; prevents rigid field loading
 INT-012,whole-robot motor count,7.0000,count,CALCULATED_FROM_PROPOSED_ARCHITECTURE,4 drive + 1 shared intake/prefeed + 2 shooter
 INT-013,remaining legal motor ports,1.0000,count,CALCULATED,R503 maximum 8 motors
+INT-014,nominal POLLEN-to-ring diametric clearance,0.0000,m,CALCULATED_NOMINAL,Zero nominal clearance means C04-B1 must lift or deform the ball before lateral translation
+INT-015,ideal-step horizontal run to raise centre by ring thickness,0.0275,m,CALCULATED_IDEAL_STEP,Sphere/rigid-step proxy; not official contact geometry
+INT-016,horizontal push force divided by ball weight at initial climb,1.2204,ratio,CALCULATED_IDEAL_STEP,"Excludes friction, deformation, other balls and guide contact"
+INT-017,20 degree ramp path to lift by ring thickness,0.0380,m,CALCULATED_KINEMATIC,Lower face-angle bound; must fit official bottom-opening sweep
+INT-018,30 degree ramp path to lift by ring thickness,0.0260,m,CALCULATED_KINEMATIC,Upper face-angle bound; must fit official bottom-opening sweep
+INT-019,C04-B1 paddle torque check with safety factor,1.4000,N.m,CALCULATED_FROM_ASSUMED_LOAD,10 N contact force and 70 mm lever; actual linkage torque remains TBD
+INT-020,C04-B1 minimum-stroke average paddle speed,0.1143,m/s,CALCULATED_FROM_ASSUMED_MOTION,40 mm in 0.35 s; not a measured cycle time
+INT-021,C04-B1 additional DC motors,0.0000,count,CALCULATED_FROM_PROPOSED_ARCHITECTURE,Standard roller retains the existing shared T04/T05 motor
+INT-022,C04-B1 nominal dedicated servos,1.0000,count,PROPOSED,One-DOF cam/arc sweep; use two only if deploy and sweep cannot be safely combined
+INT-023,C04-A weighted evidence rating,3.0500,score/5,ASSUMED_EVIDENCE_RATING,Prototype-order aid only; rule gate cannot be offset by score
+INT-024,C04-B1 weighted evidence rating,3.4500,score/5,ASSUMED_EVIDENCE_RATING,Prototype-order aid only; rule gate and STEP sweep remain open
