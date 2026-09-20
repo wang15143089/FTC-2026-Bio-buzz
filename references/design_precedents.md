@@ -22,7 +22,8 @@
 | PRE-FTC-007 | [FIRST 2024 Jemison Division Awards](https://ftc-events.firstinspires.org/2024/FTCCMP1JEMI/awards) | 官方成绩页面用于核验团队/奖项叙述，避免仅凭团队宣传判断成熟度。 | 获奖不是机构适用性评分；与 PRE-FTC-006 配合使用。 |
 | PRE-FTC-008 | [OpenVault FTC Portfolios](https://www.open-vault-ftc.org/portfolios/portfolios) | 多队工程 Portfolio 可用于横向比较需求、风险、试验与迭代记录。 | 内容质量不一；任何引用都必须落到具体原文和当前项目验证。 |
 | PRE-FTC-009 | [FTC 724 RedNek Robotics Wun 官方队页](https://ftc-events.firstinspires.org/team/724)、[2017 冠军报道](https://www.sdftc.org/blog--news/rise-of-hephaestus-on-winning-alliance-at-the-first-first-festival-of-champions) | 2017 Velocity Vortex 冠军联盟采用的方案被社区资料描述为可调射程弹射器，说明离散储能方案可作为飞轮以外的高水平路线。 | 官方来源证明队伍/冠军身份，但“可调弹射器”细节来自社区二手描述；无尺寸、能量或寿命数据，不得直接复刻。 |
-| PRE-FTC-010 | [goBILDA 5203 1620 RPM 官方规格](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-3-7-1-ratio-1620-rpm-3-3-5v-encoder/) | 1620 RPM、编码器、5.4 kg·cm 堵转扭矩和 9.2 A 堵转电流为轮速/功率初筛提供供应商输入。 | 无负载/堵转端点不能代替持续工作曲线；必须做带载电流、温升和恢复测试。 |
+| PRE-FTC-010 | [goBILDA 5203 1620 RPM 官方规格](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-3-7-1-ratio-1620-rpm-3-3-5v-encoder/) | 1620 RPM、0.25 A 无负载电流、396 g、编码器、5.4 kg·cm 堵转扭矩和 9.2 A 堵转电流为轮速/质量/故障初筛提供供应商输入。 | 无负载/堵转端点不能代替持续工作曲线；必须做带载电流、温升和恢复测试。 |
+| PRE-FTC-011 | [FIRST FTC Robot Best Practices](https://ftc-docs.firstinspires.org/en/latest/robot_building/best_practices/robot-best-practices.html) | 飞轮属于显著电力负载；整机多执行器同时工作可能造成电压下降、保险丝动作或控制系统棕断，应记录实际电流。 | 用于 C06-B 电源关口；不提供本机构的持续电流值。 |
 
 ## 系统工程与工业化原则
 

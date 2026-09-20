@@ -10,6 +10,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "calculations"))
 import p3_ballistics  # noqa: E402
 import p3_motor_screen  # noqa: E402
 import p3_concept_trade  # noqa: E402
+import p3_launcher_comparison  # noqa: E402
 
 
 class P3BallisticsTests(unittest.TestCase):
@@ -66,6 +67,28 @@ class P3BallisticsTests(unittest.TestCase):
         result = p3_concept_trade.rows()
         self.assertEqual(result[0]["concept"], "C06-B_opposed_dual_flywheel")
         self.assertEqual(result[0]["score_0_to_100"], "76.0")
+
+    def test_ideal_contact_kinematics(self) -> None:
+        radius = 0.071 / 2
+        single = p3_launcher_comparison.ideal_contact_state(12.0, 0.0, radius)
+        dual = p3_launcher_comparison.ideal_contact_state(6.0, 6.0, radius)
+        self.assertTrue(math.isclose(single[0], 6.0))
+        self.assertGreater(abs(single[1]), 0.0)
+        self.assertTrue(math.isclose(dual[0], 6.0))
+        self.assertTrue(math.isclose(dual[1], 0.0))
+
+    def test_symmetric_gap_preserves_centerline(self) -> None:
+        result = p3_launcher_comparison.comparison_rows(self.inputs)
+        shift = next(row for row in result if row["claim_id"] == "CMP-005")
+        self.assertEqual(shift["c06_a_single_flywheel_hood"], "10.0000")
+        self.assertEqual(shift["c06_b_opposed_dual_flywheel"], "0.0000")
+
+    def test_flower_nominal_clearances(self) -> None:
+        result = p3_launcher_comparison.flower_rows(self.inputs)
+        nectar = next(row for row in result if row["claim_id"] == "FLW-002")
+        retrieval = next(row for row in result if row["claim_id"] == "FLW-003")
+        self.assertTrue(math.isclose(float(nectar["c06_a_single_flywheel_hood"]), 0.0053, abs_tol=5e-5))
+        self.assertEqual(retrieval["c06_a_single_flywheel_hood"], "0.0190")
 
 
 if __name__ == "__main__":

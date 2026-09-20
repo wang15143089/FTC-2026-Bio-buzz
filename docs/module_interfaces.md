@@ -39,6 +39,8 @@
 | IF-T03-T06-01 电气 | DRAFT v0.1 | 12 V 电机端口 1–2 个并使用编码器；堵转值只作故障预算，不得作为正常工作点。 | 端口号、持续/峰值电流、线束路径 |
 | IF-T08-T06-01 控制 | DRAFT v0.1 | `SAFE → SPINUP/CHARGE → READY → FEED_ONE → RECOVER`；异常进入 `FAULT_JAM` 或 `INHIBIT_HIVE_MOVING`。 | 速度容差、超时、TIP 检测方法 |
 | IF-T06-ENV-01 弹道/目标 | DRAFT v0.1 | 名义瞄准 CELL 下部矩形中心高 1455.75 mm；射位和角度由 P3-BAL-0.1 扫参，不冻结单一点。 | 阻力、旋转、场地误差、动态 HIVE |
+| IF-T04-FLOWER-01 底部取球 | PROPOSED v0.1 | 既有 intake 仅从 Retrieval Opening 底部逐个取 POLLEN；容量达到 4 时禁止继续获取；不得从侧面取球或取 NECTAR。 | 实物开口/球差、滚轮材料、对位基准、卡球恢复 |
+| IF-T04-T07-01 顶部放球预留 | DRAFT v0.1 | 仅保留可折叠、可换向 intake 的安装/控制预留；如实现，必须从顶环上方低速放入并在最后 60 秒前抑制 NECTAR。 | 扫掠包络、舵机力矩、漏斗、周期、与 T05 冲突 |
 
 ## 接口记录模板
 

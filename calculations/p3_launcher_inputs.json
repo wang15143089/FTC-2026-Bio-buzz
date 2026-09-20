@@ -14,6 +14,15 @@
     "mass_kg": null,
     "source": "BIOBUZZ TU01 section 9.8; mass remains TBD_MEASURE"
   },
+  "flower": {
+    "top_opening_diameter_m": 0.1015,
+    "top_opening_height_m": 0.546,
+    "backstop_height_m": 0.0315,
+    "retrieval_opening_height_m": 0.09,
+    "retrieval_opening_depth_m": 0.091,
+    "lower_pollen_seat_diameter_m": 0.071,
+    "source": "BIOBUZZ TU01 section 9.7; all dimensions are approximate"
+  },
   "robot": {
     "starting_max_height_m": 0.457,
     "operating_max_height_m": 0.7365,
@@ -30,7 +39,7 @@
   "motor_candidates": [
     {"sku": "5203-2402-0019", "no_load_rpm": 312, "stall_torque_kg_cm": 24.3, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
     {"sku": "5203-2402-0005", "no_load_rpm": 1150, "stall_torque_kg_cm": 7.9, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
-    {"sku": "5203-2402-0003", "no_load_rpm": 1620, "stall_torque_kg_cm": 5.4, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
+    {"sku": "5203-2402-0003", "no_load_rpm": 1620, "no_load_current_a": 0.25, "stall_torque_kg_cm": 5.4, "stall_current_a": 9.2, "mass_kg": 0.396, "status": "KNOWN_VENDOR"},
     {"sku": "5203-2402-0001", "no_load_rpm": 6000, "stall_torque_kg_cm": 1.47, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"}
   ],
   "model_limits": [

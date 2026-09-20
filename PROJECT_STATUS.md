@@ -4,15 +4,15 @@
 
 ## CURRENT OBJECTIVE
 
-关闭 P3 M1 发射概念关口缺口：补齐底盘/射位 L3 几何、模块质量/体积/持续电流预算和 L6 共用台架规格；不进入详细 CAD。
+完成 P3 单飞轮曲面压板/对置双飞轮的约束优先选择，并定义共享 intake 可承担的 FLOWER 功能边界；下一步补齐底盘/射位与 FLOWER 底部取球 L3 几何、持续电流预算和 L6 共用台架规格，不进入详细 CAD。
 
 ## CURRENT MODULE
 
-T06 HIVE 主分支，关联 T04/T05/T08；T07 FLOWER 仍仅作为 P4 增量接口研究。
+T06 HIVE 主分支，关联 T04/T05/T08；T04 intake 已增加 FLOWER 底部 POLLEN 取出职责，T07 顶部放球仍仅作 P4 增量接口研究。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口草案及部分 L2 计算，但质量/体积/持续功率预算未关闭，因此尚未通过 M1、也未正式进入 M2。T04/T05：M1 接口草案。T07：M0 增量研究。
+S00：M0 通过。T06：M1 ACTIVE，C06-B 已成为主原型、C06-A 为对照回退；解析运动学和资源差异已复算，但体积/持续功率和 L6 性能尚未关闭，因此尚未通过 M1、也未正式进入 M2。T04/T05：M1 接口草案。T07：M0 增量研究，顶部放球未纳入基线。
 
 ## COMPLETED
 
@@ -40,6 +40,10 @@ S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口�
 - 完成 P3-BAL-0.1 真空弹道扫参、P3-MOT-0.1 电机/轮速初筛和 P3-TS-001 概念比较；输入、脚本、CSV 和测试均已落盘。
 - 建立 IF-T05-T06-01、IF-T02-T06-01、IF-T03-T06-01、IF-T08-T06-01、IF-T06-ENV-01 草案。
 - 初步选择 C06-B/C06-A 进入共用可调台架，C06-C 作为风险回退；未冻结最终机构。
+- 完成 P3-LAUNCHER-CMP-0.2 约束优先比较：解析证明单轮静止压板和等速对置双轮的平移/自旋关系、20 mm 球径差的压缩变化及单侧/对称调隙中心线差异。
+- 选择 C06-B 对置双飞轮为主原型，C06-A 单飞轮曲面压板作为同台对照和资源回退；旧 P3-TS-001 主观加权分不再承担选择理由。
+- 定义共享 intake 的 FLOWER 边界：底部逐个取出 POLLEN 纳入基线且不增加电机；顶部低速放球仅保留安装/控制接口。
+- 建立 IF-T04-FLOWER-01、IF-T04-T07-01 和 VAL-T06-005/VAL-T04-001/VAL-T07-001。
 
 ## VALIDATED
 
@@ -58,12 +62,17 @@ S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口�
 - `CALCULATED` 1.5 m、55°、400–700 mm 出射高度需要约 4.92–5.56 m/s；模型忽略阻力/旋转，未伪报为实测。
 - `CALCULATED` 312/1150 RPM 直驱未通过；1620 RPM + 120 mm 进入原型范围，6000 RPM 需减速/限速。
 - `ASSUMED` 概念初筛为 C06-B 76、C06-A 69、C06-C 66；仅用于原型排序。
+- P3-LAUNCHER-CMP-0.2 单元测试通过，项目测试现为 9/9；脚本输出与保存 CSV 一致。
+- `CALCULATED_IDEAL` 5.5557 m/s 基准球速下，120 mm 单轮+静止压板理想轮速为 1768.4 rpm 并产生自旋；等速对置双轮为 884.2 rpm/轮且理想净自旋为零。该结论不代表真实效率或精度。
+- `CALCULATED` 两球名义直径差 20 mm；固定间隙的压缩量相差 20 mm；单侧调隙的局部球心移动 10 mm，对称调隙保持名义中心线。
+- `CALCULATED_NOMINAL` FLOWER 顶口对 POLLEN/NECTAR 径向余量为 15.25/5.25 mm；底部取 POLLEN 的名义高度余量为 19 mm；只证明名义几何未排除，不替代实体试验。
+- `KNOWN` TU01 G418 已核对：得分物体只能从顶部进入 FLOWER，且只能从底部取出 POLLEN；G410 禁止最后 60 秒前让 NECTAR 进入 FLOWER 计分体积。
 
 ## OPEN QUESTIONS
 
 无未关闭 CRITICAL 信息项。
 
-项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为 IMPORTANT。POLLEN/NECTAR 质量、尺寸分布和飞轮传递系数需实测；不阻塞台架设计，但阻塞最终电机/惯量选择。
+项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为 IMPORTANT。POLLEN/NECTAR 质量、尺寸分布和两种发射拓扑各自的球速传递系数需实测；不阻塞共用台架设计，但阻塞最终电机/惯量和顶部 FLOWER 功能选择。
 
 ## KNOWN PROBLEMS
 
@@ -74,12 +83,15 @@ S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口�
 - FTC 先例多来自不同赛季和不同形状物体，所有机构原则必须针对 BIOBUZZ 重新验证。
 - P3 真空弹道未包含轻质开孔球的阻力、Magnus 效应、球体变形或动态 HIVE；结果只作为台架起始窗口。
 - 还没有实物球质量、轮速—球速传递系数、命中散布、连续射击恢复和温升数据。
+- C06-B 的 8 个电机端口已用满；任何电机驱动的 FLOWER 抬升/炮塔都必须先重分配资源。相对 C06-A 至少增加的 396 g 只含电机，不含第二轮组、支架和护罩。
+- FLOWER 名义尺寸为约数且场地存在制造变化；5.25 mm NECTAR 顶口径向余量不足以支持未测量的可靠性承诺。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
 ## ASSUMPTIONS
 
 - ASM-005：默认战略总权重 70%，工程评分在无台架数据时采用规则/几何锚定判断，并用 60%–80% 敏感性检查。
 - ASM-006..008：P3 采用真空弹道、0.65 轮面传递比及 0.75–2.0 m/50–60° 参数扫参，均待 L3/L6 证据替换。
+- P3-LAUNCHER-CMP-0.2 的无滑移双平面接触模型只用于证明拓扑运动学；实际球速、自旋和散布必须按方案分别实测。
 - 坐标方向是可撤销的工程约定，见 `docs/module_interfaces.md`。
 
 ## FILES MODIFIED
@@ -99,13 +111,15 @@ S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口�
 - `calculations/p3_ballistics.py` / `p3_ballistics_results.csv`
 - `calculations/p3_motor_screen.py` / `p3_motor_screen_results.csv`
 - `calculations/p3_concept_trade.py` / `p3_concept_trade_results.csv`
+- `docs/p3_launcher_comparison.md`
+- `calculations/p3_launcher_comparison.py` / `p3_launcher_comparison_results.csv`
 - `tests/test_p3_ballistics.py`
 - `.gitignore`
 
 ## LATEST DESIGN VERSION
 
-Framework v0.4.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.2；P3-M1 v0.1 ACTIVE；P3-BAL/MOT/TS v0.1。
+Framework v0.5.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.2；P3-M1 v0.2 ACTIVE；P3-BAL/MOT v0.1；P3-LAUNCHER-CMP-0.2。
 
 ## NEXT ACTION
 
-从底盘/场地 STEP 建立低细节 L3 侧视射位与遮挡模型，补齐 C06-A/C06-B 的粗质量、体积、持续电流和维护包络；形成共用 L6 台架 BOM/测试矩阵。取得实物球后优先测质量与尺寸分布；仍不生成详细机构 CAD。
+从底盘/场地 STEP 建立低细节 L3 侧视射位、FLOWER Retrieval Opening 对位和 intake 扫掠模型；补齐 C06-A/C06-B 粗质量、体积、持续电流和维护包络，形成随机交错的共用 L6 台架 BOM/原始数据表。取得实物球后优先测质量与尺寸分布；仍不生成详细机构 CAD。
