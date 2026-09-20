@@ -1,0 +1,43 @@
+{
+  "model_version": "P3-BAL-0.1",
+  "gravity_m_s2": 9.80665,
+  "target": {
+    "opening_width_m": 0.508,
+    "rectangular_opening_height_m": 0.1935,
+    "bottom_edge_height_m": 1.359,
+    "aim_height_m": 1.45575,
+    "source": "BIOBUZZ TU01 figures 9-10 and 9-11; aim height is calculated center of the rectangular opening"
+  },
+  "gamepiece": {
+    "pollen_nominal_diameter_m": 0.071,
+    "nectar_nominal_diameter_m": 0.091,
+    "mass_kg": null,
+    "source": "BIOBUZZ TU01 section 9.8; mass remains TBD_MEASURE"
+  },
+  "robot": {
+    "starting_max_height_m": 0.457,
+    "operating_max_height_m": 0.7365,
+    "source": "BIOBUZZ TU01 R102 and R105"
+  },
+  "study": {
+    "launch_heights_m": [0.4, 0.55, 0.7],
+    "horizontal_distances_m": [0.75, 1.0, 1.5, 2.0],
+    "launch_angles_deg": [50.0, 55.0, 60.0],
+    "wheel_diameters_m": [0.096, 0.12],
+    "nominal_ball_to_wheel_speed_ratio": 0.65,
+    "status": "ASSUMED_PARAMETER_SWEEP_NOT_DESIGN_COMMITMENT"
+  },
+  "motor_candidates": [
+    {"sku": "5203-2402-0019", "no_load_rpm": 312, "stall_torque_kg_cm": 24.3, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
+    {"sku": "5203-2402-0005", "no_load_rpm": 1150, "stall_torque_kg_cm": 7.9, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
+    {"sku": "5203-2402-0003", "no_load_rpm": 1620, "stall_torque_kg_cm": 5.4, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"},
+    {"sku": "5203-2402-0001", "no_load_rpm": 6000, "stall_torque_kg_cm": 1.47, "stall_current_a": 9.2, "status": "KNOWN_VENDOR"}
+  ],
+  "model_limits": [
+    "vacuum ballistic trajectory",
+    "no aerodynamic drag or Magnus force",
+    "point-mass gamepiece",
+    "stationary robot and target",
+    "wheel-speed ratio is an assumed prototype mapping, not measured efficiency"
+  ]
+}

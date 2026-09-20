@@ -4,15 +4,15 @@
 
 ## CURRENT OBJECTIVE
 
-为 P3 HIVE 建立至少两个可调 M1 发射概念，定义 T04/T05 共享物体链接口；同时只评估 P4 相对 P3 的 FLOWER 增量资源与兼容性，不进入详细 CAD。
+关闭 P3 M1 发射概念关口缺口：补齐底盘/射位 L3 几何、模块质量/体积/持续电流预算和 L6 共用台架规格；不进入详细 CAD。
 
 ## CURRENT MODULE
 
-系统级 S00；下一步激活 T04/T05 共享链与 T06 HIVE 主分支，T07 FLOWER 仅作为 P4 增量接口研究。T01/P1 为共同底座。
+T06 HIVE 主分支，关联 T04/T05/T08；T07 FLOWER 仍仅作为 P4 增量接口研究。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S00-001 v0.2 完成。T01：M0 共同底座。T04–T06：允许进入 M1，尚未生成机构概念；T07 保持 M0 增量接口研究；其余模块 M0。
+S00：M0 通过。T06：M1 ACTIVE，已有三个概念、初筛选择、接口草案及部分 L2 计算，但质量/体积/持续功率预算未关闭，因此尚未通过 M1、也未正式进入 M2。T04/T05：M1 接口草案。T07：M0 增量研究。
 
 ## COMPLETED
 
@@ -36,6 +36,10 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S
 - Git Credential Manager 使用 Windows Credential Manager 保存认证；已启用每天 20:00（America/Chicago）的安全检查点自动化，重要验证节点立即推送。
 - 按用户要求把战略总权重从 25% 提高到 70%，并用 TU01 分值、RP、时间窗口与解锁关系重建 TS-S00-001 v0.2。
 - 修订任务包方向：P3 为主 M1、P4 为资源关口约束的扩展、P2 为 HIVE 风险回退；P1 仅作为共同底座。
+- 建立 P3-M1 v0.1：C06-A 单飞轮曲面压板、C06-B 对置双飞轮、C06-C 可调弹射器三个概念及失效模式。
+- 完成 P3-BAL-0.1 真空弹道扫参、P3-MOT-0.1 电机/轮速初筛和 P3-TS-001 概念比较；输入、脚本、CSV 和测试均已落盘。
+- 建立 IF-T05-T06-01、IF-T02-T06-01、IF-T03-T06-01、IF-T08-T06-01、IF-T06-ENV-01 草案。
+- 初步选择 C06-B/C06-A 进入共用可调台架，C06-C 作为风险回退；未冻结最终机构。
 
 ## VALIDATED
 
@@ -49,12 +53,17 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S
 - TS-S00-001 v0.2 的脚本输出与保存 CSV 完全一致；权重总和、战略默认权重 70%、评分范围和半分增量断言通过。
 - 战略权重为 60%、70%、80% 时，P3 均为第一、P4 均为第二；默认得分 P3 84.8、P4 78.2、P2 55.7、P1 55.4。
 - PDF 文本与已渲染 pp.83–91 交叉核验了比赛阶段、HIVE/FLOWER/GARDEN 规则及 Table 10-2/10-3。
+- PDF 文本与渲染 pp.71–72、87 交叉核验 HIVE/CELL 几何和合法 TIP 方法。
+- P3 计算测试 6/6 通过；生成 CSV 与脚本重生成结果一致。
+- `CALCULATED` 1.5 m、55°、400–700 mm 出射高度需要约 4.92–5.56 m/s；模型忽略阻力/旋转，未伪报为实测。
+- `CALCULATED` 312/1150 RPM 直驱未通过；1620 RPM + 120 mm 进入原型范围，6000 RPM 需减速/限速。
+- `ASSUMED` 概念初筛为 C06-B 76、C06-A 69、C06-C 66；仅用于原型排序。
 
 ## OPEN QUESTIONS
 
 无未关闭 CRITICAL 信息项。
 
-项目时间表、预算、性能目标、软件栈和维护目标仍为 IMPORTANT；战略优先级已关闭，工程评分仍需 M1/M2/L6 证据替换，见 ASM-005。
+项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为 IMPORTANT。POLLEN/NECTAR 质量、尺寸分布和飞轮传递系数需实测；不阻塞台架设计，但阻塞最终电机/惯量选择。
 
 ## KNOWN PROBLEMS
 
@@ -63,11 +72,14 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S
 - 缺少性能目标、时间表和预算。
 - TS-S00-001 v0.2 的战略输入来自规则，但工程评分仍是证据锚定的假设，不是测量；不能用来预测比赛成绩或冻结最终机构。
 - FTC 先例多来自不同赛季和不同形状物体，所有机构原则必须针对 BIOBUZZ 重新验证。
+- P3 真空弹道未包含轻质开孔球的阻力、Magnus 效应、球体变形或动态 HIVE；结果只作为台架起始窗口。
+- 还没有实物球质量、轮速—球速传递系数、命中散布、连续射击恢复和温升数据。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
 ## ASSUMPTIONS
 
 - ASM-005：默认战略总权重 70%，工程评分在无台架数据时采用规则/几何锚定判断，并用 60%–80% 敏感性检查。
+- ASM-006..008：P3 采用真空弹道、0.65 轮面传递比及 0.75–2.0 m/50–60° 参数扫参，均待 L3/L6 证据替换。
 - 坐标方向是可撤销的工程约定，见 `docs/module_interfaces.md`。
 
 ## FILES MODIFIED
@@ -82,12 +94,18 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；TS-S
 - `references/design_precedents.md`
 - `calculations/task_package_trade.py`
 - `calculations/task_package_trade_results.csv`
+- `docs/p3_hive_concept.md`
+- `calculations/p3_launcher_inputs.json`
+- `calculations/p3_ballistics.py` / `p3_ballistics_results.csv`
+- `calculations/p3_motor_screen.py` / `p3_motor_screen_results.csv`
+- `calculations/p3_concept_trade.py` / `p3_concept_trade_results.csv`
+- `tests/test_p3_ballistics.py`
 - `.gitignore`
 
 ## LATEST DESIGN VERSION
 
-Framework v0.3.1；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.2；Robot design：P3 主分支 M1 概念工作待开始。
+Framework v0.4.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；TS-S00-001 v0.2；P3-M1 v0.1 ACTIVE；P3-BAL/MOT/TS v0.1。
 
 ## NEXT ACTION
 
-为 P3 建立至少两个不绑定具体尺寸的可调发射概念；先定义 T04/T05→T06 交接接口，再给出粗质量、体积、功率、执行器和主要失效模式预算。并计算 P4 增加 T07 的资源增量与接口冲突，决定是否允许其进入完整 M1；仍不生成详细机构 CAD。
+从底盘/场地 STEP 建立低细节 L3 侧视射位与遮挡模型，补齐 C06-A/C06-B 的粗质量、体积、持续电流和维护包络；形成共用 L6 台架 BOM/测试矩阵。取得实物球后优先测质量与尺寸分布；仍不生成详细机构 CAD。

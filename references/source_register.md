@@ -18,6 +18,9 @@
 | SRC-010 | Expansion Hub 官方资料 | `https://www.revrobotics.com/rev-31-1153/` | REV-31-1153；访问 2026-09-19 | 型号、端口、143 × 103 × 29.5 mm 外形及 16 mm 孔距核验 |
 | SRC-011 | 任务包决策方法 | `https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf`；`https://www.nasa.gov/reference/6-8-decision-analysis/` | NASA/SP-2016-6105 Rev2；访问 2026-09-19 | 权衡研究结构、假设/不确定性和敏感性要求 |
 | SRC-012 | FTC 设计先例目录 | `references/design_precedents.md` 中各链接 | 访问 2026-09-19 | 初始来源、可迁移原则和限制已登记；采用前仍需逐项复验 |
+| SRC-013 | P3 HIVE 几何/规则输入 | `C:\Users\admin\Downloads\BIOBUZZ_Competition_Manual_TU01.pdf` | 同 SRC-001 / TU01 | 目视复核 Figures 9-9..9-11（pp.71–72）及 §10.5.1（p.87） |
+| SRC-014 | P3 电机候选供应商规格 | goBILDA 5203 SKU 0019/0005/0003/0001 官方产品页/规格表 | 访问 2026-09-19 | 无负载转速、堵转扭矩/电流；仅用于初筛 |
+| SRC-015 | P3 发射设计先例 | PRE-FTC-002/003/004/009；PRE-IND-003 | 访问 2026-09-19 | 提取单球进料、曲面接触、惯量、弹射器备选和护罩原则；无尺寸复用 |
 
 ## 来源优先级与变更
 

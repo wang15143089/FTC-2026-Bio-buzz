@@ -21,6 +21,8 @@
 | PRE-FTC-006 | [FTC 11329 The Quadrangles 公开资源](https://www.thequadrangles.org/ftc-11329/resources) | 同时发布 CAD、代码、Portfolio 与 Reveal，可把“几何—控制—设计理由—赛场表现”交叉审查。 | 具体赛季功能不等同 BIOBUZZ；主要用于文档结构、模块维护和证据链参考。 |
 | PRE-FTC-007 | [FIRST 2024 Jemison Division Awards](https://ftc-events.firstinspires.org/2024/FTCCMP1JEMI/awards) | 官方成绩页面用于核验团队/奖项叙述，避免仅凭团队宣传判断成熟度。 | 获奖不是机构适用性评分；与 PRE-FTC-006 配合使用。 |
 | PRE-FTC-008 | [OpenVault FTC Portfolios](https://www.open-vault-ftc.org/portfolios/portfolios) | 多队工程 Portfolio 可用于横向比较需求、风险、试验与迭代记录。 | 内容质量不一；任何引用都必须落到具体原文和当前项目验证。 |
+| PRE-FTC-009 | [FTC 724 RedNek Robotics Wun 官方队页](https://ftc-events.firstinspires.org/team/724)、[2017 冠军报道](https://www.sdftc.org/blog--news/rise-of-hephaestus-on-winning-alliance-at-the-first-first-festival-of-champions) | 2017 Velocity Vortex 冠军联盟采用的方案被社区资料描述为可调射程弹射器，说明离散储能方案可作为飞轮以外的高水平路线。 | 官方来源证明队伍/冠军身份，但“可调弹射器”细节来自社区二手描述；无尺寸、能量或寿命数据，不得直接复刻。 |
+| PRE-FTC-010 | [goBILDA 5203 1620 RPM 官方规格](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-3-7-1-ratio-1620-rpm-3-3-5v-encoder/) | 1620 RPM、编码器、5.4 kg·cm 堵转扭矩和 9.2 A 堵转电流为轮速/功率初筛提供供应商输入。 | 无负载/堵转端点不能代替持续工作曲线；必须做带载电流、温升和恢复测试。 |
 
 ## 系统工程与工业化原则
 
@@ -28,6 +30,7 @@
 |---|---|---|---|
 | PRE-IND-001 | [NASA Systems Engineering Handbook](https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf) | 方案权衡应记录背景、准则、候选、方法、假设/不确定性/敏感性、结果和推荐。 | TS-S00-001 的结构及后续所有主要权衡记录。 |
 | PRE-IND-002 | [NASA Decision Analysis](https://www.nasa.gov/reference/6-8-decision-analysis/) | 用决策树/筛选先淘汰不满足约束的方案，再把昂贵分析集中到少量候选。 | 先比较任务包，再比较机构；先低成本原型，再做重仿真。 |
+| PRE-IND-003 | [OSHA Machine Guarding](https://www.osha.gov/etools/machine-guarding/introduction/general-requirements) | 进料夹点、旋转件和飞出物需要物理防护；防护不应依赖操作者保持距离。 | T06 飞轮、轴端、带/链和进料夹点采用固定/可维护护罩，并保留断电清障路径。 |
 
 ## 当前提取的设计准则
 
@@ -36,3 +39,5 @@
 - `ASSUMED` T03 的 Hub、电池、主开关和保险丝必须在不拆卸主要得分模块的情况下检查与更换；目标时间仍为 TBD。
 - `KNOWN` 所有传动、飞轮和夹点需要护罩与断电安全移除路径；具体护罩尺寸到 M3/M4 决定。
 - `ASSUMED` 插拔接口采用防错方向、线束应变释放和明确标签；在 ICD 冻结前不指定连接器数量与位置。
+- `ASSUMED` T06 将单球闸门与发射能量级分离，使堵塞、轮速恢复和双球误进可独立验证。
+- `ASSUMED` 首轮发射台架必须模块化更换单轮/双轮头部，并以实测轨迹替换真空模型和轮速传递假设。
