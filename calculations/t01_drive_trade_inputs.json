@@ -1,0 +1,45 @@
+{
+  "model_version": "T01-DRIVE-TRADE-0.1",
+  "drive_motor": {
+    "sku": "5203-2402-0019",
+    "nominal_voltage_v": 12.0,
+    "no_load_speed_rpm": 312.0,
+    "no_load_current_a": 0.25,
+    "stall_current_a": 9.2,
+    "stall_torque_kg_cm": 24.3,
+    "mass_kg": 0.437,
+    "status": "KNOWN_VENDOR"
+  },
+  "current_chassis": {
+    "sku": "3209-0001-0007",
+    "assembled_mass_kg": 4.269,
+    "mecanum_wheel_diameter_m": 0.104,
+    "mecanum_wheel_mass_kg_each": 0.236,
+    "drive_motor_count": 4,
+    "status": "KNOWN_VENDOR"
+  },
+  "representative_differential_conversion": {
+    "wheel_sku": "3626-0014-0096",
+    "wheel_diameter_m": 0.096,
+    "wheel_mass_kg_each": 0.082,
+    "wheel_status": "REFERENCE_ONLY_NOT_SELECTED",
+    "transmission_mass_kg": null,
+    "transmission_efficiency": null
+  },
+  "study": {
+    "ground_force_cases_n": [20.0, 30.0, 40.0],
+    "vehicle_speed_case_m_s": 1.0,
+    "robot_mass_sweep_kg": [8.0, 12.0, 16.0],
+    "track_width_sweep_m": [0.3, 0.375, 0.45],
+    "lateral_displacement_sweep_m": [0.25, 0.5, 1.0],
+    "mecanum_strafe_speed_fraction_sweep": [0.35, 0.5, 0.65, 0.8],
+    "status": "ASSUMED_SENSITIVITY_NOT_DESIGN_COMMITMENT"
+  },
+  "model_limits": [
+    "linear brushed-DC motor model derived from vendor endpoint data",
+    "motor output shaft includes gearbox but excludes external transmission losses",
+    "no tire slip, rolling resistance, acceleration transient, battery sag, controller loss, or mecanum roller loss",
+    "track width and complete robot mass remain TBD and are swept parametrically",
+    "representative 96 mm traction wheel is not a selected component"
+  ]
+}

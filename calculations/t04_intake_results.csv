@@ -1,0 +1,14 @@
+claim_id,metric,value,unit,status,boundary
+INT-001,POLLEN total vertical opening clearance,0.0190,m,CALCULATED_NOMINAL,Does not include ball/field variation
+INT-002,clearance remaining with rake above POLLEN,0.0150,m,CALCULATED_NOMINAL,Rake crosses above nominal ball before hook drop
+INT-003,NECTAR nominal vertical interference,-0.0010,m,CALCULATED_NOMINAL,Negative value reinforces that bottom removal is POLLEN-only
+INT-004,rake extension nominal versus opening depth,-0.0010,m,CALCULATED_NOMINAL,Near-equal nominal values require adjustable stop and CAD/field verification
+INT-005,roller surface speed lower FLOWER setting,0.2513,m/s,CALCULATED,"Commanded speed, not measured under load"
+INT-006,roller surface speed upper FLOWER setting,0.5027,m/s,CALCULATED,"Commanded speed, not measured under load"
+INT-007,roller surface speed upper floor setting,0.9802,m/s,CALCULATED,312 rpm motor candidate at no load
+INT-008,roller torque at assumed extraction force,0.3000,N.m,CALCULATED_FROM_ASSUMED_LOAD,10 N force limit at 30 mm radius
+INT-009,estimated motor current at assumed extraction force,1.3767,A,CALCULATED_LINEAR_MODEL,Excludes losses; use only to seed current-limit testing
+INT-010,minimum servo/linkage torque with safety factor,1.6000,N.m,CALCULATED_FROM_ASSUMED_LOAD,Actuator rating must be checked at actual servo voltage
+INT-011,series spring force limit,10.0000,N,CALCULATED,0.5 N/mm over 20 mm; prevents rigid field loading
+INT-012,whole-robot motor count,7.0000,count,CALCULATED_FROM_PROPOSED_ARCHITECTURE,4 drive + 1 shared intake/prefeed + 2 shooter
+INT-013,remaining legal motor ports,1.0000,count,CALCULATED,R503 maximum 8 motors

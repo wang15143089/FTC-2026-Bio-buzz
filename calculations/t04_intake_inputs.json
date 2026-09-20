@@ -1,0 +1,64 @@
+{
+  "model_version": "T04-INTAKE-0.1",
+  "gamepiece": {
+    "pollen_nominal_diameter_m": 0.071,
+    "nectar_nominal_diameter_m": 0.091,
+    "status": "KNOWN_APPROXIMATE",
+    "source": "BIOBUZZ TU01 section 9.8"
+  },
+  "flower": {
+    "retrieval_opening_height_m": 0.09,
+    "retrieval_opening_depth_m": 0.091,
+    "bottom_ring_thickness_m": 0.013,
+    "status": "KNOWN_APPROXIMATE",
+    "source": "BIOBUZZ TU01 section 9.7 and Figure 9-12"
+  },
+  "mechanism": {
+    "architecture": "C04-A_overhead_rake_plus_compliant_roller",
+    "powered_motor_count": 1,
+    "servo_count": 2,
+    "rake_blade_thickness_m": 0.004,
+    "rake_active_width_m": 0.04,
+    "rake_extension_nominal_m": 0.09,
+    "rake_extension_adjustment_m": [0.07, 0.105],
+    "hook_drop_m": 0.012,
+    "effective_force_lever_arm_m": 0.08,
+    "roller_diameter_m": 0.06,
+    "flower_active_roller_width_m": 0.06,
+    "roller_vertical_compliance_m": 0.025,
+    "flower_mode_rpm": [80.0, 160.0],
+    "floor_mode_rpm": [220.0, 312.0],
+    "design_extraction_force_n": 10.0,
+    "extraction_force_status": "ASSUMED_PROTOTYPE_LIMIT",
+    "structural_safety_factor": 2.0,
+    "series_spring_rate_n_m": 500.0,
+    "series_spring_max_compression_m": 0.02,
+    "status": "PROVISIONAL_M1_M2"
+  },
+  "motor": {
+    "candidate_sku": "5203-2402-0019",
+    "no_load_speed_rpm": 312.0,
+    "no_load_current_a": 0.25,
+    "stall_current_a": 9.2,
+    "stall_torque_kg_cm": 24.3,
+    "status": "KNOWN_VENDOR_CANDIDATE_NOT_SELECTED"
+  },
+  "resource_architecture": {
+    "drive_motors": 4,
+    "shared_intake_and_prefeed_motors": 1,
+    "dual_flywheel_motors": 2,
+    "remaining_motor_ports": 1,
+    "servo_functions": [
+      "S04-1 rake extension/retraction",
+      "S04-2 hook drop/stow",
+      "S05-1 single-ball shooter gate"
+    ]
+  },
+  "model_limits": [
+    "FLOWER and gamepiece dimensions are approximate",
+    "rake width requires official CAD and physical field fit verification",
+    "10 N extraction load is a prototype force limit, not measured field resistance",
+    "servo linkage geometry and actual torque remain TBD until L3 layout",
+    "motor current uses a linear torque-current endpoint model and excludes transmission loss"
+  ]
+}

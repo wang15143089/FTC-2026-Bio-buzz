@@ -1,4 +1,4 @@
-"""P3-LAUNCHER-CMP-0.2: analytic launcher and shared-intake comparison.
+"""P3-LAUNCHER-CMP-0.3: analytic launcher and shared-intake comparison.
 
 The contact model is an ideal local two-plane, no-slip model.  It proves
 kinematic relationships, not real launcher efficiency or accuracy.  FLOWER
@@ -17,7 +17,7 @@ from typing import TextIO
 from p3_ballistics import load_inputs, solve_trajectory
 
 
-MODEL_VERSION = "P3-LAUNCHER-CMP-0.2"
+MODEL_VERSION = "P3-LAUNCHER-CMP-0.3"
 FIELDNAMES = (
     "claim_id",
     "category",
@@ -88,8 +88,8 @@ def comparison_rows(inputs: dict) -> list[dict[str, str]]:
         ("CMP-003", "kinematics", "ideal POLLEN spin magnitude", abs(a_spin), abs(b_spin), "rad/s", "CALCULATED_IDEAL", "omega=(u1-u2)/(2r); excludes slip and deformation"),
         ("CMP-004", "diameter", "fixed-gap compression change from 71 to 91 mm", diameter_delta * 1000.0, diameter_delta * 1000.0, "mm", "CALCULATED_NOMINAL", "compression=D-gap; fixed gap changes compression by delta-D"),
         ("CMP-005", "diameter", "exit-center shift with one-sided/symmetric gap adjustment", diameter_delta * 500.0, 0.0, "mm", "CALCULATED_LOCAL_GEOMETRY", "A fixed-wheel/moving-hood center shifts delta-D/2; B symmetric surfaces preserve center"),
-        ("CMP-006", "resources", "whole-robot motor count", 7.0, 8.0, "count", "CALCULATED_FROM_ASSUMED_ARCHITECTURE", "4 drive + 1 intake + 1 transfer + launcher motors"),
-        ("CMP-007", "resources", "remaining legal motor ports", 1.0, 0.0, "count", "CALCULATED", "R503 limit 8 minus CMP-006"),
+        ("CMP-006", "resources", "whole-robot motor count", 6.0, 7.0, "count", "CALCULATED_FROM_PROPOSED_ARCHITECTURE", "4 drive + 1 shared intake/prefeed + launcher motors per DEC-0013"),
+        ("CMP-007", "resources", "remaining legal motor ports", 2.0, 1.0, "count", "CALCULATED", "R503 limit 8 minus CMP-006"),
         ("CMP-008", "resources", "minimum launcher motor mass delta B minus A", 0.0, motor["mass_kg"], "kg", "KNOWN_VENDOR_LOWER_BOUND", "one additional 5203-2402-0003; excludes mounts/wheel/wiring"),
         ("CMP-009", "resources", "additional no-load current B minus A", 0.0, motor["no_load_current_a"], "A", "KNOWN_VENDOR_LOWER_BOUND", "one additional motor at 12 V; loaded current is TBD_MEASURE"),
         ("CMP-010", "fault", "additional single-motor stall-current exposure B minus A", 0.0, motor["stall_current_a"], "A", "KNOWN_VENDOR_FAULT_BOUND", "not an allowable operating point"),

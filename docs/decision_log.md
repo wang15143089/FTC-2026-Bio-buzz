@@ -120,6 +120,26 @@
 - Reversible?: 是；按 VAL-T06-004 的预登记反转规则执行，不凭印象改回。
 - Date/version: 2026-09-19 / P3-LAUNCHER-CMP-0.2
 
+## DEC-0013 — 单电机拨杆—转轮复合 Intake
+
+- Decision: T04采用C04-A上方薄拨叉、末端落钩和顺从分段roller；只用1个直流电机驱动roller并预留共驱短输送，使用2个舵机完成拨叉伸缩和落钩。FLOWER底部取POLLEN不增加电机。
+- Reason: Retrieval Opening对名义POLLEN有19 mm总高度余量，4 mm拨叉可从球上方进入并保留15 mm名义余量；两舵机把间歇路径运动与连续roller动力分离。共享T04/T05电机后，四电机底盘和双飞轮仍只占7个电机，保留1个端口。
+- Alternatives considered: 只用roller直接拉球；为拨杆增加第二直流电机；单舵机弹性钩；从FLOWER侧面取球；独立FLOWER intake。
+- Evidence/calculation: TU01 §9.7、§9.8、G407、G415、G418、R503；`docs/t04_intake_concept.md`；T04-INTAKE-0.1。
+- Impact: T04预占1电机/2舵机，T05单球闸门预占1舵机；拨叉宽度、实际取出力和完整扫掠必须由L3/L6关闭，当前不得发布制造图。
+- Reversible?: 是；若100次夹具试验证明两舵机路径不可靠，可换成单自由度凸轮或其他底部取球机构，但不得无审查增加电机。
+- Date/version: 2026-09-20 / T04-INTAKE-0.1
+
+## DEC-0014 — 当前保留四电机麦克纳姆底盘
+
+- Decision: 当前不把3209-0001-0007改成两电机差速，也不为“效率”单独改成四电机差速；保留轮距、轴距和四电机麦克纳姆运动学。
+- Reason: 四电机差速不释放端口；两电机差速虽释放2个端口并移除874 g电机，但理想峰值轴功率和电机限制牵引力减半，且失去保持射击朝向时的横移。C04-A共享动力后整机已有1个电机端口余量。
+- Alternatives considered: 四电机差速；两电机差速+链/带驱动四轮；立即更换96 mm牵引轮；维持麦克纳姆但减少到两电机（运动学不可接受）。
+- Evidence/calculation: `docs/t01_drive_trade_study.md`；T01-DRIVE-TRADE-0.1；5203-2402-0019和3209-0001-0007供应商规格；P3/T04资源预算。
+- Impact: 保持全向对位与现有底盘最小改动；驱动仍占4个电机。若未来批准的功能需要至少2个额外电机，必须按预登记条件重开评审。
+- Reversible?: 是，但属于用户已冻结底盘不变量的变更，执行前必须再次批准并完成L6路径/牵引测试。
+- Date/version: 2026-09-20 / T01-DRIVE-TRADE-0.1
+
 ## 新条目模板
 
 ```text

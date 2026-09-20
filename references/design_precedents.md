@@ -24,6 +24,9 @@
 | PRE-FTC-009 | [FTC 724 RedNek Robotics Wun 官方队页](https://ftc-events.firstinspires.org/team/724)、[2017 冠军报道](https://www.sdftc.org/blog--news/rise-of-hephaestus-on-winning-alliance-at-the-first-first-festival-of-champions) | 2017 Velocity Vortex 冠军联盟采用的方案被社区资料描述为可调射程弹射器，说明离散储能方案可作为飞轮以外的高水平路线。 | 官方来源证明队伍/冠军身份，但“可调弹射器”细节来自社区二手描述；无尺寸、能量或寿命数据，不得直接复刻。 |
 | PRE-FTC-010 | [goBILDA 5203 1620 RPM 官方规格](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-3-7-1-ratio-1620-rpm-3-3-5v-encoder/) | 1620 RPM、0.25 A 无负载电流、396 g、编码器、5.4 kg·cm 堵转扭矩和 9.2 A 堵转电流为轮速/质量/故障初筛提供供应商输入。 | 无负载/堵转端点不能代替持续工作曲线；必须做带载电流、温升和恢复测试。 |
 | PRE-FTC-011 | [FIRST FTC Robot Best Practices](https://ftc-docs.firstinspires.org/en/latest/robot_building/best_practices/robot-best-practices.html) | 飞轮属于显著电力负载；整机多执行器同时工作可能造成电压下降、保险丝动作或控制系统棕断，应记录实际电流。 | 用于 C06-B 电源关口；不提供本机构的持续电流值。 |
+| PRE-FTC-012 | [goBILDA 5203 312 RPM官方规格](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-19-2-1-ratio-24mm-length-8mm-rex-shaft-312-rpm-3-3-5v-encoder/) | 312 rpm、0.25 A无负载电流、9.2 A堵转电流、24.3 kg·cm堵转扭矩和437 g质量用于T01/T04端点模型。 | 端点线性模型不能代替带载效率、温升和电池压降实测。 |
+| PRE-FTC-013 | [WPILib Mecanum Kinematics](https://docs.wpilib.org/en/latest/docs/software/kinematics-and-odometry/mecanum-drive-kinematics.html)、[Differential Kinematics](https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-kinematics.html) | 麦克纳姆将底盘三自由度速度映射到四轮；差速只映射前进与角速度。 | 支持T01运动学自由度边界；不提供FTC轮地效率数据。 |
+| PRE-FTC-014 | [goBILDA 96 mm Hogback轮](https://www.gobilda.com/hogback-traction-wheel-96mm-diameter-50a-durometer/) | 82 g/个作为差速改装的质量敏感性参考。 | 直径与原104 mm轮不同，且传动未选；不得视为正式轮组选型。 |
 
 ## 系统工程与工业化原则
 
