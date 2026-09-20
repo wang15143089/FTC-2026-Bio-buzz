@@ -32,6 +32,8 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任�
 - 完成 TS-S00-001 P1–P4 加权比较、四种权重敏感性分析及可复算 Python 脚本。
 - 建立初始 FTC/系统工程设计先例目录，并记录可迁移原则与赛季差异。
 - 形成首轮策略：P1 是共同底座；P2/P3 并行进入 M1；P4 暂缓且不进入详细集成 CAD。
+- 配置仓库本地提交署名 `yutian <wagnyutian923@126.com>`、GitHub `origin` 和 `main` 上游分支；首个工程基线已安全推送。
+- Git Credential Manager 使用 Windows Credential Manager 保存认证；已启用每天 20:00（America/Chicago）的安全检查点自动化，重要验证节点立即推送。
 
 ## VALIDATED
 
@@ -59,8 +61,7 @@ S00：M0 关口通过，Requirements v0.1 与 Architecture v0.1 已批准；任�
 - 缺少性能目标、时间表、预算和方案比较权重。
 - TS-S00-001 的评分为工程判断，不是测量；不能用来预测比赛成绩或冻结最终任务组合。
 - FTC 先例多来自不同赛季和不同形状物体，所有机构原则必须针对 BIOBUZZ 重新验证。
-- Git 仓库尚无首个提交；当前未配置 `user.name`/`user.email`，因此未擅自伪造提交身份。
-- Git Credential Manager 2.7.3 已配置为 Windows Credential Manager (`wincredman`)；远程仓库地址、提交署名和自动推送时刻尚未提供，所以尚未触发登录或上传。
+- 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
 ## ASSUMPTIONS
 
