@@ -1,58 +1,76 @@
 {
-  "model_version": "T04-C04B1-M3-0.2",
+  "model_version": "T04-C04B1-M3-0.3",
   "status": "PRINTABLE_VALIDATION_ARTICLE_NOT_FOR_ROBOT_RELEASE",
   "generator": "cad/modules/t04_intake/flower_side_sweep_prototype.py",
   "parameter_source": "calculations/t04_intake_inputs.json@T04-INTAKE-0.4",
   "actuator": {
     "model": "REV-41-3336 Smart Robot Servo V2 - UltraSpeed",
     "vendor_step_sha256": "b74f0e0f6ed97ed1013bfedac3a195c72a9f85751469a2e7ced31348480a9959",
-    "vendor_drawing_sha256": "bc73e266fb0f0e73bf1fcc2ce3e0f39fa6dabcd2d67940308490232a422f980c"
+    "vendor_drawing_sha256": "bc73e266fb0f0e73bf1fcc2ce3e0f39fa6dabcd2d67940308490232a422f980c",
+    "horn_model": "REV-41-1828 Aluminum Servo Horn V2",
+    "horn_vendor_step_sha256": "63dce40b36e4b0a0861457d4cfe6fdfe29c89a34d4b5d2edbc04ecb47e1d3254"
   },
   "printed_parts": [
     {
       "name": "17 mm pitch-radius capstan",
-      "step": {"path": "exports/step/t04_c04b1_17mm_capstan_m3.step", "sha256": "d802968797d8e1b540fa9502d82843915833de7cd863bb458044c7d721b69f73", "bytes": 86863},
-      "stl": {"path": "exports/stl/t04_c04b1_17mm_capstan_m3.stl", "sha256": "30654bbc3b04d20204c5d7dabe54d9e54058c3340fd55328f5de8698571c1056", "bytes": 224084},
+      "step": {"path": "exports/step/t04_c04b1_17mm_capstan_m3.step", "sha256": "d377f60a97c40c85801c0d92ce9b96d031ce23f5ace3590f0b80e98d2d729af3", "bytes": 86997},
+      "stl": {"path": "exports/stl/t04_c04b1_17mm_capstan_m3.stl", "sha256": "18497e65f11abe50c179ea27ef6b838c29333f11b4ddff7250efc8131772c7ba", "bytes": 224084},
       "readback": {"solids": 1, "bbox_mm": [38.0, 38.0, 8.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
     },
     {
       "name": "25 degree paddle slider",
-      "step": {"path": "exports/step/t04_c04b1_25deg_paddle_slider_m3.step", "sha256": "a1a9a319a4bf9a7b8e88e2889c167010cd3f40e1ca1bd567529970b3d5d8dffc", "bytes": 77077},
-      "stl": {"path": "exports/stl/t04_c04b1_25deg_paddle_slider_m3.stl", "sha256": "f9eefc2650d1ca82930d53331809e77cc9ae5d1c77c768a65a39137417545962", "bytes": 35384},
+      "step": {"path": "exports/step/t04_c04b1_25deg_paddle_slider_m3.step", "sha256": "2f83e7e8458b8ac8394688b5ae5d0cc32e8eac196fb36361f4d3e0c7bb469fde", "bytes": 53954},
+      "stl": {"path": "exports/stl/t04_c04b1_25deg_paddle_slider_m3.stl", "sha256": "ce5d887593222ca867123355daf149b5cc6313c0dce93800df1117e22ea52a7b", "bytes": 33984},
       "readback": {"solids": 1, "bbox_mm": [41.0, 26.0, 19.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
     },
     {
       "name": "servo cradle and open guide rail",
-      "step": {"path": "exports/step/t04_c04b1_servo_rail_bracket_m3.step", "sha256": "e06d1ce902625b6d23bd17d580631f0d6e5e3f45de28628cb96c3b2db939824d", "bytes": 169492},
-      "stl": {"path": "exports/stl/t04_c04b1_servo_rail_bracket_m3.stl", "sha256": "9c92217f2459d4a973b714d889c90b65ec239a1059ca9d5d2c4a39d5629e7d93", "bytes": 94084},
-      "readback": {"solids": 1, "bbox_mm": [185.0, 70.0, 27.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
+      "step": {"path": "exports/step/t04_c04b1_servo_rail_bracket_m3.step", "sha256": "a8285916d384d507d8ba682db21f6d6df886684cc5bbc5d471beb6bb3beac8f0", "bytes": 82024},
+      "stl": {"path": "exports/stl/t04_c04b1_servo_rail_bracket_m3.stl", "sha256": "a79792f000c62c6eb40a2f4aaab05c7e812ef0df27fdf4e5b819ee50a6a3c410", "bytes": 88284},
+      "readback": {"solids": 1, "bbox_mm": [190.0, 85.0, 41.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
     }
   ],
   "assembly": {
     "path": "exports/step/t04_c04b1_capstan_fixture_assembly_m3.step",
-    "sha256": "ad1ba8e04d0d1def7facfb5466a4655d7a1e4d5bb80cf960c64214338cb79927",
-    "bytes": 433894,
+    "sha256": "86cb053e94c898412bc1f959db1e81e65060c137b31d2f29df65d7adda93de77",
+    "bytes": 7975081,
     "readback_solids": 5,
-    "bbox_mm": [185.0, 70.0, 44.0],
+    "bbox_mm": [190.0, 85.0, 45.0],
     "valid_brep": true
+  },
+  "fusion360_assembly": {
+    "path": "exports/step/t04_c04b1_fusion360_assembly_m3.step",
+    "sha256": "d7ec7c01a4d6a59b8bf5f57b8027c495d8dde243c5e68c42c1a3357f82014388",
+    "bytes": 7975082,
+    "format": "ISO-10303 STEP assembly",
+    "named_components": [
+      "printed_bracket_rail",
+      "REV_41_3336_official",
+      "REV_41_1828_official",
+      "printed_17mm_capstan",
+      "paddle_start"
+    ],
+    "readback_solids": 5,
+    "bbox_mm": [190.0, 85.0, 45.0],
+    "non_mating_pair_intersection_volume_mm3": 0.0
   },
   "preview": {
     "path": "exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png",
-    "sha256": "51d3abf4b1728e19d3e64d5f6562c70a7d820b2cfa2c36d8cf4ac0781f63db75",
-    "bytes": 140900
+    "sha256": "fe715a7a6c7072b29f712b4ed672be0d66ab41d05603ff3f858e0b208c3e20ad",
+    "bytes": 144459
   },
   "required_nonprinted_hardware": [
     "REV-41-1828 aluminum servo horn V2",
     "M3 fasteners for the 16 mm PCD horn interface; length selected after physical stack measurement",
     "approximately 1 mm low-stretch cord",
     "return elastic limited to 1.5 N at full stroke",
-    "two cable ties for the servo cradle",
+    "four nominal M4 servo mounting screws/nuts; final length selected from the physical stack",
     "physical 60 mm travel stop"
   ],
   "excluded_or_tbd": [
     "printer/material/shrink calibration",
     "actual cord slip and pitch-radius variation",
-    "actual servo ear and cable strain relief",
+    "servo cable strain relief",
     "robot mounting interface and protective guarding",
     "FLOWER alignment fixture and compliant lateral datum",
     "measured extraction force, current, cycle life, and legal-contact validation"

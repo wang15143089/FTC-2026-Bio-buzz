@@ -25,6 +25,7 @@ exports/drawings/*
 !exports/step/t04_c04b1_25deg_paddle_slider_m3.step
 !exports/step/t04_c04b1_servo_rail_bracket_m3.step
 !exports/step/t04_c04b1_capstan_fixture_assembly_m3.step
+!exports/step/t04_c04b1_fusion360_assembly_m3.step
 !exports/stl/t04_c04b1_17mm_capstan_m3.stl
 !exports/stl/t04_c04b1_25deg_paddle_slider_m3.stl
 !exports/stl/t04_c04b1_servo_rail_bracket_m3.stl

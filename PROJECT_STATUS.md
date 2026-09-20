@@ -60,6 +60,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - 将目标舵机确认为REV-41-3336 Smart Robot Servo V2 - UltraSpeed；核验官方规格、单页尺寸图和STEP，并登记REV-41-1828铝舵盘接口。
 - 用严格角度/力双边界比较3.2:1圆弧回退与卷线鼓直线驱动；首轮原型改用17 mm节圆半径单层卷线鼓，保留已验证的60 mm直线路径。
 - 生成三件可打印验证件：舵机夹持/开式导轨支架、卷线鼓和25°楔形滑块；同时生成组合STEP、预览、清单和制造边界说明。
+- 以REV-41-3336官方STEP替换代理舵机，加入REV-41-1828官方舵盘，并按官方4×Ø4.5孔位重建支架；输出保留5个命名组件的Fusion 360装配STEP。
 
 ## VALIDATED
 
@@ -83,7 +84,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - `CALCULATED` 两球名义直径差 20 mm；固定间隙的压缩量相差 20 mm；单侧调隙的局部球心移动 10 mm，对称调隙保持名义中心线。
 - `CALCULATED_NOMINAL` FLOWER 顶口对 POLLEN/NECTAR 径向余量为 15.25/5.25 mm；底部取 POLLEN 的名义高度余量为 19 mm；只证明名义几何未排除，不替代实体试验。
 - `KNOWN` TU01 G418 已核对：得分物体只能从顶部进入 FLOWER，且只能从底部取出 POLLEN；G410 禁止最后 60 秒前让 NECTAR 进入 FLOWER 计分体积。
-- 项目单元测试现为26/26通过；T01/T04生成CSV与脚本可重复生成；M3两个STEP均已回读。
+- 项目单元测试现为28/28通过；T01/T04生成CSV与脚本可重复生成；M3 STEP均已回读。
 - `CALCULATED` C04-A的4 mm拨叉从名义Ø71 mm POLLEN上方通过90 mm开口时剩余15 mm总间隙；名义Ø91 mm NECTAR比开口高1 mm，控制与几何均排除底部取NECTAR。
 - `CALCULATED` Ø60 mm roller在80–160 rpm FLOWER模式表面速度为0.251–0.503 m/s；10 N假设回拉力对应0.30 N·m轴矩和约1.38 A线性模型电流。
 - `CALCULATED` 10 N、80 mm力臂和2.0结构安全系数要求1.6 N·m拨叉校核力矩；0.5 N/mm×20 mm串联弹簧把刚性接触限制在约10 N。
@@ -99,6 +100,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - `CALCULATED` 17 mm卷线鼓完成60 mm直线行程需要202.220°；居中端点751.0/2249.0 µs；6 V理想无负载时间0.145 s。可行半径区间为12.73–19.10 mm。
 - `CALCULATED_FROM_ASSUMPTIONS` 6 V、80%效率、50%堵转、1.5 N回位载荷下，17 mm卷线鼓可提供11.42 N外载；短时结构边界24.34 N，分别超过10/20 N原型门槛。
 - `VALIDATED_GEOMETRY` 三个打印件STEP均回读为单一有效实体；组合STEP为5实体；三个STL均为封闭流形，边界边/非流形边计数为0。
+- `VALIDATED_ASSEMBLY` Fusion 360 STEP回读5个有效实体、190 × 85 × 45 mm包络；保留支架、官方舵机、官方舵盘、卷线鼓和拨片5个产品名称；非配合件两两实体交叠为0。
 
 ## OPEN QUESTIONS
 
@@ -120,7 +122,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - C04-A的40 mm拨叉宽度、70–105 mm伸入范围、12 mm落钩和10 N限力均为原型参数，不是制造尺寸；必须从官方STEP/实体夹具验证管件和环避让。
 - C04-B1的20–30°工作面、40–70 mm侧扫、10 N限力和单舵机假设均为原型参数；完整球体若穿越FLOWER侧边界即违反方案定义，理想台阶计算不能替代STEP与实物证明。
 - C04-B1 25°路径只有3.680 mm名义支柱余量，不能覆盖未知场地公差、球非圆度或机器人对位误差；初模没有舵机真实外形、安装架、轴承、导板、传动件和制造公差。
-- 新验证支架是开式重力导轨，适合低成本台架，不具备整机姿态保持、护罩或最终机器人安装接口；不得直接作为比赛零件发布。
+- 新验证支架是官方孔位舵机安装+开式重力导轨，适合低成本台架，不具备整机姿态保持、护罩或最终机器人安装接口；不得直接作为比赛零件发布。
 - 17 mm卷线鼓计算假设单层、不打滑和1.5 N最大回位载荷；绳叠层或弹性会改变实际行程/输出力，必须用机械止挡和实测关闭。
 - 单电机共驱roller与短预输送可能在闸门关闭时压缩球列；需要打滑张紧、舵机离合或其他卸载设计和混合球循环试验。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
@@ -169,14 +171,15 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - `cad/modules/t04_intake/flower_side_sweep_prototype.py`
 - `cad/modules/t04_intake/prototype_manifest.json`
 - `exports/step/t04_c04b1_*capstan*_m3.step` / `*paddle*_m3.step` / `*bracket*_m3.step`
+- `exports/step/t04_c04b1_fusion360_assembly_m3.step`
 - `exports/stl/t04_c04b1_*_m3.stl`
 - `exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png`
 - `.gitignore`
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.1；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.2 PRINTABLE VALIDATION ARTICLE；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-打印T04-C04B1-M3-0.2三件套并装REV-41-1828铝舵盘、约1 mm低伸长绳和≤1.5 N回位件；先做无球60 mm行程/机械止挡/峰值电流校准，再在透明1:1 FLOWER底部夹具测实际取出力、绳滑移和100循环。通过VAL-T04-006后才按VAL-T04-005随机比较C04-A/B1并决定是否进入M4。
+在Fusion 360中打开T04-C04B1-M3-0.3装配并确认导入层级；随后打印三件套并装REV-41-1828铝舵盘、约1 mm低伸长绳和≤1.5 N回位件。先做无球60 mm行程/机械止挡/峰值电流校准，再在透明1:1 FLOWER底部夹具测实际取出力、绳滑移和100循环。
