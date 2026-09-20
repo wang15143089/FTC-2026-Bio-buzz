@@ -1,4 +1,4 @@
-"""T04-INTAKE-0.2 nominal checks for C04-A and the C04-B1 side-sweep."""
+"""T04-INTAKE-0.3 nominal checks for C04-A and the C04-B1 side-sweep."""
 
 from __future__ import annotations
 
@@ -53,6 +53,10 @@ def weighted_trade_score(inputs: dict, candidate: str) -> float:
     )
 
 
+def kg_cm_to_nm(torque_kg_cm: float) -> float:
+    return torque_kg_cm * 0.0980665
+
+
 def rows(inputs: dict) -> list[dict[str, str]]:
     pollen = inputs["gamepiece"]["pollen_nominal_diameter_m"]
     nectar = inputs["gamepiece"]["nectar_nominal_diameter_m"]
@@ -86,6 +90,31 @@ def rows(inputs: dict) -> list[dict[str, str]]:
         * side["structural_safety_factor"]
     )
     side_sweep_speed = side["paddle_sweep_stroke_m_range"][0] / side["nominal_sweep_time_s"]
+    servo = inputs["side_sweep_servo"]
+    servo_6v = servo["six_volt"]
+    servo_74v = servo["seven_point_four_volt"]
+    torque_6v_nm = kg_cm_to_nm(servo_6v["stall_torque_kg_cm"])
+    torque_74v_nm = kg_cm_to_nm(servo_74v["stall_torque_kg_cm"])
+    transmission_efficiency = servo["assumed_transmission_efficiency"]
+    moving_fraction = servo["assumed_max_moving_fraction_of_stall"]
+    required_output_torque_without_structural_sf = (
+        side["design_contact_force_n"] * servo["nominal_output_arm_m"]
+    )
+    min_ratio_6v_moving = required_output_torque_without_structural_sf / (
+        torque_6v_nm * transmission_efficiency * moving_fraction
+    )
+    min_ratio_6v_structural = side_required_servo_torque / (
+        torque_6v_nm * transmission_efficiency
+    )
+    min_ratio_74v_moving = required_output_torque_without_structural_sf / (
+        torque_74v_nm * transmission_efficiency * moving_fraction
+    )
+    ratio = servo["proposed_reduction_ratio"]
+    nominal_output_angle_rad = servo["nominal_sweep_stroke_m"] / servo["nominal_output_arm_m"]
+    nominal_servo_angle_deg = math.degrees(nominal_output_angle_rad) * ratio
+    no_load_sweep_time_6v = servo_6v["speed_s_per_60_deg"] * nominal_servo_angle_deg / 60.0
+    output_torque_at_moving_limit_6v = torque_6v_nm * transmission_efficiency * moving_fraction * ratio
+    output_force_at_moving_limit_6v = output_torque_at_moving_limit_6v / servo["nominal_output_arm_m"]
     total_motors = (
         resource["drive_motors"]
         + resource["shared_intake_and_prefeed_motors"]
@@ -116,7 +145,16 @@ def rows(inputs: dict) -> list[dict[str, str]]:
         ("INT-021", "C04-B1 additional DC motors", side["powered_motor_count"], "count", "CALCULATED_FROM_PROPOSED_ARCHITECTURE", "Standard roller retains the existing shared T04/T05 motor"),
         ("INT-022", "C04-B1 nominal dedicated servos", side["servo_count_nominal"], "count", "PROPOSED", "One-DOF cam/arc sweep; use two only if deploy and sweep cannot be safely combined"),
         ("INT-023", "C04-A weighted evidence rating", weighted_trade_score(inputs, "C04-A"), "score/5", "ASSUMED_EVIDENCE_RATING", "Prototype-order aid only; rule gate cannot be offset by score"),
-        ("INT-024", "C04-B1 weighted evidence rating", weighted_trade_score(inputs, "C04-B1"), "score/5", "ASSUMED_EVIDENCE_RATING", "Prototype-order aid only; rule gate and STEP sweep remain open"),
+        ("INT-024", "C04-B1 weighted evidence rating", weighted_trade_score(inputs, "C04-B1"), "score/5", "ASSUMED_EVIDENCE_RATING", "Prototype-order aid only; nominal STEP passed, physical gate remains open"),
+        ("INT-025", "servo 6 V stall torque", torque_6v_nm, "N.m", "CALCULATED_FROM_USER_SPEC", "Stall is not a continuous operating point; model ID/datasheet remain TBD"),
+        ("INT-026", "servo 7.4 V stall torque", torque_74v_nm, "N.m", "CALCULATED_FROM_USER_SPEC", "7.4 V supply compatibility is not assumed"),
+        ("INT-027", "minimum 6 V ratio for 10 N moving load", min_ratio_6v_moving, "ratio", "CALCULATED_FROM_ASSUMPTIONS", "Uses 50% stall and 80% transmission efficiency"),
+        ("INT-028", "minimum 6 V ratio for 1.4 N.m structural check", min_ratio_6v_structural, "ratio", "CALCULATED_FROM_ASSUMPTIONS", "Uses full stall only as a short-duration strength boundary"),
+        ("INT-029", "minimum 7.4 V ratio for 10 N moving load", min_ratio_74v_moving, "ratio", "CALCULATED_FROM_ASSUMPTIONS", "Comparison only; 7.4 V integration remains TBD"),
+        ("INT-030", "proposed 3.2 ratio 6 V moving-limit output force", output_force_at_moving_limit_6v, "N", "CALCULATED_FROM_ASSUMPTIONS", "50% stall and 80% transmission efficiency"),
+        ("INT-031", "nominal 55 mm sweep required servo rotation", nominal_servo_angle_deg, "deg", "CALCULATED_SMALL_ANGLE_ARC", "70 mm output arm and 3.2 ratio; linkage geometry remains preliminary"),
+        ("INT-032", "nominal 55 mm sweep ideal no-load time at 6 V", no_load_sweep_time_6v, "s", "CALCULATED_FROM_USER_SPEC", "No-load lower bound; commanded prototype motion remains 0.25-0.40 s"),
+        ("INT-033", "servo 6 V stall current", servo_6v["stall_current_a"], "A", "KNOWN_USER_PROVIDED", "Power rail transient capability and wiring remain TBD"),
     ]
     return [
         {
@@ -151,6 +189,23 @@ def validate(inputs: dict) -> None:
     criteria = inputs["trade_study"]["criteria"].values()
     assert math.isclose(sum(item["weight"] for item in criteria), 1.0)
     assert all(1.0 <= item[candidate] <= 5.0 for item in criteria for candidate in ("C04-A", "C04-B1"))
+    servo = inputs["side_sweep_servo"]
+    torque_6v_nm = kg_cm_to_nm(servo["six_volt"]["stall_torque_kg_cm"])
+    efficiency = servo["assumed_transmission_efficiency"]
+    moving_fraction = servo["assumed_max_moving_fraction_of_stall"]
+    required_moving_torque = side["design_contact_force_n"] * servo["nominal_output_arm_m"]
+    required_structural_torque = (
+        required_moving_torque * side["structural_safety_factor"]
+    )
+    min_ratio_6v_moving = required_moving_torque / (
+        torque_6v_nm * efficiency * moving_fraction
+    )
+    min_ratio_6v_structural = required_structural_torque / (
+        torque_6v_nm * efficiency
+    )
+    assert servo["default_design_voltage_v"] == 6.0
+    assert servo["proposed_reduction_ratio"] >= min_ratio_6v_moving
+    assert servo["proposed_reduction_ratio"] >= min_ratio_6v_structural
     resource = inputs["resource_architecture"]
     assert resource["drive_motors"] + resource["shared_intake_and_prefeed_motors"] + resource["dual_flywheel_motors"] <= 8
 

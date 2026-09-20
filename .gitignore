@@ -6,6 +6,7 @@ outputs/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.venv/
 
 # CAD application temporary/backup files
 *.FCStd1

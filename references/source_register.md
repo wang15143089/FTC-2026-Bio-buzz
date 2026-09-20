@@ -21,6 +21,7 @@
 | SRC-013 | P3 HIVE 几何/规则输入 | `C:\Users\admin\Downloads\BIOBUZZ_Competition_Manual_TU01.pdf` | 同 SRC-001 / TU01 | 目视复核 Figures 9-9..9-11（pp.71–72）及 §10.5.1（p.87） |
 | SRC-014 | P3 电机候选供应商规格 | goBILDA 5203 SKU 0019/0005/0003/0001 官方产品页/规格表 | 访问 2026-09-19 | 无负载转速、堵转扭矩/电流；仅用于初筛 |
 | SRC-015 | P3 发射设计先例 | PRE-FTC-002/003/004/009；PRE-IND-003 | 访问 2026-09-19 | 提取单球进料、曲面接触、惯量、弹射器备选和护罩原则；无尺寸复用 |
+| SRC-016 | FLOWER独立官方几何 | `C:\Users\admin\Downloads\am-5855- Flower Assembly.step` | `980297B1505E4DD7E471DE406A33B115191A5EC0AFBADA9DEEB7A226144E15F3` | CadQuery 2.6.1导入；34实体；总包络169.380 × 156.559 × 595.211 mm；用于VAL-T04-004 |
 
 ## 来源优先级与变更
 

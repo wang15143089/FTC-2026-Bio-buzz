@@ -1,5 +1,5 @@
 {
-  "model_version": "T04-INTAKE-0.2",
+  "model_version": "T04-INTAKE-0.3",
   "gamepiece": {
     "pollen_nominal_diameter_m": 0.071,
     "nectar_nominal_diameter_m": 0.091,
@@ -52,11 +52,58 @@
     "exit_path_constraint": "ball_must_remain_in_bottom_retrieval_opening_until_clear_of_flower",
     "status": "PROVISIONAL_M1_L1_CONDITIONAL"
   },
+  "official_flower_cad": {
+    "source_filename": "am-5855- Flower Assembly.step",
+    "sha256": "980297b1505e4dd7e471de406a33b115191a5ec0afbada9deeb7a226144e15f3",
+    "coordinate_convention": "+Z up; pure lateral is -X; opening-forward component is -Y",
+    "solid_count": 34,
+    "overall_bbox_mm": [169.379633, 156.558937, 595.211291],
+    "bottom_ring_top_z_mm": 25.4795,
+    "upper_plate_bottom_z_mm": 115.6490,
+    "retrieval_opening_clear_height_mm": 90.1695,
+    "status": "MEASURED_FROM_USER_SUPPLIED_OFFICIAL_STEP"
+  },
+  "side_sweep_path": {
+    "ball_heading_from_negative_x_deg": 25.0,
+    "ball_lift_face_angle_deg": 25.0,
+    "ball_total_validation_travel_mm": 120.0,
+    "paddle_powered_travel_mm": 60.0,
+    "paddle_thickness_mm": 3.0,
+    "paddle_width_mm": 20.0,
+    "paddle_height_mm": 32.0,
+    "roller_diameter_mm": 60.0,
+    "roller_width_mm": 120.0,
+    "roller_center_path_distance_mm": 116.0,
+    "roller_center_z_mm": 50.0,
+    "geometry_clearance_status": "SIMULATED_NOMINAL_STEP_BOOLEAN",
+    "status": "PROVISIONAL_M3_INPUT"
+  },
+  "side_sweep_servo": {
+    "source_status": "KNOWN_USER_PROVIDED_PENDING_DATASHEET_AND_MODEL_ID",
+    "mass_kg": 0.06,
+    "six_volt": {
+      "speed_s_per_60_deg": 0.043,
+      "stall_torque_kg_cm": 5.6,
+      "stall_current_a": 2.9
+    },
+    "seven_point_four_volt": {
+      "speed_s_per_60_deg": 0.035,
+      "stall_torque_kg_cm": 6.2,
+      "stall_current_a": 3.7
+    },
+    "default_design_voltage_v": 6.0,
+    "assumed_transmission_efficiency": 0.8,
+    "assumed_max_moving_fraction_of_stall": 0.5,
+    "proposed_reduction_ratio": 3.2,
+    "nominal_output_arm_m": 0.07,
+    "nominal_sweep_stroke_m": 0.055,
+    "status": "PROVISIONAL_M2"
+  },
   "trade_study": {
     "status": "ASSUMED_EVIDENCE_RATING_FOR_PROTOTYPE_ORDER_ONLY",
     "hard_gate": "G418_bottom_exit_and_no_G415_attachment",
     "criteria": {
-      "current_geometry_evidence": {"weight": 0.25, "C04-A": 4.0, "C04-B1": 2.0},
+      "current_geometry_evidence": {"weight": 0.25, "C04-A": 4.0, "C04-B1": 4.0},
       "actuator_resources": {"weight": 0.15, "C04-A": 3.0, "C04-B1": 5.0},
       "standard_intake_decoupling": {"weight": 0.15, "C04-A": 2.0, "C04-B1": 5.0},
       "jam_recovery": {"weight": 0.15, "C04-A": 4.0, "C04-B1": 3.0},

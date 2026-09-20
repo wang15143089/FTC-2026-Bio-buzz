@@ -60,8 +60,24 @@ class T04IntakeTests(unittest.TestCase):
 
     def test_trade_scores_are_reproducible_but_not_rule_gates(self) -> None:
         self.assertTrue(math.isclose(t04_intake.weighted_trade_score(self.inputs, "C04-A"), 3.05))
-        self.assertTrue(math.isclose(t04_intake.weighted_trade_score(self.inputs, "C04-B1"), 3.45))
+        self.assertTrue(math.isclose(t04_intake.weighted_trade_score(self.inputs, "C04-B1"), 3.95))
         self.assertIn("G418", self.inputs["trade_study"]["hard_gate"])
+
+    def test_servo_6v_requires_reduction(self) -> None:
+        rows = t04_intake.rows(self.inputs)
+        moving_ratio = float(next(row for row in rows if row["claim_id"] == "INT-027")["value"])
+        structural_ratio = float(next(row for row in rows if row["claim_id"] == "INT-028")["value"])
+        proposed = self.inputs["side_sweep_servo"]["proposed_reduction_ratio"]
+        self.assertGreater(moving_ratio, 3.0)
+        self.assertLessEqual(moving_ratio, proposed)
+        self.assertLessEqual(structural_ratio, proposed)
+
+    def test_servo_nominal_sweep_is_fast_but_current_remains_open(self) -> None:
+        rows = t04_intake.rows(self.inputs)
+        sweep_time = float(next(row for row in rows if row["claim_id"] == "INT-032")["value"])
+        stall_current = float(next(row for row in rows if row["claim_id"] == "INT-033")["value"])
+        self.assertLess(sweep_time, 0.15)
+        self.assertEqual(stall_current, 2.9)
 
 
 if __name__ == "__main__":

@@ -150,6 +150,16 @@
 - Reversible?: 是；按预登记L3/L6门槛选择，不凭加权分单独冻结。
 - Date/version: 2026-09-20 / T04-INTAKE-CMP-0.1
 
+## DEC-0016 — C04-B1由纯横向改为25°斜向侧拨并进入M3
+
+- Decision: 淘汰模型−X方向纯横向直线；采用从−X朝合法底部开口前方−Y偏25°的斜向侧拨作为C04-B1 M3中心路径。拨片动力行程60 mm，之后由位于路径距离116 mm处的Ø60 × 120 mm标准roller接管。目标舵机按6 V、3.2:1减速建模；不默认使用7.4 V。
+- Reason: 官方独立FLOWER STEP显示纯横向球路与左后短支柱存在−5.437 mm解析净空和590.763 mm³最大实体交叠；25°路径保留90.6%侧向分量，同时提供3.680 mm名义支柱净空，完整球、拨片与roller名义交叠均为0。目标舵机6 V直驱扭矩不足，3.2:1在80%效率和50%堵转运动边界下刚好覆盖10 N。
+- Alternatives considered: 保持纯横向并依赖软球变形；改为完全朝−Y拉出；直接采用7.4 V；双舵机；回退C04-A。
+- Evidence/calculation: SRC-016；T04-FLOWER-SWEEP-0.1 SWP-001..013；T04-INTAKE-0.3 INT-025..033；`cad/modules/t04_intake/side_sweep_intake.py`。
+- Impact: 允许生成非制造用途M3低细节模型；3.680 mm名义余量、2.9 A堵转、电源瞬态、舵机外形和实物取出力仍阻塞M4。C04-A继续保留。
+- Reversible?: 是；VAL-T04-005实体对照失败则修改角度/柔顺或回退C04-A。
+- Date/version: 2026-09-20 / T04-INTAKE-CMP-0.2 / T04-C04B1-M3-0.1
+
 ## 新条目模板
 
 ```text

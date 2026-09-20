@@ -1,0 +1,14 @@
+claim_id,metric,value,unit,status,boundary
+SWP-001,official FLOWER solid count,34.000000,count,MEASURED_FROM_CAD,Hash-locked user-supplied STEP
+SWP-002,official FLOWER X envelope,169.379633,mm,MEASURED_FROM_CAD,"Nominal CAD, not physical field measurement"
+SWP-003,official FLOWER Y envelope,156.558937,mm,MEASURED_FROM_CAD,"Nominal CAD, not physical field measurement"
+SWP-004,official FLOWER Z envelope,595.211291,mm,MEASURED_FROM_CAD,"Nominal CAD, not physical field measurement"
+SWP-005,Retrieval Opening clear height,90.169985,mm,MEASURED_FROM_CAD,Bottom-ring top to upper-plate bottom
+SWP-006,lifted nominal ball top clearance,6.119985,mm,CALCULATED_FROM_CAD,13 mm lift; excludes ball and field tolerance
+SWP-007,pure lateral -X support clearance,-5.436723,mm,CALCULATED_FROM_CAD,Negative predicts collision with left short support
+SWP-008,pure lateral -X maximum overlap,590.763467,mm^3,SIMULATED_NOMINAL_STEP_BOOLEAN,"5 mm samples, peak at 35 mm"
+SWP-009,selected 25 degree planar support clearance,3.680217,mm,CALCULATED_FROM_CAD,Nominal cylindrical support boundary
+SWP-010,selected 25 degree ball maximum overlap,0.000000,mm^3,SIMULATED_NOMINAL_STEP_BOOLEAN,5 mm samples over 0-120 mm; nominal rigid ball
+SWP-011,selected paddle maximum overlap,0.000000,mm^3,SIMULATED_NOMINAL_STEP_BOOLEAN,"3x20x32 mm paddle, 5 mm samples over powered travel"
+SWP-012,standard roller maximum overlap,0.000000,mm^3,SIMULATED_NOMINAL_STATIC_BOOLEAN,60x120 mm roller proxy at 116 mm path distance
+SWP-013,solids included in swept-region collision model,12.000000,count,CALCULATED_FROM_CAD,All official solids spanning bottom-ring bottom through upper-plate bottom

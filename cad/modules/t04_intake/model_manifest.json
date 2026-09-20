@@ -1,0 +1,38 @@
+{
+  "model_version": "T04-C04B1-M3-0.1",
+  "status": "PRELIMINARY_NOT_FOR_MANUFACTURING",
+  "generator": "cad/modules/t04_intake/side_sweep_intake.py",
+  "parameter_source": "calculations/t04_intake_inputs.json@T04-INTAKE-0.3",
+  "validation_source": "calculations/t04_flower_sweep_results.csv@T04-FLOWER-SWEEP-0.1",
+  "official_flower_source": {
+    "filename": "am-5855- Flower Assembly.step",
+    "sha256": "980297b1505e4dd7e471de406a33b115191a5ec0afbada9deeb7a226144e15f3"
+  },
+  "generated_outputs": [
+    {
+      "path": "exports/step/t04_c04b1_mechanism_m3.step",
+      "sha256": "f2d6e4d3790b4e6331cd52ddfe43a0680dac94806c8b6861503f96eb7391bdfa",
+      "bytes": 150777,
+      "readback_solids": 6
+    },
+    {
+      "path": "exports/step/t04_c04b1_with_flower_m3.step",
+      "sha256": "0bcd62bf47215c4c905ea48701122dc2914ef53589f3ae9b23963d516bae2f07",
+      "bytes": 26829729,
+      "readback_solids": 40
+    },
+    {
+      "path": "exports/drawings/t04_c04b1_m3_preview.png",
+      "sha256": "0583adbfea9dbb291b6f1d3ad27e1cc7b66a2f4e9cbae9661c43dd27698d2ec2",
+      "bytes": 707360
+    }
+  ],
+  "excluded_from_model": [
+    "actual servo envelope and spline",
+    "3.2:1 transmission implementation",
+    "mounting brackets and datums",
+    "bearings and fasteners",
+    "guide funnel and compliance hardware",
+    "manufacturing tolerances"
+  ]
+}
