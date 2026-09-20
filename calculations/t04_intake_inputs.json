@@ -1,5 +1,5 @@
 {
-  "model_version": "T04-INTAKE-0.3",
+  "model_version": "T04-INTAKE-0.4",
   "gamepiece": {
     "pollen_nominal_diameter_m": 0.071,
     "nectar_nominal_diameter_m": 0.091,
@@ -79,7 +79,21 @@
     "status": "PROVISIONAL_M3_INPUT"
   },
   "side_sweep_servo": {
-    "source_status": "KNOWN_USER_PROVIDED_PENDING_DATASHEET_AND_MODEL_ID",
+    "manufacturer": "REV Robotics",
+    "model": "Smart Robot Servo V2 - UltraSpeed",
+    "sku": "REV-41-3336",
+    "source_status": "KNOWN_USER_PROVIDED_AND_VENDOR_VERIFIED",
+    "body_envelope_mm": [40.2, 20.0, 38.0],
+    "official_step_bbox_mm": [20.15082, 43.55, 54.0],
+    "gear_material": "steel",
+    "voltage_range_v": [4.8, 7.4],
+    "nominal_voltage_v": 6.0,
+    "input_pulse_range_us": [500.0, 2500.0],
+    "default_angular_range_deg": 270.0,
+    "maximum_programmable_angular_range_deg": 280.0,
+    "cable_length_mm": 300.0,
+    "spline": "H25T 3F / 25T",
+    "spline_internal_thread": "M3x0.5, 6 mm maximum depth",
     "mass_kg": 0.06,
     "six_volt": {
       "speed_s_per_60_deg": 0.043,
@@ -94,10 +108,17 @@
     "default_design_voltage_v": 6.0,
     "assumed_transmission_efficiency": 0.8,
     "assumed_max_moving_fraction_of_stall": 0.5,
-    "proposed_reduction_ratio": 3.2,
+    "preferred_transmission": "single_layer_capstan_linear_pull",
+    "capstan_pitch_radius_m": 0.017,
+    "capstan_cable_diameter_m": 0.001,
+    "assumed_return_load_n": 1.5,
+    "commanded_sweep_time_s_range": [0.25, 0.4],
+    "prototype_printed_clearance_per_side_mm": 0.3,
+    "horn_adapter": "REV-41-1828 aluminum servo horn V2, 6x M3 clearance on 16 mm PCD",
+    "geared_fallback_reduction_ratio": 3.2,
     "nominal_output_arm_m": 0.07,
-    "nominal_sweep_stroke_m": 0.055,
-    "status": "PROVISIONAL_M2"
+    "nominal_sweep_stroke_m": 0.06,
+    "status": "PROVISIONAL_M2_M3_PROTOTYPE"
   },
   "trade_study": {
     "status": "ASSUMED_EVIDENCE_RATING_FOR_PROTOTYPE_ORDER_ONLY",

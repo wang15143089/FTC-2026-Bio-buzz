@@ -1,0 +1,60 @@
+{
+  "model_version": "T04-C04B1-M3-0.2",
+  "status": "PRINTABLE_VALIDATION_ARTICLE_NOT_FOR_ROBOT_RELEASE",
+  "generator": "cad/modules/t04_intake/flower_side_sweep_prototype.py",
+  "parameter_source": "calculations/t04_intake_inputs.json@T04-INTAKE-0.4",
+  "actuator": {
+    "model": "REV-41-3336 Smart Robot Servo V2 - UltraSpeed",
+    "vendor_step_sha256": "b74f0e0f6ed97ed1013bfedac3a195c72a9f85751469a2e7ced31348480a9959",
+    "vendor_drawing_sha256": "bc73e266fb0f0e73bf1fcc2ce3e0f39fa6dabcd2d67940308490232a422f980c"
+  },
+  "printed_parts": [
+    {
+      "name": "17 mm pitch-radius capstan",
+      "step": {"path": "exports/step/t04_c04b1_17mm_capstan_m3.step", "sha256": "d802968797d8e1b540fa9502d82843915833de7cd863bb458044c7d721b69f73", "bytes": 86863},
+      "stl": {"path": "exports/stl/t04_c04b1_17mm_capstan_m3.stl", "sha256": "30654bbc3b04d20204c5d7dabe54d9e54058c3340fd55328f5de8698571c1056", "bytes": 224084},
+      "readback": {"solids": 1, "bbox_mm": [38.0, 38.0, 8.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
+    },
+    {
+      "name": "25 degree paddle slider",
+      "step": {"path": "exports/step/t04_c04b1_25deg_paddle_slider_m3.step", "sha256": "a1a9a319a4bf9a7b8e88e2889c167010cd3f40e1ca1bd567529970b3d5d8dffc", "bytes": 77077},
+      "stl": {"path": "exports/stl/t04_c04b1_25deg_paddle_slider_m3.stl", "sha256": "f9eefc2650d1ca82930d53331809e77cc9ae5d1c77c768a65a39137417545962", "bytes": 35384},
+      "readback": {"solids": 1, "bbox_mm": [41.0, 26.0, 19.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
+    },
+    {
+      "name": "servo cradle and open guide rail",
+      "step": {"path": "exports/step/t04_c04b1_servo_rail_bracket_m3.step", "sha256": "e06d1ce902625b6d23bd17d580631f0d6e5e3f45de28628cb96c3b2db939824d", "bytes": 169492},
+      "stl": {"path": "exports/stl/t04_c04b1_servo_rail_bracket_m3.stl", "sha256": "9c92217f2459d4a973b714d889c90b65ec239a1059ca9d5d2c4a39d5629e7d93", "bytes": 94084},
+      "readback": {"solids": 1, "bbox_mm": [185.0, 70.0, 27.0], "valid_brep": true, "stl_boundary_or_nonmanifold_edges": 0}
+    }
+  ],
+  "assembly": {
+    "path": "exports/step/t04_c04b1_capstan_fixture_assembly_m3.step",
+    "sha256": "ad1ba8e04d0d1def7facfb5466a4655d7a1e4d5bb80cf960c64214338cb79927",
+    "bytes": 433894,
+    "readback_solids": 5,
+    "bbox_mm": [185.0, 70.0, 44.0],
+    "valid_brep": true
+  },
+  "preview": {
+    "path": "exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png",
+    "sha256": "51d3abf4b1728e19d3e64d5f6562c70a7d820b2cfa2c36d8cf4ac0781f63db75",
+    "bytes": 140900
+  },
+  "required_nonprinted_hardware": [
+    "REV-41-1828 aluminum servo horn V2",
+    "M3 fasteners for the 16 mm PCD horn interface; length selected after physical stack measurement",
+    "approximately 1 mm low-stretch cord",
+    "return elastic limited to 1.5 N at full stroke",
+    "two cable ties for the servo cradle",
+    "physical 60 mm travel stop"
+  ],
+  "excluded_or_tbd": [
+    "printer/material/shrink calibration",
+    "actual cord slip and pitch-radius variation",
+    "actual servo ear and cable strain relief",
+    "robot mounting interface and protective guarding",
+    "FLOWER alignment fixture and compliant lateral datum",
+    "measured extraction force, current, cycle life, and legal-contact validation"
+  ]
+}

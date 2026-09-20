@@ -29,6 +29,16 @@ INT-027,minimum 6 V ratio for 10 N moving load,3.1866,ratio,CALCULATED_FROM_ASSU
 INT-028,minimum 6 V ratio for 1.4 N.m structural check,3.1866,ratio,CALCULATED_FROM_ASSUMPTIONS,Uses full stall only as a short-duration strength boundary
 INT-029,minimum 7.4 V ratio for 10 N moving load,2.8782,ratio,CALCULATED_FROM_ASSUMPTIONS,Comparison only; 7.4 V integration remains TBD
 INT-030,proposed 3.2 ratio 6 V moving-limit output force,10.0420,N,CALCULATED_FROM_ASSUMPTIONS,50% stall and 80% transmission efficiency
-INT-031,nominal 55 mm sweep required servo rotation,144.0580,deg,CALCULATED_SMALL_ANGLE_ARC,70 mm output arm and 3.2 ratio; linkage geometry remains preliminary
-INT-032,nominal 55 mm sweep ideal no-load time at 6 V,0.1032,s,CALCULATED_FROM_USER_SPEC,No-load lower bound; commanded prototype motion remains 0.25-0.40 s
-INT-033,servo 6 V stall current,2.9000,A,KNOWN_USER_PROVIDED,Power rail transient capability and wiring remain TBD
+INT-031,60 mm chord geared-fallback output rotation,50.7539,deg,CALCULATED_CHORD_GEOMETRY,"70 mm output radius; exact chord equation, not small-angle approximation"
+INT-032,3.2 ratio geared-fallback servo rotation,162.4124,deg,CALCULATED,Fallback only; circular path has 6.75 mm sagitta versus validated straight path
+INT-033,servo 6 V stall current,2.9000,A,KNOWN_VENDOR_VERIFIED,Stall is not a normal operating point; power rail transient remains open
+INT-034,17 mm capstan rotation for 60 mm linear stroke,202.2204,deg,CALCULATED,Single-layer pitch radius; cable build-up and slip require L6 measurement
+INT-035,capstan centered command start pulse,751.0356,us,CALCULATED_FROM_VENDOR_MAPPING,Assumes factory 270 degree mode and symmetric mechanical zero
+INT-036,capstan centered command end pulse,2248.9644,us,CALCULATED_FROM_VENDOR_MAPPING,Assumes factory 270 degree mode and symmetric mechanical zero
+INT-037,capstan ideal no-load stroke time at 6 V,0.1449,s,CALCULATED_FROM_VENDOR_SPEC,Lower bound; commanded prototype motion remains 0.25-0.40 s
+INT-038,capstan moving-limit cable tension at 6 V,12.9217,N,CALCULATED_FROM_ASSUMPTIONS,80% efficiency and 50% stall-torque moving boundary
+INT-039,capstan external force after return load,11.4217,N,CALCULATED_FROM_ASSUMPTIONS,Subtracts 1.5 N maximum prototype return load
+INT-040,capstan structural external-force boundary,24.3434,N,CALCULATED_FROM_ASSUMPTIONS,Full stall is used only as a short-duration strength boundary
+INT-041,minimum capstan radius imposed by 270 degree range,0.0127,m,CALCULATED,60 mm stroke with no range overrun
+INT-042,maximum capstan radius imposed by moving force,0.0191,m,CALCULATED_FROM_ASSUMPTIONS,10 N external load plus 1.5 N return load
+INT-043,geared-fallback ideal no-load stroke time at 6 V,0.1164,s,CALCULATED_FROM_VENDOR_SPEC,Fallback only; excludes load and controller ramp

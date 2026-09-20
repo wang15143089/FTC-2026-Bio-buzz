@@ -1,6 +1,8 @@
 # Local scratch and Codex delivery areas
 work/
 outputs/
+tmp/
+exports/prototype_t04/
 
 # Python/CadQuery caches
 __pycache__/
@@ -19,3 +21,11 @@ exports/step/*
 exports/stl/*
 exports/drawings/*
 !.gitkeep
+!exports/step/t04_c04b1_17mm_capstan_m3.step
+!exports/step/t04_c04b1_25deg_paddle_slider_m3.step
+!exports/step/t04_c04b1_servo_rail_bracket_m3.step
+!exports/step/t04_c04b1_capstan_fixture_assembly_m3.step
+!exports/stl/t04_c04b1_17mm_capstan_m3.stl
+!exports/stl/t04_c04b1_25deg_paddle_slider_m3.stl
+!exports/stl/t04_c04b1_servo_rail_bracket_m3.stl
+!exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png

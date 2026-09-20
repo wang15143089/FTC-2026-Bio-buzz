@@ -4,15 +4,15 @@
 
 ## CURRENT OBJECTIVE
 
-完成C04-B1官方FLOWER STEP扫掠、6 V舵机传动校核与M3低细节初模；下一步制作同一1:1夹具并随机比较C04-A/B1，不进入最终制造CAD。
+完成C04-B1目标舵机核验、卷线鼓直线驱动校核和可打印M3验证件；下一步打印/装配并在1:1 FLOWER底部夹具测力、电流、滑移与循环，不进入最终制造CAD。
 
 ## CURRENT MODULE
 
-T04 intake 主模块，C04-B1 25°斜向侧拨为首个L6原型、C04-A为回退，关联T05/T06/T08；T06继续采用C06-B双飞轮主原型。T07顶部放球仍仅作P4增量接口研究。
+T04 intake 主模块，C04-B1 25°楔形直线侧拨+17 mm卷线鼓为首个L6原型、C04-A为回退，关联T05/T06/T08；T06继续采用C06-B双飞轮主原型。T07顶部放球仍仅作P4增量接口研究。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模完成，实体公差/力/循环未关闭；C04-A维持M1回退。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究。
+S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义几何、舵机/传动计算和验证件完成，实体公差/力/电流/循环未关闭；C04-A维持M1回退。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究。
 
 ## COMPLETED
 
@@ -57,6 +57,9 @@ S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模�
 - 完成T04-FLOWER-SWEEP-0.1：纯−X横移因左后短支柱干涉淘汰；从−X朝−Y偏25°后，完整球、3×20×32 mm拨片和Ø60×120 mm roller名义实体交叠均为0。
 - 将目标舵机用户参数纳入T04-INTAKE-0.3；6 V直驱不满足，初模采用3.2:1减速并保留2.9 A堵转/电源瞬态开放项。
 - 生成并回读C04-B1 M3参数化CadQuery初模：机构独立STEP 6实体，组合STEP 40实体；未建模舵机未知外形、紧固件或制造细节。
+- 将目标舵机确认为REV-41-3336 Smart Robot Servo V2 - UltraSpeed；核验官方规格、单页尺寸图和STEP，并登记REV-41-1828铝舵盘接口。
+- 用严格角度/力双边界比较3.2:1圆弧回退与卷线鼓直线驱动；首轮原型改用17 mm节圆半径单层卷线鼓，保留已验证的60 mm直线路径。
+- 生成三件可打印验证件：舵机夹持/开式导轨支架、卷线鼓和25°楔形滑块；同时生成组合STEP、预览、清单和制造边界说明。
 
 ## VALIDATED
 
@@ -91,13 +94,17 @@ S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模�
 - `MEASURED_FROM_CAD` SRC-016 Retrieval Opening净高90.170 mm；13 mm抬升后Ø71 mm球对上球托仍有6.120 mm名义间隙。
 - `REJECTED_GEOMETRY` 纯−X横移对短支柱净空−5.437 mm，最大实体交叠590.763 mm³；不得继续作为候选路径。
 - `SIMULATED_NOMINAL` 25°斜向路径支柱解析余量3.680 mm，球/拨片/roller名义实体交叠均为0；仅批准M3初模，不代表实物通过。
-- `CALCULATED_FROM_USER_SPEC` 目标舵机6/7.4 V堵转力矩为0.549/0.608 N·m；6 V、80%效率、50%堵转运动边界要求3.187:1，选3.2:1后名义10.04 N、144.1°、0.103 s无负载下界。
+- `CALCULATED_FROM_VENDOR_SPEC` 目标舵机6/7.4 V堵转力矩为0.549/0.608 N·m；70 mm圆弧回退在6 V、80%效率、50%堵转运动边界要求3.187:1，3.2:1可提供10.04 N；60 mm端点弦长需舵机162.41°、理想无负载0.116 s，但有6.75 mm弓高偏差。
+- `KNOWN_VENDOR_VERIFIED` 目标舵机为REV-41-3336：默认270°、可编程最大280°、500–2500 µs、25T、中心M3×0.5最大6 mm深；官方STEP回读1实体且总包络20.151 × 43.550 × 54.000 mm。
+- `CALCULATED` 17 mm卷线鼓完成60 mm直线行程需要202.220°；居中端点751.0/2249.0 µs；6 V理想无负载时间0.145 s。可行半径区间为12.73–19.10 mm。
+- `CALCULATED_FROM_ASSUMPTIONS` 6 V、80%效率、50%堵转、1.5 N回位载荷下，17 mm卷线鼓可提供11.42 N外载；短时结构边界24.34 N，分别超过10/20 N原型门槛。
+- `VALIDATED_GEOMETRY` 三个打印件STEP均回读为单一有效实体；组合STEP为5实体；三个STL均为封闭流形，边界边/非流形边计数为0。
 
 ## OPEN QUESTIONS
 
 无未关闭 CRITICAL 信息项。
 
-项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。C04-A/B1都需要实际POLLEN尺寸、FLOWER夹具和取出力；B1还需目标舵机型号/尺寸/实际行程以及REV电源瞬态能力。它们阻塞M4详细CAD，不阻塞1:1夹具。
+项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。C04-A/B1都需要实际POLLEN尺寸、FLOWER夹具和取出力；B1还需卷线绳/回位件选择、打印机间隙校准、实际行程以及REV电源瞬态能力。它们阻塞M4详细CAD，不阻塞当前验证件打印。
 
 ## KNOWN PROBLEMS
 
@@ -113,6 +120,8 @@ S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模�
 - C04-A的40 mm拨叉宽度、70–105 mm伸入范围、12 mm落钩和10 N限力均为原型参数，不是制造尺寸；必须从官方STEP/实体夹具验证管件和环避让。
 - C04-B1的20–30°工作面、40–70 mm侧扫、10 N限力和单舵机假设均为原型参数；完整球体若穿越FLOWER侧边界即违反方案定义，理想台阶计算不能替代STEP与实物证明。
 - C04-B1 25°路径只有3.680 mm名义支柱余量，不能覆盖未知场地公差、球非圆度或机器人对位误差；初模没有舵机真实外形、安装架、轴承、导板、传动件和制造公差。
+- 新验证支架是开式重力导轨，适合低成本台架，不具备整机姿态保持、护罩或最终机器人安装接口；不得直接作为比赛零件发布。
+- 17 mm卷线鼓计算假设单层、不打滑和1.5 N最大回位载荷；绳叠层或弹性会改变实际行程/输出力，必须用机械止挡和实测关闭。
 - 单电机共驱roller与短预输送可能在闸门关闭时压缩球列；需要打滑张紧、舵机离合或其他卸载设计和混合球循环试验。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 
@@ -123,7 +132,7 @@ S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模�
 - P3-LAUNCHER-CMP-0.3的无滑移双平面接触模型只用于证明拓扑运动学；实际球速、自旋和散布必须按方案分别实测。
 - T04-INTAKE-0.1采用10 N原型限力、4 mm拨叉、60 mm roller和80–160 rpm FLOWER速度；均须由L3/L6替换或确认。
 - ASM-009：SRC-016已把C04-B1收敛到25°斜向、60 mm拨片行程/120 mm球验证行程；名义几何关闭，实体摩擦/公差/堆载待VAL-T04-005。
-- ASM-010：目标舵机按6 V、3.2:1、80%传动效率和50%堵转运动边界推进；7.4 V未默认批准。
+- ASM-010：REV-41-3336按6 V、17 mm卷线鼓、80%传动效率、50%堵转运动边界和≤1.5 N回位载荷推进；3.2:1圆弧方案只作回退，7.4 V未默认批准。
 - 坐标方向是可撤销的工程约定，见 `docs/module_interfaces.md`。
 
 ## FILES MODIFIED
@@ -157,12 +166,17 @@ S00：M0通过。T04：C04-B1 M3 PRELIMINARY，官方STEP名义几何与初模�
 - `tests/test_t04_flower_sweep.py`
 - `cad/modules/t04_intake/side_sweep_intake.py`
 - `cad/modules/t04_intake/model_manifest.json`
+- `cad/modules/t04_intake/flower_side_sweep_prototype.py`
+- `cad/modules/t04_intake/prototype_manifest.json`
+- `exports/step/t04_c04b1_*capstan*_m3.step` / `*paddle*_m3.step` / `*bracket*_m3.step`
+- `exports/stl/t04_c04b1_*_m3.stl`
+- `exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png`
 - `.gitignore`
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.0；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.3 / T04-INTAKE-CMP-0.2；T04-C04B1-M3-0.1 PRELIMINARY；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.1；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.2 PRINTABLE VALIDATION ARTICLE；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-取得目标舵机型号、外形尺寸和可用行程；制作透明1:1 FLOWER底部夹具，以25°为中心加入可调角度与横向柔顺，先测实际取出力/峰值电流，再按VAL-T04-005随机比较C04-A/B1。只有实体门槛通过才增加支架、导板和传动细节并进入M4。
+打印T04-C04B1-M3-0.2三件套并装REV-41-1828铝舵盘、约1 mm低伸长绳和≤1.5 N回位件；先做无球60 mm行程/机械止挡/峰值电流校准，再在透明1:1 FLOWER底部夹具测实际取出力、绳滑移和100循环。通过VAL-T04-006后才按VAL-T04-005随机比较C04-A/B1并决定是否进入M4。

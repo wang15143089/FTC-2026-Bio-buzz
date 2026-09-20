@@ -67,17 +67,38 @@ class T04IntakeTests(unittest.TestCase):
         rows = t04_intake.rows(self.inputs)
         moving_ratio = float(next(row for row in rows if row["claim_id"] == "INT-027")["value"])
         structural_ratio = float(next(row for row in rows if row["claim_id"] == "INT-028")["value"])
-        proposed = self.inputs["side_sweep_servo"]["proposed_reduction_ratio"]
+        proposed = self.inputs["side_sweep_servo"]["geared_fallback_reduction_ratio"]
         self.assertGreater(moving_ratio, 3.0)
         self.assertLessEqual(moving_ratio, proposed)
         self.assertLessEqual(structural_ratio, proposed)
 
     def test_servo_nominal_sweep_is_fast_but_current_remains_open(self) -> None:
         rows = t04_intake.rows(self.inputs)
-        sweep_time = float(next(row for row in rows if row["claim_id"] == "INT-032")["value"])
+        sweep_time = float(next(row for row in rows if row["claim_id"] == "INT-037")["value"])
         stall_current = float(next(row for row in rows if row["claim_id"] == "INT-033")["value"])
         self.assertLess(sweep_time, 0.15)
         self.assertEqual(stall_current, 2.9)
+
+    def test_capstan_has_range_force_and_centered_pulse_margin(self) -> None:
+        rows = t04_intake.rows(self.inputs)
+        angle = float(next(row for row in rows if row["claim_id"] == "INT-034")["value"])
+        start = float(next(row for row in rows if row["claim_id"] == "INT-035")["value"])
+        end = float(next(row for row in rows if row["claim_id"] == "INT-036")["value"])
+        force = float(next(row for row in rows if row["claim_id"] == "INT-039")["value"])
+        structural = float(next(row for row in rows if row["claim_id"] == "INT-040")["value"])
+        self.assertLess(angle, 270.0)
+        self.assertGreater(start, 500.0)
+        self.assertLess(end, 2500.0)
+        self.assertGreaterEqual(force, 10.0)
+        self.assertGreaterEqual(structural, 20.0)
+
+    def test_capstan_feasible_radius_window_contains_selected_radius(self) -> None:
+        rows = t04_intake.rows(self.inputs)
+        lower = float(next(row for row in rows if row["claim_id"] == "INT-041")["value"])
+        upper = float(next(row for row in rows if row["claim_id"] == "INT-042")["value"])
+        selected = self.inputs["side_sweep_servo"]["capstan_pitch_radius_m"]
+        self.assertLessEqual(lower, selected)
+        self.assertLessEqual(selected, upper)
 
 
 if __name__ == "__main__":
