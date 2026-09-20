@@ -1,0 +1,20 @@
+# Local scratch and Codex delivery areas
+work/
+outputs/
+
+# Python/CadQuery caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# CAD application temporary/backup files
+*.FCStd1
+*.bak
+*.tmp
+~$*
+
+# Generated exports are reproducible; keep source and release manifests instead
+exports/step/*
+exports/stl/*
+exports/drawings/*
+!.gitkeep

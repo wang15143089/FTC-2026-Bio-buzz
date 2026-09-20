@@ -1,0 +1,17 @@
+scenario,package,score_0_to_100,rank
+neutral,P1,83.0,1
+neutral,P3,73.0,2
+neutral,P2,70.0,3
+neutral,P4,48.0,4
+score_first,P3,79.0,1
+score_first,P1,72.0,2
+score_first,P2,68.0,3
+score_first,P4,63.0,4
+reliability_first,P1,89.0,1
+reliability_first,P2,73.0,2
+reliability_first,P3,69.0,3
+reliability_first,P4,43.0,4
+resource_limited,P1,89.0,1
+resource_limited,P2,71.0,2
+resource_limited,P3,69.0,3
+resource_limited,P4,40.0,4

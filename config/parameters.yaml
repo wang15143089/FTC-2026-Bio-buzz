@@ -1,0 +1,98 @@
+schema_version: "0.1"
+project:
+  name: "FTC robot project"
+  design_version: "requirements-v0.1"
+  default_geometry_unit: "mm"
+  parameter_status: "MIXED"
+
+coordinate_system:
+  handedness: "right"
+  positive_x: "robot_forward"
+  positive_y: "robot_left"
+  positive_z: "up"
+  origin_definition: "nominal drivetrain contact plane at geometric center of wheel-track envelope"
+  origin_status: "PROVISIONAL"
+
+robot:
+  season: {value: "2026-2027 BIOBUZZ", status: "KNOWN", source: "Competition Manual TU01"}
+  starting_envelope:
+    x: {value: 457.0, unit: "mm", status: "KNOWN", source: "R102"}
+    y: {value: 457.0, unit: "mm", status: "KNOWN", source: "R102"}
+    z: {value: 457.0, unit: "mm", status: "KNOWN", source: "R102"}
+  operating_envelope:
+    horizontal_a: {value: 457.0, unit: "mm", status: "KNOWN", source: "R105"}
+    horizontal_b: {value: 610.0, unit: "mm", status: "KNOWN", source: "R105"}
+    vertical: {value: 736.5, unit: "mm", status: "KNOWN", source: "R105"}
+    orientation_note: "vertical is always normal to field surface; horizontal axes may rotate with robot"
+  frame_width: {value: null, unit: "mm", status: "TBD", source: null}
+  frame_length: {value: null, unit: "mm", status: "TBD", source: null}
+  maximum_mass: {value: null, unit: "kg", status: "NO_EXPLICIT_RULE_LIMIT", source: "R104"}
+  controlled_gamepiece_limit: {value: 4, unit: "count", status: "KNOWN", source: "G407"}
+
+field:
+  nominal_inside_width: {value: 3657.5, unit: "mm", status: "KNOWN", source: "TU01 section 9.2"}
+  nominal_inside_length: {value: 3657.5, unit: "mm", status: "KNOWN", source: "TU01 section 9.2"}
+  general_tolerance: {value: 25.0, unit: "mm", status: "KNOWN", source: "TU01 section 9.1"}
+
+gamepieces:
+  pollen_nominal_diameter: {value: 71.0, unit: "mm", status: "KNOWN_APPROXIMATE", source: "TU01 section 9.8"}
+  nectar_nominal_diameter: {value: 91.0, unit: "mm", status: "KNOWN_APPROXIMATE", source: "TU01 section 9.8"}
+  geometry_note: "not perfectly spherical; actual variation TBD"
+
+hardware:
+  control_system:
+    control_hub: {model: "REV-31-1595", quantity: 1, status: "KNOWN", source: "user and REV"}
+    expansion_hub: {model: "REV-31-1153", quantity: 1, status: "KNOWN", source: "user and REV"}
+    hub_proxy_dimensions: {value: null, unit: "mm", status: "TBD_VERIFY_FROM_OFFICIAL_CAD"}
+    layout_note: "keep battery and metal obstructions clear of Control Hub Wi-Fi antenna region"
+  battery:
+    model: "goBILDA 3100-0012-0020"
+    chemistry: "NiMH"
+    nominal_voltage: {value: 12.0, unit: "V", status: "KNOWN"}
+    capacity: {value: 3000, unit: "mAh", status: "KNOWN_VENDOR"}
+    body_envelope:
+      length: {value: 124.0, unit: "mm", status: "KNOWN_DRAWING"}
+      width: {value: 47.8, unit: "mm", status: "KNOWN_DRAWING"}
+      height: {value: 43.0, unit: "mm", status: "KNOWN_DRAWING"}
+    lead_length: {value: 120.0, unit: "mm", status: "KNOWN_DRAWING"}
+    wire_gauge: {value: 16, unit: "AWG", status: "KNOWN_DRAWING"}
+    connector: "XT30 MH-FC"
+    fuse: {value: 20, unit: "A", type: "Mini Blade", status: "KNOWN_DRAWING"}
+  base_chassis:
+    sku: {value: "3209-0001-0007", status: "KNOWN", source: "user supplied STEP and goBILDA"}
+    description: "Strafer Chassis Kit, 104mm GripForce mecanum wheels"
+    assembled_mass: {value: 4.269, unit: "kg", status: "KNOWN_VENDOR", source: "goBILDA product page"}
+    supplied_drive_motors: {value: 4, model: "5203-2402-0019", no_load_speed: 312, speed_unit: "rpm", status: "KNOWN_VENDOR"}
+    preserve_wheel_layout: true
+    track_width: {value: null, unit: "mm", status: "TBD_MEASURE_FROM_STEP_OR_HARDWARE"}
+    wheelbase: {value: null, unit: "mm", status: "TBD_MEASURE_FROM_STEP_OR_HARDWARE"}
+    allowed_reconfiguration: "minimum disassembly/reassembly without changing wheel layout, track width, or wheelbase"
+    exact_proxy_envelope: {value: null, unit: "mm", status: "TBD_MEASURE_FROM_STEP"}
+  motor_envelope_reference:
+    sku: {value: "5203-2402-0051", status: "KNOWN", source: "user supplied STEP and goBILDA"}
+    gear_ratio: {value: 50.9, unit: ":1", status: "KNOWN_VENDOR"}
+    no_load_speed: {value: 117, unit: "rpm", status: "KNOWN_VENDOR"}
+    stall_torque: {value: 68.4, unit: "kg.cm", status: "KNOWN_VENDOR"}
+    stall_current: {value: 9.2, unit: "A", status: "KNOWN_VENDOR"}
+    mass: {value: 0.481, unit: "kg", status: "KNOWN_VENDOR"}
+    output_shaft: "8mm REX, 24mm length"
+    selection_status: "REFERENCE_ONLY_NOT_SELECTED"
+    exact_proxy_envelope: {value: null, unit: "mm", status: "TBD_MEASURE_FROM_STEP"}
+  actuator_limits:
+    motors: {value: 8, unit: "count", status: "KNOWN", source: "R503"}
+    servos: {value: 8, unit: "count", status: "KNOWN", source: "R503"}
+  servo_types: {value: [], status: "TBD", source: null}
+  shaft_diameters: {value: [], unit: "mm", status: "TBD", source: null}
+  bearing_sizes: {value: [], unit: "mm", status: "TBD", source: null}
+  fastener_sizes: {value: [], status: "TBD", source: null}
+
+manufacturing:
+  processes: {value: [], status: "TBD", source: null}
+  printed_clearance: {value: null, unit: "mm", status: "TBD", source: null}
+  sliding_clearance: {value: null, unit: "mm", status: "TBD", source: null}
+  press_fit_allowance: {value: null, unit: "mm", status: "TBD", source: null}
+
+budgets:
+  total_cost: {value: null, status: "TBD", source: null}
+  module_mass_allocations: {value: {}, unit: "kg", status: "TBD", source: null}
+  module_power_allocations: {value: {}, unit: "W", status: "TBD", source: null}
