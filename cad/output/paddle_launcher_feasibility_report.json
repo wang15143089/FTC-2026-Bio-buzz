@@ -1,0 +1,243 @@
+{
+  "coordinate_system": "X-Y chassis plane; +Z upward",
+  "game_piece_geometry_included": false,
+  "flywheels": "four 96 x 24 mm Gecko wheels: two per opposed 8 mm shaft",
+  "feeder": "three-paddle continuous-rotation-servo indexer; no conveyor belt",
+  "gap_adjuster": "servo crank, 65 mm drag link, guided crosshead, two 110 mm links, and shaft-bearing carriages",
+  "channel_clear_width_mm": 108.0,
+  "channel_clear_height_mm": 110.0,
+  "paddle_width_mm": 96.0,
+  "paddle_side_clearance_each_mm": 6.0,
+  "paddle_sweep_radius_mm": 60.0,
+  "guide_angles_deg": [
+    0.0,
+    26.0,
+    52.0
+  ],
+  "guide_joint_errors_mm": [
+    0.0,
+    0.0
+  ],
+  "guide_to_throat_alignment_error_mm": 1.4210854715202004e-14,
+  "shooter_angle_deg": 52.0,
+  "relative_axle_separation_change_mm": 18.0,
+  "slot_center_travel_each_axle_mm": 9.0,
+  "slot_overall_length_including_16mm_bearing_hole_mm": 25.0,
+  "wheel_stack_width_mm": 54.0,
+  "wheel_stack_clearance_between_plates_mm": 86.0,
+  "recommended_servo_speed_rpm": [
+    25,
+    40
+  ],
+  "theoretical_feed_rate_objects_per_second": [
+    1.25,
+    2.0
+  ],
+  "configurations": {
+    "pollen": {
+      "half_axle_spacing_mm": 80.0,
+      "axle_center_distance_mm": 160.0,
+      "nominal_flywheel_gap_mm": 64.0,
+      "bounding_box": {
+        "min_mm": [
+          -170.0,
+          -205.013,
+          1.0
+        ],
+        "max_mm": [
+          213.849,
+          205.013,
+          401.024
+        ],
+        "size_mm": [
+          383.849,
+          410.027,
+          400.024
+        ],
+        "within_18in_cube": true
+      },
+      "solid_count": 113,
+      "linkage_kinematics": {
+        "main_link_length_mm": 110.0,
+        "crosshead_u_mm": -57.49834435270749,
+        "servo_crank_angle_deg": 96.68201312910206,
+        "servo_drag_link_length_mm": 65.0
+      },
+      "interference_checks": {
+        "flywheel_vs_side_plate": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_channel_panels": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "bearing_carriage_vs_guide_rail": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "motor_envelope_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "motor_mount_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "paddle_rotor_vs_channel_panels": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "paddle_rotor_vs_support_cheeks": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "linkage_vs_side_plate": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "main_links_vs_crosshead_body": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "servo_crank_vs_drag_link": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_flywheel": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "main_link_vs_main_link": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "all_checked_interfaces_clear": true
+      }
+    },
+    "nectar": {
+      "half_axle_spacing_mm": 89.0,
+      "axle_center_distance_mm": 178.0,
+      "nominal_flywheel_gap_mm": 82.0,
+      "bounding_box": {
+        "min_mm": [
+          -170.0,
+          -205.013,
+          1.0
+        ],
+        "max_mm": [
+          213.849,
+          205.013,
+          401.024
+        ],
+        "size_mm": [
+          383.849,
+          410.027,
+          400.024
+        ],
+        "within_18in_cube": true
+      },
+      "solid_count": 113,
+      "linkage_kinematics": {
+        "main_link_length_mm": 110.0,
+        "crosshead_u_mm": -46.64518543557594,
+        "servo_crank_angle_deg": 42.40643278532211,
+        "servo_drag_link_length_mm": 65.0
+      },
+      "interference_checks": {
+        "flywheel_vs_side_plate": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_channel_panels": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "bearing_carriage_vs_guide_rail": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "motor_envelope_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "motor_mount_vs_bearing_carriage": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "paddle_rotor_vs_channel_panels": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "paddle_rotor_vs_support_cheeks": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "linkage_vs_side_plate": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "main_links_vs_crosshead_body": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "servo_crank_vs_drag_link": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "flywheel_vs_flywheel": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "main_link_vs_main_link": {
+          "pass": true,
+          "max_intersection_volume_mm3": 0.0,
+          "hits": []
+        },
+        "all_checked_interfaces_clear": true
+      }
+    }
+  },
+  "checks": {
+    "channel_width_for_91mm_object_plus_5mm_each_side": true,
+    "channel_height_for_96mm_object_plus_margin": true,
+    "paddle_has_at_least_5mm_side_clearance": true,
+    "guide_is_position_continuous": true,
+    "final_guide_is_collinear_with_throat": true,
+    "both_configs_within_18in_cube": true,
+    "all_selected_interference_checks_pass": true
+  }
+}

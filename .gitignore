@@ -4,11 +4,13 @@ outputs/
 tmp/
 exports/prototype_t04/
 
-# Python/CadQuery caches
+# Python/CadQuery caches and local environments
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
 .venv/
+.venv*/
 
 # CAD application temporary/backup files
 *.FCStd1
@@ -16,7 +18,11 @@ __pycache__/
 *.tmp
 ~$*
 
-# Generated exports are reproducible; keep source and release manifests instead
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Generated exports are reproducible; keep source and approved release artifacts
 exports/step/*
 exports/stl/*
 exports/drawings/*

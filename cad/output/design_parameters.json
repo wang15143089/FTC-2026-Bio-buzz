@@ -1,0 +1,52 @@
+{
+  "units": "mm unless noted",
+  "parameters": {
+    "wheel_od": 96.0,
+    "wheel_width": 24.0,
+    "wheels_per_shaft": 2,
+    "pollen_gap": 64.0,
+    "nectar_gap": 82.0,
+    "channel_clear_width": 104.0,
+    "channel_clear_height": 110.0,
+    "motor_envelope_diameter": 38.0,
+    "motor_envelope_length": 104.0,
+    "servo_envelope": [
+      41.0,
+      21.0,
+      40.0
+    ],
+    "horizontal_feed_clear_width": 104.0,
+    "horizontal_feed_center_height": 56.0,
+    "horizontal_feed_length": 163.0,
+    "kick_roller_od": 72.0,
+    "guide_roller_od": 48.0
+  },
+  "ballistics": {
+    "coordinate_system": "X-Y chassis plane; +Z upward; +X launch projection",
+    "modeled_angle_deg": 52.0,
+    "nominal_target_height_m": 1.15,
+    "nominal_exit_height_m": 0.34,
+    "nominal_horizontal_distance_m": 1.5,
+    "vacuum_energy_minimum_angle_deg": 59.18,
+    "vacuum_speed_at_modeled_angle_mps": 5.122,
+    "design_reason": "52 deg is lower than the ideal-vacuum minimum-energy angle to shorten flight time, reduce perforated-ball drag sensitivity, keep the assembly below the starting envelope, and preserve a useful 42-58 deg slotted adjustment range."
+  },
+  "exports": [
+    {
+      "mode": "pollen",
+      "step": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_pollen.step",
+      "stl": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_pollen.stl",
+      "glb": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_pollen.glb",
+      "gap_mm": 64.0,
+      "axis_spacing_mm": 160.0
+    },
+    {
+      "mode": "nectar",
+      "step": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_nectar.step",
+      "stl": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_nectar.stl",
+      "glb": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\biobuzz_launcher_horizontal_feed_nectar.glb",
+      "gap_mm": 82.0,
+      "axis_spacing_mm": 178.0
+    }
+  ]
+}

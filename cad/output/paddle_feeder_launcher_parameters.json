@@ -1,0 +1,23 @@
+{
+  "coordinate_system": "X-Y chassis plane; +Z upward",
+  "game_piece_geometry_included": false,
+  "launcher": "two opposed flywheel shafts; two 96 mm Gecko wheels per shaft",
+  "feeder": "three flexible paddles directly driven by one continuous-rotation servo",
+  "paddle_radius_mm": 57.0,
+  "paddles": 3,
+  "recommended_servo_speed_rpm": [
+    25,
+    40
+  ],
+  "theoretical_feed_rate_objects_per_second": [
+    1.25,
+    2.0
+  ],
+  "channel_clear_width_mm": 108.0,
+  "shooter_angle_deg": 52.0,
+  "outputs": {
+    "step": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\paddle_feeder_opposed_flywheel_launcher.step",
+    "stl": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\paddle_feeder_opposed_flywheel_launcher.stl",
+    "glb": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\paddle_feeder_opposed_flywheel_launcher.glb"
+  }
+}

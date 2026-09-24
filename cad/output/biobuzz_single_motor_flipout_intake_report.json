@@ -1,0 +1,85 @@
+{
+  "model_purpose": "packaging and kinematic baseline; verify purchased parts and chassis interfaces before fabrication",
+  "source_video": "https://youtu.be/RIt5xxJ2Yxs",
+  "visible_video_features_reused": [
+    "one vertically mounted geared motor",
+    "90-degree bevel gear turn into a transverse roller shaft",
+    "one-side belt distribution to multiple horizontal rollers",
+    "front flexible-finger pickup bar"
+  ],
+  "adaptations_not_proven_by_video": [
+    "finger bar carried on constant-center pivot arms",
+    "torsion/extension spring deployment",
+    "servo latch or optional reverse-cam unlatch"
+  ],
+  "game_piece_diameters_mm": {
+    "pollen": 71.0,
+    "nectar": 91.0
+  },
+  "clear_capture_width_mm": 330.0,
+  "motor_nominal_rpm": 435.0,
+  "bevel_ratio": 0.7142857142857143,
+  "fixed_roller_rpm": 310.7,
+  "fixed_roller_surface_speed_mps": 0.976,
+  "front_bar_rpm": 207.1,
+  "front_finger_tip_speed_mps": 1.584,
+  "pivot_center_mm": [
+    25.0,
+    67.0
+  ],
+  "arm_length_mm": 178.0,
+  "angles_deg": {
+    "deployed": 198.0,
+    "stowed": 103.0
+  },
+  "configurations": {
+    "deployed": {
+      "front_bar_center_mm": [
+        -144.29,
+        11.99
+      ],
+      "bounding_box": {
+        "min_mm": [
+          -217.29,
+          -237.0,
+          -16.68
+        ],
+        "max_mm": [
+          232.5,
+          198.0,
+          227.0
+        ],
+        "size_mm": [
+          449.79,
+          435.0,
+          243.68
+        ],
+        "within_expanded_18x24x29_if_oriented_X24_Y18_Z29": true
+      }
+    },
+    "stowed": {
+      "front_bar_center_mm": [
+        -15.04,
+        240.44
+      ],
+      "bounding_box": {
+        "min_mm": [
+          -88.04,
+          -237.0,
+          -13.13
+        ],
+        "max_mm": [
+          232.5,
+          198.0,
+          269.11
+        ],
+        "size_mm": [
+          320.54,
+          435.0,
+          282.24
+        ],
+        "within_expanded_18x24x29_if_oriented_X24_Y18_Z29": true
+      }
+    }
+  }
+}

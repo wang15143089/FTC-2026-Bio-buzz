@@ -1,0 +1,27 @@
+{
+  "coordinate_system": "X-Y chassis plane; +Z upward; +X feed direction",
+  "game_piece_geometry_included": false,
+  "horizontal_belt_length_mm": 140.0,
+  "incline_angle_deg": 38.0,
+  "clear_width_mm": 108.0,
+  "horizontal_belt_lanes_y_mm": [
+    -36,
+    36
+  ],
+  "incline_belt_lanes_y_mm": [
+    -12,
+    12
+  ],
+  "belt_width_mm": 18.0,
+  "pinch_roller_od_mm": 72.0,
+  "pinch_travel_mm": 22.0,
+  "pinch_reduction_ratio": 2.4,
+  "nominal_conveyor_speed_at_100rpm_mps": 0.147,
+  "nominal_pinch_surface_speed_at_100rpm_mps": 0.157,
+  "continuous_rotation_servos": 2,
+  "outputs": {
+    "step": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\continuous_servo_feeder.step",
+    "stl": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\continuous_servo_feeder.stl",
+    "glb": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\continuous_servo_feeder.glb"
+  }
+}

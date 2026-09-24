@@ -1,6 +1,6 @@
 # PROJECT STATUS
 
-最后更新：2026-09-20
+最后更新：2026-09-24
 
 ## CURRENT OBJECTIVE
 
@@ -61,6 +61,8 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - 用严格角度/力双边界比较3.2:1圆弧回退与卷线鼓直线驱动；首轮原型改用17 mm节圆半径单层卷线鼓，保留已验证的60 mm直线路径。
 - 生成三件可打印验证件：舵机夹持/开式导轨支架、卷线鼓和25°楔形滑块；同时生成组合STEP、预览、清单和制造边界说明。
 - 以REV-41-3336官方STEP替换代理舵机，加入REV-41-1828官方舵盘，并按官方4×Ø4.5孔位重建支架；输出保留5个命名组件的Fusion 360装配STEP。
+- 导入并保留单电机翻转 Intake、连续 feeder 和 launcher 的参数化 CAD/STEP/STL/GLB/PNG/JSON 参考资产；其中翻转 Intake 以视频可见结构为证据，20T:28T、178 mm 翻臂、24T:36T 前轴和部署锁扣均为待实体验证的项目基线，不取代当前 T04 C04-B1 决策。
+- 合并 GitHub、Linear 与 Notion 的接手语义：当前架构 Intake 编号为 T04；Linear KEI-16/Notion 页面中的“T02 Intake”保留为导入参考记录，后续 AI 不得混淆为当前 T02 主承力结构。
 
 ## VALIDATED
 
@@ -126,6 +128,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - 17 mm卷线鼓计算假设单层、不打滑和1.5 N最大回位载荷；绳叠层或弹性会改变实际行程/输出力，必须用机械止挡和实测关闭。
 - 单电机共驱roller与短预输送可能在闸门关闭时压缩球列；需要打滑张紧、舵机离合或其他卸载设计和混合球循环试验。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
+- 平铺 `cad/*.py` 与 `cad/output/` 中包含导入的参考/早期设计资产；它们尚未映射到 `config/parameters.yaml` 和当前模块接口，不能仅因已生成 CAD 就视为 Architecture v0.1 已采用。
 
 ## ASSUMPTIONS
 
@@ -175,6 +178,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - `exports/stl/t04_c04b1_*_m3.stl`
 - `exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png`
 - `.gitignore`
+- `cad/README.md`、`cad/*.py`、`cad/output/*` 和 `docs/engineering/*`（2026-09-24 导入参考基线）
 
 ## LATEST DESIGN VERSION
 

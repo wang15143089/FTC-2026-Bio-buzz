@@ -1,0 +1,93 @@
+{
+  "coordinate_system": "X-Y chassis plane; +Z upward",
+  "game_piece_geometry_included": false,
+  "flywheels": "four 96 x 24 mm Gecko wheels: two per opposed 8 mm shaft",
+  "feeder": "three-paddle continuous-rotation-servo indexer; no conveyor belt",
+  "channel_clear_width_mm": 108.0,
+  "channel_clear_height_mm": 110.0,
+  "paddle_width_mm": 96.0,
+  "paddle_side_clearance_each_mm": 6.0,
+  "paddle_sweep_radius_mm": 60.0,
+  "guide_angles_deg": [
+    0.0,
+    26.0,
+    52.0
+  ],
+  "guide_joint_errors_mm": [
+    0.0,
+    0.0
+  ],
+  "guide_to_throat_alignment_error_mm": 1.4210854715202004e-14,
+  "shooter_angle_deg": 52.0,
+  "relative_axle_separation_change_mm": 18.0,
+  "slot_center_travel_each_axle_mm": 9.0,
+  "slot_overall_length_including_16mm_bearing_hole_mm": 25.0,
+  "wheel_stack_width_mm": 54.0,
+  "wheel_stack_clearance_between_plates_mm": 86.0,
+  "recommended_servo_speed_rpm": [
+    25,
+    40
+  ],
+  "theoretical_feed_rate_objects_per_second": [
+    1.25,
+    2.0
+  ],
+  "configurations": {
+    "pollen": {
+      "half_axle_spacing_mm": 80.0,
+      "axle_center_distance_mm": 160.0,
+      "nominal_flywheel_gap_mm": 64.0,
+      "bounding_box": {
+        "min_mm": [
+          -170.0,
+          -187.013,
+          1.0
+        ],
+        "max_mm": [
+          213.849,
+          187.013,
+          401.024
+        ],
+        "size_mm": [
+          383.849,
+          374.027,
+          400.024
+        ],
+        "within_18in_cube": true
+      },
+      "solid_count": 77
+    },
+    "nectar": {
+      "half_axle_spacing_mm": 89.0,
+      "axle_center_distance_mm": 178.0,
+      "nominal_flywheel_gap_mm": 82.0,
+      "bounding_box": {
+        "min_mm": [
+          -170.0,
+          -187.013,
+          1.0
+        ],
+        "max_mm": [
+          213.849,
+          187.013,
+          401.024
+        ],
+        "size_mm": [
+          383.849,
+          374.027,
+          400.024
+        ],
+        "within_18in_cube": true
+      },
+      "solid_count": 77
+    }
+  },
+  "checks": {
+    "channel_width_for_91mm_object_plus_5mm_each_side": true,
+    "channel_height_for_96mm_object_plus_margin": true,
+    "paddle_has_at_least_5mm_side_clearance": true,
+    "guide_is_position_continuous": true,
+    "final_guide_is_collinear_with_throat": true,
+    "both_configs_within_18in_cube": true
+  }
+}
