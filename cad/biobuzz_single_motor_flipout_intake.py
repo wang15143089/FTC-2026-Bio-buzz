@@ -1,9 +1,8 @@
-"""BIOBUZZ single-motor, spring-deployed roller intake baseline.
+"""COTS-constrained single-motor, spring-deployed BIOBUZZ intake.
 
-This is a dimensioned packaging model, not a production drawing.  It models
-the load path, roller axes, belt side, pivot geometry, hard stops, spring and
-latch envelopes.  Units are millimetres.  X points out of the robot, Y runs
-left-to-right across the intake, and +Z is upward.
+M3 packaging model focused on the transmission and flip-out load path.
+Purchased parts are functional envelopes, not production drawings. Units: mm.
++X points out of the robot, +Y is left, and +Z is upward.
 """
 
 from __future__ import annotations
@@ -15,51 +14,39 @@ from pathlib import Path
 import cadquery as cq
 from cadquery import exporters
 
-
 OUT = Path(__file__).resolve().parent / "output"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Interface and game-piece assumptions.
-CHASSIS_FRONT_X = 0.0
+DESIGN_VERSION = "KEI16-FLIPOUT-COTS-0.2"
 MOUNT_WIDTH = 380.0
 CLEAR_CAPTURE_WIDTH = 330.0
-POLLEN_D = 71.0
-NECTAR_D = 91.0
-EXPANDED_LIMIT_X = 610.0  # 24 in.
-EXPANDED_LIMIT_Y = 457.2  # 18 in.
-EXPANDED_LIMIT_Z = 736.6  # 29 in.
+POLLEN_D, NECTAR_D = 71.0, 91.0
+EXPANDED_LIMIT_X, EXPANDED_LIMIT_Y, EXPANDED_LIMIT_Z = 610.0, 457.2, 736.6
 
-# Roller system.
-ROLLER_OD = 60.0
-ROLLER_FACE = 318.0
-SHAFT_D = 8.0
-MOTOR_RPM = 435.0
-BEVEL_RATIO = 20.0 / 28.0
-FIXED_ROLLERS = ((25.0, 67.0), (103.0, 111.0), (181.0, 155.0))
+ROLLER_OD, ROLLER_FACE, SHAFT_D = 60.0, 318.0, 8.0
+MOTOR_RPM = 312.0
+MITER_DRIVER_TEETH = MITER_DRIVEN_TEETH = 24
+MITER_RATIO = MITER_DRIVER_TEETH / MITER_DRIVEN_TEETH
+CHAIN_PITCH, CHAIN_SPROCKET_TEETH, CHAIN_LINKS = 8.0, 14, 38
+ROLLER_CENTER = (CHAIN_LINKS - CHAIN_SPROCKET_TEETH) * CHAIN_PITCH / 2.0
+ROLLER_DX = 88.0
+ROLLER_DZ = math.sqrt(ROLLER_CENTER**2 - ROLLER_DX**2)
+FIXED_ROLLERS = tuple((25.0 + i * ROLLER_DX, 67.0 + i * ROLLER_DZ) for i in range(3))
 PIVOT = FIXED_ROLLERS[0]
-ARM_LENGTH = 178.0
-DEPLOYED_ANGLE = 198.0
-STOWED_ANGLE = 103.0
-FRONT_PULLEY_RATIO = 24.0 / 36.0
 
-# Flexible finger bar.
-FINGER_COUNT = 13
-FINGER_LENGTH = 73.0
-FINGER_WIDTH = 18.0
-FINGER_THICKNESS = 3.0
+FRONT_DRIVER_TEETH, FRONT_DRIVEN_TEETH = 16, 24
+FRONT_BELT_LENGTH, ARM_LENGTH = 460.0, 179.8873504
+FRONT_PULLEY_RATIO = FRONT_DRIVER_TEETH / FRONT_DRIVEN_TEETH
+DEPLOYED_ANGLE, STOWED_ANGLE = 198.0, 103.0
+FINGER_COUNT, FINGER_LENGTH, FINGER_WIDTH, FINGER_THICKNESS = 13, 73.0, 18.0, 3.0
 
 C = {
-    "structure": cq.Color(0.68, 0.73, 0.80),
-    "roller": cq.Color(0.12, 0.12, 0.14),
-    "shaft": cq.Color(0.50, 0.54, 0.60),
-    "pulley": cq.Color(0.92, 0.60, 0.10),
-    "belt": cq.Color(0.06, 0.06, 0.07),
-    "motor": cq.Color(0.94, 0.73, 0.12),
-    "gear": cq.Color(0.78, 0.80, 0.84),
-    "finger": cq.Color(0.92, 0.94, 0.96),
-    "spring": cq.Color(0.20, 0.62, 0.92),
-    "latch": cq.Color(0.86, 0.24, 0.16),
-    "guide": cq.Color(0.20, 0.55, 0.82, 0.34),
+    "structure": cq.Color(0.68, 0.73, 0.80), "roller": cq.Color(0.12, 0.12, 0.14),
+    "shaft": cq.Color(0.50, 0.54, 0.60), "sprocket": cq.Color(0.75, 0.76, 0.78),
+    "pulley": cq.Color(0.92, 0.60, 0.10), "belt": cq.Color(0.06, 0.06, 0.07),
+    "motor": cq.Color(0.94, 0.73, 0.12), "gear": cq.Color(0.78, 0.80, 0.84),
+    "finger": cq.Color(0.92, 0.94, 0.96), "spring": cq.Color(0.20, 0.62, 0.92),
+    "latch": cq.Color(0.86, 0.24, 0.16), "guide": cq.Color(0.20, 0.55, 0.82, 0.34),
     "datum": cq.Color(0.25, 0.28, 0.32, 0.18),
 }
 
@@ -80,8 +67,8 @@ def cyl_z(radius, length, center):
 
 def rod(a, b, radius):
     av, bv = cq.Vector(*a), cq.Vector(*b)
-    d = bv - av
-    return cq.Solid.makeCylinder(radius, d.Length, av, d.normalized())
+    delta = bv - av
+    return cq.Solid.makeCylinder(radius, delta.Length, av, delta.normalized())
 
 
 def roller(center, face=ROLLER_FACE, radius=ROLLER_OD / 2):
@@ -100,16 +87,21 @@ def arm_plate(pivot, tip, y):
     return base.fuse(eyes).cut(holes)
 
 
-def pulley(center, y, teeth, width=12.0):
+def pulley(center, y, teeth, width=9.0):
     pitch_d = teeth * 5.0 / math.pi
-    body = cyl_y(pitch_d / 2, width, (center[0], y, center[1]))
-    return body.cut(cyl_y(SHAFT_D / 2 + 0.2, width + 2, (center[0], y, center[1])))
+    return cyl_y(pitch_d / 2, width, (center[0], y, center[1])).cut(
+        cyl_y(SHAFT_D / 2 + 0.2, width + 2, (center[0], y, center[1])))
 
 
-def belt_segment(a, b, y, width=10.0, thickness=3.0):
-    return rod((a[0], y, a[1]), (b[0], y, b[1]), thickness / 2).fuse(
-        rod((a[0], y + width, a[1]), (b[0], y + width, b[1]), thickness / 2)
-    )
+def sprocket(center, y, teeth=CHAIN_SPROCKET_TEETH, width=7.0):
+    pitch_d = teeth * CHAIN_PITCH / math.pi
+    return cyl_y(pitch_d / 2, width, (center[0], y, center[1])).cut(
+        cyl_y(SHAFT_D / 2 + 0.2, width + 2, (center[0], y, center[1])))
+
+
+def two_runs(a, b, y, width, thickness):
+    return rod((a[0], y - width / 2, a[1]), (b[0], y - width / 2, b[1]), thickness / 2).fuse(
+        rod((a[0], y + width / 2, a[1]), (b[0], y + width / 2, b[1]), thickness / 2))
 
 
 def finger_bar(center):
@@ -118,52 +110,53 @@ def finger_bar(center):
     usable = CLEAR_CAPTURE_WIDTH - FINGER_WIDTH
     for i in range(FINGER_COUNT):
         y = -usable / 2 + usable * i / (FINGER_COUNT - 1)
-        finger = box(FINGER_LENGTH, FINGER_WIDTH, FINGER_THICKNESS, (x - FINGER_LENGTH / 2, y, z))
-        parts.append(finger)
+        parts.append(box(FINGER_LENGTH, FINGER_WIDTH, FINGER_THICKNESS, (x - FINGER_LENGTH / 2, y, z)))
     return cq.Compound.makeCompound(parts)
 
 
 def front_center(angle_deg):
-    a = math.radians(angle_deg)
-    return (PIVOT[0] + ARM_LENGTH * math.cos(a), PIVOT[1] + ARM_LENGTH * math.sin(a))
-
-
-def guide_panel():
-    # 4 mm polycarbonate floor tangent to the three fixed roller crowns.
-    return box(235, CLEAR_CAPTURE_WIDTH + 8, 4, (105, 0, 42)).rotate((105, 0, 42), (105, 1, 42), -27)
+    angle = math.radians(angle_deg)
+    return PIVOT[0] + ARM_LENGTH * math.cos(angle), PIVOT[1] + ARM_LENGTH * math.sin(angle)
 
 
 def add_common(assy, shapes):
-    def add(name, shape, color, include_in_mesh=True):
+    def add(name, shape, color, include=True):
         assy.add(shape, name=name, color=color)
-        if include_in_mesh:
+        if include:
             shapes.append(shape)
 
-    # Mounting/datums.
     add("chassis_front_datum", box(12, MOUNT_WIDTH, 210, (0, 0, 110)), C["datum"], False)
     for y in (-MOUNT_WIDTH / 2, MOUNT_WIDTH / 2):
         add(f"mount_rail_{y:+.0f}", box(255, 16, 16, (105, y, 34)), C["structure"])
 
-    # Fixed roller train and supports.
     for i, center in enumerate(FIXED_ROLLERS, 1):
         add(f"fixed_roller_{i}", roller(center), C["roller"])
         add(f"fixed_shaft_{i}", cyl_y(SHAFT_D / 2, MOUNT_WIDTH - 18, (center[0], 0, center[1])), C["shaft"])
         for y in (-170, 170):
-            add(f"bearing_block_{i}_{y:+.0f}", box(30, 14, 38, (center[0], y, center[1])), C["structure"])
-        add(f"drive_pulley_{i}", pulley(center, -181, 24), C["pulley"])
-    add("roller_belt_1_2", belt_segment(FIXED_ROLLERS[0], FIXED_ROLLERS[1], -186), C["belt"])
-    add("roller_belt_2_3", belt_segment(FIXED_ROLLERS[1], FIXED_ROLLERS[2], -186), C["belt"])
-    add("ball_guide_floor", guide_panel(), C["guide"])
+            add(f"dual_bearing_block_{i}_{y:+.0f}", box(32, 14, 38, (center[0], y, center[1])), C["structure"])
 
-    # Vertical motor and bevel stage copied from the visible video architecture.
-    motor_x, motor_y, motor_z = PIVOT[0], -211.0, 119.0
-    add("motor_435rpm_envelope", cyl_z(19, 104, (motor_x, motor_y, motor_z)), C["motor"])
+    # Independent 38-link loops; two sprockets on the middle shaft isolate adjustment/failure.
+    for n, (a, b, y) in enumerate(((FIXED_ROLLERS[0], FIXED_ROLLERS[1], -183.0),
+                                    (FIXED_ROLLERS[1], FIXED_ROLLERS[2], -198.0)), 1):
+        add(f"chain_sprocket_{n}_driver", sprocket(a, y), C["sprocket"])
+        add(f"chain_sprocket_{n}_driven", sprocket(b, y), C["sprocket"])
+        add(f"chain_loop_{n}", two_runs(a, b, y, 6, 4), C["belt"])
+        mid = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - 13)
+        add(f"chain_idler_3312_0006_0008_{n}", cyl_y(9, 10, (mid[0], y, mid[1])), C["sprocket"])
+        add(f"arc_slot_tensioner_1524_0001_0001_{n}", box(42, 4, 18, (mid[0], y - 7, mid[1])), C["structure"])
+
+    add("ball_guide_floor", box(235, CLEAR_CAPTURE_WIDTH + 8, 4, (105, 0, 42)).rotate(
+        (105, 0, 42), (105, 1, 42), -24), C["guide"])
+
+    # goBILDA 5203 19.2:1 motor and 24T:24T MOD1 miter pair.
+    motor_x, motor_y, motor_z = PIVOT[0], -220.0, 119.0
+    add("motor_5203_2402_0019_312rpm_envelope", cyl_z(19, 104, (motor_x, motor_y, motor_z)), C["motor"])
     add("motor_mount", box(58, 52, 5, (motor_x, motor_y, 68)), C["structure"])
-    pinion = cq.Workplane("XY").workplane(offset=53).circle(7).workplane(offset=15).circle(19).loft(combine=True).val()
-    pinion = pinion.translate((motor_x, motor_y, 0))
-    add("bevel_pinion_20t", pinion, C["gear"])
-    bevel = cq.Workplane("XZ").circle(26).workplane(offset=18).circle(9).loft(combine=True).val().translate((PIVOT[0], -183, PIVOT[1]))
-    add("bevel_gear_28t", bevel, C["gear"])
+    miter_motor = cq.Workplane("XY").workplane(offset=53).circle(7).workplane(offset=15).circle(14).loft(combine=True).val().translate((motor_x, motor_y, 0))
+    add("miter_gear_24t_motor", miter_motor, C["gear"])
+    miter_primary = cq.Workplane("XZ").circle(14).workplane(offset=16).circle(7).loft(combine=True).val().translate((PIVOT[0], -192, PIVOT[1]))
+    add("miter_gear_24t_primary", miter_primary, C["gear"])
+    add("primary_slip_clutch_0p8Nm_envelope", cyl_y(18, 14, (PIVOT[0], -207, PIVOT[1])), C["latch"])
 
 
 def build(config, angle_deg):
@@ -179,66 +172,73 @@ def build(config, angle_deg):
     for y in (-174.0, 174.0):
         add(f"pivot_arm_{y:+.0f}", arm_plate(PIVOT, tip, y), C["structure"])
     add("front_finger_bar", finger_bar(tip), C["finger"])
-    add("front_36t_pulley", pulley(tip, -181, 36), C["pulley"])
-    add("pivot_24t_pulley", pulley(PIVOT, -181, 24), C["pulley"])
-    add("constant_center_arm_belt", belt_segment(PIVOT, tip, -186), C["belt"])
+    add("front_pulley_24t_3417_4008_0024", pulley(tip, -181, FRONT_DRIVEN_TEETH), C["pulley"])
+    add("pivot_pulley_16t_3417_4008_0016", pulley(PIVOT, -181, FRONT_DRIVER_TEETH), C["pulley"])
+    add("front_belt_460mm_3412_0009_0460", two_runs(PIVOT, tip, -181, 9, 3), C["belt"])
 
-    # Spring deployment: energy storage and a positive deployed hard stop.
-    spring_anchor = (64.0, -170.0, 177.0)
-    arm_anchor = ((PIVOT[0] + tip[0]) / 2, -170.0, (PIVOT[1] + tip[1]) / 2)
-    add("deployment_spring_envelope", rod(spring_anchor, arm_anchor, 5.0), C["spring"])
-    add("deployed_hard_stop", box(32, 22, 28, (-1, -174, 50)), C["latch"])
+    for y in (-170.0, 170.0):
+        anchor = (PIVOT[0] - 45.0, y, PIVOT[1] - 47.0)
+        angle = math.radians(angle_deg)
+        arm_anchor = (PIVOT[0] + 90.0 * math.cos(angle), y, PIVOT[1] + 90.0 * math.sin(angle))
+        add(f"deployment_spring_{y:+.0f}", rod(anchor, arm_anchor, 4.0), C["spring"])
+        add(f"replaceable_hard_stop_{y:+.0f}", box(30, 16, 28, (-1, y, 50)), C["latch"])
 
-    # Recommended latch: spring-loaded hook, released by a micro-servo.
-    add("stow_latch_hook", box(34, 12, 12, (-34, -174, 221)), C["latch"])
-    add("micro_servo_latch_envelope", box(24, 13, 29, (-10, -174, 204)), cq.Color(0.48, 0.30, 0.70, 0.50))
-    # Strict one-actuator option: reverse-direction cam on the pivot shaft.
-    cam = cyl_y(23, 8, (PIVOT[0], 185, PIVOT[1])).cut(box(30, 12, 14, (PIVOT[0] + 15, 185, PIVOT[1] + 15)))
-    add("optional_reverse_unlatch_cam", cam, C["latch"])
-
+    # Dual pawls take load. The synchronized servo link only releases them.
+    add("latch_cross_shaft", cyl_y(4, 352, (-28, 0, 198)), C["shaft"])
+    for y in (-174.0, 174.0):
+        add(f"load_bearing_pawl_{y:+.0f}", box(34, 10, 12, (-34, y, 211)), C["latch"])
+    add("rev_41_3334_balanced_servo_envelope", box(40.2, 20.0, 38.0, (-5, -150, 198)), cq.Color(0.48, 0.30, 0.70, 0.60))
+    add("servo_release_crank_20mm", rod((-5, -160, 211), (-25, -160, 211), 3.0), C["latch"])
+    add("servo_release_link", rod((-25, -160, 211), (-28, -174, 198), 2.0), C["latch"])
     return assy, shapes
 
 
 def bbox(shapes):
     bb = cq.Compound.makeCompound(shapes).BoundingBox()
-    size = (bb.xlen, bb.ylen, bb.zlen)
     return {
         "min_mm": [round(bb.xmin, 2), round(bb.ymin, 2), round(bb.zmin, 2)],
         "max_mm": [round(bb.xmax, 2), round(bb.ymax, 2), round(bb.zmax, 2)],
-        "size_mm": [round(v, 2) for v in size],
+        "size_mm": [round(bb.xlen, 2), round(bb.ylen, 2), round(bb.zlen, 2)],
         "within_expanded_18x24x29_if_oriented_X24_Y18_Z29": bool(
-            bb.xlen <= EXPANDED_LIMIT_X and bb.ylen <= EXPANDED_LIMIT_Y and bb.zlen <= EXPANDED_LIMIT_Z
-        ),
+            bb.xlen <= EXPANDED_LIMIT_X and bb.ylen <= EXPANDED_LIMIT_Y and bb.zlen <= EXPANDED_LIMIT_Z),
     }
 
 
 def export_all():
     report = {
-        "model_purpose": "packaging and kinematic baseline; verify purchased parts and chassis interfaces before fabrication",
+        "design_version": DESIGN_VERSION,
+        "status": "M3_COTS_CONSTRAINED_PACKAGING_NOT_PRODUCTION_RELEASE",
+        "model_purpose": "transmission and flip-out packaging; purchased-part envelopes require drawing verification",
         "source_video": "https://youtu.be/RIt5xxJ2Yxs",
-        "visible_video_features_reused": [
-            "one vertically mounted geared motor",
-            "90-degree bevel gear turn into a transverse roller shaft",
-            "one-side belt distribution to multiple horizontal rollers",
-            "front flexible-finger pickup bar",
-        ],
-        "adaptations_not_proven_by_video": [
-            "finger bar carried on constant-center pivot arms",
-            "torsion/extension spring deployment",
-            "servo latch or optional reverse-cam unlatch",
-        ],
+        "authoritative_module_note": "KEI-16/T02 is imported reference provenance; current repository Intake is T04",
+        "manual_stow_note": "one-shot spring deploy plus manual pre-match stow; no active in-match retraction",
         "game_piece_diameters_mm": {"pollen": POLLEN_D, "nectar": NECTAR_D},
         "clear_capture_width_mm": CLEAR_CAPTURE_WIDTH,
-        "motor_nominal_rpm": MOTOR_RPM,
-        "bevel_ratio": BEVEL_RATIO,
-        "fixed_roller_rpm": round(MOTOR_RPM * BEVEL_RATIO, 1),
-        "fixed_roller_surface_speed_mps": round(math.pi * (ROLLER_OD / 1000) * MOTOR_RPM * BEVEL_RATIO / 60, 3),
-        "front_bar_rpm": round(MOTOR_RPM * BEVEL_RATIO * FRONT_PULLEY_RATIO, 1),
-        "front_finger_tip_speed_mps": round(2 * math.pi * (FINGER_LENGTH / 1000) * MOTOR_RPM * BEVEL_RATIO * FRONT_PULLEY_RATIO / 60, 3),
-        "pivot_center_mm": list(PIVOT),
-        "arm_length_mm": ARM_LENGTH,
-        "angles_deg": {"deployed": DEPLOYED_ANGLE, "stowed": STOWED_ANGLE},
-        "configurations": {},
+        "drive": {
+            "dc_motor_count": 1,
+            "motor": {"sku": "5203-2402-0019", "no_load_rpm": MOTOR_RPM},
+            "miter_gears": {"sku": "2320-4008-0024", "quantity": 2, "ratio": MITER_RATIO},
+            "fixed_chain": {"sprocket_sku": "3302-4008-0014", "sprocket_teeth": CHAIN_SPROCKET_TEETH,
+                            "chain_sku": "3315-0008-0038", "chain_links_per_stage": CHAIN_LINKS,
+                            "stage_count": 2, "center_distance_mm": ROLLER_CENTER},
+            "front_belt": {"driver_sku": "3417-4008-0016", "driven_sku": "3417-4008-0024",
+                           "belt_sku": "3412-0009-0460", "belt_pitch_length_mm": FRONT_BELT_LENGTH,
+                           "center_distance_mm": ARM_LENGTH},
+            "software_current_alert_a": 3.4, "overcurrent_duration_ms": 200,
+            "target_primary_slip_torque_nm": 0.8,
+        },
+        "performance_calculated_no_load": {
+            "fixed_roller_rpm": MOTOR_RPM * MITER_RATIO,
+            "fixed_roller_surface_speed_mps": round(math.pi * (ROLLER_OD / 1000) * MOTOR_RPM / 60, 3),
+            "front_bar_rpm": MOTOR_RPM * FRONT_PULLEY_RATIO,
+            "front_finger_tip_speed_mps": round(2 * math.pi * (FINGER_LENGTH / 1000) * MOTOR_RPM * FRONT_PULLEY_RATIO / 60, 3),
+        },
+        "deployment": {"spring_count": 2, "target_force_each_n": {"stowed": 30.0, "deployed": 15.0},
+                       "latch": "dual load-bearing pawls; REV-41-3334 only releases",
+                       "hard_stop_target_n_each": 250.0},
+        "pivot_center_mm": list(PIVOT), "arm_length_mm": ARM_LENGTH,
+        "fixed_roller_centers_mm": [[round(x, 3), round(z, 3)] for x, z in FIXED_ROLLERS],
+        "angles_deg": {"deployed": DEPLOYED_ANGLE, "stowed": STOWED_ANGLE}, "configurations": {},
     }
     for config, angle in (("deployed", DEPLOYED_ANGLE), ("stowed", STOWED_ANGLE)):
         assy, shapes = build(config, angle)
@@ -246,11 +246,10 @@ def export_all():
         assy.export(str(stem.with_suffix(".step")), exportType="STEP")
         assy.export(str(stem.with_suffix(".glb")), exportType="GLTF", tolerance=0.25, angularTolerance=0.18)
         exporters.export(cq.Compound.makeCompound(shapes), str(stem.with_suffix(".stl")), tolerance=0.25, angularTolerance=0.18)
-        report["configurations"][config] = {"front_bar_center_mm": [round(v, 2) for v in front_center(angle)], "bounding_box": bbox(shapes)}
-
+        report["configurations"][config] = {"front_bar_center_mm": [round(v, 2) for v in front_center(angle)],
+                                               "bounding_box": bbox(shapes)}
     (OUT / "biobuzz_single_motor_flipout_intake_report.json").write_text(
-        json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
+        json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2, ensure_ascii=False))
 
 

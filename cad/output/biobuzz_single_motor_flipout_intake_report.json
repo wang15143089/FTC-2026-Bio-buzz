@@ -1,33 +1,79 @@
 {
-  "model_purpose": "packaging and kinematic baseline; verify purchased parts and chassis interfaces before fabrication",
+  "design_version": "KEI16-FLIPOUT-COTS-0.2",
+  "status": "M3_COTS_CONSTRAINED_PACKAGING_NOT_PRODUCTION_RELEASE",
+  "model_purpose": "transmission and flip-out packaging; purchased-part envelopes require drawing verification",
   "source_video": "https://youtu.be/RIt5xxJ2Yxs",
-  "visible_video_features_reused": [
-    "one vertically mounted geared motor",
-    "90-degree bevel gear turn into a transverse roller shaft",
-    "one-side belt distribution to multiple horizontal rollers",
-    "front flexible-finger pickup bar"
-  ],
-  "adaptations_not_proven_by_video": [
-    "finger bar carried on constant-center pivot arms",
-    "torsion/extension spring deployment",
-    "servo latch or optional reverse-cam unlatch"
-  ],
+  "authoritative_module_note": "KEI-16/T02 is imported reference provenance; current repository Intake is T04",
+  "manual_stow_note": "one-shot spring deploy plus manual pre-match stow; no active in-match retraction",
   "game_piece_diameters_mm": {
     "pollen": 71.0,
     "nectar": 91.0
   },
   "clear_capture_width_mm": 330.0,
-  "motor_nominal_rpm": 435.0,
-  "bevel_ratio": 0.7142857142857143,
-  "fixed_roller_rpm": 310.7,
-  "fixed_roller_surface_speed_mps": 0.976,
-  "front_bar_rpm": 207.1,
-  "front_finger_tip_speed_mps": 1.584,
+  "drive": {
+    "dc_motor_count": 1,
+    "motor": {
+      "sku": "5203-2402-0019",
+      "no_load_rpm": 312.0
+    },
+    "miter_gears": {
+      "sku": "2320-4008-0024",
+      "quantity": 2,
+      "ratio": 1.0
+    },
+    "fixed_chain": {
+      "sprocket_sku": "3302-4008-0014",
+      "sprocket_teeth": 14,
+      "chain_sku": "3315-0008-0038",
+      "chain_links_per_stage": 38,
+      "stage_count": 2,
+      "center_distance_mm": 96.0
+    },
+    "front_belt": {
+      "driver_sku": "3417-4008-0016",
+      "driven_sku": "3417-4008-0024",
+      "belt_sku": "3412-0009-0460",
+      "belt_pitch_length_mm": 460.0,
+      "center_distance_mm": 179.8873504
+    },
+    "software_current_alert_a": 3.4,
+    "overcurrent_duration_ms": 200,
+    "target_primary_slip_torque_nm": 0.8
+  },
+  "performance_calculated_no_load": {
+    "fixed_roller_rpm": 312.0,
+    "fixed_roller_surface_speed_mps": 0.98,
+    "front_bar_rpm": 208.0,
+    "front_finger_tip_speed_mps": 1.59
+  },
+  "deployment": {
+    "spring_count": 2,
+    "target_force_each_n": {
+      "stowed": 30.0,
+      "deployed": 15.0
+    },
+    "latch": "dual load-bearing pawls; REV-41-3334 only releases",
+    "hard_stop_target_n_each": 250.0
+  },
   "pivot_center_mm": [
     25.0,
     67.0
   ],
-  "arm_length_mm": 178.0,
+  "arm_length_mm": 179.8873504,
+  "fixed_roller_centers_mm": [
+    [
+      25.0,
+      67.0
+    ],
+    [
+      113.0,
+      105.367
+    ],
+    [
+      201.0,
+      143.733
+    ]
+  ],
   "angles_deg": {
     "deployed": 198.0,
     "stowed": 103.0
@@ -35,48 +81,48 @@
   "configurations": {
     "deployed": {
       "front_bar_center_mm": [
-        -144.29,
-        11.99
+        -146.08,
+        11.41
       ],
       "bounding_box": {
         "min_mm": [
-          -217.29,
-          -237.0,
-          -16.68
+          -219.08,
+          -246.0,
+          -7.71
         ],
         "max_mm": [
           232.5,
           198.0,
-          227.0
+          217.0
         ],
         "size_mm": [
-          449.79,
-          435.0,
-          243.68
+          451.58,
+          444.0,
+          224.71
         ],
         "within_expanded_18x24x29_if_oriented_X24_Y18_Z29": true
       }
     },
     "stowed": {
       "front_bar_center_mm": [
-        -15.04,
-        240.44
+        -15.47,
+        242.28
       ],
       "bounding_box": {
         "min_mm": [
-          -88.04,
-          -237.0,
-          -13.13
+          -88.47,
+          -246.0,
+          -7.62
         ],
         "max_mm": [
           232.5,
           198.0,
-          269.11
+          261.39
         ],
         "size_mm": [
-          320.54,
-          435.0,
-          282.24
+          320.97,
+          444.0,
+          269.01
         ],
         "within_expanded_18x24x29_if_oriented_X24_Y18_Z29": true
       }

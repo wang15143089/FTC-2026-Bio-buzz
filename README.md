@@ -12,16 +12,18 @@
 
 ## 单电机翻转 Intake 参考基线
 
-`cad/biobuzz_single_motor_flipout_intake.py` 是从 [Robot in 30 Hours BIOBUZZ reveal](https://youtu.be/RIt5xxJ2Yxs) 可见结构出发建立的参数化参考：竖直电机、90° 锥齿轮转向、单侧同步带、多个横向 roller，以及可翻出的柔性指轴。视频没有公开齿数、尺寸、材料或部署结构，因此以下同心翻臂、弹簧部署、硬止挡和锁扣是本项目适配，不是对原机器人隐藏结构的断言。
+`cad/biobuzz_single_motor_flipout_intake.py` 是从 [Robot in 30 Hours BIOBUZZ reveal](https://youtu.be/RIt5xxJ2Yxs) 可见结构出发建立的参数化参考：竖直电机、90° 齿轮转向、单侧传动、多个横向 roller，以及可翻出的柔性指轴。视频没有公开齿数、尺寸、材料或部署结构，因此以下同心翻臂、弹簧部署、硬止挡和锁扣是本项目适配，不是对原机器人隐藏结构的断言。
 
 当前参考参数：
 
-- 一个 435 rpm 级直流减速电机驱动全部 Intake roller；
-- 20T:28T 锥齿轮级，三根 Ø60 × 318 mm 固定 roller；
-- 330 mm 净捕获宽度，178 mm 同心翻臂中心距；
-- 24T:36T 恒中心距皮带驱动 13 指前轴；
-- `CALCULATED` 固定 roller 表面速度约 0.98 m/s，指尖速度约 1.58 m/s；
-- CAD 展开包络约 450 × 435 × 244 mm，收起约 321 × 435 × 282 mm。
+- 一个 goBILDA `5203-2402-0019` 312 rpm 直流减速电机驱动全部 Intake roller；
+- 两只 goBILDA `2320-4008-0024` 24T MOD1 斜齿轮构成 1:1 换向；
+- 三根 Ø60 × 318 mm 固定 roller；两段 14T、38 节、8 mm pitch 钢链的轴距各为 `CALCULATED` 96.000 mm；
+- 330 mm 净捕获宽度，`CALCULATED` 179.887 mm 同心翻臂中心距；
+- goBILDA 16T:24T 带轮和 460 mm HTD5 同步带驱动 13 指前轴；
+- `CALCULATED_FROM_VENDOR_SPEC` 固定 roller 表面速度约 0.98 m/s，指尖速度约 1.59 m/s；
+- 双弹簧展开、双棘爪锁定、REV `REV-41-3334` 只解锁、双硬止挡承载；赛前手动收纳，当前无主动收回；
+- CAD 展开包络约 452 × 444 × 225 mm，收起约 321 × 444 × 269 mm。
 
 完整依据、BOM、风险和验收矩阵见 [`docs/engineering/t02-single-motor-flipout-intake-baseline.md`](docs/engineering/t02-single-motor-flipout-intake-baseline.md)。外部跟踪仍保留原编号 [Linear KEI-16](https://linear.app/keithschoolrobotic/issue/KEI-16/t02-single-motor-flip-out-intake-baseline-and-prototype-validation) 和 [Notion 设计页](https://app.notion.com/p/3e57fc7bbcfb812aa3c1c54a0067e17f)；二者必须注明这是导入参考基线，当前仓库权威 Intake 编号为 T04。
 
@@ -96,9 +98,9 @@ python -m unittest discover -s tests -v
 
 ### 当前最重要工作
 
-权威 `NEXT ACTION` 是在 Fusion 360 中检查 T04-C04B1-M3-0.3 装配层级，打印三件验证件，安装 REV-41-1828 舵盘、约 1 mm 低伸长绳和不超过 1.5 N 的回位件。先做无球 60 mm 行程、机械止挡和峰值电流校准，再在透明 1:1 FLOWER 底部夹具测实际取出力、绳滑移和 100 次循环。测试前不得进入最终制造 CAD。
+用户当前明确把单电机传动和翻转放出列为最高优先级。权威 `NEXT ACTION` 是制作 KEI-16 单侧全传动＋单摆臂锁扣台架：先核对/采购已列 goBILDA 与 REV 零件，测轴向堆叠、0.8 ±0.1 N·m 打滑、弹簧力曲线、3.4 A / 200 ms 堵转保护和 200 次释放。T04-C04B1-M3-0.3 的打印验证件仍保留，但在本轮用户优先级完成前不是恢复入口。测试前不得进入最终制造 CAD。
 
-单电机翻转 Intake 的最高价值后续工作是：用实物替换电机、齿轮、皮带轮、轴承、弹簧和锁扣包络；测量底盘与 T05 入口；先做单侧传动台架，再做全宽样机；执行工程记录中的球路、堵转、部署重复性、撞击和尺寸夹具测试。它是否进入当前 T04 分支，必须经过与 C04-B1 的接口/资源/性能比较和明确决策，不能仅凭 STEP 文件存在而采用。
+单电机翻转 Intake 的 COTS 传动已经计算并写入参数化 CAD，但仍要用实物关闭供应商图纸轴向堆叠、链条张紧、打滑器、弹簧和锁扣公差；先做单侧传动台架，再做全宽样机。它是否进入当前 T04 分支，必须经过与 C04-B1 的接口/资源/性能比较和明确决策，不能仅凭 STEP 文件存在而采用。
 
 ### 事实纪律与结束条件
 

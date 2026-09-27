@@ -1,0 +1,60 @@
+{
+  "design_version": "KEI16-FLIPOUT-COTS-0.2",
+  "result_status": "CALCULATED_FROM_VENDOR_SPEC_AND_ASSUMPTIONS",
+  "fixed_drive": {
+    "roller_rpm_no_load": 312.0,
+    "roller_surface_speed_mps_no_load": 0.98,
+    "motor_stall_torque_nm": 2.383,
+    "estimated_motor_torque_at_current_alert_nm": 0.839,
+    "estimated_primary_torque_at_current_alert_nm": 0.755,
+    "chain_center_distance_mm": 96.0,
+    "chain_tension_at_current_alert_n": 42.3
+  },
+  "front_bar_drive": {
+    "pulley_pitch_diameters_mm": [
+      25.465,
+      38.197
+    ],
+    "calculated_center_distance_mm": 179.887,
+    "small_pulley_wrap_deg": 175.94,
+    "small_pulley_teeth_in_mesh": 7.82,
+    "front_bar_rpm_no_load": 208.0,
+    "finger_tip_speed_mps_no_load": 1.59,
+    "front_torque_at_current_alert_nm_if_full_primary_torque_routes_to_front": 1.076,
+    "finger_tip_force_at_current_alert_n_if_full_primary_torque_routes_to_front": 14.7
+  },
+  "deployment": {
+    "spring_lengths_mm": {
+      "stowed": 136.95,
+      "deployed": 44.9
+    },
+    "spring_moment_arms_mm": {
+      "stowed": 35.76,
+      "deployed": 61.72
+    },
+    "deploy_torque_stowed_nm": 2.146,
+    "hold_torque_deployed_nm": 1.852,
+    "estimated_deployed_tip_downforce_n": 10.3,
+    "estimated_total_latch_force_n": 23.8,
+    "estimated_latch_release_torque_nm": 0.074,
+    "estimated_servo_link_force_n": 3.7,
+    "servo_stall_torque_nm_at_6v": 1.324,
+    "servo_stall_fraction_for_static_release": 0.056
+  },
+  "protection": {
+    "software_current_alert_a": 3.4,
+    "overcurrent_duration_ms": 200,
+    "mechanical_primary_slip_torque_nm": 0.8,
+    "mechanical_primary_slip_tolerance_nm": 0.1
+  },
+  "checks": {
+    "fixed_chain_center_matches_96mm": true,
+    "front_belt_center_is_near_180mm": true,
+    "small_pulley_has_minimum_teeth_in_mesh": true,
+    "spring_torque_deploys_at_both_endpoints": true,
+    "servo_static_release_below_target_stall_fraction": true,
+    "software_alert_precedes_motor_stall": true,
+    "mechanical_slip_target_not_above_calculated_alert_torque_plus_tolerance": true
+  },
+  "all_checks_pass": true
+}

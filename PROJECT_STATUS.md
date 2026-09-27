@@ -4,17 +4,21 @@
 
 ## CURRENT OBJECTIVE
 
-完成C04-B1目标舵机核验、卷线鼓直线驱动校核和可打印M3验证件；下一步打印/装配并在1:1 FLOWER底部夹具测力、电流、滑移与循环，不进入最终制造CAD。
+按用户最新优先级，把导入参考 KEI-16 单电机翻转 Intake 收敛为可采购的 COTS 传动与被动放出 M3 基线；下一步制作单侧传动＋单摆臂锁扣台架并测打滑、电流、弹簧和循环，不进入最终制造 CAD。
 
 ## CURRENT MODULE
 
-T04 intake 主模块，C04-B1 25°楔形直线侧拨+17 mm卷线鼓为首个L6原型、C04-A为回退，关联T05/T06/T08；T06继续采用C06-B双飞轮主原型。T07顶部放球仍仅作P4增量接口研究。
+当前工作对象是 KEI-16/T02 来源编号的导入参考，映射到当前 Architecture v0.1 的 T04 Intake 候选；C04-B1 与 C04-A 保留且未被无证据取代。关联 T05 接口尚待实测；T06/T07 原决策不变。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义几何、舵机/传动计算和验证件完成，实体公差/力/电流/循环未关闭；C04-A维持M1回退。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究。
+S00：M0通过。KEI-16导入参考：M3 COTS-CONSTRAINED PACKAGING，计算与几何生成通过，实体公差/力/电流/循环未关闭。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，C04-A维持M1回退；二者未被KEI-16自动取代。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究。
 
 ## COMPLETED
+
+- `KEI16-FLIPOUT-COTS-0.2` 已把占位传动替换为 goBILDA/REV COTS 规格：312 rpm 单电机、24T:24T 斜齿轮、两段 14T/38 节链、16T:24T/460 mm HTD5 前轴带路、双弹簧/双棘爪/双硬止挡。
+- 新增可复算输入、脚本、结果和6项单元测试；重新生成展开/收纳 STEP、STL、GLB、PNG 与 JSON 报告。
+- `DEC-0018` 明确一次性弹出、手动收纳边界，并保留当前 T04 编号和 C04-B1 历史。
 
 - 检查工作目录；未发现既有仓库或工程资料。
 - 初始化本地 Git 仓库和要求的目录骨架。
@@ -67,6 +71,12 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 
 ## VALIDATED
 
+- `CALCULATED` 两段 38 节、14T、8 mm pitch 链的中心距均为 96.000 mm；460 mm HTD5 配 16T:24T 的中心距为 179.887 mm，小带轮啮合 7.82 齿。
+- `CALCULATED_FROM_VENDOR_SPEC` 固定 Ø60 roller 空载表面速度 0.980 m/s；前端 73 mm 指尖空载速度 1.590 m/s。
+- `CALCULATED_FROM_ASSUMPTIONS` 双弹簧在收纳/展开端提供 2.146/1.852 N·m 部署力矩；REV锁扣舵机静态解锁估算仅需其6 V目录堵转扭矩的5.6%。
+- `VALIDATED_GEOMETRY` 新版展开/收纳 CAD 均成功导出；包络约 451.58 × 444.00 × 224.71 mm 和 320.97 × 444.00 × 269.01 mm，当前方向几何筛查通过。
+- `VALIDATED_CALCULATION` `tests/test_kei16_flipout_drive.py` 6/6 通过；所有注册设计检查为 true。
+
 - `KNOWN` 目录与最小文件框架已存在。
 - `KNOWN` 未开始详细机械设计、最终 CAD 或完整仿真。
 - `KNOWN` 必需路径检查通过；Git 已初始化并使用 `main` 分支。
@@ -109,7 +119,7 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 
 无未关闭 CRITICAL 信息项。
 
-项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。C04-A/B1都需要实际POLLEN尺寸、FLOWER夹具和取出力；B1还需卷线绳/回位件选择、打印机间隙校准、实际行程以及REV电源瞬态能力。它们阻塞M4详细CAD，不阻塞当前验证件打印。
+项目时间表、预算、命中率/周期目标、软件栈和维护目标仍为IMPORTANT。KEI-16还需底盘/T05接口、轴向堆叠、弹簧料号、打滑器结构和实测堵转/碰撞数据；C04-A/B1仍需实际POLLEN尺寸、FLOWER夹具和取出力。两条分支均未达到M4冻结条件。
 
 ## KNOWN PROBLEMS
 
@@ -130,6 +140,8 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - 单电机共驱roller与短预输送可能在闸门关闭时压缩球列；需要打滑张紧、舵机离合或其他卸载设计和混合球循环试验。
 - 定时上传依赖本机在线、GitHub 凭据有效且当前任务可运行；认证、验证、远程领先或分叉时自动化将停止上传并请求人工处理。
 - 平铺 `cad/*.py` 与 `cad/output/` 中包含导入的参考/早期设计资产；它们尚未映射到 `config/parameters.yaml` 和当前模块接口，不能仅因已生成 CAD 就视为 Architecture v0.1 已采用。
+- KEI-16的3.4 A/200 ms保护、0.8 ±0.1 N·m打滑、15–30 N/侧弹簧和250 N/侧硬止挡均是台架起始假设；没有 `MEASURED` 证据前不得发布制造图。
+- KEI-16 CAD总宽444 mm距457.2 mm包络只剩约13.2 mm总余量，尚未计入全部真实紧固件、护罩和公差。
 
 ## ASSUMPTIONS
 
@@ -169,6 +181,8 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 - `calculations/t04_intake_inputs.json` / `t04_intake.py` / `t04_intake_results.csv`
 - `tests/test_t04_intake.py`
 - `calculations/t04_flower_sweep.py` / `t04_flower_sweep_results.csv`
+- `calculations/kei16_flipout_drive_inputs.json` / `kei16_flipout_drive.py` / `kei16_flipout_drive_results.json`
+- `tests/test_kei16_flipout_drive.py`
 - `tests/test_t04_flower_sweep.py`
 - `cad/modules/t04_intake/side_sweep_intake.py`
 - `cad/modules/t04_intake/model_manifest.json`
@@ -183,8 +197,8 @@ S00：M0通过。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，官方STEP名义
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-在Fusion 360中打开T04-C04B1-M3-0.3装配并确认导入层级；随后打印三件套并装REV-41-1828铝舵盘、约1 mm低伸长绳和≤1.5 N回位件。先做无球60 mm行程/机械止挡/峰值电流校准，再在透明1:1 FLOWER底部夹具测实际取出力、绳滑移和100循环。
+制作 KEI-16 单侧全传动＋单摆臂锁扣验证台架：核对/采购列出的 goBILDA/REV 件，实测轴向堆叠与链/带对齐；校准 0.8 ±0.1 N·m 打滑和 3.4 A/200 ms 起始保护；测每侧弹簧 44.9–137.0 mm 力曲线并做 200 次释放。结果写入 Notion/Linear 后，才决定是否进入 M4 或与 C04-B1 做正式选择。

@@ -172,6 +172,16 @@
 
 ## 新条目模板
 
+## DEC-0018 — KEI-16 单电机翻转 Intake 的 COTS 传动与被动部署基线
+
+- Decision: 导入参考 KEI-16 采用1台 goBILDA 312 rpm直流电机、24T:24T MOD1斜齿轮、两段14T/38节钢链驱动3根固定roller，并以16T:24T/460 mm HTD5恒中心距带驱动翻臂前轴；采用左右双弹簧、双承载棘爪、双硬止挡和只负责解锁的REV-41-3334。当前仅支持赛前手动收纳和比赛中一次弹出，不宣称主动收回。
+- Reason: 该拓扑保留参考视频的一电机、多横轴、90°换向和前指轴特征，同时把关键传动件收敛到goBILDA/REV目录规格；独立短链段便于张紧维护，恒中心距带不会随翻臂角变化，承载棘爪/硬止挡使舵机和传动不承受碰撞载荷。
+- Alternatives considered: 435 rpm加20T:28T占位齿轮与多轴同步带；一条长链跨三轴；主轴反转凸轮解锁；用驱动电机主动收回；让舵机保持弹簧或碰撞载荷。
+- Evidence/calculation: `calculations/kei16_flipout_drive_inputs.json`、`calculations/kei16_flipout_drive.py`、`docs/engineering/t02-single-motor-flipout-intake-baseline.md`、`cad/biobuzz_single_motor_flipout_intake.py`；96.000 mm链轴距、179.887 mm带轴距、7.82齿啮合、0.755 N·m估算告警扭矩和双弹簧端点力矩复算通过。
+- Impact: 允许采购核心COTS传动件并制作单侧M3/L6台架；弹簧、打滑器、棘爪、止挡、轴向堆叠和整机接口仍阻塞M4。该导入参考不改写Architecture v0.1的T02/T04编号，也不自动取代T04 C04-B1。
+- Reversible?: 是；实测堵转、球路、弹簧、碰撞或维护性失败时可调整齿比、轴距和部署机构，并以superseded记录保留本版本。
+- Date/version: 2026-09-27 / KEI16-FLIPOUT-COTS-0.2
+
 ```text
 Decision:
 Reason:

@@ -1,0 +1,79 @@
+{
+  "design_version": "KEI16-FLIPOUT-COTS-0.2",
+  "units": "mm, rpm, A, N, N.m",
+  "motor": {
+    "vendor": "goBILDA",
+    "sku": "5203-2402-0019",
+    "nominal_voltage_v": 12.0,
+    "no_load_speed_rpm": 312.0,
+    "no_load_current_a": 0.25,
+    "stall_current_a": 9.2,
+    "stall_torque_kg_cm": 24.3,
+    "software_current_alert_a": 3.4,
+    "source": "https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-19-2-1-ratio-24mm-length-8mm-rex-shaft-312-rpm-3-3-5v-encoder/"
+  },
+  "miter_stage": {
+    "vendor": "goBILDA",
+    "sku": "2320-4008-0024",
+    "driver_teeth": 24,
+    "driven_teeth": 24,
+    "assumed_efficiency": 0.9,
+    "source": "https://www.gobilda.com/clamping-steel-miter-gear-8mm-rex-bore-24-tooth-mod-1/"
+  },
+  "fixed_roller_chain": {
+    "pitch_mm": 8.0,
+    "sprocket_vendor": "goBILDA",
+    "sprocket_sku": "3302-4008-0014",
+    "sprocket_teeth": 14,
+    "chain_vendor": "goBILDA",
+    "chain_sku": "3315-0008-0038",
+    "chain_links_per_stage": 38,
+    "stage_count": 2,
+    "assumed_efficiency_per_stage": 0.95,
+    "idler_sku": "3312-0006-0008",
+    "tensioner_sku": "1524-0001-0001",
+    "source": "https://www.gobilda.com/sprockets-chain"
+  },
+  "front_bar_belt": {
+    "pitch_mm": 5.0,
+    "width_mm": 9.0,
+    "driver_teeth": 16,
+    "driver_sku": "3417-4008-0016",
+    "driven_teeth": 24,
+    "driven_sku": "3417-4008-0024",
+    "belt_pitch_length_mm": 460.0,
+    "belt_teeth": 92,
+    "belt_sku": "3412-0009-0460",
+    "assumed_efficiency": 0.95,
+    "source": "https://www.gobilda.com/5mm-htd-timing-belts/"
+  },
+  "geometry": {
+    "fixed_roller_diameter_mm": 60.0,
+    "finger_tip_radius_mm": 73.0,
+    "stowed_angle_deg": 103.0,
+    "deployed_angle_deg": 198.0,
+    "spring_arm_attachment_radius_mm": 90.0,
+    "spring_chassis_anchor_relative_mm": [-45.0, -47.0],
+    "deployed_spring_force_each_n": 15.0,
+    "stowed_spring_force_each_n": 30.0,
+    "spring_count": 2,
+    "latch_catch_radius_mm": 90.0,
+    "latch_contact_offset_mm": 1.0,
+    "latch_return_torque_nm": 0.05,
+    "servo_crank_radius_mm": 20.0
+  },
+  "latch_servo": {
+    "vendor": "REV Robotics",
+    "sku": "REV-41-3334",
+    "stall_torque_kg_cm_at_6v": 13.5,
+    "stall_current_a_at_6v": 2.1,
+    "source": "https://www.revrobotics.com/Smart-servo-v2"
+  },
+  "protection": {
+    "target_primary_slip_torque_nm": 0.8,
+    "target_primary_slip_tolerance_nm": 0.1,
+    "overcurrent_duration_ms": 200,
+    "minimum_small_pulley_teeth_in_mesh": 6.0,
+    "maximum_servo_stall_fraction_for_static_release": 0.25
+  }
+}
