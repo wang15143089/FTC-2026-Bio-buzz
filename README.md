@@ -58,6 +58,28 @@ python -m venv .venv-cad
 
 你正在继续 FTC 2026–2027 BIOBUZZ 长期机器人项目。不要只从最近新增的 CAD 判断项目方向；先建立权威上下文，再行动。
 
+### 给未来的我：可直接执行的启动提示
+
+> 你接手的是一个仍处在分阶段验证中的 FTC BIOBUZZ 工程仓库，不是已经冻结的整机方案。先在仓库根目录运行 `git status --short --branch` 和 `git pull --ff-only origin main`，然后依次完整阅读 `AGENTS.md`、`README.md`、`PROJECT_STATUS.md`、`docs/requirements.md`、`docs/system_architecture.md`、`docs/module_interfaces.md`、`docs/decision_log.md` 与 `docs/validation_plan.md`。接着搜索 Linear 项目 `FTC 2026 biobuzz` 和 Notion 项目 `FTC Robot Project` 中与当前模块相关的既有记录；更新原记录，不创建重复项。默认从 `PROJECT_STATUS.md` 的 `NEXT ACTION` 恢复，除非用户给出更新、更具体的任务。任何 CAD、计算或视频推断都必须按 `KNOWN / ASSUMED / CALCULATED / SIMULATED / MEASURED / TBD` 标记。修改后运行相称测试，更新项目状态、Linear 与 Notion，提交并推送 GitHub；在实体测试没有关闭验收条件前，不得把机构称为最终设计或 Done。
+
+数据权威顺序：
+
+1. 最新官方比赛规则、Team Updates、供应商图纸和实物测量；
+2. `docs/requirements.md`、`docs/system_architecture.md`、`docs/module_interfaces.md`、`config/parameters.yaml`；
+3. 已记录并有证据的 `docs/decision_log.md` 与 Notion 决策/测试记录；
+4. 可复算脚本、测试结果和当前模块 CAD；
+5. `PROJECT_STATUS.md` 只负责恢复点，README 只负责导航；二者不能暗中成为尺寸或需求的第二数据源。
+
+开始新工作前至少运行：
+
+```powershell
+git status --short --branch
+git pull --ff-only origin main
+python -m unittest discover -s tests -v
+```
+
+若需要重新生成导入的翻转 Intake，再使用后文的 CadQuery 环境命令。不要提交 `.venv-cad`、缓存、密码、令牌或临时视频文件。
+
 ### 第一次打开仓库时
 
 1. 完整阅读 `AGENTS.md`、本 README、`PROJECT_STATUS.md`。
@@ -84,6 +106,7 @@ python -m venv .venv-cad
 - CAD 是待验证假设，不是实物性能证明；视频可见结构与项目推断必须分开写。
 - 未完成测试、分析和必要重设计前，不得把任何子系统标成 Done。
 - 完成有意义的工作后：更新本地状态/决策/接口文档，更新或创建正确的 Linear 问题，把耐久结论写入 Notion，运行相称验证，提交并推送 GitHub。
+- 停止并请求实物数据的条件：关键接口尺寸、所购零件型号、真实载荷或规则解释会改变方案选择，而仓库、Linear 和 Notion 均没有可靠证据。
 
 ## 规则与制造提醒
 
