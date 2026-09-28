@@ -170,8 +170,6 @@
 - Reversible?: 是；若L6显示滑移、磨损或周期不稳定，则切换3.2:1回退或重新选择卷线半径，需保持60 mm直线路径及力/角度双门槛。
 - Date/version: 2026-09-20 / T04-INTAKE-0.4 / T04-C04B1-M3-0.2
 
-## 新条目模板
-
 ## DEC-0018 — KEI-16 单电机翻转 Intake 的 COTS 传动与被动部署基线
 
 - Decision: 导入参考 KEI-16 采用1台 goBILDA 312 rpm直流电机、24T:24T MOD1斜齿轮、两段14T/38节钢链驱动3根固定roller，并以16T:24T/460 mm HTD5恒中心距带驱动翻臂前轴；采用左右双弹簧、双承载棘爪、双硬止挡和只负责解锁的REV-41-3334。当前仅支持赛前手动收纳和比赛中一次弹出，不宣称主动收回。
@@ -181,6 +179,18 @@
 - Impact: 允许采购核心COTS传动件并制作单侧M3/L6台架；弹簧、打滑器、棘爪、止挡、轴向堆叠和整机接口仍阻塞M4。该导入参考不改写Architecture v0.1的T02/T04编号，也不自动取代T04 C04-B1。
 - Reversible?: 是；实测堵转、球路、弹簧、碰撞或维护性失败时可调整齿比、轴距和部署机构，并以superseded记录保留本版本。
 - Date/version: 2026-09-27 / KEI16-FLIPOUT-COTS-0.2
+
+## DEC-0019 — 连续舵机送料参考改为目录约束的HTD5/8 mm REX接口
+
+- Decision: 保留原`continuous_servo_feeder.glb`为superseded参考，采购/台架使用CONTINUOUS-FEEDER-COTS-0.1；把占位20T:48T和18 mm带改成goBILDA在售16T:48T、9 mm HTD5带、8 mm REX轴、正式舵机框和H25T联轴器。
+- Reason: 官方目录未找到原20T HTD5同步轮，且原齿数、标称外径、带宽与同一标准不一致；新组合每个关键运动件都有SKU与官方页面。
+- Alternatives considered: 保留占位几何并后续临场采购；混用REV 5 mm HEX与goBILDA 8 mm REX；把送料重新改回无带拨杆方案。
+- Evidence/calculation: `docs/engineering/continuous-servo-feeder-cots-audit.md`、`cad/continuous_servo_feeder_cots.py`、`cad/output/continuous_servo_feeder_cots_report.json`、`tests/test_continuous_feeder_cots.py`；水平/斜升轴距140.000/120.000 mm，上压轮3.000:1、中心距51.163 mm。
+- Impact: 送料参考可按目录件采购并保持X-Y底盘平面；轴向堆叠、预紧、实体球可靠性和相邻飞轮电机夹具仍阻塞M4。
+- Reversible?: 是；实体送料试验失败可回退三拨杆连续送料或调整带长/张紧，但不得恢复无料号占位件。
+- Date/version: 2026-09-28 / CONTINUOUS-FEEDER-COTS-0.1
+
+## 新条目模板
 
 ```text
 Decision:

@@ -58,6 +58,15 @@ python -m venv .venv-cad
 .\.venv-cad\Scripts\python.exe .\cad\render_continuous_feeder.py
 ```
 
+原版的20T:48T、18 mm宽同步带与目录件不一致，现保留为superseded参考。可采购约束改版为`CONTINUOUS-FEEDER-COTS-0.1`：采用goBILDA 16T/48T、9 mm宽HTD5皮带、8 mm REX轴、H25T联轴器与正式舵机框。
+
+```powershell
+.\.venv-cad\Scripts\python.exe .\cad\continuous_servo_feeder_cots.py
+.\.venv-cad\Scripts\python.exe .\cad\render_continuous_feeder_cots.py
+```
+
+审查、BOM和未关闭项见`docs/engineering/continuous-servo-feeder-cots-audit.md`。
+
 ## 三拨杆连续送料＋对置飞轮完整总成
 
 `paddle_feeder_launcher.py`取消所有输送带，改用连续旋转舵机直驱的三拨杆转子。每根拨杆带独立铰轴与可更换柔性拨片，经过三段固定导槽和单向柔性挡片，将水平进入的物体连续送入52°发射通道。模型明确保留上下两根飞轮轴，每根轴安装两片96 mm Gecko轮，并补齐8 mm轴到14 mm轮芯的Sonic Hub连接。
