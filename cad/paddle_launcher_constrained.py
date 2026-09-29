@@ -17,13 +17,15 @@ from cadquery import exporters
 
 OUT = Path(__file__).resolve().parent / "output"
 PARTS = OUT / "parts"
+CONFIG = Path(__file__).resolve().parents[1] / "config" / "t06_launcher_cots.json"
 OUT.mkdir(parents=True, exist_ok=True)
 PARTS.mkdir(parents=True, exist_ok=True)
+COTS = json.loads(CONFIG.read_text(encoding="utf-8"))
 
 # Master dimensions
 ANGLE = 52.0
-WHEEL_OD = 96.0
-WHEEL_W = 24.0
+WHEEL_OD = COTS["flywheel"]["diameter_mm"]
+WHEEL_W = COTS["flywheel"]["width_mm"]
 WHEEL_AXIAL_GAP = 6.0
 WHEEL_Y = (-(WHEEL_W + WHEEL_AXIAL_GAP) / 2, (WHEEL_W + WHEEL_AXIAL_GAP) / 2)
 CHANNEL_CLEAR_W = 108.0
@@ -31,9 +33,20 @@ CHANNEL_CLEAR_H = 110.0
 PADDLE_CENTER = (-47.0, 0.0, 73.0)
 PADDLE_SWEEP_R = 60.0
 PADDLE_W = 96.0
+PADDLE_SHAFT_L = COTS["feeder_shaft"]["length_mm"]
 SERVO_ENV = (41.0, 21.0, 40.0)
-MOTOR_D = 38.0
-MOTOR_L = 104.0
+MOTOR_D = COTS["flywheel_motor"]["body_diameter_mm"]
+MOTOR_L = COTS["flywheel_motor"]["body_envelope_length_mm"]
+FLYWHEEL_SHAFT_L = COTS["flywheel_shaft"]["length_mm"]
+BEARING_OD = COTS["shaft_bearing"]["outer_diameter_mm"]
+BEARING_W = COTS["shaft_bearing"]["thickness_mm"]
+COUPLER_L = COTS["shaft_coupler"]["length_envelope_mm"]
+MOTOR_CLAMP_W = COTS["motor_clamp"]["width_mm"]
+MOTOR_CLAMP_L = COTS["motor_clamp"]["axial_envelope_mm"]
+MOTOR_FACE_Y = -112.0
+MOTOR_OUTPUT_INNER_Y = MOTOR_FACE_Y + 24.0
+FLYWHEEL_SHAFT_MOTOR_END_Y = -FLYWHEEL_SHAFT_L / 2
+COUPLER_CENTER_Y = -87.0
 PLATE_INSIDE_SPAN = 140.0
 CHASSIS_LIMIT = 457.2
 
@@ -134,15 +147,15 @@ def sonic_hub(center_n, y, outward):
 
 
 def bearing_carriage(center_n, y):
-    """External sliding carriage with a 16 mm bearing pocket and M4 retainers."""
-    p = box(46, 12, 38, (0, y, center_n)).cut(cyl_y(8.1, 16, (0, y, center_n)))
+    """External sliding carriage for goBILDA 1611-0514-4008 bearing."""
+    p = box(46, 12, 38, (0, y, center_n)).cut(cyl_y(BEARING_OD / 2 + 0.1, 16, (0, y, center_n)))
     for x in (-16, 16):
         p = p.cut(cyl_y(2.2, 16, (x, y, center_n)))
     return p
 
 
 def bearing_insert(center_n, y):
-    return cyl_y(8.0, 7, (0, y, center_n)).cut(cyl_y(4.1, 9, (0, y, center_n)))
+    return cyl_y(BEARING_OD / 2, BEARING_W, (0, y, center_n)).cut(cyl_y(4.1, BEARING_W + 2, (0, y, center_n)))
 
 
 def link_with_eyes(a, b, body_r=3.2, eye_r=7.0, pin_r=2.1):
@@ -151,12 +164,14 @@ def link_with_eyes(a, b, body_r=3.2, eye_r=7.0, pin_r=2.1):
     return link.cut(cyl_y(pin_r, 10, a)).cut(cyl_y(pin_r, 10, b))
 
 
-def motor_mount(center_n, side):
-    y = side * 92
-    p = box(58, 6, 58, (0, y, center_n)).cut(cyl_y(19.2, 12, (0, y, center_n)))
+def motor_clamp(center_n, y):
+    """Envelope of goBILDA 1401-0043-0036, with its real 36 mm bore."""
+    p = box(MOTOR_CLAMP_W, MOTOR_CLAMP_L, MOTOR_CLAMP_W, (0, y, center_n)).cut(
+        cyl_y(MOTOR_D / 2 + 0.2, MOTOR_CLAMP_L + 2, (0, y, center_n))
+    )
     for x in (-8, 8):
         for z in (-8, 8):
-            p = p.cut(cyl_y(2.2, 12, (x, y, center_n + z)))
+            p = p.cut(cyl_y(2.2, MOTOR_CLAMP_L + 2, (x, y, center_n + z)))
     return p
 
 
@@ -164,11 +179,12 @@ def shooter_plate(y):
     outline = [(-150, -136), (78, -136), (128, -105), (128, 105), (78, 136), (-150, 136)]
     plate = cq.Workplane("XZ").polyline(outline).close().extrude(2, both=True).translate((0, y, 0)).val()
     plate = plate.cut(cyl_y(26, 10, (-58, y, 0)))
-    # One common 18 mm travel slot per axle: center positions 80...89 mm.
+    # One common 9 mm center-travel slot per axle. The bearing remains in the
+    # external carriage, so only the 8 mm REX shaft passes through the plate.
     for sign in (-1, 1):
         zc = sign * 84.5
-        slot = box(16, 12, 9, (0, y, zc))
-        slot = slot.fuse(cyl_y(8, 12, (0, y, sign * 80))).fuse(cyl_y(8, 12, (0, y, sign * 89)))
+        slot = box(8.4, 12, 9, (0, y, zc))
+        slot = slot.fuse(cyl_y(4.2, 12, (0, y, sign * 80))).fuse(cyl_y(4.2, 12, (0, y, sign * 89)))
         plate = plate.cut(slot)
     for x in (-88, 98):
         for z in (-116, 116):
@@ -256,17 +272,25 @@ def build(config, half_spacing):
             for z in (18, 140):
                 cheek = cheek.cut(cyl_y(2.3, 12, (x, y, z)))
         add(f"paddle_support_cheek_{side:+d}", cheek, C["structure"])
-    add("paddle_shaft_8mm", cyl_y(4, 154, PADDLE_CENTER), C["shaft"])
+    add(f"paddle_shaft_{COTS['feeder_shaft']['sku']}", cyl_y(4, PADDLE_SHAFT_L, PADDLE_CENTER), C["shaft"])
     for name, shape, color in paddle_parts():
         add(name, shape, color)
     servo_center = (PADDLE_CENTER[0], 112, PADDLE_CENTER[2])
-    add("paddle_cr_servo_envelope", box(*SERVO_ENV, servo_center), C["servo"], False)
+    add(f"paddle_cr_servo_{COTS['feeder_servo']['sku']}", box(*SERVO_ENV, servo_center), C["servo"])
     block = box(58, 6, 60, (servo_center[0], 76, servo_center[2])).cut(cyl_y(8.2, 12, (servo_center[0], 76, servo_center[2])))
     for x in (-23, 23):
         for z in (-24, 24):
             block = block.cut(cyl_y(2.2, 12, (servo_center[0] + x, 76, servo_center[2] + z)))
-    add("paddle_servo_block", block, C["plate"])
-    add("paddle_shaft_clamp", cyl_y(12, 6, (PADDLE_CENTER[0], 69, PADDLE_CENTER[2])).cut(cyl_y(4.1, 8, (PADDLE_CENTER[0], 69, PADDLE_CENTER[2]))), C["hub"])
+    add("paddle_shaft_support_bridge", block, C["plate"])
+    add(f"paddle_servo_frame_{COTS['servo_frame']['sku']}", box(43, 5, 54, (servo_center[0], 99, servo_center[2])), C["structure"])
+    feeder_coupler_l = COTS["feeder_servo_coupler"]["length_envelope_mm"]
+    add(
+        f"paddle_servo_coupler_{COTS['feeder_servo_coupler']['sku']}",
+        cyl_y(10, feeder_coupler_l, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])).cut(
+            cyl_y(4.1, feeder_coupler_l + 2, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2]))
+        ),
+        C["hub"],
+    )
 
     # Backflow fingers at the entrance of the 52-degree segment.
     finger_anchor = GUIDES[-1][0]
@@ -281,7 +305,7 @@ def build(config, half_spacing):
 
     for sign, label in ((1, "upper"), (-1, "lower")):
         n = sign * half_spacing
-        add(f"flywheel_shaft_{label}", to_world(cyl_y(4, 194, (0, 0, n))), C["shaft"])
+        add(f"flywheel_shaft_{label}_{COTS['flywheel_shaft']['sku']}", to_world(cyl_y(4, FLYWHEEL_SHAFT_L, (0, 0, n))), C["shaft"])
         for i, y in enumerate(WHEEL_Y, 1):
             add(f"gecko_flywheel_{label}_{i}", to_world(gecko(n, y)), C["wheel"])
             outward = -1 if y < 0 else 1
@@ -292,20 +316,24 @@ def build(config, half_spacing):
         # Both shaft ends run in sliding bearing carriages.  The plate slot sets
         # the path; paired guide rails prevent carriage rotation.
         for side in (-1, 1):
-            cy = side * 80
+            cy = side * 70
             add(f"bearing_carriage_{label}_{side:+d}", to_world(bearing_carriage(n, cy)), C["structure"])
             add(f"bearing_insert_{label}_{side:+d}", to_world(bearing_insert(n, cy)), C["hub"])
             for rail_u in (-26.5, 26.5):
                 add(f"carriage_guide_{label}_{side:+d}_{rail_u:+.1f}", to_world(box(5, 10, 52, (rail_u, cy, sign * 84.5))), C["plate"])
-        motor_side = 1 if sign > 0 else -1
-        add(f"motor_mount_{label}", to_world(motor_mount(n, motor_side)), C["structure"])
-        # Bridge is rigidly attached to the moving carriage, so motor alignment
-        # follows the shaft throughout the 9 mm slot travel.
+        # Put both motors on -Y, opposite the +Y adjustment linkage. The catalog
+        # clamp is bridged to the moving carriage, so alignment follows the shaft.
+        motor_side = -1
+        clamp_y = MOTOR_FACE_Y - MOTOR_CLAMP_L / 2
+        add(f"motor_clamp_{label}_{COTS['motor_clamp']['sku']}", to_world(motor_clamp(n, clamp_y)), C["structure"])
         for u in (-17, 17):
-            add(f"motor_bridge_{label}_{u:+d}", to_world(box(8, 10, 26, (u, motor_side * 87, n))), C["structure"])
-        my = motor_side * 153.0
-        add(f"motor_envelope_{label}", to_world(cyl_y(MOTOR_D / 2, MOTOR_L, (0, my, n))), C["motor"], False)
-        add(f"motor_coupler_{label}", to_world(cyl_y(9, 16, (0, motor_side * 103, n)).cut(cyl_y(4.1, 18, (0, motor_side * 103, n)))), C["hub"])
+            add(f"motor_bridge_{label}_{u:+d}", to_world(box(8, 42, 26, (u, -91, n))), C["structure"])
+        my = MOTOR_FACE_Y - MOTOR_L / 2
+        add(f"motor_{label}_{COTS['flywheel_motor']['sku']}", to_world(cyl_y(MOTOR_D / 2, MOTOR_L, (0, my, n))), C["motor"])
+        add(f"motor_output_shaft_{label}", to_world(cyl_y(4, 24, (0, MOTOR_FACE_Y + 12, n))), C["shaft"])
+        # The coupler stops 0.5 mm short of the carriage outer face while
+        # retaining 7.5 mm flywheel-shaft and 9.5 mm motor-shaft engagement.
+        add(f"motor_coupler_{label}_{COTS['shaft_coupler']['sku']}", to_world(cyl_y(10, COUPLER_L, (0, COUPLER_CENTER_Y, n)).cut(cyl_y(4.1, COUPLER_L + 2, (0, COUPLER_CENTER_Y, n)))), C["hub"])
 
     # Real symmetric spacing mechanism on the +Y side:
     # servo crank -> fixed 65 mm drag link -> horizontal crosshead ->
@@ -354,8 +382,8 @@ def build(config, half_spacing):
     for u in (servo_u - 23, servo_u + 23):
         for n in (-23, 23):
             add(f"gap_servo_standoff_{u:+.0f}_{n:+.0f}", to_world(cyl_y(3, 17, (u, 79.5, n))), C["structure"])
-    add("gap_servo_envelope", to_world(box(*SERVO_ENV, (servo_u, servo_y, 0))), C["servo"], False)
-    add("servo_spline_hub", to_world(cyl_y(7, 7, (servo_u, 125, 0))), C["hub"])
+    add(f"gap_servo_{COTS['gap_servo']['sku']}", to_world(box(*SERVO_ENV, (servo_u, servo_y, 0))), C["servo"])
+    add(f"servo_spline_hub_{COTS['gap_servo_hub']['sku']}", to_world(cyl_y(16, 6, (servo_u, 125, 0)).cut(cyl_y(3, 8, (servo_u, 125, 0)))), C["hub"])
     add("servo_crank", to_world(link_with_eyes((servo_u, 132, 0), (crank_end_x, 132, crank_end_n), 3.0, 5.0, 2.1)), C["flex"])
     add("servo_drag_link", to_world(link_with_eyes((crank_end_x, 139, crank_end_n), (crosshead_u, 139, 0), 3.0, 6.0, 2.1)), C["flex"])
     add("servo_crank_joint_pin", to_world(cyl_y(2, 15, (crank_end_x, 135.5, crank_end_n))), C["fastener"])
@@ -412,8 +440,9 @@ def interference_report(named):
     rotor_prefixes = ("paddle_shaft_", "paddle_hub", "paddle_arm_", "paddle_hinge_", "paddle_blade_", "paddle_flex_tip_", "paddle_shaft_clamp")
     rotor = {k: v for k, v in named.items() if k.startswith(rotor_prefixes)}
     feeder_cheeks = {k: v for k, v in named.items() if k.startswith("paddle_support_cheek_")}
-    motors = {k: v for k, v in named.items() if k.startswith("motor_envelope_")}
-    motor_mounts = {k: v for k, v in named.items() if k.startswith("motor_mount_")}
+    motors = {k: v for k, v in named.items() if k.startswith("motor_") and COTS["flywheel_motor"]["sku"] in k}
+    motor_mounts = {k: v for k, v in named.items() if k.startswith("motor_clamp_")}
+    motor_couplers = {k: v for k, v in named.items() if k.startswith("motor_coupler_")}
     linkage = {k: v for k, v in named.items() if k.startswith(("main_spacing_link_", "servo_drag_link", "servo_crank"))}
     main_links = {k: v for k, v in named.items() if k.startswith("main_spacing_link_")}
     crosshead_body = {"crosshead": named["crosshead"]}
@@ -428,6 +457,7 @@ def interference_report(named):
         ("bearing_carriage_vs_guide_rail", carriages, rails),
         ("motor_envelope_vs_bearing_carriage", motors, carriages),
         ("motor_mount_vs_bearing_carriage", motor_mounts, carriages),
+        ("motor_coupler_vs_bearing_carriage", motor_couplers, carriages),
         ("paddle_rotor_vs_channel_panels", rotor, guides),
         ("paddle_rotor_vs_support_cheeks", rotor, feeder_cheeks),
         ("linkage_vs_side_plate", linkage, plates),
@@ -470,6 +500,7 @@ def export_parts():
     exporters.export(paddle_parts()[3][1], str(PARTS / "paddle_blade.step"))
     exporters.export(sonic_hub(0, 0, 1), str(PARTS / "sonic_8mm_gecko_hub.step"))
     exporters.export(bearing_carriage(0, 0), str(PARTS / "sliding_bearing_carriage.step"))
+    exporters.export(motor_clamp(0, 0), str(PARTS / "gobilda_1401_0043_0036_mount_proxy.step"))
     exporters.export(link_with_eyes((0, 0, 0), (0, 0, 110)), str(PARTS / "spacing_link_110mm.step"))
     cheek = box(124, 6, 154, (0, 0, 0)).cut(cyl_y(7.1, 12, (0, 0, -5)))
     exporters.export(cheek, str(PARTS / "feeder_support_cheek_reference.step"))
@@ -496,12 +527,31 @@ def export_all():
     continuity = [math.dist(GUIDES[i][1], GUIDES[i + 1][0]) for i in range(len(GUIDES) - 1)]
     expected_end = (SHOOTER_ORIGIN[0] - 135 * T52[0] - 55 * N52[0], SHOOTER_ORIGIN[2] - 135 * T52[1] - 55 * N52[1])
     alignment_error = math.dist(GUIDE_END, expected_end)
+    coupler_inner_y = COUPLER_CENTER_Y + COUPLER_L / 2
+    coupler_outer_y = COUPLER_CENTER_Y - COUPLER_L / 2
+    carriage_outer_y = -70.0 - 12.0 / 2
+    flywheel_shaft_engagement = coupler_inner_y - FLYWHEEL_SHAFT_MOTOR_END_Y
+    motor_shaft_engagement = MOTOR_OUTPUT_INNER_Y - coupler_outer_y
+    shaft_tip_gap = FLYWHEEL_SHAFT_MOTOR_END_Y - MOTOR_OUTPUT_INNER_Y
+    coupler_carriage_clearance = carriage_outer_y - coupler_inner_y
     report = {
         "coordinate_system": "X-Y chassis plane; +Z upward",
         "game_piece_geometry_included": False,
         "flywheels": "four 96 x 24 mm Gecko wheels: two per opposed 8 mm shaft",
         "feeder": "three-paddle continuous-rotation-servo indexer; no conveyor belt",
         "gap_adjuster": "servo crank, 65 mm drag link, guided crosshead, two 110 mm links, and shaft-bearing carriages",
+        "design_id": COTS["design_id"],
+        "catalog_checked_date": COTS["catalog_checked_date"],
+        "catalog_components": COTS,
+        "drive_axial_stack_mm": {
+            "flywheel_shaft_motor_end_y": FLYWHEEL_SHAFT_MOTOR_END_Y,
+            "motor_output_inner_end_y": MOTOR_OUTPUT_INNER_Y,
+            "shaft_tip_gap": shaft_tip_gap,
+            "coupler_center_y": COUPLER_CENTER_Y,
+            "flywheel_shaft_engagement": flywheel_shaft_engagement,
+            "motor_shaft_engagement": motor_shaft_engagement,
+            "coupler_to_carriage_clearance": coupler_carriage_clearance,
+        },
         "channel_clear_width_mm": CHANNEL_CLEAR_W,
         "channel_clear_height_mm": CHANNEL_CLEAR_H,
         "paddle_width_mm": PADDLE_W,
@@ -513,7 +563,8 @@ def export_all():
         "shooter_angle_deg": ANGLE,
         "relative_axle_separation_change_mm": 18.0,
         "slot_center_travel_each_axle_mm": 9.0,
-        "slot_overall_length_including_16mm_bearing_hole_mm": 25.0,
+        "shaft_clearance_slot_width_mm": 8.4,
+        "shaft_clearance_slot_overall_length_mm": 17.4,
         "wheel_stack_width_mm": 2 * WHEEL_W + WHEEL_AXIAL_GAP,
         "wheel_stack_clearance_between_plates_mm": PLATE_INSIDE_SPAN - (2 * WHEEL_W + WHEEL_AXIAL_GAP),
         "recommended_servo_speed_rpm": [25, 40],
@@ -527,6 +578,14 @@ def export_all():
             "final_guide_is_collinear_with_throat": alignment_error < 0.01,
             "both_configs_within_18in_cube": all(v["bounding_box"]["within_18in_cube"] for v in results.values()),
             "all_selected_interference_checks_pass": all(v["interference_checks"]["all_checked_interfaces_clear"] for v in results.values()),
+            "all_catalog_items_have_sku": all(
+                item.get("sku") for key, item in COTS.items()
+                if isinstance(item, dict) and key != "external_gears"
+            ),
+            "external_gear_count_is_zero": COTS["external_gears"]["quantity"] == 0,
+            "coupler_engagement_at_least_7mm_each_end": min(flywheel_shaft_engagement, motor_shaft_engagement) >= 7.0,
+            "coupler_clears_bearing_carriage": coupler_carriage_clearance >= 0.5,
+            "shaft_tips_do_not_overlap": shaft_tip_gap >= 0.5,
         },
     }
     (OUT / "paddle_launcher_feasibility_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
@@ -534,7 +593,11 @@ def export_all():
         "# 对置飞轮连续拨杆发射机构：尺寸约束报告", "",
         "- 坐标：X–Y 为底盘平面，+Z 向上。", "- 模型不含 POLLEN / NECTAR 实体。",
         f"- 通道净截面：{CHANNEL_CLEAR_W:.0f} × {CHANNEL_CLEAR_H:.0f} mm；拨片宽 {PADDLE_W:.0f} mm，单侧余量 {(CHANNEL_CLEAR_W-PADDLE_W)/2:.1f} mm。",
-        f"- 飞轮：4 个 96 × 24 mm Gecko；每根 8 mm 轴安装 2 个。", "",
+        f"- 飞轮：4 个 96 × 24 mm Gecko；每根 8 mm 轴安装 2 个。",
+        f"- COTS 版本：{COTS['design_id']}；目录核对日期 {COTS['catalog_checked_date']}。",
+        f"- 飞轮直驱：2 × {COTS['flywheel_motor']['sku']}，无外置啮合齿轮。",
+        f"- 电机夹具/联轴器：{COTS['motor_clamp']['sku']} / {COTS['shaft_coupler']['sku']}。",
+        f"- 轴/轴承：{COTS['flywheel_shaft']['sku']}（{FLYWHEEL_SHAFT_L:.0f} mm）/ {COTS['shaft_bearing']['sku']}（Ø{BEARING_OD:.0f} × {BEARING_W:.0f} mm）。", "",
         "| 配置 | 轴中心距 | 名义轮间隙 | 总包络 X×Y×Z | 18 in 校核 |", "|---|---:|---:|---:|:---:|",
     ]
     for name in ("pollen", "nectar"):
@@ -547,7 +610,7 @@ def export_all():
         "两侧板均设置轴槽和外置滑动轴承座，因此轴在调节过程中保持平行。", "",
         f"- 三段导槽角度：0° / 26° / {ANGLE:.0f}°；接头最大位置误差 {max(continuity):.6f} mm。",
         f"- 导槽与发射喉道共线误差 {alignment_error:.6f} mm。",
-        "- 每根轴的槽中心行程 9 mm；按 16 mm 轴承孔计，槽外形总长 25 mm；两轴相对中心距变化 18 mm。",
+        "- 每根轴的槽中心行程 9 mm；轴承留在外置滑座内，侧板仅开 8.4 mm 轴槽，槽外形总长 17.4 mm；两轴相对中心距变化 18 mm。",
         "- 发射喉道在轴心前 52 mm 截止，相对 48 mm 飞轮半径保留至少 4 mm 轴向投影余量。", "",
         "## 实体干涉检查", "",
     ]

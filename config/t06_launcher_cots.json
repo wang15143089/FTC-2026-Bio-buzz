@@ -1,0 +1,136 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-COTS-0.1",
+  "module": "T06",
+  "catalog_checked_date": "2026-09-28",
+  "external_gears": {
+    "quantity": 0,
+    "status": "KNOWN",
+    "reason": "Each opposed flywheel shaft is direct-driven by its own gearmotor; no external gear mesh is used."
+  },
+  "flywheel": {
+    "vendor": "goBILDA",
+    "sku": "3613-0014-0096",
+    "quantity": 4,
+    "diameter_mm": 96.0,
+    "width_mm": 24.0,
+    "mass_g_each": 105.0,
+    "status": "KNOWN_VENDOR"
+  },
+  "flywheel_hub": {
+    "vendor": "goBILDA",
+    "sku": "1309-0016-4008",
+    "quantity": 4,
+    "shaft_bore": "8mm REX",
+    "wheel_pattern_mm": 16.0,
+    "mass_g_each": 14.0,
+    "status": "KNOWN_VENDOR"
+  },
+  "flywheel_shaft": {
+    "vendor": "goBILDA",
+    "sku": "2106-4008-1680",
+    "quantity": 2,
+    "profile": "8mm REX",
+    "length_mm": 168.0,
+    "material": "stainless steel",
+    "status": "KNOWN_VENDOR"
+  },
+  "shaft_bearing": {
+    "vendor": "goBILDA",
+    "sku": "1611-0514-4008",
+    "quantity": 4,
+    "bore": "8mm REX",
+    "outer_diameter_mm": 14.0,
+    "thickness_mm": 5.0,
+    "mass_g_each": 3.5,
+    "status": "KNOWN_VENDOR"
+  },
+  "flywheel_motor": {
+    "vendor": "goBILDA",
+    "sku": "5203-2402-0003",
+    "quantity": 2,
+    "gear_ratio": "3.7:1",
+    "no_load_speed_rpm": 1620.0,
+    "stall_current_a": 9.2,
+    "mass_g_each": 396.0,
+    "body_diameter_mm": 36.0,
+    "body_envelope_length_mm": 104.0,
+    "body_envelope_length_status": "ASSUMED_FROM_PRIOR_CAD_VERIFY_OFFICIAL_STEP",
+    "output_shaft": "8mm REX, 24mm length",
+    "status": "KNOWN_VENDOR_EXCEPT_BODY_ENVELOPE_LENGTH"
+  },
+  "motor_clamp": {
+    "vendor": "goBILDA",
+    "sku": "1401-0043-0036",
+    "quantity": 2,
+    "width_mm": 43.0,
+    "bore_mm": 36.0,
+    "mass_g_each": 16.0,
+    "axial_envelope_mm": 16.0,
+    "axial_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
+    "status": "KNOWN_VENDOR"
+  },
+  "shaft_coupler": {
+    "vendor": "goBILDA",
+    "sku": "4007-4008-4008",
+    "quantity": 2,
+    "bores": "8mm REX to 8mm REX",
+    "mass_g_each": 20.0,
+    "length_envelope_mm": 21.0,
+    "length_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
+    "status": "KNOWN_VENDOR"
+  },
+  "gap_servo": {
+    "vendor": "goBILDA",
+    "sku": "2000-0025-0002",
+    "quantity": 1,
+    "mode": "position",
+    "mass_g_each": 60.0,
+    "status": "KNOWN_VENDOR"
+  },
+  "feeder_servo": {
+    "vendor": "goBILDA",
+    "sku": "2000-0025-0003",
+    "quantity": 1,
+    "mode": "continuous rotation",
+    "mass_g_each": 58.0,
+    "status": "KNOWN_VENDOR"
+  },
+  "feeder_shaft": {
+    "vendor": "goBILDA",
+    "sku": "2106-4008-1920",
+    "quantity": 1,
+    "profile": "8mm REX",
+    "length_mm": 192.0,
+    "material": "stainless steel",
+    "status": "KNOWN_VENDOR"
+  },
+  "servo_frame": {
+    "vendor": "goBILDA",
+    "sku": "1802-0043-0001",
+    "quantity": 2,
+    "width_mm": 43.0,
+    "mass_g_each": 24.0,
+    "status": "KNOWN_VENDOR"
+  },
+  "gap_servo_hub": {
+    "vendor": "goBILDA",
+    "sku": "1908-0025-0032",
+    "quantity": 1,
+    "spline": "25 tooth",
+    "diameter_mm": 32.0,
+    "thickness_mm": 6.0,
+    "mass_g_each": 8.2,
+    "status": "KNOWN_VENDOR"
+  },
+  "feeder_servo_coupler": {
+    "vendor": "goBILDA",
+    "sku": "4001-0025-4008",
+    "quantity": 1,
+    "interface": "25 tooth spline to 8mm REX",
+    "mass_g_each": 7.0,
+    "length_envelope_mm": 16.0,
+    "length_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
+    "status": "KNOWN_VENDOR"
+  }
+}

@@ -79,3 +79,4 @@ def render(filename, label_text, y_cut, camera_position, focal_point):
 
 render("paddle_launcher_feasible_overview.png", "FEASIBLE NECTAR CONFIG  |  52 deg  |  X-Y CHASSIS PLANE", -8, (570, -720, 470), (15, 0, 190))
 render("paddle_launcher_feasible_linkage.png", "GAP LINKAGE: SERVO > CROSSHEAD > TWO LINKS > AXLE CARRIAGES", 66, (470, 720, 420), (-25, 82, 205))
+render("paddle_launcher_feasible_motor_drive.png", "COTS MOTOR SIDE: 2 x DIRECT 8mm REX DRIVE  |  NO EXTERNAL GEARS", -220, (470, -760, 420), (0, -35, 205))

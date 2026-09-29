@@ -1,20 +1,24 @@
 # PROJECT STATUS
 
-最后更新：2026-09-27
+最后更新：2026-09-29
 
 ## CURRENT OBJECTIVE
 
-按用户最新优先级，把导入参考 KEI-16 单电机翻转 Intake 收敛为可采购的 COTS 传动与被动放出 M3 基线；下一步制作单侧传动＋单摆臂锁扣台架并测打滑、电流、弹簧和循环，不进入最终制造 CAD。
+按用户最新指令，审计并修订回滚后的 T06/C06-B 对置双飞轮发射器，使飞轮、轮毂、轴、轴承、电机、夹具、联轴器和舵机接口均映射到 goBILDA/REV 允许来源；下一步用官方 STEP 关闭轴向堆叠后制作安全旋转台架。
 
 ## CURRENT MODULE
 
-当前工作对象是 KEI-16/T02 来源编号的导入参考，映射到当前 Architecture v0.1 的 T04 Intake 候选；C04-B1 与 C04-A 保留且未被无证据取代。关联 T05 接口尚待实测；T06/T07 原决策不变。
+当前工作对象是 Architecture v0.1 的 T06/C06-B 主发射原型；回滚后的 `paddle_launcher_constrained.py` 已升级为 `C06B-COTS-0.1`。T04、T05、T07 和 KEI-16 历史均保留，未被本次修改覆盖。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。KEI-16导入参考：M3 COTS-CONSTRAINED PACKAGING，计算与几何生成通过，实体公差/力/电流/循环未关闭。T04：C04-B1 M3 PRINTABLE VALIDATION ARTICLE，C04-A维持M1回退；二者未被KEI-16自动取代。T06：M1 ACTIVE，C06-B为主原型。T05：M1共享动力接口。T07：M0增量研究。
+S00：M0通过。T06：C06-B进入 M3 COTS-CONSTRAINED PACKAGING，目录映射、轴向名义计算和端点干涉通过，官方 STEP/实物/旋转测试未关闭。KEI-16导入参考和T04 C04-B1维持各自M3状态；T05为M1共享动力接口，T07为M0增量研究。
 
 ## COMPLETED
+
+- `C06B-COTS-0.1` 已淘汰 Ø38 无 SKU 电机夹具、16 × 7 mm 轴承、194 mm 轴和无 SKU 联轴器占位，替换为 goBILDA `5203-2402-0003`、`1401-0043-0036`、`4007-4008-4008`、`2106-4008-1680` 和 `1611-0514-4008`。
+- 双飞轮轴继续各自直驱，外置齿轮数量为0；两台电机统一移至−Y侧，+Y双连杆调隙侧保持无遮挡。
+- 侧板改为8.4 mm轴槽（17.4 mm总长），轴承留在外置滑座；POLLEN/NECTAR两端点的COTS干涉检查通过。
 
 - `KEI16-FLIPOUT-COTS-0.2` 已把占位传动替换为 goBILDA/REV COTS 规格：312 rpm 单电机、24T:24T 斜齿轮、两段 14T/38 节链、16T:24T/460 mm HTD5 前轴带路、双弹簧/双棘爪/双硬止挡。
 - 新增可复算输入、脚本、结果和6项单元测试；重新生成展开/收纳 STEP、STL、GLB、PNG 与 JSON 报告。
@@ -197,8 +201,8 @@ S00：M0通过。KEI-16导入参考：M3 COTS-CONSTRAINED PACKAGING，计算与�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；P3-M1 v0.2 ACTIVE；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.1 M3 COTS PACKAGING VALIDATED；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-制作 KEI-16 单侧全传动＋单摆臂锁扣验证台架：核对/采购列出的 goBILDA/REV 件，实测轴向堆叠与链/带对齐；校准 0.8 ±0.1 N·m 打滑和 3.4 A/200 ms 起始保护；测每侧弹簧 44.9–137.0 mm 力曲线并做 200 次释放。结果写入 Notion/Linear 后，才决定是否进入 M4 或与 C04-B1 做正式选择。
+为 `C06B-COTS-0.1` 下载并导入官方 STEP，替换电机、夹具、联轴器、轴承和轮毂简化包络，关闭垫片/卡簧/螺钉/线束轴向堆叠；随后按 KEI-12 制作带护罩双轴安全旋转台架，记录转速恢复、电流、温升、振动和两个间隙端点。未完成前不得进入 M4 或发布制造图。

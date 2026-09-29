@@ -2,7 +2,9 @@
 
 坐标约定：`X-Y` 为底盘安装平面，`+Z` 向上，`+X` 为发射方向在底盘上的投影。模型单位均为毫米。
 
-## 初版参数
+## 历史初版参数
+
+以下 Ø38 mm 电机包络属于早期无 SKU 模型，已由后文 `C06B-COTS-0.1` 采购约束版本取代；保留本节仅用于追溯旧输出。
 
 - 发射总成相对底盘倾角：52°
 - 96 mm GripForce Gecko，单轴两片、上下共四片
@@ -61,6 +63,8 @@ python -m venv .venv-cad
 ## 三拨杆连续送料＋对置飞轮完整总成
 
 `paddle_feeder_launcher.py`取消所有输送带，改用连续旋转舵机直驱的三拨杆转子。每根拨杆带独立铰轴与可更换柔性拨片，经过三段固定导槽和单向柔性挡片，将水平进入的物体连续送入52°发射通道。模型明确保留上下两根飞轮轴，每根轴安装两片96 mm Gecko轮，并补齐8 mm轴到14 mm轮芯的Sonic Hub连接。
+
+当前采购约束版本为 `C06B-COTS-0.1`：`paddle_launcher_constrained.py` 从 `config/t06_launcher_cots.json` 读取 goBILDA SKU；两台1620 rpm电机经8 mm REX联轴器分别直驱两根168 mm轴，不使用外置齿轮，并使用36 mm目录夹具与14 × 5 mm目录轴承。审计见 `docs/engineering/t06-opposed-flywheel-cots-audit.md`。
 
 ```powershell
 .\.venv-cad\Scripts\python.exe .\cad\paddle_feeder_launcher.py

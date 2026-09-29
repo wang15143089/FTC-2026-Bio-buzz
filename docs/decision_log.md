@@ -182,6 +182,16 @@
 - Reversible?: 是；实测堵转、球路、弹簧、碰撞或维护性失败时可调整齿比、轴距和部署机构，并以superseded记录保留本版本。
 - Date/version: 2026-09-27 / KEI16-FLIPOUT-COTS-0.2
 
+## DEC-0019 — C06-B 双飞轮采用 goBILDA 8 mm REX 直驱 COTS 栈
+
+- Decision: `C06B-COTS-0.1` 保留两根独立对置飞轮轴，不设置外置齿轮；每根轴由一台 goBILDA `5203-2402-0003` 经 `4007-4008-4008` 联轴器直驱。飞轮、Sonic Hub、168 mm REX 轴、14 × 5 mm REX 轴承和36 mm夹具均采用已核对 SKU。两台电机置于−Y侧，调隙连杆置于+Y侧。
+- Reason: 回滚后的 CAD 使用 Ø38 电机/无 SKU 夹具、16 × 7 mm 轴承、194 mm 轴和无 SKU 联轴器，不能形成可采购且可验证的轴向堆叠。直驱保留双电机独立控速，不增加齿隙、额外轴或采购风险。
+- Alternatives considered: 保留占位件；增加外置齿轮同步两轴；使用 REV HD Hex/UltraPlanetary 并增加 REV-to-REX 转接；在调隙连杆一侧继续布置上电机。
+- Evidence/calculation: SRC-019；`config/t06_launcher_cots.json`；`docs/engineering/t06-opposed-flywheel-cots-audit.md`；`cad/output/paddle_launcher_feasibility_report.json`；VAL-T06-006。
+- Impact: 侧板长槽由轴承穿槽改为8.4 mm轴槽；目录轴长改为168 mm；两端点的电机、夹具和联轴器随滑座移动。该版本允许进入官方 STEP 轴向复核，不允许跳过实物旋转、护罩、电流和温升测试。
+- Reversible?: 是；若官方 STEP 或台架显示联轴器夹持、轴挠度、1620 rpm裕量或双电机电流不合格，应创建 superseding 版本并保留本记录。
+- Date/version: 2026-09-28 / C06B-COTS-0.1
+
 ```text
 Decision:
 Reason:
