@@ -4,7 +4,8 @@
 
 - X–Y 平面为底盘安装平面，+Z 向上。
 - 发射中心线相对底盘为 52°。
-- 电机和舵机采用已选 SKU 的简化包络；侧板、支架、通道、拨杆、轴、轮毂和飞轮均为实体零件。
+- 13 个已选 goBILDA SKU 的官方 STEP 已下载并登记哈希；工作装配按用户要求将每个采购 SKU 表示为一个连通实体，外形与关键接口尺寸来自官方 CAD。
+- 原始多实体 STEP 保存在 `references/vendor/gobilda/t06/step/`，不在主装配中展开电机、舵机等采购件的内部子零件。
 - 模型不包含 POLLEN 或 NECTAR 实体。
 
 ## 主尺寸（mm）
@@ -50,5 +51,6 @@ POLLEN 与 NECTAR 两个极限位置分别对舵机曲柄角、滑块位置和�
 - `paddle_launcher_feasible_nectar.*`：NECTAR 间隙配置。
 - `output/parts/`：开槽发射侧板、拨片、Sonic/Gecko 轮毂和送料侧板参考件。
 - `paddle_launcher_feasibility_report.json/.md`：精确尺寸、运动学位置及实体干涉校核结果。
+- `references/vendor/gobilda/t06/manifest.json`：官方压缩包与 STEP 的 SHA-256、实体数及回读包络。
 
-所有数值仍属于初步工程原型。轴承、轮毂、轴、电机、夹具和联轴器已有目录 SKU，但加工前仍须用官方 STEP/实物复核轴向堆叠、卡簧、垫片、螺钉长度和打印配合公差。
+所有数值仍属于初步工程原型。官方 STEP 已完成包络回读，但加工前仍须用实物复核轴向堆叠、卡簧、垫片、螺钉长度、花键/REX 配合和打印公差；单实体工作模型不替代制造图。

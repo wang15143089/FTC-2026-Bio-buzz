@@ -1,8 +1,11 @@
 {
-  "schema_version": "0.1",
-  "design_id": "C06B-COTS-0.1",
+  "schema_version": "0.2",
+  "design_id": "C06B-COTS-0.2",
   "module": "T06",
-  "catalog_checked_date": "2026-09-28",
+  "catalog_checked_date": "2026-10-01",
+  "official_cad_manifest": "references/vendor/gobilda/t06/manifest.json",
+  "official_cad_status": "KNOWN_VENDOR_CAD_IMPORTED",
+  "assembly_representation": "ONE_CONNECTED_SOLID_PER_SKU_FROM_OFFICIAL_CAD_DIMENSIONS",
   "external_gears": {
     "quantity": 0,
     "status": "KNOWN",
@@ -15,7 +18,7 @@
     "diameter_mm": 96.0,
     "width_mm": 24.0,
     "mass_g_each": 105.0,
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "flywheel_hub": {
     "vendor": "goBILDA",
@@ -24,7 +27,7 @@
     "shaft_bore": "8mm REX",
     "wheel_pattern_mm": 16.0,
     "mass_g_each": 14.0,
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "flywheel_shaft": {
     "vendor": "goBILDA",
@@ -33,7 +36,7 @@
     "profile": "8mm REX",
     "length_mm": 168.0,
     "material": "stainless steel",
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "shaft_bearing": {
     "vendor": "goBILDA",
@@ -41,9 +44,10 @@
     "quantity": 4,
     "bore": "8mm REX",
     "outer_diameter_mm": 14.0,
+    "flange_outer_diameter_mm": 15.0,
     "thickness_mm": 5.0,
     "mass_g_each": 3.5,
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "flywheel_motor": {
     "vendor": "goBILDA",
@@ -54,10 +58,9 @@
     "stall_current_a": 9.2,
     "mass_g_each": 396.0,
     "body_diameter_mm": 36.0,
-    "body_envelope_length_mm": 104.0,
-    "body_envelope_length_status": "ASSUMED_FROM_PRIOR_CAD_VERIFY_OFFICIAL_STEP",
+    "official_cad_overall_bbox_mm": [37.5, 131.17, 37.5],
     "output_shaft": "8mm REX, 24mm length",
-    "status": "KNOWN_VENDOR_EXCEPT_BODY_ENVELOPE_LENGTH"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "motor_clamp": {
     "vendor": "goBILDA",
@@ -66,9 +69,10 @@
     "width_mm": 43.0,
     "bore_mm": 36.0,
     "mass_g_each": 16.0,
-    "axial_envelope_mm": 16.0,
-    "axial_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
-    "status": "KNOWN_VENDOR"
+    "axial_envelope_mm": 8.0,
+    "axial_envelope_status": "MEASURED_FROM_OFFICIAL_CAD",
+    "official_cad_bbox_mm": [43.0, 8.0, 49.0],
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "shaft_coupler": {
     "vendor": "goBILDA",
@@ -77,8 +81,9 @@
     "bores": "8mm REX to 8mm REX",
     "mass_g_each": 20.0,
     "length_envelope_mm": 21.0,
-    "length_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
-    "status": "KNOWN_VENDOR"
+    "maximum_diameter_from_cad_mm": 20.495,
+    "length_envelope_status": "MEASURED_FROM_OFFICIAL_CAD",
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "gap_servo": {
     "vendor": "goBILDA",
@@ -86,7 +91,8 @@
     "quantity": 1,
     "mode": "position",
     "mass_g_each": 60.0,
-    "status": "KNOWN_VENDOR"
+    "official_cad_bbox_mm": [54.3, 20.15, 44.1],
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "feeder_servo": {
     "vendor": "goBILDA",
@@ -94,7 +100,8 @@
     "quantity": 1,
     "mode": "continuous rotation",
     "mass_g_each": 58.0,
-    "status": "KNOWN_VENDOR"
+    "official_cad_bbox_mm": [54.3, 20.15, 44.1],
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "feeder_shaft": {
     "vendor": "goBILDA",
@@ -103,7 +110,7 @@
     "profile": "8mm REX",
     "length_mm": 192.0,
     "material": "stainless steel",
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "servo_frame": {
     "vendor": "goBILDA",
@@ -111,7 +118,9 @@
     "quantity": 2,
     "width_mm": 43.0,
     "mass_g_each": 24.0,
-    "status": "KNOWN_VENDOR"
+    "official_cad_full_assembly_bbox_mm": [72.97, 22.741, 55.078],
+    "modeled_frame_body_bbox_mm": [62.75, 6.0, 43.0],
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "gap_servo_hub": {
     "vendor": "goBILDA",
@@ -121,7 +130,7 @@
     "diameter_mm": 32.0,
     "thickness_mm": 6.0,
     "mass_g_each": 8.2,
-    "status": "KNOWN_VENDOR"
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   },
   "feeder_servo_coupler": {
     "vendor": "goBILDA",
@@ -129,8 +138,8 @@
     "quantity": 1,
     "interface": "25 tooth spline to 8mm REX",
     "mass_g_each": 7.0,
-    "length_envelope_mm": 16.0,
-    "length_envelope_status": "ASSUMED_VERIFY_OFFICIAL_STEP",
-    "status": "KNOWN_VENDOR"
+    "length_envelope_mm": 17.0,
+    "length_envelope_status": "MEASURED_FROM_OFFICIAL_CAD",
+    "status": "KNOWN_VENDOR_CAD_IMPORTED"
   }
 }

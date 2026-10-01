@@ -22,6 +22,9 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Vendor download archives are retained locally; extracted STEP and hashes are tracked.
+references/vendor/gobilda/t06/source_archives/
+
 # Generated exports are reproducible; keep source and approved release artifacts
 exports/step/*
 exports/stl/*

@@ -1,7 +1,8 @@
 """Dimension-constrained paddle feeder and opposed Gecko flywheel launcher.
 
-The chassis plane is X-Y and +Z is upward.  Motors and servos are envelopes;
-all load-carrying prototype parts are modeled.  Units are millimetres.
+The chassis plane is X-Y and +Z is upward.  Selected goBILDA components use
+their downloaded official STEP geometry; custom prototype parts remain
+parametric CadQuery solids.  Units are millimetres.
 No POLLEN or NECTAR bodies are included in the exported assemblies.
 """
 
@@ -13,6 +14,14 @@ from pathlib import Path
 
 import cadquery as cq
 from cadquery import exporters
+
+from t06_vendor_cad import (
+    CAD_FILES,
+    centered_y_axis_part,
+    motor_with_output_tip,
+    servo_with_output_face,
+    sonic_hub as official_sonic_hub,
+)
 
 
 OUT = Path(__file__).resolve().parent / "output"
@@ -34,9 +43,6 @@ PADDLE_CENTER = (-47.0, 0.0, 73.0)
 PADDLE_SWEEP_R = 60.0
 PADDLE_W = 96.0
 PADDLE_SHAFT_L = COTS["feeder_shaft"]["length_mm"]
-SERVO_ENV = (41.0, 21.0, 40.0)
-MOTOR_D = COTS["flywheel_motor"]["body_diameter_mm"]
-MOTOR_L = COTS["flywheel_motor"]["body_envelope_length_mm"]
 FLYWHEEL_SHAFT_L = COTS["flywheel_shaft"]["length_mm"]
 BEARING_OD = COTS["shaft_bearing"]["outer_diameter_mm"]
 BEARING_W = COTS["shaft_bearing"]["thickness_mm"]
@@ -123,27 +129,13 @@ def to_world(shape):
 
 
 def gecko(center_n, y):
-    """96 x 24 mm GripForce Gecko representation with 8 mm hub interface."""
-    tread = cyl_y(46, WHEEL_W, (0, y, center_n)).cut(cyl_y(39.5, WHEEL_W + 2, (0, y, center_n)))
-    core = cyl_y(15, WHEEL_W, (0, y, center_n)).cut(cyl_y(7.1, WHEEL_W + 2, (0, y, center_n)))
-    wheel = tread.fuse(core)
-    for a in range(0, 360, 30):
-        wheel = wheel.fuse(box(27, WHEEL_W - 3, 5.5, (27, y, center_n)).rotate((0, y, center_n), (0, y + 1, center_n), a))
-    for a in range(0, 360, 15):
-        wheel = wheel.fuse(box(4, WHEEL_W - 2, 6.5, (46, y, center_n)).rotate((0, y, center_n), (0, y + 1, center_n), a))
-    return wheel
+    """Official 3613-0014-0096 geometry, centered on the launcher shaft."""
+    return centered_y_axis_part(COTS["flywheel"]["sku"], (0, y, center_n))
 
 
 def sonic_hub(center_n, y, outward):
-    """Clamping adapter: 8 mm shaft, 14 mm wheel bore, 16 mm bolt square."""
-    yy = y + outward * 7.5
-    hub = cyl_y(16, 9, (0, yy, center_n)).cut(cyl_y(4.1, 12, (0, yy, center_n)))
-    flange_y = y + outward * 2.0
-    hub = hub.fuse(cyl_y(22, 3, (0, flange_y, center_n)).cut(cyl_y(7.1, 5, (0, flange_y, center_n))))
-    for dx in (-8, 8):
-        for dz in (-8, 8):
-            hub = hub.cut(cyl_y(2.1, 14, (dx, flange_y, center_n + dz)))
-    return hub
+    """Official 1309-0016-4008 assembly, rotated onto the Y shaft."""
+    return official_sonic_hub((0, y + outward * 7.0, center_n))
 
 
 def bearing_carriage(center_n, y):
@@ -155,7 +147,7 @@ def bearing_carriage(center_n, y):
 
 
 def bearing_insert(center_n, y):
-    return cyl_y(BEARING_OD / 2, BEARING_W, (0, y, center_n)).cut(cyl_y(4.1, BEARING_W + 2, (0, y, center_n)))
+    return centered_y_axis_part(COTS["shaft_bearing"]["sku"], (0, y, center_n))
 
 
 def link_with_eyes(a, b, body_r=3.2, eye_r=7.0, pin_r=2.1):
@@ -165,14 +157,8 @@ def link_with_eyes(a, b, body_r=3.2, eye_r=7.0, pin_r=2.1):
 
 
 def motor_clamp(center_n, y):
-    """Envelope of goBILDA 1401-0043-0036, with its real 36 mm bore."""
-    p = box(MOTOR_CLAMP_W, MOTOR_CLAMP_L, MOTOR_CLAMP_W, (0, y, center_n)).cut(
-        cyl_y(MOTOR_D / 2 + 0.2, MOTOR_CLAMP_L + 2, (0, y, center_n))
-    )
-    for x in (-8, 8):
-        for z in (-8, 8):
-            p = p.cut(cyl_y(2.2, MOTOR_CLAMP_L + 2, (x, y, center_n + z)))
-    return p
+    """Official 1401-0043-0036 clamp assembly."""
+    return centered_y_axis_part(COTS["motor_clamp"]["sku"], (0, y, center_n))
 
 
 def shooter_plate(y):
@@ -242,12 +228,12 @@ def build(config, half_spacing):
     assy = cq.Assembly(name=f"paddle_launcher_constrained_{config}")
     mesh, all_shapes, named = [], [], {}
 
-    def add(name, shape, color, meshable=True):
+    def add(name, shape, color, meshable=True, verification_shape=None):
         assy.add(shape, name=name, color=color)
         all_shapes.append(shape)
-        named[name] = shape
+        named[name] = verification_shape if verification_shape is not None else shape
         if meshable:
-            mesh.append(shape)
+            mesh.append(verification_shape if verification_shape is not None else shape)
 
     # Datum-aware chassis rails; hole pitch is 48 mm.
     for y in (-72, 72):
@@ -267,29 +253,50 @@ def build(config, half_spacing):
     for side in (-1, 1):
         y = side * 62
         cheek = box(124, 6, 154, (PADDLE_CENTER[0], y, 78))
-        cheek = cheek.cut(cyl_y(7.1, 12, PADDLE_CENTER)).cut(cyl_y(34, 12, (PADDLE_CENTER[0], y, 102)))
+        cheek = cheek.cut(cyl_y(7.1, 12, (PADDLE_CENTER[0], y, PADDLE_CENTER[2]))).cut(
+            cyl_y(34, 12, (PADDLE_CENTER[0], y, 102))
+        )
         for x in (-96, 2):
             for z in (18, 140):
                 cheek = cheek.cut(cyl_y(2.3, 12, (x, y, z)))
         add(f"paddle_support_cheek_{side:+d}", cheek, C["structure"])
-    add(f"paddle_shaft_{COTS['feeder_shaft']['sku']}", cyl_y(4, PADDLE_SHAFT_L, PADDLE_CENTER), C["shaft"])
+    add(
+        f"paddle_shaft_{COTS['feeder_shaft']['sku']}",
+        centered_y_axis_part(COTS["feeder_shaft"]["sku"], PADDLE_CENTER),
+        C["shaft"],
+        verification_shape=cyl_y(6.15, PADDLE_SHAFT_L, PADDLE_CENTER),
+    )
     for name, shape, color in paddle_parts():
         add(name, shape, color)
     servo_center = (PADDLE_CENTER[0], 112, PADDLE_CENTER[2])
-    add(f"paddle_cr_servo_{COTS['feeder_servo']['sku']}", box(*SERVO_ENV, servo_center), C["servo"])
+    feeder_servo = servo_with_output_face(
+        COTS["feeder_servo"]["sku"],
+        (PADDLE_CENTER[0], PADDLE_CENTER[2]),
+        101.5,
+        -1,
+    )
+    add(
+        f"paddle_cr_servo_{COTS['feeder_servo']['sku']}",
+        feeder_servo,
+        C["servo"],
+        verification_shape=box(54.3, 44.1, 20.15, (PADDLE_CENTER[0], 123.55, PADDLE_CENTER[2])),
+    )
     block = box(58, 6, 60, (servo_center[0], 76, servo_center[2])).cut(cyl_y(8.2, 12, (servo_center[0], 76, servo_center[2])))
     for x in (-23, 23):
         for z in (-24, 24):
             block = block.cut(cyl_y(2.2, 12, (servo_center[0] + x, 76, servo_center[2] + z)))
     add("paddle_shaft_support_bridge", block, C["plate"])
-    add(f"paddle_servo_frame_{COTS['servo_frame']['sku']}", box(43, 5, 54, (servo_center[0], 99, servo_center[2])), C["structure"])
-    feeder_coupler_l = COTS["feeder_servo_coupler"]["length_envelope_mm"]
+    add(
+        f"paddle_servo_frame_{COTS['servo_frame']['sku']}",
+        centered_y_axis_part(COTS["servo_frame"]["sku"], (servo_center[0], 99, servo_center[2]), largest_solid_only=True),
+        C["structure"],
+        verification_shape=box(62.75, 6, 43, (servo_center[0], 99, servo_center[2])),
+    )
     add(
         f"paddle_servo_coupler_{COTS['feeder_servo_coupler']['sku']}",
-        cyl_y(10, feeder_coupler_l, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])).cut(
-            cyl_y(4.1, feeder_coupler_l + 2, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2]))
-        ),
+        centered_y_axis_part(COTS["feeder_servo_coupler"]["sku"], (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])),
         C["hub"],
+        verification_shape=cyl_y(8.3, 17, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])),
     )
 
     # Backflow fingers at the entrance of the 52-degree segment.
@@ -305,35 +312,69 @@ def build(config, half_spacing):
 
     for sign, label in ((1, "upper"), (-1, "lower")):
         n = sign * half_spacing
-        add(f"flywheel_shaft_{label}_{COTS['flywheel_shaft']['sku']}", to_world(cyl_y(4, FLYWHEEL_SHAFT_L, (0, 0, n))), C["shaft"])
+        add(
+            f"flywheel_shaft_{label}_{COTS['flywheel_shaft']['sku']}",
+            to_world(centered_y_axis_part(COTS["flywheel_shaft"]["sku"], (0, 0, n))),
+            C["shaft"],
+            verification_shape=to_world(cyl_y(6.15, FLYWHEEL_SHAFT_L, (0, 0, n))),
+        )
         for i, y in enumerate(WHEEL_Y, 1):
-            add(f"gecko_flywheel_{label}_{i}", to_world(gecko(n, y)), C["wheel"])
+            add(
+                f"gecko_flywheel_{label}_{i}",
+                to_world(gecko(n, y)),
+                C["wheel"],
+                verification_shape=to_world(cyl_y(WHEEL_OD / 2, WHEEL_W, (0, y, n))),
+            )
             outward = -1 if y < 0 else 1
-            add(f"sonic_hub_{label}_{i}", to_world(sonic_hub(n, y, outward)), C["hub"])
-            flange_y = y + outward * 2.0
-            for bi, (dx, dz) in enumerate(((-8, -8), (-8, 8), (8, -8), (8, 8)), 1):
-                add(f"hub_bolt_{label}_{i}_{bi}", to_world(cyl_y(2, 14, (dx, flange_y, n + dz))), C["fastener"])
+            hub_y = y + outward * 7.0
+            add(
+                f"sonic_hub_{label}_{i}",
+                to_world(sonic_hub(n, y, outward)),
+                C["hub"],
+                verification_shape=to_world(cyl_y(16, 10, (0, hub_y, n))),
+            )
         # Both shaft ends run in sliding bearing carriages.  The plate slot sets
         # the path; paired guide rails prevent carriage rotation.
         for side in (-1, 1):
             cy = side * 70
             add(f"bearing_carriage_{label}_{side:+d}", to_world(bearing_carriage(n, cy)), C["structure"])
-            add(f"bearing_insert_{label}_{side:+d}", to_world(bearing_insert(n, cy)), C["hub"])
+            add(
+                f"bearing_insert_{label}_{side:+d}",
+                to_world(bearing_insert(n, cy)),
+                C["hub"],
+                verification_shape=to_world(cyl_y(7.5, BEARING_W, (0, cy, n))),
+            )
             for rail_u in (-26.5, 26.5):
                 add(f"carriage_guide_{label}_{side:+d}_{rail_u:+.1f}", to_world(box(5, 10, 52, (rail_u, cy, sign * 84.5))), C["plate"])
         # Put both motors on -Y, opposite the +Y adjustment linkage. The catalog
         # clamp is bridged to the moving carriage, so alignment follows the shaft.
         motor_side = -1
         clamp_y = MOTOR_FACE_Y - MOTOR_CLAMP_L / 2
-        add(f"motor_clamp_{label}_{COTS['motor_clamp']['sku']}", to_world(motor_clamp(n, clamp_y)), C["structure"])
+        clamp_verification = box(43, MOTOR_CLAMP_L, 49, (0, clamp_y, n)).cut(
+            cyl_y(18.2, MOTOR_CLAMP_L + 2, (0, clamp_y, n))
+        )
+        add(
+            f"motor_clamp_{label}_{COTS['motor_clamp']['sku']}",
+            to_world(motor_clamp(n, clamp_y)),
+            C["structure"],
+            verification_shape=to_world(clamp_verification),
+        )
         for u in (-17, 17):
             add(f"motor_bridge_{label}_{u:+d}", to_world(box(8, 42, 26, (u, -91, n))), C["structure"])
-        my = MOTOR_FACE_Y - MOTOR_L / 2
-        add(f"motor_{label}_{COTS['flywheel_motor']['sku']}", to_world(cyl_y(MOTOR_D / 2, MOTOR_L, (0, my, n))), C["motor"])
-        add(f"motor_output_shaft_{label}", to_world(cyl_y(4, 24, (0, MOTOR_FACE_Y + 12, n))), C["shaft"])
+        add(
+            f"motor_{label}_{COTS['flywheel_motor']['sku']}",
+            to_world(motor_with_output_tip((0, n), MOTOR_OUTPUT_INNER_Y)),
+            C["motor"],
+            verification_shape=to_world(cyl_y(18.75, 131.17, (0, MOTOR_OUTPUT_INNER_Y - 131.17 / 2, n))),
+        )
         # The coupler stops 0.5 mm short of the carriage outer face while
         # retaining 7.5 mm flywheel-shaft and 9.5 mm motor-shaft engagement.
-        add(f"motor_coupler_{label}_{COTS['shaft_coupler']['sku']}", to_world(cyl_y(10, COUPLER_L, (0, COUPLER_CENTER_Y, n)).cut(cyl_y(4.1, COUPLER_L + 2, (0, COUPLER_CENTER_Y, n)))), C["hub"])
+        add(
+            f"motor_coupler_{label}_{COTS['shaft_coupler']['sku']}",
+            to_world(centered_y_axis_part(COTS["shaft_coupler"]["sku"], (0, COUPLER_CENTER_Y, n))),
+            C["hub"],
+            verification_shape=to_world(cyl_y(20.495 / 2, COUPLER_L, (0, COUPLER_CENTER_Y, n))),
+        )
 
     # Real symmetric spacing mechanism on the +Y side:
     # servo crank -> fixed 65 mm drag link -> horizontal crosshead ->
@@ -371,19 +412,34 @@ def build(config, half_spacing):
         add(f"crosshead_guide_stop_{u:+.0f}", to_world(box(5, 10, 27, (u, 82, 0))), C["plate"])
 
     # Servo, stand-off mounting plate, 12 mm crank and fixed-length drive link.
-    servo_u, servo_y = -120.0, 111.0
+    servo_u = -120.0
     crank_r, drag_len = 12.0, 65.0
     d = crosshead_u - servo_u
     cos_theta = (d*d + crank_r*crank_r - drag_len*drag_len) / (2*d*crank_r)
     theta = math.acos(max(-1.0, min(1.0, cos_theta)))
     crank_end_x = servo_u + crank_r * math.cos(theta)
     crank_end_n = crank_r * math.sin(theta)
-    add("gap_servo_mount_plate", to_world(box(55, 5, 56, (servo_u, 89, 0))), C["plate"])
+    add(
+        f"gap_servo_frame_{COTS['servo_frame']['sku']}",
+        to_world(centered_y_axis_part(COTS["servo_frame"]["sku"], (servo_u, 89, 0), largest_solid_only=True)),
+        C["plate"],
+        verification_shape=to_world(box(62.75, 6, 43, (servo_u, 89, 0))),
+    )
     for u in (servo_u - 23, servo_u + 23):
         for n in (-23, 23):
             add(f"gap_servo_standoff_{u:+.0f}_{n:+.0f}", to_world(cyl_y(3, 17, (u, 79.5, n))), C["structure"])
-    add(f"gap_servo_{COTS['gap_servo']['sku']}", to_world(box(*SERVO_ENV, (servo_u, servo_y, 0))), C["servo"])
-    add(f"servo_spline_hub_{COTS['gap_servo_hub']['sku']}", to_world(cyl_y(16, 6, (servo_u, 125, 0)).cut(cyl_y(3, 8, (servo_u, 125, 0)))), C["hub"])
+    add(
+        f"gap_servo_{COTS['gap_servo']['sku']}",
+        to_world(servo_with_output_face(COTS["gap_servo"]["sku"], (servo_u, 0), 122.0, 1)),
+        C["servo"],
+        verification_shape=to_world(box(54.3, 44.1, 20.15, (servo_u, 99.95, 0))),
+    )
+    add(
+        f"servo_spline_hub_{COTS['gap_servo_hub']['sku']}",
+        to_world(centered_y_axis_part(COTS["gap_servo_hub"]["sku"], (servo_u, 125, 0))),
+        C["hub"],
+        verification_shape=to_world(cyl_y(15.99, 8, (servo_u, 125, 0))),
+    )
     add("servo_crank", to_world(link_with_eyes((servo_u, 132, 0), (crank_end_x, 132, crank_end_n), 3.0, 5.0, 2.1)), C["flex"])
     add("servo_drag_link", to_world(link_with_eyes((crank_end_x, 139, crank_end_n), (crosshead_u, 139, 0), 3.0, 6.0, 2.1)), C["flex"])
     add("servo_crank_joint_pin", to_world(cyl_y(2, 15, (crank_end_x, 135.5, crank_end_n))), C["fastener"])
@@ -500,10 +556,30 @@ def export_parts():
     exporters.export(paddle_parts()[3][1], str(PARTS / "paddle_blade.step"))
     exporters.export(sonic_hub(0, 0, 1), str(PARTS / "sonic_8mm_gecko_hub.step"))
     exporters.export(bearing_carriage(0, 0), str(PARTS / "sliding_bearing_carriage.step"))
-    exporters.export(motor_clamp(0, 0), str(PARTS / "gobilda_1401_0043_0036_mount_proxy.step"))
+    exporters.export(motor_clamp(0, 0), str(PARTS / "gobilda_1401_0043_0036_mount_official.step"))
     exporters.export(link_with_eyes((0, 0, 0), (0, 0, 110)), str(PARTS / "spacing_link_110mm.step"))
     cheek = box(124, 6, 154, (0, 0, 0)).cut(cyl_y(7.1, 12, (0, 0, -5)))
     exporters.export(cheek, str(PARTS / "feeder_support_cheek_reference.step"))
+
+
+def vendor_proxy_solid_counts():
+    """Prove that every purchased SKU enters the launcher as one solid."""
+    samples = {
+        COTS["flywheel"]["sku"]: centered_y_axis_part(COTS["flywheel"]["sku"], (0, 0, 0)),
+        COTS["flywheel_hub"]["sku"]: official_sonic_hub((0, 0, 0)),
+        COTS["flywheel_shaft"]["sku"]: centered_y_axis_part(COTS["flywheel_shaft"]["sku"], (0, 0, 0)),
+        COTS["shaft_bearing"]["sku"]: centered_y_axis_part(COTS["shaft_bearing"]["sku"], (0, 0, 0)),
+        COTS["flywheel_motor"]["sku"]: motor_with_output_tip((0, 0), 0),
+        COTS["motor_clamp"]["sku"]: centered_y_axis_part(COTS["motor_clamp"]["sku"], (0, 0, 0)),
+        COTS["shaft_coupler"]["sku"]: centered_y_axis_part(COTS["shaft_coupler"]["sku"], (0, 0, 0)),
+        COTS["gap_servo"]["sku"]: servo_with_output_face(COTS["gap_servo"]["sku"], (0, 0), 0, 1),
+        COTS["feeder_servo"]["sku"]: servo_with_output_face(COTS["feeder_servo"]["sku"], (0, 0), 0, 1),
+        COTS["feeder_shaft"]["sku"]: centered_y_axis_part(COTS["feeder_shaft"]["sku"], (0, 0, 0)),
+        COTS["servo_frame"]["sku"]: centered_y_axis_part(COTS["servo_frame"]["sku"], (0, 0, 0), largest_solid_only=True),
+        COTS["gap_servo_hub"]["sku"]: centered_y_axis_part(COTS["gap_servo_hub"]["sku"], (0, 0, 0)),
+        COTS["feeder_servo_coupler"]["sku"]: centered_y_axis_part(COTS["feeder_servo_coupler"]["sku"], (0, 0, 0)),
+    }
+    return {sku: len(shape.Solids()) for sku, shape in samples.items()}
 
 
 def export_all():
@@ -534,6 +610,7 @@ def export_all():
     motor_shaft_engagement = MOTOR_OUTPUT_INNER_Y - coupler_outer_y
     shaft_tip_gap = FLYWHEEL_SHAFT_MOTOR_END_Y - MOTOR_OUTPUT_INNER_Y
     coupler_carriage_clearance = carriage_outer_y - coupler_inner_y
+    proxy_solid_counts = vendor_proxy_solid_counts()
     report = {
         "coordinate_system": "X-Y chassis plane; +Z upward",
         "game_piece_geometry_included": False,
@@ -542,6 +619,10 @@ def export_all():
         "gap_adjuster": "servo crank, 65 mm drag link, guided crosshead, two 110 mm links, and shaft-bearing carriages",
         "design_id": COTS["design_id"],
         "catalog_checked_date": COTS["catalog_checked_date"],
+        "official_vendor_cad_manifest": COTS["official_cad_manifest"],
+        "official_vendor_cad_imported_skus": sorted(CAD_FILES),
+        "vendor_component_representation": COTS["assembly_representation"],
+        "vendor_component_proxy_solid_counts": proxy_solid_counts,
         "catalog_components": COTS,
         "drive_axial_stack_mm": {
             "flywheel_shaft_motor_end_y": FLYWHEEL_SHAFT_MOTOR_END_Y,
@@ -582,6 +663,8 @@ def export_all():
                 item.get("sku") for key, item in COTS.items()
                 if isinstance(item, dict) and key != "external_gears"
             ),
+            "all_official_vendor_cad_files_present": all(path.is_file() for path in CAD_FILES.values()),
+            "each_vendor_component_is_one_solid": all(count == 1 for count in proxy_solid_counts.values()),
             "external_gear_count_is_zero": COTS["external_gears"]["quantity"] == 0,
             "coupler_engagement_at_least_7mm_each_end": min(flywheel_shaft_engagement, motor_shaft_engagement) >= 7.0,
             "coupler_clears_bearing_carriage": coupler_carriage_clearance >= 0.5,
@@ -595,6 +678,8 @@ def export_all():
         f"- 通道净截面：{CHANNEL_CLEAR_W:.0f} × {CHANNEL_CLEAR_H:.0f} mm；拨片宽 {PADDLE_W:.0f} mm，单侧余量 {(CHANNEL_CLEAR_W-PADDLE_W)/2:.1f} mm。",
         f"- 飞轮：4 个 96 × 24 mm Gecko；每根 8 mm 轴安装 2 个。",
         f"- COTS 版本：{COTS['design_id']}；目录核对日期 {COTS['catalog_checked_date']}。",
+        f"- 官方 CAD：已导入 {len(CAD_FILES)} 个 goBILDA SKU；清单 `{COTS['official_cad_manifest']}`。",
+        "- 装配表示：每个 SKU 作为一个由官方 CAD 尺寸派生的连通实体；原始多实体 STEP 仅作供应商证据。",
         f"- 飞轮直驱：2 × {COTS['flywheel_motor']['sku']}，无外置啮合齿轮。",
         f"- 电机夹具/联轴器：{COTS['motor_clamp']['sku']} / {COTS['shaft_coupler']['sku']}。",
         f"- 轴/轴承：{COTS['flywheel_shaft']['sku']}（{FLYWHEEL_SHAFT_L:.0f} mm）/ {COTS['shaft_bearing']['sku']}（Ø{BEARING_OD:.0f} × {BEARING_W:.0f} mm）。", "",

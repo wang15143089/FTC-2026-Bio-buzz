@@ -192,6 +192,16 @@
 - Reversible?: 是；若官方 STEP 或台架显示联轴器夹持、轴挠度、1620 rpm裕量或双电机电流不合格，应创建 superseding 版本并保留本记录。
 - Date/version: 2026-09-28 / C06B-COTS-0.1
 
+## DEC-0020 — T06 采购件在工作装配中按每 SKU 一个连通实体表示
+
+- Decision: 保留 13 个 goBILDA 官方原始多实体 STEP 及其哈希作为审计证据；`C06B-COTS-0.2` 的工作装配依据官方 CAD 包络和关键接口，为电机、舵机、支架、轮毂、飞轮、轴承、联轴器和轴分别生成“每个 SKU 一个连通实体”。
+- Reason: 用户明确要求把电机等多实体当作一个实体处理。官方电机 STEP 含 66 个实体，直接展开会把采购总成内部零件错误暴露为机器人装配层级，并增加重建、导出和干涉检查成本；单连通实体能稳定表达采购边界，同时保留轴、孔、轮缘和安装包络。
+- Alternatives considered: 在主装配中完整展开供应商子零件；只保留官方 STEP 最大实体；继续使用未绑定官方尺寸的原始几何占位。
+- Evidence/calculation: SRC-019；`references/vendor/gobilda/t06/manifest.json`；`cad/t06_vendor_cad.py`；`config/t06_launcher_cots.json`；`cad/output/paddle_launcher_feasibility_report.json`；`tests/test_t06_launcher_cots.py`。
+- Impact: 13 个采购件工作代理均回读为 1 个实体，POLLEN/NECTAR 两端点干涉和 18 in 包络检查通过。该表示用于 M3 包络与运动链验证，不保留内部紧固件/花键细节，不能直接发布为制造模型；原始官方 STEP 可用于局部复核。
+- Reversible?: 是；需要审查具体内部配合时可在隔离文件中加载原始 STEP，不必改变主装配层级或删除本版本。
+- Date/version: 2026-10-01 / C06B-COTS-0.2
+
 ```text
 Decision:
 Reason:

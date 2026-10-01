@@ -1,24 +1,28 @@
 # PROJECT STATUS
 
-最后更新：2026-09-29
+最后更新：2026-10-01
 
 ## CURRENT OBJECTIVE
 
-按用户最新指令，审计并修订回滚后的 T06/C06-B 对置双飞轮发射器，使飞轮、轮毂、轴、轴承、电机、夹具、联轴器和舵机接口均映射到 goBILDA/REV 允许来源；下一步用官方 STEP 关闭轴向堆叠后制作安全旋转台架。
+按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按每个 SKU 一个连通实体处理；下一步用实物关闭轴向紧固与高速动态风险。
 
 ## CURRENT MODULE
 
-当前工作对象是 Architecture v0.1 的 T06/C06-B 主发射原型；回滚后的 `paddle_launcher_constrained.py` 已升级为 `C06B-COTS-0.1`。T04、T05、T07 和 KEI-16 历史均保留，未被本次修改覆盖。
+当前工作对象是 Architecture v0.1 的 T06/C06-B 主发射原型；回滚后的 `paddle_launcher_constrained.py` 已升级为 `C06B-COTS-0.2`。T04、T05、T07 和 KEI-16 历史均保留，未被本次修改覆盖。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。T06：C06-B进入 M3 COTS-CONSTRAINED PACKAGING，目录映射、轴向名义计算和端点干涉通过，官方 STEP/实物/旋转测试未关闭。KEI-16导入参考和T04 C04-B1维持各自M3状态；T05为M1共享动力接口，T07为M0增量研究。
+S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射、13 个官方 STEP 回读、每 SKU 单实体表示、轴向名义计算和端点干涉已通过，实物公差与旋转测试未关闭。KEI-16导入参考和T04 C04-B1维持各自M3状态；T05为M1共享动力接口，T07为M0增量研究。
 
 ## COMPLETED
 
 - `C06B-COTS-0.1` 已淘汰 Ø38 无 SKU 电机夹具、16 × 7 mm 轴承、194 mm 轴和无 SKU 联轴器占位，替换为 goBILDA `5203-2402-0003`、`1401-0043-0036`、`4007-4008-4008`、`2106-4008-1680` 和 `1611-0514-4008`。
 - 双飞轮轴继续各自直驱，外置齿轮数量为0；两台电机统一移至−Y侧，+Y双连杆调隙侧保持无遮挡。
 - 侧板改为8.4 mm轴槽（17.4 mm总长），轴承留在外置滑座；POLLEN/NECTAR两端点的COTS干涉检查通过。
+- `C06B-COTS-0.2` 已下载、哈希登记并保留 13 个 goBILDA 官方 STEP；工作装配按 DEC-0020 将每个采购 SKU 表示为一个连通实体，原始供应商多实体文件不被覆盖。
+- 官方 CAD 回读关闭了先前电机、夹具、联轴器和舵机包络假设；总包络更新为约 383.849 × 364.783 × 400.024 mm。
+- 修正送料支撑颊板轴孔误切在 Y=0 的穿模缺陷；孔现分别与 Y=±62 mm 颊板和送料轴同心。
+- T06 报告 14/14 检查通过，13 个采购件工作模型实体数均为 1；项目自动测试 40/40 通过。
 
 - `KEI16-FLIPOUT-COTS-0.2` 已把占位传动替换为 goBILDA/REV COTS 规格：312 rpm 单电机、24T:24T 斜齿轮、两段 14T/38 节链、16T:24T/460 mm HTD5 前轴带路、双弹簧/双棘爪/双硬止挡。
 - 新增可复算输入、脚本、结果和6项单元测试；重新生成展开/收纳 STEP、STL、GLB、PNG 与 JSON 报告。
@@ -101,7 +105,7 @@ S00：M0通过。T06：C06-B进入 M3 COTS-CONSTRAINED PACKAGING，目录映射�
 - `CALCULATED` 两球名义直径差 20 mm；固定间隙的压缩量相差 20 mm；单侧调隙的局部球心移动 10 mm，对称调隙保持名义中心线。
 - `CALCULATED_NOMINAL` FLOWER 顶口对 POLLEN/NECTAR 径向余量为 15.25/5.25 mm；底部取 POLLEN 的名义高度余量为 19 mm；只证明名义几何未排除，不替代实体试验。
 - `KNOWN` TU01 G418 已核对：得分物体只能从顶部进入 FLOWER，且只能从底部取出 POLLEN；G410 禁止最后 60 秒前让 NECTAR 进入 FLOWER 计分体积。
-- 项目单元测试现为28/28通过；T01/T04生成CSV与脚本可重复生成；M3 STEP均已回读。
+- 项目单元测试现为40/40通过；T01/T04生成CSV与脚本可重复生成；相关 M3 STEP均已回读。
 - `CALCULATED` C04-A的4 mm拨叉从名义Ø71 mm POLLEN上方通过90 mm开口时剩余15 mm总间隙；名义Ø91 mm NECTAR比开口高1 mm，控制与几何均排除底部取NECTAR。
 - `CALCULATED` Ø60 mm roller在80–160 rpm FLOWER模式表面速度为0.251–0.503 m/s；10 N假设回拉力对应0.30 N·m轴矩和约1.38 A线性模型电流。
 - `CALCULATED` 10 N、80 mm力臂和2.0结构安全系数要求1.6 N·m拨叉校核力矩；0.5 N/mm×20 mm串联弹簧把刚性接触限制在约10 N。
@@ -201,8 +205,8 @@ S00：M0通过。T06：C06-B进入 M3 COTS-CONSTRAINED PACKAGING，目录映射�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.1 M3 COTS PACKAGING VALIDATED；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.2 M3 OFFICIAL-CAD-DERIVED SINGLE-SOLID PACKAGING VALIDATED；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 
-为 `C06B-COTS-0.1` 下载并导入官方 STEP，替换电机、夹具、联轴器、轴承和轮毂简化包络，关闭垫片/卡簧/螺钉/线束轴向堆叠；随后按 KEI-12 制作带护罩双轴安全旋转台架，记录转速恢复、电流、温升、振动和两个间隙端点。未完成前不得进入 M4 或发布制造图。
+按 KEI-12 制作带护罩双轴安全旋转台架，先用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。

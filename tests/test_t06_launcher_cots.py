@@ -31,6 +31,12 @@ class T06LauncherCotsTests(unittest.TestCase):
         self.assertEqual(CONFIG["external_gears"]["quantity"], 0)
         self.assertTrue(REPORT["checks"]["external_gear_count_is_zero"])
 
+    def test_each_vendor_component_is_one_solid(self):
+        counts = REPORT["vendor_component_proxy_solid_counts"]
+        self.assertEqual(set(counts), set(REPORT["official_vendor_cad_imported_skus"]))
+        self.assertTrue(all(count == 1 for count in counts.values()))
+        self.assertTrue(REPORT["checks"]["each_vendor_component_is_one_solid"])
+
     def test_catalog_bearing_and_shaft_dimensions_reach_report(self):
         self.assertEqual(CONFIG["shaft_bearing"]["outer_diameter_mm"], 14.0)
         self.assertEqual(CONFIG["shaft_bearing"]["thickness_mm"], 5.0)
