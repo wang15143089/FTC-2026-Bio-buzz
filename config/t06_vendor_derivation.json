@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1",
+  "module": "T06",
+  "purpose": "Derivation policy for the whole-official-part working model of every purchased goBILDA SKU in the T06 opposed flywheel launcher (decision DEC-0021: a purchased part is one part, not necessarily one B-rep solid). Read by cad/t06_vendor_solids.py.",
+  "method": {
+    "source": "Official supplier STEP listed in references/vendor/gobilda/t06/manifest.json (facts: KNOWN_VENDOR_CAD).",
+    "steps": [
+      "Import every solid of the supplier file.",
+      "Group solids into touching clusters by measured BRepExtrema distance (tolerance 0.05 mm). Which supplier solids are the purchased part is the per-SKU keep rule below; every solid that is not kept is recorded with its volume.",
+      "Fuse inside each kept group with a validated step-wise BRepAlgoAPI fuse and run ShapeUpgrade_UnifySameDomain: exact B-rep is preserved and only redundant face splits are removed, so no dimension is invented or rounded. A Boolean step is refused when its volume leaves [largest input, sum of inputs] beyond 1e-3 mm3 / 1e-5 relative, which is what catches OCC returning an empty body that still reports itself valid.",
+      "Fuse is never applied across groups: two supplier solids that do not touch stay two bodies of one working part instead of being bridged by an invented Boolean.",
+      "Rotate the measured functional axis onto +Y and move the measured datum to the origin."
+    ],
+    "datum_vocabulary": {
+      "source_axis": "Supplier-file direction that must point along +Y after the rotation.",
+      "datum": "Y (axial) datum: axis_mid centres the working solid axial bounding box; face_min/face_max put the minimum/maximum Y bounding face on the origin plane.",
+      "lateral_datum": "X/Z datum: axis puts the measured functional cylinder axis on the origin; bbox_center puts the bounding-box centre there and is used only for parts whose measured axis is a bolt hole rather than a functional rotation axis.",
+      "datum_radius_mm": "Pins the functional axis to one measured radius when the automatic radius*area score could pick a cosmetic feature. Evidence for each value is in tmp/datum.json (facts: MEASURED_FROM_OFFICIAL_CAD).",
+      "keep": "all_solids keeps every solid of the supplier file (the supplier ships the whole part in one file, as on the gearmotor); largest_solid keeps only the single largest solid of the dominant cluster and is used only where the other solids are loose supplier fasteners; null keeps the whole dominant cluster of touching solids."
+    },
+    "placement_note": "cad/t06_vendor_cad.py re-exports these solids to the launcher. Interference checking uses the derived solid itself; the cached BREP is never the verification evidence."
+  },
+  "defaults": {
+    "source_axis": [0, 1, 0],
+    "datum": "axis_mid",
+    "lateral_datum": "axis",
+    "datum_radius_mm": null,
+    "keep": null,
+    "note": ""
+  },
+  "parts": {
+    "1309-0016-4008": {
+      "source_axis": [0, 0, 1],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: supplier disc axis is along Z; r=16.0 (score 6434) is coaxial with the bore, and its axis line coincides with the X/Z bounding-box centre, so axis and bbox_center agree. 3 supplier solids (body + 2 press pins) are all functional and fuse into one."
+    },
+    "1401-0043-0036": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "datum_radius_mm": 18.0,
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: the motor bore is r=18.0 (score 15462) and the outer arc r=21.5 is coaxial with it, so both candidates give the same line at (x=-33.711, z=16.355). The radius is pinned anyway so the motor-bore datum stays explicit and cannot drift if the supplier file is refreshed."
+    },
+    "1611-0514-4008": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: r=7.0 (the 8 mm REX bore, score 1077) wins over the flange r=7.5 and lies on the bounding-box centre line, so axis and bbox_center agree. The official file carries 3 solid bodies (body 518.954 mm3 + 2 shield discs 2.527 mm3 each at y 0.29-0.59 and 4.41-4.71, strictly inside the body bounding box). OCC refuses to merge them: measured 2026-10-01 the discs touch the body at distance 0.0000 mm but the union stays 3 pieces, i.e. tangency and not face contact. All 3 are kept, because dropping them would be an unrecorded approximation; see superseded.",
+      "superseded": [
+        {
+          "claim": "3 supplier solids (body + 2 shield discs) fuse into one.",
+          "why_wrong": "Measured 2026-10-01 with the validated Boolean chain: the union stays 3 pieces. The claim came from the v4 derivation, which dropped the 2 pieces the fuse could not merge instead of reporting them.",
+          "replaced_by": "keep the whole part; derived_solid_count for this SKU is 3."
+        }
+      ]
+    },
+    "1802-0043-0001": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "bbox_center",
+      "keep": "largest_solid",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: the best Y-parallel cylinder group is a bolt hole (r=2.025, 8 separate lines), so this part has no functional rotation axis and the measured axis must not be used as a datum. The frame plate is modelled by its own bounding box, which is the same 62.75 x 6 x 43 mm box the previous working model used. keep=largest_solid drops the 4 loose screws and 4 washers that the supplier ships in the assembly file."
+    },
+    "1908-0025-0032": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: 25T spline hub, supplier axis already along Y at the X/Z bounding-box corner of the part, so the derived axis lands on the origin and the 8 mm axial extent is centred."
+    },
+    "2000-0025-0002": {
+      "source_axis": [0, 0, 1],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "datum_radius_mm": 10.0,
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: the output spline axis is r=10.0 at (x=-10.0, y=0.0) in the supplier frame, i.e. 10.0 mm off the case bounding-box centre in X, so the automatic score would have to be pinned for the servo to stay coaxial with its 25T coupler. The spline tip is +16.9 mm and the case end -27.2 mm along the supplier Z axis, giving the same 44.1 mm face-to-face extent the previous working model used."
+    },
+    "2000-0025-0003": {
+      "source_axis": [0, 0, 1],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "datum_radius_mm": 10.0,
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: same case and spline geometry as 2000-0025-0002 (continuous-rotation firmware variant); output spline r=10.0 at (x=-10.0, y=0.0)."
+    },
+    "2106-4008-1680": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: r=4.0 is the 8 mm REX shaft surface and wins the score; its line sits 0.11 mm from the bounding-box centre because the retaining clip is asymmetric, so the measured axis is the correct datum. The clip solid is functional and fuses into the shaft."
+    },
+    "2106-4008-1920": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: 192 mm variant of 2106-4008-1680; same 0.11 mm axis offset from the bounding-box centre and the same fused retaining clip."
+    },
+    "3613-0014-0096": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: the 96 mm wheel is a body of revolution; r=47.5 (score 273087) is coaxial with the bore and lands on the X/Z bounding-box centre. The second supplier solid is the inner core inside the drum, not a loose fastener, so it must be fused and never dropped."
+    },
+    "4001-0025-4008": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "datum_radius_mm": 6.875,
+      "keep": "largest_solid",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: the clamping body is r=6.875 (score 3875); the r=7.4312 candidate is a cosmetic fillet on a different line 10 mm away, so the radius is pinned. keep=largest_solid drops the loose M4 screw (232.23 mm3) shipped with the assembly."
+    },
+    "4007-4008-4008": {
+      "source_axis": [0, 1, 0],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "keep": "largest_solid",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: r=10.5 (the clamping body, score 7390) lies on the X/Z bounding-box centre line. Of the 5 supplier solids only the body is the purchased part; the other four are loose M4 screws, and keep=largest_solid drops them."
+    },
+    "5203-2402-0003": {
+      "source_axis": [0, 1, 0],
+      "datum": "face_max",
+      "lateral_datum": "axis",
+      "keep": "all_solids",
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: every Y-parallel cylinder group of the 66-solid gearmotor lies on one line at (x=-37.171, z=-11.078), which is also the bounding-box centre, and the maximum-Y extremity is the 24 mm 8 mm REX output shaft tip. face_max therefore makes the output tip the datum plane used by the axial drive stack. The whole file is the purchased part, so keep=all_solids: the assembly models a finished product whose sub-bodies are separated by genuine air gaps (measured 2026-10-01: the 3359.027 mm3 housing shell sits exactly 0.0450 mm from the body, two 20.748 mm3 plates exactly 0.028856 mm, the 42.884 mm3 sensor magnet exactly 0.0500 mm), so no Boolean chain can make this part one solid. The working model keeps the whole envelope; a partial model would be non-conservative."
+    }
+  }
+}

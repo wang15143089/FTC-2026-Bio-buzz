@@ -4,7 +4,7 @@
   "flywheels": "four 96 x 24 mm Gecko wheels: two per opposed 8 mm shaft",
   "feeder": "three-paddle continuous-rotation-servo indexer; no conveyor belt",
   "gap_adjuster": "servo crank, 65 mm drag link, guided crosshead, two 110 mm links, and shaft-bearing carriages",
-  "design_id": "C06B-COTS-0.2",
+  "design_id": "C06B-COTS-0.3",
   "catalog_checked_date": "2026-10-01",
   "official_vendor_cad_manifest": "references/vendor/gobilda/t06/manifest.json",
   "official_vendor_cad_imported_skus": [
@@ -22,30 +22,171 @@
     "4007-4008-4008",
     "5203-2402-0003"
   ],
-  "vendor_component_representation": "ONE_CONNECTED_SOLID_PER_SKU_FROM_OFFICIAL_CAD_DIMENSIONS",
-  "vendor_component_proxy_solid_counts": {
-    "3613-0014-0096": 1,
-    "1309-0016-4008": 1,
-    "2106-4008-1680": 1,
-    "1611-0514-4008": 1,
-    "5203-2402-0003": 1,
-    "1401-0043-0036": 1,
-    "4007-4008-4008": 1,
-    "2000-0025-0002": 1,
-    "2000-0025-0003": 1,
-    "2106-4008-1920": 1,
-    "1802-0043-0001": 1,
-    "1908-0025-0032": 1,
-    "4001-0025-4008": 1
+  "vendor_component_representation": "WHOLE_OFFICIAL_PART_PER_SKU_FROM_VENDOR_STEP",
+  "vendor_component_bodies": {
+    "3613-0014-0096": {
+      "bodies": 2,
+      "derived_solid_count": 2,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 2,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "32CE6DD05140C6A9F68C9161784E605E5A174B6F2792EB87737C65630E5281CC"
+    },
+    "1309-0016-4008": {
+      "bodies": 3,
+      "derived_solid_count": 3,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 3,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "8DE4713EDC7ABBE89E8EB5AA154BB93CB4932568A6E01D8CA9CB6C71E79394E7"
+    },
+    "2106-4008-1680": {
+      "bodies": 2,
+      "derived_solid_count": 2,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 2,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "F6FA7454A6B75DE1BF5D9188A5C2C4F58DB8AD461F8B8FDE521AA9EF138CD694"
+    },
+    "1611-0514-4008": {
+      "bodies": 3,
+      "derived_solid_count": 3,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 3,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "0768583D0A71406622B0C7C5BBC7220B4FB6EF1C19CF5855B3FE72136432A54F"
+    },
+    "5203-2402-0003": {
+      "bodies": 66,
+      "derived_solid_count": 66,
+      "single_solid": false,
+      "keep": "all_solids",
+      "source_step_solids": 66,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "F19DEC97DE744A6AF5DF9ED4CE3EA963AB4113A8454C94E336194EB0B6A65AE1"
+    },
+    "1401-0043-0036": {
+      "bodies": 2,
+      "derived_solid_count": 2,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 2,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "C00D4170C6D3FF5F21FFE002813374733A9A3D5B8AB119B195615B6D41292164"
+    },
+    "4007-4008-4008": {
+      "bodies": 1,
+      "derived_solid_count": 1,
+      "single_solid": true,
+      "keep": "largest_solid",
+      "source_step_solids": 5,
+      "dropped_solids": 4,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "E5FE72A78A8281EC2B922BD4AB1E0B5D1BDD40DEB90B98C90F2134238037C05D"
+    },
+    "2000-0025-0002": {
+      "bodies": 11,
+      "derived_solid_count": 11,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 11,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "C89BCAB4B146AF290DCFA19C6AF506B28BD8C5B7170934D45BF00D207DA77701"
+    },
+    "2000-0025-0003": {
+      "bodies": 11,
+      "derived_solid_count": 11,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 11,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "D8CB22C78FEE315906C8963DE3CA5153A5C95DBC2D7DACC6843EE2EAD665859F"
+    },
+    "2106-4008-1920": {
+      "bodies": 2,
+      "derived_solid_count": 2,
+      "single_solid": false,
+      "keep": null,
+      "source_step_solids": 2,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "1796869592FA0600EDF6D98C2FBEF1AFD9AAE8374083E2E68EA9DCB5AF5C69B1"
+    },
+    "1802-0043-0001": {
+      "bodies": 1,
+      "derived_solid_count": 1,
+      "single_solid": true,
+      "keep": "largest_solid",
+      "source_step_solids": 9,
+      "dropped_solids": 8,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "1178FF967E8E2D2D6D1503F174AFDA81EA95CACC4A1FD8ADCA7D097A858C4EFE"
+    },
+    "1908-0025-0032": {
+      "bodies": 1,
+      "derived_solid_count": 1,
+      "single_solid": true,
+      "keep": null,
+      "source_step_solids": 1,
+      "dropped_solids": 0,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "FF1FE97050DF3C5ECE734F1A449638F1F619CEF9B434B1C91F8B78B42AC4B616"
+    },
+    "4001-0025-4008": {
+      "bodies": 1,
+      "derived_solid_count": 1,
+      "single_solid": true,
+      "keep": "largest_solid",
+      "source_step_solids": 2,
+      "dropped_solids": 1,
+      "boolean_union_attempted": false,
+      "derivation_version": 8,
+      "source_step_sha256": "A5481D13CB2D44A4ADCB5931FE97076EF26B64933408206A27F849BE65D19EFF"
+    }
   },
+  "vendor_whole_part_multi_body_skus": [
+    "1309-0016-4008",
+    "1401-0043-0036",
+    "1611-0514-4008",
+    "2000-0025-0002",
+    "2000-0025-0003",
+    "2106-4008-1680",
+    "2106-4008-1920",
+    "3613-0014-0096",
+    "5203-2402-0003"
+  ],
   "catalog_components": {
     "schema_version": "0.2",
-    "design_id": "C06B-COTS-0.2",
+    "design_id": "C06B-COTS-0.3",
     "module": "T06",
     "catalog_checked_date": "2026-10-01",
     "official_cad_manifest": "references/vendor/gobilda/t06/manifest.json",
     "official_cad_status": "KNOWN_VENDOR_CAD_IMPORTED",
-    "assembly_representation": "ONE_CONNECTED_SOLID_PER_SKU_FROM_OFFICIAL_CAD_DIMENSIONS",
+    "assembly_representation": "WHOLE_OFFICIAL_PART_PER_SKU_FROM_VENDOR_STEP",
     "external_gears": {
       "quantity": 0,
       "status": "KNOWN",
@@ -254,22 +395,22 @@
       "bounding_box": {
         "min_mm": [
           -170.0,
-          -219.183,
+          -219.172,
           1.0
         ],
         "max_mm": [
           213.849,
-          145.6,
+          145.605,
           401.024
         ],
         "size_mm": [
           383.849,
-          364.783,
+          364.776,
           400.024
         ],
         "within_18in_cube": true
       },
-      "solid_count": 98,
+      "solid_count": 273,
       "linkage_kinematics": {
         "main_link_length_mm": 110.0,
         "crosshead_u_mm": -57.49834435270749,
@@ -357,22 +498,22 @@
       "bounding_box": {
         "min_mm": [
           -170.0,
-          -219.183,
+          -219.172,
           1.0
         ],
         "max_mm": [
           213.849,
-          145.6,
+          145.605,
           401.024
         ],
         "size_mm": [
           383.849,
-          364.783,
+          364.776,
           400.024
         ],
         "within_18in_cube": true
       },
-      "solid_count": 98,
+      "solid_count": 273,
       "linkage_kinematics": {
         "main_link_length_mm": 110.0,
         "crosshead_u_mm": -46.64518543557594,
@@ -464,7 +605,9 @@
     "all_selected_interference_checks_pass": true,
     "all_catalog_items_have_sku": true,
     "all_official_vendor_cad_files_present": true,
-    "each_vendor_component_is_one_solid": true,
+    "every_vendor_component_is_the_whole_derived_part": true,
+    "multi_body_vendor_parts_keep_the_whole_official_file": true,
+    "no_boolean_union_is_run_on_a_vendor_part": true,
     "external_gear_count_is_zero": true,
     "coupler_engagement_at_least_7mm_each_end": true,
     "coupler_clears_bearing_carriage": true,

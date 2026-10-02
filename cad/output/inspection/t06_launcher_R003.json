@@ -1,0 +1,5600 @@
+{
+  "schema_version": "0.1",
+  "run_label": "R003",
+  "created_at_utc": "2026-10-02T04:02:26.757835+00:00",
+  "duration_s": 1540.21,
+  "command": "tools\\inspect_geometry.py --harness t06_launcher --spec config/t06_geometry_checks.json --run-label R003 --report cad/output/inspection/t06_launcher_R003.json",
+  "working_directory": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz",
+  "host": "DESKTOP-2JPFDSA",
+  "interpreter": {
+    "executable": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\.venv-cad\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "dependencies": {
+    "cadquery": "2.6.1",
+    "python": "3.12.14"
+  },
+  "units": "mm",
+  "coordinate_system": "X-Y chassis plane; +Z upward; +Y is the adjustment side",
+  "design_id": "C06B-COTS-0.3",
+  "solution_status": "candidate_pending_human_review",
+  "inputs": [
+    {
+      "role": "check_requirements",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_geometry_checks.json",
+      "exists": true,
+      "bytes": 9653,
+      "sha256": "14E9D016C51C422B3DDF0913CFC333367A01647CB2847EA9BD97095A849CBB94"
+    },
+    {
+      "role": "model_source",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\paddle_launcher_constrained.py",
+      "exists": true,
+      "bytes": 37434,
+      "sha256": "9B9FFD216E37B969D469A0F081A209409C7F5EADB3FB553913FAF1E43E73A9BA"
+    },
+    {
+      "role": "vendor_helpers",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\t06_vendor_cad.py",
+      "exists": true,
+      "bytes": 5237,
+      "sha256": "792AF811EAF83FDAB0C369CED23C5B6B6977185CF97F1DCBEDA22B1581EA8868"
+    },
+    {
+      "role": "vendor_solids",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\t06_vendor_solids.py",
+      "exists": true,
+      "bytes": 40893,
+      "sha256": "E7F9CD7230091491B7EB1DBF2D02D9B12C5FCD5ACF4287348EE14F659A6CE37F"
+    },
+    {
+      "role": "cots_config",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_launcher_cots.json",
+      "exists": true,
+      "bytes": 4087,
+      "sha256": "86F5EE3FEBBB660372AC74620CF8E2FD84F41F7D8E0500C7DA4C625000552441"
+    },
+    {
+      "role": "vendor_manifest",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\references\\vendor\\gobilda\\t06\\manifest.json",
+      "exists": true,
+      "bytes": 4170,
+      "sha256": "F850B22BD3AB7EE3D898471C19B687DD8FDF7B8E77434A3F01A3BB20C051987D"
+    }
+  ],
+  "status": "unresolved",
+  "summary": {
+    "pass": 53,
+    "fail": 0,
+    "not_run": 0,
+    "unresolved": 3
+  },
+  "checks": [
+    {
+      "id": "T06-GEO-001",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 3613-0014-0096 flywheel enters the launcher as the whole official part",
+      "target": 95767.311,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 95767.311,
+      "deviation": 0.0,
+      "note": "target is the derived volume recorded in cad/output/vendor_solids/3613-0014-0096.json",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-002",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1309-0016-4008 Sonic Hub enters the launcher as the whole official part",
+      "target": 4203.984,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 4203.984,
+      "deviation": 0.0,
+      "note": "3 press-fit bodies kept whole; the Boolean chain that used to lose 29.44 mm3 is retired (DEC-0021)",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-003",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1401-0043-0036 motor clamp enters the launcher as the whole official part",
+      "target": 5017.813,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 5017.813,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-004",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 4007-4008-4008 shaft coupler enters the launcher as the whole official part",
+      "target": 4319.845,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 4319.845,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-005",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 5203-2402-0003 gearmotor enters the launcher as the whole official part",
+      "target": 50752.676,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 50752.676,
+      "deviation": 0.0,
+      "note": "66 supplier bodies with real 0.0289-0.05 mm separation, all kept",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-006",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1611-0514-4008 flanged bearing enters the launcher as the whole official part",
+      "target": 524.007,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 524.007,
+      "deviation": 1e-06,
+      "note": "race plus two shield discs that touch at 0.0000 mm without merging",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-007",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2106-4008-1680 flywheel shaft enters the launcher as the whole official part",
+      "target": 6868.709,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 6868.709,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-008",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2000-0025-0002 gap servo enters the launcher as the whole official part",
+      "target": 31109.28,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 31109.28,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-009",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1802-0043-0001 servo frame enters the launcher as the whole official part",
+      "target": 5932.296,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 5932.296,
+      "deviation": 0.0,
+      "note": "the supplier ships loose fasteners with this frame; the recorded keep rule drops those 8 bodies and the frame is the remaining single solid",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-010",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1908-0025-0032 servo spline hub enters the launcher as the whole official part",
+      "target": 3024.349,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 3024.349,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-011",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2106-4008-1920 feeder shaft enters the launcher as the whole official part",
+      "target": 7886.704,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 7886.704,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-012",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2000-0025-0003 feeder servo enters the launcher as the whole official part",
+      "target": 31109.28,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 31109.28,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-013",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 4001-0025-4008 feeder servo coupler enters the launcher as the whole official part",
+      "target": 1861.296,
+      "tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 1861.296,
+      "deviation": 0.0,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-GEO-014",
+      "kind": "bbox_size",
+      "requirement": "REQ-T06-COTS-04: the flywheel shaft is the 168 mm official part; its axis is the launcher Y axis",
+      "target": 168.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 168.0,
+      "deviation": 0.0,
+      "note": "the -ANGLE placement rotation is about Y, so the Y extent is rotation-invariant"
+    },
+    {
+      "id": "T06-GEO-015",
+      "kind": "bbox_size",
+      "requirement": "REQ-T06-COTS-04: the feeder shaft is the 192 mm official part",
+      "target": 192.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 192.0,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-GEO-016",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-05: the flange bearing is the official 15 mm flange x 5 mm thick part",
+      "target": [
+        5.0,
+        15.0,
+        15.0
+      ],
+      "tolerance": 0.05,
+      "method": "axis-permutation-tolerant envelope comparison (rotation-invariant)",
+      "status": "pass",
+      "measured": [
+        5.0,
+        15.0,
+        15.0
+      ],
+      "deviation": 0.0,
+      "note": "disc on the Y axis; sorted envelope is rotation-invariant"
+    },
+    {
+      "id": "T06-GEO-017",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-06: each flywheel is the official 96 mm x 24 mm Gecko wheel",
+      "target": [
+        24.0,
+        96.0,
+        96.0
+      ],
+      "tolerance": 0.05,
+      "method": "axis-permutation-tolerant envelope comparison (rotation-invariant)",
+      "status": "pass",
+      "measured": [
+        24.0,
+        95.9985,
+        95.9985
+      ],
+      "deviation": 0.0015,
+      "note": ""
+    },
+    {
+      "id": "T06-GEO-018",
+      "kind": "bbox_size",
+      "requirement": "REQ-T06-COTS-07: the gearmotor case is the official 37.5 mm square section",
+      "target": 37.5,
+      "tolerance": 0.05,
+      "method": "bbox_size[x] from final solid bounding box",
+      "status": "pass",
+      "measured": 37.5,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-GEO-019",
+      "kind": "bbox_size",
+      "requirement": "REQ-T06-COTS-07: the gearmotor axial stack is the official 131.17 mm including its output shaft",
+      "target": 131.17,
+      "tolerance": 0.05,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 131.17,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-GEO-020",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-08: the feeder servo is the official 54.3 x 44.1 x 20.15 mm case",
+      "target": [
+        20.15,
+        44.1,
+        54.3
+      ],
+      "tolerance": 0.05,
+      "method": "axis-permutation-tolerant envelope comparison (rotation-invariant)",
+      "status": "pass",
+      "measured": [
+        20.15,
+        44.1,
+        54.3
+      ],
+      "deviation": 0.0,
+      "note": "placed without the -ANGLE rotation, so the sorted envelope is exact"
+    },
+    {
+      "id": "T06-GEO-021",
+      "kind": "group_bbox",
+      "requirement": "REQ-T06-SIZE-01: the whole launcher fits the 18 in (457.2 mm) FTC starting envelope",
+      "target": 457.2,
+      "tolerance": 0.0,
+      "method": "largest bounding-box span over 98 matched parts",
+      "status": "pass",
+      "measured": 400.0238,
+      "deviation": -57.1762,
+      "note": "largest bounding-box span of every placed part of the pollen configuration",
+      "part_count": 98,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          -219.17,
+          1.0
+        ],
+        "max_mm": [
+          213.8495,
+          145.6,
+          401.0238
+        ],
+        "size_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ]
+      }
+    },
+    {
+      "id": "T06-GEO-022",
+      "kind": "group_bbox",
+      "requirement": "REQ-T06-SIZE-01: the whole launcher fits the 18 in (457.2 mm) FTC starting envelope",
+      "target": 457.2,
+      "tolerance": 0.0,
+      "method": "largest bounding-box span over 98 matched parts",
+      "status": "pass",
+      "measured": 400.0238,
+      "deviation": -57.1762,
+      "note": "largest bounding-box span of every placed part of the nectar configuration (widest axle spacing)",
+      "part_count": 98,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          -219.17,
+          1.0
+        ],
+        "max_mm": [
+          213.8495,
+          145.6,
+          401.0238
+        ],
+        "size_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ]
+      }
+    },
+    {
+      "id": "T06-GEO-023",
+      "kind": "step_roundtrip",
+      "requirement": "REQ-T06-CAD-01: the exported STEP reproduces the modelled geometry",
+      "target": "STEP export/re-import reproduces bbox and volume",
+      "tolerance": {
+        "bbox_size_mm": 0.05,
+        "volume_relative": 0.0001
+      },
+      "method": "export STEP, re-import, compare bounding box and volume",
+      "status": "pass",
+      "measured": {
+        "bbox_size_before_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ],
+        "bbox_size_after_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ],
+        "volume_before_mm3": 2242773.512,
+        "volume_after_mm3": 2242857.67,
+        "solid_count_after": 273
+      },
+      "deviation": {
+        "bbox_size_mm": 0.0,
+        "volume_relative": 3.752e-05
+      },
+      "note": "read back this assembly's own exported STEP and compare the envelope and the summed volume"
+    },
+    {
+      "id": "AUTO-SOLID-3613-0014-0096",
+      "kind": "part_solid_count",
+      "requirement": "flywheel (3613-0014-0096) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "part_solid_count",
+      "status": "unresolved",
+      "measured": null,
+      "deviation": null,
+      "note": "part pattern '*3613-0014-0096*' matched no part"
+    },
+    {
+      "id": "AUTO-SOLID-1309-0016-4008",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_hub (1309-0016-4008) enters the assembly as the whole derived part",
+      "target": 3,
+      "tolerance": 0,
+      "method": "part_solid_count",
+      "status": "unresolved",
+      "measured": null,
+      "deviation": null,
+      "note": "part pattern '*1309-0016-4008*' matched no part"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1680-nectar:flywheel_shaft_lower_2106-4008-1680",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_shaft (2106-4008-1680) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1680-nectar:flywheel_shaft_upper_2106-4008-1680",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_shaft (2106-4008-1680) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1680-pollen:flywheel_shaft_lower_2106-4008-1680",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_shaft (2106-4008-1680) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1680-pollen:flywheel_shaft_upper_2106-4008-1680",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_shaft (2106-4008-1680) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1611-0514-4008",
+      "kind": "part_solid_count",
+      "requirement": "shaft_bearing (1611-0514-4008) enters the assembly as the whole derived part",
+      "target": 3,
+      "tolerance": 0,
+      "method": "part_solid_count",
+      "status": "unresolved",
+      "measured": null,
+      "deviation": null,
+      "note": "part pattern '*1611-0514-4008*' matched no part"
+    },
+    {
+      "id": "AUTO-SOLID-5203-2402-0003-nectar:motor_lower_5203-2402-0003",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_motor (5203-2402-0003) enters the assembly as the whole derived part",
+      "target": 66,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 66,
+      "deviation": 0,
+      "note": "the official STEP models this part as 66 bodies and the working part keeps 66 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-5203-2402-0003-nectar:motor_upper_5203-2402-0003",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_motor (5203-2402-0003) enters the assembly as the whole derived part",
+      "target": 66,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 66,
+      "deviation": 0,
+      "note": "the official STEP models this part as 66 bodies and the working part keeps 66 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-5203-2402-0003-pollen:motor_lower_5203-2402-0003",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_motor (5203-2402-0003) enters the assembly as the whole derived part",
+      "target": 66,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 66,
+      "deviation": 0,
+      "note": "the official STEP models this part as 66 bodies and the working part keeps 66 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-5203-2402-0003-pollen:motor_upper_5203-2402-0003",
+      "kind": "part_solid_count",
+      "requirement": "flywheel_motor (5203-2402-0003) enters the assembly as the whole derived part",
+      "target": 66,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 66,
+      "deviation": 0,
+      "note": "the official STEP models this part as 66 bodies and the working part keeps 66 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1401-0043-0036-nectar:motor_clamp_lower_1401-0043-0036",
+      "kind": "part_solid_count",
+      "requirement": "motor_clamp (1401-0043-0036) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1401-0043-0036-nectar:motor_clamp_upper_1401-0043-0036",
+      "kind": "part_solid_count",
+      "requirement": "motor_clamp (1401-0043-0036) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1401-0043-0036-pollen:motor_clamp_lower_1401-0043-0036",
+      "kind": "part_solid_count",
+      "requirement": "motor_clamp (1401-0043-0036) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1401-0043-0036-pollen:motor_clamp_upper_1401-0043-0036",
+      "kind": "part_solid_count",
+      "requirement": "motor_clamp (1401-0043-0036) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4007-4008-4008-nectar:motor_coupler_lower_4007-4008-4008",
+      "kind": "part_solid_count",
+      "requirement": "shaft_coupler (4007-4008-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 5 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4007-4008-4008-nectar:motor_coupler_upper_4007-4008-4008",
+      "kind": "part_solid_count",
+      "requirement": "shaft_coupler (4007-4008-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 5 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4007-4008-4008-pollen:motor_coupler_lower_4007-4008-4008",
+      "kind": "part_solid_count",
+      "requirement": "shaft_coupler (4007-4008-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 5 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4007-4008-4008-pollen:motor_coupler_upper_4007-4008-4008",
+      "kind": "part_solid_count",
+      "requirement": "shaft_coupler (4007-4008-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 5 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2000-0025-0002-nectar:gap_servo_2000-0025-0002",
+      "kind": "part_solid_count",
+      "requirement": "gap_servo (2000-0025-0002) enters the assembly as the whole derived part",
+      "target": 11,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 11,
+      "deviation": 0,
+      "note": "the official STEP models this part as 11 bodies and the working part keeps 11 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2000-0025-0002-pollen:gap_servo_2000-0025-0002",
+      "kind": "part_solid_count",
+      "requirement": "gap_servo (2000-0025-0002) enters the assembly as the whole derived part",
+      "target": 11,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 11,
+      "deviation": 0,
+      "note": "the official STEP models this part as 11 bodies and the working part keeps 11 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2000-0025-0003-nectar:paddle_cr_servo_2000-0025-0003",
+      "kind": "part_solid_count",
+      "requirement": "feeder_servo (2000-0025-0003) enters the assembly as the whole derived part",
+      "target": 11,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 11,
+      "deviation": 0,
+      "note": "the official STEP models this part as 11 bodies and the working part keeps 11 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2000-0025-0003-pollen:paddle_cr_servo_2000-0025-0003",
+      "kind": "part_solid_count",
+      "requirement": "feeder_servo (2000-0025-0003) enters the assembly as the whole derived part",
+      "target": 11,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 11,
+      "deviation": 0,
+      "note": "the official STEP models this part as 11 bodies and the working part keeps 11 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1920-nectar:paddle_shaft_2106-4008-1920",
+      "kind": "part_solid_count",
+      "requirement": "feeder_shaft (2106-4008-1920) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-2106-4008-1920-pollen:paddle_shaft_2106-4008-1920",
+      "kind": "part_solid_count",
+      "requirement": "feeder_shaft (2106-4008-1920) enters the assembly as the whole derived part",
+      "target": 2,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 2,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 2 of them (whole_part_multi_body, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1802-0043-0001-nectar:gap_servo_frame_1802-0043-0001",
+      "kind": "part_solid_count",
+      "requirement": "servo_frame (1802-0043-0001) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 9 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1802-0043-0001-nectar:paddle_servo_frame_1802-0043-0001",
+      "kind": "part_solid_count",
+      "requirement": "servo_frame (1802-0043-0001) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 9 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1802-0043-0001-pollen:gap_servo_frame_1802-0043-0001",
+      "kind": "part_solid_count",
+      "requirement": "servo_frame (1802-0043-0001) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 9 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1802-0043-0001-pollen:paddle_servo_frame_1802-0043-0001",
+      "kind": "part_solid_count",
+      "requirement": "servo_frame (1802-0043-0001) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 9 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1908-0025-0032-nectar:servo_spline_hub_1908-0025-0032",
+      "kind": "part_solid_count",
+      "requirement": "gap_servo_hub (1908-0025-0032) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 1 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-1908-0025-0032-pollen:servo_spline_hub_1908-0025-0032",
+      "kind": "part_solid_count",
+      "requirement": "gap_servo_hub (1908-0025-0032) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 1 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4001-0025-4008-nectar:paddle_servo_coupler_4001-0025-4008",
+      "kind": "part_solid_count",
+      "requirement": "feeder_servo_coupler (4001-0025-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    },
+    {
+      "id": "AUTO-SOLID-4001-0025-4008-pollen:paddle_servo_coupler_4001-0025-4008",
+      "kind": "part_solid_count",
+      "requirement": "feeder_servo_coupler (4001-0025-4008) enters the assembly as the whole derived part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count the solids of the placed part and compare with the vendor derivation record",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "the official STEP models this part as 2 bodies and the working part keeps 1 of them (single_solid, DEC-0021)"
+    }
+  ],
+  "parts": [
+    {
+      "id": "nectar:base_rail_+72",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 93898.669,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          63.0,
+          2.0
+        ],
+        "max_mm": [
+          210.0,
+          81.0,
+          16.0
+        ],
+        "size_mm": [
+          380.0,
+          18.0,
+          14.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:base_rail_-72",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 93898.669,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          -81.0,
+          2.0
+        ],
+        "max_mm": [
+          210.0,
+          -63.0,
+          16.0
+        ],
+        "size_mm": [
+          380.0,
+          18.0,
+          14.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_carriage_lower_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          93.3042,
+          64.0,
+          150.8983
+        ],
+        "max_mm": [
+          151.5691,
+          76.0,
+          210.5419
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_carriage_lower_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          93.3042,
+          -76.0,
+          150.8983
+        ],
+        "max_mm": [
+          151.5691,
+          -64.0,
+          210.5419
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_carriage_upper_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          -46.9617,
+          64.0,
+          260.4861
+        ],
+        "max_mm": [
+          11.3031,
+          76.0,
+          320.1297
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_carriage_upper_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          -46.9617,
+          -76.0,
+          260.4861
+        ],
+        "max_mm": [
+          11.3031,
+          -64.0,
+          320.1297
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_insert_lower_+1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          114.9366,
+          67.5,
+          173.2201
+        ],
+        "max_mm": [
+          129.9366,
+          72.5,
+          188.2201
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_insert_lower_-1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          114.9366,
+          -72.5,
+          173.2201
+        ],
+        "max_mm": [
+          129.9366,
+          -67.5,
+          188.2201
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_insert_upper_+1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          -25.3293,
+          67.5,
+          282.8079
+        ],
+        "max_mm": [
+          -10.3293,
+          72.5,
+          297.8079
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:bearing_insert_upper_-1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          -25.3293,
+          -72.5,
+          282.8079
+        ],
+        "max_mm": [
+          -10.3293,
+          -67.5,
+          297.8079
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_lower_+1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          113.1782,
+          65.0,
+          186.3957
+        ],
+        "max_mm": [
+          157.2331,
+          75.0,
+          222.3501
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_lower_+1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          80.5481,
+          65.0,
+          144.6311
+        ],
+        "max_mm": [
+          124.603,
+          75.0,
+          180.5855
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_lower_-1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          113.1782,
+          -75.0,
+          186.3957
+        ],
+        "max_mm": [
+          157.2331,
+          -65.0,
+          222.3501
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_lower_-1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          80.5481,
+          -75.0,
+          144.6311
+        ],
+        "max_mm": [
+          124.603,
+          -65.0,
+          180.5855
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_upper_+1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -19.9956,
+          65.0,
+          290.4425
+        ],
+        "max_mm": [
+          24.0592,
+          75.0,
+          326.3969
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_upper_+1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -52.6257,
+          65.0,
+          248.6779
+        ],
+        "max_mm": [
+          -8.5708,
+          75.0,
+          284.6323
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_upper_-1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -19.9956,
+          -75.0,
+          290.4425
+        ],
+        "max_mm": [
+          24.0592,
+          -65.0,
+          326.3969
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_guide_upper_-1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -52.6257,
+          -75.0,
+          248.6779
+        ],
+        "max_mm": [
+          -8.5708,
+          -65.0,
+          284.6323
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_link_pin_lower",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 326.726,
+      "bbox": {
+        "min_mm": [
+          131.5185,
+          82.0,
+          192.9043
+        ],
+        "max_mm": [
+          135.5185,
+          108.0,
+          196.9043
+        ],
+        "size_mm": [
+          4.0,
+          26.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_link_pin_upper",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 226.195,
+      "bbox": {
+        "min_mm": [
+          -8.7474,
+          82.0,
+          302.4921
+        ],
+        "max_mm": [
+          -4.7474,
+          100.0,
+          306.4921
+        ],
+        "size_mm": [
+          4.0,
+          18.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_link_spacer_lower",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 970.281,
+      "bbox": {
+        "min_mm": [
+          128.5185,
+          86.0,
+          189.9043
+        ],
+        "max_mm": [
+          138.5185,
+          101.0,
+          199.9043
+        ],
+        "size_mm": [
+          10.0,
+          15.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:carriage_link_spacer_upper",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 452.798,
+      "bbox": {
+        "min_mm": [
+          -11.7474,
+          86.0,
+          299.4921
+        ],
+        "max_mm": [
+          -1.7474,
+          93.0,
+          309.4921
+        ],
+        "size_mm": [
+          10.0,
+          7.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 8250.728,
+      "bbox": {
+        "min_mm": [
+          2.6047,
+          88.0,
+          176.2246
+        ],
+        "max_mm": [
+          32.2542,
+          112.0,
+          205.5294
+        ],
+        "size_mm": [
+          29.6495,
+          24.0,
+          29.3048
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead_guide_+15",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2000.0,
+      "bbox": {
+        "min_mm": [
+          -11.9707,
+          77.0,
+          178.5929
+        ],
+        "max_mm": [
+          16.5958,
+          87.0,
+          213.1916
+        ],
+        "size_mm": [
+          28.5665,
+          10.0,
+          34.5987
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead_guide_-15",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2000.0,
+      "bbox": {
+        "min_mm": [
+          11.6696,
+          77.0,
+          160.123
+        ],
+        "max_mm": [
+          40.2361,
+          87.0,
+          194.7218
+        ],
+        "size_mm": [
+          28.5665,
+          10.0,
+          34.5987
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead_guide_stop_-42",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1350.0,
+      "bbox": {
+        "min_mm": [
+          14.2686,
+          77.0,
+          192.1361
+        ],
+        "max_mm": [
+          38.6232,
+          87.0,
+          212.699
+        ],
+        "size_mm": [
+          24.3546,
+          10.0,
+          20.5629
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead_guide_stop_-82",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1350.0,
+      "bbox": {
+        "min_mm": [
+          -10.3579,
+          77.0,
+          160.6157
+        ],
+        "max_mm": [
+          13.9967,
+          87.0,
+          181.1786
+        ],
+        "size_mm": [
+          24.3546,
+          10.0,
+          20.5629
+        ]
+      }
+    },
+    {
+      "id": "nectar:crosshead_through_pin",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 716.283,
+      "bbox": {
+        "min_mm": [
+          21.586,
+          86.0,
+          196.7571
+        ],
+        "max_mm": [
+          25.586,
+          143.0,
+          200.7571
+        ],
+        "size_mm": [
+          4.0,
+          57.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:flywheel_shaft_lower_2106-4008-1680",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6868.709,
+      "bbox": {
+        "min_mm": [
+          116.2867,
+          -84.0,
+          175.9704
+        ],
+        "max_mm": [
+          128.5867,
+          84.0,
+          186.8701
+        ],
+        "size_mm": [
+          12.3,
+          168.0,
+          10.8997
+        ]
+      }
+    },
+    {
+      "id": "nectar:flywheel_shaft_upper_2106-4008-1680",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6868.709,
+      "bbox": {
+        "min_mm": [
+          -23.9792,
+          -84.0,
+          285.5582
+        ],
+        "max_mm": [
+          -11.6792,
+          84.0,
+          296.4579
+        ],
+        "size_mm": [
+          12.3,
+          168.0,
+          10.8997
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_2000-0025-0002",
+      "solid_count": 11,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 31109.28,
+      "bbox": {
+        "min_mm": [
+          -39.308,
+          77.9,
+          121.9881
+        ],
+        "max_mm": [
+          8.4698,
+          122.0,
+          175.6775
+        ],
+        "size_mm": [
+          47.7778,
+          44.1,
+          53.6894
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_frame_1802-0043-0001",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5932.296,
+      "bbox": {
+        "min_mm": [
+          -56.526,
+          86.0,
+          104.3004
+        ],
+        "max_mm": [
+          11.0659,
+          92.0,
+          174.65
+        ],
+        "size_mm": [
+          67.5919,
+          6.0,
+          70.3495
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_standoff_-143_+23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -56.8602,
+          71.0,
+          133.9887
+        ],
+        "max_mm": [
+          -50.8602,
+          88.0,
+          139.9887
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_standoff_-143_-23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -20.6117,
+          71.0,
+          105.6682
+        ],
+        "max_mm": [
+          -14.6117,
+          88.0,
+          111.6682
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_standoff_-97_+23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -28.5397,
+          71.0,
+          170.2372
+        ],
+        "max_mm": [
+          -22.5397,
+          88.0,
+          176.2372
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:gap_servo_standoff_-97_-23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          7.7088,
+          71.0,
+          141.9167
+        ],
+        "max_mm": [
+          13.7088,
+          88.0,
+          147.9167
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:gecko_flywheel_lower_1",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          74.4374,
+          -27.0,
+          132.7209
+        ],
+        "max_mm": [
+          170.4359,
+          -3.0,
+          228.7194
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "nectar:gecko_flywheel_lower_2",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          74.4374,
+          3.0,
+          132.7209
+        ],
+        "max_mm": [
+          170.4359,
+          27.0,
+          228.7194
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "nectar:gecko_flywheel_upper_1",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          -65.8285,
+          -27.0,
+          242.3086
+        ],
+        "max_mm": [
+          30.1699,
+          -3.0,
+          338.3071
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "nectar:gecko_flywheel_upper_2",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          -65.8285,
+          3.0,
+          242.3086
+        ],
+        "max_mm": [
+          30.1699,
+          27.0,
+          338.3071
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_floor_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23940.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          14.5
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          17.5
+        ],
+        "size_mm": [
+          70.0,
+          114.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_floor_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 1196.519,
+      "bbox": {
+        "min_mm": [
+          -80.6576,
+          -57.0,
+          14.6518
+        ],
+        "max_mm": [
+          -75.2084,
+          57.0,
+          18.4188
+        ],
+        "size_mm": [
+          5.4491,
+          114.0,
+          3.767
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_floor_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 233.925,
+      "bbox": {
+        "min_mm": [
+          11.6755,
+          -57.0,
+          93.0735
+        ],
+        "max_mm": [
+          13.712,
+          57.0,
+          95.9388
+        ],
+        "size_mm": [
+          2.0365,
+          114.0,
+          2.8653
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_roof_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23525.043,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          124.5
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          127.5
+        ],
+        "size_mm": [
+          70.0,
+          114.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_roof_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18810.0,
+      "bbox": {
+        "min_mm": [
+          -128.8784,
+          -57.0,
+          113.5192
+        ],
+        "max_mm": [
+          -78.1296,
+          57.0,
+          140.3259
+        ],
+        "size_mm": [
+          50.7488,
+          114.0,
+          26.8068
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_roof_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23940.0,
+      "bbox": {
+        "min_mm": [
+          -118.4295,
+          -57.0,
+          106.9097
+        ],
+        "max_mm": [
+          -72.9692,
+          57.0,
+          163.9174
+        ],
+        "size_mm": [
+          45.4603,
+          114.0,
+          57.0077
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_1_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23100.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          54.0,
+          16.0
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          126.0
+        ],
+        "size_mm": [
+          70.0,
+          3.0,
+          110.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_1_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23100.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          16.0
+        ],
+        "max_mm": [
+          -80.0,
+          -54.0,
+          126.0
+        ],
+        "size_mm": [
+          70.0,
+          3.0,
+          110.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_2_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 17904.288,
+      "bbox": {
+        "min_mm": [
+          -128.2208,
+          54.0,
+          16.0
+        ],
+        "max_mm": [
+          -30.5663,
+          57.0,
+          138.9778
+        ],
+        "size_mm": [
+          97.6545,
+          3.0,
+          122.9778
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_2_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 17904.288,
+      "bbox": {
+        "min_mm": [
+          -128.2208,
+          -57.0,
+          16.0
+        ],
+        "max_mm": [
+          -30.5663,
+          -54.0,
+          138.9778
+        ],
+        "size_mm": [
+          97.6545,
+          3.0,
+          122.9778
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_3_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 22638.186,
+      "bbox": {
+        "min_mm": [
+          -117.2475,
+          54.0,
+          40.1104
+        ],
+        "max_mm": [
+          12.53,
+          57.0,
+          162.9939
+        ],
+        "size_mm": [
+          129.7775,
+          3.0,
+          122.8835
+        ]
+      }
+    },
+    {
+      "id": "nectar:guide_wall_3_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 22638.186,
+      "bbox": {
+        "min_mm": [
+          -117.2475,
+          -57.0,
+          40.1104
+        ],
+        "max_mm": [
+          12.53,
+          -54.0,
+          162.9939
+        ],
+        "size_mm": [
+          129.7775,
+          3.0,
+          122.8835
+        ]
+      }
+    },
+    {
+      "id": "nectar:main_spacing_link_lower",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4787.319,
+      "bbox": {
+        "min_mm": [
+          16.586,
+          100.8,
+          187.9043
+        ],
+        "max_mm": [
+          140.5185,
+          107.2,
+          205.7571
+        ],
+        "size_mm": [
+          123.9325,
+          6.4,
+          17.8528
+        ]
+      }
+    },
+    {
+      "id": "nectar:main_spacing_link_upper",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4787.319,
+      "bbox": {
+        "min_mm": [
+          -13.7474,
+          92.8,
+          191.7571
+        ],
+        "max_mm": [
+          30.586,
+          99.2,
+          311.4921
+        ],
+        "size_mm": [
+          44.3334,
+          6.4,
+          119.735
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_bridge_lower_+17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          120.1961,
+          -112.0,
+          182.9607
+        ],
+        "max_mm": [
+          145.6097,
+          -70.0,
+          205.272
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_bridge_lower_-17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          99.2636,
+          -112.0,
+          156.1683
+        ],
+        "max_mm": [
+          124.6772,
+          -70.0,
+          178.4796
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_bridge_upper_+17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          -20.0698,
+          -112.0,
+          292.5484
+        ],
+        "max_mm": [
+          5.3438,
+          -70.0,
+          314.8597
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_bridge_upper_-17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          -41.0023,
+          -112.0,
+          265.756
+        ],
+        "max_mm": [
+          -15.5887,
+          -70.0,
+          288.0673
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_clamp_lower_1401-0043-0036",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 5017.813,
+      "bbox": {
+        "min_mm": [
+          94.3047,
+          -120.0,
+          152.1573
+        ],
+        "max_mm": [
+          150.5686,
+          -112.0,
+          209.2829
+        ],
+        "size_mm": [
+          56.2639,
+          8.0,
+          57.1257
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_clamp_upper_1401-0043-0036",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 5017.813,
+      "bbox": {
+        "min_mm": [
+          -45.9613,
+          -120.0,
+          261.745
+        ],
+        "max_mm": [
+          10.3027,
+          -112.0,
+          318.8707
+        ],
+        "size_mm": [
+          56.2639,
+          8.0,
+          57.1257
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_coupler_lower_4007-4008-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 4319.845,
+      "bbox": {
+        "min_mm": [
+          111.9366,
+          -97.5,
+          170.2201
+        ],
+        "max_mm": [
+          132.9366,
+          -76.5,
+          191.2202
+        ],
+        "size_mm": [
+          21.0,
+          21.0,
+          21.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_coupler_upper_4007-4008-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 4319.845,
+      "bbox": {
+        "min_mm": [
+          -28.3293,
+          -97.5,
+          279.8079
+        ],
+        "max_mm": [
+          -7.3293,
+          -76.5,
+          300.8079
+        ],
+        "size_mm": [
+          21.0,
+          21.0,
+          21.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_lower_5203-2402-0003",
+      "solid_count": 66,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 50752.676,
+      "bbox": {
+        "min_mm": [
+          103.6866,
+          -219.17,
+          161.9701
+        ],
+        "max_mm": [
+          141.1866,
+          -88.0,
+          199.4701
+        ],
+        "size_mm": [
+          37.5,
+          131.17,
+          37.5
+        ]
+      }
+    },
+    {
+      "id": "nectar:motor_upper_5203-2402-0003",
+      "solid_count": 66,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 50752.676,
+      "bbox": {
+        "min_mm": [
+          -36.5793,
+          -219.17,
+          271.5578
+        ],
+        "max_mm": [
+          0.9207,
+          -88.0,
+          309.0578
+        ],
+        "size_mm": [
+          37.5,
+          131.17,
+          37.5
+        ]
+      }
+    },
+    {
+      "id": "nectar:one_way_finger_+1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2006.4,
+      "bbox": {
+        "min_mm": [
+          -43.6001,
+          37.4,
+          36.5937
+        ],
+        "max_mm": [
+          14.4675,
+          38.6,
+          93.6272
+        ],
+        "size_mm": [
+          58.0676,
+          1.2,
+          57.0335
+        ]
+      }
+    },
+    {
+      "id": "nectar:one_way_finger_-1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2006.4,
+      "bbox": {
+        "min_mm": [
+          -43.6001,
+          -38.6,
+          36.5937
+        ],
+        "max_mm": [
+          14.4675,
+          -37.4,
+          93.6272
+        ],
+        "size_mm": [
+          58.0676,
+          1.2,
+          57.0335
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_arm_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -35.2303,
+          -9.0,
+          54.0299
+        ],
+        "max_mm": [
+          -1.7063,
+          9.0,
+          73.429
+        ],
+        "size_mm": [
+          33.524,
+          18.0,
+          19.3991
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_arm_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -84.5303,
+          -9.0,
+          38.5043
+        ],
+        "max_mm": [
+          -54.0584,
+          9.0,
+          67.3479
+        ],
+        "size_mm": [
+          30.4719,
+          18.0,
+          28.8436
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_arm_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -61.4547,
+          -9.0,
+          85.6545
+        ],
+        "max_mm": [
+          -45.02,
+          9.0,
+          119.0343
+        ],
+        "size_mm": [
+          16.4347,
+          18.0,
+          33.3798
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_blade_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -7.8867,
+          -48.0,
+          40.8112
+        ],
+        "max_mm": [
+          12.7965,
+          48.0,
+          73.0511
+        ],
+        "size_mm": [
+          20.6832,
+          96.0,
+          32.2399
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_blade_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -100.1394,
+          -48.0,
+          23.0433
+        ],
+        "max_mm": [
+          -71.1477,
+          48.0,
+          53.3672
+        ],
+        "size_mm": [
+          28.9917,
+          96.0,
+          30.3239
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_blade_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -73.7311,
+          -48.0,
+          114.8761
+        ],
+        "max_mm": [
+          -41.8917,
+          48.0,
+          132.8512
+        ],
+        "size_mm": [
+          31.8394,
+          96.0,
+          17.9751
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_cr_servo_2000-0025-0003",
+      "solid_count": 11,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 31109.28,
+      "bbox": {
+        "min_mm": [
+          -64.15,
+          101.5,
+          62.85
+        ],
+        "max_mm": [
+          -9.85,
+          145.6,
+          83.0
+        ],
+        "size_mm": [
+          54.3,
+          44.1,
+          20.15
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_flex_tip_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          1.0059,
+          -48.0,
+          38.291
+        ],
+        "max_mm": [
+          15.3167,
+          48.0,
+          71.863
+        ],
+        "size_mm": [
+          14.3108,
+          96.0,
+          33.572
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_flex_tip_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          -102.9639,
+          -48.0,
+          20.2187
+        ],
+        "max_mm": [
+          -77.2409,
+          48.0,
+          48.1621
+        ],
+        "size_mm": [
+          25.723,
+          96.0,
+          27.9434
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_flex_tip_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          -76.1032,
+          -48.0,
+          124.2418
+        ],
+        "max_mm": [
+          -42.0145,
+          48.0,
+          135.2234
+        ],
+        "size_mm": [
+          34.0887,
+          96.0,
+          10.9816
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_hinge_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -8.2514,
+          -50.0,
+          82.2148
+        ],
+        "max_mm": [
+          1.7486,
+          50.0,
+          92.2148
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_hinge_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -86.1847,
+          -50.0,
+          98.78
+        ],
+        "max_mm": [
+          -76.1847,
+          50.0,
+          108.78
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_hinge_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -61.5639,
+          -50.0,
+          23.0052
+        ],
+        "max_mm": [
+          -51.5639,
+          50.0,
+          33.0052
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_hub",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 32812.239,
+      "bbox": {
+        "min_mm": [
+          -65.0,
+          -17.0,
+          55.0
+        ],
+        "max_mm": [
+          -29.0,
+          17.0,
+          91.0
+        ],
+        "size_mm": [
+          36.0,
+          34.0,
+          36.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_servo_coupler_4001-0025-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1861.296,
+      "bbox": {
+        "min_mm": [
+          -56.6558,
+          85.5,
+          66.125
+        ],
+        "max_mm": [
+          -40.125,
+          102.5,
+          79.875
+        ],
+        "size_mm": [
+          16.5308,
+          17.0,
+          13.75
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_servo_frame_1802-0043-0001",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5932.296,
+      "bbox": {
+        "min_mm": [
+          -78.375,
+          96.0,
+          51.5
+        ],
+        "max_mm": [
+          -15.625,
+          102.0,
+          94.5
+        ],
+        "size_mm": [
+          62.75,
+          6.0,
+          43.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_shaft_2106-4008-1920",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 7886.704,
+      "bbox": {
+        "min_mm": [
+          -52.9252,
+          -96.0,
+          66.85
+        ],
+        "max_mm": [
+          -40.85,
+          96.0,
+          79.15
+        ],
+        "size_mm": [
+          12.0752,
+          192.0,
+          12.3
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_shaft_support_bridge",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 19247.628,
+      "bbox": {
+        "min_mm": [
+          -76.0,
+          73.0,
+          43.0
+        ],
+        "max_mm": [
+          -18.0,
+          79.0,
+          103.0
+        ],
+        "size_mm": [
+          58.0,
+          6.0,
+          60.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_support_cheek_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 92291.012,
+      "bbox": {
+        "min_mm": [
+          -109.0,
+          59.0,
+          1.0
+        ],
+        "max_mm": [
+          15.0,
+          65.0,
+          155.0
+        ],
+        "size_mm": [
+          124.0,
+          6.0,
+          154.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:paddle_support_cheek_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 92291.012,
+      "bbox": {
+        "min_mm": [
+          -109.0,
+          -65.0,
+          1.0
+        ],
+        "max_mm": [
+          15.0,
+          -59.0,
+          155.0
+        ],
+        "size_mm": [
+          124.0,
+          6.0,
+          154.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:servo_crank",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 846.148,
+      "bbox": {
+        "min_mm": [
+          -27.4977,
+          129.0,
+          135.9527
+        ],
+        "max_mm": [
+          -16.5757,
+          135.0,
+          157.9172
+        ],
+        "size_mm": [
+          10.922,
+          6.0,
+          21.9645
+        ]
+      }
+    },
+    {
+      "id": "nectar:servo_crank_joint_pin",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 188.496,
+      "bbox": {
+        "min_mm": [
+          -24.4977,
+          128.0,
+          150.9172
+        ],
+        "max_mm": [
+          -20.4977,
+          143.0,
+          154.9172
+        ],
+        "size_mm": [
+          4.0,
+          15.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "nectar:servo_drag_link",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 2700.418,
+      "bbox": {
+        "min_mm": [
+          -28.4977,
+          136.0,
+          146.9172
+        ],
+        "max_mm": [
+          29.586,
+          142.0,
+          204.7571
+        ],
+        "size_mm": [
+          58.0837,
+          6.0,
+          57.8399
+        ]
+      }
+    },
+    {
+      "id": "nectar:servo_spline_hub_1908-0025-0032",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 3024.349,
+      "bbox": {
+        "min_mm": [
+          -37.5657,
+          121.0,
+          124.9627
+        ],
+        "max_mm": [
+          -5.5857,
+          129.0,
+          156.9427
+        ],
+        "size_mm": [
+          31.98,
+          8.0,
+          31.98
+        ]
+      }
+    },
+    {
+      "id": "nectar:shooter_side_plate_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 286477.707,
+      "bbox": {
+        "min_mm": [
+          -147.215,
+          68.0,
+          33.5824
+        ],
+        "max_mm": [
+          213.8495,
+          72.0,
+          401.0238
+        ],
+        "size_mm": [
+          361.0645,
+          4.0,
+          367.4414
+        ]
+      }
+    },
+    {
+      "id": "nectar:shooter_side_plate_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 286477.707,
+      "bbox": {
+        "min_mm": [
+          -147.215,
+          -72.0,
+          33.5824
+        ],
+        "max_mm": [
+          213.8495,
+          -68.0,
+          401.0238
+        ],
+        "size_mm": [
+          361.0645,
+          4.0,
+          367.4414
+        ]
+      }
+    },
+    {
+      "id": "nectar:shooter_throat_+55",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 28386.0,
+      "bbox": {
+        "min_mm": [
+          -75.3332,
+          -57.0,
+          162.0704
+        ],
+        "max_mm": [
+          -21.8693,
+          57.0,
+          229.3223
+        ],
+        "size_mm": [
+          53.4639,
+          114.0,
+          67.2519
+        ]
+      }
+    },
+    {
+      "id": "nectar:shooter_throat_-55",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 28386.0,
+      "bbox": {
+        "min_mm": [
+          11.348,
+          -57.0,
+          94.3477
+        ],
+        "max_mm": [
+          64.8119,
+          57.0,
+          161.5996
+        ],
+        "size_mm": [
+          53.4639,
+          114.0,
+          67.2519
+        ]
+      }
+    },
+    {
+      "id": "nectar:sonic_hub_lower_1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          106.4366,
+          -27.0,
+          164.8044
+        ],
+        "max_mm": [
+          138.4366,
+          -17.0,
+          196.6358
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "nectar:sonic_hub_lower_2",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          106.4366,
+          17.0,
+          164.8044
+        ],
+        "max_mm": [
+          138.4366,
+          27.0,
+          196.6358
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "nectar:sonic_hub_upper_1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          -33.8293,
+          -27.0,
+          274.3922
+        ],
+        "max_mm": [
+          -1.8293,
+          -17.0,
+          306.2235
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "nectar:sonic_hub_upper_2",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          -33.8293,
+          17.0,
+          274.3922
+        ],
+        "max_mm": [
+          -1.8293,
+          27.0,
+          306.2235
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "pollen:base_rail_+72",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 93898.669,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          63.0,
+          2.0
+        ],
+        "max_mm": [
+          210.0,
+          81.0,
+          16.0
+        ],
+        "size_mm": [
+          380.0,
+          18.0,
+          14.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:base_rail_-72",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 93898.669,
+      "bbox": {
+        "min_mm": [
+          -170.0,
+          -81.0,
+          2.0
+        ],
+        "max_mm": [
+          210.0,
+          -63.0,
+          16.0
+        ],
+        "size_mm": [
+          380.0,
+          18.0,
+          14.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_carriage_lower_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          86.2121,
+          64.0,
+          156.4393
+        ],
+        "max_mm": [
+          144.477,
+          76.0,
+          216.0829
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_carriage_lower_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          86.2121,
+          -76.0,
+          156.4393
+        ],
+        "max_mm": [
+          144.477,
+          -64.0,
+          216.0829
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_carriage_upper_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          -39.8696,
+          64.0,
+          254.9451
+        ],
+        "max_mm": [
+          18.3952,
+          76.0,
+          314.5887
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_carriage_upper_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18710.66,
+      "bbox": {
+        "min_mm": [
+          -39.8696,
+          -76.0,
+          254.9451
+        ],
+        "max_mm": [
+          18.3952,
+          -64.0,
+          314.5887
+        ],
+        "size_mm": [
+          58.2648,
+          12.0,
+          59.6436
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_insert_lower_+1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          107.8445,
+          67.5,
+          178.7611
+        ],
+        "max_mm": [
+          122.8445,
+          72.5,
+          193.7611
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_insert_lower_-1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          107.8445,
+          -72.5,
+          178.7611
+        ],
+        "max_mm": [
+          122.8445,
+          -67.5,
+          193.7611
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_insert_upper_+1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          -18.2372,
+          67.5,
+          277.2669
+        ],
+        "max_mm": [
+          -3.2372,
+          72.5,
+          292.2669
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:bearing_insert_upper_-1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 524.007,
+      "bbox": {
+        "min_mm": [
+          -18.2372,
+          -72.5,
+          277.2669
+        ],
+        "max_mm": [
+          -3.2372,
+          -67.5,
+          292.2669
+        ],
+        "size_mm": [
+          15.0,
+          5.0,
+          15.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_lower_+1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          113.1782,
+          65.0,
+          186.3957
+        ],
+        "max_mm": [
+          157.2331,
+          75.0,
+          222.3501
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_lower_+1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          80.5481,
+          65.0,
+          144.6311
+        ],
+        "max_mm": [
+          124.603,
+          75.0,
+          180.5855
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_lower_-1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          113.1782,
+          -75.0,
+          186.3957
+        ],
+        "max_mm": [
+          157.2331,
+          -65.0,
+          222.3501
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_lower_-1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          80.5481,
+          -75.0,
+          144.6311
+        ],
+        "max_mm": [
+          124.603,
+          -65.0,
+          180.5855
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_upper_+1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -19.9956,
+          65.0,
+          290.4425
+        ],
+        "max_mm": [
+          24.0592,
+          75.0,
+          326.3969
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_upper_+1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -52.6257,
+          65.0,
+          248.6779
+        ],
+        "max_mm": [
+          -8.5708,
+          75.0,
+          284.6323
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_upper_-1_+26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -19.9956,
+          -75.0,
+          290.4425
+        ],
+        "max_mm": [
+          24.0592,
+          -65.0,
+          326.3969
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_guide_upper_-1_-26.5",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2600.0,
+      "bbox": {
+        "min_mm": [
+          -52.6257,
+          -75.0,
+          248.6779
+        ],
+        "max_mm": [
+          -8.5708,
+          -65.0,
+          284.6323
+        ],
+        "size_mm": [
+          44.0549,
+          10.0,
+          35.9545
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_link_pin_lower",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 326.726,
+      "bbox": {
+        "min_mm": [
+          124.4265,
+          82.0,
+          198.4453
+        ],
+        "max_mm": [
+          128.4265,
+          108.0,
+          202.4453
+        ],
+        "size_mm": [
+          4.0,
+          26.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_link_pin_upper",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 226.195,
+      "bbox": {
+        "min_mm": [
+          -1.6553,
+          82.0,
+          296.9511
+        ],
+        "max_mm": [
+          2.3447,
+          100.0,
+          300.9511
+        ],
+        "size_mm": [
+          4.0,
+          18.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_link_spacer_lower",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 970.281,
+      "bbox": {
+        "min_mm": [
+          121.4265,
+          86.0,
+          195.4453
+        ],
+        "max_mm": [
+          131.4265,
+          101.0,
+          205.4453
+        ],
+        "size_mm": [
+          10.0,
+          15.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:carriage_link_spacer_upper",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 452.798,
+      "bbox": {
+        "min_mm": [
+          -4.6553,
+          86.0,
+          293.9511
+        ],
+        "max_mm": [
+          5.3447,
+          93.0,
+          303.9511
+        ],
+        "size_mm": [
+          10.0,
+          7.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 8250.728,
+      "bbox": {
+        "min_mm": [
+          -4.0772,
+          88.0,
+          167.6722
+        ],
+        "max_mm": [
+          25.5723,
+          112.0,
+          196.977
+        ],
+        "size_mm": [
+          29.6495,
+          24.0,
+          29.3048
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead_guide_+15",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2000.0,
+      "bbox": {
+        "min_mm": [
+          -11.9707,
+          77.0,
+          178.5929
+        ],
+        "max_mm": [
+          16.5958,
+          87.0,
+          213.1916
+        ],
+        "size_mm": [
+          28.5665,
+          10.0,
+          34.5987
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead_guide_-15",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2000.0,
+      "bbox": {
+        "min_mm": [
+          11.6696,
+          77.0,
+          160.123
+        ],
+        "max_mm": [
+          40.2361,
+          87.0,
+          194.7218
+        ],
+        "size_mm": [
+          28.5665,
+          10.0,
+          34.5987
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead_guide_stop_-42",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1350.0,
+      "bbox": {
+        "min_mm": [
+          14.2686,
+          77.0,
+          192.1361
+        ],
+        "max_mm": [
+          38.6232,
+          87.0,
+          212.699
+        ],
+        "size_mm": [
+          24.3546,
+          10.0,
+          20.5629
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead_guide_stop_-82",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1350.0,
+      "bbox": {
+        "min_mm": [
+          -10.3579,
+          77.0,
+          160.6157
+        ],
+        "max_mm": [
+          13.9967,
+          87.0,
+          181.1786
+        ],
+        "size_mm": [
+          24.3546,
+          10.0,
+          20.5629
+        ]
+      }
+    },
+    {
+      "id": "pollen:crosshead_through_pin",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 716.283,
+      "bbox": {
+        "min_mm": [
+          14.9042,
+          86.0,
+          188.2047
+        ],
+        "max_mm": [
+          18.9042,
+          143.0,
+          192.2047
+        ],
+        "size_mm": [
+          4.0,
+          57.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:flywheel_shaft_lower_2106-4008-1680",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6868.709,
+      "bbox": {
+        "min_mm": [
+          109.1946,
+          -84.0,
+          181.5114
+        ],
+        "max_mm": [
+          121.4946,
+          84.0,
+          192.4111
+        ],
+        "size_mm": [
+          12.3,
+          168.0,
+          10.8997
+        ]
+      }
+    },
+    {
+      "id": "pollen:flywheel_shaft_upper_2106-4008-1680",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6868.709,
+      "bbox": {
+        "min_mm": [
+          -16.8871,
+          -84.0,
+          280.0172
+        ],
+        "max_mm": [
+          -4.5871,
+          84.0,
+          290.9169
+        ],
+        "size_mm": [
+          12.3,
+          168.0,
+          10.8997
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_2000-0025-0002",
+      "solid_count": 11,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 31109.28,
+      "bbox": {
+        "min_mm": [
+          -39.308,
+          77.9,
+          121.9881
+        ],
+        "max_mm": [
+          8.4698,
+          122.0,
+          175.6775
+        ],
+        "size_mm": [
+          47.7778,
+          44.1,
+          53.6894
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_frame_1802-0043-0001",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5932.296,
+      "bbox": {
+        "min_mm": [
+          -56.526,
+          86.0,
+          104.3004
+        ],
+        "max_mm": [
+          11.0659,
+          92.0,
+          174.65
+        ],
+        "size_mm": [
+          67.5919,
+          6.0,
+          70.3495
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_standoff_-143_+23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -56.8602,
+          71.0,
+          133.9887
+        ],
+        "max_mm": [
+          -50.8602,
+          88.0,
+          139.9887
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_standoff_-143_-23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -20.6117,
+          71.0,
+          105.6682
+        ],
+        "max_mm": [
+          -14.6117,
+          88.0,
+          111.6682
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_standoff_-97_+23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          -28.5397,
+          71.0,
+          170.2372
+        ],
+        "max_mm": [
+          -22.5397,
+          88.0,
+          176.2372
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:gap_servo_standoff_-97_-23",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 480.664,
+      "bbox": {
+        "min_mm": [
+          7.7088,
+          71.0,
+          141.9167
+        ],
+        "max_mm": [
+          13.7088,
+          88.0,
+          147.9167
+        ],
+        "size_mm": [
+          6.0,
+          17.0,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:gecko_flywheel_lower_1",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          67.3453,
+          -27.0,
+          138.2618
+        ],
+        "max_mm": [
+          163.3438,
+          -3.0,
+          234.2603
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "pollen:gecko_flywheel_lower_2",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          67.3453,
+          3.0,
+          138.2618
+        ],
+        "max_mm": [
+          163.3438,
+          27.0,
+          234.2603
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "pollen:gecko_flywheel_upper_1",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          -58.7364,
+          -27.0,
+          236.7677
+        ],
+        "max_mm": [
+          37.262,
+          -3.0,
+          332.7662
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "pollen:gecko_flywheel_upper_2",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 95767.311,
+      "bbox": {
+        "min_mm": [
+          -58.7364,
+          3.0,
+          236.7677
+        ],
+        "max_mm": [
+          37.262,
+          27.0,
+          332.7662
+        ],
+        "size_mm": [
+          95.9985,
+          24.0,
+          95.9985
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_floor_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23940.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          14.5
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          17.5
+        ],
+        "size_mm": [
+          70.0,
+          114.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_floor_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 1196.519,
+      "bbox": {
+        "min_mm": [
+          -80.6576,
+          -57.0,
+          14.6518
+        ],
+        "max_mm": [
+          -75.2084,
+          57.0,
+          18.4188
+        ],
+        "size_mm": [
+          5.4491,
+          114.0,
+          3.767
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_floor_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 233.925,
+      "bbox": {
+        "min_mm": [
+          11.6755,
+          -57.0,
+          93.0735
+        ],
+        "max_mm": [
+          13.712,
+          57.0,
+          95.9388
+        ],
+        "size_mm": [
+          2.0365,
+          114.0,
+          2.8653
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_roof_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23525.043,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          124.5
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          127.5
+        ],
+        "size_mm": [
+          70.0,
+          114.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_roof_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 18810.0,
+      "bbox": {
+        "min_mm": [
+          -128.8784,
+          -57.0,
+          113.5192
+        ],
+        "max_mm": [
+          -78.1296,
+          57.0,
+          140.3259
+        ],
+        "size_mm": [
+          50.7488,
+          114.0,
+          26.8068
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_roof_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23940.0,
+      "bbox": {
+        "min_mm": [
+          -118.4295,
+          -57.0,
+          106.9097
+        ],
+        "max_mm": [
+          -72.9692,
+          57.0,
+          163.9174
+        ],
+        "size_mm": [
+          45.4603,
+          114.0,
+          57.0077
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_1_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23100.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          54.0,
+          16.0
+        ],
+        "max_mm": [
+          -80.0,
+          57.0,
+          126.0
+        ],
+        "size_mm": [
+          70.0,
+          3.0,
+          110.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_1_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 23100.0,
+      "bbox": {
+        "min_mm": [
+          -150.0,
+          -57.0,
+          16.0
+        ],
+        "max_mm": [
+          -80.0,
+          -54.0,
+          126.0
+        ],
+        "size_mm": [
+          70.0,
+          3.0,
+          110.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_2_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 17904.288,
+      "bbox": {
+        "min_mm": [
+          -128.2208,
+          54.0,
+          16.0
+        ],
+        "max_mm": [
+          -30.5663,
+          57.0,
+          138.9778
+        ],
+        "size_mm": [
+          97.6545,
+          3.0,
+          122.9778
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_2_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 17904.288,
+      "bbox": {
+        "min_mm": [
+          -128.2208,
+          -57.0,
+          16.0
+        ],
+        "max_mm": [
+          -30.5663,
+          -54.0,
+          138.9778
+        ],
+        "size_mm": [
+          97.6545,
+          3.0,
+          122.9778
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_3_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 22638.186,
+      "bbox": {
+        "min_mm": [
+          -117.2475,
+          54.0,
+          40.1104
+        ],
+        "max_mm": [
+          12.53,
+          57.0,
+          162.9939
+        ],
+        "size_mm": [
+          129.7775,
+          3.0,
+          122.8835
+        ]
+      }
+    },
+    {
+      "id": "pollen:guide_wall_3_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 22638.186,
+      "bbox": {
+        "min_mm": [
+          -117.2475,
+          -57.0,
+          40.1104
+        ],
+        "max_mm": [
+          12.53,
+          -54.0,
+          162.9939
+        ],
+        "size_mm": [
+          129.7775,
+          3.0,
+          122.8835
+        ]
+      }
+    },
+    {
+      "id": "pollen:main_spacing_link_lower",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4787.319,
+      "bbox": {
+        "min_mm": [
+          9.9042,
+          100.8,
+          183.2047
+        ],
+        "max_mm": [
+          133.4265,
+          107.2,
+          207.4453
+        ],
+        "size_mm": [
+          123.5223,
+          6.4,
+          24.2406
+        ]
+      }
+    },
+    {
+      "id": "pollen:main_spacing_link_upper",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4787.319,
+      "bbox": {
+        "min_mm": [
+          -6.6553,
+          92.8,
+          183.2047
+        ],
+        "max_mm": [
+          23.9042,
+          99.2,
+          305.9511
+        ],
+        "size_mm": [
+          30.5594,
+          6.4,
+          122.7464
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_bridge_lower_+17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          113.104,
+          -112.0,
+          188.5016
+        ],
+        "max_mm": [
+          138.5176,
+          -70.0,
+          210.8129
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_bridge_lower_-17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          92.1715,
+          -112.0,
+          161.7093
+        ],
+        "max_mm": [
+          117.5851,
+          -70.0,
+          184.0205
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_bridge_upper_+17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          -12.9777,
+          -112.0,
+          287.0075
+        ],
+        "max_mm": [
+          12.4359,
+          -70.0,
+          309.3187
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_bridge_upper_-17",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 8736.0,
+      "bbox": {
+        "min_mm": [
+          -33.9102,
+          -112.0,
+          260.2151
+        ],
+        "max_mm": [
+          -8.4966,
+          -70.0,
+          282.5264
+        ],
+        "size_mm": [
+          25.4136,
+          42.0,
+          22.3113
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_clamp_lower_1401-0043-0036",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 5017.813,
+      "bbox": {
+        "min_mm": [
+          87.2126,
+          -120.0,
+          157.6982
+        ],
+        "max_mm": [
+          143.4765,
+          -112.0,
+          214.8239
+        ],
+        "size_mm": [
+          56.2639,
+          8.0,
+          57.1257
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_clamp_upper_1401-0043-0036",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 5017.813,
+      "bbox": {
+        "min_mm": [
+          -38.8692,
+          -120.0,
+          256.2041
+        ],
+        "max_mm": [
+          17.3948,
+          -112.0,
+          313.3297
+        ],
+        "size_mm": [
+          56.2639,
+          8.0,
+          57.1257
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_coupler_lower_4007-4008-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 4319.845,
+      "bbox": {
+        "min_mm": [
+          104.8445,
+          -97.5,
+          175.7611
+        ],
+        "max_mm": [
+          125.8445,
+          -76.5,
+          196.7611
+        ],
+        "size_mm": [
+          21.0,
+          21.0,
+          21.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_coupler_upper_4007-4008-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 4319.845,
+      "bbox": {
+        "min_mm": [
+          -21.2372,
+          -97.5,
+          274.2669
+        ],
+        "max_mm": [
+          -0.2372,
+          -76.5,
+          295.2669
+        ],
+        "size_mm": [
+          21.0,
+          21.0,
+          21.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_lower_5203-2402-0003",
+      "solid_count": 66,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 50752.676,
+      "bbox": {
+        "min_mm": [
+          96.5945,
+          -219.17,
+          167.511
+        ],
+        "max_mm": [
+          134.0945,
+          -88.0,
+          205.011
+        ],
+        "size_mm": [
+          37.5,
+          131.17,
+          37.5
+        ]
+      }
+    },
+    {
+      "id": "pollen:motor_upper_5203-2402-0003",
+      "solid_count": 66,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 50752.676,
+      "bbox": {
+        "min_mm": [
+          -29.4872,
+          -219.17,
+          266.0169
+        ],
+        "max_mm": [
+          8.0128,
+          -88.0,
+          303.5169
+        ],
+        "size_mm": [
+          37.5,
+          131.17,
+          37.5
+        ]
+      }
+    },
+    {
+      "id": "pollen:one_way_finger_+1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2006.4,
+      "bbox": {
+        "min_mm": [
+          -43.6001,
+          37.4,
+          36.5937
+        ],
+        "max_mm": [
+          14.4675,
+          38.6,
+          93.6272
+        ],
+        "size_mm": [
+          58.0676,
+          1.2,
+          57.0335
+        ]
+      }
+    },
+    {
+      "id": "pollen:one_way_finger_-1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 2006.4,
+      "bbox": {
+        "min_mm": [
+          -43.6001,
+          -38.6,
+          36.5937
+        ],
+        "max_mm": [
+          14.4675,
+          -37.4,
+          93.6272
+        ],
+        "size_mm": [
+          58.0676,
+          1.2,
+          57.0335
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_arm_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -35.2303,
+          -9.0,
+          54.0299
+        ],
+        "max_mm": [
+          -1.7063,
+          9.0,
+          73.429
+        ],
+        "size_mm": [
+          33.524,
+          18.0,
+          19.3991
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_arm_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -84.5303,
+          -9.0,
+          38.5043
+        ],
+        "max_mm": [
+          -54.0584,
+          9.0,
+          67.3479
+        ],
+        "size_mm": [
+          30.4719,
+          18.0,
+          28.8436
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_arm_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5760.0,
+      "bbox": {
+        "min_mm": [
+          -61.4547,
+          -9.0,
+          85.6545
+        ],
+        "max_mm": [
+          -45.02,
+          9.0,
+          119.0343
+        ],
+        "size_mm": [
+          16.4347,
+          18.0,
+          33.3798
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_blade_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -7.8867,
+          -48.0,
+          40.8112
+        ],
+        "max_mm": [
+          12.7965,
+          48.0,
+          73.0511
+        ],
+        "size_mm": [
+          20.6832,
+          96.0,
+          32.2399
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_blade_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -100.1394,
+          -48.0,
+          23.0433
+        ],
+        "max_mm": [
+          -71.1477,
+          48.0,
+          53.3672
+        ],
+        "size_mm": [
+          28.9917,
+          96.0,
+          30.3239
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_blade_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 34560.0,
+      "bbox": {
+        "min_mm": [
+          -73.7311,
+          -48.0,
+          114.8761
+        ],
+        "max_mm": [
+          -41.8917,
+          48.0,
+          132.8512
+        ],
+        "size_mm": [
+          31.8394,
+          96.0,
+          17.9751
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_cr_servo_2000-0025-0003",
+      "solid_count": 11,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 31109.28,
+      "bbox": {
+        "min_mm": [
+          -64.15,
+          101.5,
+          62.85
+        ],
+        "max_mm": [
+          -9.85,
+          145.6,
+          83.0
+        ],
+        "size_mm": [
+          54.3,
+          44.1,
+          20.15
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_flex_tip_1",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          1.0059,
+          -48.0,
+          38.291
+        ],
+        "max_mm": [
+          15.3167,
+          48.0,
+          71.863
+        ],
+        "size_mm": [
+          14.3108,
+          96.0,
+          33.572
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_flex_tip_2",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          -102.9639,
+          -48.0,
+          20.2187
+        ],
+        "max_mm": [
+          -77.2409,
+          48.0,
+          48.1621
+        ],
+        "size_mm": [
+          25.723,
+          96.0,
+          27.9434
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_flex_tip_3",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 13056.0,
+      "bbox": {
+        "min_mm": [
+          -76.1032,
+          -48.0,
+          124.2418
+        ],
+        "max_mm": [
+          -42.0145,
+          48.0,
+          135.2234
+        ],
+        "size_mm": [
+          34.0887,
+          96.0,
+          10.9816
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_hinge_1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -8.2514,
+          -50.0,
+          82.2148
+        ],
+        "max_mm": [
+          1.7486,
+          50.0,
+          92.2148
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_hinge_2",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -86.1847,
+          -50.0,
+          98.78
+        ],
+        "max_mm": [
+          -76.1847,
+          50.0,
+          108.78
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_hinge_3",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 6468.539,
+      "bbox": {
+        "min_mm": [
+          -61.5639,
+          -50.0,
+          23.0052
+        ],
+        "max_mm": [
+          -51.5639,
+          50.0,
+          33.0052
+        ],
+        "size_mm": [
+          10.0,
+          100.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_hub",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 32812.239,
+      "bbox": {
+        "min_mm": [
+          -65.0,
+          -17.0,
+          55.0
+        ],
+        "max_mm": [
+          -29.0,
+          17.0,
+          91.0
+        ],
+        "size_mm": [
+          36.0,
+          34.0,
+          36.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_servo_coupler_4001-0025-4008",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 1861.296,
+      "bbox": {
+        "min_mm": [
+          -56.6558,
+          85.5,
+          66.125
+        ],
+        "max_mm": [
+          -40.125,
+          102.5,
+          79.875
+        ],
+        "size_mm": [
+          16.5308,
+          17.0,
+          13.75
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_servo_frame_1802-0043-0001",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 5932.296,
+      "bbox": {
+        "min_mm": [
+          -78.375,
+          96.0,
+          51.5
+        ],
+        "max_mm": [
+          -15.625,
+          102.0,
+          94.5
+        ],
+        "size_mm": [
+          62.75,
+          6.0,
+          43.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_shaft_2106-4008-1920",
+      "solid_count": 2,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 7886.704,
+      "bbox": {
+        "min_mm": [
+          -52.9252,
+          -96.0,
+          66.85
+        ],
+        "max_mm": [
+          -40.85,
+          96.0,
+          79.15
+        ],
+        "size_mm": [
+          12.0752,
+          192.0,
+          12.3
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_shaft_support_bridge",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 19247.628,
+      "bbox": {
+        "min_mm": [
+          -76.0,
+          73.0,
+          43.0
+        ],
+        "max_mm": [
+          -18.0,
+          79.0,
+          103.0
+        ],
+        "size_mm": [
+          58.0,
+          6.0,
+          60.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_support_cheek_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 92291.012,
+      "bbox": {
+        "min_mm": [
+          -109.0,
+          59.0,
+          1.0
+        ],
+        "max_mm": [
+          15.0,
+          65.0,
+          155.0
+        ],
+        "size_mm": [
+          124.0,
+          6.0,
+          154.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:paddle_support_cheek_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 92291.012,
+      "bbox": {
+        "min_mm": [
+          -109.0,
+          -65.0,
+          1.0
+        ],
+        "max_mm": [
+          15.0,
+          -59.0,
+          155.0
+        ],
+        "size_mm": [
+          124.0,
+          6.0,
+          154.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:servo_crank",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 846.149,
+      "bbox": {
+        "min_mm": [
+          -36.8272,
+          129.0,
+          135.9527
+        ],
+        "max_mm": [
+          -16.5757,
+          135.0,
+          152.1902
+        ],
+        "size_mm": [
+          20.2515,
+          6.0,
+          16.2374
+        ]
+      }
+    },
+    {
+      "id": "pollen:servo_crank_joint_pin",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 188.496,
+      "bbox": {
+        "min_mm": [
+          -33.8272,
+          128.0,
+          145.1902
+        ],
+        "max_mm": [
+          -29.8272,
+          143.0,
+          149.1902
+        ],
+        "size_mm": [
+          4.0,
+          15.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "id": "pollen:servo_drag_link",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 2700.418,
+      "bbox": {
+        "min_mm": [
+          -37.8272,
+          136.0,
+          141.1902
+        ],
+        "max_mm": [
+          22.9042,
+          142.0,
+          196.2047
+        ],
+        "size_mm": [
+          60.7314,
+          6.0,
+          55.0145
+        ]
+      }
+    },
+    {
+      "id": "pollen:servo_spline_hub_1908-0025-0032",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 3024.349,
+      "bbox": {
+        "min_mm": [
+          -37.5657,
+          121.0,
+          124.9627
+        ],
+        "max_mm": [
+          -5.5857,
+          129.0,
+          156.9427
+        ],
+        "size_mm": [
+          31.98,
+          8.0,
+          31.98
+        ]
+      }
+    },
+    {
+      "id": "pollen:shooter_side_plate_+1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 286477.707,
+      "bbox": {
+        "min_mm": [
+          -147.215,
+          68.0,
+          33.5824
+        ],
+        "max_mm": [
+          213.8495,
+          72.0,
+          401.0238
+        ],
+        "size_mm": [
+          361.0645,
+          4.0,
+          367.4414
+        ]
+      }
+    },
+    {
+      "id": "pollen:shooter_side_plate_-1",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 286477.707,
+      "bbox": {
+        "min_mm": [
+          -147.215,
+          -72.0,
+          33.5824
+        ],
+        "max_mm": [
+          213.8495,
+          -68.0,
+          401.0238
+        ],
+        "size_mm": [
+          361.0645,
+          4.0,
+          367.4414
+        ]
+      }
+    },
+    {
+      "id": "pollen:shooter_throat_+55",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 28386.0,
+      "bbox": {
+        "min_mm": [
+          -75.3332,
+          -57.0,
+          162.0704
+        ],
+        "max_mm": [
+          -21.8693,
+          57.0,
+          229.3223
+        ],
+        "size_mm": [
+          53.4639,
+          114.0,
+          67.2519
+        ]
+      }
+    },
+    {
+      "id": "pollen:shooter_throat_-55",
+      "solid_count": 1,
+      "type": "Solid",
+      "valid": true,
+      "volume_mm3": 28386.0,
+      "bbox": {
+        "min_mm": [
+          11.348,
+          -57.0,
+          94.3477
+        ],
+        "max_mm": [
+          64.8119,
+          57.0,
+          161.5996
+        ],
+        "size_mm": [
+          53.4639,
+          114.0,
+          67.2519
+        ]
+      }
+    },
+    {
+      "id": "pollen:sonic_hub_lower_1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          99.3445,
+          -27.0,
+          170.3454
+        ],
+        "max_mm": [
+          131.3445,
+          -17.0,
+          202.1767
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "pollen:sonic_hub_lower_2",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          99.3445,
+          17.0,
+          170.3454
+        ],
+        "max_mm": [
+          131.3445,
+          27.0,
+          202.1767
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "pollen:sonic_hub_upper_1",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          -26.7372,
+          -27.0,
+          268.8512
+        ],
+        "max_mm": [
+          5.2628,
+          -17.0,
+          300.6826
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    },
+    {
+      "id": "pollen:sonic_hub_upper_2",
+      "solid_count": 3,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 4203.984,
+      "bbox": {
+        "min_mm": [
+          -26.7372,
+          17.0,
+          268.8512
+        ],
+        "max_mm": [
+          5.2628,
+          27.0,
+          300.6826
+        ],
+        "size_mm": [
+          32.0,
+          10.0,
+          31.8313
+        ]
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "part": "nectar:*",
+      "before": {
+        "min_mm": [
+          -170.0,
+          -219.17,
+          1.0
+        ],
+        "max_mm": [
+          213.8495,
+          145.6,
+          401.0238
+        ],
+        "size_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ]
+      },
+      "after": {
+        "min_mm": [
+          -170.0,
+          -219.17,
+          1.0
+        ],
+        "max_mm": [
+          213.8495,
+          145.6,
+          401.0238
+        ],
+        "size_mm": [
+          383.8495,
+          364.77,
+          400.0238
+        ]
+      },
+      "volume_before_mm3": 2242773.512
+    }
+  ],
+  "not_verified": [
+    "Pollen and nectar foam game-piece solids are deliberately absent from this model (see cad/paddle_launcher_constrained.py), so no check here covers the projectile.",
+    "Purchased-part internal fits (press fits, bearing preload, gear backlash) are not measurable from the single combined part and are not claimed.",
+    "The -ANGLE rotation means only non-disc parts keep a rotation-invariant bounding box; quantities that would need an unrotated frame are checked by summed volume instead."
+  ],
+  "human_review": [
+    "Confirm the clamp-bore interference reported between paddle_servo_coupler and feeder_shaft (see the feasibility report interference section) is the coupler's nominal clamp bore and not a collision.",
+    "Confirm the servo frame to paddle support cheek clearance at z = 140 mm.",
+    "Accept or reject the C06B-COTS-0.3 whole-part representation before any geometry leaves candidate status."
+  ],
+  "failure_states": [
+    "AUTO-SOLID-3613-0014-0096",
+    "AUTO-SOLID-1309-0016-4008",
+    "AUTO-SOLID-1611-0514-4008"
+  ]
+}

@@ -4,25 +4,28 @@
 
 ## CURRENT OBJECTIVE
 
-按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按每个 SKU 一个连通实体处理；下一步用实物关闭轴向紧固与高速动态风险。
+按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按「每个 SKU 的整个官方部件」处理（多实体保持多实体，不做布尔并集，DEC-0021）；下一步用实物关闭轴向紧固与高速动态风险。
 
 ## CURRENT MODULE
 
-当前工作对象是 Architecture v0.1 的 T06/C06-B 主发射原型；回滚后的 `paddle_launcher_constrained.py` 已升级为 `C06B-COTS-0.2`。T04、T05、T07 和 KEI-16 历史均保留，未被本次修改覆盖。
+当前工作对象是 Architecture v0.1 的 T06/C06-B 主发射原型；回滚后的 `paddle_launcher_constrained.py` 已升级为 `C06B-COTS-0.3`。T04、T05、T07 和 KEI-16 历史均保留，未被本次修改覆盖。
 
 ## CURRENT DESIGN MATURITY
 
-S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射、13 个官方 STEP 回读、每 SKU 单实体表示、轴向名义计算和端点干涉已通过，实物公差与旋转测试未关闭。KEI-16导入参考和T04 C04-B1维持各自M3状态；T05为M1共享动力接口，T07为M0增量研究。
+S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射、13 个官方 STEP 回读、每 SKU 整体部件表示（多实体保持多实体）、轴向名义计算和端点干涉已通过，实物公差与旋转测试未关闭。KEI-16导入参考和T04 C04-B1维持各自M3状态；T05为M1共享动力接口，T07为M0增量研究。
 
 ## COMPLETED
 
 - `C06B-COTS-0.1` 已淘汰 Ø38 无 SKU 电机夹具、16 × 7 mm 轴承、194 mm 轴和无 SKU 联轴器占位，替换为 goBILDA `5203-2402-0003`、`1401-0043-0036`、`4007-4008-4008`、`2106-4008-1680` 和 `1611-0514-4008`。
 - 双飞轮轴继续各自直驱，外置齿轮数量为0；两台电机统一移至−Y侧，+Y双连杆调隙侧保持无遮挡。
 - 侧板改为8.4 mm轴槽（17.4 mm总长），轴承留在外置滑座；POLLEN/NECTAR两端点的COTS干涉检查通过。
-- `C06B-COTS-0.2` 已下载、哈希登记并保留 13 个 goBILDA 官方 STEP；工作装配按 DEC-0020 将每个采购 SKU 表示为一个连通实体，原始供应商多实体文件不被覆盖。
-- 官方 CAD 回读关闭了先前电机、夹具、联轴器和舵机包络假设；总包络更新为约 383.849 × 364.783 × 400.024 mm。
+- `C06B-COTS-0.3` 已下载、哈希登记并保留 13 个 goBILDA 官方 STEP；工作装配按 DEC-0021 把每个采购 SKU 的整个官方部件带入装配（9 个多实体、4 个单实体），布尔并集链已按实测否决并退役，原始供应商多实体文件不被覆盖。
+- 官方 CAD 回读关闭了先前电机、夹具、联轴器和舵机包络假设；按整体官方部件几何回读，总包络更新为约 383.849 × 364.776 × 400.024 mm。
 - 修正送料支撑颊板轴孔误切在 Y=0 的穿模缺陷；孔现分别与 Y=±62 mm 颊板和送料轴同心。
-- T06 报告 14/14 检查通过，13 个采购件工作模型实体数均为 1；项目自动测试 40/40 通过。
+- T06 报告 16/16 检查通过（含新增“未对任何采购件执行布尔并集”检查）；13 个采购件工作模型按 DEC-0021 整体带入，9 个多实体、4 个单实体；项目自动测试 40/40 通过。
+- `tools/inspect_geometry.py` 几何检验达到全通过：`R004` 共 77 项（23 项规格检查 + 54 项逐 SKU 整体部件检查）全部 `pass`，0 `fail`、0 `unresolved`，退出码 0，用时 1483 s；报告见 `cad/output/inspection/t06_launcher_R004.json`。
+- `R003` 暴露的 3 项 `unresolved` 根因是 `gecko_flywheel_*`、`sonic_hub_*`、`bearing_insert_*` 三类采购件的装配命名未携带 SKU，自动检查按 SKU 匹配落空（顺带导致 `1908-0025-0032` 只被检查到一个放置位）；已把 SKU 补进这三类命名并同步更新规格引用，自动检查由 33 项增至 54 项，每个 SKU 的全部放置位都被覆盖。
+- 几何检验工具按 `AI_Long_Running_Process_No_Output_Guide.md` 改造：阶段日志、20 s 心跳、`--progress-file` 进度文件与显式 flush，STEP 回读检查细分导出/回读/比对子阶段，使长时间无输出的运行可被判为 ACTIVE 而非卡死。
 
 - `KEI16-FLIPOUT-COTS-0.2` 已把占位传动替换为 goBILDA/REV COTS 规格：312 rpm 单电机、24T:24T 斜齿轮、两段 14T/38 节链、16T:24T/460 mm HTD5 前轴带路、双弹簧/双棘爪/双硬止挡。
 - 新增可复算输入、脚本、结果和6项单元测试；重新生成展开/收纳 STEP、STL、GLB、PNG 与 JSON 报告。
@@ -205,7 +208,7 @@ S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.2 M3 OFFICIAL-CAD-DERIVED SINGLE-SOLID PACKAGING VALIDATED；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3。
 
 ## NEXT ACTION
 

@@ -4,7 +4,7 @@
 
 ## 历史初版参数
 
-以下 Ø38 mm 电机包络属于早期无 SKU 模型，已由后文 `C06B-COTS-0.2` 采购约束版本取代；保留本节仅用于追溯旧输出。
+以下 Ø38 mm 电机包络属于早期无 SKU 模型，已由后文 `C06B-COTS-0.3` 采购约束版本取代；保留本节仅用于追溯旧输出。
 
 - 发射总成相对底盘倾角：52°
 - 96 mm GripForce Gecko，单轴两片、上下共四片
@@ -28,6 +28,32 @@ python -m venv .venv-cad
 ```
 
 输出位于`cad/output/`。
+
+导入完整官方部件后，发射器的 STEP/GLB/STL 导出会达到 GB 级，因此 `cad/output/paddle_launcher_feasible_{pollen,nectar}.{step,glb,stl}` 与 `cad/output/vendor_solids/` 只保留在本地、不进版本库（见 `.gitignore`）。需要复现时设置 `T06_VENDOR_REFRESH=1` 重新从官方 STEP 派生整体部件实体。
+
+## 几何检验
+
+```powershell
+.\.venv-cad\Scripts\python.exe .\tools\inspect_geometry.py `
+  --harness t06_launcher `
+  --spec config\t06_geometry_checks.json `
+  --run-label R005 `
+  --report cad\output\inspection\t06_launcher_R005.json `
+  --progress-file tmp\inspect_progress_R005.json `
+  --log-file tmp\inspect_R005.log
+```
+
+报告对每项检查给出目标值、实测值、公差、偏差、判定、测量方法和未验证项，状态只使用 `pass` / `fail` / `not_run` / `unresolved`。一轮检验要先建整个装配再逐项测量，通常十几分钟没有文本输出，所以工具持续打印阶段行与 20 s 心跳，并同时写出两种可观测产物：
+
+- `--progress-file`：JSON 状态，含阶段、已用时间、CPU 时间、心跳与阶段计数、正在执行的检查序号和 `active` 标志；写入采用“先写临时文件再替换”，读取方不会看到半截文件。
+- `--log-file`：与终端逐行一致的运行日志，后台运行时仍然留痕，便于事后复盘静默区间。
+
+`AI_Long_Running_Process_No_Output_Guide.md` 要求把“无输出”和“无进展”分开判定。`tools/watch_long_run.py` 是对应的**只读**看护脚本：它采样状态文件、日志文件和被观察进程的 CPU 时间，按双超时给出 `RUNNING` / `SILENT_ACTIVE` / `BLOCKED` / `SUSPECTED_STALL` / `FINISHED` / `GONE`，并只报告、从不终止进程。
+
+```powershell
+.\.venv-cad\Scripts\python.exe .\tools\watch_long_run.py `
+  --progress-file tmp\inspect_progress_R005.json --log-file tmp\inspect_R005.log --once
+```
 
 ## 倾角计算假设
 
@@ -64,7 +90,7 @@ python -m venv .venv-cad
 
 `paddle_feeder_launcher.py`取消所有输送带，改用连续旋转舵机直驱的三拨杆转子。每根拨杆带独立铰轴与可更换柔性拨片，经过三段固定导槽和单向柔性挡片，将水平进入的物体连续送入52°发射通道。模型明确保留上下两根飞轮轴，每根轴安装两片96 mm Gecko轮，并补齐8 mm轴到14 mm轮芯的Sonic Hub连接。
 
-当前采购约束版本为 `C06B-COTS-0.2`：`paddle_launcher_constrained.py` 从 `config/t06_launcher_cots.json` 读取 goBILDA SKU；两台1620 rpm电机经8 mm REX联轴器分别直驱两根168 mm轴，不使用外置齿轮，并使用36 mm目录夹具与14 × 5 mm目录轴承。13 个官方 STEP 已保存在 `references/vendor/gobilda/t06/step/`；工作装配按用户要求将每个采购 SKU 合并为一个连通实体，生成规则见 `cad/t06_vendor_cad.py`。审计见 `docs/engineering/t06-opposed-flywheel-cots-audit.md`。
+当前采购约束版本为 `C06B-COTS-0.3`：`paddle_launcher_constrained.py` 从 `config/t06_launcher_cots.json` 读取 goBILDA SKU；两台1620 rpm电机经8 mm REX联轴器分别直驱两根168 mm轴，不使用外置齿轮，并使用36 mm目录夹具与14 × 5 mm目录轴承。13 个官方 STEP 已保存在 `references/vendor/gobilda/t06/step/`；工作装配按用户指示把每个采购 SKU 当作整个官方部件（DEC-0021），供应商按真实间隙分开的子实体保持分开、不做布尔并集，生成规则见 `cad/t06_vendor_solids.py`，逐 SKU 派生记录见 `config/t06_vendor_derivation.json`。审计见 `docs/engineering/t06-opposed-flywheel-cots-audit.md`。
 
 ```powershell
 .\.venv-cad\Scripts\python.exe .\cad\paddle_feeder_launcher.py

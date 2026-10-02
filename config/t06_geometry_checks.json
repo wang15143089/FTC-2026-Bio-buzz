@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-COTS-0.3",
+  "note": "Checks read the FINAL placed solids of cad/paddle_launcher_constrained.py, never the inputs that produced them.  Targets come from the requirements and config/t06_vendor_derivation.json (which measures the official goBILDA STEP), never from the part under test.  Volume is compared as the sum of the part's own solids, which is invariant under the -ANGLE placement rotation; bounding-box checks are only requested on parts whose datum axis survives that rotation (the launcher's drive axis is Y, so Y extents are rotation-invariant and discs keep their sorted envelope).  DEC-0021: a purchased part is the whole official file, so a supplier part modelled with real internal air keeps its own body count.",
+  "checks": [
+    {
+      "id": "T06-GEO-001",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 3613-0014-0096 flywheel enters the launcher as the whole official part",
+      "part": "pollen:gecko_flywheel_upper_1_3613-0014-0096",
+      "target": 95767.311,
+      "relative_tolerance": 1e-06,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "note": "target is the derived volume recorded in cad/output/vendor_solids/3613-0014-0096.json"
+    },
+    {
+      "id": "T06-GEO-002",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1309-0016-4008 Sonic Hub enters the launcher as the whole official part",
+      "part": "pollen:sonic_hub_upper_1_1309-0016-4008",
+      "target": 4203.984,
+      "relative_tolerance": 1e-06,
+      "note": "3 press-fit bodies kept whole; the Boolean chain that used to lose 29.44 mm3 is retired (DEC-0021)"
+    },
+    {
+      "id": "T06-GEO-003",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1401-0043-0036 motor clamp enters the launcher as the whole official part",
+      "part": "pollen:motor_clamp_upper_1401-0043-0036",
+      "target": 5017.813,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-004",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 4007-4008-4008 shaft coupler enters the launcher as the whole official part",
+      "part": "pollen:motor_coupler_upper_4007-4008-4008",
+      "target": 4319.845,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-005",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 5203-2402-0003 gearmotor enters the launcher as the whole official part",
+      "part": "pollen:motor_upper_5203-2402-0003",
+      "target": 50752.676,
+      "relative_tolerance": 1e-06,
+      "note": "66 supplier bodies with real 0.0289-0.05 mm separation, all kept"
+    },
+    {
+      "id": "T06-GEO-006",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1611-0514-4008 flanged bearing enters the launcher as the whole official part",
+      "part": "pollen:bearing_insert_upper_+1_1611-0514-4008",
+      "target": 524.007,
+      "relative_tolerance": 1e-06,
+      "note": "race plus two shield discs that touch at 0.0000 mm without merging"
+    },
+    {
+      "id": "T06-GEO-007",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2106-4008-1680 flywheel shaft enters the launcher as the whole official part",
+      "part": "pollen:flywheel_shaft_upper_2106-4008-1680",
+      "target": 6868.709,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-008",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2000-0025-0002 gap servo enters the launcher as the whole official part",
+      "part": "pollen:gap_servo_2000-0025-0002",
+      "target": 31109.28,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-009",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1802-0043-0001 servo frame enters the launcher as the whole official part",
+      "part": "pollen:gap_servo_frame_1802-0043-0001",
+      "target": 5932.296,
+      "relative_tolerance": 1e-06,
+      "note": "the supplier ships loose fasteners with this frame; the recorded keep rule drops those 8 bodies and the frame is the remaining single solid"
+    },
+    {
+      "id": "T06-GEO-010",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 1908-0025-0032 servo spline hub enters the launcher as the whole official part",
+      "part": "pollen:servo_spline_hub_1908-0025-0032",
+      "target": 3024.349,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-011",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2106-4008-1920 feeder shaft enters the launcher as the whole official part",
+      "part": "pollen:paddle_shaft_2106-4008-1920",
+      "target": 7886.704,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-012",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 2000-0025-0003 feeder servo enters the launcher as the whole official part",
+      "part": "pollen:paddle_cr_servo_2000-0025-0003",
+      "target": 31109.28,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-013",
+      "kind": "volume",
+      "requirement": "REQ-T06-COTS-03: the 4001-0025-4008 feeder servo coupler enters the launcher as the whole official part",
+      "part": "pollen:paddle_servo_coupler_4001-0025-4008",
+      "target": 1861.296,
+      "relative_tolerance": 1e-06
+    },
+    {
+      "id": "T06-GEO-014",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "REQ-T06-COTS-04: the flywheel shaft is the 168 mm official part; its axis is the launcher Y axis",
+      "part": "pollen:flywheel_shaft_upper_2106-4008-1680",
+      "target": 168.0,
+      "tolerance": 0.05,
+      "note": "the -ANGLE placement rotation is about Y, so the Y extent is rotation-invariant"
+    },
+    {
+      "id": "T06-GEO-015",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "REQ-T06-COTS-04: the feeder shaft is the 192 mm official part",
+      "part": "pollen:paddle_shaft_2106-4008-1920",
+      "target": 192.0,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-GEO-016",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-05: the flange bearing is the official 15 mm flange x 5 mm thick part",
+      "part": "pollen:bearing_insert_upper_+1_1611-0514-4008",
+      "target": [
+        5.0,
+        15.0,
+        15.0
+      ],
+      "tolerance": 0.05,
+      "note": "disc on the Y axis; sorted envelope is rotation-invariant"
+    },
+    {
+      "id": "T06-GEO-017",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-06: each flywheel is the official 96 mm x 24 mm Gecko wheel",
+      "part": "pollen:gecko_flywheel_upper_1_3613-0014-0096",
+      "target": [
+        24.0,
+        96.0,
+        96.0
+      ],
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-GEO-018",
+      "kind": "bbox_size",
+      "axis": "x",
+      "requirement": "REQ-T06-COTS-07: the gearmotor case is the official 37.5 mm square section",
+      "part": "pollen:motor_upper_5203-2402-0003",
+      "target": 37.5,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-GEO-019",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "REQ-T06-COTS-07: the gearmotor axial stack is the official 131.17 mm including its output shaft",
+      "part": "pollen:motor_upper_5203-2402-0003",
+      "target": 131.17,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-GEO-020",
+      "kind": "bbox_size_sorted",
+      "requirement": "REQ-T06-COTS-08: the feeder servo is the official 54.3 x 44.1 x 20.15 mm case",
+      "part": "pollen:paddle_cr_servo_2000-0025-0003",
+      "target": [
+        20.15,
+        44.1,
+        54.3
+      ],
+      "tolerance": 0.05,
+      "note": "placed without the -ANGLE rotation, so the sorted envelope is exact"
+    },
+    {
+      "id": "T06-GEO-021",
+      "kind": "group_bbox",
+      "requirement": "REQ-T06-SIZE-01: the whole launcher fits the 18 in (457.2 mm) FTC starting envelope",
+      "part": "pollen:*",
+      "target": 457.2,
+      "rule": "le",
+      "tolerance": 0.0,
+      "note": "largest bounding-box span of every placed part of the pollen configuration"
+    },
+    {
+      "id": "T06-GEO-022",
+      "kind": "group_bbox",
+      "requirement": "REQ-T06-SIZE-01: the whole launcher fits the 18 in (457.2 mm) FTC starting envelope",
+      "part": "nectar:*",
+      "target": 457.2,
+      "rule": "le",
+      "tolerance": 0.0,
+      "note": "largest bounding-box span of every placed part of the nectar configuration (widest axle spacing)"
+    },
+    {
+      "id": "T06-GEO-023",
+      "kind": "step_roundtrip",
+      "requirement": "REQ-T06-CAD-01: the exported STEP reproduces the modelled geometry",
+      "part": "nectar:*",
+      "tolerance": 0.05,
+      "relative_tolerance": 0.0001,
+      "note": "read back this assembly's own exported STEP and compare the envelope and the summed volume"
+    }
+  ],
+  "inventory_skip": [],
+  "not_verified": [
+    "Pollen and nectar foam game-piece solids are deliberately absent from this model (see cad/paddle_launcher_constrained.py), so no check here covers the projectile.",
+    "Purchased-part internal fits (press fits, bearing preload, gear backlash) are not measurable from the single combined part and are not claimed.",
+    "The -ANGLE rotation means only non-disc parts keep a rotation-invariant bounding box; quantities that would need an unrotated frame are checked by summed volume instead."
+  ],
+  "human_review": [
+    "Confirm the clamp-bore interference reported between paddle_servo_coupler and feeder_shaft (see the feasibility report interference section) is the coupler's nominal clamp bore and not a collision.",
+    "Confirm the servo frame to paddle support cheek clearance at z = 140 mm.",
+    "Accept or reject the C06B-COTS-0.3 whole-part representation before any geometry leaves candidate status."
+  ]
+}

@@ -7,6 +7,30 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = json.loads((ROOT / "config" / "t06_launcher_cots.json").read_text(encoding="utf-8"))
 REPORT = json.loads((ROOT / "cad" / "output" / "paddle_launcher_feasibility_report.json").read_text(encoding="utf-8"))
 
+#: SKUs whose official supplier file is not face-connected, with the body count
+#: of the whole part.  Facts MEASURED_FROM_OFFICIAL_CAD 2026-10-01, recorded in
+#: config/t06_vendor_derivation.json and cad/output/vendor_solids/<sku>.json.
+#: The split is the supplier's own: the 5203-2402-0003 gearmotor separates its
+#: housing shell by exactly 0.0450 mm, two plates by 0.028856 mm and the sensor
+#: magnet by 0.0500 mm, and the 1611-0514-4008 bearing's two shield discs touch
+#: the race at 0.0000 mm without ever merging.  DEC-0021 keeps each part whole,
+#: so the count below is the official count and nothing has been dropped.
+WHOLE_PART_MULTI_BODY_SKUS = {
+    "1309-0016-4008": 3,
+    "1401-0043-0036": 2,
+    "1611-0514-4008": 3,
+    "2000-0025-0002": 11,
+    "2000-0025-0003": 11,
+    "2106-4008-1680": 2,
+    "2106-4008-1920": 2,
+    "3613-0014-0096": 2,
+    "5203-2402-0003": 66,
+}
+
+#: SKUs shipped by the supplier with loose fasteners that are not the purchased
+#: part and are therefore dropped by the per-SKU keep rule.
+SKUS_WITH_DROPPED_SUPPLIER_HARDWARE = {"1802-0043-0001", "4001-0025-4008", "4007-4008-4008"}
+
 
 class T06LauncherCotsTests(unittest.TestCase):
     def test_catalog_skus_are_fixed(self):
@@ -31,11 +55,37 @@ class T06LauncherCotsTests(unittest.TestCase):
         self.assertEqual(CONFIG["external_gears"]["quantity"], 0)
         self.assertTrue(REPORT["checks"]["external_gear_count_is_zero"])
 
-    def test_each_vendor_component_is_one_solid(self):
-        counts = REPORT["vendor_component_proxy_solid_counts"]
-        self.assertEqual(set(counts), set(REPORT["official_vendor_cad_imported_skus"]))
-        self.assertTrue(all(count == 1 for count in counts.values()))
-        self.assertTrue(REPORT["checks"]["each_vendor_component_is_one_solid"])
+    def test_every_vendor_component_is_the_whole_official_part(self):
+        # DEC-0021: a purchased part is one working *part*, not necessarily one
+        # B-rep solid.  The whole official STEP is used, so a part the supplier
+        # modelled with real internal air gaps keeps its own body split.
+        bodies = REPORT["vendor_component_bodies"]
+        self.assertEqual(set(bodies), set(REPORT["official_vendor_cad_imported_skus"]))
+        self.assertEqual(
+            REPORT["vendor_whole_part_multi_body_skus"], sorted(WHOLE_PART_MULTI_BODY_SKUS)
+        )
+        for sku, item in bodies.items():
+            with self.subTest(sku=sku):
+                # The launcher carries the derived part, not a reduced proxy.
+                self.assertEqual(item["bodies"], item["derived_solid_count"])
+                # Every supplier body the keep rule retains reaches the launcher.
+                self.assertEqual(
+                    item["bodies"], item["source_step_solids"] - item["dropped_solids"]
+                )
+                # DEC-0021: no Boolean union is ever run on a purchased part.
+                self.assertFalse(item["boolean_union_attempted"])
+                if sku in WHOLE_PART_MULTI_BODY_SKUS:
+                    self.assertEqual(item["bodies"], WHOLE_PART_MULTI_BODY_SKUS[sku])
+                    self.assertEqual(item["dropped_solids"], 0)
+                    self.assertFalse(item["single_solid"])
+                else:
+                    self.assertEqual(item["bodies"], 1)
+        for sku in SKUS_WITH_DROPPED_SUPPLIER_HARDWARE:
+            with self.subTest(sku=sku):
+                self.assertGreater(bodies[sku]["dropped_solids"], 0)
+        self.assertTrue(REPORT["checks"]["every_vendor_component_is_the_whole_derived_part"])
+        self.assertTrue(REPORT["checks"]["multi_body_vendor_parts_keep_the_whole_official_file"])
+        self.assertTrue(REPORT["checks"]["no_boolean_union_is_run_on_a_vendor_part"])
 
     def test_catalog_bearing_and_shaft_dimensions_reach_report(self):
         self.assertEqual(CONFIG["shaft_bearing"]["outer_diameter_mm"], 14.0)

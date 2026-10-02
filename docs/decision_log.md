@@ -201,6 +201,17 @@
 - Impact: 13 个采购件工作代理均回读为 1 个实体，POLLEN/NECTAR 两端点干涉和 18 in 包络检查通过。该表示用于 M3 包络与运动链验证，不保留内部紧固件/花键细节，不能直接发布为制造模型；原始官方 STEP 可用于局部复核。
 - Reversible?: 是；需要审查具体内部配合时可在隔离文件中加载原始 STEP，不必改变主装配层级或删除本版本。
 - Date/version: 2026-10-01 / C06B-COTS-0.2
+- Status: SUPERSEDED 2026-10-01，由下方 DEC-0021 取代。本版本把每个 SKU 融合为"一个连通实体"的并集链已被测量否决（丢料/增料/不可承受的运行时间）。记录保留用于追溯，不删除。
+
+## DEC-0021 — T06 采购件按"整个官方部件"表示，不对供应商实体做布尔并集
+
+- Decision: `C06B-COTS-0.3` 取消"每 SKU 一个连通实体"的布尔并集链，改为把每个采购 SKU 的官方 STEP **整件**当作一个工作部件使用：官方文件是几个实体，工作部件就是几个实体（`cad/t06_vendor_solids.py` 的 `whole_part()` 返回单实体或 `Compound`，永不调用布尔并集）。只有供应商随机附带、不属于所购部件的散件才按 `config/t06_vendor_derivation.json` 的 `keep` 规则丢弃并登记。13 个 SKU 中 9 个为多实体（电机 66、两台舵机各 11、飞轮 2、轮毂 3、轴各 2、夹具 2、轴承 3），4 个为单实体。
+- Reason: 用户明确指示"把官方部件当一个整体看就行了"，即采购边界是"整件"，而不是"一个 B-rep 实体"。同时测量否决了布尔并集：一次多参数 `fuse` 处理 `1309-0016-4008` 需超过 3 min 且在执行完毕后丢失 29.44 mm³（总 4203.984 mm³），`1401-0043-0036` 反而凭空增加 3.7 mm³；OCC 还会返回 `isValid()==True` 的空结果，电机 66 个实体之间真实间隙为 0.0289–0.05 mm。并集既不可承受也不可信，并会删除用于复核的间隙证据。
+- Alternatives considered: 继续做布尔并集或改用 `unify_same_domain`（已被测量否决，会丢料/增料）；只保留最大实体（丢弃盾片、压配件等真实结构，等于未登记的近似）；在主装配中把 66 个实体提升为独立装配层级（把采购总成内部零件错误暴露为机器人 BOM 层级）。
+- Evidence/calculation: SRC-019；`cad/t06_vendor_solids.py`（`DERIVATION_VERSION=8`、`BOOLEAN_UNION_POLICY`、`VOLUME_METHOD`）；`config/t06_vendor_derivation.json`；`cad/output/vendor_solids/<sku>.json`（逐 SKU 记录来源实体数、保留数、丢弃数、空隙事实与 `boolean_union.attempted=false`）；`tools/inspect_geometry.py`；`config/t06_geometry_checks.json`。派生运行证据 `tmp/derive_whole_part.log`：13/13 SKU 成功，`derived_volume_mm3 == kept_volume_mm3` 全部成立。
+- Impact: 工作装配保留供应商的真实内部间隙，13 个采购件中 9 个为多实体，`tools/inspect_geometry.py` 的自动检查目标改为逐 SKU 的实测实体数而非统一的 1。体积不再使用 `Compound.Volume()`（OCC 把 compound 当作一个形状积分，在曲面上与自身实体之和不一致，实测差约 0.35 mm³ 且不随容差收敛），改用 `sum(Solids().Volume())`，可直接与保留输入体积比较。干涉检查、包络与导出的计算量上升（电机 66、舵机 11 个实体）；内部零件级配合仍不声明。
+- Reversible?: 是；若后续需要单实体代理，必须新增显式的表示策略并保留本记录，不得静默改动。
+- Date/version: 2026-10-01 / C06B-COTS-0.3
 
 ```text
 Decision:

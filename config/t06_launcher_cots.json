@@ -1,11 +1,11 @@
 {
   "schema_version": "0.2",
-  "design_id": "C06B-COTS-0.2",
+  "design_id": "C06B-COTS-0.3",
   "module": "T06",
   "catalog_checked_date": "2026-10-01",
   "official_cad_manifest": "references/vendor/gobilda/t06/manifest.json",
   "official_cad_status": "KNOWN_VENDOR_CAD_IMPORTED",
-  "assembly_representation": "ONE_CONNECTED_SOLID_PER_SKU_FROM_OFFICIAL_CAD_DIMENSIONS",
+  "assembly_representation": "WHOLE_OFFICIAL_PART_PER_SKU_FROM_VENDOR_STEP",
   "external_gears": {
     "quantity": 0,
     "status": "KNOWN",

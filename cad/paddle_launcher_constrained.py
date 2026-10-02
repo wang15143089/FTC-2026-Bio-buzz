@@ -18,6 +18,7 @@ from cadquery import exporters
 from t06_vendor_cad import (
     CAD_FILES,
     centered_y_axis_part,
+    facts as vendor_facts,
     motor_with_output_tip,
     servo_with_output_face,
     sonic_hub as official_sonic_hub,
@@ -228,12 +229,15 @@ def build(config, half_spacing):
     assy = cq.Assembly(name=f"paddle_launcher_constrained_{config}")
     mesh, all_shapes, named = [], [], {}
 
-    def add(name, shape, color, meshable=True, verification_shape=None):
+    def add(name, shape, color, meshable=True):
         assy.add(shape, name=name, color=color)
         all_shapes.append(shape)
-        named[name] = verification_shape if verification_shape is not None else shape
+        # Interference checking, the STL mesh and the geometry-inspection harness
+        # all read the real derived solid now.  A low-detail stand-in here could
+        # hide a collision, so every vendor part is checked as purchased.
+        named[name] = shape
         if meshable:
-            mesh.append(verification_shape if verification_shape is not None else shape)
+            mesh.append(shape)
 
     # Datum-aware chassis rails; hole pitch is 48 mm.
     for y in (-72, 72):
@@ -264,7 +268,6 @@ def build(config, half_spacing):
         f"paddle_shaft_{COTS['feeder_shaft']['sku']}",
         centered_y_axis_part(COTS["feeder_shaft"]["sku"], PADDLE_CENTER),
         C["shaft"],
-        verification_shape=cyl_y(6.15, PADDLE_SHAFT_L, PADDLE_CENTER),
     )
     for name, shape, color in paddle_parts():
         add(name, shape, color)
@@ -279,7 +282,6 @@ def build(config, half_spacing):
         f"paddle_cr_servo_{COTS['feeder_servo']['sku']}",
         feeder_servo,
         C["servo"],
-        verification_shape=box(54.3, 44.1, 20.15, (PADDLE_CENTER[0], 123.55, PADDLE_CENTER[2])),
     )
     block = box(58, 6, 60, (servo_center[0], 76, servo_center[2])).cut(cyl_y(8.2, 12, (servo_center[0], 76, servo_center[2])))
     for x in (-23, 23):
@@ -290,13 +292,11 @@ def build(config, half_spacing):
         f"paddle_servo_frame_{COTS['servo_frame']['sku']}",
         centered_y_axis_part(COTS["servo_frame"]["sku"], (servo_center[0], 99, servo_center[2]), largest_solid_only=True),
         C["structure"],
-        verification_shape=box(62.75, 6, 43, (servo_center[0], 99, servo_center[2])),
     )
     add(
         f"paddle_servo_coupler_{COTS['feeder_servo_coupler']['sku']}",
         centered_y_axis_part(COTS["feeder_servo_coupler"]["sku"], (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])),
         C["hub"],
-        verification_shape=cyl_y(8.3, 17, (PADDLE_CENTER[0], 94, PADDLE_CENTER[2])),
     )
 
     # Backflow fingers at the entrance of the 52-degree segment.
@@ -316,22 +316,19 @@ def build(config, half_spacing):
             f"flywheel_shaft_{label}_{COTS['flywheel_shaft']['sku']}",
             to_world(centered_y_axis_part(COTS["flywheel_shaft"]["sku"], (0, 0, n))),
             C["shaft"],
-            verification_shape=to_world(cyl_y(6.15, FLYWHEEL_SHAFT_L, (0, 0, n))),
         )
         for i, y in enumerate(WHEEL_Y, 1):
             add(
-                f"gecko_flywheel_{label}_{i}",
+                f"gecko_flywheel_{label}_{i}_{COTS['flywheel']['sku']}",
                 to_world(gecko(n, y)),
                 C["wheel"],
-                verification_shape=to_world(cyl_y(WHEEL_OD / 2, WHEEL_W, (0, y, n))),
             )
             outward = -1 if y < 0 else 1
             hub_y = y + outward * 7.0
             add(
-                f"sonic_hub_{label}_{i}",
+                f"sonic_hub_{label}_{i}_{COTS['flywheel_hub']['sku']}",
                 to_world(sonic_hub(n, y, outward)),
                 C["hub"],
-                verification_shape=to_world(cyl_y(16, 10, (0, hub_y, n))),
             )
         # Both shaft ends run in sliding bearing carriages.  The plate slot sets
         # the path; paired guide rails prevent carriage rotation.
@@ -339,10 +336,9 @@ def build(config, half_spacing):
             cy = side * 70
             add(f"bearing_carriage_{label}_{side:+d}", to_world(bearing_carriage(n, cy)), C["structure"])
             add(
-                f"bearing_insert_{label}_{side:+d}",
+                f"bearing_insert_{label}_{side:+d}_{COTS['shaft_bearing']['sku']}",
                 to_world(bearing_insert(n, cy)),
                 C["hub"],
-                verification_shape=to_world(cyl_y(7.5, BEARING_W, (0, cy, n))),
             )
             for rail_u in (-26.5, 26.5):
                 add(f"carriage_guide_{label}_{side:+d}_{rail_u:+.1f}", to_world(box(5, 10, 52, (rail_u, cy, sign * 84.5))), C["plate"])
@@ -350,14 +346,10 @@ def build(config, half_spacing):
         # clamp is bridged to the moving carriage, so alignment follows the shaft.
         motor_side = -1
         clamp_y = MOTOR_FACE_Y - MOTOR_CLAMP_L / 2
-        clamp_verification = box(43, MOTOR_CLAMP_L, 49, (0, clamp_y, n)).cut(
-            cyl_y(18.2, MOTOR_CLAMP_L + 2, (0, clamp_y, n))
-        )
         add(
             f"motor_clamp_{label}_{COTS['motor_clamp']['sku']}",
             to_world(motor_clamp(n, clamp_y)),
             C["structure"],
-            verification_shape=to_world(clamp_verification),
         )
         for u in (-17, 17):
             add(f"motor_bridge_{label}_{u:+d}", to_world(box(8, 42, 26, (u, -91, n))), C["structure"])
@@ -365,7 +357,6 @@ def build(config, half_spacing):
             f"motor_{label}_{COTS['flywheel_motor']['sku']}",
             to_world(motor_with_output_tip((0, n), MOTOR_OUTPUT_INNER_Y)),
             C["motor"],
-            verification_shape=to_world(cyl_y(18.75, 131.17, (0, MOTOR_OUTPUT_INNER_Y - 131.17 / 2, n))),
         )
         # The coupler stops 0.5 mm short of the carriage outer face while
         # retaining 7.5 mm flywheel-shaft and 9.5 mm motor-shaft engagement.
@@ -373,7 +364,6 @@ def build(config, half_spacing):
             f"motor_coupler_{label}_{COTS['shaft_coupler']['sku']}",
             to_world(centered_y_axis_part(COTS["shaft_coupler"]["sku"], (0, COUPLER_CENTER_Y, n))),
             C["hub"],
-            verification_shape=to_world(cyl_y(20.495 / 2, COUPLER_L, (0, COUPLER_CENTER_Y, n))),
         )
 
     # Real symmetric spacing mechanism on the +Y side:
@@ -423,7 +413,6 @@ def build(config, half_spacing):
         f"gap_servo_frame_{COTS['servo_frame']['sku']}",
         to_world(centered_y_axis_part(COTS["servo_frame"]["sku"], (servo_u, 89, 0), largest_solid_only=True)),
         C["plate"],
-        verification_shape=to_world(box(62.75, 6, 43, (servo_u, 89, 0))),
     )
     for u in (servo_u - 23, servo_u + 23):
         for n in (-23, 23):
@@ -432,13 +421,11 @@ def build(config, half_spacing):
         f"gap_servo_{COTS['gap_servo']['sku']}",
         to_world(servo_with_output_face(COTS["gap_servo"]["sku"], (servo_u, 0), 122.0, 1)),
         C["servo"],
-        verification_shape=to_world(box(54.3, 44.1, 20.15, (servo_u, 99.95, 0))),
     )
     add(
         f"servo_spline_hub_{COTS['gap_servo_hub']['sku']}",
         to_world(centered_y_axis_part(COTS["gap_servo_hub"]["sku"], (servo_u, 125, 0))),
         C["hub"],
-        verification_shape=to_world(cyl_y(15.99, 8, (servo_u, 125, 0))),
     )
     add("servo_crank", to_world(link_with_eyes((servo_u, 132, 0), (crank_end_x, 132, crank_end_n), 3.0, 5.0, 2.1)), C["flex"])
     add("servo_drag_link", to_world(link_with_eyes((crank_end_x, 139, crank_end_n), (crosshead_u, 139, 0), 3.0, 6.0, 2.1)), C["flex"])
@@ -562,8 +549,16 @@ def export_parts():
     exporters.export(cheek, str(PARTS / "feeder_support_cheek_reference.step"))
 
 
-def vendor_proxy_solid_counts():
-    """Prove that every purchased SKU enters the launcher as one solid."""
+def vendor_component_bodies():
+    """Measure the purchased part that actually enters the launcher, per SKU.
+
+    A purchased part is one working *part*, not necessarily one B-rep solid: the
+    whole official file is used, so a finished product whose sub-bodies the
+    supplier separated by real air arrives with that same body count (see
+    ``docs/decision_log.md`` DEC-0021).  The count is taken on the placed shape
+    and not read back from the derivation record, so any reduced proxy
+    substituted into this file would show up here as a mismatch.
+    """
     samples = {
         COTS["flywheel"]["sku"]: centered_y_axis_part(COTS["flywheel"]["sku"], (0, 0, 0)),
         COTS["flywheel_hub"]["sku"]: official_sonic_hub((0, 0, 0)),
@@ -579,7 +574,21 @@ def vendor_proxy_solid_counts():
         COTS["gap_servo_hub"]["sku"]: centered_y_axis_part(COTS["gap_servo_hub"]["sku"], (0, 0, 0)),
         COTS["feeder_servo_coupler"]["sku"]: centered_y_axis_part(COTS["feeder_servo_coupler"]["sku"], (0, 0, 0)),
     }
-    return {sku: len(shape.Solids()) for sku, shape in samples.items()}
+    measured = {}
+    for sku, shape in samples.items():
+        record = vendor_facts(sku)
+        measured[sku] = {
+            "bodies": len(shape.Solids()),
+            "derived_solid_count": record["derived_solid_count"],
+            "single_solid": record["single_solid"],
+            "keep": record["policy"].get("keep"),
+            "source_step_solids": record["source_step_solids"],
+            "dropped_solids": record["dropped_solids"],
+            "boolean_union_attempted": record.get("boolean_union", {}).get("attempted"),
+            "derivation_version": record["derivation_version"],
+            "source_step_sha256": record["source_step_sha256"],
+        }
+    return measured
 
 
 def export_all():
@@ -610,7 +619,7 @@ def export_all():
     motor_shaft_engagement = MOTOR_OUTPUT_INNER_Y - coupler_outer_y
     shaft_tip_gap = FLYWHEEL_SHAFT_MOTOR_END_Y - MOTOR_OUTPUT_INNER_Y
     coupler_carriage_clearance = carriage_outer_y - coupler_inner_y
-    proxy_solid_counts = vendor_proxy_solid_counts()
+    vendor_bodies = vendor_component_bodies()
     report = {
         "coordinate_system": "X-Y chassis plane; +Z upward",
         "game_piece_geometry_included": False,
@@ -622,7 +631,10 @@ def export_all():
         "official_vendor_cad_manifest": COTS["official_cad_manifest"],
         "official_vendor_cad_imported_skus": sorted(CAD_FILES),
         "vendor_component_representation": COTS["assembly_representation"],
-        "vendor_component_proxy_solid_counts": proxy_solid_counts,
+        "vendor_component_bodies": vendor_bodies,
+        "vendor_whole_part_multi_body_skus": sorted(
+            sku for sku, item in vendor_bodies.items() if item["bodies"] != 1
+        ),
         "catalog_components": COTS,
         "drive_axial_stack_mm": {
             "flywheel_shaft_motor_end_y": FLYWHEEL_SHAFT_MOTOR_END_Y,
@@ -664,7 +676,24 @@ def export_all():
                 if isinstance(item, dict) and key != "external_gears"
             ),
             "all_official_vendor_cad_files_present": all(path.is_file() for path in CAD_FILES.values()),
-            "each_vendor_component_is_one_solid": all(count == 1 for count in proxy_solid_counts.values()),
+            "every_vendor_component_is_the_whole_derived_part": all(
+                item["bodies"] == item["derived_solid_count"] for item in vendor_bodies.values()
+            ),
+            "multi_body_vendor_parts_keep_the_whole_official_file": all(
+                # Every supplier body the keep rule retains must reach the launcher:
+                # the placed count is the official file minus the loose fasteners the
+                # part does not include, never a reduced proxy (DEC-0021).
+                item["bodies"] == item["source_step_solids"] - item["dropped_solids"]
+                for item in vendor_bodies.values()
+            ),
+            "no_boolean_union_is_run_on_a_vendor_part": all(
+                # DEC-0021: a purchased part is kept whole.  Measured 2026-10-01, one
+                # multi-argument fuse of 1309-0016-4008 needed over 3 min and still
+                # lost 29.44 mm3 of its 4203.984 mm3, and 1401-0043-0036 invented
+                # 3.7 mm3, so the Boolean chain is retired for vendor parts.
+                item["boolean_union_attempted"] is False
+                for item in vendor_bodies.values()
+            ),
             "external_gear_count_is_zero": COTS["external_gears"]["quantity"] == 0,
             "coupler_engagement_at_least_7mm_each_end": min(flywheel_shaft_engagement, motor_shaft_engagement) >= 7.0,
             "coupler_clears_bearing_carriage": coupler_carriage_clearance >= 0.5,
@@ -679,7 +708,7 @@ def export_all():
         f"- 飞轮：4 个 96 × 24 mm Gecko；每根 8 mm 轴安装 2 个。",
         f"- COTS 版本：{COTS['design_id']}；目录核对日期 {COTS['catalog_checked_date']}。",
         f"- 官方 CAD：已导入 {len(CAD_FILES)} 个 goBILDA SKU；清单 `{COTS['official_cad_manifest']}`。",
-        "- 装配表示：每个 SKU 作为一个由官方 CAD 尺寸派生的连通实体；原始多实体 STEP 仅作供应商证据。",
+        f"- 装配表示：{COTS['assembly_representation']}；供应商按真实间隙分开的子实体保持分开，不强行融合、不丢料。",
         f"- 飞轮直驱：2 × {COTS['flywheel_motor']['sku']}，无外置啮合齿轮。",
         f"- 电机夹具/联轴器：{COTS['motor_clamp']['sku']} / {COTS['shaft_coupler']['sku']}。",
         f"- 轴/轴承：{COTS['flywheel_shaft']['sku']}（{FLYWHEEL_SHAFT_L:.0f} mm）/ {COTS['shaft_bearing']['sku']}（Ø{BEARING_OD:.0f} × {BEARING_W:.0f} mm）。", "",

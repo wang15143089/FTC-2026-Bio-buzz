@@ -38,6 +38,18 @@
 - Git 密码、令牌和私钥不得写入聊天、仓库、脚本或明文配置。
 - CAD、计算、仿真和测试产物必须记录输入参数版本、生成脚本与结果状态。
 
+## CAD 几何验证
+
+CAD 几何验证遵守 `AI_CAD_Python_Geometry_Inspection.md`。
+关键尺寸必须从最终几何测量，不得仅打印参数或根据截图估算。
+
+- 几何检验入口为 `tools/inspect_geometry.py`，每轮输出 JSON 报告（目标值、实测值、公差、偏差、判定、测量方法、未验证项）。
+- 状态只使用 `pass` / `fail` / `not_run` / `unresolved`；目标未给出时只报告测量值，不得擅自判定满足需求。
+- 目标值来自需求与配置，实测值来自最终实体；导出后必须回读本轮 STEP 再检查关键尺寸与体积。
+- 采购件工作模型必须从 `references/vendor/gobilda/t06/step/` 的官方 STEP 派生，不得用无来源的占位几何代替。
+- 几何检验通过后仍标为候选，需用户明确接受后才更新接受记录。
+- 长时间无输出的几何检验按 `AI_Long_Running_Process_No_Output_Guide.md` 判定：以 CPU 时间、产物与心跳等“进展证据”区分 ACTIVE / BLOCKED / STALLED，不得只因缺少文本输出就终止进程。
+
 ## Linear 规则
 
 - 非平凡问题必须包括目标、技术要求、依赖、预期输出、测试标准和当前状态。
@@ -59,6 +71,9 @@
 - `docs/validation_plan.md`：分级验证策略与验证矩阵。
 - `docs/assumptions.md`：有责任人、风险和失效条件的临时假设。
 - `docs/decision_log.md`：重要且可追溯的工程决策。
+- `AI_CAD_Python_Geometry_Inspection.md`：CAD 几何检验与修改的长期标准（工具、报告与判定规则）。
+- `AI_Long_Running_Process_No_Output_Guide.md`：长耗时无输出进程的执行与诊断标准（状态判定、双超时、可观测性）。
+- `tools/inspect_geometry.py`：几何检验入口，生成结构化 JSON 报告与失败状态。
 - `config/parameters.yaml`：全局参数的主数据源。
 - `PROJECT_STATUS.md`：当前恢复点，不作为需求或参数的第二数据源。
 
