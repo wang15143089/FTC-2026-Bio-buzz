@@ -46,3 +46,8 @@ cad/output/paddle_launcher_feasible_*.step
 cad/output/paddle_launcher_feasible_*.glb
 cad/output/paddle_launcher_feasible_*.stl
 cad/output/vendor_solids/
+
+# Motion-only simulation extract (structure removed).  Same local-only rule.
+cad/output/paddle_launcher_motion_only_*.step
+cad/output/paddle_launcher_motion_only_*.stl
+cad/output/paddle_launcher_motion_only_*.glb
