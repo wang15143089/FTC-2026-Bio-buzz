@@ -219,6 +219,22 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - ???POLLEN?MEASURED????? 185 ??????????????? 0.009 mm?????????? 383.849 ? 364.776 ? 400.024 mm ??NECTAR ?????????????? `not_run`?
 - `paddle_launcher_feasible_*` ??????????????
 
+## MOTION VERSION EXTRACT（运动版，2026-10-03）
+
+- 用户要求出「运动版」：去除马达、舵机、轮毂（Sonic hub）与联轴器，只保留拨杆（paddle rotor）和飞轮（Gecko flywheel），并加回小球从拨杆到飞轮的斜坡（与原文件逐件完全一致）；同时去掉拨杆周围的三根轴。
+- 三根「轴」经几何判定为 `paddle_hinge_1/2/3`：每根 10 mm x 100 mm 销轴，半径 r = 46.0 mm、相位 138° / 258° / 18°，与用户截图量测的圆环位置一致（KNOWN）；本轮一并剔除。
+- `cad/paddle_launcher_motion_only.py` 新增 `--profile motion_free` 档案（另有 `--no-shafts`、`--with-fingers`）。依旧复用 `paddle_launcher_constrained.build()`，逐件复制已定位实体、不重新求解位置，故相对物理位置与原文件一致。
+- 产物（KNOWN，2026-10-03 12:47–12:51）：
+  - `cad/output/paddle_launcher_motion_free_pollen.step` (169.5 MB) / `.stl` (728.1 MB)
+  - `cad/output/paddle_launcher_motion_free_nectar.step` (169.6 MB) / `.stl` (728.0 MB)
+  - `cad/output/paddle_launcher_motion_free_report.json`
+- 筛选结果：保留 31 件 / 剔除 67 件，共 38 实体。保留清单为 `gecko_flywheel_*` x4、`flywheel_shaft_*` x2、`paddle_hub`、`paddle_arm_*` x3、`paddle_blade_*` x3、`paddle_flex_tip_*` x3、送料轴 `paddle_shaft_2106-4008-1920`、`guide_floor_*` x3、`guide_roof_*` x3、`guide_wall_*` x6、`shooter_throat_*` x2。
+- 包络（CALCULATED）：POLLEN 313.352 x 192.115 x 318.275 mm；NECTAR 320.444 x 192.115 x 323.816 mm。Y 向由 364.8 mm 缩至 192.1 mm，因为支撑侧板与底轨已去除，只剩导槽（宽 114 mm）与轴（长 192 mm）。
+- STL 二进制头三角形数：POLLEN 15,268,330 / NECTAR 15,267,968，均与文件长度精确吻合（MEASURED）。
+- 回读校验脚本 `tmp/verify_motion_free.py`（临时，未入库）。
+- `paddle_launcher_feasible_*` 与 `paddle_launcher_motion_only_*` 时间戳未变，原文件未被覆盖。
+- `.gitignore` 已追加忽略 `cad/output/paddle_launcher_motion_free_*.step/.stl/.glb`。
+
 ## NEXT ACTION
 
 按 KEI-12 制作带护罩双轴安全旋转台架，先用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。

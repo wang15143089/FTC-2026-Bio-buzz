@@ -51,3 +51,8 @@ cad/output/vendor_solids/
 cad/output/paddle_launcher_motion_only_*.step
 cad/output/paddle_launcher_motion_only_*.stl
 cad/output/paddle_launcher_motion_only_*.glb
+
+# Motion version (moving parts + ball path, no actuators).  Same rule.
+cad/output/paddle_launcher_motion_free_*.step
+cad/output/paddle_launcher_motion_free_*.stl
+cad/output/paddle_launcher_motion_free_*.glb
