@@ -235,6 +235,13 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - `paddle_launcher_feasible_*` 与 `paddle_launcher_motion_only_*` 时间戳未变，原文件未被覆盖。
 - `.gitignore` 已追加忽略 `cad/output/paddle_launcher_motion_free_*.step/.stl/.glb`。
 
+## MOTION VERSION + BACKFLOW FINGERS（2026-10-03 追加）
+
+- 追加导出含止回指的版本（`--with-fingers`）：`cad/output/paddle_launcher_motion_free_fingers_{pollen,nectar}.step/.stl` 与 `paddle_launcher_motion_free_fingers_report.json`；保留 33 件 / 40 实体，包络与不含指版本一致（指件落在原包络内）。STL 三角形数 15,268,354（POLLEN）/ 15,267,992（NECTAR），与文件长度吻合。
+- 止回方式（KNOWN）：52 度导槽入口的两片单向弹性指 `one_way_finger_+1 / _-1`，位于 Y = ±38 mm，各为 38 x 1.2 x 44 mm 板片、绕 -52 度贴合斜坡（`cad/paddle_launcher_constrained.py:302-307`）。小球上行时需挤开两指，反向被指端拦住。
+- 材料决策（`docs/decision_log.md` 的 DEC-0022，ASSUMED）：实物按**标准尼龙扎带（zip tie，尼龙 6/6）**实现，仿真以悬臂薄片建模。参数记入 `config/parameters.yaml` 的 `materials.backflow_finger`：E = 2.7 GPa、nu = 0.39、rho = 1150 kg/m3、截面 4.7 x 1.14 mm，全部为 ASSUMED 通用取值，采购后须实测替换，不得据此发布结论。
+- 待验证（TBD）：两指内表面净距 74.8 mm —— POLLEN 球（名义 71 mm）约余 3.8 mm，NECTAR 球（名义 91 mm）约过盈 16 mm；指端是否真正拦到两种球的包络尚未确认，须在 T03.2 台架验证。
+
 ## NEXT ACTION
 
 按 KEI-12 制作带护罩双轴安全旋转台架，先用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。

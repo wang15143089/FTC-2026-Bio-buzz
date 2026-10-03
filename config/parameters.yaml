@@ -92,6 +92,27 @@ manufacturing:
   sliding_clearance: {value: null, unit: "mm", status: "TBD", source: null}
   press_fit_allowance: {value: null, unit: "mm", status: "TBD", source: null}
 
+materials:
+  note: "Elastic members in the launcher feed path. Values are generic datasheet ranges until a purchased sample is measured; do not release a simulation result on them."
+  backflow_finger:
+    description: "One-way / backflow finger at the entrance of the 52 deg guide segment of the C06-B launcher feed path. The C06-B assembly models it as a 38 x 1.2 x 44 mm plate proxy."
+    realisation: {value: "standard nylon cable tie (zip tie), anchored at the ramp floor and preloaded against the game piece", status: "ASSUMED", source: "user direction 2026-10-03"}
+    decision: {value: "DEC-0022", status: "KNOWN", source: "docs/decision_log.md"}
+    youngs_modulus: {value: 2.7, unit: "GPa", status: "ASSUMED", source: "generic nylon 6/6 cable-tie range 2.5-3.3 GPa; measure a purchased tie before release"}
+    poisson_ratio: {value: 0.39, unit: "1", status: "ASSUMED", source: "generic nylon 6/6"}
+    density: {value: 1150.0, unit: "kg/m3", status: "ASSUMED", source: "generic nylon 6/6"}
+    tensile_yield: {value: 70.0, unit: "MPa", status: "ASSUMED", source: "generic nylon 6/6 range 55-80 MPa"}
+    section_width: {value: 4.7, unit: "mm", status: "ASSUMED", source: "nominal 200 mm / 8 in cable tie; actual purchased tie TBD"}
+    section_thickness: {value: 1.14, unit: "mm", status: "ASSUMED", source: "nominal 200 mm / 8 in cable tie; actual purchased tie TBD"}
+    modelled_proxy:
+      length_along_ramp: {value: 38.0, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_constrained.py:305"}
+      height_off_ramp: {value: 44.0, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_constrained.py:305"}
+      thickness: {value: 1.2, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_constrained.py:305"}
+      lateral_offset_from_channel_centreline: {value: 38.0, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_constrained.py:305"}
+      inner_face_clearance_between_fingers: {value: 74.8, unit: "mm", status: "CALCULATED", source: "2 x (38.0 - 1.2/2) mm"}
+      ramp_rotation: {value: -52.0, unit: "deg", status: "CALCULATED", source: "cad/paddle_launcher_constrained.py:306"}
+      open_question: {value: "74.8 mm finger clearance passes the 71 mm POLLEN piece with about 3.8 mm total clearance but interferes with the 91 mm NECTAR piece by about 16 mm; whether the finger tips actually intercept each piece envelope is TBD", status: "TBD", source: "config/parameters.yaml gamepieces diameters vs modelled finger placement"}
+
 budgets:
   total_cost: {value: null, status: "TBD", source: null}
   module_mass_allocations: {value: {}, unit: "kg", status: "TBD", source: null}

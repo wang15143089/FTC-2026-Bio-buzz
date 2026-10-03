@@ -213,6 +213,16 @@
 - Reversible?: 是；若后续需要单实体代理，必须新增显式的表示策略并保留本记录，不得静默改动。
 - Date/version: 2026-10-01 / C06B-COTS-0.3
 
+## DEC-0022 — 拨杆出口止回指按标准尼龙扎带（zip tie）实现
+
+- Decision: `C06B-COTS-0.3` 中位于 52 度导槽入口的两个止回指（`one_way_finger_+1` / `one_way_finger_-1`）在实物上按**标准尼龙扎带（zip tie，尼龙 6/6）**实现：扎带一端固定在斜坡底面，另一端自由并预压在小球侧面上。仿真与后续计算按此材料/截面建模；M3 装配中的 38 x 1.2 x 44 mm 板片仍作为代理几何保留，不再是最终零件定义。
+- Reason: 用户 2026-10-03 明确指示"弹性就按一般 zip-tie 来写就行了，在实际运用中估计也是这么办"。扎带是 FTC 上现成、可更换、几乎零成本的单向弹性件，不需要打印件或独立铰链；建模为一个悬臂薄片即可表达止回所需的弯曲刚度。
+- Alternatives considered: 打印 PETG 柔性片（需额外打印件与装配，且打印方向影响刚度）；金属弹簧片（成本、重量与安装复杂度都更高）；刚性单向门（无弹性，靠重力复位，低速时不可靠）。以上均不保留为当前方案。
+- Evidence/calculation: `cad/paddle_launcher_constrained.py:302-307`（几何与坐标）；`cad/output/paddle_launcher_motion_free_fingers_report.json`（含止回指的导出）；`config/parameters.yaml` 的 `materials.backflow_finger`（E = 2.7 GPa、nu = 0.39、rho = 1150 kg/m3、截面 4.7 x 1.14 mm，均为 ASSUMED 通用尼龙 6/6 取值，采购后必须实测替换）；`docs/requirements.md` 与 KEI-5 的"不得回滚"要求。
+- Impact: 仿真需要把止回指当作几何非线性悬臂薄片处理，刚度来自扎带截面而不是板片代理厚度；`ASSUMED` 的材料数据不得用于发布结论，实测后方可升级。同时记录一项待验证事实：两指内表面净距 74.8 mm，POLLEN 球（名义 71 mm）约余 3.8 mm 总间隙，NECTAR 球（名义 91 mm）约过盈 16 mm；指端是否真正拦到两种球的包络仍为 `TBD`，须在 T03.2 台架上确认。
+- Reversible?: 是；若要换成打印柔性片或金属弹簧片，新增决策记录并保留本条，不得静默替换。
+- Date/version: 2026-10-03 / C06B-COTS-0.3
+
 ```text
 Decision:
 Reason:
