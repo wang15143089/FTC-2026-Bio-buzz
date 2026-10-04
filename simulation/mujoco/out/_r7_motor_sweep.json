@@ -1,0 +1,72 @@
+{
+ "R5_90": {
+  "launched": false,
+  "exit_t": null,
+  "exit_v": null,
+  "carry_rpm": 1.48,
+  "carry_T": 0.162
+ },
+ "R5_105": {
+  "launched": false,
+  "exit_t": null,
+  "exit_v": null,
+  "carry_rpm": 1.76,
+  "carry_T": 0.189
+ },
+ "R5_145": {
+  "launched": false,
+  "exit_t": null,
+  "exit_v": null,
+  "carry_rpm": null,
+  "carry_T": null
+ },
+ "R5_200": {
+  "launched": true,
+  "exit_t": 8.96,
+  "exit_v": 6.549,
+  "carry_rpm": 3.06,
+  "carry_T": 0.36
+ },
+ "R5_290": {
+  "launched": true,
+  "exit_t": 7.498,
+  "exit_v": 6.67,
+  "carry_rpm": 3.95,
+  "carry_T": 0.523
+ },
+ "R6_90": {
+  "launched": false,
+  "exit_t": null,
+  "exit_v": null,
+  "carry_rpm": 1.54,
+  "carry_T": 0.162
+ },
+ "R6_105": {
+  "launched": true,
+  "exit_t": 11.356,
+  "exit_v": 6.338,
+  "carry_rpm": 1.81,
+  "carry_T": 0.189
+ },
+ "R6_145": {
+  "launched": false,
+  "exit_t": null,
+  "exit_v": null,
+  "carry_rpm": null,
+  "carry_T": null
+ },
+ "R6_200": {
+  "launched": true,
+  "exit_t": 8.788,
+  "exit_v": 6.545,
+  "carry_rpm": 3.14,
+  "carry_T": 0.36
+ },
+ "R6_290": {
+  "launched": true,
+  "exit_t": 7.39,
+  "exit_v": 6.674,
+  "carry_rpm": 4.05,
+  "carry_T": 0.523
+ }
+}

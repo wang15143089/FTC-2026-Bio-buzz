@@ -1,0 +1,62 @@
+{
+ "R5_145": {
+  "settle": 0.346,
+  "leave": 0.872,
+  "enter": 3.326,
+  "exit": 7.048,
+  "launch": 7.488,
+  "creep": 2.98,
+  "carry": 3.722,
+  "hop_peak_v": 0.6
+ },
+ "R5_138": {
+  "settle": 0.366,
+  "leave": 1.27,
+  "enter": 3.718,
+  "exit": 7.44,
+  "launch": 7.88,
+  "creep": 3.352,
+  "carry": 3.7220000000000004,
+  "hop_peak_v": 0.599
+ },
+ "R6_145": {
+  "settle": 0.346,
+  "leave": 0.872,
+  "enter": 3.276,
+  "exit": 6.94,
+  "launch": 7.38,
+  "creep": 2.9299999999999997,
+  "carry": 3.6640000000000006,
+  "hop_peak_v": 0.6
+ },
+ "R6_138": {
+  "settle": 0.366,
+  "leave": 1.27,
+  "enter": 3.668,
+  "exit": 7.332,
+  "launch": 7.772,
+  "creep": 3.302,
+  "carry": 3.6639999999999997,
+  "hop_peak_v": 0.599
+ },
+ "R6c_145": {
+  "settle": 0.346,
+  "leave": 0.872,
+  "enter": 3.334,
+  "exit": 6.794,
+  "launch": 7.234,
+  "creep": 2.988,
+  "carry": 3.4599999999999995,
+  "hop_peak_v": 0.6
+ },
+ "R6c_138": {
+  "settle": 0.366,
+  "leave": 1.27,
+  "enter": 3.726,
+  "exit": 7.186,
+  "launch": 7.626,
+  "creep": 3.36,
+  "carry": 3.46,
+  "hop_peak_v": 0.599
+ }
+}
