@@ -1,0 +1,94 @@
+{
+  "threshold_scan": {
+    "0.80": {
+      "launched": false,
+      "minAng": 186.93,
+      "peak_used": 0.8,
+      "exit_v": 0.0
+    },
+    "0.90": {
+      "launched": false,
+      "minAng": 169.09,
+      "peak_used": 0.9,
+      "exit_v": 0.0
+    },
+    "1.00": {
+      "launched": false,
+      "minAng": 153.0,
+      "peak_used": 1.0,
+      "exit_v": 0.0
+    },
+    "1.10": {
+      "launched": false,
+      "minAng": 134.89,
+      "peak_used": 1.1,
+      "exit_v": 0.0
+    },
+    "1.20": {
+      "launched": true,
+      "minAng": 46.35,
+      "peak_used": 1.2,
+      "exit_v": 0.0
+    },
+    "1.30": {
+      "launched": true,
+      "minAng": 30.78,
+      "peak_used": 1.3,
+      "exit_v": 0.0
+    },
+    "1.40": {
+      "launched": true,
+      "minAng": 15.69,
+      "peak_used": 1.4,
+      "exit_v": 0.0
+    },
+    "1.50": {
+      "launched": true,
+      "minAng": 6.99,
+      "peak_used": 1.5,
+      "exit_v": 0.0
+    }
+  },
+  "speed_sweep": {
+    "105": {
+      "launched": false,
+      "peak": 0.8946185906266719,
+      "mean": 0.7733947283386039,
+      "t_peak": 0.3926,
+      "exit_v": 0.0,
+      "minAng": 192.39
+    },
+    "140": {
+      "launched": true,
+      "peak": 1.17791762526846,
+      "mean": 1.0216772697281722,
+      "t_peak": 0.4698,
+      "exit_v": 0.0,
+      "minAng": 56.68
+    },
+    "160": {
+      "launched": true,
+      "peak": 1.3443753312979976,
+      "mean": 1.1484648304105973,
+      "t_peak": 0.3946,
+      "exit_v": 0.0,
+      "minAng": 52.24
+    },
+    "200": {
+      "launched": true,
+      "peak": 1.7064401278694912,
+      "mean": 1.1981946373623742,
+      "t_peak": 0.4408,
+      "exit_v": 0.0,
+      "minAng": 0.03
+    },
+    "260": {
+      "launched": true,
+      "peak": 2.227909399032468,
+      "mean": 1.3441233818365887,
+      "t_peak": 0.42260000000000003,
+      "exit_v": 0.0,
+      "minAng": 0.12
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "A2 喇叭3段": {
+    "rest_r": 62.91,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true
+    }
+  },
+  "A3 喇叭5段": {
+    "rest_r": 62.91,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true
+    }
+  },
+  "D10 抬高10mm": {
+    "rest_r": 123.84,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true
+    }
+  },
+  "D13 抬高13mm": {
+    "rest_r": 55.59,
+    "threshold": null,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": false
+    }
+  },
+  "A3+D10": {
+    "rest_r": 123.84,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true
+    }
+  },
+  "A3+D13": {
+    "rest_r": 55.59,
+    "threshold": null,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": false
+    }
+  },
+  "A3+D10+托板缩进": {
+    "rest_r": 123.84,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.3": false,
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true
+    }
+  }
+}

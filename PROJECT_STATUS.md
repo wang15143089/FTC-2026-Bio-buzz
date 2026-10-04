@@ -256,9 +256,30 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 更正上一轮记录（KNOWN）：先前报告的 `guide_wall_3_-1` 2133 mm³ 干涉是当时外罩挤出方向写错造成的**误报**，本轮实测为 0，侧板不必删除。
 - 删除清单：`guide_floor_1/2/3`、`guide_roof_1/2`、`guide_wall_1_±1`、`guide_wall_2_±1`、`one_way_finger_±1`；`shooter_throat_-55` 被拨杆扫掠鼓挖空至体积归零而自动丢弃。保留 23 件，含 `guide_roof_3`、`guide_wall_3_±1`、`shooter_throat_+55`。
 - 决策（`docs/decision_log.md`）：DEC-0023（同轴构造化、外罩与托板合并为单一零件）、DEC-0024（删 52° 地板与两片止回指，止回改由 5° 自滚 + 唇口楔紧承担；取代 DEC-0022 中止回指作为 V2 零件的用法，zip-tie 材料记录保留为历史）。参数记入 `config/parameters.yaml` 的 `t06_feeder_v2`。
-- 待验证（TBD）：V2 是否真能把球送进 52° 夹口并被对置双飞轮发射，尚无 MuJoCo 全流程仿真结论。
+- 待验证（TBD）：V2 是否真能把球送进 52° 夹口并被对置双飞轮发射 → 已由本轮全流程仿真关闭，见下节。
+
+## T06 POLLEN 送球段 V2 全流程仿真（2026-10-03）
+
+- 用户指令（KNOWN）：好，跑新版全流程仿真吧。
+- 方法（SIMULATED）：新增 `simulation/mujoco/pollen_v2_sim.py`（几何常量取自 `cad/paddle_launcher_feeder_redesign.py` 与 V2 报告，不依赖 CadQuery）；MuJoCo 3.14.0，timestep 2e-4 s，implicitfast，外罩以 24 段 box 链近似曲面。
+- 结论（SIMULATED）：**V2 几何具备完整送球—发射能力**。球从托板右端滚入 → 叶片在 x ≈ 113 mm 接球 → 沿内壁 241° → 142°（约 99°）→ 142° 切向出罩（球心距 52° 通道中线 ≈ 4 mm）→ 进夹口 → 出射 **6.53 m/s @ 50.2°**，同高度射程 **4.28 m**（飞轮 1620 rpm，拨杆 200 rpm）。旧几何的 52° 顶板卡点未复现。
+- 发射阶梯（SIMULATED）：810 / 1620 / 2430 rpm → 3.60 / 6.53 / 8.67 m/s，射程 1.29 / 4.28 / 7.49 m；出口速度/轮缘线速度 = 0.80，与 V1 的 `FINDINGS_zh.md` 一致 → V2 未损失发射性能。
+- 拨杆转速门槛（SIMULATED，本轮关键新发现）：球已在唇口停位时 ≥ 105 rpm（100 rpm 卡在 182°）；球从托板进料时 140 rpm 仅 2/8 成功、**200 rpm 8/8 成功** → **推荐拨杆 ≥ 200 rpm（3.3 rev/s）**。
+- 风险（ASSUMED，必须关闭）：拨杆力矩用 forcerange ±1.5 N·m 的速度执行器近似，是转速门槛结论的最大不确定来源；叶片按刚体建模，未含 zip-tie 弹性。舵机在 200 rpm 处的可用扭矩未经确认前，不得把送球可靠性写入制造结论。
+- 产物（KNOWN）：`simulation/mujoco/out/FINDINGS_v2_zh.md`、`v2_fullflow_zh.png`、`v2_flywheel_ladder_zh.png`、`trace_v2_*.json`、`summary_v2_*.json`。父级 CAD 与既有导出均未改动。
+
+## T06 POLLEN V2 舵机选型校核与接触几何分析（2026-10-03）
+
+- 用户指令（KNOWN）：核对 REV SRS V2 舵机规格是否满足 V2 送球段要求；若不满足，给出改善接触几何的方法。
+- 舵机规格（KNOWN，用户提供规格图）：SRS V2 Balanced 6 V / 7.4 V → 13.5 / 16.7 kg·cm，0.14 / 0.12 s/60°；SRS V2 UltraSpeed 6 V / 7.4 V → 5.6 / 6.2 kg·cm，0.043 / 0.035 s/60°。换算 @7.4 V：Balanced 堵转 1.638 N·m、空载 83.3 rpm；UltraSpeed 堵转 0.608 N·m、空载 285.7 rpm。
+- 送球需求（SIMULATED，本轮实测）：拨杆力矩门槛 ≈ **1.0 N·m**，且在 140–200 rpm 区间**基本不随转速变化**（105 rpm 即使给 1.5 N·m 也不发射，属转速受限，不是 torque 受限）→ 该需求是"球被夹住后的起步/突破力"，不是惯性力。
+- 峰值扭矩（SIMULATED）：200 rpm 自由跑峰值 1.71 N·m，恰等于执行器 `kv·ω = 0.08 × 20.94 = 1.675`，即**拨杆在接球瞬间被完全卡停**；峰值与叶尖形状无关（5 种叶尖方案实测 1.69–1.72 N·m），说明缩短叶尖不能降低需求。
+- 卡停机理（SIMULATED，接触对实测）：球在停位仅由 `tray` + `shell_lip_face` 支撑（V 形硬窝，球底距托板仅 0.07 mm）；峰值帧球同时接触 `paddle_blade`、`paddle_flex`、`tray`、`shell`、`shell_lip_face`、`strut` → 球被"叶片 + 固定件"多面夹持。
+- 判定（CALCULATED）：**两型号均不满足直接驱动**。Balanced 扭矩够（1.638 > 1.0，余量 1.6×），但在该扭矩下转速仅约 22 rpm，远低于 105 rpm 下限；UltraSpeed 转速够（286 > 105），但堵转 0.608 < 1.0。所需机械功率 ≈ 1.0 N·m × 105 rpm ≈ 11 W（200 rpm 时 ≈ 21 W），该级别舵机理论极限（堵转 × 空载）仅 14–18 W、可用值约 5 W → 单只 SRS V2 无法直接驱动该送球段；需求点落在舵机扭矩—转速线段之外，减速比也无法解决。
+- 改善接触几何方案（ASSUMED，待仿真验证）：A 225° 挡墙改斜楔/圆弧过渡，让球平滑导入外罩；B 托板末端缩进 10–15 mm 并下倾，使球窝下方让空；C 叶片前缘卸载（球还在托板上的 300°–330° 区段外缘半径 ≤ 58.4）+ 端角倒圆；D 球窝改单侧斜坡"逃逸窝"，只留托板 + 与出球方向相切的斜面。
+- 产物（KNOWN）：`simulation/mujoco/out/servo_verdict_zh.png`、`contact_fix_options_zh.png`、`summary_v2_torque_detail.json`、`summary_v2_servo_req.json`、`summary_v2_blade_variants.json`。
 
 ## NEXT ACTION
 
-1. （立即）对 `C06B-POLLEN-FEEDER-V2` 跑 MuJoCo 送球全流程仿真：右端进料 → 5° 托板自滚到位 → 拨杆推球约 99° → 沿外罩内壁 225° → 142° → 进 52° 夹口 → 对置双飞轮发射，判定 V2 几何是否具备送球能力；同步把 `simulation/mujoco/pollen_launcher_sim.py` 的几何基准改到 V2。
+1. （立即）接触几何方案已逐个仿真完成，**最优组合 = 二指 θ=350/170 + A 唇口喇叭（可选 + D 6.8 mm 球窝垫）**：门槛 0.46 N·m @90 rpm（现状 0.94 N·m @120–140 rpm），稳健 2/2。几何净效果（200 rpm，二分 0.05 N·m，已现场复跑逐字复现）：A 唇口喇叭 0.72（−23%，有效）、B 托板缩进 0.94（无效，归档）、C 叶尖卸载 1.25（恶化，归档）、D 球窝抬高 6.8 为 0.68（−28%，有效）、A+D 0.64 但稳健 1/2。根因是指片布置：现状三指 120° 相位下球**滚不到唇口**，停在指片尖端平面 r=95.5 mm（设计轨道 R58.4），送球全靠叶尖拖拽。下一步：先用 `geom_options_verdict_zh.png` 与二指方案示意向用户确认，再改 `cad/paddle_launcher_feeder_redesign.py`（不得改 `cad/paddle_launcher_constrained.py`、不得覆盖原 STEP）→ 重跑 `simulation/mujoco/_work/opt_lib.py` 复核 → 制作台架实测。注意：0.42–0.46 N·m 刚好压在 SRS V2 UltraSpeed 7.4 V 线性包络边界（@90 rpm 仅 0.416 N·m），属**边界可行**，不得判定单只 SRS V2 直驱安全，必须实物验证。
 2. （并行阻塞项）按 KEI-12 制作带护罩双轴安全旋转台架，用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。

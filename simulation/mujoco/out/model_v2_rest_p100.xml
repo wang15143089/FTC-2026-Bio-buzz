@@ -1,0 +1,81 @@
+<mujoco model="t06_pollen_launcher_v2">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.0002" gravity="0 0 -9.81" integrator="implicitfast" cone="elliptic"/>
+  <default>
+    <geom friction="0.5 0.01 0.0001" solref="0.008 1" solimp="0.95 0.99 0.001"/>
+    <default class="guide"><geom friction="0.25 0.005 0.0001" rgba="0.2 0.56 0.84 0.45"/></default>
+    <default class="shell"><geom friction="0.25 0.005 0.0001" rgba="0.2 0.56 0.84 0.45"/></default>
+    <default class="flywheel"><geom friction="1.6 0.02 0.0001" solref="0.006 1" rgba="0.18 0.18 0.20 1"/></default>
+    <default class="paddle"><geom friction="0.7 0.01 0.0001" solref="0.006 1" rgba="0.92 0.54 0.12 1"/></default>
+    <default class="ball"><geom friction="1.0 0.02 0.0001" solref="0.010 1" solimp="0.9 0.95 0.002" rgba="0.95 0.85 0.15 1" priority="1"/></default>
+  </default>
+  <worldbody>
+    <light pos="0.2 -0.6 1.0" dir="-0.2 0.6 -1" diffuse="0.8 0.8 0.8"/>
+    <geom name="guide_roof_3" class="guide" type="box" size="0.035000 0.057000 0.001500" pos="-0.095699 0.000000 0.135414" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="guide_wall_3_-1" class="guide" type="box" size="0.035000 0.001500 0.055000" pos="-0.052359 -0.055500 0.101552" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="guide_wall_3_+1" class="guide" type="box" size="0.035000 0.001500 0.055000" pos="-0.052359 0.055500 0.101552" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="shooter_throat_+55" class="guide" type="box" size="0.041500 0.057000 0.001500" pos="-0.048601 0.000000 0.195696" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="shell_00" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.049085 0.000000 0.169118" quat="-0.451883 0.000000 -0.892077 0.000000"/>
+    <geom name="shell_01" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.052420 0.000000 0.164273" quat="-0.478596 0.000000 -0.878035 0.000000"/>
+    <geom name="shell_02" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.055457 0.000000 0.159236" quat="-0.504873 0.000000 -0.863194 0.000000"/>
+    <geom name="shell_03" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.058184 0.000000 0.154024" quat="-0.530690 0.000000 -0.847566 0.000000"/>
+    <geom name="shell_04" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.060592 0.000000 0.148658" quat="-0.556024 0.000000 -0.831166 0.000000"/>
+    <geom name="shell_05" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.062672 0.000000 0.143156" quat="-0.580851 0.000000 -0.814010 0.000000"/>
+    <geom name="shell_06" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.064416 0.000000 0.137539" quat="-0.605149 0.000000 -0.796112 0.000000"/>
+    <geom name="shell_07" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.065818 0.000000 0.131827" quat="-0.628896 0.000000 -0.777489 0.000000"/>
+    <geom name="shell_08" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.066873 0.000000 0.126041" quat="-0.652071 0.000000 -0.758158 0.000000"/>
+    <geom name="shell_09" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.067577 0.000000 0.120201" quat="-0.674651 0.000000 -0.738137 0.000000"/>
+    <geom name="shell_10" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.067928 0.000000 0.114330" quat="-0.696617 0.000000 -0.717443 0.000000"/>
+    <geom name="shell_11" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.067923 0.000000 0.108448" quat="-0.717949 0.000000 -0.696096 0.000000"/>
+    <geom name="shell_12" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.067564 0.000000 0.102578" quat="-0.738627 0.000000 -0.674114 0.000000"/>
+    <geom name="shell_13" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.066852 0.000000 0.096739" quat="-0.758632 0.000000 -0.651519 0.000000"/>
+    <geom name="shell_14" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.065788 0.000000 0.090954" quat="-0.777946 0.000000 -0.628331 0.000000"/>
+    <geom name="shell_15" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.064378 0.000000 0.085244" quat="-0.796552 0.000000 -0.604570 0.000000"/>
+    <geom name="shell_16" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.062626 0.000000 0.079630" quat="-0.814432 0.000000 -0.580259 0.000000"/>
+    <geom name="shell_17" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.060538 0.000000 0.074131" quat="-0.831571 0.000000 -0.555419 0.000000"/>
+    <geom name="shell_18" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.058122 0.000000 0.068768" quat="-0.847952 0.000000 -0.530073 0.000000"/>
+    <geom name="shell_19" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.055387 0.000000 0.063561" quat="-0.863561 0.000000 -0.504245 0.000000"/>
+    <geom name="shell_20" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.052343 0.000000 0.058528" quat="-0.878383 0.000000 -0.477957 0.000000"/>
+    <geom name="shell_21" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.049001 0.000000 0.053688" quat="-0.892405 0.000000 -0.451235 0.000000"/>
+    <geom name="shell_22" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.045373 0.000000 0.049059" quat="-0.905615 0.000000 -0.424101 0.000000"/>
+    <geom name="shell_23" class="shell" type="box" size="0.003971 0.054000 0.003500" pos="-0.041473 0.000000 0.044656" quat="-0.918000 0.000000 -0.396581 0.000000"/>
+    <geom name="shell_lip_face" class="shell" type="box" size="0.003500 0.054000 0.001500" pos="-0.039425 0.000000 0.042545" quat="-0.382683 0.000000 -0.923880 0.000000"/>
+    <geom name="shell_exit_face" class="shell" type="box" size="0.003500 0.054000 0.001500" pos="-0.047310 0.000000 0.171462" quat="0.325568 0.000000 -0.945519 0.000000"/>
+    <geom name="tray" class="shell" type="box" size="0.103393 0.054000 0.003000" pos="0.046739 0.000000 0.018825" quat="0.999048 0.000000 -0.043619 0.000000"/>
+    <geom name="strut" class="shell" type="box" size="0.002475 0.054000 0.015500" pos="-0.039425 0.000000 0.029500" quat="1.000000 0.000000 0.000000 0.000000"/>
+  <body name="flywheel_upper" pos="-0.010737 0.000000 0.284767">
+    <joint name="fw_upper" type="hinge" axis="0 1 0" damping="0.0002"/>
+    <geom name="fw_shaft_upper" class="flywheel" type="cylinder" size="0.004000 0.084000" quat="0.707107 -0.707107 0 0" mass="0.05"/>
+    <geom name="fw_upper_1" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 -0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+    <geom name="fw_upper_2" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+  </body>
+  <body name="flywheel_lower" pos="0.115345 0.000000 0.186261">
+    <joint name="fw_lower" type="hinge" axis="0 1 0" damping="0.0002"/>
+    <geom name="fw_shaft_lower" class="flywheel" type="cylinder" size="0.004000 0.084000" quat="0.707107 -0.707107 0 0" mass="0.05"/>
+    <geom name="fw_lower_1" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 -0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+    <geom name="fw_lower_2" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+  </body>
+  <body name="paddle" pos="0.029490 0.000000 0.111460">
+    <joint name="paddle_joint" type="hinge" axis="0 1 0" damping="0.0005"/>
+    <geom name="paddle_hub" class="paddle" type="cylinder" size="0.018000 0.017000" quat="0.707107 -0.707107 0 0" mass="0.05"/>
+    <geom name="paddle_arm_1" class="paddle" type="box" size="0.016000 0.009000 0.005000" pos="0.028532 0.000000 -0.009271" quat="0.987688 0.000000 0.156434 0.000000" mass="0.01"/>
+    <geom name="paddle_blade_1" class="paddle" type="box" size="0.006000 0.048000 0.015000" pos="0.049455 0.000000 -0.016069" quat="0.987688 0.000000 0.156434 0.000000" mass="0.02"/>
+    <geom name="paddle_flex_1" class="paddle" type="box" size="0.002000 0.048000 0.017000" pos="0.055161 0.000000 -0.017923" quat="0.987688 0.000000 0.156434 0.000000" mass="0.008"/>
+    <geom name="paddle_arm_2" class="paddle" type="box" size="0.016000 0.009000 0.005000" pos="-0.022294 0.000000 -0.020074" quat="0.358368 0.000000 0.933580 0.000000" mass="0.01"/>
+    <geom name="paddle_blade_2" class="paddle" type="box" size="0.006000 0.048000 0.015000" pos="-0.038644 0.000000 -0.034795" quat="0.358368 0.000000 0.933580 0.000000" mass="0.02"/>
+    <geom name="paddle_flex_2" class="paddle" type="box" size="0.002000 0.048000 0.017000" pos="-0.043102 0.000000 -0.038810" quat="0.358368 0.000000 0.933580 0.000000" mass="0.008"/>
+    <geom name="paddle_arm_3" class="paddle" type="box" size="0.016000 0.009000 0.005000" pos="-0.006237 0.000000 0.029344" quat="-0.629320 0.000000 0.777146 0.000000" mass="0.01"/>
+    <geom name="paddle_blade_3" class="paddle" type="box" size="0.006000 0.048000 0.015000" pos="-0.010811 0.000000 0.050864" quat="-0.629320 0.000000 0.777146 0.000000" mass="0.02"/>
+    <geom name="paddle_flex_3" class="paddle" type="box" size="0.002000 0.048000 0.017000" pos="-0.012059 0.000000 0.056733" quat="-0.629320 0.000000 0.777146 0.000000" mass="0.008"/>
+  </body>
+  <body name="ball" pos="-0.002300 0 0.053060">
+    <freejoint name="ball_free"/>
+    <geom name="ball_geom" class="ball" type="sphere" size="0.035560" mass="0.06"/>
+  </body>
+  </worldbody>
+  <actuator>
+    <velocity name="fw_upper_vel" joint="fw_upper" kv="0.5" ctrlrange="-400 400" forcerange="-3.0 3.0"/>
+    <velocity name="fw_lower_vel" joint="fw_lower" kv="0.5" ctrlrange="-400 400" forcerange="-3.0 3.0"/>
+    <velocity name="paddle_vel" joint="paddle_joint" kv="0.08" ctrlrange="-100 100" forcerange="-1.5 1.5"/>
+  </actuator>
+</mujoco>

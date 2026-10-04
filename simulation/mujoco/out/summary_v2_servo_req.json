@@ -1,0 +1,35 @@
+{
+  "105": {
+    "launched": {
+      "0.4": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": false,
+      "1.2": false,
+      "1.5": false
+    },
+    "threshold": null
+  },
+  "140": {
+    "launched": {
+      "0.4": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": true,
+      "1.2": true,
+      "1.5": true
+    },
+    "threshold": 1.0
+  },
+  "200": {
+    "launched": {
+      "0.4": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": true,
+      "1.2": true,
+      "1.5": true
+    },
+    "threshold": 1.0
+  }
+}

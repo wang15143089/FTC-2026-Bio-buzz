@@ -1,0 +1,57 @@
+[
+  {
+    "x": 120.0,
+    "launched": true,
+    "min_angle_deg": 0.12
+  },
+  {
+    "x": 125.0,
+    "launched": true,
+    "min_angle_deg": 0.07
+  },
+  {
+    "x": 130.0,
+    "launched": true,
+    "min_angle_deg": 0.1
+  },
+  {
+    "x": 135.0,
+    "launched": true,
+    "min_angle_deg": 0.02
+  },
+  {
+    "x": 140.0,
+    "launched": true,
+    "min_angle_deg": 0.08
+  },
+  {
+    "x": 145.0,
+    "launched": true,
+    "min_angle_deg": 0.04
+  },
+  {
+    "x": 150.0,
+    "launched": false,
+    "min_angle_deg": 270.52
+  },
+  {
+    "x": 155.0,
+    "launched": false,
+    "min_angle_deg": 270.5
+  },
+  {
+    "x": 160.0,
+    "launched": false,
+    "min_angle_deg": 270.48
+  },
+  {
+    "x": 165.0,
+    "launched": false,
+    "min_angle_deg": 270.45
+  },
+  {
+    "x": 170.0,
+    "launched": false,
+    "min_angle_deg": 270.43
+  }
+]

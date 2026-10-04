@@ -1,0 +1,74 @@
+{
+  "V0 现状": {
+    "rest_r_mm": 61.82,
+    "threshold": 1.0,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": true,
+      "1.2": true
+    }
+  },
+  "A 唇口喇叭导入": {
+    "rest_r_mm": 62.91,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true,
+      "1.0": true,
+      "1.2": true
+    }
+  },
+  "B 托板末端缩进": {
+    "rest_r_mm": 61.82,
+    "threshold": 1.0,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": true,
+      "1.2": true
+    }
+  },
+  "C 叶片外缘卸载": {
+    "rest_r_mm": 63.36,
+    "threshold": null,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": false,
+      "1.0": false,
+      "1.2": false
+    }
+  },
+  "D 球窝抬高6.8mm": {
+    "rest_r_mm": 61.82,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true,
+      "1.0": true,
+      "1.2": true
+    }
+  },
+  "A+B": {
+    "rest_r_mm": 62.91,
+    "threshold": 0.8,
+    "by_limit": {
+      "0.4": false,
+      "0.5": false,
+      "0.6": false,
+      "0.8": true,
+      "1.0": true,
+      "1.2": true
+    }
+  }
+}

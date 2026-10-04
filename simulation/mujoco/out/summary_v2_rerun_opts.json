@@ -1,0 +1,44 @@
+{
+  "V0 现状": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.944,
+    "robust_of2": 2
+  },
+  "A 唇口喇叭": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.725,
+    "robust_of2": 2
+  },
+  "B 托板缩进": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.944,
+    "robust_of2": 2
+  },
+  "C 叶尖卸载": {
+    "rest_r_mm": 91.72,
+    "rest_ang_deg": 327.9,
+    "threshold_Nm": 1.25,
+    "robust_of2": 2
+  },
+  "D 球窝抬高6.8": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.681,
+    "robust_of2": 2
+  },
+  "A+B": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.725,
+    "robust_of2": 2
+  },
+  "A+D": {
+    "rest_r_mm": 95.68,
+    "rest_ang_deg": 329.6,
+    "threshold_Nm": 0.637,
+    "robust_of2": 1
+  }
+}

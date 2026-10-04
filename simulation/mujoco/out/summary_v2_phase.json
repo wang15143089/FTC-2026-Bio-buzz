@@ -1,0 +1,47 @@
+{
+  "P0 三指 原相位 θ=342/222/102": {
+    "rest_x": 111.84,
+    "rest_z": 63.08,
+    "rest_r": 95.51,
+    "rest_ang": 329.6,
+    "drift_mm": 0.001,
+    "threshold_Nm": 0.944,
+    "peak_torque_Nm": 1.6
+  },
+  "P1 三指 θ=240/120/0": {
+    "rest_x": 108.57,
+    "rest_z": 62.8,
+    "rest_r": 92.85,
+    "rest_ang": 328.4,
+    "drift_mm": 0.004,
+    "threshold_Nm": 0.988,
+    "peak_torque_Nm": 1.6
+  },
+  "P2 三指 θ=154/34/274": {
+    "rest_x": 53.66,
+    "rest_z": 58.03,
+    "rest_r": 58.64,
+    "rest_ang": 294.3,
+    "drift_mm": 0.17,
+    "threshold_Nm": 1.031,
+    "peak_torque_Nm": 1.6
+  },
+  "P3 二指 θ=350/170": {
+    "rest_x": 113.47,
+    "rest_z": 63.22,
+    "rest_r": 96.85,
+    "rest_ang": 330.1,
+    "drift_mm": 0.033,
+    "threshold_Nm": 0.55,
+    "peak_torque_Nm": 1.6
+  },
+  "P4 二指 θ=350/170 + A喇叭": {
+    "rest_x": 113.47,
+    "rest_z": 63.22,
+    "rest_r": 96.85,
+    "rest_ang": 330.1,
+    "drift_mm": 0.033,
+    "threshold_Nm": 0.463,
+    "peak_torque_Nm": 1.6
+  }
+}

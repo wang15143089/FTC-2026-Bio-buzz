@@ -1,0 +1,52 @@
+{
+  "R1 二指350/170": {
+    "threshold_Nm": 0.55,
+    "robust_of2": 2,
+    "speed_ok": {
+      "75.0": false,
+      "90.0": false,
+      "105.0": true,
+      "120.0": false
+    }
+  },
+  "R2 二指350/170 + A": {
+    "threshold_Nm": 0.463,
+    "robust_of2": 2,
+    "speed_ok": {
+      "75.0": false,
+      "90.0": true,
+      "105.0": true,
+      "120.0": true
+    }
+  },
+  "R3 二指350/170 + A + D": {
+    "threshold_Nm": 0.419,
+    "robust_of2": 2,
+    "speed_ok": {
+      "75.0": false,
+      "90.0": true,
+      "105.0": true,
+      "120.0": true
+    }
+  },
+  "R4 三指原相位 + A + D": {
+    "threshold_Nm": 0.637,
+    "robust_of2": 1,
+    "speed_ok": {
+      "75.0": true,
+      "90.0": false,
+      "105.0": true,
+      "120.0": true
+    }
+  },
+  "R5 二指350/170 + D": {
+    "threshold_Nm": 0.419,
+    "robust_of2": 2,
+    "speed_ok": {
+      "75.0": false,
+      "90.0": true,
+      "105.0": true,
+      "120.0": true
+    }
+  }
+}

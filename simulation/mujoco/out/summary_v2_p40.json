@@ -1,0 +1,35 @@
+[
+  {
+    "peak_speed_m_s": 0.2563,
+    "peak_speed_t": 0.42,
+    "rest_position_mm": [
+      145.0,
+      65.947
+    ],
+    "settled_position_mm": [
+      84.808,
+      59.936
+    ],
+    "min_angle_deg": 306.66,
+    "entered_shell": false,
+    "reached_142deg_exit": false,
+    "release_speed_m_s": 0.0,
+    "max_lx_mm": -76.551,
+    "passed_nip": false,
+    "launched": false,
+    "max_z_mm": 65.98,
+    "final_mm": [
+      68.903,
+      58.502
+    ],
+    "tag": "v2_p40",
+    "paddle_rpm": 40.0,
+    "paddle_sign": 1,
+    "flywheel_rpm": 1620.0,
+    "ball_start_mm": [
+      145.0,
+      65.947
+    ],
+    "seconds": 6.0
+  }
+]

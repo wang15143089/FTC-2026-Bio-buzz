@@ -1,0 +1,392 @@
+{
+  "geom": {
+    "V0 现状": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.944,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "A 唇口喇叭": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.725,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "B 托板缩进": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.944,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "C 叶尖卸载": {
+      "rest_x_mm": 106.94,
+      "rest_z_mm": 62.64,
+      "rest_r_mm": 91.55,
+      "rest_ang_deg": 327.78,
+      "rest_drift_mm": 0.004,
+      "threshold_Nm": 1.25,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "D 球窝抬高6.8": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.681,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "A+B": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.725,
+      "approx": false,
+      "verify_pass_of3": 2
+    },
+    "A+D": {
+      "rest_x_mm": 111.87,
+      "rest_z_mm": 63.08,
+      "rest_r_mm": 95.54,
+      "rest_ang_deg": 329.58,
+      "rest_drift_mm": 0.003,
+      "threshold_Nm": 0.637,
+      "approx": false,
+      "verify_pass_of3": 1
+    }
+  },
+  "friction": {
+    "V0 u=1.0(现状)": {
+      "variant": "V0 现状",
+      "kw": {},
+      "threshold_Nm": 0.944,
+      "torque_peak_Nm": 1.6
+    },
+    "V0 u_ball=0.7": {
+      "variant": "V0 现状",
+      "kw": {
+        "mu_ball": 0.7
+      },
+      "threshold_Nm": 1.163,
+      "torque_peak_Nm": 1.6
+    },
+    "V0 u_ball=0.5": {
+      "variant": "V0 现状",
+      "kw": {
+        "mu_ball": 0.5
+      },
+      "threshold_Nm": null,
+      "torque_peak_Nm": 1.6
+    },
+    "V0 u_ball=0.35": {
+      "variant": "V0 现状",
+      "kw": {
+        "mu_ball": 0.35
+      },
+      "threshold_Nm": null,
+      "torque_peak_Nm": 1.6
+    },
+    "V0 u_shell=0.10": {
+      "variant": "V0 现状",
+      "kw": {
+        "mu_shell": 0.1
+      },
+      "threshold_Nm": 0.944,
+      "torque_peak_Nm": 1.6
+    },
+    "A u_ball=0.7": {
+      "variant": "A 唇口喇叭",
+      "kw": {
+        "mu_ball": 0.7
+      },
+      "threshold_Nm": 1.075,
+      "torque_peak_Nm": 1.6
+    },
+    "A u_ball=0.5": {
+      "variant": "A 唇口喇叭",
+      "kw": {
+        "mu_ball": 0.5
+      },
+      "threshold_Nm": null,
+      "torque_peak_Nm": 1.6
+    },
+    "A u_ball=0.35": {
+      "variant": "A 唇口喇叭",
+      "kw": {
+        "mu_ball": 0.35
+      },
+      "threshold_Nm": null,
+      "torque_peak_Nm": 1.6
+    }
+  },
+  "meta": {
+    "paddle_rpm": 200.0,
+    "flywheel_rpm": 1620.0,
+    "ball_start_x_mm": 145.0,
+    "seconds": 7.0,
+    "unit": "N*m (paddle forcerange)"
+  },
+  "shots": {
+    "v2opt_V0_0p8": {
+      "peak_speed_m_s": 0.7109,
+      "peak_speed_t": 0.418,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -3.025,
+        54.478
+      ],
+      "min_angle_deg": 154.77,
+      "entered_shell": true,
+      "reached_142deg_exit": false,
+      "release_speed_m_s": 0.0,
+      "max_lx_mm": -76.551,
+      "passed_nip": false,
+      "launched": false,
+      "max_z_mm": 136.695,
+      "final_mm": [
+        -24.052,
+        136.695
+      ],
+      "torque_peak_Nm": 0.8,
+      "torque_load_mean_Nm": 0.518,
+      "torque_load_p95_Nm": 0.8,
+      "tag": "v2opt_V0_0p8",
+      "forcerange_Nm": 0.8,
+      "option": "V0 现状"
+    },
+    "v2opt_V0_1p0": {
+      "peak_speed_m_s": 6.5994,
+      "peak_speed_t": 6.584,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -3.749,
+        56.188
+      ],
+      "min_angle_deg": 38.52,
+      "entered_shell": true,
+      "reached_142deg_exit": true,
+      "release_speed_m_s": 0.044,
+      "max_lx_mm": 2098.809,
+      "passed_nip": true,
+      "launched": true,
+      "max_z_mm": 1527.282,
+      "final_mm": [
+        1807.946,
+        1527.282
+      ],
+      "exit": {
+        "t": 6.586,
+        "speed_m_s": 6.584,
+        "angle_deg": 50.42,
+        "apex_above_exit_mm": 1312.7,
+        "range_same_height_m": 4.34
+      },
+      "torque_peak_Nm": 1.0,
+      "torque_load_mean_Nm": 0.492,
+      "torque_load_p95_Nm": 1.0,
+      "tag": "v2opt_V0_1p0",
+      "forcerange_Nm": 1.0,
+      "option": "V0 现状"
+    },
+    "v2opt_A_0p8": {
+      "peak_speed_m_s": 6.578,
+      "peak_speed_t": 6.404,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -5.524,
+        60.472
+      ],
+      "min_angle_deg": 29.62,
+      "entered_shell": true,
+      "reached_142deg_exit": true,
+      "release_speed_m_s": 0.038,
+      "max_lx_mm": 2570.772,
+      "passed_nip": true,
+      "launched": true,
+      "max_z_mm": 1573.045,
+      "final_mm": [
+        2551.356,
+        1545.397
+      ],
+      "exit": {
+        "t": 6.408,
+        "speed_m_s": 6.561,
+        "angle_deg": 50.36,
+        "apex_above_exit_mm": 1301.0,
+        "range_same_height_m": 4.31
+      },
+      "torque_peak_Nm": 0.8,
+      "torque_load_mean_Nm": 0.343,
+      "torque_load_p95_Nm": 0.8,
+      "tag": "v2opt_A_0p8",
+      "forcerange_Nm": 0.8,
+      "option": "A 唇口喇叭"
+    },
+    "v2opt_D_0p8": {
+      "peak_speed_m_s": 6.6218,
+      "peak_speed_t": 5.998,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -7.685,
+        63.993
+      ],
+      "min_angle_deg": 4.9,
+      "entered_shell": true,
+      "reached_142deg_exit": true,
+      "release_speed_m_s": 0.038,
+      "max_lx_mm": 2865.146,
+      "passed_nip": true,
+      "launched": true,
+      "max_z_mm": 1596.242,
+      "final_mm": [
+        4269.689,
+        475.099
+      ],
+      "exit": {
+        "t": 6.0,
+        "speed_m_s": 6.607,
+        "angle_deg": 50.55,
+        "apex_above_exit_mm": 1326.4,
+        "range_same_height_m": 4.37
+      },
+      "torque_peak_Nm": 0.8,
+      "torque_load_mean_Nm": 0.243,
+      "torque_load_p95_Nm": 0.8,
+      "tag": "v2opt_D_0p8",
+      "forcerange_Nm": 0.8,
+      "option": "D 球窝抬高6.8"
+    },
+    "v2opt_A_1p0": {
+      "peak_speed_m_s": 9.5484,
+      "peak_speed_t": 6.998,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -6.325,
+        61.45
+      ],
+      "min_angle_deg": 0.12,
+      "entered_shell": true,
+      "reached_142deg_exit": true,
+      "release_speed_m_s": 0.044,
+      "max_lx_mm": 2836.496,
+      "passed_nip": true,
+      "launched": true,
+      "max_z_mm": 1575.228,
+      "final_mm": [
+        5912.344,
+        -2175.634
+      ],
+      "exit": {
+        "t": 5.608,
+        "speed_m_s": 6.571,
+        "angle_deg": 50.33,
+        "apex_above_exit_mm": 1304.1,
+        "range_same_height_m": 4.33
+      },
+      "torque_peak_Nm": 1.0,
+      "torque_load_mean_Nm": 0.3,
+      "torque_load_p95_Nm": 1.0,
+      "tag": "v2opt_A_1p0",
+      "forcerange_Nm": 1.0,
+      "option": "A 唇口喇叭"
+    },
+    "v2opt_A+D_1p0": {
+      "peak_speed_m_s": 13.6598,
+      "peak_speed_t": 6.998,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -6.318,
+        61.44
+      ],
+      "min_angle_deg": 0.06,
+      "entered_shell": true,
+      "reached_142deg_exit": true,
+      "release_speed_m_s": 0.044,
+      "max_lx_mm": 2818.359,
+      "passed_nip": true,
+      "launched": true,
+      "max_z_mm": 1565.84,
+      "final_mm": [
+        7775.884,
+        -7053.748
+      ],
+      "exit": {
+        "t": 5.158,
+        "speed_m_s": 6.555,
+        "angle_deg": 50.35,
+        "apex_above_exit_mm": 1298.2,
+        "range_same_height_m": 4.3
+      },
+      "torque_peak_Nm": 1.0,
+      "torque_load_mean_Nm": 0.237,
+      "torque_load_p95_Nm": 1.0,
+      "tag": "v2opt_A+D_1p0",
+      "forcerange_Nm": 1.0,
+      "option": "A+D"
+    },
+    "v2opt_C_1p0": {
+      "peak_speed_m_s": 0.699,
+      "peak_speed_t": 1.214,
+      "rest_position_mm": [
+        145.0,
+        65.947
+      ],
+      "settled_position_mm": [
+        -2.793,
+        53.298
+      ],
+      "min_angle_deg": 166.13,
+      "entered_shell": true,
+      "reached_142deg_exit": false,
+      "release_speed_m_s": 0.0,
+      "max_lx_mm": -76.551,
+      "passed_nip": false,
+      "launched": false,
+      "max_z_mm": 125.686,
+      "final_mm": [
+        -28.135,
+        125.686
+      ],
+      "torque_peak_Nm": 1.0,
+      "torque_load_mean_Nm": 0.635,
+      "torque_load_p95_Nm": 1.0,
+      "tag": "v2opt_C_1p0",
+      "forcerange_Nm": 1.0,
+      "option": "C 叶尖卸载"
+    }
+  }
+}
