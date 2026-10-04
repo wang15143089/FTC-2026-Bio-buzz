@@ -32,6 +32,14 @@ every entry position x = 98..128 mm and settle time 1.2..5.0 s:
   NECTAR  exit t = 2.80 s, 4.63 m/s, 49.8 deg, jam 10 %
   POLLEN  exit t = 2.40 s, 5.93 m/s, 49.9 deg, jam  0 %
 
+The shell is relieved (notched) where the retained parent structure --
+``shooter_throat_+55`` and ``guide_roof_3`` -- physically runs through it, with a
+0.5 mm offset gap so the printed parts keep a real assembly clearance.  R26
+measured those overlaps at 5717.5 and 126.5 mm3.  Both sit on the OUTER side of
+the shell (r > R_IN); the ball track reaches only to R_IN, so the notch is
+invisible to the fed ball.  The generator re-checks that by sampling the ball
+along the whole carry arc after the cut.
+
 Units: millimetres.
 """
 
@@ -74,6 +82,10 @@ PIVOT_NEW = (F.PIVOT_X + DELTA * SIN_T, F.PIVOT_Z - DELTA * COS_T)
 # The opposed flywheels close along the 52 deg channel normal; the nip is the
 # rim-to-rim clearance along that direction.
 N52_3D = (pl.N52[0], 0.0, pl.N52[1])
+
+# Retained parent parts the shared shell physically overlaps (MEASURED R26).
+RELIEF_PARTS = ("shooter_throat_+55", "guide_roof_3")
+RELIEF_CLEARANCE_MM = 0.5
 
 # ball-independent overrides applied once for every variant
 F.A_LIP = A_LIP
@@ -143,6 +155,74 @@ def _axis_gap(a, b, axis):
     return min(pa) - max(pb)
 
 
+def _grow(shape, distance_mm):
+    """Grow a solid outward by ``distance_mm``; None when OCCT refuses.
+
+    The offset has to be applied per SOLID.  Feeding the part as a compound makes
+    OCCT offset the outer shell, which comes back *smaller*; the first R27 run
+    silently fell back to a zero-clearance cut because of exactly that.
+    """
+    from OCP.BRepOffset import BRepOffset_Skin
+    from OCP.BRepOffsetAPI import BRepOffsetAPI_MakeOffsetShape
+    from OCP.GeomAbs import GeomAbs_Arc
+
+    grown = []
+    for solid in shape.Solids():
+        try:
+            builder = BRepOffsetAPI_MakeOffsetShape()
+            builder.PerformByJoin(solid.wrapped, distance_mm, 1.0e-3,
+                                  BRepOffset_Skin, False, False, GeomAbs_Arc, False)
+            if not builder.IsDone():
+                return None
+            grown.append(cq.Shape.cast(builder.Shape()))
+        except Exception:
+            return None
+    if not grown:
+        return None
+    fused = grown[0]
+    for extra in grown[1:]:
+        fused = fused.fuse(extra)
+    return fused if fused.Volume() > shape.Volume() else None
+
+
+def _relieve_shell(kept):
+    """Notch the shared shell where the retained parent structure runs through it.
+
+    R26 measured the shell overlapping ``shooter_throat_+55`` by 5717.5 mm3 and
+    ``guide_roof_3`` by 126.5 mm3.  Both overlaps sit outside the ball track
+    (r > R_IN), so cutting them away is a pure assembly fix: the physical clash
+    goes away and the surface the ball rides on is untouched.  The cutter is
+    grown by RELIEF_CLEARANCE_MM first so the printed parts keep a real gap.
+    """
+    shell = kept["feeder_shell_tray"]
+    volume_before = shell.Volume()
+    removed = {}
+    clearance_used = {}
+    for name in RELIEF_PARTS:
+        part = kept.get(name)
+        if part is None:
+            continue
+        overlap = max(0.0, shell.intersect(part).Volume())
+        if overlap <= 0.0:
+            continue
+        grown = _grow(part, RELIEF_CLEARANCE_MM)
+        cutter = grown if grown is not None else part
+        clearance_used[name] = RELIEF_CLEARANCE_MM if grown is not None else 0.0
+        shell = shell.cut(cutter)
+        removed[name] = round(overlap, 4)
+    kept["feeder_shell_tray"] = shell
+    bb = shell.BoundingBox()
+    return {
+        "relief_targets_removed_mm3": removed,
+        "relief_clearance_mm": clearance_used,
+        "shell_volume_before_mm3": round(volume_before, 2),
+        "shell_volume_after_mm3": round(shell.Volume(), 2),
+        "shell_volume_removed_mm3": round(volume_before - shell.Volume(), 2),
+        "shell_bbox_after_mm": [round(v, 3) for v in (
+            bb.xmin, bb.ymin, bb.zmin, bb.xmax, bb.ymax, bb.zmax)],
+    }
+
+
 def build_variant(name):
     v = VARIANTS[name]
     ball_r, nip = v["ball_r"], v["nip"]
@@ -151,7 +231,8 @@ def build_variant(name):
     F.BALL_R = ball_r
     F.R_CARRY = R_IN - ball_r
     kept, dropped, relieved, consumed, kinematics = F.build(name, half_spacing)
-    return kept, dropped, relieved, consumed, kinematics, half_spacing
+    relief = _relieve_shell(kept)
+    return kept, dropped, relieved, consumed, kinematics, half_spacing, relief
 
 
 def main(argv=None):
@@ -182,7 +263,8 @@ def main(argv=None):
            "variants": {}}
     for name in names:
         v = VARIANTS[name]
-        kept, dropped, relieved, consumed, kinematics, half = build_variant(name)
+        (kept, dropped, relieved, consumed, kinematics, half,
+         relief) = build_variant(name)
         ball_r, nip = v["ball_r"], v["nip"]
         r_carry = R_IN - ball_r
         data = F.report(kept, dropped, relieved, consumed, kinematics)
@@ -196,11 +278,26 @@ def main(argv=None):
         data["nest_ball_clash_with_hub_mm3"] = round(
             max(0.0, ball_nest.intersect(hub).Volume()), 4)
 
+        # The fed ball rides tangent to the shell inner arc all the way up, so the
+        # relief notch must not have broken that surface.  Sample the carry arc
+        # from the 275 deg lip down to the 142 deg exit; every sample must clear.
+        sweep_samples = 19
+        sweep_max = 0.0
+        for k in range(sweep_samples):
+            ang = math.radians(A_LIP - (A_LIP - F.A_EXIT) * k / (sweep_samples - 1.0))
+            centre = cq.Vector(F.PADDLE_CX + r_carry * math.cos(ang), 0.0,
+                               F.PADDLE_CZ + r_carry * math.sin(ang))
+            probe = cq.Solid.makeSphere(ball_r, centre)
+            sweep_max = max(sweep_max, max(0.0, probe.intersect(shell).Volume()))
+        data["sweep_ball_clash_with_shell_max_mm3"] = round(sweep_max, 4)
+        data["sweep_ball_clash_samples"] = sweep_samples
+
         others = {n: s for n, s in kept.items() if n != "feeder_shell_tray"}
         hits = _clash(shell, others)
         data["shell_tray_clash_with_kept_parts_mm3"] = (
             round(max(hits.values()), 4) if hits else 0.0)
         data["shell_tray_clash_hits"] = hits
+        data["shell_relief"] = relief
 
         wheels_up = sorted(n for n in kept if n.startswith("gecko_flywheel_upper_"))
         wheels_lo = sorted(n for n in kept if n.startswith("gecko_flywheel_lower_"))
@@ -249,8 +346,11 @@ def main(argv=None):
         # ---- single-part exports for the geometry inspection round
         insp = F.OUT / "inspection"
         insp.mkdir(parents=True, exist_ok=True)
-        exporters.export(kept["paddle_hub"], str(insp / "_r26_shared_paddle_hub.step"))
-        exporters.export(shell, str(insp / "_r26_shared_feeder_shell_tray.step"))
+        exporters.export(kept["paddle_hub"], str(insp / "_r27_shared_paddle_hub.step"))
+        exporters.export(shell, str(insp / "_r27_shared_feeder_shell_tray.step"))
+        exporters.export(cq.Compound.makeCompound(
+            [shell] + [kept[n] for n in RELIEF_PARTS if n in kept]),
+            str(insp / "_r27_shared_relief_context.step"))
 
         # ---- full assembly export
         stem = F.OUT / ("paddle_launcher_feeder_a_prime_shared_%s" % name)

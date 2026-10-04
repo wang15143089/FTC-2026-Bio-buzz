@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
-  "design_id": "C06B-FEEDER-A-PRIME-SHARED-R26",
-  "note": "Round R025, delivered part file cad/output/inspection/_r25_nectar_paddle_hub.step, read back from STEP via --step.  Targets come from config/parameters.yaml (t06_feeder_a_prime_nectar) and DEC-0029, never from the part under test.  The hub is a O24 x 34 cylinder with a O8.2 through-bore, so its envelope and volume are exactly predictable and were confirmed with cad/_r25_probe.py from the parametric model before export.  Round R026: the SAME hub / shell+tray part is used for BOTH balls (DEC-0030). Targets are unchanged from DEC-0029 because the shared geometry set was inherited from the accepted NECTAR R25 part; only the rotor now carries TWO blades (330/150 deg) instead of three. Delivered files: cad/output/inspection/_r26_shared_{hub,feeder_shell_tray}.step.",
+  "design_id": "C06B-FEEDER-A-PRIME-SHARED-R27",
+  "note": "Round R025, delivered part file cad/output/inspection/_r25_nectar_paddle_hub.step, read back from STEP via --step.  Targets come from config/parameters.yaml (t06_feeder_a_prime_nectar) and DEC-0029, never from the part under test.  The hub is a O24 x 34 cylinder with a O8.2 through-bore, so its envelope and volume are exactly predictable and were confirmed with cad/_r25_probe.py from the parametric model before export.  Round R026: the SAME hub / shell+tray part is used for BOTH balls (DEC-0030). Targets are unchanged from DEC-0029 because the shared geometry set was inherited from the accepted NECTAR R25 part; only the rotor now carries TWO blades (330/150 deg) instead of three. Delivered files: cad/output/inspection/_r27_shared_{hub,feeder_shell_tray}.step. Round R027 changed ONLY the shell (exit-side relief, DEC-0031); the hub is unchanged, so every hub target below is carried over from R026.",
   "checks": [
     {
       "id": "T06-APS-HUB-001",

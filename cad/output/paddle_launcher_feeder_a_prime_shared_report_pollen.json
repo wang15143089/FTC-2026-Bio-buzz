@@ -154,7 +154,7 @@
       },
       "shell_clearance_mm": {
         "guide_floor_3": 0.0,
-        "guide_roof_3": 126.471,
+        "guide_roof_3": 0.0,
         "guide_wall_3_-1": 0.0,
         "guide_wall_3_+1": 0.0,
         "rotor_envelope_vs_guide_floor_3": 0.0,
@@ -165,7 +165,7 @@
         "rotor_envelope_vs_feeder_shell_tray": 0.0,
         "rotor_tip_corner_r_mm": 62.362
       },
-      "shell_volume_mm3": 267723.34,
+      "shell_volume_mm3": 260374.21,
       "linkage_kinematics": {
         "main_link_length_mm": 110.0,
         "crosshead_u_mm": -57.49834435270749,
@@ -174,10 +174,30 @@
       },
       "nest_ball_clash_with_shell_mm3": 0.0,
       "nest_ball_clash_with_hub_mm3": 0.0,
-      "shell_tray_clash_with_kept_parts_mm3": 5717.5021,
-      "shell_tray_clash_hits": {
-        "guide_roof_3": 126.471,
-        "shooter_throat_+55": 5717.5021
+      "sweep_ball_clash_with_shell_max_mm3": 0.0,
+      "sweep_ball_clash_samples": 19,
+      "shell_tray_clash_with_kept_parts_mm3": 0.0,
+      "shell_tray_clash_hits": {},
+      "shell_relief": {
+        "relief_targets_removed_mm3": {
+          "shooter_throat_+55": 5717.5021,
+          "guide_roof_3": 90.8564
+        },
+        "relief_clearance_mm": {
+          "shooter_throat_+55": 0.5,
+          "guide_roof_3": 0.5
+        },
+        "shell_volume_before_mm3": 267723.34,
+        "shell_volume_after_mm3": 260374.21,
+        "shell_volume_removed_mm3": 7349.13,
+        "shell_bbox_after_mm": [
+          -85.484,
+          -54.0,
+          -3.514,
+          150.261,
+          54.0,
+          180.043
+        ]
       },
       "flywheel_nip_measured_mm": 64.0,
       "flywheel_nip_measured_per_pair_mm": {
@@ -201,9 +221,9 @@
         "shell_bbox_max_mm": [
           150.261,
           54.0,
-          182.245
+          180.043
         ],
-        "shell_volume_mm3": 267723.34,
+        "shell_volume_mm3": 260374.21,
         "hub_radius_from_bbox_mm": 12.0,
         "nest_ball_centre_to_shell_surface_mm": 35.56,
         "nest_ball_centre_to_shell_surface_note": "carry radius + ball radius = shell inner arc by construction; cross-checked by a 0 mm3 ball/shell intersection"

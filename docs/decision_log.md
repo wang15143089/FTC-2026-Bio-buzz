@@ -337,3 +337,23 @@ Date/version:
 - Impact: (1) 送球段不再按球分两套 —— BOM 与装配**只剩"换飞轮垫片"这一项差异**，符合"同一个装置"的实物约定；(2) **拨杆冻结为两叶 330°/150°，且必须索引式驱动**，连续旋转不可用；(3) DEC-0029 的叶数与相位被本条取代（相切托盘 / 唇口 275° / 桨毂 Ø24 继续有效），R13–R25 的 NECTAR 文件全部保留但只作历史；(4) `cad/paddle_launcher_feeder_a_prime_nectar.py`（R25 三叶生成器）已标 SUPERSEDED，运行即退出，不再产生与仿真口径不一致的几何；(5) μ = 0.40 仍是 `ASSUMED`，台架摩擦实测项**不因此关闭**；(6) 索引式循环需舵机控制实现（停—扫—停）与实物验证，尚未关闭。
 - Reversible?: 是。叶片相位、扫掠量、停时、入料位置都是可复算输入（r28/r29/r30 三个脚本 + opt_lib 复用），任意改动都能重跑验证；旧三叶几何与 R13–R25 的文件、JSON、图全部保留，仅以本条链接取代，不删除历史。
 - Date/version: 2026-10-04 / C06B-FEEDER-A-PRIME-SHARED-R26
+
+
+## DEC-0031 — T06 共用外罩 R27 让位：对既有干涉的保留父级件做 0.5 mm 间隙布尔切除（只削球道外侧）
+
+- Decision: 在 DEC-0030 的共用送球段（R26）之上，把**保留的父级结构**穿进外罩的那部分料直接切掉，做成 **R27**：对 `shooter_throat_+55` 与 `guide_roof_3` 各自先**外扩 0.5 mm**，再用外扩体对 `feeder_shell_tray` 做布尔差。切削区全部位于球道**外侧**（r > R_IN = 107.974 mm），球实际接触的内弧面不被触碰。生成器 `cad/paddle_launcher_feeder_a_prime_shared.py` 新增常量 `RELIEF_PARTS = ("shooter_throat_+55", "guide_roof_3")`、`RELIEF_CLEARANCE_MM = 0.5`，以及报告键 `shell_relief`。
+- Reason: R26 首次把「外罩 ∩ 保留件」纳入测量后发现既有干涉 —— `shooter_throat_+55` **5717.5 mm³**、`guide_roof_3` **126.5 mm³**（两变体数值相同）。这是**继承而非回归**：R25 的 NECTAR 外罩对 `guide_roof_3` 就是 1727.2 mm³，而外罩对 `shooter_throat_+55` 此前从未测过（该键 R26 才加入）。送球功能不受影响（R29/R30 用这套几何跑通），但**实物装配时外罩会与喉道上导板相碰**，属于必须消掉的装配冲突。
+- Alternatives considered: (a) 不动几何、装配时手工修锉或加垫 —— 被否，不可复算、不可复现，且违反「几何必须能独立生成和验证」；(b) 用保留件的**原始实体**直接做布尔差（零间隙）—— 被否，打印件与外罩表面贴合、没有装配间隙，0.4 mm 层高的 PET 会互相咬死；(c) **让位件外扩 0.5 mm 后切除**（本记录采用）；(d) 移动或删除父级导板 —— 被否，父级结构不属于本模块职责，且会破坏 T06 与上级装配的接口；(e) 只切 `shooter_throat_+55`、保留 `guide_roof_3` 的 126.5 mm³ —— 被否，1 个数量级虽小但同样是实体干涉。
+- Evidence/calculation: 生成器 `cad/paddle_launcher_feeder_a_prime_shared.py`（`_grow()` / `_relieve_shell()`）；报告 `cad/output/paddle_launcher_feeder_a_prime_shared_report_{nectar,pollen}.json` 的 `variants.<v>.shell_relief`。**CAD 导出实测（MEASURED，读自导出前最终实体，两变体逐位相同）**：
+  - `relief_targets_removed_mm3` = `shooter_throat_+55` **5717.5021** / `guide_roof_3` **90.8564**；
+  - `relief_clearance_mm` 两者均为 **0.5**（说明外扩成功生效，而不是静默回退成零间隙切割）；
+  - 外罩体积 **267723.34 → 260374.21 mm³**（净削 **7349.13**，其中 90.8564 是 roof 的真实交叠、其余是喉咙件扣除重叠后的净去除量，两者之和大于净削量说明两个切削体在外罩内互相重叠）；
+  - `shell_tray_clash_with_kept_parts_mm3` = **0**、`shell_tray_clash_hits` = **{}**（R26 的 5717.5 / 126.5 归零）；
+  - 球道未受影响：`nest_ball_clash_with_shell_mm3` = 0、`nest_ball_clash_with_hub_mm3` = 0，新增的**球道扫描自检** `sweep_ball_clash_with_shell_max_mm3` = **0**（沿 142°→275° 运载弧取 19 个球心位姿，逐点求 球∩外罩 体积取最大）；
+  - `shell_bbox_after_mm` = [-85.484, -54.0, -3.514, 150.261, 54.0, **180.043**]：**只有 zmax 从 182.245 变到 180.043**（-2.202 mm，被挖掉的是外罩上缘伸出到导板上方的那一小块），xmin/xmax/ymin/ymax/zmin 全部不变；`paddle_hub_to_shell_inner_arc_measured_mm` = **95.974** 不变，`flywheel_nip_measured_mm` = NECTAR 82.000 / POLLEN 64.000 不变。
+  - **几何检验（MEASURED，`tools/inspect_geometry.py`，目标取自 `config/parameters.yaml` 而非被测件）**：`cad/output/inspection/t06_shared_R027_hub.json` = **pass 6/6**；`t06_shared_R027_shell.json` = **pass 7/7**。其中 `T06-APS-SHELL-004` 由 `bbox_max` 改为 `group_bbox` + `axis=z` + `rule=le` + `target=185.759`（= 原 182.245 加上扇形包络跨度 3.514，脚本质硬编码 `bbox_max` 为绝对值比较，无法表达 `le`）。
+  - 图 `cad/output/_t06_shared_relief_r27_zh.png`：(a) 让位上下文 3D（外罩 + 两个被让位件）；(b) 中截面俯视，标出球道内弧 107.974 / 外弧 114.974 与让位发生的位置。
+  - **教训（已写进代码注释）**：`BRepOffsetAPI_MakeOffsetShape.PerformByJoin` 必须**逐 solid** 调用。把部件作为 **compound** 喂进去，OCCT 会当成「外表面的偏移」而返回**更小**的实体（实测 compound 38596 → 20737 mm³），第一版 R27 因此静默回退成零间隙切割 —— 所以 `_grow()` 现在逐 solid 外扩并显式校验 `fused.Volume() > shape.Volume()`，报告里另存 `relief_clearance_mm` 作为「外扩真的生效」的证据。
+- Impact: (1) R26 的「实物装配时外罩会与喉道上导板相碰」开放项**关闭**，R27 的两个 STEP 变体可直接用于装配与打印；(2) 「一套机构兼容两种球」的结论不变 —— 两变体外罩体积、bbox、让位量逐位相同，差异仍**只有飞轮夹口**（89 vs 80 mm 半轴距 → 82 vs 64 mm 夹口）；(3) 让位只发生在外罩，托盘、拨杆、运载半径、唇口 275°、出口 142° 全部未动，因此 DEC-0030 的索引式驱动结论（240–260° 扫掠、停 ≥1.2 s、两叶 330°/150°）与 R28–R30 的仿真证据**继续有效**；(4) 单件导出文件名改为 `_r27_shared_paddle_hub.step` / `_r27_shared_feeder_shell_tray.step`，另加 `_r27_shared_relief_context.step`（外罩 + 两个被让位件，供可视化）；R26 的单件与检验报告保留为历史；(5) μ = 0.40 仍是 `ASSUMED`，台架摩擦实测项不因此关闭；索引式舵机控制仍未实机实现。
+- Reversible?: 是。让位由 `RELIEF_PARTS` / `RELIEF_CLEARANCE_MM` 两个常量完全参数化，改间隙或换让位件只需改常量重跑；原始外罩在脚本里由父模块重建，`_relieve_shell()` 之前的所有几何仍可单独导出；R26 的 STEP、报告与检验 JSON 全部保留，仅以本条链接取代。
+- Date/version: 2026-10-04 / C06B-FEEDER-A-PRIME-SHARED-R27

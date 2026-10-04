@@ -1,0 +1,88 @@
+[nectar] building parent assembly ...
+[shared nectar] exporting STEP -> paddle_launcher_feeder_a_prime_shared_nectar.step
+[shared nectar] exported
+{
+  "shared": {
+    "paddle_axis_mm": [
+      29.49,
+      0.0,
+      111.46
+    ],
+    "shell_inner_mm": 107.97399999999999,
+    "shell_outer_mm": 114.97399999999999,
+    "shell_sector_deg": [
+      142.0,
+      275.0
+    ],
+    "shell_wall_mm": 7.0,
+    "feeder_width_mm": 108.0,
+    "tray_x_range_mm": [
+      38.901,
+      150.0
+    ],
+    "tray_tilt_deg": 5.0,
+    "tray_pivot_mm": [
+      -0.806,
+      0.423
+    ],
+    "tray_normal_drop_delta_mm": 17.1422,
+    "tangency_point_mm": [
+      38.901,
+      3.897
+    ],
+    "paddle_hub_radius_mm": 12.0,
+    "paddle_blade_count": 2,
+    "paddle_blade_phase_deg": [
+      330.0,
+      150.0
+    ],
+    "paddle_arm_r_mm": [
+      10.0,
+      46.0
+    ],
+    "paddle_blade_r_mm": [
+      46.0,
+      58.0
+    ],
+    "paddle_flex_r_mm": [
+      56.0,
+      60.0
+    ]
+  },
+  "variants": {
+    "nectar": {
+      "file": "cad/paddle_launcher_feeder_redesign.py",
+      "parent": "cad/paddle_launcher_constrained.py (parent untouched)",
+      "units": "mm",
+      "ball_diameter_mm": 91.948,
+      "carry_radius_mm": 62.0,
+      "shell_inner_mm": 107.97399999999999,
+      "shell_outer_mm": 114.97399999999999,
+      "kept_part_count": 20,
+      "shell_volume_mm3": 260374.21,
+      "nest_ball_clash_with_shell_mm3": 0.0,
+      "nest_ball_clash_with_hub_mm3": 0.0,
+      "sweep_ball_clash_with_shell_max_mm3": 0.0,
+      "sweep_ball_clash_samples": 19,
+      "shell_tray_clash_with_kept_parts_mm3": 0.0,
+      "shell_tray_clash_hits": {},
+      "flywheel_nip_measured_mm": 82.0,
+      "flywheel_nip_target_mm": 82.0,
+      "flywheel_half_spacing_mm": 89.0,
+      "flywheel_nip_measure_method": "tessellated rim points projected on the 52 deg channel normal (tol 0.5 mm)",
+      "paddle_hub_to_shell_inner_arc_measured_mm": 95.974,
+      "paddle_hub_to_shell_inner_arc_target_mm": 95.974,
+      "paddle_hub_vs_shell_intersection_mm3": 0.0,
+      "variant": "a' shared feeder -- nectar ball",
+      "ball_mass_kg": 0.13,
+      "hub_clearance_mm": 4.026,
+      "nest_ball_centre_mm": [
+        29.49,
+        49.46
+      ],
+      "nip_note": "clearance from the nectar file: 82 = 2*89 - WHEEL_OD 96",
+      "status": "geometry_fit__shared__feed_SIMULATED_R29_R30",
+      "feed_evidence": "simulation/mujoco/out/_r29_grid.json, _r30_margin.json"
+    }
+  }
+}

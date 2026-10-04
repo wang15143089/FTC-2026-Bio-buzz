@@ -336,7 +336,21 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 几何检验（MEASURED，`tools/inspect_geometry.py`）：`cad/output/inspection/t06_shared_R026_hub.json` = **pass 6/6**；`t06_shared_R026_shell.json` = **pass 7/7**。目标值取自 `config/parameters.yaml` 与 DEC-0029/0030，未取自被测件。
 - 新测出的**既有**干涉（MEASURED，待用户决策，未关闭）：共用外罩与**保留的父级结构**仍有交叠 —— `shooter_throat_+55` **5717.5 mm³**、`guide_roof_3` **126.5 mm³**（两变体数值相同）。这是**继承而非回归**：R25 的 NECTAR 外罩对 `guide_roof_3` 就是 1727.2 mm³（R26 降到 126.5 mm³），而外罩对 `shooter_throat_+55` 此前从未测过（该键本轮才加入）。送球功能不受影响（R29/R30 就用这套几何跑通），但**实物装配时外罩会与喉道上导板相碰**。可选处理：让外罩对这一对静态件做布尔让位（不改球道，因为交叠在球道外侧 r > 108 mm）。
 
+## T06 共用外罩让位 R27：削掉与保留父级结构交叠的料（2026-10-04，DEC-0031）
+
+- 用户指令（KNOWN）：按上一轮报告的建议做布尔让位，消除外罩与保留父级结构的既有干涉。
+- 做法（KNOWN）：对 `shooter_throat_+55` 与 `guide_roof_3` 各自**外扩 0.5 mm**，再用外扩体对 `feeder_shell_tray` 做布尔差；常量 `RELIEF_PARTS`、`RELIEF_CLEARANCE_MM = 0.5`，报告键 `shell_relief`。切削区全部在球道**外侧**（r > 107.974 mm），球实际接触的内弧面完全不动。
+- 实测（MEASURED，读自导出前最终实体，NECTAR / POLLEN **逐位相同**）：`relief_targets_removed_mm3` = throat **5717.5021** / roof **90.8564**；`relief_clearance_mm` 两者均 **0.5**（外扩真的生效，没有静默回退成零间隙切割）；外罩体积 **267723.34 → 260374.21 mm³**（净削 7349.13 mm³）。
+- 干涉归零（MEASURED）：`shell_tray_clash_with_kept_parts_mm3` = **0**、`shell_tray_clash_hits` = **{}**（R26 的 5717.5 / 126.5 mm³ 归零）→ R26 记录的那项“待用户决策的既有干涉”**已关闭**。
+- 球道与接口未受影响（MEASURED）：新增球道扫描自检（沿 142°→275° 运载弧取 **19 个球心**，逐点求 球∩外罩 体积取最大）`sweep_ball_clash_with_shell_max_mm3` = **0**；`nest_ball_clash_with_shell_mm3` = 0、`nest_ball_clash_with_hub_mm3` = 0、`paddle_hub_to_shell_inner_arc_measured_mm` = **95.974**（不变）、`flywheel_nip_measured_mm` = NECTAR 82.000 / POLLEN 64.000（不变）。`shell_bbox_after_mm` 只有 **zmax 182.245 → 180.043**（−2.202 mm，挖掉的是外罩上缘伸到导板上方的那一小块），其余 5 个分界值全部不变。
+- 几何检验（MEASURED，`tools/inspect_geometry.py`，目标取自 `config/parameters.yaml`）：`cad/output/inspection/t06_shared_R027_hub.json` = **pass 6/6**；`t06_shared_R027_shell.json` = **pass 7/7**。其中 `T06-APS-SHELL-004` 由 `bbox_max` 改为 `group_bbox` + `axis=z` + `rule=le` + `target=185.759`（脚本的 `bbox_max` 硬编码绝对值比较，无法表达 `le`）。
+- 产物（KNOWN）：图 `cad/output/_t06_shared_relief_r27_zh.png`（(a) 让位上下文 3D；(b) 中截面俯视 + 球道弧）；单件 `cad/output/inspection/_r27_shared_{paddle_hub,feeder_shell_tray,relief_context}.step`；整机 `cad/output/paddle_launcher_feeder_a_prime_shared_{nectar,pollen}.step` 已按 R27 重导；报告 `cad/output/paddle_launcher_feeder_a_prime_shared_report_{nectar,pollen}.json`。R26 的单件与检验 JSON 保留为历史。
+- 教训（KNOWN）：`BRepOffsetAPI_MakeOffsetShape.PerformByJoin` 必须**逐 solid** 调用。把部件当 compound 喂进去，OCCT 会当成“外表面偏移”而返回**更小**的实体（实测 38596 → 20737 mm³），第一版 R27 因此静默回退成零间隙切割。`_grow()` 现在逐 solid 外扩并校验 `fused.Volume() > shape.Volume()`，报告里的 `relief_clearance_mm` 就是“外扩生效”的证据。
+- 仍开放（TBD）：与 R26 相同 —— μ = 0.40 仍是 `ASSUMED`（台架实测未做）；索引式舵机控制未实机实现；球质量 0.130 / 0.060 kg 仍是 `ASSUMED`。
+
 ## NEXT ACTION
+
+> **R27 已落地（2026-10-04，DEC-0031）**：共用外罩完成 0.5 mm 让位，`shooter_throat_+55` 5717.5 mm³ / `guide_roof_3` 126.5 mm³ 的交叠实测归零，几何检验 hub 6/6 + shell 7/7 通过 → 下面第 0 项里“待用户决策的既有干涉”已关闭；其余 (a)(b)(c) 三项不变。
 
 0. （当前）DEC-0030 已落实"一套机构兼容两种球"：共用送球段 CAD（R26）已导出、几何检验 spec 已就绪、两球全流程仿真 12/12 通过。按序推进：(a) **台架实测**球—打印外罩摩擦系数，把 μ 从 `ASSUMED` 升为 `MEASURED`（DEC-0028 的开放项，未关闭）；(b) 实现**索引式舵机控制**（停 ≥ 1.2 s → 一次 240–260° 扫掠 → 释放），连续旋转模式禁止使用；(c) 用索引式重跑舵机余量（NECTAR 实测堵转占比 10 %），复核 DEC-0026/0027 的余量口径。
 
