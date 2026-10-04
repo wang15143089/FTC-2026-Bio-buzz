@@ -1,0 +1,16 @@
+=== R9 ball-nest geometry sweep (mu=1.0, pocket start, 8 s) ===
+  pad step6.8 (base)       launched=True  exit_t=5.134  exit_v=6.694  carry=3.72   jam=63%   rpmMed=4.3    peak=23.36
+  pad step0                launched=False exit_t=--     exit_v=--     carry=3.72   jam=100%  rpmMed=3.4    peak=0.18
+  pad step3                launched=True  exit_t=6.288  exit_v=6.683  carry=3.72   jam=77%   rpmMed=4.1    peak=12.41
+  pad step10               launched=True  exit_t=4.784  exit_v=6.701  carry=3.72   jam=58%   rpmMed=5.0    peak=26.73
+  pad step13               launched=True  exit_t=4.436  exit_v=6.692  carry=3.6    jam=54%   rpmMed=10.1   peak=30.12
+  pad x=8                  launched=True  exit_t=4.958  exit_v=6.689  carry=3.72   jam=61%   rpmMed=4.3    peak=25.06
+  pad x=18                 launched=True  exit_t=4.872  exit_v=6.696  carry=3.72   jam=60%   rpmMed=4.3    peak=25.89
+  pad x=28                 launched=True  exit_t=4.808  exit_v=6.691  carry=3.72   jam=58%   rpmMed=4.3    peak=26.49
+  pad x=38                 launched=True  exit_t=4.854  exit_v=6.678  carry=3.72   jam=59%   rpmMed=4.3    peak=26.07
+  no pad                   launched=False exit_t=--     exit_v=--     carry=3.72   jam=100%  rpmMed=3.1    peak=0.18
+  vee 35deg                launched=False exit_t=--     exit_v=--     carry=-1.0   jam=100%  rpmMed=-0.0   peak=0.20
+  vee 45deg                launched=False exit_t=--     exit_v=--     carry=-1.0   jam=100%  rpmMed=-0.0   peak=0.18
+  vee 25deg                launched=False exit_t=--     exit_v=--     carry=-1.0   jam=100%  rpmMed=-0.0   peak=0.45
+  ramp -20                 launched=True  exit_t=5.008  exit_v=6.674  carry=3.72   jam=61%   rpmMed=5.0    peak=24.58
+  saved simulation\mujoco\out\_r9_nest.json

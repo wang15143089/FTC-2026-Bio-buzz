@@ -1,0 +1,8 @@
+=== R9 full flow, tray entry x=145, flywheel 1620 rpm, paddle 25-4 @290 rpm, 12 s ===
+  base6.8 mu0.30     mu=0.30 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9
+  base6.8 mu0.40     mu=0.40 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9
+  base6.8 mu0.50     mu=0.50 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=18%   rpmMed=281.9
+  nest20x28 mu0.30   mu=0.30 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9
+  nest20x28 mu0.40   mu=0.40 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9
+  nest20x28 mu0.50   mu=0.50 launched=False exit_t=--     exit_v=--     angle=--      apex=--      range=--     carry=-1.0   jam=18%   rpmMed=281.9
+  saved simulation\mujoco\out\_r9_full.json

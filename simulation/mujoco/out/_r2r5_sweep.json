@@ -1,0 +1,196 @@
+{
+ "R2": {
+  "sweep": [
+   {
+    "fr": 0.38,
+    "pass": [
+     false,
+     false
+    ]
+   },
+   {
+    "fr": 0.4,
+    "pass": [
+     false,
+     false
+    ]
+   },
+   {
+    "fr": 0.42,
+    "pass": [
+     false,
+     false
+    ]
+   },
+   {
+    "fr": 0.44,
+    "pass": [
+     false,
+     false
+    ]
+   },
+   {
+    "fr": 0.46,
+    "pass": [
+     true,
+     false
+    ]
+   },
+   {
+    "fr": 0.48,
+    "pass": [
+     true,
+     false
+    ]
+   },
+   {
+    "fr": 0.5,
+    "pass": [
+     true,
+     true
+    ]
+   },
+   {
+    "fr": 0.55,
+    "pass": [
+     true,
+     true
+    ]
+   }
+  ],
+  "at90": {
+   "0.42": [
+    false,
+    false
+   ],
+   "0.46": [
+    false,
+    false
+   ],
+   "0.5": [
+    false,
+    false
+   ]
+  },
+  "metrics": {
+   "rest_position_mm": [
+    145.0,
+    65.947
+   ],
+   "settled_position_mm": [
+    -9.943,
+    66.967
+   ],
+   "release_speed_m_s": 0.028,
+   "peak_speed_m_s": 6.6517,
+   "max_z_mm": 1605.789,
+   "entered_shell": true,
+   "passed_nip": true,
+   "reached_142deg_exit": true,
+   "torque_peak_Nm": 0.5,
+   "torque_load_mean_Nm": 0.078,
+   "torque_load_p95_Nm": 0.5,
+   "final_mm": [
+    3958.833,
+    834.967
+   ]
+  }
+ },
+ "R5": {
+  "sweep": [
+   {
+    "fr": 0.38,
+    "pass": [
+     false,
+     false
+    ]
+   },
+   {
+    "fr": 0.4,
+    "pass": [
+     true,
+     false
+    ]
+   },
+   {
+    "fr": 0.42,
+    "pass": [
+     true,
+     false
+    ]
+   },
+   {
+    "fr": 0.44,
+    "pass": [
+     true,
+     true
+    ]
+   },
+   {
+    "fr": 0.46,
+    "pass": [
+     true,
+     true
+    ]
+   },
+   {
+    "fr": 0.48,
+    "pass": [
+     true,
+     true
+    ]
+   },
+   {
+    "fr": 0.5,
+    "pass": [
+     true,
+     true
+    ]
+   },
+   {
+    "fr": 0.55,
+    "pass": [
+     true,
+     true
+    ]
+   }
+  ],
+  "at90": {
+   "0.42": [
+    false,
+    false
+   ],
+   "0.46": [
+    true,
+    false
+   ],
+   "0.5": [
+    true,
+    true
+   ]
+  },
+  "metrics": {
+   "rest_position_mm": [
+    145.0,
+    65.947
+   ],
+   "settled_position_mm": [
+    -9.559,
+    66.861
+   ],
+   "release_speed_m_s": 0.028,
+   "peak_speed_m_s": 9.3281,
+   "max_z_mm": 1611.71,
+   "entered_shell": true,
+   "passed_nip": true,
+   "reached_142deg_exit": true,
+   "torque_peak_Nm": 0.5,
+   "torque_load_mean_Nm": 0.08,
+   "torque_load_p95_Nm": 0.5,
+   "final_mm": [
+    5874.681,
+    -1912.836
+   ]
+  }
+ }
+}

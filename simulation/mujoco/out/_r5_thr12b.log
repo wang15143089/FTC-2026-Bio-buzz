@@ -1,0 +1,5 @@
+R5 @ 50 rpm threshold(12s) = 0.24 N.m [8s]
+R5 @120 rpm threshold(12s) = 0.289 N.m [61s]
+R5 @130 rpm threshold(12s) = 0.356 N.m [114s]
+R5 @160 rpm threshold(12s) = 0.323 N.m [167s]
+done

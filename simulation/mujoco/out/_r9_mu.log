@@ -1,0 +1,37 @@
+=== R9 ball-friction ladder (base nest, pocket start, 8 s, 25-4 @290 rpm) ===
+  mu=1.00                  launched=True  exit_t=5.134  exit_v=6.694  carry=3.72   jam=63%   rpmMed=4.3    peak=23.36
+        peak_v=23.36 m/s at t=7.998 s   final_r=28200.7 mm  max_lx=2942.0 mm
+  mu=0.80                  launched=True  exit_t=4.752  exit_v=6.45   carry=3.7    jam=58%   rpmMed=4.4    peak=27.03
+        peak_v=27.03 m/s at t=7.998 s   final_r=37260.8 mm  max_lx=2740.6 mm
+  mu=0.70                  launched=True  exit_t=4.578  exit_v=6.38   carry=3.68   jam=56%   rpmMed=4.5    peak=28.79
+        peak_v=28.79 m/s at t=7.998 s   final_r=42225.0 mm  max_lx=2676.5 mm
+  mu=0.60                  launched=True  exit_t=4.332  exit_v=6.313  carry=3.65   jam=52%   rpmMed=5.5    peak=31.31
+        peak_v=31.31 m/s at t=7.998 s   final_r=49977.2 mm  max_lx=2618.1 mm
+  mu=0.55                  launched=True  exit_t=4.198  exit_v=6.322  carry=3.62   jam=51%   rpmMed=10.2   peak=32.61
+        peak_v=32.61 m/s at t=7.998 s   final_r=54160.4 mm  max_lx=2624.3 mm
+  mu=0.50                  launched=True  exit_t=3.102  exit_v=6.281  carry=2.52   jam=37%   rpmMed=281.9  peak=43.27
+        peak_v=43.27 m/s at t=7.998 s   final_r=95185.2 mm  max_lx=2599.2 mm
+  mu=0.45                  launched=True  exit_t=0.98   exit_v=6.235  carry=0.48   jam=9%    rpmMed=281.9  peak=64.06
+        peak_v=64.06 m/s at t=7.998 s   final_r=208782.3 mm  max_lx=2555.8 mm
+  mu=0.40                  launched=True  exit_t=0.818  exit_v=6.183  carry=0.34   jam=7%    rpmMed=281.9  peak=65.68
+        peak_v=65.68 m/s at t=7.998 s   final_r=219462.6 mm  max_lx=2514.9 mm
+  mu=0.35                  launched=True  exit_t=0.68   exit_v=6.214  carry=0.24   jam=6%    rpmMed=281.9  peak=67.08
+        peak_v=67.08 m/s at t=7.998 s   final_r=229055.0 mm  max_lx=2540.6 mm
+  mu=0.30                  launched=True  exit_t=0.558  exit_v=6.036  carry=0.13   jam=4%    rpmMed=281.9  peak=68.40
+        peak_v=68.40 m/s at t=7.998 s   final_r=238139.8 mm  max_lx=2400.4 mm
+
+=== mu=0.4 trace around the speed peak (every 20 ms) ===
+   t=7.974 x=27341.69 z=-216062.78 r=217892.77 ang= 277.20 v=  65.44 vx=   3.81 vz= -65.33 lx=-153644.4
+   t=7.976 x=27349.31 z=-216193.46 r=218023.37 ang= 277.20 v=  65.46 vx=   3.81 vz= -65.35 lx=-153742.6
+   t=7.978 x=27356.93 z=-216324.18 r=218154.02 ang= 277.20 v=  65.48 vx=   3.81 vz= -65.37 lx=-153841.0
+   t=7.980 x=27364.55 z=-216454.94 r=218284.70 ang= 277.19 v=  65.50 vx=   3.81 vz= -65.39 lx=-153939.3
+   t=7.982 x=27372.17 z=-216585.74 r=218415.43 ang= 277.19 v=  65.52 vx=   3.81 vz= -65.41 lx=-154037.7
+   t=7.984 x=27379.79 z=-216716.58 r=218546.19 ang= 277.19 v=  65.54 vx=   3.81 vz= -65.43 lx=-154136.1
+   t=7.986 x=27387.41 z=-216847.46 r=218676.99 ang= 277.19 v=  65.56 vx=   3.81 vz= -65.45 lx=-154234.5
+   t=7.988 x=27395.03 z=-216978.37 r=218807.83 ang= 277.18 v=  65.58 vx=   3.81 vz= -65.47 lx=-154333.0
+   t=7.990 x=27402.65 z=-217109.33 r=218938.72 ang= 277.18 v=  65.60 vx=   3.81 vz= -65.49 lx=-154431.5
+   t=7.992 x=27410.27 z=-217240.33 r=219069.64 ang= 277.18 v=  65.62 vx=   3.81 vz= -65.51 lx=-154530.1
+   t=7.994 x=27417.89 z=-217371.36 r=219200.60 ang= 277.18 v=  65.64 vx=   3.81 vz= -65.53 lx=-154628.6
+   t=7.996 x=27425.51 z=-217502.43 r=219331.60 ang= 277.18 v=  65.66 vx=   3.81 vz= -65.55 lx=-154727.2
+   t=7.998 x=27433.13 z=-217633.55 r=219462.64 ang= 277.17 v=  65.68 vx=   3.81 vz= -65.57 lx=-154825.8
+  saved simulation/mujoco/out/_r9_mu.json

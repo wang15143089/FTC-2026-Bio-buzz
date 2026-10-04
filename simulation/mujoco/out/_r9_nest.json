@@ -1,0 +1,527 @@
+{
+ "N0 pad 6.8 (base)": {
+  "peak_speed_m_s": 23.3552,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.322,
+   66.537
+  ],
+  "min_angle_deg": 0.0,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2942.006,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1618.781,
+  "final_mm": [
+   12368.002,
+   -25246.812
+  ],
+  "exit": {
+   "t": 5.134,
+   "speed_m_s": 6.694,
+   "angle_deg": 50.14,
+   "apex_above_exit_mm": 1345.6,
+   "range_same_height_m": 4.49
+  },
+  "jam_frac": 0.629,
+  "rpm_med": 4.3,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N1 pad step0": {
+  "peak_speed_m_s": 0.1832,
+  "peak_speed_t": 0.034,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -3.766,
+   57.087
+  ],
+  "min_angle_deg": 135.8,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": -105.324,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 153.249,
+  "final_mm": [
+   -13.476,
+   153.249
+  ],
+  "jam_frac": 0.996,
+  "rpm_med": 3.4,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N1 pad step3": {
+  "peak_speed_m_s": 12.4077,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.345,
+   66.566
+  ],
+  "min_angle_deg": 0.01,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2931.173,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1613.479,
+  "final_mm": [
+   7403.587,
+   -5299.441
+  ],
+  "exit": {
+   "t": 6.288,
+   "speed_m_s": 6.683,
+   "angle_deg": 50.14,
+   "apex_above_exit_mm": 1341.3,
+   "range_same_height_m": 4.48
+  },
+  "jam_frac": 0.773,
+  "rpm_med": 4.1,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N1 pad step10": {
+  "peak_speed_m_s": 26.7286,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.334,
+   66.552
+  ],
+  "min_angle_deg": 0.06,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2942.12,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1618.531,
+  "final_mm": [
+   13867.892,
+   -33858.325
+  ],
+  "exit": {
+   "t": 4.784,
+   "speed_m_s": 6.701,
+   "angle_deg": 50.18,
+   "apex_above_exit_mm": 1350.4,
+   "range_same_height_m": 4.5
+  },
+  "jam_frac": 0.585,
+  "rpm_med": 5.0,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N1 pad step13": {
+  "peak_speed_m_s": 30.12,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.485,
+   66.727
+  ],
+  "min_angle_deg": 0.07,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2942.719,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1617.098,
+  "final_mm": [
+   15383.525,
+   -43684.79
+  ],
+  "exit": {
+   "t": 4.436,
+   "speed_m_s": 6.692,
+   "angle_deg": 50.06,
+   "apex_above_exit_mm": 1341.9,
+   "range_same_height_m": 4.49
+  },
+  "jam_frac": 0.541,
+  "rpm_med": 10.1,
+  "carry_s": 3.6,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N2 pad x=8": {
+  "peak_speed_m_s": 25.0597,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.329,
+   66.547
+  ],
+  "min_angle_deg": 0.1,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2941.932,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1618.948,
+  "final_mm": [
+   13123.979,
+   -29453.333
+  ],
+  "exit": {
+   "t": 4.958,
+   "speed_m_s": 6.689,
+   "angle_deg": 50.11,
+   "apex_above_exit_mm": 1342.6,
+   "range_same_height_m": 4.49
+  },
+  "jam_frac": 0.607,
+  "rpm_med": 4.3,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N2 pad x=18": {
+  "peak_speed_m_s": 25.8859,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.344,
+   66.564
+  ],
+  "min_angle_deg": 0.13,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2942.393,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1617.979,
+  "final_mm": [
+   13499.502,
+   -31598.254
+  ],
+  "exit": {
+   "t": 4.872,
+   "speed_m_s": 6.696,
+   "angle_deg": 50.12,
+   "apex_above_exit_mm": 1345.8,
+   "range_same_height_m": 4.5
+  },
+  "jam_frac": 0.596,
+  "rpm_med": 4.3,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N2 pad x=28": {
+  "peak_speed_m_s": 26.4934,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.325,
+   66.542
+  ],
+  "min_angle_deg": 0.01,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2942.075,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1625.365,
+  "final_mm": [
+   13717.16,
+   -33220.922
+  ],
+  "exit": {
+   "t": 4.808,
+   "speed_m_s": 6.691,
+   "angle_deg": 50.29,
+   "apex_above_exit_mm": 1350.5,
+   "range_same_height_m": 4.49
+  },
+  "jam_frac": 0.585,
+  "rpm_med": 4.3,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N2 pad x=38": {
+  "peak_speed_m_s": 26.073,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.327,
+   66.544
+  ],
+  "min_angle_deg": 0.1,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2931.207,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1613.361,
+  "final_mm": [
+   13548.83,
+   -32102.509
+  ],
+  "exit": {
+   "t": 4.854,
+   "speed_m_s": 6.678,
+   "angle_deg": 50.11,
+   "apex_above_exit_mm": 1338.1,
+   "range_same_height_m": 4.47
+  },
+  "jam_frac": 0.59,
+  "rpm_med": 4.3,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N3 no pad": {
+  "peak_speed_m_s": 0.1832,
+  "peak_speed_t": 0.034,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -3.734,
+   57.008
+  ],
+  "min_angle_deg": 136.98,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": -106.582,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 152.156,
+  "final_mm": [
+   -14.121,
+   152.156
+  ],
+  "jam_frac": 0.996,
+  "rpm_med": 3.1,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N4 vee 35deg": {
+  "peak_speed_m_s": 0.196,
+  "peak_speed_t": 0.01,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   25.887,
+   54.82
+  ],
+  "min_angle_deg": 261.34,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -158.653,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 55.09,
+  "final_mm": [
+   25.887,
+   54.82
+  ],
+  "jam_frac": 0.997,
+  "rpm_med": -0.0,
+  "carry_s": -1.0,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N5 vee 45deg": {
+  "peak_speed_m_s": 0.1832,
+  "peak_speed_t": 0.034,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   19.08,
+   54.474
+  ],
+  "min_angle_deg": 259.65,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -161.176,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 55.128,
+  "final_mm": [
+   19.08,
+   54.474
+  ],
+  "jam_frac": 0.996,
+  "rpm_med": -0.0,
+  "carry_s": -1.0,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N6 vee 25deg": {
+  "peak_speed_m_s": 0.4503,
+  "peak_speed_t": 0.008,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   45.227,
+   57.287
+  ],
+  "min_angle_deg": 261.34,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -144.8,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 57.289,
+  "final_mm": [
+   45.213,
+   57.287
+  ],
+  "jam_frac": 1.0,
+  "rpm_med": -0.0,
+  "carry_s": -1.0,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ },
+ "N7 ramp -20": {
+  "peak_speed_m_s": 24.5828,
+  "peak_speed_t": 7.998,
+  "rest_position_mm": [
+   20.9,
+   55.09
+  ],
+  "settled_position_mm": [
+   -9.342,
+   66.563
+  ],
+  "min_angle_deg": 0.06,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.029,
+  "max_lx_mm": 2922.441,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1609.509,
+  "final_mm": [
+   12864.944,
+   -28261.769
+  ],
+  "exit": {
+   "t": 5.008,
+   "speed_m_s": 6.674,
+   "angle_deg": 50.15,
+   "apex_above_exit_mm": 1338.1,
+   "range_same_height_m": 4.47
+  },
+  "jam_frac": 0.613,
+  "rpm_med": 5.0,
+  "carry_s": 3.72,
+  "rest_xy": [
+   20.9,
+   55.09
+  ],
+  "rest_r": 57.021,
+  "rest_ang": 261.34
+ }
+}

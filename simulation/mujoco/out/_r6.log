@@ -1,0 +1,42 @@
+=== R6 smooth shell-pad arc: geometry ===
+  [R6] arc r_in=93.96  angles 225.0..260.2 deg
+     a= 225.0  inner pt x= -36.95 z=  45.02   tray_top_z=  14.47  lift= 30.55 mm
+     a= 251.4  inner pt x=  -0.48 z=  22.41   tray_top_z=  17.66  lift=  4.75 mm
+     a= 242.6  inner pt x= -13.75 z=  28.04   tray_top_z=  16.50  lift= 11.54 mm
+     a= 233.8  inner pt x= -26.00 z=  35.64   tray_top_z=  15.43  lift= 20.21 mm
+     a= 260.2  inner pt x=  13.50 z=  18.87   tray_top_z=  18.88  lift= -0.01 mm
+  [R6b] arc r_in=93.96  angles 225.0..268.0 deg
+     a= 225.0  inner pt x= -36.95 z=  45.02   tray_top_z=  14.47  lift= 30.55 mm
+     a= 257.2  inner pt x=   8.75 z=  19.82   tray_top_z=  18.47  lift=  1.35 mm
+     a= 246.5  inner pt x=  -7.98 z=  25.29   tray_top_z=  17.00  lift=  8.29 mm
+     a= 235.8  inner pt x= -23.39 z=  33.79   tray_top_z=  15.65  lift= 18.14 mm
+     a= 268.0  inner pt x=  26.21 z=  17.56   tray_top_z=  19.99  lift= -2.44 mm
+  [R6c] arc r_in=91.96  angles 225.0..256.0 deg
+     a= 225.0  inner pt x= -35.54 z=  46.43   tray_top_z=  14.59  lift= 31.84 mm
+     a= 248.2  inner pt x=  -4.59 z=  26.05   tray_top_z=  17.30  lift=  8.75 mm
+     a= 240.5  inner pt x= -15.79 z=  31.42   tray_top_z=  16.32  lift= 15.10 mm
+     a= 232.8  inner pt x= -26.17 z=  38.26   tray_top_z=  15.41  lift= 22.85 mm
+     a= 256.0  inner pt x=   7.24 z=  22.23   tray_top_z=  18.33  lift=  3.90 mm
+  R_IN=93.96  R_OUT=100.96  ball R=35.56  R_CARRY=58.40  tray foot x=29.49
+
+=== rest position / contact (paddle static, ball in at x=145) ===
+  [R5] rest x=113.90 z=63.29  r=97.19 ang=330.3  contacts={'tray': 1, 'paddle_flex_1': 1}
+  [R6] rest x=113.90 z=63.29  r=97.19 ang=330.3  contacts={'tray': 1, 'paddle_flex_1': 1}
+  [R6b] rest x=113.90 z=63.29  r=97.19 ang=330.3  contacts={'tray': 1, 'paddle_flex_1': 1}
+  [R6c] rest x=113.90 z=63.29  r=97.19 ang=330.3  contacts={'tray': 1, 'paddle_flex_1': 1}
+
+=== creep + carry metrics ===
+  [R5 @ 40 rpm bx=145] settled=0.66 grabbed=8.04 creep=7.38 carry=5.35 slip=100% launched=True peak=0.335 Nm
+  [R5 @ 70 rpm bx=145] settled=0.42 grabbed=4.10 creep=3.68 carry=3.59 slip=100% launched=True peak=0.600 Nm
+  [R5 @ 90 rpm bx=145] settled=0.35 grabbed=0.90 creep=0.55 carry=3.04 slip=100% launched=True peak=0.754 Nm
+  [R5 @105 rpm bx=145] settled=0.35 grabbed=0.49 creep=0.14 carry=2.75 slip=100% launched=True peak=0.880 Nm
+  [R6 @ 40 rpm bx=145] settled=0.75 grabbed=0.80 creep=0.05 carry=5.27 slip=100% launched=True peak=0.335 Nm
+  [R6 @ 70 rpm bx=145] settled=0.42 grabbed=4.10 creep=3.68 carry=3.54 slip=100% launched=True peak=0.607 Nm
+  [R6 @ 90 rpm bx=145] settled=0.35 grabbed=0.90 creep=0.55 carry=3.03 slip=100% launched=True peak=0.762 Nm
+  [R6 @105 rpm bx=145] settled=0.35 grabbed=0.49 creep=0.14 carry=2.55 slip=100% launched=True peak=0.880 Nm
+  [R6c @ 40 rpm bx=145] settled=0.74 grabbed=0.79 creep=0.05 carry=4.98 slip=100% launched=True peak=0.335 Nm
+  [R6c @ 70 rpm bx=145] settled=0.42 grabbed=4.10 creep=3.68 carry=3.35 slip=100% launched=True peak=0.608 Nm
+  [R6c @ 90 rpm bx=145] settled=0.35 grabbed=0.90 creep=0.55 carry=2.91 slip=100% launched=True peak=0.754 Nm
+  [R6c @105 rpm bx=145] settled=0.35 grabbed=0.49 creep=0.14 carry=2.48 slip=100% launched=True peak=0.880 Nm
+
+=== launch torque threshold (12 s, both entry heights) ===

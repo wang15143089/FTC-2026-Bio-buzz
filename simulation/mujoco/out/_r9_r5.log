@@ -1,0 +1,11 @@
+=== R9 full flow on R5 (2 fingers 350/170 + D 6.8 pad), tray entry x=145, 12 s ===
+  R5 mu=1.00       launched=True  exit_t=7.498  exit_v=6.67   ang=50.59   apex=1353.4  range=4.45   carry=3.72   jam=58%   rpmMed=7.0 maxlx=2925
+  R5 mu=0.60       launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=76%   rpmMed=8.5 maxlx=-77
+  R5 mu=0.50       launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+  R5 mu=0.45       launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+  R5 mu=0.40       launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+  R5 mu=0.35       launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+--- R5 with raised nest 20 mm @ x=28 ---
+  R5+nest20 mu=0.45 launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+  R5+nest20 mu=0.40 launched=False exit_t=--     exit_v=--     ang=--      apex=--      range=--     carry=-1.0   jam=0%    rpmMed=281.9 maxlx=-66
+  saved simulation\mujoco\out\_r9_r5.json

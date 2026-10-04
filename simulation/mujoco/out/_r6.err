@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\admin\OneDrive\\u6587\u6863\ChatGPT\FTC 2026 biobuzz\simulation\mujoco\_work\r6_smooth.py", line 167, in <module>
+    main()
+  File "C:\Users\admin\OneDrive\\u6587\u6863\ChatGPT\FTC 2026 biobuzz\simulation\mujoco\_work\r6_smooth.py", line 160, in main
+    res["%s_%g_%g" % (nm, rpm, bx)] = thr(nm, rpm, bx)[0]
+                                      ^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\OneDrive\\u6587\u6863\ChatGPT\FTC 2026 biobuzz\simulation\mujoco\_work\r6_smooth.py", line 130, in thr
+    t0 = ol.threshold(name, lo=0.20, hi=1.60, tol=tol, bx=bx, rpm=rpm, fr=1.0, sec=sec, fw=1620.0)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\OneDrive\\u6587\u6863\ChatGPT\FTC 2026 biobuzz\simulation\mujoco\_work\opt_lib.py", line 139, in threshold
+    ok_hi, r_hi = ok(name, bx, hi, **kw)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ok() got multiple values for argument 'fr'

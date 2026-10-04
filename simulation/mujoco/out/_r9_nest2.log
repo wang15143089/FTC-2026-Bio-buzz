@@ -1,0 +1,13 @@
+=== R9b rest-pocket height/offset sweep (mu=1.0, pocket start, 8 s) ===
+  pad step6.8                settled_r= 54.54  launched=True  exit_t=5.134  carry=3.72   jam=63%   rpmMed=4.3
+  pad step13                 settled_r= 51.05  launched=True  exit_t=4.436  carry=3.6    jam=54%   rpmMed=10.1
+  pad step16                 settled_r= 49.28  launched=True  exit_t=4.084  carry=3.26   jam=50%   rpmMed=148.7
+  pad step20                 settled_r= 47.35  launched=True  exit_t=3.838  carry=3.04   jam=46%   rpmMed=281.9
+  pad step24                 settled_r= 46.22  launched=False exit_t=--     carry=-1.0   jam=100%  rpmMed=0.0
+  pad step28                 settled_r= 45.34  launched=False exit_t=--     carry=-1.0   jam=100%  rpmMed=0.0
+  pad step13 x=28            settled_r= 49.73  launched=True  exit_t=4.07   carry=3.39   jam=49%   rpmMed=185.2
+  pad step16 x=28            settled_r= 48.45  launched=True  exit_t=3.856  carry=3.2    jam=47%   rpmMed=281.9
+  pad step20 x=28            settled_r= 46.83  launched=True  exit_t=3.626  carry=3.0    jam=44%   rpmMed=281.9
+  pad step13 w=60            settled_r= 50.92  launched=True  exit_t=4.382  carry=3.6    jam=54%   rpmMed=10.4
+  pad step20 w=60            settled_r= 47.88  launched=True  exit_t=3.736  carry=3.05   jam=45%   rpmMed=281.9
+  saved simulation\mujoco\out\_r9_nest2.json
