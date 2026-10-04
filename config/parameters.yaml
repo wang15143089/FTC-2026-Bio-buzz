@@ -96,6 +96,7 @@ materials:
   note: "Elastic members in the launcher feed path. Values are generic datasheet ranges until a purchased sample is measured; do not release a simulation result on them."
   backflow_finger:
     description: "One-way / backflow finger at the entrance of the 52 deg guide segment of the C06-B launcher feed path. The C06-B assembly models it as a 38 x 1.2 x 44 mm plate proxy."
+    superseded_by: {value: "DEC-0024 removed one_way_finger_+1/-1 from the V2 POLLEN feeder; this zip-tie material entry is retained for history and for any future finger re-introduction.", status: "KNOWN", source: "docs/decision_log.md DEC-0024"}
     realisation: {value: "standard nylon cable tie (zip tie), anchored at the ramp floor and preloaded against the game piece", status: "ASSUMED", source: "user direction 2026-10-03"}
     decision: {value: "DEC-0022", status: "KNOWN", source: "docs/decision_log.md"}
     youngs_modulus: {value: 2.7, unit: "GPa", status: "ASSUMED", source: "generic nylon 6/6 cable-tie range 2.5-3.3 GPa; measure a purchased tie before release"}
@@ -117,3 +118,30 @@ budgets:
   total_cost: {value: null, status: "TBD", source: null}
   module_mass_allocations: {value: {}, unit: "kg", status: "TBD", source: null}
   module_power_allocations: {value: {}, unit: "W", status: "TBD", source: null}
+
+t06_feeder_v2:
+  note: "POLLEN feeder redesign V2: one-piece coaxial shell + 5 deg gravity tray. Derived from cad/paddle_launcher_constrained.py without modifying it; generator is cad/paddle_launcher_feeder_redesign.py."
+  version: {value: "C06B-POLLEN-FEEDER-V2", status: "KNOWN", source: "docs/decision_log.md DEC-0023"}
+  paddle_axis: {value: [29.49, 0.0, 111.46], unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py PADDLE_CENTER"}
+  ball_carry_radius: {value: 58.4, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py R_CARRY"}
+  shell_inner_radius: {value: 93.96, unit: "mm", status: "CALCULATED", source: "R_CARRY + POLLEN ball radius 35.56 mm"}
+  shell_outer_radius: {value: 100.96, unit: "mm", status: "CALCULATED", source: "shell_inner_radius + 7 mm wall"}
+  shell_sector: {value: [142.0, 225.0], unit: "deg", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py A_EXIT / A_LIP"}
+  shell_width: {value: 108.0, unit: "mm", status: "MEASURED", source: "STEP read-back of cad/output/paddle_launcher_motion_free_pollen_v2.step (Y extent -54.0 .. +54.0)"}
+  tray_tilt: {value: 5.0, unit: "deg", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py TILT_DEG"}
+  tray_x_range: {value: [-56.0, 150.0], unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py TRAY_X0 / TRAY_X1"}
+  tray_thickness: {value: 6.0, unit: "mm", status: "CALCULATED", source: "cad/paddle_launcher_feeder_redesign.py TRAY_T"}
+  tray_roll_drop: {value: 13.326, unit: "mm", status: "CALCULATED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json tray.drop_mm"}
+  rest_ball_centre: {value: [-2.30, 53.06], unit: "mm", status: "CALCULATED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json rest_ball_centre_mm"}
+  rest_ball_to_lip: {value: 35.57, unit: "mm", status: "CALCULATED", source: "wedge check against POLLEN ball radius 35.56 mm; docs/decision_log.md DEC-0024"}
+  release_point_deviation_from_channel_centreline: {value: 0.0022, unit: "mm", status: "MEASURED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json tangency_check"}
+  rest_ball_clash_with_kept_parts: {value: 0.0, unit: "mm3", status: "MEASURED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json rest_ball_clash_mm3"}
+  shell_clash_with_parent_panels: {value: 0.0, unit: "mm3", status: "MEASURED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json shell_clearance_mm"}
+  rotor_sweep_tip_corner_radius: {value: 62.362, unit: "mm", status: "CALCULATED", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json shell_clearance_mm.rotor_tip_corner_r_mm"}
+  kept_parts: {value: 23, unit: "parts", status: "KNOWN", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json kept_part_count"}
+  solids_in_export: {value: 30, unit: "solids", status: "MEASURED", source: "STEP read-back of cad/output/paddle_launcher_motion_free_pollen_v2.step"}
+  bounding_box: {value: [281.773, 192.0, 325.964], unit: "mm", status: "MEASURED", source: "STEP read-back of cad/output/paddle_launcher_motion_free_pollen_v2.step"}
+  total_volume: {value: 970754.4, unit: "mm3", status: "MEASURED", source: "STEP read-back of cad/output/paddle_launcher_motion_free_pollen_v2.step"}
+  removed_parent_parts: {value: ["guide_floor_1", "guide_floor_2", "guide_floor_3", "guide_roof_1", "guide_roof_2", "guide_wall_1_+1", "guide_wall_1_-1", "guide_wall_2_+1", "guide_wall_2_-1", "one_way_finger_+1", "one_way_finger_-1"], status: "KNOWN", source: "docs/decision_log.md DEC-0024"}
+  consumed_by_rotor_drum: {value: ["shooter_throat_-55"], status: "KNOWN", source: "cad/output/paddle_launcher_motion_free_pollen_v2_report.json"}
+  open_question: {value: "Whether the V2 feeder can actually deliver the ball from the tray, past the lip wedge and into the 52 deg flywheel nip has not been simulated yet; a MuJoCo full-flow run is the next action.", status: "TBD", source: "PROJECT_STATUS.md NEXT ACTION"}

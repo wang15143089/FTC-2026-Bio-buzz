@@ -223,6 +223,26 @@
 - Reversible?: 是；若要换成打印柔性片或金属弹簧片，新增决策记录并保留本条，不得静默替换。
 - Date/version: 2026-10-03 / C06B-COTS-0.3
 
+## DEC-0023 — T06 POLLEN 送球段 V2：外罩与倾斜托板合并为单一零件，同轴由构造保证
+
+- Decision: 送球段重做为 `C06B-POLLEN-FEEDER-V2`：外罩不再是在父级装配里另行摆放的圆环，而是**以拨杆轴 C = (29.49, 0.0, 111.46) mm 为圆心直接画出圆弧**，并把 5° 倾斜托板与唇口连接筋画进**同一条闭合 XZ 轮廓**后沿 Y 挤出 108 mm，成为**一个零件**。父模块 `cad/paddle_launcher_constrained.py` 一行不改，V2 由派生的 `cad/paddle_launcher_feeder_redesign.py` 生成。
+- Reason: 用户 2026-10-03 指示"进行重做吧。拨杆，外罩按照你的设想进行调整，使其保持同轴度，与倾斜托板适配"。把圆心与拨杆轴绑成同一个构造点后，"同轴"不再是需要装配公差保证的配合关系，而是画出来的事实；托板与外罩合并后也不再需要独立的托板安装接口。
+- Alternatives considered: (a) 保留父级的分件外罩与独立托板，用装配约束/定位销保证同轴 —— 需要额外接口且同轴度仍受公差累积影响；半圆环＋独立托板还难以一次打印；(b) 把托板做成独立打印件再螺接到外罩上 —— 多一个零件与一组螺孔，且托板倾角靠装配保证。两者均不采用。
+- Evidence/calculation: `cad/paddle_launcher_feeder_redesign.py`；`cad/output/paddle_launcher_motion_free_pollen_v2_report.json`；`config/parameters.yaml` 的 `t06_feeder_v2`；V2 STEP 回读（`n_solids = 30`、外罩+托板单体体积 255,347.1 mm³、Y 向 ±54 mm = 108 mm 宽、包围盒 281.773 × 192.0 × 325.964 mm）。出口 142° 处球心 (−16.53, 147.415) 到 52° 地板线 55.0022 mm，通道中线 55.00 mm → 偏差 **0.0022 mm**（`pass`）。停位球心 (−2.30, 53.06) 到唇口 35.57 mm ≈ 球半径 35.56 mm（楔紧）。新外罩 vs `guide_floor_3 / guide_roof_3 / guide_wall_3_±1` 干涉全为 0；拨杆扫掠包络 vs 喉道/外罩/导板全为 0，扫掠尖角半径 62.362 mm < 鼓半径 63 mm。
+- Impact: 送球段零件数下降；同轴度不再作为公差项检验，改为构造约束（圆心即拨杆轴）。托板与外罩合并使 V2 送球段只能整体更换。父级 `paddle_launcher_constrained.py` 与既有 `paddle_launcher_motion_free_fingers_*`、`paddle_launcher_motion_only_*`、`paddle_launcher_feasible_*` 均未被覆盖，V2 为并列的派生版本。上一轮记录的 `guide_wall_3_-1` 2133 mm³ 干涉经复测确认为外罩挤出方向写错导致的**误报**，实测为 0，侧板不必删除。
+- Reversible?: 是；若要回到分件外罩＋独立托板，新增决策记录并保留本条，不得静默替换。
+- Date/version: 2026-10-03 / C06B-POLLEN-FEEDER-V2
+
+## DEC-0024 — V2 删除 52 度地板与两片止回指，止回改由 5 度托板自滚 + 唇口楔紧承担
+
+- Decision: `C06B-POLLEN-FEEDER-V2` 从父级装配中删除 `guide_floor_1/2/3`、`guide_roof_1/2`、`guide_wall_1_+1/-1`、`guide_wall_2_+1/-1` 与两片止回指 `one_way_finger_+1/-1`；`shooter_throat_-55` 因被拨杆扫掠鼓挖空至体积归零而自动丢弃。**不再设置独立止回件**：靠 5° 托板让球自滚到位、并在 225° 唇口处被楔紧（球心到唇口 35.57 mm ≈ 球半径 35.56 mm）承担止回。保留 `guide_roof_3`、`guide_wall_3_±1` 与 `shooter_throat_+55`。
+- Reason: 拨杆重做后轴心下移 38 mm，停位球心 (−2.30, 53.06) 与父级 52° 地板 `guide_floor_3` 实测重叠 2660.4 mm³，且新拨杆扫掠必打穿该地板 —— 地板必须删。父级两片止回指锚在 (−14.57, ±38, 65.11)，距新停位球心仅 17.2 mm（小于球半径 35.56 mm），物理上已无容身位置，必须删。旧位置时整条 52° 地板本来就被 R = 63 mm 的拨杆扫掠鼓吃光，因此这两处冲突此前从未暴露。
+- Alternatives considered: (a) 保留止回指并整体外移 —— 指根要退出球包络需要移动 20 mm 以上，会撞上拨杆臂；(b) 在唇口另加刚性单向门 —— 需要新的铰链/复位元件，且低速下复位不可靠；(c) 保留 52° 地板并把送料段整体抬高回去 —— 等于放弃本轮"缩短拨杆行程"的目标。均不采用。
+- Evidence/calculation: `cad/output/paddle_launcher_motion_free_pollen_v2_report.json` 的 `removed_from_parent`、`consumed_by_rotor_drum`、`rest_ball_clash_mm3`（保留零件全部为 0）；托板 X −56 → 150 mm、厚 6 mm、倾角 5°，入口到停位落差 13.326 mm，自滚行程 206 mm、落差 18 mm，落位速度约 0.43 m/s；停位球到唇口 35.57 mm。
+- Impact: 送球段的无源件只剩"外罩＋托板"这一件；止回由重力与楔紧几何承担，不引入弹性件刚度假设。`docs/decision_log.md` 的 DEC-0022（止回指按尼龙扎带实现）就"止回指作为 V2 送球段零件"这一用法被本条取代（superseded），其 zip-tie 材料结论与 `config/parameters.yaml` 的 `materials.backflow_finger` 记录保留，供历史上溯与将来重新引入止回件时复用。
+- Reversible?: 是；若要重新引入止回件，必须新增决策记录、重新校核球包络并保留本条。
+- Date/version: 2026-10-03 / C06B-POLLEN-FEEDER-V2
+
 ```text
 Decision:
 Reason:

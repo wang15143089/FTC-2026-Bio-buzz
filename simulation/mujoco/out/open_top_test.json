@@ -1,0 +1,146 @@
+[
+  {
+    "s_max_mm": -209.6,
+    "z_max_mm": 84.7,
+    "v_max": 1.64,
+    "launch_v": 0.0,
+    "variant": "base",
+    "x0": -95.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -208.7,
+    "z_max_mm": 85.7,
+    "v_max": 1.85,
+    "launch_v": 0.0,
+    "variant": "base",
+    "x0": -95.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -235.9,
+    "z_max_mm": 82.7,
+    "v_max": 26.8,
+    "launch_v": 0.0,
+    "variant": "base",
+    "x0": -105.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -235.1,
+    "z_max_mm": 82.5,
+    "v_max": 27.16,
+    "launch_v": 0.0,
+    "variant": "base",
+    "x0": -105.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -209.6,
+    "z_max_mm": 84.7,
+    "v_max": 1.64,
+    "launch_v": 0.0,
+    "variant": "no_roof1",
+    "x0": -95.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -208.7,
+    "z_max_mm": 85.7,
+    "v_max": 1.85,
+    "launch_v": 0.0,
+    "variant": "no_roof1",
+    "x0": -95.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -235.9,
+    "z_max_mm": 82.7,
+    "v_max": 26.8,
+    "launch_v": 0.0,
+    "variant": "no_roof1",
+    "x0": -105.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -235.1,
+    "z_max_mm": 82.5,
+    "v_max": 27.16,
+    "launch_v": 0.0,
+    "variant": "no_roof1",
+    "x0": -105.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -200.5,
+    "z_max_mm": 95.2,
+    "v_max": 1.71,
+    "launch_v": 0.0,
+    "variant": "no_roof3",
+    "x0": -95.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -199.0,
+    "z_max_mm": 96.8,
+    "v_max": 2.16,
+    "launch_v": 0.0,
+    "variant": "no_roof3",
+    "x0": -95.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -234.9,
+    "z_max_mm": 82.2,
+    "v_max": 25.9,
+    "launch_v": 0.0,
+    "variant": "no_roof3",
+    "x0": -105.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -233.3,
+    "z_max_mm": 84.9,
+    "v_max": 26.67,
+    "launch_v": 0.0,
+    "variant": "no_roof3",
+    "x0": -105.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -165.8,
+    "z_max_mm": 144.8,
+    "v_max": 28.44,
+    "launch_v": 0.0,
+    "variant": "no_roof_all",
+    "x0": -95.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -158.4,
+    "z_max_mm": 138.7,
+    "v_max": 2.7,
+    "launch_v": 0.0,
+    "variant": "no_roof_all",
+    "x0": -95.0,
+    "paddle_rpm": 480.0
+  },
+  {
+    "s_max_mm": -233.4,
+    "z_max_mm": 129.7,
+    "v_max": 28.15,
+    "launch_v": 0.0,
+    "variant": "no_roof_all",
+    "x0": -105.0,
+    "paddle_rpm": 120.0
+  },
+  {
+    "s_max_mm": -207.6,
+    "z_max_mm": 252.2,
+    "v_max": 27.34,
+    "launch_v": 0.0,
+    "variant": "no_roof_all",
+    "x0": -105.0,
+    "paddle_rpm": 480.0
+  }
+]

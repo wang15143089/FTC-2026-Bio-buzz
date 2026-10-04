@@ -1,6 +1,6 @@
 # PROJECT STATUS
 
-最后更新：2026-10-01
+最后更新：2026-10-03
 
 ## CURRENT OBJECTIVE
 
@@ -242,6 +242,23 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 材料决策（`docs/decision_log.md` 的 DEC-0022，ASSUMED）：实物按**标准尼龙扎带（zip tie，尼龙 6/6）**实现，仿真以悬臂薄片建模。参数记入 `config/parameters.yaml` 的 `materials.backflow_finger`：E = 2.7 GPa、nu = 0.39、rho = 1150 kg/m3、截面 4.7 x 1.14 mm，全部为 ASSUMED 通用取值，采购后须实测替换，不得据此发布结论。
 - 待验证（TBD）：两指内表面净距 74.8 mm —— POLLEN 球（名义 71 mm）约余 3.8 mm，NECTAR 球（名义 91 mm）约过盈 16 mm；指端是否真正拦到两种球的包络尚未确认，须在 T03.2 台架验证。
 
+## T06 POLLEN 送球段 V2 重做（2026-10-03）
+
+- 用户指令（KNOWN）："进行重做吧。拨杆，外罩按照你的设想进行调整，使其保持同轴度，与倾斜托板适配"；硬约束为不得覆盖原文档、且先生成示意图。示意图已出（`simulation/mujoco/out/redesign_v2_overview_zh.png`、`redesign_v2_feed_zh.png`、`redesign_v2_coax_zh.png`，生成脚本 `simulation/mujoco/_work/redesign_v2_sections_zh.py`）。
+- 生成器（新增）：`cad/paddle_launcher_feeder_redesign.py`，复用父级 `paddle_launcher_constrained.build()` 后逐件保留/剔除/挖空，再合成新的送球段零件；**父模块一行未改**。
+- 关键改动（CALCULATED）：外罩圆弧以**拨杆轴 C = (29.49, 0.0, 111.46) mm 为圆心**直接画出，并把 5° 倾斜托板与唇口连接筋并入**同一条闭合 XZ 轮廓**，再沿 Y 挤出 108 mm —— 外罩、托板、拨杆三者同轴是**构造事实**，不再依赖装配公差。
+- 几何基准（CALCULATED）：球心轨迹 R58.40；外罩内壁 R93.96 / 外壁 R100.96（壁厚 7）；扇形 142° → 225°；托板 X −56 → 150 mm、厚 6 mm、倾角 5°。
+- 出口校核（MEASURED）：出口 142° 球心 (−16.53, 147.415)，到 52° 地板线 55.0022 mm，通道中线 55.00 mm → **偏差 0.0022 mm，`pass`**。
+- 进料与止回（CALCULATED）：入口到停位落差 13.326 mm，托板自滚 206 mm、落差 18 mm，落位速度约 0.43 m/s；停位球心 (−2.30, 53.06) 到唇口 35.57 mm ≈ 球半径 35.56 mm（楔紧自锁）。
+- 产物（KNOWN）：`cad/output/paddle_launcher_motion_free_pollen_v2.step`（169.4 MiB / 177,628,316 B，30 实体）、`.stl`（537.1 MiB）、`paddle_launcher_motion_free_pollen_v2_report.json`。父级 `paddle_launcher_motion_free_fingers_pollen.step` 及其余既有导出时间戳未变，原文档未被覆盖。
+- STEP 回读（MEASURED，`n_solids = 30`）：包围盒 281.773 × 192.0 × 325.964 mm，与报告完全一致；总体积 970,754.4 mm³；外罩＋托板单体 255,347.1 mm³（报告 255,347.07）且 Y 向 ±54 mm = 108 mm 宽。
+- 干涉（MEASURED）：新外罩 vs `guide_floor_3 / guide_roof_3 / guide_wall_3_±1` 全为 0；拨杆扫掠包络 vs 喉道/外罩/导板全为 0（扫掠尖角半径 62.362 mm < 鼓半径 63 mm）；停位球 vs 全部保留零件全为 0。
+- 更正上一轮记录（KNOWN）：先前报告的 `guide_wall_3_-1` 2133 mm³ 干涉是当时外罩挤出方向写错造成的**误报**，本轮实测为 0，侧板不必删除。
+- 删除清单：`guide_floor_1/2/3`、`guide_roof_1/2`、`guide_wall_1_±1`、`guide_wall_2_±1`、`one_way_finger_±1`；`shooter_throat_-55` 被拨杆扫掠鼓挖空至体积归零而自动丢弃。保留 23 件，含 `guide_roof_3`、`guide_wall_3_±1`、`shooter_throat_+55`。
+- 决策（`docs/decision_log.md`）：DEC-0023（同轴构造化、外罩与托板合并为单一零件）、DEC-0024（删 52° 地板与两片止回指，止回改由 5° 自滚 + 唇口楔紧承担；取代 DEC-0022 中止回指作为 V2 零件的用法，zip-tie 材料记录保留为历史）。参数记入 `config/parameters.yaml` 的 `t06_feeder_v2`。
+- 待验证（TBD）：V2 是否真能把球送进 52° 夹口并被对置双飞轮发射，尚无 MuJoCo 全流程仿真结论。
+
 ## NEXT ACTION
 
-按 KEI-12 制作带护罩双轴安全旋转台架，先用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。
+1. （立即）对 `C06B-POLLEN-FEEDER-V2` 跑 MuJoCo 送球全流程仿真：右端进料 → 5° 托板自滚到位 → 拨杆推球约 99° → 沿外罩内壁 225° → 142° → 进 52° 夹口 → 对置双飞轮发射，判定 V2 几何是否具备送球能力；同步把 `simulation/mujoco/pollen_launcher_sim.py` 的几何基准改到 V2。
+2. （并行阻塞项）按 KEI-12 制作带护罩双轴安全旋转台架，用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。

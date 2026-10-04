@@ -1,0 +1,21 @@
+[
+  {
+    "tag": "paddlem_spinm",
+    "paddle_sign_about_plus_y": -1,
+    "spin_sign_upper": -1,
+    "paddle_rpm": -60.0,
+    "flywheel_rpm": 1620.0,
+    "seconds": 3.0,
+    "peak_speed_above_z50_m_s": 0.374,
+    "peak_time_s": 0.024,
+    "final": [
+      2.996,
+      -1.1383,
+      0.0,
+      -40.414,
+      28.177
+    ],
+    "max_z_m": 0.054,
+    "max_x_m": -0.128
+  }
+]
