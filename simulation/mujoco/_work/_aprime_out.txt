@@ -1,0 +1,148 @@
+[pollen] building parent assembly ...
+[a'] exporting STEP -> paddle_launcher_feeder_a_prime_pollen.step
+{
+  "file": "cad/paddle_launcher_feeder_redesign.py",
+  "parent": "cad/paddle_launcher_constrained.py (parent untouched)",
+  "units": "mm",
+  "paddle_axis_mm": [
+    29.49,
+    0.0,
+    111.46
+  ],
+  "ball_diameter_mm": 71.12,
+  "carry_radius_mm": 58.4,
+  "shell_inner_mm": 93.96000000000001,
+  "shell_outer_mm": 100.96000000000001,
+  "shell_sector_deg": [
+    142.0,
+    292.0
+  ],
+  "tangency_check": {
+    "target": "release ball centre on the 52 deg channel centreline",
+    "required_mm": 55.0,
+    "axis_perp_distance_to_ramp_floor_line_mm": -3.3978,
+    "carry_radius_mm": 58.4,
+    "release_point_mm": [
+      -16.53,
+      147.415
+    ],
+    "release_point_along_ramp_mm": 93.199,
+    "release_point_perp_mm": 55.0022,
+    "ramp_mid_channel_offset_mm": 55.0,
+    "deviation_mm": 0.0022,
+    "status": "pass"
+  },
+  "tray": {
+    "tilt_deg": 5.0,
+    "pivot_mm": [
+      -2.3,
+      17.5
+    ],
+    "x_range_mm": [
+      56.0,
+      150.0
+    ],
+    "thickness_mm": 6.0,
+    "entry_ball_centre_z_mm": 66.385,
+    "low_end_ball_centre_z_mm": 53.058,
+    "drop_mm": 13.326
+  },
+  "removed_from_parent": [
+    "guide_floor_1",
+    "guide_floor_2",
+    "guide_floor_3",
+    "guide_roof_1",
+    "guide_roof_2",
+    "guide_wall_1_+1",
+    "guide_wall_1_-1",
+    "guide_wall_2_+1",
+    "guide_wall_2_-1",
+    "one_way_finger_+1",
+    "one_way_finger_-1"
+  ],
+  "relieved_from_parent": [],
+  "consumed_by_rotor_drum": [
+    "shooter_throat_-55"
+  ],
+  "rest_ball_centre_mm": [
+    29.49,
+    53.06
+  ],
+  "rest_ball_clash_mm3": {
+    "guide_roof_3": 0.0,
+    "guide_wall_3_-1": 0.0,
+    "guide_wall_3_+1": 0.0,
+    "feeder_shell_tray": 0.0
+  },
+  "kept_parts": [
+    "feeder_shell_tray",
+    "flywheel_shaft_lower_2106-4008-1680",
+    "flywheel_shaft_upper_2106-4008-1680",
+    "gecko_flywheel_lower_1_3613-0014-0096",
+    "gecko_flywheel_lower_2_3613-0014-0096",
+    "gecko_flywheel_upper_1_3613-0014-0096",
+    "gecko_flywheel_upper_2_3613-0014-0096",
+    "guide_roof_3",
+    "guide_wall_3_+1",
+    "guide_wall_3_-1",
+    "paddle_arm_1",
+    "paddle_arm_2",
+    "paddle_arm_3",
+    "paddle_blade_1",
+    "paddle_blade_2",
+    "paddle_blade_3",
+    "paddle_flex_tip_1",
+    "paddle_flex_tip_2",
+    "paddle_flex_tip_3",
+    "paddle_hub",
+    "paddle_shaft_2106-4008-1920",
+    "paddle_shaft_support_bridge",
+    "shooter_throat_+55"
+  ],
+  "kept_part_count": 23,
+  "bounding_box_mm": {
+    "min": [
+      -118.43,
+      -96.0,
+      10.5
+    ],
+    "max": [
+      163.344,
+      96.0,
+      332.766
+    ],
+    "size": [
+      281.773,
+      192.0,
+      322.266
+    ]
+  },
+  "shell_clearance_mm": {
+    "guide_floor_3": 0.0,
+    "guide_roof_3": 0.0,
+    "guide_wall_3_-1": 0.0,
+    "guide_wall_3_+1": 0.0,
+    "rotor_envelope_vs_guide_floor_3": 0.0,
+    "rotor_envelope_vs_guide_roof_3": 0.0,
+    "rotor_envelope_vs_guide_wall_3_-1": 0.0,
+    "rotor_envelope_vs_guide_wall_3_+1": 0.0,
+    "rotor_envelope_vs_shooter_throat_+55": 0.0,
+    "rotor_envelope_vs_feeder_shell_tray": 0.0,
+    "rotor_tip_corner_r_mm": 62.362
+  },
+  "shell_volume_mm3": 247814.41,
+  "linkage_kinematics": {
+    "main_link_length_mm": 110.0,
+    "crosshead_u_mm": -57.49834435270749,
+    "servo_crank_angle_deg": 96.68201312910206,
+    "servo_drag_link_length_mm": 65.0
+  },
+  "variant": "a' (DEC-0028) -- ball rests on the shell inner arc",
+  "tray_x_range_mm": [
+    56.0,
+    150.0
+  ],
+  "rest_support": "shell inner arc r_in=93.96 mm, sector 142..292 deg",
+  "nest_ball_clash_with_shell_mm3": 0.0,
+  "tangency_of_tray_and_carry_circle_mm": 56.0
+}

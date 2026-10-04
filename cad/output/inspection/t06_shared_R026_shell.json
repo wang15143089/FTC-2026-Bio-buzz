@@ -1,0 +1,219 @@
+{
+  "schema_version": "0.1",
+  "run_label": "R026",
+  "created_at_utc": "2026-10-04T18:29:26.763421+00:00",
+  "duration_s": 0.05,
+  "command": "tools\\inspect_geometry.py --step cad/output/inspection/_r26_shared_feeder_shell_tray.step --step-part-id feeder_shell_tray --spec config/t06_feeder_aprime_shared_shell_checks.json --run-label R026 --report cad/output/inspection/t06_shared_R026_shell.json",
+  "working_directory": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz",
+  "host": "DESKTOP-2JPFDSA",
+  "interpreter": {
+    "executable": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\.venv-cad\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "dependencies": {
+    "cadquery": "2.6.1",
+    "python": "3.12.14"
+  },
+  "units": "mm",
+  "coordinate_system": "as authored in the STEP file",
+  "design_id": "C06B-FEEDER-A-PRIME-SHARED-R26",
+  "solution_status": "candidate_pending_human_review",
+  "inputs": [
+    {
+      "role": "check_requirements",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_feeder_aprime_shared_shell_checks.json",
+      "exists": true,
+      "bytes": 3213,
+      "sha256": "D77A3A5C5E4F16AF50DE9CC1738EA401B8FAFE08D09183AB1EFC9FF5476C29F0"
+    },
+    {
+      "role": "step",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\inspection\\_r26_shared_feeder_shell_tray.step",
+      "exists": true,
+      "bytes": 33481,
+      "sha256": "5BCF383CE80E9E008D323BBB8F85917D5B06B21B501CDC9050FB50275097EE4B"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "pass": 7,
+    "fail": 0,
+    "not_run": 0,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "id": "T06-APS-SHELL-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEED-01: shell and tray are one fused printable solid (DEC-0029)",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the part's own solids in the re-imported STEP",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-002",
+      "kind": "bbox_min",
+      "requirement": "DEC-0029: shell inner radius = R_CARRY + BALL_R = 107.974 mm at 180 deg (outer -85.484 = 29.49 - 114.974)",
+      "target": -85.484,
+      "tolerance": 0.05,
+      "method": "bbox_min[x] from final solid bounding box",
+      "status": "pass",
+      "measured": -85.484,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-003",
+      "kind": "bbox_min",
+      "requirement": "DEC-0029: shell sector reaches 275 deg about the paddle axis (outer arc at 270 deg)",
+      "target": -3.514,
+      "tolerance": 0.05,
+      "method": "bbox_min[z] from final solid bounding box",
+      "status": "pass",
+      "measured": -3.514,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-004",
+      "kind": "bbox_max",
+      "requirement": "DEC-0029: shell sector starts at A_EXIT = 142 deg (outer arc at 142 deg)",
+      "target": 182.245,
+      "tolerance": 0.05,
+      "method": "bbox_max[z] from final solid bounding box",
+      "status": "pass",
+      "measured": 182.2451,
+      "deviation": 0.0001,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-005",
+      "kind": "bbox_max",
+      "requirement": "DEC-0029: tray right end stays at TRAY_X1 = 150 mm (end-face corner reached by the 6 mm thickness)",
+      "target": 150.262,
+      "tolerance": 0.1,
+      "method": "bbox_max[x] from final solid bounding box",
+      "status": "pass",
+      "measured": 150.2615,
+      "deviation": -0.0005,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-006",
+      "kind": "bbox_size",
+      "requirement": "DEC-0029: shell and tray share the 108 mm feeder width so the ball channel is continuous",
+      "target": 108.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 108.0,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-SHELL-007",
+      "kind": "step_roundtrip",
+      "requirement": "the delivered STEP reproduces the modelled shell-tray envelope and volume",
+      "target": "STEP export/re-import reproduces bbox and volume",
+      "tolerance": {
+        "bbox_size_mm": 0.05,
+        "volume_relative": 1e-05
+      },
+      "method": "export STEP, re-import, compare bounding box and volume",
+      "status": "pass",
+      "measured": {
+        "bbox_size_before_mm": [
+          235.7455,
+          108.0,
+          185.7591
+        ],
+        "bbox_size_after_mm": [
+          235.7455,
+          108.0,
+          185.7591
+        ],
+        "volume_before_mm3": 267723.344,
+        "volume_after_mm3": 267723.344,
+        "solid_count_after": 1
+      },
+      "deviation": {
+        "bbox_size_mm": 0.0,
+        "volume_relative": 0.0
+      },
+      "note": "read-back of this run's exported STEP"
+    }
+  ],
+  "parts": [
+    {
+      "id": "feeder_shell_tray",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 267723.344,
+      "bbox": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          150.2615,
+          54.0,
+          182.2451
+        ],
+        "size_mm": [
+          235.7455,
+          108.0,
+          185.7591
+        ]
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "part": "feeder_shell_tray",
+      "before": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          150.2615,
+          54.0,
+          182.2451
+        ],
+        "size_mm": [
+          235.7455,
+          108.0,
+          185.7591
+        ]
+      },
+      "after": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          150.2615,
+          54.0,
+          182.2451
+        ],
+        "size_mm": [
+          235.7455,
+          108.0,
+          185.7591
+        ]
+      },
+      "volume_before_mm3": 267723.344
+    }
+  ],
+  "not_verified": [],
+  "human_review": [],
+  "failure_states": []
+}

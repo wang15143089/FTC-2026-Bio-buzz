@@ -317,7 +317,28 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 产物：图 `simulation/mujoco/out/r9_mu_verdict_zh.png`（3 面板：剖面判定 / 球走向 / 摩擦门槛）；脚本 `_work/r9_strike_zh2.py`、`_work/r9_clean.py`、`_work/r9_diag.py`；数据 `out/_r9_clean.json`。
 - **新增开放项（TBD）**：(1) 台架实测球对打印外罩的摩擦系数（不测就无法把 μ 从 ASSUMED 升级）；(2) 送球段几何改为「把球停位抬到 r≈58.4 mm 运载半径」，让叶片用法向力推球；(3) 即使拖拽成功运载段也只有 3.3–8.5 rpm / 卡滞 76–77%，舵机余量复核（DEC-0027 已重开）仍未关闭。
 
+## T06 共用送球段 R26：一套机构兼容两种球（2026-10-04，DEC-0030）
+
+- 用户指令（KNOWN）：NECTAR 与 POLLEN 使用**同一个装置**，**只有飞轮间隙会改变**；确保修改后的输送部分能兼容两种尺寸的球，并把它们高效送入发射部分。
+- 共用几何（CALCULATED，一套、与球无关）：外罩内弧 `R_IN = 107.974 mm`（由大球定：12 + 45.974 + 4.026）、扇区 **142–275°**、壁 7 mm、宽 108 mm、5° 托盘与内弧**精确相切**（切点 x = 38.901 mm、右端 x = 150 mm）、桨毂 **Ø24**、桨臂 r = 10..46、叶片 r = 46..58、TPU 尖 r = 56..60。两球的静止球心半径不同（同一条内弧）：NECTAR r = 62.000、POLLEN r = 72.414。
+- 唯一随球改变的量（KNOWN）：飞轮轴距 `half_spacing = nip/2 + 48` → NECTAR **89**（夹口 82，取自 nectar 文件）、POLLEN **80**（夹口 64）。共用性核验（KNOWN）：`cad/paddle_launcher_constrained.py` 全文不含球径参数，外罩/托盘/拨杆都不引用 `BALL_R` / `BALL_D` → **两版实体只差飞轮夹口**。
+- 拨杆口径变更（SIMULATED，DEC-0030）：由三叶 18/138/258 改为 **两叶 330°/150°**。R28 对照：三叶时 **NECTAR 卡死**（球停在 r = 67.3 mm / 295°，堵转时间占比 80 %）——258° 那片叶正落在 275° 唇口/入料口前缘，把大球推回托盘；两叶把 275°→142° 的入料走廊让开，两种球都先自流到球窝再被扫掠。
+- 索引式循环（SIMULATED）：停 ≥ 1.2 s → 一次扫掠 **240–260°**（25-4，290 rpm）→ 释放。R29（48 组）：330/150 且扫掠 ≥ 248° 的 16 组两球全部通过，扫掠 180/200° 一律失败。R30（12 组，停时 3.0/5.0 s、入料 x = 98/128、扫掠 240/248/260°）：**12/12 全通过** —— NECTAR t = 4.00/6.00 s、v ≈ 4.65 m/s、卡滞 10 %；POLLEN t = 3.40/5.40 s、v ≈ 6.0 m/s、卡滞 0 %。**连续旋转不可用**（会撞上飞轮室里尚未离开的球）。
+- 产物（KNOWN）：图 `cad/output/_t06_shared_feeder_zh.png`（四联：共用剖面 + 两球静止半径 / 叶片布置 vs 入料走廊 / 两球半径历程 / 鲁棒性网格）；STEP `cad/output/paddle_launcher_feeder_a_prime_shared_{nectar,pollen}.step`；报告 `cad/output/paddle_launcher_feeder_a_prime_shared_report.json`；单件 `cad/output/inspection/_r26_shared_{paddle_hub,feeder_shell_tray}.step`；检验 spec `config/t06_feeder_aprime_shared_{hub,shell}_checks.json`。大 STEP/STL 已加入 `.gitignore`（可再生成）。
+- 作废（SUPERSEDED）：`cad/paddle_launcher_feeder_a_prime_nectar.py`（R25 三叶生成器）已改为运行即退出的指针；其 STEP/STL 只作历史保留。DEC-0029 的叶数与相位被 DEC-0030 取代（相切托盘 / 唇口 275° / 桨毂 Ø24 继续有效）。
+- 仍开放（TBD）：μ = 0.40 仍是 `ASSUMED`（台架实测未做）；索引式舵机控制未实现；球质量 0.130 / 0.060 kg 仍是 `ASSUMED`；9.9 mm 夹口过盈无结构/球变形校核。
+- CAD 导出实测（MEASURED，2026-10-04，全部读自导出前的最终实体）：
+  - 夹口 `flywheel_nip_measured_mm` = **NECTAR 82.000 / POLLEN 64.000**，与目标 `2·half_spacing − WHEEL_OD` 逐对完全一致（4 对飞轮全 82.000 / 64.000）。量法：飞轮缘部三角化点云沿 52° 通道法线投影取间隙（容差 0.5 mm）——飞轮的精确 B-rep 距离在辐条轮上**病理级慢**（单次 > 6 min 不收敛），已弃用，脚本内注明。
+  - 毂—外罩内弧 `paddle_hub_to_shell_inner_arc_measured_mm` = **95.974**（两变体相同，目标 95.974），毂与外罩交集体积 **0**。
+  - 停位球 vs 外罩 / vs 毂：**两球均为 0 mm³**（球窝落在运载圆上，与外罩内弧相切）。
+  - 两变体一致性（KNOWN，充要证据）：外罩体积 **267723.34 mm³ 完全相同**、外罩 bbox 完全相同、毂—外罩 95.974 相同 → 差异**只剩**飞轮轴距（89 vs 80，即夹口 82 vs 64）与由此决定的运载半径（62.000 vs 72.414）。
+  - 单件导出：`cad/output/inspection/_r26_shared_paddle_hub.step`、`cad/output/inspection/_r26_shared_feeder_shell_tray.step`；整机 `paddle_launcher_feeder_a_prime_shared_{nectar,pollen}.step`。
+- 几何检验（MEASURED，`tools/inspect_geometry.py`）：`cad/output/inspection/t06_shared_R026_hub.json` = **pass 6/6**；`t06_shared_R026_shell.json` = **pass 7/7**。目标值取自 `config/parameters.yaml` 与 DEC-0029/0030，未取自被测件。
+- 新测出的**既有**干涉（MEASURED，待用户决策，未关闭）：共用外罩与**保留的父级结构**仍有交叠 —— `shooter_throat_+55` **5717.5 mm³**、`guide_roof_3` **126.5 mm³**（两变体数值相同）。这是**继承而非回归**：R25 的 NECTAR 外罩对 `guide_roof_3` 就是 1727.2 mm³（R26 降到 126.5 mm³），而外罩对 `shooter_throat_+55` 此前从未测过（该键本轮才加入）。送球功能不受影响（R29/R30 就用这套几何跑通），但**实物装配时外罩会与喉道上导板相碰**。可选处理：让外罩对这一对静态件做布尔让位（不改球道，因为交叠在球道外侧 r > 108 mm）。
+
 ## NEXT ACTION
+
+0. （当前）DEC-0030 已落实"一套机构兼容两种球"：共用送球段 CAD（R26）已导出、几何检验 spec 已就绪、两球全流程仿真 12/12 通过。按序推进：(a) **台架实测**球—打印外罩摩擦系数，把 μ 从 `ASSUMED` 升为 `MEASURED`（DEC-0028 的开放项，未关闭）；(b) 实现**索引式舵机控制**（停 ≥ 1.2 s → 一次 240–260° 扫掠 → 释放），连续旋转模式禁止使用；(c) 用索引式重跑舵机余量（NECTAR 实测堵转占比 10 %），复核 DEC-0026/0027 的余量口径。
 
 1. （立即，等用户决策）**DEC-0028 取代本项的前提**：实物摩擦（μ≈0.40）下 R5 送球失败，门槛 μ≈0.65。请用户选一条：
    (a') 改**停位半径**：把球的停位抬到 r≈58.4 mm（球外表面贴外罩内弧 93.96 mm），让叶片用法向力推球而不靠指尖摩擦拖拽（推荐；这是唯一能绕开摩擦门槛的方向）；

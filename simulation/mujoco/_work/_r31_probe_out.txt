@@ -1,0 +1,6 @@
+probe start
+pl.build(nectar, 89)  -> 67.1 s
+pl.build(pollen, 80)  -> 64.6 s
+[nectar] building parent assembly ...
+F.build(nectar, 89)   -> 59.4 s
+probe done

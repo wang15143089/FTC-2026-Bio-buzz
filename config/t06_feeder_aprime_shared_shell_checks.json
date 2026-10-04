@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-FEEDER-A-PRIME-SHARED-R26",
+  "note": "Round R025, delivered part file cad/output/inspection/_r25_nectar_feeder_shell_tray.step, read back from STEP via --step.  Targets are computed from config/parameters.yaml (t06_feeder_a_prime_nectar) and DEC-0029 with cad/_r25_probe.py, which evaluates the same parametric definition independently of the exported solid.  The shell is an annular sector 142..275 deg about the paddle axis (29.49, 111.46) with r_in = 107.974 and r_out = 114.974 mm, extruded +-54 mm in Y (FEEDER_W = 108), fused to the tilted tray.  Extrema: outer arc at 180 deg -> min x; outer arc at 142 deg -> max z; outer arc at 270 deg -> min z; tray end face corner -> max x.  Round R026: the SAME hub / shell+tray part is used for BOTH balls (DEC-0030). Targets are unchanged from DEC-0029 because the shared geometry set was inherited from the accepted NECTAR R25 part; only the rotor now carries TWO blades (330/150 deg) instead of three. Delivered files: cad/output/inspection/_r26_shared_{hub,feeder_shell_tray}.step.",
+  "checks": [
+    {
+      "id": "T06-APS-SHELL-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEED-01: shell and tray are one fused printable solid (DEC-0029)",
+      "part": "feeder_shell_tray",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the part's own solids in the re-imported STEP"
+    },
+    {
+      "id": "T06-APS-SHELL-002",
+      "kind": "bbox_min",
+      "axis": "x",
+      "requirement": "DEC-0029: shell inner radius = R_CARRY + BALL_R = 107.974 mm at 180 deg (outer -85.484 = 29.49 - 114.974)",
+      "part": "feeder_shell_tray",
+      "target": -85.484,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APS-SHELL-003",
+      "kind": "bbox_min",
+      "axis": "z",
+      "requirement": "DEC-0029: shell sector reaches 275 deg about the paddle axis (outer arc at 270 deg)",
+      "part": "feeder_shell_tray",
+      "target": -3.514,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APS-SHELL-004",
+      "kind": "bbox_max",
+      "axis": "z",
+      "requirement": "DEC-0029: shell sector starts at A_EXIT = 142 deg (outer arc at 142 deg)",
+      "part": "feeder_shell_tray",
+      "target": 182.245,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APS-SHELL-005",
+      "kind": "bbox_max",
+      "axis": "x",
+      "requirement": "DEC-0029: tray right end stays at TRAY_X1 = 150 mm (end-face corner reached by the 6 mm thickness)",
+      "part": "feeder_shell_tray",
+      "target": 150.262,
+      "tolerance": 0.1
+    },
+    {
+      "id": "T06-APS-SHELL-006",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "DEC-0029: shell and tray share the 108 mm feeder width so the ball channel is continuous",
+      "part": "feeder_shell_tray",
+      "target": 108.0,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APS-SHELL-007",
+      "kind": "step_roundtrip",
+      "requirement": "the delivered STEP reproduces the modelled shell-tray envelope and volume",
+      "part": "feeder_shell_tray",
+      "tolerance": 0.05,
+      "relative_tolerance": 1e-05
+    }
+  ]
+}

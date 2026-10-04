@@ -1,0 +1,9 @@
+NECTAR free rotor    rotor=cad   r=45.974 start=(102.0,55.6) min_r=  84.57 min_ang=  316.4 exit=False final=(    94.7,    54.9)
+NECTAR cad 60rpm     rotor=cad   r=45.974 start=(102.0,55.6) min_r=  86.50 min_ang=    0.5 exit=False final=( 21796.9,-213505.1)
+NECTAR sim3 60rpm    rotor=sim3  r=45.974 start=(102.0,55.6) min_r=  91.57 min_ang=  322.4 exit=False final=(   104.2,    55.0)
+NECTAR reach 60rpm   rotor=reach r=45.974 start=(102.0,55.6) min_r=  87.28 min_ang=    0.3 exit=False final=( 40640.9,-16372.2)
+POLLEN free rotor    rotor=cad   r=35.560 start=(112.4,46.0) min_r=  84.95 min_ang=  280.8 exit=False final=(475354.4,-2501900.4)
+POLLEN cad 60rpm     rotor=cad   r=35.560 start=(112.4,46.0) min_r=  88.51 min_ang=  272.7 exit=False final=( 31057.6,-656134.2)
+POLLEN sim3 60rpm    rotor=sim3  r=35.560 start=(112.4,46.0) min_r=  72.41 min_ang=    0.7 exit=True  final=( 31705.9,-298163.8)
+POLLEN reach 60rpm   rotor=reach r=35.560 start=(112.4,46.0) min_r=  86.90 min_ang=    0.4 exit=False final=( 91178.8,-556327.6)
+saved simulation\mujoco\out\_r25c_diag.json

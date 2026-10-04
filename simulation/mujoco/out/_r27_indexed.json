@@ -1,0 +1,64 @@
+{
+ "nectar": {
+  "peak_speed_m_s": 56.859,
+  "peak_speed_t": 8.95,
+  "rest_position_mm": [
+   103.99,
+   55.74
+  ],
+  "settled_position_mm": [
+   -28.04,
+   87.05
+  ],
+  "min_angle_deg": 3.8,
+  "entered_shell": true,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": 1540.25,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1005.61,
+  "final_mm": [
+   18282.78,
+   -163332.99
+  ],
+  "exit": {
+   "t": 2.8,
+   "speed_m_s": 4.614,
+   "angle_deg": 50.29,
+   "apex_above_exit_mm": 642.0,
+   "range_same_height_m": 2.13
+  }
+ },
+ "pollen": {
+  "peak_speed_m_s": 60.563,
+  "peak_speed_t": 8.95,
+  "rest_position_mm": [
+   113.9,
+   46.15
+  ],
+  "settled_position_mm": [
+   42.01,
+   39.07
+  ],
+  "min_angle_deg": 1.3,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": 2535.01,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1484.88,
+  "final_mm": [
+   25572.61,
+   -184718.03
+  ],
+  "exit": {
+   "t": 2.3,
+   "speed_m_s": 6.136,
+   "angle_deg": 51.4,
+   "apex_above_exit_mm": 1171.9,
+   "range_same_height_m": 3.74
+  }
+ }
+}

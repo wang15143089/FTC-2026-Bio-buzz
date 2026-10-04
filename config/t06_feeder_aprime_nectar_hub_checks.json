@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-FEEDER-A-PRIME-NECTAR-R25",
+  "note": "Round R025, delivered part file cad/output/inspection/_r25_nectar_paddle_hub.step, read back from STEP via --step.  Targets come from config/parameters.yaml (t06_feeder_a_prime_nectar) and DEC-0029, never from the part under test.  The hub is a O24 x 34 cylinder with a O8.2 through-bore, so its envelope and volume are exactly predictable and were confirmed with cad/_r25_probe.py from the parametric model before export.",
+  "checks": [
+    {
+      "id": "T06-APN-HUB-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEED-01: the paddle hub ships as one printable solid",
+      "part": "paddle_hub",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the part's own solids in the re-imported STEP"
+    },
+    {
+      "id": "T06-APN-HUB-002",
+      "kind": "bbox_size",
+      "axis": "x",
+      "requirement": "DEC-0029: paddle hub reduced to O24 so the carried ball keeps 4.026 mm hub clearance",
+      "part": "paddle_hub",
+      "target": 24.0,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APN-HUB-003",
+      "kind": "bbox_size",
+      "axis": "z",
+      "requirement": "DEC-0029: paddle hub reduced to O24 so the carried ball keeps 4.026 mm hub clearance",
+      "part": "paddle_hub",
+      "target": 24.0,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APN-HUB-004",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "DEC-0029: hub axial length unchanged at 34 mm so the arms and shaft joint are preserved",
+      "part": "paddle_hub",
+      "target": 34.0,
+      "tolerance": 0.05
+    },
+    {
+      "id": "T06-APN-HUB-005",
+      "kind": "volume",
+      "requirement": "DEC-0029: the hub is the full O24 cylinder minus the O8.2 shaft bore (pi*(12^2-4.1^2)*34)",
+      "part": "paddle_hub",
+      "target": 13585.63,
+      "relative_tolerance": 0.001,
+      "method": "sum of the volumes of the part's solids, read from the re-imported STEP"
+    },
+    {
+      "id": "T06-APN-HUB-006",
+      "kind": "step_roundtrip",
+      "requirement": "the delivered STEP reproduces the modelled hub envelope and volume",
+      "part": "paddle_hub",
+      "tolerance": 0.05,
+      "relative_tolerance": 1e-05
+    }
+  ]
+}

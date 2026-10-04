@@ -198,3 +198,109 @@ t06_feeder_v2:
     feeder_fix_direction_friction_based: {value: "把停位抬到运载半径（球心 r≈58.4 mm，球外表面贴外罩内弧 r=93.96 mm）让叶片用法向力推球，而不是靠指尖摩擦拖拽", status: "TBD", source: "DEC-0028; 取代 DEC-0027 的 next_fix_direction（后者只说「改停位球窝」未给目标半径）"}
     ball_friction_bench_test_required: {value: true, unit: "1", status: "TBD", source: "DEC-0028; 不实测就无法把 ball_shell_friction 从 ASSUMED 升级，也无法判定 0.65 门槛到底超不超出实物能力"}
   open_question: {value: "DEC-0027 supersedes the creep explanation: the creep is a rest-pocket jam, not the junction step, and the R6 smooth arc is only 1.5% faster. The servo margin (DEC-0026) was measured with a kv=0.08 dummy actuator and must be re-checked with a real motor model - at full throttle the 25-4 sits at 0.523 of 0.530 N*m stall during the carry. Remaining open items: (1) the feed is phase-sensitive - the ball can creep in the rest pocket for several seconds before a finger grabs it, so the paddle speed must be held inside the drive window and the phase/geometry fix is not yet designed; (2) R5 geometry (two fingers 350/170 + 6.8 mm rest pad) is not yet in CAD; (3) the rigid (non zip-tie) blade and the ASSUMED 0.060 kg ball mass remain open.", status: "TBD"}
+
+# ---------------------------------------------------------------------------
+# 2026-10-04 DEC-0029: NECTAR (D = 91.948 mm) a' feeder geometry set R25.
+# Generator: cad/paddle_launcher_feeder_a_prime_nectar.py
+# Parent cad/paddle_launcher_constrained.py, the a' POLLEN script and the
+# original STEP are untouched.
+# ---------------------------------------------------------------------------
+t06_feeder_a_prime_nectar:
+  note: "NECTAR a' feeder R25: one-piece shell+tray, shell sector 142-275 deg, tray dropped so its top face is EXACTLY tangent to the carry circle, paddle hub reduced to O24."
+  status_note: {value: "SUPERSEDED (blade count/phase only) by DEC-0030: the R25 rotor had THREE blades at 18/138/258 deg and MuJoCo R28 showed the 258 deg plate jams the 91.9 mm ball in the entry corridor (80 % of the run at stall torque). Use t06_feeder_a_prime_shared. The tangency / lip 275 deg / hub O24 values below remain valid and are inherited by the shared set.", status: "SUPERSEDED", source: "docs/decision_log.md DEC-0030; generator cad/paddle_launcher_feeder_a_prime_nectar.py is now a no-op pointer"}
+  version: {value: "C06B-FEEDER-A-PRIME-NECTAR-R25", status: "KNOWN", source: "docs/decision_log.md DEC-0029"}
+  ball_diameter: {value: 91.948, unit: "mm", status: "MEASURED", source: "cadquery read-back of am-5852_blue Blue Alliance Nectar.STEP; 2 solids, volume 43129.8 mm3"}
+  ball_radius: {value: 45.974, unit: "mm", status: "MEASURED", source: "ball_diameter / 2"}
+  ball_mass: {value: 0.130, unit: "kg", status: "ASSUMED", source: "hollow printed plastic ball estimate; NOT weighed on a scale"}
+  flywheel_nip: {value: 82.0, unit: "mm", status: "KNOWN", source: "user instruction 2026-10-04 (nectar clearance must use the nectar file); half_spacing 89.0 = 82/2 + WHEEL_R 48; 9.9 mm interference on the 91.948 mm ball"}
+  flywheel_half_spacing: {value: 89.0, unit: "mm", status: "KNOWN", source: "flywheel_nip/2 + WHEEL_R 48"}
+  paddle_axis: {value: [29.49, 0.0, 111.46], unit: "mm", status: "CALCULATED", source: "inherited unchanged from cad/paddle_launcher_feeder_redesign.py"}
+  paddle_hub_radius: {value: 12.0, unit: "mm", status: "CALCULATED", source: "DEC-0029 R25; reduced from 18.0 (O36 -> O24); paddle arms extended inboard from r=14 to r=10 to keep the hub joint"}
+  ball_carry_radius: {value: 62.0, unit: "mm", status: "CALCULATED", source: "DEC-0029 R25; R_CARRY - HUB_R - BALL_R = 4.026 mm hub clearance"}
+  hub_clearance: {value: 4.026, unit: "mm", status: "CALCULATED", source: "ball_carry_radius - paddle_hub_radius - ball_radius"}
+  shell_inner_radius: {value: 107.974, unit: "mm", status: "CALCULATED", source: "ball_carry_radius + ball_radius"}
+  shell_outer_radius: {value: 114.974, unit: "mm", status: "CALCULATED", source: "shell_inner_radius + 7 mm wall"}
+  shell_sector: {value: [142.0, 275.0], unit: "deg", status: "CALCULATED", source: "A_EXIT 142 unchanged; A_LIP 275.000 = atan2(-cos(tilt), sin(tilt)), independent of ball size and of R_CARRY"}
+  tray_tilt: {value: 5.0, unit: "deg", status: "CALCULATED", source: "inherited from cad/paddle_launcher_feeder_redesign.py"}
+  tray_plane_distance_before_mm: {value: 90.832, unit: "mm", status: "CALCULATED", source: "(PADDLE_CZ-PIVOT_Z)*cos5 - (PADDLE_CX-PIVOT_X)*sin5; simulation/mujoco/_work/r23.py plane_dist()"}
+  tray_normal_drop_delta: {value: 17.142, unit: "mm", status: "CALCULATED", source: "DEC-0029: delta = shell_inner_radius - tray_plane_distance_before_mm; the tray must move along its own normal by exactly this much"}
+  tray_pivot: {value: [-0.806, 0.423], unit: "mm", status: "CALCULATED", source: "old PIVOT (-2.30, 17.50) + delta*(sin5, -cos5)"}
+  tray_x_range: {value: [38.901, 150.0], unit: "mm", status: "CALCULATED", source: "left end = tangency x, right end unchanged from the v2 tray"}
+  tray_thickness: {value: 6.0, unit: "mm", status: "CALCULATED", source: "inherited"}
+  tangency_point: {value: [38.901, 3.897], unit: "mm", status: "CALCULATED", source: "PADDLE + shell_inner_radius*(sin5, -cos5)"}
+  rest_ball_centre: {value: [29.49, 49.46], unit: "mm", status: "CALCULATED", source: "PADDLE_CX, PADDLE_CZ - ball_carry_radius"}
+  tray_entry_ball_centre: {value: [150.0, 59.591], unit: "mm", status: "CALCULATED", source: "tray_x_range[1], _tray_top_z(150) + ball_radius; rolls 10.1 mm down over 120 mm"}
+  nest_ball_clash_with_shell: {value: 0.0, unit: "mm3", status: "SIMULATED", source: "generator self-check on the final solids; a' nectar report.json"}
+  nest_ball_clash_with_hub: {value: 0.0, unit: "mm3", status: "SIMULATED", source: "generator self-check on the final solids"}
+  shell_tray_clash_with_kept_parts: {value: 0.0, unit: "mm3", status: "SIMULATED", source: "generator self-check on the final solids"}
+  simulation_r23:
+    status: "SIMULATED"
+    source: "simulation/mujoco/_work/r23.py; simulation/mujoco/out/_r23_nectar_gravity.json"
+    tool: {value: "MuJoCo 3.14.0, 60 rpm paddle sign=+1 (CCW front view), mu=0.40, forcerange +-0.530 N*m, CTRL 290 rpm (25-4 linear T-n model), nip 82 mm, 25 s"}
+    G1_hub12_r58.4: {value: {"launch": true, "exit_t_s": 4.016, "exit_speed_m_s": 4.698, "exit_angle_deg": 51.11, "jam_percent": 10, "min_r_mm": 57.6}, status: "SIMULATED"}
+    G2_hub12_r58.4_90rpm: {value: {"launch": true, "exit_t_s": 3.616, "exit_speed_m_s": 4.733, "jam_percent": 10}, status: "SIMULATED"}
+    G3_hub18_r64: {value: {"launch": true, "exit_t_s": 6.316, "exit_speed_m_s": 4.732, "exit_angle_deg": 50.71, "jam_percent": 21}, status: "SIMULATED"}
+    G4_hub18_seated: {value: {"launch": true, "exit_t_s": 6.05, "exit_speed_m_s": 4.733, "jam_percent": 67}, status: "SIMULATED", note: "pre-seated control only"}
+  simulation_r24:
+    status: "SIMULATED"
+    source: "simulation/mujoco/_work/r24.py; simulation/mujoco/out/_r24_nectar_trade.json"
+    tool: {value: "same as r23: 60 rpm, mu=0.40, nip 82 mm, 25 s"}
+    H1_hub18_r70: {value: {"launch": true, "exit_t_s": 11.728, "exit_speed_m_s": 4.712, "jam_percent": 43, "delta_mm": 25.142}, status: "SIMULATED"}
+    H2_hub15_r66: {value: {"launch": true, "exit_t_s": 8.784, "exit_speed_m_s": 4.742, "jam_percent": 31, "delta_mm": 21.142}, status: "SIMULATED"}
+    H3_hub12_r62: {value: {"launch": true, "exit_t_s": 3.264, "exit_speed_m_s": 4.740, "exit_angle_deg": 51.93, "jam_percent": 8, "delta_mm": 17.142}, status: "SIMULATED", note: "SELECTED as R25"}
+    verdict: {value: "all three hub options launch; O24 (H3) is 3.6x faster than O36 (H1) and jams 5x less", status: "SIMULATED"}
+  superseded_nectar_rounds: {value: ["R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22"], status: "SUPERSEDED", source: "DEC-0029: those NECTAR runs used HALF_SPACING=80 (nip 64 mm, POLLEN value) and left the tray untranslated, so their nip and their drop are both wrong; files kept, do not cite"}
+  open_question: {value: "geometry is SIMULATED-validated but not physically built; the 9.9 mm nip interference is taken from the NECTAR file and no structural/ball-deformation check has been done; ball mass 0.130 kg is ASSUMED; mu=0.40 remains ASSUMED (bench test still required); the servo margin is still open (DEC-0026/0027).", status: "TBD"}
+
+# ---------------------------------------------------------------------------
+# 2026-10-04 DEC-0030: ONE feeder for BOTH balls.  The NECTAR and POLLEN
+# launchers use the same physical device; only the opposed-flywheel nip changes.
+# Generator: cad/paddle_launcher_feeder_a_prime_shared.py
+# Parent modules and the original STEP are untouched.
+# ---------------------------------------------------------------------------
+t06_feeder_a_prime_shared:
+  note: "shared a' feeder R26: the same shell + tray + paddle for NECTAR (D 91.948) and POLLEN (D 71.120). The only per-variant quantity is the flywheel nip. Rotor frozen as TWO blades at 330/150 deg, driven as an indexed cycle (park >= 1.2 s, then ONE 240-260 deg sweep)."
+  version: {value: "C06B-FEEDER-A-PRIME-SHARED-R26", status: "KNOWN", source: "docs/decision_log.md DEC-0030"}
+  generator: {value: "cad/paddle_launcher_feeder_a_prime_shared.py", status: "KNOWN", source: "emits both variants from one geometry source"}
+  shared_shell_inner_radius: {value: 107.974, unit: "mm", status: "CALCULATED", source: "hub_r 12 + NECTAR ball_r 45.974 + 4.026 clearance; set by the BIG ball, the small ball rides the same arc at r = 72.414"}
+  shared_shell_outer_radius: {value: 114.974, unit: "mm", status: "CALCULATED", source: "shared_shell_inner_radius + 7 mm wall"}
+  shared_shell_sector: {value: [142.0, 275.0], unit: "deg", status: "KNOWN", source: "inherited from DEC-0029 (A_EXIT 142, A_LIP 275) unchanged in DEC-0030"}
+  shared_feeder_width: {value: 108.0, unit: "mm", status: "KNOWN"}
+  shared_tray_tilt: {value: 5.0, unit: "deg", status: "KNOWN"}
+  shared_tray_normal_drop_delta: {value: 17.142, unit: "mm", status: "CALCULATED", source: "DEC-0029 tangency condition, unchanged"}
+  shared_tray_pivot: {value: [-0.806, 0.423], unit: "mm", status: "CALCULATED"}
+  shared_tray_x_range: {value: [38.901, 150.0], unit: "mm", status: "CALCULATED", source: "left end = tray / carry-circle tangency x, right end unchanged"}
+  shared_tangency_point: {value: [38.901, 3.897], unit: "mm", status: "CALCULATED"}
+  shared_paddle_axis: {value: [29.49, 0.0, 111.46], unit: "mm", status: "KNOWN", source: "unchanged rotor axis"}
+  shared_paddle_hub_radius: {value: 12.0, unit: "mm", status: "KNOWN", source: "DEC-0029 hub O24"}
+  shared_paddle_blade_count: {value: 2, unit: "1", status: "CALCULATED", source: "DEC-0030; was 3"}
+  shared_paddle_blade_phase: {value: [330.0, 150.0], unit: "deg", status: "CALCULATED", source: "DEC-0030 R28: clears the 275..142 deg entry corridor; the retired 258 deg plate pushed the big ball back out (jam 80 %)"}
+  shared_paddle_arm_r: {value: [10.0, 46.0], unit: "mm", status: "KNOWN"}
+  shared_paddle_blade_r: {value: [46.0, 58.0], unit: "mm", status: "KNOWN"}
+  shared_paddle_flex_r: {value: [56.0, 60.0], unit: "mm", status: "KNOWN", source: "TPU flex tip, zip-tie class material per DEC-0022"}
+  shared_ball_independence_check: {value: "cad/paddle_launcher_constrained.py contains no ball-diameter parameter; the shared shell/tray/paddle reference no BALL_R/BALL_D; only half_spacing = nip/2 + 48 mm is passed per variant, so the two STEP variants differ only in the flywheel nip", status: "KNOWN", source: "grep over the parent module, 2026-10-04"}
+  index_drive_park_min: {value: 1.2, unit: "s", status: "SIMULATED", source: "DEC-0030 R29/R30: the ball needs >=1.2 s (tested up to 5.0 s) to roll into the rest pocket before the sweep"}
+  index_drive_sweep: {value: [240.0, 260.0], unit: "deg", status: "SIMULATED", source: "DEC-0030 R29: 180/200 deg fail for both balls, >=240 deg passes"}
+  index_drive_servo: {value: "goBILDA 25-4 Super Speed 0.530 N*m / 290 rpm", status: "KNOWN", source: "DEC-0026 user choice; linear T-n model kv=0.017452 used in R28-R30"}
+  variants:
+    nectar:
+      ball_diameter: {value: 91.948, unit: "mm", status: "MEASURED", source: "read-back of am-5852_blue Blue Alliance Nectar.STEP"}
+      ball_mass: {value: 0.130, unit: "kg", status: "ASSUMED", source: "hollow printed plastic ball estimate; NOT weighed"}
+      flywheel_nip: {value: 82.0, unit: "mm", status: "KNOWN", source: "user instruction 2026-10-04: NECTAR clearance from the NECTAR file (2*89 - WHEEL_OD 96)"}
+      flywheel_half_spacing: {value: 89.0, unit: "mm", status: "KNOWN"}
+      ball_carry_radius: {value: 62.0, unit: "mm", status: "CALCULATED", source: "shared_shell_inner_radius - ball_radius"}
+      hub_clearance: {value: 4.026, unit: "mm", status: "CALCULATED"}
+      rest_ball_centre: {value: [29.49, 49.46], unit: "mm", status: "CALCULATED"}
+    pollen:
+      ball_diameter: {value: 71.12, unit: "mm", status: "KNOWN"}
+      ball_mass: {value: 0.060, unit: "kg", status: "ASSUMED"}
+      flywheel_nip: {value: 64.0, unit: "mm", status: "KNOWN", source: "POLLEN file value (2*80 - WHEEL_OD 96)"}
+      flywheel_half_spacing: {value: 80.0, unit: "mm", status: "KNOWN"}
+      ball_carry_radius: {value: 72.414, unit: "mm", status: "CALCULATED", source: "shared_shell_inner_radius - ball_radius"}
+      hub_clearance: {value: 24.854, unit: "mm", status: "CALCULATED"}
+      rest_ball_centre: {value: [29.49, 39.046], unit: "mm", status: "CALCULATED"}
+  simulation_r28_layouts: {value: "three blades 18/138/258 -> NECTAR launched=False, ball stuck at r=67.3 mm / 295 deg, stall 80 %; two blades 330/150 -> NECTAR t=2.80 s v=4.63 m/s 49.8 deg, POLLEN t=2.30 s v=5.93 m/s 49.9 deg", status: "SIMULATED", source: "simulation/mujoco/_work/r28.py; simulation/mujoco/out/_r28_layouts.json"}
+  simulation_r29_grid: {value: "48 combinations home x sweep(180/200/248) x entry x(98/108/118/128) x hold(1.2/1.8 s): 330/150 with sweep >=248 deg passes for BOTH balls in all 16 combinations; sweep 180/200 deg always fails; the 10/190 layout fails for POLLEN at x=108/118 with hold 1.2 s", status: "SIMULATED", source: "simulation/mujoco/_work/r29.py; simulation/mujoco/out/_r29_grid.json"}
+  simulation_r30_margin: {value: "12 combinations (330/150, sweep 240/248/260, entry x 98/128, hold 3.0/5.0 s): 12 of 12 pass - NECTAR t=4.00/6.00 s v=4.64-4.68 m/s jam 10 %, POLLEN t=3.40/5.40 s v=5.87-6.13 m/s jam 0 %", status: "SIMULATED", source: "simulation/mujoco/_work/r30.py; simulation/mujoco/out/_r30_margin.json"}
+  artifacts: {value: ["cad/output/_t06_shared_feeder_zh.png", "cad/output/paddle_launcher_feeder_a_prime_shared_nectar.step", "cad/output/paddle_launcher_feeder_a_prime_shared_pollen.step", "cad/output/paddle_launcher_feeder_a_prime_shared_report.json", "cad/output/inspection/_r26_shared_paddle_hub.step", "cad/output/inspection/_r26_shared_feeder_shell_tray.step", "config/t06_feeder_aprime_shared_hub_checks.json", "config/t06_feeder_aprime_shared_shell_checks.json"], status: "KNOWN", source: "large STEP/STL are git-ignored and regenerable from the generator"}
+  open_question: {value: "one shared feeder for both balls is SIMULATED-validated but not physically built; the indexed servo cycle (park - sweep - release) still needs a controller implementation and a bench test; mu=0.40 remains ASSUMED so the bench friction measurement is still required; ball masses 0.130 / 0.060 kg are ASSUMED; the 9.9 mm NECTAR nip interference is taken from the NECTAR file and no structural/ball-deformation check has been done; the CONTINUOUS-rotation mode is NOT usable with this rotor.", status: "TBD"}

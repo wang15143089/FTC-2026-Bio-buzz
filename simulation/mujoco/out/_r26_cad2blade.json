@@ -1,0 +1,52 @@
+{
+ "nectar_60": {
+  "peak_speed_m_s": 0.1622,
+  "peak_speed_t": 0.008,
+  "rest_position_mm": [
+   91.99,
+   54.69
+  ],
+  "settled_position_mm": [
+   96.31,
+   54.38
+  ],
+  "min_angle_deg": 317.75,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -110.26,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 55.04,
+  "final_mm": [
+   104.2,
+   55.04
+  ],
+  "sign": 1.0
+ },
+ "pollen_60": {
+  "peak_speed_m_s": 0.2175,
+  "peak_speed_t": 5.128,
+  "rest_position_mm": [
+   100.9,
+   45.02
+  ],
+  "settled_position_mm": [
+   97.0,
+   42.98
+  ],
+  "min_angle_deg": 312.24,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -120.19,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 45.02,
+  "final_mm": [
+   96.37,
+   43.11
+  ],
+  "sign": 1.0
+ }
+}

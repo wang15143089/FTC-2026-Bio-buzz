@@ -1,0 +1,134 @@
+{
+ "pollen_ctrl": {
+  "peak_speed_m_s": 22.3199,
+  "peak_speed_t": 2.998,
+  "rest_position_mm": [
+   29.49,
+   53.06
+  ],
+  "settled_position_mm": [
+   29.49,
+   52.98
+  ],
+  "min_angle_deg": 0.01,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.935,
+  "max_lx_mm": 2550.31,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1470.8,
+  "final_mm": [
+   10748.74,
+   -23146.62
+  ],
+  "exit": {
+   "t": 0.264,
+   "speed_m_s": 6.22,
+   "angle_deg": 51.15,
+   "apex_above_exit_mm": 1196.1,
+   "range_same_height_m": 3.85
+  },
+  "sign": 1.0
+ },
+ "nectar_64": {
+  "peak_speed_m_s": 2.4475,
+  "peak_speed_t": 0.512,
+  "rest_position_mm": [
+   29.49,
+   47.46
+  ],
+  "settled_position_mm": [
+   21.7,
+   194.19
+  ],
+  "min_angle_deg": 92.09,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.66,
+  "max_lx_mm": -44.39,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 199.51,
+  "final_mm": [
+   20.4,
+   196.25
+  ],
+  "sign": 1.0
+ },
+ "nectar_66": {
+  "peak_speed_m_s": 2.2426,
+  "peak_speed_t": 2.362,
+  "rest_position_mm": [
+   29.49,
+   45.46
+  ],
+  "settled_position_mm": [
+   29.45,
+   45.16
+  ],
+  "min_angle_deg": 92.17,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.492,
+  "max_lx_mm": -44.66,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 199.6,
+  "final_mm": [
+   22.19,
+   196.63
+  ],
+  "sign": 1.0
+ },
+ "nectar_70": {
+  "peak_speed_m_s": 0.1227,
+  "peak_speed_t": 0.034,
+  "rest_position_mm": [
+   29.49,
+   41.46
+  ],
+  "settled_position_mm": [
+   29.55,
+   41.25
+  ],
+  "min_angle_deg": 183.91,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -159.17,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 106.62,
+  "final_mm": [
+   -41.26,
+   106.62
+  ],
+  "sign": 1.0
+ },
+ "nectar_66_cw": {
+  "peak_speed_m_s": 0.2299,
+  "peak_speed_t": 0.05,
+  "rest_position_mm": [
+   29.49,
+   45.46
+  ],
+  "settled_position_mm": [
+   41.1,
+   46.15
+  ],
+  "min_angle_deg": 269.92,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -156.12,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 46.15,
+  "final_mm": [
+   41.1,
+   46.15
+  ],
+  "sign": -1.0
+ }
+}

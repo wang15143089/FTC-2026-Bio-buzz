@@ -1,0 +1,84 @@
+{
+ "A_pollen_ctrl": {
+  "peak_speed_m_s": 66.2466,
+  "peak_speed_t": 19.998,
+  "rest_position_mm": [
+   145.0,
+   65.95
+  ],
+  "settled_position_mm": [
+   61.71,
+   59.88
+  ],
+  "min_angle_deg": 0.06,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.202,
+  "max_lx_mm": 2504.04,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1450.07,
+  "final_mm": [
+   27991.32,
+   -221478.11
+  ],
+  "exit": {
+   "t": 12.766,
+   "speed_m_s": 6.168,
+   "angle_deg": 51.27,
+   "apex_above_exit_mm": 1180.1,
+   "range_same_height_m": 3.79
+  },
+  "sign": 1.0
+ },
+ "B_nectar_60rpm": {
+  "peak_speed_m_s": 0.2468,
+  "peak_speed_t": 0.022,
+  "rest_position_mm": [
+   145.0,
+   76.36
+  ],
+  "settled_position_mm": [
+   122.09,
+   74.31
+  ],
+  "min_angle_deg": 327.57,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -68.34,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 76.75,
+  "final_mm": [
+   92.09,
+   71.68
+  ],
+  "sign": 1.0
+ },
+ "C_nectar_20rpm": {
+  "peak_speed_m_s": 0.2468,
+  "peak_speed_t": 0.022,
+  "rest_position_mm": [
+   145.0,
+   76.36
+  ],
+  "settled_position_mm": [
+   78.68,
+   70.59
+  ],
+  "min_angle_deg": 319.77,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -68.34,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 76.75,
+  "final_mm": [
+   78.69,
+   70.6
+  ],
+  "sign": 1.0
+ }
+}

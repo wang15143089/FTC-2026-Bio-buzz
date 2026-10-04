@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1",
+  "run_label": "R026",
+  "created_at_utc": "2026-10-04T18:29:20.971927+00:00",
+  "duration_s": 0.05,
+  "command": "tools\\inspect_geometry.py --step cad/output/inspection/_r26_shared_paddle_hub.step --step-part-id paddle_hub --spec config/t06_feeder_aprime_shared_hub_checks.json --run-label R026 --report cad/output/inspection/t06_shared_R026_hub.json",
+  "working_directory": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz",
+  "host": "DESKTOP-2JPFDSA",
+  "interpreter": {
+    "executable": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\.venv-cad\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "dependencies": {
+    "cadquery": "2.6.1",
+    "python": "3.12.14"
+  },
+  "units": "mm",
+  "coordinate_system": "as authored in the STEP file",
+  "design_id": "C06B-FEEDER-A-PRIME-SHARED-R26",
+  "solution_status": "candidate_pending_human_review",
+  "inputs": [
+    {
+      "role": "check_requirements",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_feeder_aprime_shared_hub_checks.json",
+      "exists": true,
+      "bytes": 2682,
+      "sha256": "8FFE733DBE63FC1936CC1886AAD08BEA71D4A93112030DC082ED0A0F8D642C04"
+    },
+    {
+      "role": "step",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\inspection\\_r26_shared_paddle_hub.step",
+      "exists": true,
+      "bytes": 9326,
+      "sha256": "C2A799003DA60AE3BDC11325FCA8ED48CCE4B716AF03E5A7C69F7589D165E692"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "pass": 6,
+    "fail": 0,
+    "not_run": 0,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "id": "T06-APS-HUB-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEED-01: the paddle hub ships as one printable solid",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the part's own solids in the re-imported STEP",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-HUB-002",
+      "kind": "bbox_size",
+      "requirement": "DEC-0029: paddle hub reduced to O24 so the carried ball keeps 4.026 mm hub clearance",
+      "target": 24.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[x] from final solid bounding box",
+      "status": "pass",
+      "measured": 24.0,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-HUB-003",
+      "kind": "bbox_size",
+      "requirement": "DEC-0029: paddle hub reduced to O24 so the carried ball keeps 4.026 mm hub clearance",
+      "target": 24.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[z] from final solid bounding box",
+      "status": "pass",
+      "measured": 24.0,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-HUB-004",
+      "kind": "bbox_size",
+      "requirement": "DEC-0029: hub axial length unchanged at 34 mm so the arms and shaft joint are preserved",
+      "target": 34.0,
+      "tolerance": 0.05,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 34.0,
+      "deviation": 0.0,
+      "note": ""
+    },
+    {
+      "id": "T06-APS-HUB-005",
+      "kind": "volume",
+      "requirement": "DEC-0029: the hub is the full O24 cylinder minus the O8.2 shaft bore (pi*(12^2-4.1^2)*34)",
+      "target": 13585.63,
+      "tolerance": 0.001,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 13585.692,
+      "deviation": 5e-06,
+      "note": "",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-APS-HUB-006",
+      "kind": "step_roundtrip",
+      "requirement": "the delivered STEP reproduces the modelled hub envelope and volume",
+      "target": "STEP export/re-import reproduces bbox and volume",
+      "tolerance": {
+        "bbox_size_mm": 0.05,
+        "volume_relative": 1e-05
+      },
+      "method": "export STEP, re-import, compare bounding box and volume",
+      "status": "pass",
+      "measured": {
+        "bbox_size_before_mm": [
+          24.0,
+          34.0,
+          24.0
+        ],
+        "bbox_size_after_mm": [
+          24.0,
+          34.0,
+          24.0
+        ],
+        "volume_before_mm3": 13585.692,
+        "volume_after_mm3": 13585.692,
+        "solid_count_after": 1
+      },
+      "deviation": {
+        "bbox_size_mm": 0.0,
+        "volume_relative": 0.0
+      },
+      "note": "read-back of this run's exported STEP"
+    }
+  ],
+  "parts": [
+    {
+      "id": "paddle_hub",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 13585.692,
+      "bbox": {
+        "min_mm": [
+          17.49,
+          -17.0,
+          99.46
+        ],
+        "max_mm": [
+          41.49,
+          17.0,
+          123.46
+        ],
+        "size_mm": [
+          24.0,
+          34.0,
+          24.0
+        ]
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "part": "paddle_hub",
+      "before": {
+        "min_mm": [
+          17.49,
+          -17.0,
+          99.46
+        ],
+        "max_mm": [
+          41.49,
+          17.0,
+          123.46
+        ],
+        "size_mm": [
+          24.0,
+          34.0,
+          24.0
+        ]
+      },
+      "after": {
+        "min_mm": [
+          17.49,
+          -17.0,
+          99.46
+        ],
+        "max_mm": [
+          41.49,
+          17.0,
+          123.46
+        ],
+        "size_mm": [
+          24.0,
+          34.0,
+          24.0
+        ]
+      },
+      "volume_before_mm3": 13585.692
+    }
+  ],
+  "not_verified": [],
+  "human_review": [],
+  "failure_states": []
+}

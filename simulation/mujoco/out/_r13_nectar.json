@@ -1,0 +1,159 @@
+{
+ "pollen_ctrl": {
+  "peak_speed_m_s": 22.3199,
+  "peak_speed_t": 2.998,
+  "rest_position_mm": [
+   29.49,
+   53.06
+  ],
+  "settled_position_mm": [
+   29.49,
+   52.98
+  ],
+  "min_angle_deg": 0.01,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.935,
+  "max_lx_mm": 2550.31,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 1470.8,
+  "final_mm": [
+   10748.74,
+   -23146.62
+  ],
+  "exit": {
+   "t": 0.264,
+   "speed_m_s": 6.22,
+   "angle_deg": 51.15,
+   "apex_above_exit_mm": 1196.1,
+   "range_same_height_m": 3.85
+  },
+  "sign": 1.0
+ },
+ "nectar_64": {
+  "peak_speed_m_s": 0.8285,
+  "peak_speed_t": 0.026,
+  "rest_position_mm": [
+   29.49,
+   47.46
+  ],
+  "settled_position_mm": [
+   -33.49,
+   124.85
+  ],
+  "min_angle_deg": 166.9,
+  "entered_shell": true,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -138.87,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 126.02,
+  "final_mm": [
+   -33.49,
+   124.85
+  ],
+  "sign": 1.0
+ },
+ "nectar_66": {
+  "peak_speed_m_s": 1.0333,
+  "peak_speed_t": 0.032,
+  "rest_position_mm": [
+   29.49,
+   45.46
+  ],
+  "settled_position_mm": [
+   -35.78,
+   124.24
+  ],
+  "min_angle_deg": 168.5,
+  "entered_shell": true,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -141.33,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 124.65,
+  "final_mm": [
+   -35.78,
+   124.24
+  ],
+  "sign": 1.0
+ },
+ "nectar_70": {
+  "peak_speed_m_s": 1.1392,
+  "peak_speed_t": 0.036,
+  "rest_position_mm": [
+   29.49,
+   41.46
+  ],
+  "settled_position_mm": [
+   -38.13,
+   90.19
+  ],
+  "min_angle_deg": 194.37,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -166.96,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 93.88,
+  "final_mm": [
+   -39.13,
+   93.88
+  ],
+  "sign": 1.0
+ },
+ "nectar_76": {
+  "peak_speed_m_s": 0.9918,
+  "peak_speed_t": 0.038,
+  "rest_position_mm": [
+   29.49,
+   35.46
+  ],
+  "settled_position_mm": [
+   -46.01,
+   122.88
+  ],
+  "min_angle_deg": 170.26,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -147.84,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 124.33,
+  "final_mm": [
+   -46.01,
+   122.88
+  ],
+  "sign": 1.0
+ },
+ "nectar_66_cw": {
+  "peak_speed_m_s": 0.7948,
+  "peak_speed_t": 0.026,
+  "rest_position_mm": [
+   29.49,
+   45.46
+  ],
+  "settled_position_mm": [
+   17.18,
+   46.05
+  ],
+  "min_angle_deg": 255.73,
+  "entered_shell": false,
+  "reached_142deg_exit": false,
+  "release_speed_m_s": 0.0,
+  "max_lx_mm": -163.81,
+  "passed_nip": false,
+  "launched": false,
+  "max_z_mm": 48.12,
+  "final_mm": [
+   17.18,
+   46.05
+  ],
+  "sign": -1.0
+ }
+}

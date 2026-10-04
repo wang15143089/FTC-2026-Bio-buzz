@@ -1,0 +1,18 @@
+START build_variant(nectar)
+[nectar] building parent assembly ...
+  END build_variant -> 46.7 s
+START nest ball volume
+   shell vol 267723
+  END shell.Volume -> 0.0 s
+START nest ball makeSphere
+  END makeSphere -> 0.0 s
+START nest_ball ^ shell
+   -> 0.0
+  END nest_ball ^ shell -> 0.0 s
+START nest_ball ^ hub
+   -> 0.0
+  END nest_ball ^ hub -> 0.0 s
+START _clash(shell, 19 kept parts)
+  END _clash -> 72.4 s
+   hits: {'guide_roof_3': 126.471, 'shooter_throat_+55': 5717.5021}
+START flywheel nip distance (2x2)

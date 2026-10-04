@@ -1,0 +1,11 @@
+=== R25 DUAL-BALL: one shared feeder, only the nip changes ===
+shared: R_IN=107.974  A_LIP=275.0  CUT_X=38.901  hub_r=12.0  pivot=(-0.806, 0.423)
+-- NECTAR_60rpm   ball_r=45.974 nip=82.0 -> half=89.00   60.0 rpm --
+   launched=False exit_t=--     v=--     ang=--      min_ang=325.72  min_r=98.25  max_lx=-57.86  final=(123,57)
+-- POLLEN_60rpm   ball_r=35.560 nip=64.0 -> half=80.00   60.0 rpm --
+   launched=False exit_t=--     v=--     ang=--      min_ang=0.00    min_r=81.03  max_lx=3.87    final=(5153,-1285815)
+-- POLLEN_90rpm   ball_r=35.560 nip=64.0 -> half=80.00   90.0 rpm --
+   launched=False exit_t=--     v=--     ang=--      min_ang=0.07    min_r=77.15  max_lx=-32.76  final=(97,45)
+-- NECTAR_90rpm   ball_r=45.974 nip=82.0 -> half=89.00   90.0 rpm --
+   launched=False exit_t=--     v=--     ang=--      min_ang=325.51  min_r=98.38  max_lx=-54.85  final=(135,58)
+saved simulation\mujoco\out\_r25_dual_ball.json

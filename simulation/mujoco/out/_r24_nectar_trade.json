@@ -1,0 +1,113 @@
+{
+ "H1_hub18_r70": {
+  "peak_speed_m_s": 126.5568,
+  "peak_speed_t": 24.998,
+  "rest_position_mm": [
+   145.0,
+   51.12
+  ],
+  "settled_position_mm": [
+   -24.9,
+   66.53
+  ],
+  "min_angle_deg": 0.05,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.039,
+  "max_lx_mm": 1479.65,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 951.74,
+  "final_mm": [
+   39520.3,
+   -814952.89
+  ],
+  "exit": {
+   "t": 11.728,
+   "speed_m_s": 4.712,
+   "angle_deg": 50.9,
+   "apex_above_exit_mm": 681.6,
+   "range_same_height_m": 2.22
+  },
+  "sign": 1.0,
+  "hub_r": 18.0,
+  "r_carry": 70.0,
+  "hub_clearance_mm": 6.026,
+  "delta_mm": 25.142,
+  "cut_x_mm": 39.598
+ },
+ "H2_hub15_r66": {
+  "peak_speed_m_s": 155.375,
+  "peak_speed_t": 24.998,
+  "rest_position_mm": [
+   145.0,
+   55.14
+  ],
+  "settled_position_mm": [
+   -25.93,
+   74.67
+  ],
+  "min_angle_deg": 0.1,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.133,
+  "max_lx_mm": 1496.79,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 971.19,
+  "final_mm": [
+   47924.62,
+   -1229048.26
+  ],
+  "exit": {
+   "t": 8.784,
+   "speed_m_s": 4.742,
+   "angle_deg": 51.52,
+   "apex_above_exit_mm": 702.4,
+   "range_same_height_m": 2.23
+  },
+  "sign": 1.0,
+  "hub_r": 15.0,
+  "r_carry": 66.0,
+  "hub_clearance_mm": 5.026,
+  "delta_mm": 21.142,
+  "cut_x_mm": 39.249
+ },
+ "H3_hub12_r62": {
+  "peak_speed_m_s": 209.4998,
+  "peak_speed_t": 24.998,
+  "rest_position_mm": [
+   145.0,
+   59.15
+  ],
+  "settled_position_mm": [
+   -32.44,
+   103.74
+  ],
+  "min_angle_deg": 0.14,
+  "entered_shell": true,
+  "reached_142deg_exit": true,
+  "release_speed_m_s": 0.24,
+  "max_lx_mm": 1499.26,
+  "passed_nip": true,
+  "launched": true,
+  "max_z_mm": 981.43,
+  "final_mm": [
+   63601.74,
+   -2235614.63
+  ],
+  "exit": {
+   "t": 3.264,
+   "speed_m_s": 4.74,
+   "angle_deg": 51.93,
+   "apex_above_exit_mm": 709.6,
+   "range_same_height_m": 2.22
+  },
+  "sign": 1.0,
+  "hub_r": 12.0,
+  "r_carry": 62.0,
+  "hub_clearance_mm": 4.026,
+  "delta_mm": 17.142,
+  "cut_x_mm": 38.901
+ }
+}

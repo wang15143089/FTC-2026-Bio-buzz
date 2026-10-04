@@ -56,3 +56,10 @@ cad/output/paddle_launcher_motion_only_*.glb
 cad/output/paddle_launcher_motion_free_*.step
 cad/output/paddle_launcher_motion_free_*.stl
 cad/output/paddle_launcher_motion_free_*.glb
+
+# a' feeder geometry sets (NECTAR / POLLEN / shared).  Large regenerable exports,
+# same local-only rule; the *_report.json and cad/output/inspection/ part files
+# stay tracked.  Regenerate with cad/paddle_launcher_feeder_a_prime_shared.py.
+cad/output/paddle_launcher_feeder_a_prime_*.step
+cad/output/paddle_launcher_feeder_a_prime_*.stl
+cad/output/paddle_launcher_feeder_a_prime_*.glb

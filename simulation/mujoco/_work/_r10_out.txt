@@ -1,0 +1,22 @@
+=== R10 shape sweep, POLLEN, mu=0.40, 12 s ===
+  cut52_lip288               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=34%   rpmMed=281.9  min_r=88.3  minang=325.6  final=(135,65)
+  cut52_lip292               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=34%   rpmMed=281.9  min_r=88.3  minang=325.6  final=(135,65)
+  cut52_lip300               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=34%   rpmMed=281.9  min_r=88.3  minang=325.6  final=(135,65)
+  cut56_lip288               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=35%   rpmMed=281.9  min_r=87.1  minang=325.0  final=(107,62)
+  cut56_lip292               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=35%   rpmMed=281.9  min_r=87.1  minang=325.0  final=(107,62)
+  cut56_lip300               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=35%   rpmMed=281.9  min_r=87.1  minang=325.0  final=(107,62)
+  cut62_lip288               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=28%   rpmMed=281.9  min_r=89.2  minang=326.1  final=(140,66)
+  cut62_lip292               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=28%   rpmMed=281.9  min_r=89.2  minang=326.1  final=(140,66)
+  cut62_lip300               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=28%   rpmMed=281.9  min_r=89.2  minang=326.1  final=(140,66)
+  cut70_lip288               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=36%   rpmMed=281.9  min_r=88.1  minang=325.6  final=(109,62)
+  cut70_lip292               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=36%   rpmMed=281.9  min_r=88.1  minang=325.6  final=(109,62)
+  cut70_lip300               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=36%   rpmMed=281.9  min_r=88.1  minang=325.6  final=(109,62)
+
+=== R10 best-guess vs R5 reference, mu sweep, 20 s ===
+  R10 cut=56 lip=292         mu=0.30 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=29%   rpmMed=281.9  min_r=85.5  minang=324.1  final=(149,66)
+  R10 cut=56 lip=292         mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=36%   rpmMed=281.9  min_r=87.1  minang=325.0  final=(129,65)
+  R10 cut=56 lip=292         mu=0.50 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=55%   rpmMed=7.3    min_r=84.6  minang=323.5  final=(106,61)
+  R10 cut=56 lip=292         mu=0.60 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=77%   rpmMed=8.4    min_r=93.7  minang=327.6  final=(109,61)
+  R5 reference               mu=0.40 t0=tray       launch=False exit_t=--     v=--     ang=--      jam=0%    rpmMed=281.9  min_r=95.4  minang=270.2  final=(6429,-1858067)
+  R5 reference               mu=1.00 t0=tray       launch=True  exit_t=7.498  v=6.67   ang=50.59   jam=35%   rpmMed=281.9  min_r=54.3  minang=0.1    final=(53015,-701730)
+  saved simulation\mujoco\out\_r10_sweep.json

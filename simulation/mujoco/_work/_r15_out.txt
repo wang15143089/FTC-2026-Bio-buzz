@@ -1,0 +1,87 @@
+=== R15 NECTAR, corrected end-face radius, ball pre-seated, sign=+1 ===
+    t= 0.00  x=  29.49 z=  53.06  r= 58.40 ang= 270.0  c=-
+    t= 0.25  x=  39.98 z= 219.07  r=108.12 ang=  84.4  c=fw_lower_1,fw_lower_2,fw_upper_1,fw_upper_2
+    t= 0.50  x=1001.70 z=1145.01  r=1418.95 ang=  46.8  c=-
+    t= 0.75  x=1977.18 z=1470.51  r=2374.98 ang=  34.9  c=-
+    t= 1.00  x=2952.67 z=1182.89  r=3113.35 ang=  20.1  c=-
+    t= 1.25  x=3928.15 z= 282.14  r=3902.40 ang=   2.5  c=-
+    t= 1.50  x=4903.64 z=-1231.73  r=5055.84 ang= 344.6  c=-
+    t= 1.75  x=5879.12 z=-3358.73  r=6801.50 ang= 329.3  c=-
+    t= 2.00  x=6854.61 z=-6098.85  r=9227.69 ang= 317.7  c=-
+    t= 2.25  x=7830.09 z=-9452.10  r=12341.44 ang= 309.2  c=-
+    t= 2.50  x=8805.58 z=-13418.48  r=16126.96 ang= 303.0  c=-
+    t= 2.75  x=9781.06 z=-17997.97  r=20568.05 ang= 298.3  c=-
+  POLLEN ctrl    sign=+1 R_in=93.96  launch=True  exit_t=0.264  v=6.22   ang=51.15   jam=1%    rpmMed=281.9  min_r=58.4  minang=0.0    final=(10749,-23147)
+  -- NECTAR R_CARRY=64.0 r_in=109.97 tray_x0=79.0 lip=320 --
+    t= 0.00  x=  29.49 z=  47.46  r= 64.00 ang= 270.0  c=-
+    t= 0.25  x= -28.87 z=  83.24  r= 64.82 ang= 205.8  c=paddle_blade_1,r10_07,r10_08,r10_09
+    t= 0.50  x=  15.84 z= 195.55  r= 85.19 ang=  99.2  c=fw_upper_1,fw_upper_2,paddle_flex_1
+    t= 0.75  x=  22.25 z= 196.92  r= 85.76 ang=  94.8  c=fw_lower_1,fw_lower_2,fw_upper_1,fw_upper_2,paddle_flex_1
+    t= 1.00  x=  21.68 z= 188.80  r= 77.73 ang=  95.8  c=fw_lower_1,fw_lower_2,paddle_flex_1
+    t= 1.25  x=  18.54 z= 194.99  r= 84.24 ang=  97.5  c=paddle_flex_1
+    t= 1.50  x=  17.96 z= 191.37  r= 80.74 ang=  98.2  c=paddle_flex_1
+    t= 1.75  x=  21.59 z= 196.10  r= 85.01 ang=  95.3  c=paddle_flex_1
+    t= 2.00  x=  21.29 z= 194.87  r= 83.81 ang=  95.6  c=paddle_flex_1
+    t= 2.25  x=  21.92 z= 196.84  r= 85.71 ang=  95.1  c=fw_upper_2,paddle_flex_1
+    t= 2.50  x=  21.39 z= 195.98  r= 84.91 ang=  95.5  c=paddle_flex_1
+    t= 2.75  x=  21.33 z= 196.38  r= 85.31 ang=  95.5  c=paddle_flex_1
+    t= 3.00  x=  22.04 z= 196.82  r= 85.68 ang=  95.0  c=fw_lower_2,fw_upper_2,paddle_flex_1
+    t= 3.25  x=  21.99 z= 196.85  r= 85.72 ang=  95.0  c=fw_lower_2,fw_upper_2,paddle_flex_1
+    t= 3.50  x=  21.60 z= 195.89  r= 84.80 ang=  95.3  c=paddle_flex_1
+    t= 3.75  x=  21.84 z= 196.44  r= 85.33 ang=  95.1  c=paddle_flex_1
+  NECTAR 64      sign=+1 R_in=109.97 launch=False exit_t=--     v=--     ang=--      jam=87%   rpmMed=12.5   min_r=63.9  minang=92.1   final=(20,196)
+  -- NECTAR R_CARRY=66.0 r_in=111.97 tray_x0=81.0 lip=322 --
+    t= 0.00  x=  29.49 z=  45.46  r= 66.00 ang= 270.0  c=-
+    t= 0.25  x=  -2.73 z=  52.78  r= 66.94 ang= 241.2  c=paddle_blade_1,r10_12,r10_13,r10_14
+    t= 0.50  x= -16.46 z=  62.79  r= 66.93 ang= 226.6  c=paddle_blade_1,r10_10,r10_11,r10_12
+    t= 0.75  x= -22.58 z=  69.39  r= 66.94 ang= 218.9  c=paddle_blade_1,r10_09,r10_10,r10_11
+    t= 1.00  x= -26.94 z=  75.50  r= 66.91 ang= 212.5  c=paddle_blade_1,r10_08,r10_09,r10_10
+    t= 1.25  x= -30.29 z=  81.41  r= 66.91 ang= 206.7  c=paddle_blade_1,r10_07,r10_08,r10_09
+    t= 1.50  x= -32.79 z=  86.87  r= 66.96 ang= 201.5  c=paddle_blade_1,r10_07,r10_08
+    t= 1.75  x= -34.88 z=  93.06  r= 66.95 ang= 195.9  c=paddle_blade_1,r10_06,r10_07
+    t= 2.00  x= -36.66 z= 106.29  r= 66.35 ang= 184.5  c=paddle_blade_1,r10_05
+    t= 2.25  x= -31.69 z= 136.46  r= 66.09 ang= 157.8  c=paddle_blade_1
+    t= 2.50  x=  11.24 z= 188.80  r= 79.46 ang= 103.3  c=paddle_flex_1
+    t= 2.75  x=  20.98 z= 192.68  r= 81.66 ang=  96.0  c=paddle_flex_1
+    t= 3.00  x=  19.55 z= 188.21  r= 77.39 ang=  97.4  c=paddle_flex_1
+    t= 3.25  x=  18.41 z= 195.28  r= 84.55 ang=  97.5  c=paddle_flex_1
+    t= 3.50  x=  21.56 z= 196.45  r= 85.36 ang=  95.3  c=paddle_flex_1
+    t= 3.75  x=  21.77 z= 195.70  r= 84.60 ang=  95.2  c=paddle_flex_1
+  NECTAR 66      sign=+1 R_in=111.97 launch=False exit_t=--     v=--     ang=--      jam=92%   rpmMed=4.4    min_r=65.9  minang=92.2   final=(22,197)
+  -- NECTAR R_CARRY=70.0 r_in=115.97 tray_x0=86.0 lip=325 --
+    t= 0.00  x=  29.49 z=  41.46  r= 70.00 ang= 270.0  c=-
+    t= 0.25  x=  16.67 z=  41.68  r= 70.95 ang= 259.6  c=paddle_blade_1,paddle_flex_1,r10_14,r10_15,r10_16
+    t= 0.50  x=   4.96 z=  44.84  r= 70.99 ang= 249.8  c=paddle_blade_1,paddle_flex_1,r10_13,r10_14
+    t= 0.75  x=  -2.78 z=  48.24  r= 70.98 ang= 243.0  c=paddle_blade_1,paddle_flex_1,r10_12,r10_13
+    t= 1.00  x=  -8.62 z=  51.63  r= 70.94 ang= 237.5  c=paddle_blade_1,paddle_flex_1,r10_11,r10_12,r10_13
+    t= 1.25  x= -13.21 z=  54.76  r= 70.98 ang= 233.0  c=paddle_blade_1,paddle_flex_1,r10_11,r10_12
+    t= 1.50  x= -17.71 z=  58.48  r= 70.96 ang= 228.3  c=paddle_blade_1,paddle_flex_1,r10_10,r10_11,r10_12
+    t= 1.75  x= -21.72 z=  62.31  r= 70.98 ang= 223.8  c=paddle_blade_1,paddle_flex_1,r10_09,r10_10,r10_11
+    t= 2.00  x= -25.40 z=  66.46  r= 70.98 ang= 219.3  c=paddle_blade_1,paddle_flex_1,r10_09,r10_10
+    t= 2.25  x= -28.70 z=  70.89  r= 70.93 ang= 214.9  c=paddle_blade_1,paddle_flex_1,r10_08,r10_09,r10_10
+    t= 2.50  x= -31.67 z=  75.45  r= 70.97 ang= 210.5  c=paddle_blade_1,paddle_flex_1,r10_08,r10_09
+    t= 2.75  x= -34.27 z=  80.38  r= 70.93 ang= 206.0  c=paddle_blade_1,paddle_flex_1,r10_07,r10_08,r10_09
+    t= 3.00  x= -36.49 z=  85.32  r= 70.97 ang= 201.6  c=paddle_blade_1,paddle_flex_1,r10_07,r10_08
+    t= 3.25  x= -38.33 z=  90.55  r= 70.97 ang= 197.1  c=paddle_blade_1,paddle_flex_1,r10_06,r10_07
+    t= 3.50  x= -39.70 z=  95.82  r= 70.93 ang= 192.7  c=paddle_blade_1,paddle_flex_1,r10_05,r10_06,r10_07
+    t= 3.75  x= -40.72 z= 101.18  r= 70.96 ang= 188.3  c=paddle_blade_1,paddle_flex_1,r10_05,r10_06
+  NECTAR 70      sign=+1 R_in=115.97 launch=False exit_t=--     v=--     ang=--      jam=99%   rpmMed=3.0    min_r=70.0  minang=183.9  final=(-41,107)
+  -- NECTAR R_CARRY=66, sign=-1 (CW) --
+    t= 0.00  x=  29.49 z=  45.46  r= 66.00 ang= 270.0  c=-
+    t= 0.25  x=  40.94 z=  45.98  r= 66.48 ang= 279.9  c=paddle_blade_2,r10_17,r10_18,tray
+    t= 0.50  x=  41.06 z=  46.11  r= 66.36 ang= 280.0  c=paddle_blade_2,r10_18,tray
+    t= 0.75  x=  41.09 z=  46.14  r= 66.34 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 1.00  x=  41.09 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 1.25  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 1.50  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 1.75  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 2.00  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 2.25  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 2.50  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 2.75  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 3.00  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 3.25  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 3.50  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+    t= 3.75  x=  41.10 z=  46.15  r= 66.33 ang= 280.1  c=paddle_blade_2,r10_18,tray
+  NECTAR 66 -1   sign=-1 R_in=111.97 launch=False exit_t=--     v=--     ang=--      jam=99%   rpmMed=-0.0   min_r=66.0  minang=269.9  final=(41,46)
+saved simulation\mujoco\out\_r15_nectar.json

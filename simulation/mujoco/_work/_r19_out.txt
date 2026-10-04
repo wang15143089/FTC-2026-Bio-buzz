@@ -1,0 +1,106 @@
+=== R19 NECTAR, tray cut moved past the hub tangency ===
+    t= 0.00  x= 145.00 z=  76.36  r=120.72 ang= 343.1  c=rear_wall,tray
+    t= 1.00  x=  97.90 z=  71.72  r= 79.12 ang= 329.8  c=paddle_flex_2,tray
+    t= 2.00  x= 100.24 z=  71.92  r= 81.05 ang= 330.8  c=paddle_flex_2,tray
+    t= 3.00  x= 103.57 z=  72.21  r= 83.83 ang= 332.1  c=paddle_flex_2,tray
+    t= 4.00  x= 107.27 z=  72.57  r= 86.96 ang= 333.4  c=paddle_flex_2,tray
+    t= 5.00  x= 111.65 z=  72.95  r= 90.74 ang= 334.9  c=paddle_flex_2,tray
+    t= 6.00  x= 117.77 z=  73.48  r= 96.10 ang= 336.7  c=paddle_flex_2,tray
+    t= 7.00  x= 126.43 z=  74.20  r=103.85 ang= 339.0  c=paddle_flex_2,tray
+    t= 8.00  x=  99.82 z=  71.89  r= 80.70 ang= 330.6  c=paddle_flex_1,tray
+    t= 9.00  x= 102.96 z=  72.16  r= 83.32 ang= 331.9  c=paddle_flex_1,tray
+    t=10.00  x= 106.70 z=  72.52  r= 86.48 ang= 333.2  c=paddle_flex_1,tray
+    t=11.00  x= 110.86 z=  72.88  r= 90.05 ang= 334.6  c=paddle_flex_1,tray
+    t=12.00  x= 116.67 z=  73.38  r= 95.13 ang= 336.4  c=paddle_flex_1,tray
+    t=13.00  x= 124.66 z=  74.06  r=102.25 ang= 338.5  c=paddle_flex_1,tray
+    t=14.00  x=  99.46 z=  71.85  r= 80.41 ang= 330.5  c=paddle_flex_2,tray
+    t=15.00  x= 102.46 z=  72.12  r= 82.90 ang= 331.7  c=paddle_flex_2,tray
+    t=16.00  x= 106.21 z=  72.47  r= 86.06 ang= 333.1  c=paddle_flex_2,tray
+    t=17.00  x= 110.21 z=  72.82  r= 89.49 ang= 334.4  c=paddle_flex_2,tray
+    t=18.00  x= 115.75 z=  73.30  r= 94.33 ang= 336.1  c=paddle_flex_2,tray
+    t=19.00  x= 123.43 z=  73.95  r=101.15 ang= 338.2  c=paddle_flex_2,tray
+    t=20.00  x=  99.25 z=  71.84  r= 80.22 ang= 330.4  c=paddle_flex_1,tray
+    t=21.00  x= 102.15 z=  72.09  r= 82.64 ang= 331.5  c=paddle_flex_1,tray
+    t=22.00  x= 105.89 z=  72.44  r= 85.79 ang= 332.9  c=paddle_flex_1,tray
+    t=23.00  x= 109.80 z=  72.79  r= 89.13 ang= 334.3  c=paddle_flex_1,tray
+    t=24.00  x= 115.18 z=  73.25  r= 93.83 ang= 336.0  c=paddle_flex_1,tray
+  N 60           sign=+1 R_in=109.97 launch=False exit_t=--     v=--     ang=--      jam=93%   rpmMed=0.2    min_r=78.1  minang=329.4  final=(123,74)
+    t= 0.00  x= 145.00 z=  76.36  r=120.72 ang= 343.1  c=rear_wall,tray
+    t= 1.00  x=  97.90 z=  71.72  r= 79.12 ang= 329.8  c=paddle_flex_2,tray
+    t= 2.00  x= 100.24 z=  71.92  r= 81.05 ang= 330.8  c=paddle_flex_2,tray
+    t= 3.00  x= 103.57 z=  72.21  r= 83.83 ang= 332.1  c=paddle_flex_2,tray
+    t= 4.00  x= 107.27 z=  72.57  r= 86.96 ang= 333.4  c=paddle_flex_2,tray
+    t= 5.00  x= 111.65 z=  72.95  r= 90.74 ang= 334.9  c=paddle_flex_2,tray
+    t= 6.00  x= 117.77 z=  73.48  r= 96.10 ang= 336.7  c=paddle_flex_2,tray
+    t= 7.00  x= 126.43 z=  74.20  r=103.85 ang= 339.0  c=paddle_flex_2,tray
+    t= 8.00  x=  99.47 z=  71.86  r= 80.41 ang= 330.5  c=paddle_flex_1,tray
+    t= 9.00  x= 102.47 z=  72.12  r= 82.91 ang= 331.7  c=paddle_flex_1,tray
+    t=10.00  x= 106.22 z=  72.47  r= 86.07 ang= 333.1  c=paddle_flex_1,tray
+    t=11.00  x= 110.22 z=  72.82  r= 89.50 ang= 334.4  c=paddle_flex_1,tray
+    t=12.00  x= 115.78 z=  73.30  r= 94.34 ang= 336.1  c=paddle_flex_1,tray
+    t=13.00  x= 123.45 z=  73.96  r=101.17 ang= 338.2  c=paddle_flex_1,tray
+    t=14.00  x=  99.07 z=  71.82  r= 80.08 ang= 330.3  c=paddle_flex_2,tray
+    t=15.00  x= 101.90 z=  72.07  r= 82.43 ang= 331.5  c=paddle_flex_2,tray
+    t=16.00  x= 105.62 z=  72.41  r= 85.56 ang= 332.8  c=paddle_flex_2,tray
+    t=17.00  x= 109.47 z=  72.76  r= 88.85 ang= 334.2  c=paddle_flex_2,tray
+    t=18.00  x= 114.72 z=  73.21  r= 93.42 ang= 335.8  c=paddle_flex_2,tray
+    t=19.00  x= 122.02 z=  73.84  r= 99.88 ang= 337.9  c=paddle_flex_2,tray
+    t=20.00  x=  98.46 z=  71.78  r= 79.57 ang= 330.1  c=paddle_flex_1,tray
+    t=21.00  x= 101.05 z=  71.99  r= 81.72 ang= 331.1  c=paddle_flex_1,tray
+    t=22.00  x= 104.63 z=  72.32  r= 84.73 ang= 332.5  c=paddle_flex_1,tray
+    t=23.00  x= 108.34 z=  72.66  r= 87.88 ang= 333.8  c=paddle_flex_1,tray
+    t=24.00  x= 113.15 z=  73.08  r= 92.04 ang= 335.4  c=paddle_flex_1,tray
+  N 60           sign=+1 R_in=109.97 launch=False exit_t=--     v=--     ang=--      jam=93%   rpmMed=0.2    min_r=78.1  minang=329.4  final=(120,74)
+    t= 0.00  x= 145.00 z=  76.36  r=120.72 ang= 343.1  c=r10_22,r10_23,rear_wall,shell_lip_face,tray
+    t= 1.00  x=  70.65 z=  64.64  r= 62.35 ang= 311.3  c=paddle_blade_2,paddle_hub,tray
+    t= 2.00  x=  72.47 z=  65.89  r= 62.64 ang= 313.3  c=paddle_blade_2,paddle_hub,tray
+    t= 3.00  x=  73.76 z=  66.74  r= 62.93 ang= 314.7  c=paddle_blade_2,paddle_hub,tray
+    t= 4.00  x=  74.10 z=  66.95  r= 63.02 ang= 315.1  c=paddle_blade_2,paddle_hub,tray
+    t= 5.00  x=  74.17 z=  66.99  r= 63.04 ang= 315.1  c=paddle_blade_2,paddle_hub,tray
+    t= 6.00  x=  74.18 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t= 7.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t= 8.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t= 9.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=10.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=11.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=12.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=13.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=14.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=15.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=16.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=17.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=18.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=19.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=20.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=21.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=22.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=23.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+    t=24.00  x=  74.19 z=  67.00  r= 63.04 ang= 315.2  c=paddle_blade_2,paddle_hub,tray
+  N 60           sign=+1 R_in=109.97 launch=False exit_t=--     v=--     ang=--      jam=99%   rpmMed=-0.0   min_r=58.1  minang=310.6  final=(74,67)
+    t= 0.00  x= 145.00 z=  76.36  r=120.72 ang= 343.1  c=rear_wall,tray
+    t= 1.00  x=  99.14 z=  71.83  r= 80.13 ang= 330.4  c=paddle_flex_2,tray
+    t= 2.00  x= 102.00 z=  72.08  r= 82.52 ang= 331.5  c=paddle_flex_2,tray
+    t= 3.00  x= 105.73 z=  72.42  r= 85.66 ang= 332.9  c=paddle_flex_2,tray
+    t= 4.00  x= 109.61 z=  72.77  r= 88.97 ang= 334.2  c=paddle_flex_2,tray
+    t= 5.00  x= 114.93 z=  73.23  r= 93.60 ang= 335.9  c=paddle_flex_2,tray
+    t= 6.00  x= 122.35 z=  73.86  r=100.18 ang= 338.0  c=paddle_flex_2,tray
+    t= 7.00  x= 125.81 z=  74.53  r=103.16 ang= 339.0  c=paddle_flex_2,tray
+    t= 8.00  x= 139.47 z=  76.05  r=115.54 ang= 342.2  c=rear_wall,tray
+    t= 9.00  x= 132.29 z=  75.36  r=108.95 ang= 340.7  c=tray
+    t=10.00  x= 135.24 z=  75.54  r=111.68 ang= 341.2  c=tray
+    t=11.00  x= 135.88 z=  75.68  r=112.24 ang= 341.4  c=tray
+    t=12.00  x= 127.60 z=  74.33  r=104.90 ang= 339.3  c=paddle_flex_1,tray
+    t=13.00  x= 138.44 z=  75.91  r=114.60 ang= 341.9  c=tray
+    t=14.00  x= 128.61 z=  75.04  r=105.60 ang= 339.8  c=tray
+    t=15.00  x= 138.84 z=  75.92  r=114.98 ang= 342.0  c=tray
+    t=16.00  x= 133.70 z=  75.49  r=110.25 ang= 341.0  c=tray
+    t=17.00  x= 130.68 z=  74.76  r=107.64 ang= 340.1  c=tray
+    t=18.00  x= 137.71 z=  75.84  r=113.93 ang= 341.8  c=tray
+    t=19.00  x= 126.10 z=  74.79  r=103.33 ang= 339.2  c=paddle_flex_1,tray
+    t=20.00  x= 139.50 z=  76.06  r=115.57 ang= 342.2  c=rear_wall,tray
+    t=21.00  x= 132.48 z=  75.38  r=109.13 ang= 340.7  c=tray
+    t=22.00  x= 135.22 z=  75.52  r=111.67 ang= 341.2  c=tray
+    t=23.00  x= 135.69 z=  75.66  r=112.07 ang= 341.4  c=tray
+    t=24.00  x= 127.03 z=  74.42  r=104.34 ang= 339.2  c=paddle_flex_2,tray
+  N 120          sign=+1 R_in=109.97 launch=False exit_t=--     v=--     ang=--      jam=33%   rpmMed=118.6  min_r=78.5  minang=329.7  final=(139,76)
+saved simulation\mujoco\out\_r19_nectar_traycut.json

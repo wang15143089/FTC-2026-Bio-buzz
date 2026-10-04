@@ -1,0 +1,60 @@
+=== R12 pre-seated ball in the nest (r=58.4, ang=270), POLLEN R=35.56 ===
+  -- paddle CCW (sign=+1, the direction requested so far) --
+    t= 0.00  x=  29.49 z=  53.06  r= 58.40 ang= 270.0  c=-
+    t= 0.25  x=  39.98 z= 219.07  r=108.12 ang=  84.4  c=fw_lower_1,fw_lower_2,fw_upper_1,fw_upper_2
+    t= 0.50  x=1001.70 z=1145.01  r=1418.95 ang=  46.8  c=-
+    t= 0.75  x=1977.18 z=1470.51  r=2374.98 ang=  34.9  c=-
+    t= 1.00  x=2952.67 z=1182.89  r=3113.35 ang=  20.1  c=-
+    t= 1.25  x=3928.15 z= 282.14  r=3902.40 ang=   2.5  c=-
+    t= 1.50  x=4903.64 z=-1231.73  r=5055.84 ang= 344.6  c=-
+    t= 1.75  x=5879.12 z=-3358.73  r=6801.50 ang= 329.3  c=-
+    t= 2.00  x=6854.61 z=-6098.85  r=9227.69 ang= 317.7  c=-
+    t= 2.25  x=7830.09 z=-9452.10  r=12341.44 ang= 309.2  c=-
+    t= 2.50  x=8805.58 z=-13418.48  r=16126.96 ang= 303.0  c=-
+    t= 2.75  x=9781.06 z=-17997.97  r=20568.05 ang= 298.3  c=-
+  POLLEN +1      sign=+1 R_in=93.96  launch=True  exit_t=0.264  v=6.22   ang=51.15   jam=1%    rpmMed=281.9  min_r=58.4  minang=0.0    final=(10749,-23147)
+  -- paddle CW (sign=-1) --
+    t= 0.00  x=  29.49 z=  53.06  r= 58.40 ang= 270.0  c=-
+    t= 0.25  x= 139.09 z=  64.41  r=119.28 ang= 336.8  c=tray
+    t= 0.50  x= 139.16 z=  65.47  r=118.92 ang= 337.3  c=tray
+    t= 0.75  x= 126.79 z=  64.43  r=108.07 ang= 334.2  c=tray
+    t= 1.00  x= 145.87 z=  65.71  r=125.05 ang= 338.5  c=tray
+    t= 1.25  x= 112.33 z=  63.16  r= 95.89 ang= 329.8  c=tray
+    t= 1.50  x= 140.07 z=  65.57  r=119.72 ang= 337.5  c=tray
+    t= 1.75  x= 105.19 z=  63.51  r= 89.61 ang= 327.6  c=paddle_blade_1,paddle_flex_1
+    t= 2.00  x= 132.14 z=  64.89  r=112.72 ang= 335.6  c=tray
+    t= 2.25  x= 151.78 z=  69.56  r=129.27 ang= 341.1  c=rear_wall
+    t= 2.50  x= 121.23 z=  63.94  r=103.32 ang= 332.6  c=tray
+    t= 2.75  x= 143.80 z=  65.12  r=123.35 ang= 337.9  c=tray
+  POLLEN -1      sign=-1 R_in=93.96  launch=False exit_t=--     v=--     ang=--      jam=1%    rpmMed=-281.9 min_r=57.8  minang=270.0  final=(115,63)
+
+=== R12 same test with the NECTAR ball (R=45.97, shell inner r=104.37) ===
+  -- paddle CW (sign=-1) --
+    t= 0.00  x=  29.49 z=  53.06  r= 58.40 ang= 270.0  c=paddle_hub,r10_20,shell_lip_face,tray
+    t= 0.25  x=  22.51 z=  51.88  r= 59.98 ang= 263.3  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 0.50  x=  21.67 z=  51.87  r= 60.10 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 0.75  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 1.00  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 1.25  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 1.50  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 1.75  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 2.00  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 2.25  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 2.50  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+    t= 2.75  x=  21.62 z=  51.87  r= 60.11 ang= 262.5  c=paddle_blade_2,paddle_hub,r10_17,r10_18,r10_19,r10_20,tray
+  NECTAR -1      sign=-1 R_in=104.37 launch=False exit_t=--     v=--     ang=--      jam=98%   rpmMed=0.0    min_r=58.4  minang=262.5  final=(22,52)
+  -- paddle CCW (sign=+1) --
+    t= 0.00  x=  29.49 z=  53.06  r= 58.40 ang= 270.0  c=paddle_hub,r10_20,shell_lip_face,tray
+    t= 0.25  x=  19.94 z=  52.00  r= 60.22 ang= 260.9  c=paddle_blade_1,paddle_hub,r10_17,r10_18,r10_19,r10_20
+    t= 0.50  x=  17.35 z=  52.46  r= 60.24 ang= 258.4  c=paddle_blade_1,paddle_hub,r10_17,r10_18,r10_19,r10_20
+    t= 0.75  x=  14.87 z=  53.04  r= 60.22 ang= 255.9  c=paddle_blade_1,paddle_hub,r10_16,r10_17,r10_18,r10_19
+    t= 1.00  x=  12.39 z=  53.72  r= 60.22 ang= 253.5  c=paddle_blade_1,paddle_hub,r10_16,r10_17,r10_18,r10_19
+    t= 1.25  x=   9.89 z=  54.50  r= 60.24 ang= 251.0  c=paddle_blade_1,paddle_hub,r10_15,r10_16,r10_17,r10_18,r10_19
+    t= 1.50  x=   7.54 z=  55.38  r= 60.22 ang= 248.6  c=paddle_blade_1,paddle_hub,r10_15,r10_16,r10_17,r10_18
+    t= 1.75  x=   5.15 z=  56.37  r= 60.23 ang= 246.2  c=paddle_blade_1,paddle_hub,r10_15,r10_16,r10_17,r10_18
+    t= 2.00  x=   2.86 z=  57.44  r= 60.23 ang= 243.8  c=paddle_blade_1,paddle_hub,r10_14,r10_15,r10_16,r10_17
+    t= 2.25  x=   0.62 z=  58.61  r= 60.22 ang= 241.4  c=paddle_blade_1,paddle_hub,r10_14,r10_15,r10_16,r10_17
+    t= 2.50  x=  -1.64 z=  59.89  r= 60.24 ang= 238.9  c=paddle_blade_1,paddle_hub,r10_13,r10_14,r10_15,r10_16,r10_17
+    t= 2.75  x=  -3.71 z=  61.22  r= 60.22 ang= 236.5  c=paddle_blade_1,paddle_hub,r10_13,r10_14,r10_15,r10_16
+  NECTAR +1      sign=+1 R_in=104.37 launch=False exit_t=--     v=--     ang=--      jam=99%   rpmMed=1.6    min_r=58.4  minang=234.1  final=(-6,63)
+saved simulation\mujoco\out\_r12_seated.json
