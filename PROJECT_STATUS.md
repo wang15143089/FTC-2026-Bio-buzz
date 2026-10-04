@@ -270,6 +270,9 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 
 ## T06 POLLEN V2 舵机选型校核与接触几何分析（2026-10-03）
 
+> （SUPERSEDED by DEC-0026 — 以下内容为 7 s 预算下的旧口径，保留供上溯，不作为当前结论。）
+
+
 - 用户指令（KNOWN）：核对 REV SRS V2 舵机规格是否满足 V2 送球段要求；若不满足，给出改善接触几何的方法。
 - 舵机规格（KNOWN，用户提供规格图）：SRS V2 Balanced 6 V / 7.4 V → 13.5 / 16.7 kg·cm，0.14 / 0.12 s/60°；SRS V2 UltraSpeed 6 V / 7.4 V → 5.6 / 6.2 kg·cm，0.043 / 0.035 s/60°。换算 @7.4 V：Balanced 堵转 1.638 N·m、空载 83.3 rpm；UltraSpeed 堵转 0.608 N·m、空载 285.7 rpm。
 - 送球需求（SIMULATED，本轮实测）：拨杆力矩门槛 ≈ **1.0 N·m**，且在 140–200 rpm 区间**基本不随转速变化**（105 rpm 即使给 1.5 N·m 也不发射，属转速受限，不是 torque 受限）→ 该需求是"球被夹住后的起步/突破力"，不是惯性力。
@@ -279,7 +282,19 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 改善接触几何方案（ASSUMED，待仿真验证）：A 225° 挡墙改斜楔/圆弧过渡，让球平滑导入外罩；B 托板末端缩进 10–15 mm 并下倾，使球窝下方让空；C 叶片前缘卸载（球还在托板上的 300°–330° 区段外缘半径 ≤ 58.4）+ 端角倒圆；D 球窝改单侧斜坡"逃逸窝"，只留托板 + 与出球方向相切的斜面。
 - 产物（KNOWN）：`simulation/mujoco/out/servo_verdict_zh.png`、`contact_fix_options_zh.png`、`summary_v2_torque_detail.json`、`summary_v2_servo_req.json`、`summary_v2_blade_variants.json`。
 
+## T06 POLLEN V2 送球门槛重测与舵机选型（2026-10-03，DEC-0026 口径）
+
+> 本节结论取代下方早先的「T06 POLLEN V2 舵机选型校核与接触几何分析（2026-10-03）」段落；该段落基于 7 s 仿真预算，混入了送料耗时假象，其原结论已标 SUPERSEDED 保留供上溯。
+
+- 口径修正（KNOWN）：送球门槛仿真预算由 7 s / 单入口 x=145，统一改为 **12 s / 双入口 x=145 与 x=138**（取较坏值），二分容差 ±0.03 N·m。
+- 修正原因（SIMULATED）：7 s 预算下 30/40/60/70/75/145 rpm 即使给到 3.0 N·m 也判失败；延长到 12 s 后全部成功发射。机理是**球在球窝蠕动**——球停在球窝边缘 r≈83–95.5 mm（θ≈322–328°），要等指片转到才被抓住，70 rpm 首抓约 4.2 s。旧门槛把送料耗时混进了发动力矩。
+- R5 门槛（SIMULATED，`simulation/mujoco/out/_r2r5_speed_req12.json`，单位 N·m）：40/50 ≤0.24（扫描下限）、60 → 0.339、75 → 0.439、90 → 0.24、105 → 0.24、120 → 0.289、130 → 0.356、**145 → 0.472（最坏点）**、160 → 0.323、200 → 0.273、290 → 0.306。
+- 几何取舍（SIMULATED）：推荐 **R5**（二指 θ=350/170 + D 球窝垫 6.8 mm）；90/105 rpm 门槛仅 0.24，优于 R2。DEC-0025 的 A 有效 / D 有效 / B 无效 / C 恶化的相对排序保留有效。
+- 舵机判定（CALCULATED，7.4 V，厂家堵转值线性插值到空载）：**25-4 Super Speed 0.530 N·m / 290 rpm → 可直驱窗口 30–70、80–122 rpm，推荐**（唯一能上 120 rpm；90–105 rpm 余量 >40%；避开 70–80 rpm 缺口）；25-3 Speed 1.059 / 145 → 30–110；Axon MAX MK2 3.825 / 100 → 30–94（低速余量最大）；25-2 Torque 与 25-2 5-Turn 2.471 / 60 → 30–53（可用但慢，约 1.2 s/球）；REV SRS V2 UltraSpeed 0.608 / 285.7 → 30–125（**此前误判不可行，现同样可用**）。图：`simulation/mujoco/out/servo_envelope_zh.png`。
+- 仍开放（TBD）：送球**相位敏感**（相邻 10 rpm 即可翻转结论），拨杆转速必须锁在窗口内稳态运行；根因未解决——球停 r≈95.5 mm 而设计轨道 R=58.4 mm，**差 37.1 mm**，送球靠叶尖拖拽而非输送轨道；R5 尚未进 CAD；刚性（非扎带）指片与 ASSUMED 0.060 kg 球质量仍未验证。
+
 ## NEXT ACTION
 
-1. （立即）接触几何方案已逐个仿真完成，**最优组合 = 二指 θ=350/170 + A 唇口喇叭（可选 + D 6.8 mm 球窝垫）**：门槛 0.46 N·m @90 rpm（现状 0.94 N·m @120–140 rpm），稳健 2/2。几何净效果（200 rpm，二分 0.05 N·m，已现场复跑逐字复现）：A 唇口喇叭 0.72（−23%，有效）、B 托板缩进 0.94（无效，归档）、C 叶尖卸载 1.25（恶化，归档）、D 球窝抬高 6.8 为 0.68（−28%，有效）、A+D 0.64 但稳健 1/2。根因是指片布置：现状三指 120° 相位下球**滚不到唇口**，停在指片尖端平面 r=95.5 mm（设计轨道 R58.4），送球全靠叶尖拖拽。下一步：先用 `geom_options_verdict_zh.png` 与二指方案示意向用户确认，再改 `cad/paddle_launcher_feeder_redesign.py`（不得改 `cad/paddle_launcher_constrained.py`、不得覆盖原 STEP）→ 重跑 `simulation/mujoco/_work/opt_lib.py` 复核 → 制作台架实测。注意：0.42–0.46 N·m 刚好压在 SRS V2 UltraSpeed 7.4 V 线性包络边界（@90 rpm 仅 0.416 N·m），属**边界可行**，不得判定单只 SRS V2 直驱安全，必须实物验证。
+1. （立即）向用户确认是否锁定 **R5**（二指 θ=350/170 + 6.8 mm 球窝垫倒角）出 CAD V3。确认后改 `cad/paddle_launcher_feeder_redesign.py`（**不得改** `cad/paddle_launcher_constrained.py`、不得覆盖原 STEP），再用 `simulation/mujoco/_work/opt_lib.py` 复核门槛，最后制作台架实测。舵机推荐 goBILDA **25-4 Super Speed @7.4 V**，拨杆转速设定在 90–105 rpm（该区间门槛仅 0.24 N·m、余量 >40%，且避开 70–80 rpm 缺口）；**必须锁速**，因为送球结论对转速相位敏感。几何根因（球停 r≈95.5 mm vs 设计轨道 R=58.4 mm，差 37.1 mm）仍未解决，属已知风险。
+
 2. （并行阻塞项）按 KEI-12 制作带护罩双轴安全旋转台架，用实物确认垫片/卡簧/螺钉、REX/花键夹持、打印滑座配合和线束弯曲空间，再记录转速恢复、电流、温升、振动及 POLLEN/NECTAR 两个间隙端点。未完成前不得进入 M4 或发布制造图。
