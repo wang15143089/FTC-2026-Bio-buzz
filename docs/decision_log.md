@@ -367,3 +367,26 @@ Date/version:
 - 结论：R27 的让位**不改变**送球与发射行为；DEC-0030 的索引式驱动口径与 R28–R30 的结论继续有效。图 `cad/output/_t06_r32_fullflow_zh.png`，数据 `simulation/mujoco/out/_r32_r27_full.json`。
 - 未关闭：μ = 0.40（`ASSUMED`）、球质量 0.130 / 0.060 kg（`ASSUMED`）、索引式舵机控制未实机实现、9.9 mm 夹口过盈无结构校核。
 - Date/version: 2026-10-04 / C06B-FEEDER-A-PRIME-SHARED-R27（仿真复核，几何未变）
+
+## DEC-0032 — T06 飞轮硅胶离心膨胀：垫片长度按「热态外径」配，取 dr_hot = 0.8 mm
+
+- Decision: 承认 goBILDA `3613-0014-0096` 飞轮（Ø96 × 24，30A 硅胶，1620 rpm）在离心力下外径会变大，**装配时的轮轴间距按热态外径配**：`half_spacing = nip/2 + WHEEL_R(48) + dr_hot`，取 **`dr_hot = 0.8 mm`**（ASSUMED）。以此推出 R35 热态 CAD（`cad/paddle_launcher_feeder_a_prime_shared_hot.py`，`DR_HOT_MM = 0.8`）。送球段（外罩 + 托盘 + 拨杆）几何**与 R27 逐点相同**，只改轮轴间距；不覆盖 R27 的任何源文件或产物。**不修改拨杆或外罩几何**。
+- Reason: (1) 膨胀计算给出真实量级 0.5–1.8 mm，0.8 mm 落在中位；(2) R33 实测证明「按冷态配间距」会让运行夹口变成 `nip − 2·dr`，dr ≥ 1.0 mm 起 POLLEN 出手相位被打乱、小球掉进毂—叶片夹角卡死（冷态口径 26/36）；(3) R34 实测「按热态配间距」运行夹口恒为设计值，30/30 通过、零接触。即：**问题出在装配口径，不在几何**，用垫片长度就能解决，无需改件。
+- Alternatives considered: (a) 不处理，接受运行夹口缩小 —— R33 证伪（POLLEN 26/36 → 4/6 FAIL）；(b) 直接减小设计夹口以补偿 —— 会把冷态夹口改坏，且两球的补偿量不同，破坏「同一装置」；(c) 加厚硅胶 / 换低膨胀材料 —— 改变发射性能且成本高，无必要；(d) 改拨杆或外罩让出膨胀空间 —— 实测余量充足（见下），改件没有收益。
+- Evidence/calculation: `calculations/t06_flywheel_silicone_centrifugal.py` / `.txt`（三模型，轮毂固支 M3 为下界 0.26–0.55 mm、自由厚环 M2 0.55–1.19 mm、自由薄环 M1 为上界 2.44–5.23 mm；周向应力 0.008–0.017 MPa 远低于 30A 硅胶强度，弹性模型成立）。**不接触的判定（几何 + 仿真双证）**：拨杆真实轮廓外切半径 Rmax = 62.36 mm（MEASURED），冷态间隙 NECTAR 115.91 − 48 − 62.36 = **5.55 mm**、POLLEN 113.87 − 48 − 62.36 = **3.51 mm**；dr = 0.8 mm 时剩余 **4.75 / 2.71 mm**；即使取模型绝对上界 dr = 3.7 mm，NECTAR 仍留 **1.86 mm**，POLLEN 的接触门槛才是 **dr ≈ 3.51 mm** → 设计值余量 **4.4 倍**。仿真侧：R33 dr = 3.7 时飞轮—拨杆接触 3 起（**全部只在 POLLEN**）；R34 热态配间距 dr 0.5–2.7 全档 **30/30 零接触**（最小间隙 1.351 mm），边缘档 dr = 3.0 / 3.7 **12/12 零接触**（POLLEN 1.117 / 0.567 mm）。
+- Impact: (1) **送球设计冻结，拨杆/外罩/托盘不改**；(2) 飞轮垫片长度成为**唯一随温度/转速变化的装配尺寸**，制造与装配图上必须写明「按热态外径配，含 dr = 0.8 mm」；(3) R27 的 `half_spacing = nip/2 + 48` 定性为**冷态口径**，R35 的 `+ dr_hot` 为其取代版（R27 文件全部保留，仅作历史）；(4) 存能核算不变：1620 rpm 两轮 3.70 J，NECTAR 需求占 41 %、POLLEN 占 31 %；(5) E 值 0.7–1.5 MPa 与 dr_hot = 0.8 mm 仍是 **ASSUMED**，需高速摄影或台架实测升级为 MEASURED。
+- Reversible?: 是。`DR_HOT_MM` 是生成器里的单一常量，改值重跑即得新几何；R33/R34 两个仿真脚本按 dr 参数化（0.5–3.7 mm 扫过），任何新膨胀量都能直接复核间隙与通过率；R27 的 STEP、报告、检验 JSON 与 R33/R34 数据全部保留。
+- Date/version: 2026-10-04 / C06B-FEEDER-A-PRIME-SHARED-R35（热态配间距）
+
+## V-0034 — 验证记录（非决策）：膨胀量扫描 + 热态配间距的送球全流程仿真
+
+- 目标（KNOWN）：用户要求「算膨胀量 → 重跑仿真 → 确认膨胀后飞轮不与拨杆接触；若接触则迭代改送球设计，直到 POLLEN 与 NECTAR 都通过」。
+- 方法（SIMULATED）：MuJoCo 3.14.0，基线与 R32 一致（μ = 0.40、飞轮 1620 rpm、拨杆 25-4 Super Speed 线性模型 kv = 0.017452 / 限幅 ±0.530 N·m、索引式循环）。三个脚本按 dr 参数化：`simulation/mujoco/_work/r33.py`（冷态配间距，36 工况）、`_work/r34.py`（热态配间距，30 工况，dr 0.5/1.0/1.5/2.0/2.7）、`simulation/mujoco/out/_r34_edge.json`（边缘档 dr 3.0/3.7，12 工况）。间隙用 `mj_geomDistance` 量「拨杆几何↔飞轮」的实时最小距离。
+- 结果（SIMULATED）：
+  - **R33 冷态配间距 26/36 通过**。dr = 0 全过；dr ≤ 2.7 时 NECTAR 全过；**dr = 3.7 时 NECTAR 3/3 FAIL**；POLLEN 从 dr = 1.0 起出现 FAIL。飞轮—拨杆接触 3 起，**全部在 POLLEN dr = 3.7**（contacts 2121 / 150 / 150，间隙 0.001 mm）。FAIL 机理：夹口缩小改变出手相位，小球掉进拨杆毂—叶片夹角卡死 —— **不是**飞轮挡球。
+  - **R34 热态配间距 30/30 通过、零接触**，逐档最小间隙 3.109（dr 0.5）/ 2.708（1.0）/ 2.304（1.5）/ 1.905（2.0）/ 1.351 mm（2.7，POLLEN）。
+  - **边缘复核 12/12 通过、零接触**：dr = 3.0 时 POLLEN 1.117 / NECTAR 3.383 mm；dr = 3.7 时 POLLEN 0.567 / NECTAR 2.884 mm。
+- 结论：**膨胀后的飞轮不与拨杆接触**（设计 dr = 0.8 mm → POLLEN 余 2.71 mm / NECTAR 余 4.75 mm；绝对上界 dr = 3.7 mm 时 NECTAR 仍余 1.86 mm、POLLEN 余 0.57 mm 且不接触）。**无需改拨杆/外罩**，只需把垫片长度按热态外径配（DEC-0032）。新图纸 = R35，产物 `cad/output/_r35_hot/`。
+- 图与数据：`cad/output/_t06_r34_expansion_zh.png`、`cad/output/_t06_r34_geometry_zh.png`；`simulation/mujoco/out/_r33_expansion.json`、`_r34_expansion_hot.json`、`_r34_edge.json`。
+- 未关闭：硅胶 E = 0.7–1.5 MPa 与 dr_hot = 0.8 mm 为 `ASSUMED`；μ = 0.40 `ASSUMED`；球质量 0.130 / 0.060 kg `ASSUMED`；索引式舵机控制未实机实现；9.9 mm 夹口过盈无结构/球变形校核。
+- Date/version: 2026-10-04 / C06B-FEEDER-A-PRIME-SHARED-R35（R33/R34 仿真）

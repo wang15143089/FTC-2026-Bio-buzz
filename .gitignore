@@ -63,3 +63,11 @@ cad/output/paddle_launcher_motion_free_*.glb
 cad/output/paddle_launcher_feeder_a_prime_*.step
 cad/output/paddle_launcher_feeder_a_prime_*.stl
 cad/output/paddle_launcher_feeder_a_prime_*.glb
+
+# R35 hot-datum exports (DEC-0032): same local-only rule.  The STEP is ~180 MB and
+# fully regenerable with cad/paddle_launcher_feeder_a_prime_shared_hot.py; the
+# *_report.json stays tracked.
+cad/output/_r35_hot/*.step
+cad/output/_r35_hot/*.stl
+cad/output/_r35_hot/*.glb
+cad/output/_r35_hot/inspection/*.step

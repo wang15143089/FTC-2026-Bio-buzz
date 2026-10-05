@@ -530,3 +530,19 @@ WARNING Sun Oct  4 10:57:56 2026: Linesearch objective is not convex
 
 WARNING Sun Oct  4 10:57:56 2026: Linesearch objective is not convex
 
+WARNING Sun Oct  4 20:30:58 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:58 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:58 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:59 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:59 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:59 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:59 2026: Linesearch objective is not convex
+
+WARNING Sun Oct  4 20:30:59 2026: Linesearch objective is not convex
+

@@ -380,9 +380,27 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 产物（KNOWN）：`cad/output/_t06_r32_launch_nectar.gif`（107 帧 / 2.68 s，出口 t=2.18 s、v=4.81 m/s）、`cad/output/_t06_r32_launch_pollen.gif`（93 帧 / 2.33 s，出口 t=1.83 s、v=6.20 m/s），40 fps / 480x360。
 - 结论（SIMULATED）：与 R32 复核同源同结果，本轮只增加可视化入口，几何、驱动与判定口径均未改动。
 
+## T06 飞轮硅胶离心膨胀计算 + 热态配间距仿真循环 R33/R34/R35（2026-10-04，DEC-0032 / V-0034）
+
+- 用户指令（KNOWN）：按飞轮图纸算离心膨胀量 → 重跑仿真 → 确认膨胀后的飞轮**不会与拨杆接触**；若接触则进入「改送球设计—仿真—识别问题」循环，直到 POLLEN 与 NECTAR 都通过；最后把新图纸导出到桌面。
+- 膨胀计算（CALCULATED）：`calculations/t06_flywheel_silicone_centrifugal.py` / `.txt`。飞轮 = goBILDA `3613-0014-0096`，Ø96 × 24，105 g，实测 J = 1.2844e-4 kg·m²，图纸实体体积 **95767.311 mm³**（实心环的 62 %，12 条波形减重槽，Ø32 轮毂孔 / Ø14 轴孔 / 6×Ø4 螺孔）。30A 硅胶 E = 0.7–1.5 MPa（**ASSUMED**）、ν = 0.48、ρ = 1150 kg/m³。三模型 @1620 rpm：**M1 自由薄环 2.44–5.23 mm（上界）/ M2 厚环自由 0.55–1.19 mm / M3 厚环固支 0.26–0.55 mm（下界）**；周向应力仅 0.008–0.017 MPa（弹性范围内，模型成立）。
+- 设计取值（ASSUMED）：真实膨胀 **0.5–1.8 mm** → 取 `dr_hot = 0.8 mm`；模型绝对上界 **3.7 mm** 用作边缘复核工况。
+- 飞轮转速（KNOWN）：**1620 rpm**（`simulation/mujoco/_work/r32.py` 的 `build_xml(1620.0, …)`），轮缘线速度 8.14 m/s。存能：单轮 **1.85 J**、两轮 **3.70 J**；NECTAR 需 1.50 J（41 %）、POLLEN 需 1.15 J（31 %）。
+- 关键几何（MEASURED）：拨杆真实叶片轮廓外切半径 **Rmax = 62.36 mm**；飞轮轴心→拨杆轴心 NECTAR 下轮 **115.91 mm**（36.7°）、POLLEN 下轮 **113.87 mm**（41.1°），上轮 185.00 / 177.91 mm。→ **冷态间隙 NECTAR 5.55 mm / POLLEN 3.51 mm**。
+- **膨胀后是否接触（结论）**：设计取值 dr = 0.8 mm → 剩余间隙 **NECTAR 4.75 mm / POLLEN 2.71 mm**；即使取绝对上界 dr = 3.7 mm，NECTAR 仍留 **1.86 mm**；POLLEN 的接触门槛是 **dr ≈ 3.51 mm**（= 冷态间隙），即设计值有 **4.4 倍余量** → **膨胀后的飞轮不会碰到拨杆，送球设计无需改动**。
+- R33 冷态装配（SIMULATED）：`simulation/mujoco/_work/r33.py` —— 安装间距按冷态 Ø96 定（`half_spacing = nip/2 + 48`），运行夹口被动变成 `nip − 2·dr`。**26/36 通过**：dr ≤ 2.7 时 NECTAR 全 OK；**dr = 3.7 时 NECTAR 3 例全 FAIL**；POLLEN 从 dr ≥ 1.0 起出现 FAIL。飞轮—拨杆接触 3 起，**全部只在 POLLEN dr = 3.7**（contacts 2121 / 150 / 150，间隙 0.001 mm）。FAIL 机理不是飞轮挡球，而是**夹口缩小改变了出手相位**，小球掉进拨杆毂—叶片夹角卡死。数据 `simulation/mujoco/out/_r33_expansion.json`。
+- R34 热态配间距（SIMULATED）：`simulation/mujoco/_work/r34.py` —— 装配意图改为**按热态外径配轮轴间距**（`half_spacing = nip/2 + 48 + dr`），运行夹口恒为设计值 82 / 64。**30/30 通过、零接触、最小间隙 1.351 mm**（POLLEN dr = 2.7）；dr = 0.5 / 1.0 / 1.5 / 2.0 / 2.7 逐档最小间隙 3.109 / 2.708 / 2.304 / 1.905 / 1.351 mm。数据 `simulation/mujoco/out/_r34_expansion_hot.json`。
+- 边缘复核（SIMULATED）：dr = **3.0 / 3.7** 两档 **12/12 通过、零接触**。dr = 3.7 时 POLLEN 最小间隙 **0.567 mm**、NECTAR **2.884 mm**；dr = 3.0 时 POLLEN 1.117 mm、NECTAR 3.383 mm。数据 `simulation/mujoco/out/_r34_edge.json`。
+- 产物（KNOWN）：图 `cad/output/_t06_r34_expansion_zh.png`（膨胀量 vs rpm 三模型 + 间隙 vs dr + 三轮通过率对照）、`cad/output/_t06_r34_geometry_zh.png`（两球前视剖面：送球扇区、拨杆真实轮廓与外切包络、球窝轨道、冷/热飞轮圆、最小间隙表）；热态 CAD 生成器 `cad/paddle_launcher_feeder_a_prime_shared_hot.py`（`DR_HOT_MM = 0.8`，只改轮轴间距，送球段几何与 R27 逐点相同，产物写 `cad/output/_r35_hot/`，不覆盖 R27）。
+- R35 图纸导出实测（MEASURED，读自导出前最终实体）：热态夹口 `flywheel_nip_measured_mm` = **NECTAR 83.6**（= 2×89.8 − 96）/ **POLLEN 65.6**（= 2×80.8 − 96），即按热态配间距后夹口比冷态大 2×0.8 mm，轮子转起来正好回到设计夹口 82 / 64。外罩体积 **260374.21 mm³**、毂—外罩 **95.974 mm**、外罩∩保留父级件 **0 mm³**、19 点球道扫描 **0 mm³** —— 与 R27 **逐位相同**，证明本轮只动了飞轮轴位，送球几何未变（两变体之间也逐位相同 → 「同一装置」结论不变）。
+- R35 交付（KNOWN）：`cad/output/_r35_hot/paddle_launcher_feeder_a_prime_shared_{nectar,pollen}.step`（178 MB / 177 MB，大件按 `.gitignore` 本地规则不入库，可用 `cad/paddle_launcher_feeder_a_prime_shared_hot.py` 重生成）+ 两份 `_report.json`；已复制到桌面 `T06_R35_hot_nectar.step` / `T06_R35_hot_pollen.step`。R27 的源文件与产物全部保留未动。
+- 教训（KNOWN）：R27 的「半轴距 = nip/2 + 48」是**冷态**口径。硅胶飞轮在转速上会变大，若按冷态配间距，运行夹口会比设计值小 2·dr，R33 实测这足以把 POLLEN 的送球相位打乱。**要求：垫片长度按热态外径配**，即 `half_spacing = nip/2 + 48 + dr_hot`。
+- 仍开放（TBD）：硅胶 E 值 0.7–1.5 MPa 与 `dr_hot = 0.8 mm` 均为 **ASSUMED**（无台架测量/高速摄影）；其余同 R27 —— μ = 0.40 `ASSUMED`、球质量 0.130 / 0.060 kg `ASSUMED`、索引式舵机控制未实机实现、9.9 mm 夹口过盈无结构/球变形校核。
+
 ## NEXT ACTION
 
-> **R32 已复核（2026-10-04）**：R27 几何下两球各自正确夹口全流程仿真 **6/6 通过**（NECTAR 夹口 82 / POLLEN 夹口 64），让位未进入球道、未改变送球与发射行为，结果与 DEC-0030 的 R29/R30 一致。用户将自行复核图 `cad/output/_t06_r32_fullflow_zh.png`。
+> **R35 已交付（2026-10-04，DEC-0032 / V-0034）**：飞轮硅胶离心膨胀 dr_hot = 0.8 mm（上界 3.7 mm），**膨胀后飞轮与拨杆不接触**（POLLEN 余 2.71 mm、NECTAR 余 4.75 mm；上界处仍余 1.86 / 0.57 mm 且零接触）→ **送球几何不改**，只把飞轮垫片长度改为按热态外径配（`half_spacing = nip/2 + 48 + dr_hot`）。仿真：R33 冷态配间距 26/36（接触 3 起全在 POLLEN dr 3.7）→ R34 热态配间距 **30/30 零接触**、边缘档 **12/12 零接触**。R35 图纸已导出到桌面。
+> **R32 已复核（2026-10-04）**：R27 几何下两球各自正确夹口全流程仿真 **6/6 通过**（NECTAR 夹口 82 / POLLEN 夹口 64），让位未进入球道、未改变送球与发射行为，结果与 DEC-0030 的 R29/R30 一致。
 >
 > **R27 已落地（2026-10-04，DEC-0031）**：共用外罩完成 0.5 mm 让位，`shooter_throat_+55` 5717.5 mm³ / `guide_roof_3` 126.5 mm³ 的交叠实测归零，几何检验 hub 6/6 + shell 7/7 通过 → 下面第 0 项里“待用户决策的既有干涉”已关闭；其余 (a)(b)(c) 三项不变。
 
