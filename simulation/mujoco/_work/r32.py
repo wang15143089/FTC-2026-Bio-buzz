@@ -37,7 +37,9 @@ def parts(phases=(330.0, 150.0), hub_r=12.0):
     return f
 
 
-def run(ball_r, ball_m, nip, xc, hold, sw, rpm=RPM, t_end=8.0, mu=MU):
+def build(ball_r, ball_m, nip, xc, rpm=RPM, mu=MU):
+    """按 R32 口径构造模型（与 run() 完全相同），供 run 与可视化脚本复用。
+    返回 (m, d, aid, jid, bid, ctrl, w)。"""
     pv2.HALF_SPACING = nip / 2.0 + WHEEL_R
     pv2.R_CARRY = R_IN - ball_r
     pv2.PIVOT_X, pv2.PIVOT_Z = PIVOT
@@ -58,9 +60,14 @@ def run(ball_r, ball_m, nip, xc, hold, sw, rpm=RPM, t_end=8.0, mu=MU):
     aid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_ACTUATOR, "paddle_vel")
     jid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_JOINT, "paddle_joint")
     bid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, "ball")
-    bgeom = {g for g in range(m.ngeom) if m.geom_bodyid[g] == bid}
     d.ctrl[:] = [ctrl[0], ctrl[1], 0.0]
     mujoco.mj_forward(m, d)
+    return m, d, aid, jid, bid, ctrl, w
+
+
+def run(ball_r, ball_m, nip, xc, hold, sw, rpm=RPM, t_end=8.0, mu=MU):
+    m, d, aid, jid, bid, ctrl, w = build(ball_r, ball_m, nip, xc, rpm, mu)
+    bgeom = {g for g in range(m.ngeom) if m.geom_bodyid[g] == bid}
     dt = m.opt.timestep; n = int(t_end / dt)
     k = max(1, int(round(0.004 / dt))); kq = max(1, int(round(0.0005 / dt)))
     tr, tq, released, touched = [], [], False, set()

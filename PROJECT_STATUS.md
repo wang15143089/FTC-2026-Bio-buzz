@@ -372,6 +372,14 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 产物（KNOWN）：脚本 `simulation/mujoco/_work/r32.py`；数据 `simulation/mujoco/out/_r32_r27_full.json`（含 6 个工况的全量 trace 与逐工况接触集合）；图 `cad/output/_t06_r32_fullflow_zh.png`（两球 r(t)/α(t) 历程 + 俯视剖面 + 球轮廓轨迹 + 结果表）。
 - 仍开放（TBD）：与 R27 相同 —— μ = 0.40 仍是 `ASSUMED`（台架实测未做）；索引式舵机控制未实机实现；球质量 0.130 / 0.060 kg 仍是 `ASSUMED`；9.9 mm 夹口过盈无结构/球变形校核。
 
+## T06 可视化：看球被送球、发射、飞出的全过程（2026-10-04）
+
+- 用户请求（KNOWN）：需要能"运行脚本并看到可视化的小球飞出"。
+- 做法（KNOWN）：新增 `simulation/mujoco/view_r32.py`，复用 `_work/r32.py` 的同一套模型构造。为便于复用，本轮把 `r32.py` 里的 `run()` 机械拆出 `build()`（返回模型/数据/ID/控制），**未改任何物理口径**；重跑 `r32.py` 逐项数值与提交版一致（NECTAR A 出口 2.18 s / 4.81 m/s、POLLEN B 3.38 s / 6.18 m/s，仍 6/6 通过）。
+- 两种查看方式（KNOWN）：(1) 交互窗口 `mujoco.viewer` —— 实时但默认 4 倍慢放（`--speed`），空格暂停/继续，鼠标转视角，跑完自动重播；(2) `--gif` 无头渲染成 GIF —— 出射前镜头固定看机构，出射后自动把"出射点 + 球"一起框住并拉远，橙色点串显示飞行轨迹。
+- 产物（KNOWN）：`cad/output/_t06_r32_launch_nectar.gif`（107 帧 / 2.68 s，出口 t=2.18 s、v=4.81 m/s）、`cad/output/_t06_r32_launch_pollen.gif`（93 帧 / 2.33 s，出口 t=1.83 s、v=6.20 m/s），40 fps / 480x360。
+- 结论（SIMULATED）：与 R32 复核同源同结果，本轮只增加可视化入口，几何、驱动与判定口径均未改动。
+
 ## NEXT ACTION
 
 > **R32 已复核（2026-10-04）**：R27 几何下两球各自正确夹口全流程仿真 **6/6 通过**（NECTAR 夹口 82 / POLLEN 夹口 64），让位未进入球道、未改变送球与发射行为，结果与 DEC-0030 的 R29/R30 一致。用户将自行复核图 `cad/output/_t06_r32_fullflow_zh.png`。

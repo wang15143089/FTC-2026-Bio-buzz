@@ -56,6 +56,22 @@ python -m venv .venv-cad
 .\.venv-cad\Scripts\python.exe .\cad\render_biobuzz_intake.py
 ```
 
+## 运行 T06 发射系统仿真与可视化
+
+```powershell
+# 全流程仿真（NECTAR + POLLEN 各用正确飞轮间隙，约 15 s，结果落盘 out/_r32_r27_full.json）
+.\.venv-cad\Scripts\python.exe .\simulation\mujoco\_work\r32.py
+
+# 交互窗口：看拨杆送球 -> 飞轮发射 -> 球飞出（默认 4 倍慢放；空格暂停，鼠标左键拖=转视角，Esc 退出）
+.\.venv-cad\Scripts\python.exe .\simulation\mujoco\view_r32.py
+.\.venv-cad\Scripts\python.exe .\simulation\mujoco\view_r32.py --ball pollen --speed 0.15
+
+# 或直接导出 GIF（不需要显示器，双击就能看）
+.\.venv-cad\Scripts\python.exe .\simulation\mujoco\view_r32.py --gif cad\output\_t06_r32_launch_nectar.gif
+```
+
+`view_r32.py` 复用 `_work/r32.py` 的同一套模型构造，几何与驱动口径和验证脚本完全一致；出射前镜头对着机构，出射后自动把出射点和球一起框住，橙色点串是球的飞行轨迹。
+
 ## 给下一位 AI 的详细接手说明
 
 你正在继续 FTC 2026–2027 BIOBUZZ 长期机器人项目。不要只从最近新增的 CAD 判断项目方向；先建立权威上下文，再行动。
