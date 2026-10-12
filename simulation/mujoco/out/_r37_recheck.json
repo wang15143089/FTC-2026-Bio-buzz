@@ -1,0 +1,2175 @@
+[
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 0.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 3,
+  "settled": [
+   [
+    -26.5,
+    65.0,
+    219.7
+   ],
+   [
+    53.2,
+    51.1,
+    291.4
+   ],
+   [
+    -322.6,
+    -18106.0,
+    268.9
+   ],
+   [
+    -919.5,
+    -19749.8,
+    267.3
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "BOGUS",
+    "v": 0.802,
+    "t": 26.78,
+    "cyc_t": 0.77,
+    "cyc": 1,
+    "travel_mm": 882.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 5.005,
+    "t": 25.954,
+    "cyc_t": 19.95,
+    "cyc": 0,
+    "travel_mm": 438.9,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 3113285.4,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 3136609.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 4,
+  "v_real": [
+   5.005
+  ],
+  "cyc_real": [
+   19.95
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 20.78,
+  "tq_peak": 0.529,
+  "jam_frac": 0.725
+ },
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 30.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 3,
+  "settled": [
+   [
+    -26.5,
+    65.0,
+    219.7
+   ],
+   [
+    53.2,
+    51.1,
+    291.4
+   ],
+   [
+    -333.0,
+    -19622.7,
+    268.9
+   ],
+   [
+    -974.7,
+    -20679.4,
+    267.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "BOGUS",
+    "v": 0.809,
+    "t": 26.78,
+    "cyc_t": 0.77,
+    "cyc": 1,
+    "travel_mm": 772.4,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 5.017,
+    "t": 25.954,
+    "cyc_t": 19.95,
+    "cyc": 0,
+    "travel_mm": 338.9,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 3134335.5,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 3149126.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 4,
+  "v_real": [
+   5.017
+  ],
+  "cyc_real": [
+   19.95
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 20.78,
+  "tq_peak": 0.529,
+  "jam_frac": 0.725
+ },
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 60.0,
+  "nip": 82.0,
+  "stacked": 2,
+  "in_channel": 2,
+  "settled": [
+   [
+    29.0,
+    38.9,
+    269.6
+   ],
+   [
+    1884.7,
+    -42432.4,
+    272.5
+   ],
+   [
+    23438.3,
+    -147079.6,
+    279.0
+   ],
+   [
+    -1649.5,
+    -54839.8,
+    268.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "SPILL",
+    "v": 1.407,
+    "t": 9.338,
+    "cyc_t": 3.34,
+    "cyc": 0,
+    "travel_mm": 468.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": 1.002,
+    "t": 1.928,
+    "cyc_t": 1.93,
+    "cyc": 0,
+    "travel_mm": 42958.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": 3.929,
+    "t": 0.03,
+    "cyc_t": 0.03,
+    "cyc": 0,
+    "travel_mm": 149039.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 3511349.5,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 0,
+  "n_ball": 4,
+  "v_real": [],
+  "cyc_real": [],
+  "index_pitch_rev": null,
+  "t_total_s": 3.34,
+  "tq_peak": 0.52,
+  "jam_frac": 0.003
+ },
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 90.0,
+  "nip": 82.0,
+  "stacked": 2,
+  "in_channel": 2,
+  "settled": [
+   [
+    -33.5,
+    75.4,
+    209.8
+   ],
+   [
+    77.5,
+    53.4,
+    309.6
+   ],
+   [
+    22786.1,
+    -146272.1,
+    278.8
+   ],
+   [
+    169.1,
+    61.4,
+    340.3
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "SPILL",
+    "v": 0.199,
+    "t": 9.574,
+    "cyc_t": 3.57,
+    "cyc": 0,
+    "travel_mm": 327.2,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.683,
+    "t": 14.364,
+    "cyc_t": 8.36,
+    "cyc": 0,
+    "travel_mm": 397.3,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": 3.818,
+    "t": 0.03,
+    "cyc_t": 0.03,
+    "cyc": 0,
+    "travel_mm": 148141.2,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "REAL",
+    "v": 4.823,
+    "t": 19.304,
+    "cyc_t": 4.04,
+    "cyc": 1,
+    "travel_mm": 805.5,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 4,
+  "v_real": [
+   4.683,
+   4.823
+  ],
+  "cyc_real": [
+   8.36,
+   4.04
+  ],
+  "index_pitch_rev": [
+   0,
+   0,
+   1
+  ],
+  "t_total_s": 13.3,
+  "tq_peak": 0.53,
+  "jam_frac": 0.303
+ },
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 120.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 3,
+  "settled": [
+   [
+    28.6,
+    38.9,
+    269.3
+   ],
+   [
+    -34.4,
+    -44.1,
+    247.7
+   ],
+   [
+    -16.5,
+    -116.9,
+    258.6
+   ],
+   [
+    -655.0,
+    -4809.7,
+    262.1
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "SPILL",
+    "v": 1.137,
+    "t": 9.326,
+    "cyc_t": 3.33,
+    "cyc": 0,
+    "travel_mm": 722.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 1933547.6,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 2666128.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 2874970.5,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 0,
+  "n_ball": 4,
+  "v_real": [],
+  "cyc_real": [],
+  "index_pitch_rev": null,
+  "t_total_s": 3.33,
+  "tq_peak": 0.53,
+  "jam_frac": 0.003
+ },
+ {
+  "tag": "mix4",
+  "mix": [
+   "POLLEN",
+   "NECTAR",
+   "POLLEN",
+   "NECTAR"
+  ],
+  "ph0": 150.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 3,
+  "settled": [
+   [
+    755.3,
+    -54.5,
+    347.1
+   ],
+   [
+    29.1,
+    49.3,
+    269.7
+   ],
+   [
+    -62.8,
+    -8544.6,
+    269.4
+   ],
+   [
+    -612.1,
+    -2232.2,
+    254.7
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "SPILL",
+    "v": 1.173,
+    "t": 0.302,
+    "cyc_t": 0.3,
+    "cyc": 0,
+    "travel_mm": 1046.2,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 5.034,
+    "t": 16.724,
+    "cyc_t": 10.72,
+    "cyc": 0,
+    "travel_mm": 321.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 2956947.9,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 4,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 2797492.1,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 4,
+  "v_real": [
+   5.034
+  ],
+  "cyc_real": [
+   10.72
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 10.72,
+  "tq_peak": 0.53,
+  "jam_frac": 0.326
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 0.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    27.6,
+    49.4,
+    268.2
+   ],
+   [
+    119.2,
+    57.0,
+    328.7
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.725,
+    "t": 10.19,
+    "cyc_t": 4.19,
+    "cyc": 0,
+    "travel_mm": 236.6,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.829,
+    "t": 15.19,
+    "cyc_t": 4.02,
+    "cyc": 1,
+    "travel_mm": 682.9,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.725,
+   4.829
+  ],
+  "cyc_real": [
+   4.19,
+   4.02
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 9.19,
+  "tq_peak": 0.53,
+  "jam_frac": 0.177
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 30.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    23.5,
+    49.6,
+    264.5
+   ],
+   [
+    115.2,
+    56.7,
+    327.4
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.728,
+    "t": 10.912,
+    "cyc_t": 4.91,
+    "cyc": 0,
+    "travel_mm": 312.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.825,
+    "t": 15.874,
+    "cyc_t": 4.02,
+    "cyc": 1,
+    "travel_mm": 781.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.728,
+   4.825
+  ],
+  "cyc_real": [
+   4.91,
+   4.02
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 9.87,
+  "tq_peak": 0.53,
+  "jam_frac": 0.217
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 60.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    29.1,
+    49.3,
+    269.7
+   ],
+   [
+    122.4,
+    57.3,
+    329.8
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.68,
+    "t": 10.438,
+    "cyc_t": 4.44,
+    "cyc": 0,
+    "travel_mm": 353.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.767,
+    "t": 11.584,
+    "cyc_t": 0.06,
+    "cyc": 1,
+    "travel_mm": 331.4,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.68,
+   4.767
+  ],
+  "cyc_real": [
+   4.44,
+   0.06
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 5.58,
+  "tq_peak": 0.53,
+  "jam_frac": 0.144
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 90.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    27.1,
+    49.4,
+    267.8
+   ],
+   [
+    121.9,
+    57.2,
+    329.6
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.795,
+    "t": 10.206,
+    "cyc_t": 4.21,
+    "cyc": 0,
+    "travel_mm": 441.2,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.752,
+    "t": 11.178,
+    "cyc_t": 0.06,
+    "cyc": 1,
+    "travel_mm": 382.4,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.795,
+   4.752
+  ],
+  "cyc_real": [
+   4.21,
+   0.06
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 5.18,
+  "tq_peak": 0.526,
+  "jam_frac": 0.118
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 120.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    26.9,
+    49.4,
+    267.6
+   ],
+   [
+    121.9,
+    57.2,
+    329.6
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.705,
+    "t": 10.394,
+    "cyc_t": 4.39,
+    "cyc": 0,
+    "travel_mm": 398.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.757,
+    "t": 11.57,
+    "cyc_t": 0.06,
+    "cyc": 1,
+    "travel_mm": 404.9,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.705,
+   4.757
+  ],
+  "cyc_real": [
+   4.39,
+   0.06
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 5.57,
+  "tq_peak": 0.53,
+  "jam_frac": 0.143
+ },
+ {
+  "tag": "nectar2",
+  "mix": [
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 150.0,
+  "nip": 82.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    27.8,
+    49.3,
+    268.5
+   ],
+   [
+    119.4,
+    57.0,
+    328.8
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.702,
+    "t": 10.136,
+    "cyc_t": 4.14,
+    "cyc": 0,
+    "travel_mm": 293.4,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.818,
+    "t": 15.384,
+    "cyc_t": 4.03,
+    "cyc": 1,
+    "travel_mm": 746.0,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   4.702,
+   4.818
+  ],
+  "cyc_real": [
+   4.14,
+   4.03
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 9.38,
+  "tq_peak": 0.53,
+  "jam_frac": 0.188
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 0.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    9.3,
+    52.7,
+    251.0
+   ],
+   [
+    99.4,
+    55.3,
+    321.2
+   ],
+   [
+    46.6,
+    -44.1,
+    276.3
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 5.047,
+    "t": 16.828,
+    "cyc_t": 10.83,
+    "cyc": 0,
+    "travel_mm": 303.3,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 878553.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 1401506.6,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 3,
+  "v_real": [
+   5.047
+  ],
+  "cyc_real": [
+   10.83
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 10.83,
+  "tq_peak": 0.53,
+  "jam_frac": 0.384
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 30.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    4.4,
+    53.8,
+    246.4
+   ],
+   [
+    94.3,
+    53.5,
+    318.2
+   ],
+   [
+    171.5,
+    100.7,
+    355.7
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 5.05,
+    "t": 16.906,
+    "cyc_t": 10.91,
+    "cyc": 0,
+    "travel_mm": 309.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 671953.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 1130764.5,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 3,
+  "v_real": [
+   5.05
+  ],
+  "cyc_real": [
+   10.91
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 10.91,
+  "tq_peak": 0.53,
+  "jam_frac": 0.388
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 60.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    29.1,
+    49.3,
+    269.7
+   ],
+   [
+    1940.1,
+    -44301.7,
+    272.5
+   ],
+   [
+    -1669.1,
+    -53869.3,
+    268.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 5.039,
+    "t": 16.92,
+    "cyc_t": 10.92,
+    "cyc": 0,
+    "travel_mm": 390.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": 1.051,
+    "t": 1.938,
+    "cyc_t": 1.94,
+    "cyc": 0,
+    "travel_mm": 44830.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 2720636.0,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 3,
+  "v_real": [
+   5.039
+  ],
+  "cyc_real": [
+   10.92
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 10.92,
+  "tq_peak": 0.53,
+  "jam_frac": 0.39
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 90.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    -31.5,
+    99.3,
+    191.3
+   ],
+   [
+    78.3,
+    53.4,
+    310.0
+   ],
+   [
+    169.2,
+    65.3,
+    341.7
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.685,
+    "t": 9.42,
+    "cyc_t": 3.42,
+    "cyc": 0,
+    "travel_mm": 178.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.779,
+    "t": 11.024,
+    "cyc_t": 5.02,
+    "cyc": 0,
+    "travel_mm": 357.6,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 4.812,
+    "t": 15.598,
+    "cyc_t": 4.02,
+    "cyc": 1,
+    "travel_mm": 720.7,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   4.685,
+   4.779,
+   4.812
+  ],
+  "cyc_real": [
+   3.42,
+   5.02,
+   4.02
+  ],
+  "index_pitch_rev": [
+   0,
+   1
+  ],
+  "t_total_s": 9.6,
+  "tq_peak": 0.53,
+  "jam_frac": 0.167
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 120.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    -31.3,
+    98.8,
+    191.8
+   ],
+   [
+    78.8,
+    53.4,
+    310.4
+   ],
+   [
+    169.2,
+    68.7,
+    343.0
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.778,
+    "t": 10.254,
+    "cyc_t": 4.25,
+    "cyc": 0,
+    "travel_mm": 335.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.856,
+    "t": 11.684,
+    "cyc_t": 5.68,
+    "cyc": 0,
+    "travel_mm": 298.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 5.037,
+    "t": 17.79,
+    "cyc_t": 4.03,
+    "cyc": 1,
+    "travel_mm": 717.6,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   4.778,
+   4.856,
+   5.037
+  ],
+  "cyc_real": [
+   4.25,
+   5.68,
+   4.03
+  ],
+  "index_pitch_rev": [
+   0,
+   1
+  ],
+  "t_total_s": 11.79,
+  "tq_peak": 0.53,
+  "jam_frac": 0.278
+ },
+ {
+  "tag": "nectar3",
+  "mix": [
+   "NECTAR",
+   "NECTAR",
+   "NECTAR"
+  ],
+  "ph0": 150.0,
+  "nip": 82.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "settled": [
+   [
+    27.8,
+    49.3,
+    268.5
+   ],
+   [
+    119.4,
+    57.0,
+    328.8
+   ],
+   [
+    18350.4,
+    -141927.5,
+    277.3
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 4.702,
+    "t": 10.144,
+    "cyc_t": 4.14,
+    "cyc": 0,
+    "travel_mm": 291.5,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 4.817,
+    "t": 15.27,
+    "cyc_t": 4.03,
+    "cyc": 1,
+    "travel_mm": 803.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": 4.174,
+    "t": 0.028,
+    "cyc_t": 0.03,
+    "cyc": 0,
+    "travel_mm": 143240.1,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 3,
+  "v_real": [
+   4.702,
+   4.817
+  ],
+  "cyc_real": [
+   4.14,
+   4.03
+  ],
+  "index_pitch_rev": [
+   1,
+   -1
+  ],
+  "t_total_s": 9.27,
+  "tq_peak": 0.53,
+  "jam_frac": 0.152
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 0.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    17.3,
+    40.0,
+    260.3
+   ],
+   [
+    88.3,
+    43.8,
+    311.0
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.173,
+    "t": 10.336,
+    "cyc_t": 4.34,
+    "cyc": 0,
+    "travel_mm": 240.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.115,
+    "t": 13.672,
+    "cyc_t": 3.31,
+    "cyc": 1,
+    "travel_mm": 734.5,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   6.173,
+   6.115
+  ],
+  "cyc_real": [
+   4.34,
+   3.31
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 7.67,
+  "tq_peak": 0.53,
+  "jam_frac": 0.063
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 30.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    16.2,
+    40.1,
+    259.4
+   ],
+   [
+    87.2,
+    43.8,
+    310.4
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.092,
+    "t": 10.668,
+    "cyc_t": 4.67,
+    "cyc": 0,
+    "travel_mm": 401.5,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 5.992,
+    "t": 14.01,
+    "cyc_t": 3.3,
+    "cyc": 1,
+    "travel_mm": 663.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 2,
+  "v_real": [
+   6.092,
+   5.992
+  ],
+  "cyc_real": [
+   4.67,
+   3.3
+  ],
+  "index_pitch_rev": [
+   1
+  ],
+  "t_total_s": 8.01,
+  "tq_peak": 0.53,
+  "jam_frac": 0.084
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 60.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    16.6,
+    40.1,
+    259.8
+   ],
+   [
+    87.6,
+    43.8,
+    310.7
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.162,
+    "t": 11.318,
+    "cyc_t": 5.32,
+    "cyc": 0,
+    "travel_mm": 417.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 257.7,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 2,
+  "v_real": [
+   6.162
+  ],
+  "cyc_real": [
+   5.32
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 5.32,
+  "tq_peak": 0.53,
+  "jam_frac": 0.13
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 90.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    15.8,
+    40.2,
+    259.1
+   ],
+   [
+    86.8,
+    43.7,
+    310.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.113,
+    "t": 11.852,
+    "cyc_t": 5.85,
+    "cyc": 0,
+    "travel_mm": 518.2,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 293.4,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 2,
+  "v_real": [
+   6.113
+  ],
+  "cyc_real": [
+   5.85
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 5.85,
+  "tq_peak": 0.53,
+  "jam_frac": 0.176
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 120.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    28.5,
+    38.9,
+    269.2
+   ],
+   [
+    99.4,
+    44.8,
+    316.4
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.051,
+    "t": 9.574,
+    "cyc_t": 3.57,
+    "cyc": 0,
+    "travel_mm": 471.3,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 157.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 2,
+  "v_real": [
+   6.051
+  ],
+  "cyc_real": [
+   3.57
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 3.57,
+  "tq_peak": 0.53,
+  "jam_frac": 0.046
+ },
+ {
+  "tag": "pollen2",
+  "mix": [
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 150.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 2,
+  "settled": [
+   [
+    28.5,
+    38.9,
+    269.2
+   ],
+   [
+    99.4,
+    44.8,
+    316.4
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.118,
+    "t": 9.574,
+    "cyc_t": 3.57,
+    "cyc": 0,
+    "travel_mm": 472.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 205.2,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 2,
+  "v_real": [
+   6.118
+  ],
+  "cyc_real": [
+   3.57
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 3.57,
+  "tq_peak": 0.53,
+  "jam_frac": 0.046
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 0.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    13.7,
+    40.6,
+    257.4
+   ],
+   [
+    84.7,
+    43.5,
+    309.1
+   ],
+   [
+    155.5,
+    49.7,
+    333.9
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.148,
+    "t": 11.766,
+    "cyc_t": 5.77,
+    "cyc": 0,
+    "travel_mm": 272.5,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.013,
+    "t": 15.29,
+    "cyc_t": 3.49,
+    "cyc": 1,
+    "travel_mm": 382.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 6.02,
+    "t": 18.628,
+    "cyc_t": 3.31,
+    "cyc": 2,
+    "travel_mm": 875.3,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   6.148,
+   6.013,
+   6.02
+  ],
+  "cyc_real": [
+   5.77,
+   3.49,
+   3.31
+  ],
+  "index_pitch_rev": [
+   1,
+   1
+  ],
+  "t_total_s": 12.63,
+  "tq_peak": 0.53,
+  "jam_frac": 0.136
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 30.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    -14.9,
+    54.1,
+    232.2
+   ],
+   [
+    54.9,
+    40.9,
+    289.8
+   ],
+   [
+    125.7,
+    47.1,
+    326.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.153,
+    "t": 11.02,
+    "cyc_t": 5.02,
+    "cyc": 0,
+    "travel_mm": 226.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.233,
+    "t": 11.094,
+    "cyc_t": 5.09,
+    "cyc": 0,
+    "travel_mm": 278.1,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 6.143,
+    "t": 11.936,
+    "cyc_t": 0.14,
+    "cyc": 1,
+    "travel_mm": 369.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   6.153,
+   6.233,
+   6.143
+  ],
+  "cyc_real": [
+   5.02,
+   5.09,
+   0.14
+  ],
+  "index_pitch_rev": [
+   0,
+   1
+  ],
+  "t_total_s": 5.94,
+  "tq_peak": 0.53,
+  "jam_frac": 0.123
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 60.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    -16.5,
+    55.4,
+    230.6
+   ],
+   [
+    53.0,
+    40.7,
+    288.4
+   ],
+   [
+    123.8,
+    47.0,
+    325.6
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.164,
+    "t": 10.794,
+    "cyc_t": 4.79,
+    "cyc": 0,
+    "travel_mm": 276.7,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.196,
+    "t": 10.868,
+    "cyc_t": 4.87,
+    "cyc": 0,
+    "travel_mm": 367.4,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 6.207,
+    "t": 11.71,
+    "cyc_t": 0.08,
+    "cyc": 1,
+    "travel_mm": 418.0,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   6.164,
+   6.196,
+   6.207
+  ],
+  "cyc_real": [
+   4.79,
+   4.87,
+   0.08
+  ],
+  "index_pitch_rev": [
+   0,
+   1
+  ],
+  "t_total_s": 5.71,
+  "tq_peak": 0.53,
+  "jam_frac": 0.115
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 90.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    -29.3,
+    69.0,
+    215.8
+   ],
+   [
+    35.1,
+    39.2,
+    274.5
+   ],
+   [
+    106.0,
+    45.4,
+    319.2
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.165,
+    "t": 9.69,
+    "cyc_t": 3.69,
+    "cyc": 0,
+    "travel_mm": 262.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.154,
+    "t": 9.786,
+    "cyc_t": 3.79,
+    "cyc": 0,
+    "travel_mm": 346.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 175.8,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 2,
+  "n_ball": 3,
+  "v_real": [
+   6.165,
+   6.154
+  ],
+  "cyc_real": [
+   3.69,
+   3.79
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 3.79,
+  "tq_peak": 0.53,
+  "jam_frac": 0.201
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 120.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    26.1,
+    39.0,
+    267.3
+   ],
+   [
+    99.6,
+    44.8,
+    316.5
+   ],
+   [
+    170.4,
+    51.0,
+    336.8
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.12,
+    "t": 9.972,
+    "cyc_t": 3.97,
+    "cyc": 0,
+    "travel_mm": 621.0,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 203.5,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "SPILL",
+    "v": null,
+    "t": null,
+    "cyc_t": null,
+    "cyc": null,
+    "travel_mm": 226.4,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 1,
+  "n_ball": 3,
+  "v_real": [
+   6.12
+  ],
+  "cyc_real": [
+   3.97
+  ],
+  "index_pitch_rev": null,
+  "t_total_s": 3.97,
+  "tq_peak": 0.53,
+  "jam_frac": 0.355
+ },
+ {
+  "tag": "pollen3",
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 150.0,
+  "nip": 64.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "settled": [
+   [
+    -25.0,
+    63.7,
+    221.2
+   ],
+   [
+    78.1,
+    42.9,
+    305.4
+   ],
+   [
+    149.0,
+    49.2,
+    332.5
+   ]
+  ],
+  "balls": [
+   {
+    "k": 1,
+    "cls": "REAL",
+    "v": 6.106,
+    "t": 11.96,
+    "cyc_t": 5.96,
+    "cyc": 0,
+    "travel_mm": 543.6,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 2,
+    "cls": "REAL",
+    "v": 6.149,
+    "t": 19.374,
+    "cyc_t": 0.02,
+    "cyc": 2,
+    "travel_mm": 644.8,
+    "moved_while_waiting": true
+   },
+   {
+    "k": 3,
+    "cls": "REAL",
+    "v": 6.007,
+    "t": 22.634,
+    "cyc_t": 3.28,
+    "cyc": 2,
+    "travel_mm": 694.1,
+    "moved_while_waiting": true
+   }
+  ],
+  "n_real": 3,
+  "n_ball": 3,
+  "v_real": [
+   6.106,
+   6.149,
+   6.007
+  ],
+  "cyc_real": [
+   5.96,
+   0.02,
+   3.28
+  ],
+  "index_pitch_rev": [
+   2,
+   0
+  ],
+  "t_total_s": 16.63,
+  "tq_peak": 0.53,
+  "jam_frac": 0.338
+ }
+]

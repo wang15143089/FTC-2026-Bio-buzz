@@ -1,10 +1,10 @@
 # PROJECT STATUS
 
-最后更新：2026-10-11（R37）
+最后更新：2026-10-11（R37 多球仿真 V-0037）
 
 ## CURRENT OBJECTIVE
 
-按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按「每个 SKU 的整个官方部件」处理（多实体保持多实体，不做布尔并集，DEC-0021）；T06 多球进料已在 R37 按方向 B 落地（等待区搬到拨杆扫掠圆外、托板右端 150→215 mm，容量 NECTAR 2 / POLLEN 3，DEC-0035），并完成自制件重叠清理（DEC-0036）；下一步：外部供料路线随进料口外移到 x = 215 调整（KEI-19）、R37 接入 MuJoCo 多球仿真，以及用实物关闭轴向紧固与高速动态风险。
+按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按「每个 SKU 的整个官方部件」处理（多实体保持多实体，不做布尔并集，DEC-0021）；T06 多球进料已在 R37 按方向 B 落地（等待区搬到拨杆扫掠圆外、托板右端 150→215 mm，容量 NECTAR 2 / POLLEN 3，DEC-0035），并完成自制件重叠清理（DEC-0036）；R37 已接入 MuJoCo 多球仿真（NECTAR×2 12/12、POLLEN×3 15/18，V-0037）；下一步：等待区第 2 颗球的「索引进扫掠圆」几何微调、外部供料路线随进料口外移到 x = 215 调整（KEI-19，用户已批准改），以及用实物关闭轴向紧固与高速动态风险。
 
 ## CURRENT MODULE
 
@@ -430,7 +430,28 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 实测收尾（MEASURED，导出后回读本轮 STEP）：自制件两两布尔交 **全 0**；全部自制件 `Solids() == 1`；拨杆轴 ∩ 拨杆 = 0.000 mm³。剩余多实体件只有 7 个厂商 COTS 件（飞轮/轴），按 DEC-0021 保留原厂装配语义。
 - 几何检验（MEASURED，`tools/inspect_geometry.py`，run label **R005**）：**4/4 `pass`，0 `fail` / 0 `not_run` / 0 `unresolved`，退出码 0，397.1 s** —— bbox_max x = 215.2615（目标 215 ± 0.5）、bbox_max z = 338.7996（目标 338.8 ± 1.0）、体积 930299.217 mm³（相对偏差 7.4e-07）、根实体 23（= 16 部件 + 7 个 COTS 多实体）。报告 `cad/output/inspection/t06_feeder_r37_R005.json`。
 - 产物（KNOWN，大 STEP 已 git-ignore，可再生）：`cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_{nectar,pollen}.step` + 报告 JSON + `_r37_readback.json`；生成器 `cad/paddle_launcher_feeder_a_prime_shared_staging.py`（**父模块 `paddle_launcher_feeder_redesign.py` / `..._shared.py` / `paddle_launcher_constrained.py` 全部未被修改**）。
-- 代价与未关闭（TBD）：机构在 +x **变长 65 mm**，进料口外移到 x = 215 后**外部供料路线需跟着调整**（Linear KEI-19）；R37 几何**尚未接入 MuJoCo 多球仿真**；μ、球质量、索引式舵机控制三项仍未关闭。
+- 代价与未关闭（TBD）：机构在 +x **变长 65 mm**，进料口外移到 x = 215 后**外部供料路线需跟着调整**（Linear KEI-19，用户 2026-10-11 已批准改）；R37 几何**已接入 MuJoCo 多球仿真**（见下段 V-0037）；μ、球质量、索引式舵机控制三项仍未关闭。
+
+## T06 R37 多球仿真：MuJoCo 全流程（2026-10-11，V-0037）
+
+- 用户指令（KNOWN）：`跑吧，供料路线改就改吧` —— 批准把 R37 几何接进 MuJoCo 多球仿真，并允许外部供料路线随进料口外移而改（本轮只跑仿真，不改外部供料）。
+- 仿真口径（SIMULATED）：`simulation/mujoco/_work/r37_multiball.py`（由 `r36_multiball.py` 派生：`TRAY_X1 = 215`、TPU 尖 r 58…60、逸出阈值 `SPILL_X = 240`、窗口改为 `t0 + (nb+2)×(T_ROT+hold) + 4 s`）；5 种球数 × 6 个拨杆相位（ph0 = 0/30/60/90/120/150°，hold 3.0 s，拨杆 60 rpm，μ = 0.40，飞轮 1620 rpm、限幅 ±0.530 N·m），共 **30 轮 / 84 颗**。
+- 设计容量工况（SIMULATED）：
+
+  | 工况 | 全清轮 | 真出膛 | 出膛速度 | 平均轮内耗时 | 平均清空耗时 |
+  |---|---|---|---|---|---|
+  | NECTAR × 2 | **6/6** | **12/12 = 100%** | 4.68–4.86 m/s（均 4.76） | 3.21 s | 6.42 s |
+  | POLLEN × 3 | 4/6 | 15/18 = 83% | 6.01–6.23 m/s（均 6.13） | 3.55 s | 10.46 s |
+
+- 超容量工况（按「设计容量外」解读，**不作为结构缺陷**）：POLLEN × 2 = 8/12（67%，无后排推挤）；NECTAR × 3 = 11/18（61%，叠 1 颗）；mix4（POLLEN/NECTAR/POLLEN/NECTAR）= 5/24（21%，叠 1–2 颗）。
+- 相位敏感（SIMULATED）：最差 **ph0 = 120°**（POLLEN×3 → 1/3、POLLEN×2 → 1/2）；POLLEN×3 在 ph0 = 0/30/60/150° 四档全清。
+- 根因（SIMULATED + 几何核对）：等待区第 2 颗球稳定停在 **`x ≈ 87–88 mm`**（相对拨杆轴心 `r ≈ 89 mm`、极角 ≈ 317°），**落在拨杆扇区 142–275° 之外**，拨杆扫不到它；它只能靠**后排球推挤**或**拨杆回程蹭带**被一步步索引进扫掠圆。这就是 POLLEN×3（有第 3 颗在后面推 → 83%）明显优于 POLLEN×2（无后排 → 67%，且更慢）的原因。注意该停靠点比参数表的「等待区起点 x ≥ 97.772（POLLEN）」**还要靠内约 10 mm**，即它其实在扫掠圆半径之内，只因为极角在扇区外才没被打飞 —— 一旦被推过 275° 就进入有效区。
+- 口径澄清（KNOWN）：迹线里 `|z|` 达到 10⁶ mm 的记录**不是数值爆炸** —— 出膛后球在无边界自由空间继续下落并沿 +x 飞行（`z = −1200 m` 对应约 15 s 自由落体，与运行时长吻合）。出膛判定仍按 DEC-0033 的速度门槛（v ≥ 3 m/s 且 x < 200 mm）；本轮假阳性 2/84。
+- 与 R36 对比（SIMULATED）：同口径清洗后 R36 的 POLLEN×3 = **10/18（56%）**、v 均值 6.26 ⇒ R37 = **15/18（83%）**、v 均值 6.13；方向 B 的「等待区搬出扫掠圆」是**净收益**，出膛速度略降约 2%（夹口/几何差异与采样差异混合，未单独归因）。
+- 未关闭（TBD）：μ（球—PET 打印件）与球质量仍为 `ASSUMED`；索引式舵机控制未实机；外部供料路线随进料口 x = 215 待改（KEI-19，用户已批准改）；**等待区第 2 颗球的索引余量偏紧** —— 建议的后续几何动作是「放开 x ≈ 87 处的台阶/门槛」或「按实际停靠半径重算等待区门槛」，本轮未做。
+- 证据（KNOWN）：`simulation/mujoco/out/_r37_multiball_{pollen3,pollen2,nectar2,nectar3,mix4}.json`、`simulation/mujoco/out/_r37_recheck.json`、`simulation/mujoco/out/_r37_log2.txt`；清洗脚本 `simulation/mujoco/_work/r37_recheck.py`。第一轮矩阵（`out/_r37_log.txt` 与未加 tag 的 `out/_r37_multiball.json`）因仿真窗口少算一圈、数据不可靠，已按 R36 同例作废删除；以 `out/_r37_log2.txt` 为权威。
+
+
 
 ## NEXT ACTION
 
@@ -441,8 +462,8 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 
 0. （R37 已落地，2026-10-11）用户选定 **方向 B** 并完成 (b) 清理：托板右端 150 → 215 mm、拨杆并为 1 个实体、TPU 尖缩到 r 58…60、侧壁 0.5 mm 让位、托板与球道弧并为一个实体、轮毂孔改 Ø12.1。**结果：NECTAR 2 颗 / POLLEN 3 颗等待位全部在扫掠圆外**（除第 1 颗待推球，设计意图）；几何检验 R005 4/4 通过（DEC-0035 / DEC-0036 / V-0036，PROJECT_STATUS R37 段）。
    本项剩余（按优先级）：
-   (i) **外部供料路线**：进料口外移到 x = 215，料仓/输送要跟着改（等用户指示，Linear KEI-19）；
-   (ii) **(可选) 把 R37 几何接进 MuJoCo 多球仿真**（现有 `simulation/mujoco/_work/r36_multiball.py` 取 R27/R32 几何），验证方向 B 下多颗球能否依次被索引送出；
+   (i) **外部供料路线**：进料口外移到 x = 215，料仓/输送要跟着改（用户 2026-10-11 已批准按新进料口改，待设计；Linear KEI-19）；
+   (ii) **（已完成，V-0037，2026-10-11）** R37 几何已接进 MuJoCo 多球仿真（`simulation/mujoco/_work/r37_multiball.py`）：NECTAR×2 12/12（100%）、POLLEN×3 15/18（83%）⇒ 方向 B 可用；遗留的是**等待区第 2 颗球的索引余量偏紧**（停靠 r ≈ 89 mm 落在扇区外，靠后排推挤/回程蹭带才进得来），可选动作＝放开 x ≈ 87 处门槛或重算等待区门槛；
    (iii) 若方向 B 的 65 mm 长度不可接受，可回退到 (A) 单球索引 + 外部料仓（DEC-0034 的另两个备选仍保留）。
    任何后续 CAD 改动仍需 `tools/inspect_geometry.py` 出 JSON 报告 + 导出后回读 STEP 复测，**不得覆盖原 STEP、不得改 `cad/paddle_launcher_constrained.py` 与 `feeder_a_prime*` 原文件**。
 
