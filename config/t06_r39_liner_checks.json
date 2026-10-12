@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-FEEDER-R39",
+  "note": "R39 / DEC-0039 送球道低摩擦内衬件（打印件）的几何检验。被检对象是 cad/output/_r39_liner 导出的 STEP 本身，目标值全部来自设计意图与 config/parameters.yaml（t06_feeder_v2 shell_width、t06_feeder_r39 的托盘 x 范围与 5 deg 倾角、外罩壁厚），不取自被检件。R39 只把球道接触面让出 0.5 mm 内衬空间：外罩内弧 R_IN+0.5、外径不变（壁厚 7.0 -> 6.5）、托板顶面降 0.5（底面不动），因此 (a) 轮廓类尺寸必须与 R38 完全一致，(b) 球道面的实际偏移由模块自带的网格射线量具 r39_liner_report.json 负责（OCC 的 distance/intersect 在曲面-球壳对上不可信，见 DEC-0039）。",
+  "checks": [
+    {
+      "id": "T06-GEO-R39-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEEDER-11：外罩与托板一体打印，交付几何为单实体",
+      "part": "step_part",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the solids in the imported STEP",
+      "note": "整体式外罩+托板（R37 起合并），R39 的内衬预缩不改变这一点"
+    },
+    {
+      "id": "T06-GEO-R39-002",
+      "kind": "bbox_size",
+      "axis": "y",
+      "requirement": "REQ-T06-FEEDER-12：送球通道宽度保持 108 mm（两种球共用）",
+      "part": "step_part",
+      "target": 108.0,
+      "tolerance": 0.01,
+      "method": "bbox_size[y] from the final solid bounding box",
+      "note": "目标 = config/parameters.yaml t06_feeder_v2.shell_width (KNOWN)；Y 向是旋转不变量，内衬预缩不得改变它"
+    },
+    {
+      "id": "T06-GEO-R39-003",
+      "kind": "bbox_max",
+      "axis": "x",
+      "requirement": "REQ-T06-FEEDER-13：托板右端仍到 TRAY_X1=215 mm（R37 进料方向 B），预缩不得缩短托板",
+      "part": "step_part",
+      "target": 215.2405,
+      "tolerance": 0.05,
+      "method": "bbox_max[x] from the final solid bounding box",
+      "note": "目标为解析推导：托板中心 xm=(24.901+215)/2、长 190.82、厚 5.5、绕 Y 转 5 deg 后 xm + (L/2)cos5 + (T/2)sin5 = 215.2405"
+    },
+    {
+      "id": "T06-GEO-R39-004",
+      "kind": "bbox_min",
+      "axis": "z",
+      "requirement": "REQ-T06-FEEDER-14：外罩外径不变（外弧 114.974 mm），预缩只吃内弧",
+      "part": "step_part",
+      "target": -3.514,
+      "tolerance": 0.01,
+      "method": "bbox_min[z] from the final solid bounding box",
+      "note": "目标为解析推导：PADDLE_CZ - (R_IN + SHELL_WALL) = 111.46 - 114.974 = -3.514；若外径被一起缩小，此值会抬高约 0.5 mm"
+    },
+    {
+      "id": "T06-GEO-R39-005",
+      "kind": "step_roundtrip",
+      "requirement": "REQ-T06-COTS-07：交付 STEP 可无损回读",
+      "part": "step_part",
+      "tolerance": 0.02,
+      "relative_tolerance": 0.000001,
+      "method": "export STEP, re-import, compare bounding box and volume",
+      "note": "打印/装配都从这一份 STEP 出发，先证明它自身可复现"
+    }
+  ]
+}

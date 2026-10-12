@@ -1,0 +1,101 @@
+{
+  "units": "mm",
+  "round": "R39 liner diagnosis",
+  "control_cap_mm3": 15.184364497519898,
+  "variants": {
+    "nectar": {
+      "ball_r_mm": 45.974,
+      "nip_mm": 82.0,
+      "ball_centre_xz": [
+        34.8937,
+        49.6959
+      ],
+      "centre_radius_mm": 62.0,
+      "pivot_xz": [
+        29.49,
+        111.46
+      ],
+      "solid_count": 1,
+      "volume_mm3": 279545.896,
+      "bbox_min": [
+        -85.484,
+        -54.0,
+        -3.514
+      ],
+      "bbox_max": [
+        215.24,
+        54.0,
+        180.043
+      ],
+      "balls": {
+        "design": {
+          "gap_mm": 34.5771,
+          "inter_mm3": 0.0
+        },
+        "plus_0_1": {
+          "gap_mm": 34.5221,
+          "inter_mm3": 0.0
+        },
+        "plus_0_5": {
+          "gap_mm": 34.3014,
+          "inter_mm3": 0.0
+        },
+        "plus_0_6": {
+          "gap_mm": 34.246,
+          "inter_mm3": 0.0
+        },
+        "plus_1_0": {
+          "gap_mm": 34.0234,
+          "inter_mm3": 0.0
+        }
+      }
+    },
+    "pollen": {
+      "ball_r_mm": 35.56,
+      "nip_mm": 64.0,
+      "ball_centre_xz": [
+        35.8013,
+        39.3216
+      ],
+      "centre_radius_mm": 72.414,
+      "pivot_xz": [
+        29.49,
+        111.46
+      ],
+      "solid_count": 1,
+      "volume_mm3": 279545.896,
+      "bbox_min": [
+        -85.484,
+        -54.0,
+        -3.514
+      ],
+      "bbox_max": [
+        215.24,
+        54.0,
+        180.043
+      ],
+      "balls": {
+        "design": {
+          "gap_mm": 30.6316,
+          "inter_mm3": 0.0
+        },
+        "plus_0_1": {
+          "gap_mm": 30.594,
+          "inter_mm3": 0.0
+        },
+        "plus_0_5": {
+          "gap_mm": 30.4423,
+          "inter_mm3": 0.0
+        },
+        "plus_0_6": {
+          "gap_mm": 30.4042,
+          "inter_mm3": 0.0
+        },
+        "plus_1_0": {
+          "gap_mm": 30.2504,
+          "inter_mm3": 0.0
+        }
+      }
+    }
+  }
+}

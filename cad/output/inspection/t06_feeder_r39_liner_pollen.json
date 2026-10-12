@@ -1,0 +1,195 @@
+{
+  "schema_version": "0.1",
+  "run_label": "r39_liner_pollen",
+  "created_at_utc": "2026-10-12T07:18:40.261675+00:00",
+  "duration_s": 0.08,
+  "command": "tools/inspect_geometry.py --step cad/output/_r39_liner/feeder_shell_tray_liner_pollen.step --step-part-id step_part --spec config/t06_r39_liner_checks.json --run-label r39_liner_pollen --report cad/output/inspection/t06_feeder_r39_liner_pollen.json",
+  "working_directory": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz",
+  "host": "DESKTOP-2JPFDSA",
+  "interpreter": {
+    "executable": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\.venv-cad\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "dependencies": {
+    "cadquery": "2.6.1",
+    "python": "3.12.14"
+  },
+  "units": "mm",
+  "coordinate_system": "as authored in the STEP file",
+  "design_id": "C06B-FEEDER-R39",
+  "solution_status": "candidate_pending_human_review",
+  "inputs": [
+    {
+      "role": "check_requirements",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_r39_liner_checks.json",
+      "exists": true,
+      "bytes": 3075,
+      "sha256": "5CE0270BE39182CCB1813E10D479EF92753F3DCEBDDB4BE4895BF648C6929FE1"
+    },
+    {
+      "role": "step",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\_r39_liner\\feeder_shell_tray_liner_pollen.step",
+      "exists": true,
+      "bytes": 38459,
+      "sha256": "177244AB351613A8AF3B31A6D3884053E6DC1EDCED0D9458F70207943A367F80"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "pass": 5,
+    "fail": 0,
+    "not_run": 0,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "id": "T06-GEO-R39-001",
+      "kind": "part_solid_count",
+      "requirement": "REQ-T06-FEEDER-11：外罩与托板一体打印，交付几何为单实体",
+      "target": 1,
+      "tolerance": 0,
+      "method": "count of the solids in the imported STEP",
+      "status": "pass",
+      "measured": 1,
+      "deviation": 0,
+      "note": "整体式外罩+托板（R37 起合并），R39 的内衬预缩不改变这一点"
+    },
+    {
+      "id": "T06-GEO-R39-002",
+      "kind": "bbox_size",
+      "requirement": "REQ-T06-FEEDER-12：送球通道宽度保持 108 mm（两种球共用）",
+      "target": 108.0,
+      "tolerance": 0.01,
+      "method": "bbox_size[y] from final solid bounding box",
+      "status": "pass",
+      "measured": 108.0,
+      "deviation": 0.0,
+      "note": "目标 = config/parameters.yaml t06_feeder_v2.shell_width (KNOWN)；Y 向是旋转不变量，内衬预缩不得改变它"
+    },
+    {
+      "id": "T06-GEO-R39-003",
+      "kind": "bbox_max",
+      "requirement": "REQ-T06-FEEDER-13：托板右端仍到 TRAY_X1=215 mm（R37 进料方向 B），预缩不得缩短托板",
+      "target": 215.2405,
+      "tolerance": 0.05,
+      "method": "bbox_max[x] from final solid bounding box",
+      "status": "pass",
+      "measured": 215.2397,
+      "deviation": -0.0008,
+      "note": "目标为解析推导：托板中心 xm=(24.901+215)/2、长 190.82、厚 5.5、绕 Y 转 5 deg 后 xm + (L/2)cos5 + (T/2)sin5 = 215.2405"
+    },
+    {
+      "id": "T06-GEO-R39-004",
+      "kind": "bbox_min",
+      "requirement": "REQ-T06-FEEDER-14：外罩外径不变（外弧 114.974 mm），预缩只吃内弧",
+      "target": -3.514,
+      "tolerance": 0.01,
+      "method": "bbox_min[z] from final solid bounding box",
+      "status": "pass",
+      "measured": -3.514,
+      "deviation": 0.0,
+      "note": "目标为解析推导：PADDLE_CZ - (R_IN + SHELL_WALL) = 111.46 - 114.974 = -3.514；若外径被一起缩小，此值会抬高约 0.5 mm"
+    },
+    {
+      "id": "T06-GEO-R39-005",
+      "kind": "step_roundtrip",
+      "requirement": "REQ-T06-COTS-07：交付 STEP 可无损回读",
+      "target": "STEP export/re-import reproduces bbox and volume",
+      "tolerance": {
+        "bbox_size_mm": 0.02,
+        "volume_relative": 1e-06
+      },
+      "method": "export STEP, re-import, compare bounding box and volume",
+      "status": "pass",
+      "measured": {
+        "bbox_size_before_mm": [
+          300.7237,
+          108.0,
+          183.5574
+        ],
+        "bbox_size_after_mm": [
+          300.7237,
+          108.0,
+          183.5574
+        ],
+        "volume_before_mm3": 279545.896,
+        "volume_after_mm3": 279545.896,
+        "solid_count_after": 1
+      },
+      "deviation": {
+        "bbox_size_mm": 0.0,
+        "volume_relative": 0.0
+      },
+      "note": "打印/装配都从这一份 STEP 出发，先证明它自身可复现"
+    }
+  ],
+  "parts": [
+    {
+      "id": "step_part",
+      "solid_count": 1,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 279545.896,
+      "bbox": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.2397,
+          54.0,
+          180.0434
+        ],
+        "size_mm": [
+          300.7237,
+          108.0,
+          183.5574
+        ]
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "part": "step_part",
+      "before": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.2397,
+          54.0,
+          180.0434
+        ],
+        "size_mm": [
+          300.7237,
+          108.0,
+          183.5574
+        ]
+      },
+      "after": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.2397,
+          54.0,
+          180.0434
+        ],
+        "size_mm": [
+          300.7237,
+          108.0,
+          183.5574
+        ]
+      },
+      "volume_before_mm3": 279545.896
+    }
+  ],
+  "not_verified": [],
+  "human_review": [],
+  "failure_states": []
+}

@@ -1,0 +1,70 @@
+{
+  "units": "mm",
+  "round": "R39 liner probe",
+  "variants": {
+    "nectar": {
+      "ball_r_mm": 45.974,
+      "nip_mm": 82.0,
+      "ball_centre_xz": [
+        34.8937,
+        49.6959
+      ],
+      "solid_count": 1,
+      "volume_mm3": 279545.896,
+      "bbox": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.24,
+          54.0,
+          180.043
+        ],
+        "size_mm": [
+          300.724,
+          108.0,
+          183.557
+        ]
+      },
+      "ball_overlap_mm3": {
+        "design": 0.0,
+        "plus_0_6": 0.0,
+        "plus_0_1": 0.0
+      }
+    },
+    "pollen": {
+      "ball_r_mm": 35.56,
+      "nip_mm": 64.0,
+      "ball_centre_xz": [
+        35.8013,
+        39.3216
+      ],
+      "solid_count": 1,
+      "volume_mm3": 279545.896,
+      "bbox": {
+        "min_mm": [
+          -85.484,
+          -54.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.24,
+          54.0,
+          180.043
+        ],
+        "size_mm": [
+          300.724,
+          108.0,
+          183.557
+        ]
+      },
+      "ball_overlap_mm3": {
+        "design": 0.0,
+        "plus_0_6": 0.0,
+        "plus_0_1": 0.0
+      }
+    }
+  }
+}

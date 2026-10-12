@@ -403,3 +403,29 @@ t06_gap_recalc_r38:
   bottleneck_finding: {value: "夹口不再是节拍瓶颈。拨杆收到 290 rpm 指令时负载下实际只有约 22 deg/s（关节 140.7 -> 207.3 deg 用 3.0 s），即 0.530 N*m 的 25-4 扭矩在运送段已饱和；单球扫参 82-90 的轮内时间一位小数都不变正是这个原因。夹口 86 的收益是降低球的挤压与轮系打滑，不是提速。", status: "SIMULATED", source: "V-0038 trace + R38 单球扫参"}
   superseded_elastic_nip: {value: {"files": ["simulation/mujoco/_work/_superseded_r38_tie/"], "reason": "r38_v3/v4/v6/v7 引入的 zip-tie 弹性夹口是没有零件号的假设；真实方案是位置舵机刚性两档定位"}, status: "SUPERSEDED", source: "用户 2026-10-11 指令「先回滚，我调整间隙采用的是舵机方案」"}
   open_question: {value: "夹口 86 由仿真 + 机构反解给出，尚无实物（球压缩量、硅胶轮热态外径、mu、球质量仍为 ASSUMED/TBD）；86 距死点仅 0.80 mm，实物装配公差要留意；节拍瓶颈已转移到拨杆扭矩。", status: "TBD"}
+
+# ---------------------------------------------------------------------------
+# 2026-10-12 DEC-0039（R39）：送球道低摩擦内衬（PTFE 带 0.5 mm）。
+# 触发：R38 把节拍瓶颈定位到「拨杆扭矩饱和」，R39 进一步定位到**真正吃掉扭矩的是
+# 球与球道内表面的滑动摩擦**——球被叶片压在外罩内弧与托板顶面之间，法向力
+# 5-6.5 N x 2-3 处，0.530 N*m 驱动扭矩全程削平，单球要 11.6 s 才送达。
+# 把这两处有效 mu 降到 0.05-0.10 后单球 0.16 s，全流程清空 47.1 -> 10.0 s（hold 3.0）、
+# 4.0 s（hold 1.0）；卡滞 72 % -> 1 %（4 %），6/6 全清、24/24 真出膛不变。几何上不覆盖任何原文件：打印件按带厚预缩。
+# 产物：cad/paddle_launcher_feeder_a_prime_liner.py、cad/output/_r39_liner/、
+#       config/t06_r39_liner_checks.json、cad/output/inspection/t06_feeder_r39_liner_*.json、
+#       simulation/mujoco/_work/_r39_v9.py、simulation/mujoco/out/_r39_B60.log、out/_r39_L*.log
+# ---------------------------------------------------------------------------
+t06_liner_r39:
+  note: "球道接触面（外罩内弧 + 托板顶面）贴 0.5 mm PTFE 带；打印件按带厚预缩，贴带后球看到的有效表面 = R38 原设计表面，轨迹不变。"
+  version: {value: "C06B-FEEDER-R39", status: "KNOWN", source: "docs/decision_log.md DEC-0039"}
+  root_cause: {value: "球被叶片压在球道壁上打滑，法向力 5-6.5 N x 2-3 处；0.530 N*m 的 25-4 扭矩全部用来克服球-球道滑动摩擦，拨杆实际只有约 22 deg/s。瓶颈不在拨杆形状。", status: "SIMULATED", source: "V-0039"}
+  tape: {value: {"thickness_mm": 0.5, "width_mm": 88.0, "surfaces": ["shell_inner_arc_142_275_deg", "tray_top"], "arc_developed_length_mm": 250.64, "tray_length_mm": 190.83, "tape_volume_mm3": 19449.96}, status: "CALCULATED", source: "cad/output/_r39_liner/r39_liner_report.json"}
+  effective_mu: {value: [0.05, 0.10], unit: "1", status: "ASSUMED", source: "PTFE 带 vs 光面塑料球；批量件批次差异待台架实测才能升为 MEASURED"}
+  printed_part_preshrink: {value: {"shell_inner_arc_mm": 108.474, "shell_wall_mm": 6.5, "shell_outer_arc_mm": 114.974, "tray_top_drop_mm": -0.5, "tray_thickness_mm": 5.5}, status: "CALCULATED", source: "R_IN + 0.5；外径不变（壁厚 7.0 -> 6.5），托板底面不动（6.0 -> 5.5）"}
+  printed_part_measured: {value: {"instrument": "导出 STL 细网格射线求交（tolerance 0.01 mm、729 三角形），量交付几何本身", "inner_arc_mm": 108.4616, "inner_arc_offset_mm": 0.4876, "outer_arc_mm": 114.9738, "outer_arc_offset_mm": -0.0002, "tray_top_offset_mm": -0.4608, "sector_deg": [142.0, 275.0], "solid_count": 1, "volume_mm3": 279545.9, "bbox_mm": [300.7237, 108.0, 183.5574]}, status: "MEASURED", source: "V-0039; cad/output/inspection/t06_feeder_r39_liner_{nectar,pollen}.json（5/5 pass，两变体逐位相同）"}
+  sim_mu_sweep: {value: {"mu_0.60_同台架基线": {"clear_s": "46.23-47.57 (mean 47.11)", "jam_pct": 72, "cleared": "6/6", "real_exits": "24/24", "note": "R39 台架 _r39_v9.py --liner 0.60 复现的基线（out/_r39_B60.log / _r38_B60.json），与 R38 交付口径 41.95 s / 69-70 % 一致，证明内衬对比是同口径单变量"}, "mu_0.30": {"clear_s": "19.5-23.8", "jam_pct": "37-46", "cleared": "6/6", "real_exits": "24/24"}, "mu_0.10": {"clear_s": 11.66, "jam_pct": 10, "cleared": "6/6", "real_exits": "24/24"}, "mu_0.05": {"clear_s": 10.0, "jam_pct": 1, "cleared": "6/6", "real_exits": "24/24"}, "mu_0.05_hold1.0": {"clear_s": 4.0, "jam_pct": 4, "cleared": "6/6", "real_exits": "24/24"}}, status: "SIMULATED", source: "V-0039; 同一台架（_r39_v9.py，nip 86，6 相位 150/145/140/130/120/160，mix P/N/P/N，75 s）只改球道摩擦"}
+  sim_shell_only: {value: {"mu_0.05_shell_only": {"clear_s": "19.5-25.9", "jam_pct": "38-50"}, "mu_0.05_both_surfaces": {"clear_s": 10.0, "jam_pct": 1}}, status: "SIMULATED", source: "V-0039 否证项：只贴外罩只拿到约一半收益，托板顶面必须一起贴"}
+  sim_exit_speed: {value: {"POLLEN": "6.3 m/s", "NECTAR": "5.7-6.1 m/s", "note": "与 R38（6.35 / 5.76）同量级，出膛能力不退化"}, status: "SIMULATED", source: "V-0039; out/_r39_L05*.log"}
+  sim_paddle_shape_falsified: {value: {"variants": ["V0 原设计", "X64 原+加高", "R64 全高筋", "R64n 圆头", "R60 全高筋", "R64A 带臂", "R64t4 厚条", "R50 半高筋"], "t_deliver_s": "0.16-0.17（全部）", "verdict": "内衬到位后拨杆形状对送达时间没有可测影响，不改拨杆几何"}, status: "SIMULATED", source: "V-0039; simulation/mujoco/out/_r39_padd.log / _r39_padd_liner.json"}
+  instrument_lesson: {value: "OCC 的 distance / intersect 不能当量具：Solid.distToShape / Compound.distToShape 在本 CadQuery build 上不存在；Solid.distance 对「大球 vs 旋转外罩」给出 31.29 mm（实体自相矛盾，真实约 0.47 mm）；Solid.intersect 体积系统性偏小约一半（r=10 球∩x>=9 盒解析 30.3687 -> 15.1844），含奇异点的 cone 直接返回 0。R39 起球道面偏差一律用导出细网格 + 射线求交测量。", status: "KNOWN", source: "V-0039 教训；tools/inspect_geometry.py 已改为 Shape.distance + 网格射线"}
+  open_question: {value: "mu 0.05-0.10 只有仿真支撑（PTFE 带 vs 光面塑料球，ASSUMED）；带材在弧面上的贴合/翘边、0.5 mm 台阶对球通过的影响、以及 88 mm 带宽外两侧裸露打印面对多球索引的影响均未实测。", status: "TBD"}

@@ -1,0 +1,77 @@
+{
+  "units": "mm",
+  "round": "R39 / DEC-0039 送球道低摩擦内衬",
+  "liner_thickness_mm": 0.5,
+  "tape_width_mm": 88.0,
+  "design_shell_inner_r_mm": 107.97399999999999,
+  "printed_shell_inner_r_mm": 108.47399999999999,
+  "printed_shell_wall_mm": 6.5,
+  "printed_tray_thickness_mm": 5.5,
+  "liner_mu_assumed": [
+    0.05,
+    0.1
+  ],
+  "variants": {
+    "nectar": {
+      "ball_r_mm": 45.974,
+      "nip_mm": 82.0,
+      "printed_solid_count": 1,
+      "printed_volume_mm3": 279545.9,
+      "instrument": "mesh ray-casting on the exported STL (tolerance 0.01 mm)",
+      "mesh_file": "cad/output/_r39_liner/_measure_nectar.stl",
+      "mesh_triangles": 728,
+      "inner_arc_min_mm": 108.4616,
+      "inner_arc_max_mm": 109.7948,
+      "outer_arc_min_mm": 111.3978,
+      "outer_arc_max_mm": 114.9738,
+      "inner_arc_offset_mm": 0.4876,
+      "outer_arc_offset_mm": -0.0002,
+      "tray_top_offset_mm": -0.4608,
+      "tray_top_offset_max_abs_mm": 0.4895,
+      "sector_deg": [
+        142.0,
+        275.0
+      ],
+      "ball_clearance_min_mm": 0.4876,
+      "step": "cad/output/_r39_liner/feeder_shell_tray_liner_nectar.step"
+    },
+    "pollen": {
+      "ball_r_mm": 35.56,
+      "nip_mm": 64.0,
+      "printed_solid_count": 1,
+      "printed_volume_mm3": 279545.9,
+      "instrument": "mesh ray-casting on the exported STL (tolerance 0.01 mm)",
+      "mesh_file": "cad/output/_r39_liner/_measure_pollen.stl",
+      "mesh_triangles": 728,
+      "inner_arc_min_mm": 108.4616,
+      "inner_arc_max_mm": 109.7948,
+      "outer_arc_min_mm": 111.3978,
+      "outer_arc_max_mm": 114.9738,
+      "inner_arc_offset_mm": 0.4876,
+      "outer_arc_offset_mm": -0.0002,
+      "tray_top_offset_mm": -0.4608,
+      "tray_top_offset_max_abs_mm": 0.4895,
+      "sector_deg": [
+        142.0,
+        275.0
+      ],
+      "ball_clearance_min_mm": 0.4876,
+      "step": "cad/output/_r39_liner/feeder_shell_tray_liner_pollen.step"
+    }
+  },
+  "tape": {
+    "arc_developed_length_mm": 250.64,
+    "arc_sector_deg": [
+      142.0,
+      275.0
+    ],
+    "arc_width_mm": 88.0,
+    "tray_length_mm": 190.83,
+    "tray_x_range_mm": [
+      24.901,
+      215.0
+    ],
+    "tray_width_mm": 88.0,
+    "tape_volume_mm3": 19449.96
+  }
+}

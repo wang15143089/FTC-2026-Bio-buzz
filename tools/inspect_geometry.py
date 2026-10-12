@@ -298,13 +298,14 @@ def min_distance(a: cq.Shape, b: cq.Shape, target: float = 0.0) -> tuple[float, 
 
     When the bounding boxes are already further apart than ``target`` the box
     gap is a certified lower bound and is reported as such; otherwise the exact
-    BrepExtrema distance is computed.
+    BrepExtrema distance is computed.  ``Shape.distToShape`` was removed from
+    this CadQuery build, so the exact distance goes through ``Shape.distance``
+    (validated on a ball/box control: overlap -> 0.0000, 0.5 mm gap -> 0.5000).
     """
     gap = _bbox_gap(a, b)
     if gap >= target and gap > 0.0:
         return gap, "bbox_gap_lower_bound"
-    distance, _, _ = a.distToShape(b)
-    return float(distance), "brep_extrema_distToShape"
+    return float(a.distance(b)), "brep_extrema_distance"
 
 
 def intersection_volume(a: cq.Shape, b: cq.Shape) -> float:
@@ -576,13 +577,15 @@ def evaluate_check(check: dict, parts: dict, context: dict) -> dict:
             value, method = _group_pair(check, parts, mode="distance")
             record["measured"] = round(value, 4)
             record["deviation"] = round(value - check["target"], 4)
-            record["status"] = _verdict(value, check["target"], tolerance, "ge")
+            record["status"] = _verdict(value, check["target"], tolerance,
+                                        check.get("rule", "ge"))
             record["method"] = method
         elif kind == "intersection_volume":
             value, method = _group_pair(check, parts, mode="intersection")
             record["measured"] = round(value, 4)
             record["deviation"] = round(value - check["target"], 4)
-            record["status"] = _verdict(value, check["target"], tolerance, "le")
+            record["status"] = _verdict(value, check["target"], tolerance,
+                                        check.get("rule", "le"))
             record["method"] = method
         elif kind == "cylinder_axis_distance":
             value, detail = _axis_distance_check(check, parts)
