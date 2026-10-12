@@ -426,4 +426,5 @@ Date/version:
 - NECTAR×4 未采用（KNOWN）：排布算法（为省时间）跳过了摞球点的穿透检查，3 颗球被摞在 x = 104、z = 148/241/333 mm，其中两颗分别埋进 `fw_lower_1` 43.0 / 30.8 mm ⇒ 仿真数值爆炸（球 1 s 内飞到 ±1800 mm）。**这不是物理结论，是无效输入**；NECTAR 的托板容量实测只有 1 颗（DEC-0034），≥2 颗的工况在现有几何下摆不出来。
 - 未关闭（TBD）：μ = 0.40、球质量 0.130 / 0.060 kg 仍是 `ASSUMED`；索引式舵机控制未实机实现。
 - Date/version: 2026-10-11 / T06-R36
+- 同步（KNOWN）：Linear KEI-18 长评论 + 新建 KEI-19（T06.8 多球进料方式）https://linear.app/keithschoolrobotic/issue/KEI-19；Notion https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6 页尾追加 R36 小节（2026-10-11 已确认）。
 

@@ -407,6 +407,7 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 更正（KNOWN）：先前记的「托板末端与飞轮腔重叠 −43 mm」是误读 —— 那些探针点落在飞轮盘实体里，球不可能停在那儿；**托板与飞轮实体本身不重叠**。
 - 作废：`simulation/mujoco/out/_r36_run1.txt` 与「12/24、平均 3.43 s」的说法全部作废，文件已删除；复核证据 `_work/r36_probe_check.py`、`_work/r36_recheck.py`、`out/_r36_probe_check.txt`、`out/_r36_multiball_recheck.json`。
 - 未关闭（TBD）：NECTAR ≥ 2 颗在现有几何下摆不出来（托板只容 1 颗）；(b) 的 CAD 改动方向待用户选定（见 NEXT ACTION 第 0 项）。
+- 同步（KNOWN）：Linear KEI-18 长评论（R36 全结论 + 四条教训）+ 新建 KEI-19（T06.8 — 多球进料方式，Backlog，parent KEI-6）https://linear.app/keithschoolrobotic/issue/KEI-19；Notion [https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6](https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6) 页尾追加「R36 多球进料实测 + 三条口径教训」小节（DEC-0033 / DEC-0034 / V-0035，2026-10-11 已确认落页）。
 
 ## NEXT ACTION
 
