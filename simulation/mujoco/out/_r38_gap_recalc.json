@@ -1,0 +1,135 @@
+{
+ "crosshead_pin_u": 18.0,
+ "main_link_mm": 110.0,
+ "crank_r": 12.0,
+ "drag_len": 65.0,
+ "servo_u": -120.0,
+ "rows": [
+  {
+   "ball": "NECTAR",
+   "nip": 82.0,
+   "half_spacing": 89.0,
+   "crosshead_u": -46.645,
+   "crank_deg": 42.41,
+   "interference_mm": 4.974,
+   "servo_travel_from_current_deg": 0.0
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 84.0,
+   "half_spacing": 90.0,
+   "crosshead_u": -45.246,
+   "crank_deg": 32.85,
+   "interference_mm": 3.974,
+   "servo_travel_from_current_deg": -9.56
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 85.0,
+   "half_spacing": 90.5,
+   "crosshead_u": -44.528,
+   "crank_deg": 26.92,
+   "interference_mm": 3.474,
+   "servo_travel_from_current_deg": -15.49
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 86.0,
+   "half_spacing": 91.0,
+   "crosshead_u": -43.798,
+   "crank_deg": 19.33,
+   "interference_mm": 2.974,
+   "servo_travel_from_current_deg": -23.08
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 87.0,
+   "half_spacing": 91.5,
+   "crosshead_u": -43.055,
+   "crank_deg": 5.06,
+   "interference_mm": 2.474,
+   "servo_travel_from_current_deg": -37.35
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 88.0,
+   "half_spacing": 92.0,
+   "crosshead_u": -42.299,
+   "crank_deg": 0.0,
+   "interference_mm": 1.974,
+   "servo_travel_from_current_deg": -42.41
+  },
+  {
+   "ball": "NECTAR",
+   "nip": 90.0,
+   "half_spacing": 93.0,
+   "crosshead_u": -40.745,
+   "crank_deg": 0.0,
+   "interference_mm": 0.974,
+   "servo_travel_from_current_deg": -42.41
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 82.0,
+   "half_spacing": 89.0,
+   "crosshead_u": -46.645,
+   "crank_deg": 42.41,
+   "interference_mm": -5.44,
+   "servo_travel_from_current_deg": -54.27
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 84.0,
+   "half_spacing": 90.0,
+   "crosshead_u": -45.246,
+   "crank_deg": 32.85,
+   "interference_mm": -6.44,
+   "servo_travel_from_current_deg": -63.83
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 85.0,
+   "half_spacing": 90.5,
+   "crosshead_u": -44.528,
+   "crank_deg": 26.92,
+   "interference_mm": -6.94,
+   "servo_travel_from_current_deg": -69.76
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 86.0,
+   "half_spacing": 91.0,
+   "crosshead_u": -43.798,
+   "crank_deg": 19.33,
+   "interference_mm": -7.44,
+   "servo_travel_from_current_deg": -77.35
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 87.0,
+   "half_spacing": 91.5,
+   "crosshead_u": -43.055,
+   "crank_deg": 5.06,
+   "interference_mm": -7.94,
+   "servo_travel_from_current_deg": -91.62
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 88.0,
+   "half_spacing": 92.0,
+   "crosshead_u": -42.299,
+   "crank_deg": 0.0,
+   "interference_mm": -8.44,
+   "servo_travel_from_current_deg": -96.68
+  },
+  {
+   "ball": "POLLEN",
+   "nip": 90.0,
+   "half_spacing": 93.0,
+   "crosshead_u": -40.745,
+   "crank_deg": 0.0,
+   "interference_mm": -9.44,
+   "servo_travel_from_current_deg": -96.68
+  }
+ ]
+}

@@ -212,7 +212,7 @@ t06_feeder_a_prime_nectar:
   ball_diameter: {value: 91.948, unit: "mm", status: "MEASURED", source: "cadquery read-back of am-5852_blue Blue Alliance Nectar.STEP; 2 solids, volume 43129.8 mm3"}
   ball_radius: {value: 45.974, unit: "mm", status: "MEASURED", source: "ball_diameter / 2"}
   ball_mass: {value: 0.130, unit: "kg", status: "ASSUMED", source: "hollow printed plastic ball estimate; NOT weighed on a scale"}
-  flywheel_nip: {value: 82.0, unit: "mm", status: "KNOWN", source: "user instruction 2026-10-04 (nectar clearance must use the nectar file); half_spacing 89.0 = 82/2 + WHEEL_R 48; 9.9 mm interference on the 91.948 mm ball"}
+  flywheel_nip: {value: 82.0, unit: "mm", status: "SUPERSEDED", source: "user instruction 2026-10-04 (nectar clearance must use the nectar file); half_spacing 89.0 = 82/2 + WHEEL_R 48; 9.94 mm interference on the 91.948 mm ball. SUPERSEDED by DEC-0037: the NECTAR RUNNING nip is now 86.0 (2.97 mm interference per side)"}
   flywheel_half_spacing: {value: 89.0, unit: "mm", status: "KNOWN", source: "flywheel_nip/2 + WHEEL_R 48"}
   paddle_axis: {value: [29.49, 0.0, 111.46], unit: "mm", status: "CALCULATED", source: "inherited unchanged from cad/paddle_launcher_feeder_redesign.py"}
   paddle_hub_radius: {value: 12.0, unit: "mm", status: "CALCULATED", source: "DEC-0029 R25; reduced from 18.0 (O36 -> O24); paddle arms extended inboard from r=14 to r=10 to keep the hub joint"}
@@ -286,8 +286,8 @@ t06_feeder_a_prime_shared:
     nectar:
       ball_diameter: {value: 91.948, unit: "mm", status: "MEASURED", source: "read-back of am-5852_blue Blue Alliance Nectar.STEP"}
       ball_mass: {value: 0.130, unit: "kg", status: "ASSUMED", source: "hollow printed plastic ball estimate; NOT weighed"}
-      flywheel_nip: {value: 82.0, unit: "mm", status: "KNOWN", source: "user instruction 2026-10-04: NECTAR clearance from the NECTAR file (2*89 - WHEEL_OD 96)"}
-      flywheel_half_spacing: {value: 89.0, unit: "mm", status: "KNOWN"}
+      flywheel_nip: {value: 86.0, unit: "mm", status: "SIMULATED", source: "DEC-0037, accepted by the user 2026-10-12: the R38 sweep puts 86 at v 5.81 m/s with 44 % less wheel contact impulse than 82, and the linkage reverse-solve shows 86 is 0.80 mm off the dead point while 82 sits 3.65 mm inside it"}
+      flywheel_half_spacing: {value: 91.0, unit: "mm", status: "CALCULATED", source: "flywheel_nip/2 + WHEEL_R 48"}
       ball_carry_radius: {value: 62.0, unit: "mm", status: "CALCULATED", source: "shared_shell_inner_radius - ball_radius"}
       hub_clearance: {value: 4.026, unit: "mm", status: "CALCULATED"}
       rest_ball_centre: {value: [29.49, 49.46], unit: "mm", status: "CALCULATED"}
@@ -325,8 +325,8 @@ t06_feeder_a_prime_shared:
   flywheel_expansion_dr_mm: {value: 0.8, unit: "mm", status: "ASSUMED", source: "DEC-0032 design pick inside the 0.5-1.8 mm realistic band; also DR_HOT_MM in cad/paddle_launcher_feeder_a_prime_shared_hot.py"}
   flywheel_expansion_upper_bound_mm: {value: 3.7, unit: "mm", status: "ASSUMED", source: "absolute upper bound from the M1 free-thin-ring model; used only as the edge sweep in simulation"}
   flywheel_hot_radius_mm: {value: 48.8, unit: "mm", status: "CALCULATED", source: "WHEEL_R 48 + dr_hot 0.8"}
-  flywheel_half_spacing_cold_mm: {value: {nectar: 89.0, pollen: 80.0}, unit: "mm", status: "KNOWN", source: "R27: nip/2 + WHEEL_R(48)"}
-  flywheel_half_spacing_hot_mm: {value: {nectar: 89.8, pollen: 80.8}, unit: "mm", status: "CALCULATED", source: "R35 DEC-0032: nip/2 + WHEEL_R(48) + dr_hot(0.8); the spacer length must follow this so the RUNNING nip stays 82 / 64"}
+  flywheel_half_spacing_cold_mm: {value: {nectar: 91.0, pollen: 80.0}, unit: "mm", status: "KNOWN", source: "nip/2 + WHEEL_R(48); NECTAR 89.0 -> 91.0 by DEC-0037"}
+  flywheel_half_spacing_hot_mm: {value: {nectar: 91.8, pollen: 80.8}, unit: "mm", status: "CALCULATED", source: "DEC-0032: nip/2 + WHEEL_R(48) + dr_hot(0.8); the spacer length must follow this so the RUNNING nip stays 86 / 64"}
   flywheel_energy_1620rpm: {value: {single_J: 1.85, pair_J: 3.70}, unit: "J", status: "CALCULATED", source: "0.5*J*w^2 with the measured J = 1.2844e-4 kg m^2, not the solid-disc approximation; NECTAR demand 1.50 J = 41 %, POLLEN 1.15 J = 31 %"}
   paddle_outer_envelope_radius: {value: 62.36, unit: "mm", status: "MEASURED", source: "circumscribed radius of the real paddle blade profile, read from the final solid; used for the flywheel-paddle clearance"}
   flywheel_to_paddle_cold_gap: {value: {nectar: 5.55, pollen: 3.51}, unit: "mm", status: "CALCULATED", source: "axis distance (nectar 115.91 / pollen 113.87) - WHEEL_R 48 - paddle envelope 62.36"}
@@ -336,7 +336,7 @@ t06_feeder_a_prime_shared:
   simulation_r34_hot_spacing: {value: "half_spacing = nip/2 + 48 + dr (hot datum), so the RUNNING nip stays at the design value; 30 of 30 pass with ZERO contacts. Minimum gap per dr: 3.109 (0.5) / 2.708 (1.0) / 2.304 (1.5) / 1.905 (2.0) / 1.351 mm (2.7, POLLEN)", status: "SIMULATED", source: "simulation/mujoco/_work/r34.py; simulation/mujoco/out/_r34_expansion_hot.json"}
   simulation_r34_edge_spacing: {value: "edge sweep dr = 3.0 and 3.7 mm: 12 of 12 pass, zero contacts. dr = 3.0 -> POLLEN 1.117 / NECTAR 3.383 mm; dr = 3.7 -> POLLEN 0.567 / NECTAR 2.884 mm", status: "SIMULATED", source: "simulation/mujoco/out/_r34_edge.json"}
   simulation_r35_hot_cad: {value: "hot-datum shared feeder: identical shell/tray/paddle geometry to R27, only the flywheel half-spacing becomes 89.8 (NECTAR) / 80.8 (POLLEN); written to cad/output/_r35_hot/ so no R27 source or artifact is overwritten", status: "KNOWN", source: "cad/paddle_launcher_feeder_a_prime_shared_hot.py (DR_HOT_MM = 0.8)"}
-  flywheel_nip_measured_hot_mm: {value: {nectar: 83.6, pollen: 65.6}, unit: "mm", status: "MEASURED", source: "R35 report variants.<v>.flywheel_nip_measured_mm, read from the final solid before export; = 2*89.8-96 and 2*80.8-96, i.e. 2*dr_hot wider than the cold datum so the RUNNING nip returns to 82 / 64"}
+  flywheel_nip_measured_hot_mm: {value: {nectar: 87.6, pollen: 65.6}, unit: "mm", status: "CALCULATED", source: "R35 measured 83.6 / 65.6 from the final solid for the OLD 82 datum; NECTAR 87.6 is the projection of the same 2*dr_hot widening onto the new 86 datum (2*91.8-96) and has NOT been measured on a regenerated solid yet; POLLEN 65.6 stays MEASURED"}
   r35_geometry_unchanged_evidence: {value: {shell_volume_mm3: 260374.21, hub_to_shell_mm: 95.974, shell_clash_with_kept_parts_mm3: 0.0, sweep_ball_clash_with_shell_mm3: 0.0}, status: "MEASURED", source: "R35 nectar and pollen reports are bit-identical to each other and to R27 on these four values, so only the flywheel axis positions moved"}
   r35_artifacts: {value: ["cad/output/_r35_hot/paddle_launcher_feeder_a_prime_shared_nectar.step", "cad/output/_r35_hot/paddle_launcher_feeder_a_prime_shared_pollen.step", "cad/output/_r35_hot/paddle_launcher_feeder_a_prime_shared_report_nectar.json", "cad/output/_r35_hot/paddle_launcher_feeder_a_prime_shared_report_pollen.json"], status: "KNOWN", source: "the ~178 MB STEP files are git-ignored and regenerable; delivered to the user Desktop as T06_R35_hot_nectar.step / T06_R35_hot_pollen.step"}
   hot_expansion_open_question: {value: "silicone E = 0.7-1.5 MPa and dr_hot = 0.8 mm are ASSUMED (no bench measurement, no high-speed imaging); mu = 0.40 is still ASSUMED; ball masses 0.130 / 0.060 kg are ASSUMED; indexed servo control is not implemented on hardware; the 9.9 mm NECTAR nip interference still has no structural / ball-deformation check.", status: "TBD"}
@@ -380,3 +380,26 @@ t06_feeder_r37:
   multiball_sim_tq_peak: {value: 0.53, unit: "N.m", status: "SIMULATED", source: "V-0037; 25-4 Super Speed rated torque fully used in every round"}
   multiball_sim_artifacts: {value: ["simulation/mujoco/out/_r37_multiball_pollen3.json", "simulation/mujoco/out/_r37_multiball_pollen2.json", "simulation/mujoco/out/_r37_multiball_nectar2.json", "simulation/mujoco/out/_r37_multiball_nectar3.json", "simulation/mujoco/out/_r37_multiball_mix4.json", "simulation/mujoco/out/_r37_recheck.json", "simulation/mujoco/out/_r37_log2.txt"], status: "KNOWN", source: "V-0037 run 2026-10-11"}
   open_question: {value: "机构在 +x 方向变长 65 mm，进料口外移到 x = 215 后外部供料路线必须跟着调整（用户 2026-10-11 已批准改，待设计，Linear KEI-19）；等待区第 2 颗球的索引余量偏紧（停靠 r ~ 89 mm 落在拨杆扇区外，几何级放开 x ~ 87 处门槛 / 重算等待区门槛 尚未做，见 V-0037）；mu / 球质量 / 索引式舵机控制仍未关闭。", status: "TBD"}
+
+# ---------------------------------------------------------------------------
+# 2026-10-12 DEC-0037（R38）：NECTAR 运行夹口重算 82 -> 86 mm。
+# 触发：真实调隙舵机（2000-0025-0002）在 82 档对 91.948 mm 球压入 4.97 mm/侧，
+# 要靠约 8.6 N*m/轮的摩擦扭矩把球压过夹口，远超 25-4 的真实能力 -> 轮子打滑、
+# 球在夹口里「蠕」过（14-21 s），驱动 64-82 % 时间堵转。
+# 方法：先按真实连杆机构反解可达夹口，再用 MuJoCo 单球夹口扫参 + 6 相位多球全流程复核。
+# 旧的「扎带弹性夹口」假设（r38_v3/v4/v6/v7）无零件号，已 superseded。
+# 产物：simulation/mujoco/out/_r38_v8n86.json, _r38_gap_recalc.json
+# ---------------------------------------------------------------------------
+t06_gap_recalc_r38:
+  note: "NECTAR 运行夹口 82 -> 86 mm；POLLEN 保持 64 mm。夹口为纯几何刚性对称定位（无弹性件），换档由位置舵机完成。"
+  version: {value: "C06B-GAP-R38", status: "KNOWN", source: "docs/decision_log.md DEC-0037"}
+  harness: {value: "simulation/mujoco/_work/r38_v8.py（真实舵机两档刚性夹口；换档 = 上一颗出膛后 0.25 s 整段搬移 qpos/qvel/ctrl）+ _work/_recalc_nip86/", status: "KNOWN", source: "V-0038"}
+  mechanism_chain: {value: "2000-0025-0002 位置舵机 -> 曲柄 12 -> 定长拉杆 65 -> 水平十字滑块 -> 两根定长 110 对角连杆 -> 滑座耳片", status: "KNOWN", source: "cad/paddle_launcher_constrained.py:369-431; config/t06_launcher_cots.json"}
+  linkage_reverse_solve: {value: {"nip_82_old": {"half_spacing_mm": 89.0, "crosshead_u_mm": -46.645, "crank_deg": 42.41, "interference_per_side_mm": 4.97}, "nip_86_new": {"half_spacing_mm": 91.0, "crosshead_u_mm": -43.798, "crank_deg": 19.33, "interference_per_side_mm": 2.97}, "nip_87": {"half_spacing_mm": 91.5, "crosshead_u_mm": -43.045, "crank_deg": 5.06}, "servo_travel_82_to_86_deg": 23.08, "servo_travel_82_to_64_deg": 54.27, "total_servo_span_deg": 77.35}, status: "CALCULATED", source: "crosshead_u = 18 - sqrt(110^2 - half_spacing^2); cos(theta) = (d^2 + r^2 - L^2)/(2 d r), d = crosshead_u + 120, r = 12, L = 65; simulation/mujoco/out/_r38_gap_recalc.json"}
+  mechanism_reachable_max_nip: {value: 87.07, unit: "mm", status: "CALCULATED", source: "dead point at crosshead_u = -43.000 (crank and drag link collinear), half_spacing_max 91.537; therefore the 88/90 sweep points are NOT buildable"}
+  servo_torque_margin: {value: {"dT_dF_82_mm_per_rad": 9.204, "dT_dF_86_mm_per_rad": 4.666, "note": "holding torque needed at 86 is about 51 % of the 82 requirement"}, status: "CALCULATED", source: "d(crosshead_u)/d(theta) = -u r sin(theta) / (u - r cos(theta))"}
+  nip_sweep_single_ball: {value: {"82": {"v_m_s": 5.21, "impulse_Ns": 14.63, "peak_N": 313.0}, "86": {"v_m_s": 5.81, "impulse_Ns": 8.25, "peak_N": 300.3}, "88": {"v_m_s": 5.93, "impulse_Ns": 5.33, "peak_N": 256.2}, "90": {"v_m_s": 5.16, "impulse_Ns": 1.92, "peak_N": 159.0}}, status: "SIMULATED", source: "V-0038: single NECTAR ball, ph0 = 150, tmax 40 s; 88/90 exceed the linkage travel"}
+  multiball_full_flow: {value: {"mix": "POLLEN,NECTAR,POLLEN,NECTAR", "phases": "150/145/140/130/120/160", "tmax_s": 75, "rounds": 6, "balls": 24, "cleared_rounds": "6/6", "real_exits": "24/24", "POLLEN": {"v_m_s": "6.32-6.37 (mean 6.35)", "unchanged": true}, "NECTAR": {"v_m_s": "5.65-5.85 (mean 5.76, was 5.10 at nip 82)", "delta": "+13 %", "wheel_impulse_Ns": "9.49 (was 16.65, -43 %)", "wheel_peak_N": 302.1}, "clear_time_s": "mean 41.95, worst 42.18"}, status: "SIMULATED", source: "V-0038; simulation/mujoco/out/_r38_v8n86.json"}
+  bottleneck_finding: {value: "夹口不再是节拍瓶颈。拨杆收到 290 rpm 指令时负载下实际只有约 22 deg/s（关节 140.7 -> 207.3 deg 用 3.0 s），即 0.530 N*m 的 25-4 扭矩在运送段已饱和；单球扫参 82-90 的轮内时间一位小数都不变正是这个原因。夹口 86 的收益是降低球的挤压与轮系打滑，不是提速。", status: "SIMULATED", source: "V-0038 trace + R38 单球扫参"}
+  superseded_elastic_nip: {value: {"files": ["simulation/mujoco/_work/_superseded_r38_tie/"], "reason": "r38_v3/v4/v6/v7 引入的 zip-tie 弹性夹口是没有零件号的假设；真实方案是位置舵机刚性两档定位"}, status: "SUPERSEDED", source: "用户 2026-10-11 指令「先回滚，我调整间隙采用的是舵机方案」"}
+  open_question: {value: "夹口 86 由仿真 + 机构反解给出，尚无实物（球压缩量、硅胶轮热态外径、mu、球质量仍为 ASSUMED/TBD）；86 距死点仅 0.80 mm，实物装配公差要留意；节拍瓶颈已转移到拨杆扭矩。", status: "TBD"}
