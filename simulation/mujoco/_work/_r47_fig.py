@@ -42,12 +42,12 @@ ax.plot([CX + (R_IN - 0.6) * math.cos(q) for q in th],
 ax.plot([CX + 63.2 * math.cos(q) for q in th], [CZ + 63.2 * math.sin(q) for q in th],
         "--", color="#555", lw=1.0, zorder=2)
 
-# --- 拨杆：3 组 臂/叶片/弹性指，相位 30/150/270，半径 28/52/58 ---
-for ph in (30.0, 150.0, 270.0):
+# --- 拨杆：2 组 臂/叶片/弹性指，相位 330/150（= r37_multiball.parts() 默认值），半径 28/52/59 ---
+for ph in (330.0, 150.0):
     q = math.radians(ph)
     for rad, hr, ht, fc in ((28.0, 16.0, 5.0, "#f2b183"),
                             (52.0, 6.0, 15.0, "#e07b39"),
-                            (58.0, 2.0, 17.0, "#c95f1e")):
+                            (59.0, 2.0, 17.0, "#c95f1e")):
         x, z = CX + rad * math.cos(q), CZ + rad * math.sin(q)
         box(x, z, hr, ht, ph, fc, alpha=0.95, zo=5)
 ax.add_patch(Circle((CX, CZ), 12.0, facecolor="#f4a261", edgecolor="k", lw=0.9, zorder=6))
