@@ -1,0 +1,194 @@
+[
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 0.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "cls": [
+   "SPILL",
+   "SPILL",
+   "SPILL"
+  ],
+  "n_real": 0,
+  "v_real": [],
+  "t_real": [],
+  "cyc_real": [],
+  "n_bogus": 0,
+  "n_spill": 3,
+  "tq_peak": 0.52,
+  "jam_frac": 0.001
+ },
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 30.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "cls": [
+   "BOGUS",
+   "SPILL",
+   "SPILL"
+  ],
+  "n_real": 0,
+  "v_real": [],
+  "t_real": [],
+  "cyc_real": [],
+  "n_bogus": 1,
+  "n_spill": 2,
+  "tq_peak": 0.52,
+  "jam_frac": 0.001
+ },
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 60.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "cls": [
+   "REAL",
+   "REAL",
+   "REAL"
+  ],
+  "n_real": 3,
+  "v_real": [
+   6.17,
+   6.21,
+   6.17
+  ],
+  "t_real": [
+   12.15,
+   12.21,
+   12.48
+  ],
+  "cyc_real": [
+   6.15,
+   6.21,
+   0.07
+  ],
+  "n_bogus": 0,
+  "n_spill": 0,
+  "tq_peak": 0.53,
+  "jam_frac": 0.242
+ },
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 90.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 0,
+  "in_channel": 3,
+  "cls": [
+   "REAL",
+   "REAL",
+   "REAL"
+  ],
+  "n_real": 3,
+  "v_real": [
+   6.17,
+   6.15,
+   6.19
+  ],
+  "t_real": [
+   11.72,
+   11.79,
+   12.05
+  ],
+  "cyc_real": [
+   5.72,
+   5.79,
+   0.07
+  ],
+  "n_bogus": 0,
+  "n_spill": 0,
+  "tq_peak": 0.527,
+  "jam_frac": 0.21
+ },
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 120.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "cls": [
+   "REAL",
+   "SPILL",
+   "BOGUS"
+  ],
+  "n_real": 1,
+  "v_real": [
+   6.07
+  ],
+  "t_real": [
+   9.31
+  ],
+  "cyc_real": [
+   3.31
+  ],
+  "n_bogus": 1,
+  "n_spill": 1,
+  "tq_peak": 0.52,
+  "jam_frac": 0.004
+ },
+ {
+  "mix": [
+   "POLLEN",
+   "POLLEN",
+   "POLLEN"
+  ],
+  "ph0": 150.0,
+  "nip": 64.0,
+  "hold": 3.0,
+  "stacked": 1,
+  "in_channel": 2,
+  "cls": [
+   "REAL",
+   "REAL",
+   "REAL"
+  ],
+  "n_real": 3,
+  "v_real": [
+   6.26,
+   6.15,
+   6.01
+  ],
+  "t_real": [
+   9.44,
+   9.51,
+   13.69
+  ],
+  "cyc_real": [
+   3.44,
+   3.51,
+   3.3
+  ],
+  "n_bogus": 0,
+  "n_spill": 0,
+  "tq_peak": 0.53,
+  "jam_frac": 0.078
+ }
+]

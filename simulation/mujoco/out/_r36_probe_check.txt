@@ -1,0 +1,28 @@
+mujoco 3.14.0 / gravity=[np.float64(0.0), np.float64(0.0), np.float64(-9.81)] / timestep=0.0002 / ball_r(model)=0.045974
+=> 模型长度单位 = m，mj_geomDistance 返回 m；读成 mm 必须 *1000
+
+== 2) 相位标定（paddle_blade 几何角度, deg）==
+   ph0=  0.0 -> {'paddle_blade_1': 30.0, 'paddle_blade_2': 210.0}
+   ph0= 60.0 -> {'paddle_blade_1': 330.0, 'paddle_blade_2': 150.0}
+   => ph0=60 才等于 CAD 标称零位 330/150
+
+== 3) NECTAR 停在托板面（球心 x,z）随相位的最坏净距 mm（负=穿透）==
+   ph0 |      x=30       |      x=60       |      x=90       |     x=104
+      0 |    -4.0 paddle_bl |    -0.0 tray      |    -0.0 tray      |    -0.0 tray     
+     30 |    -0.2 r10_23    |    -0.0 tray      |    -6.0 paddle_fl |    -4.6 paddle_fl
+     60 |    -4.7 paddle_bl |   -26.6 paddle_fl |   -25.0 paddle_fl |   -13.6 paddle_fl
+     90 |   -32.2 paddle_fl |   -39.1 paddle_fl |   -25.2 paddle_fl |   -13.8 paddle_fl
+    120 |   -43.8 paddle_fl |   -32.5 paddle_fl |    -2.5 paddle_fl |    -0.0 tray     
+    150 |   -31.2 paddle_fl |    -3.6 paddle_bl |    -0.0 tray      |    -0.0 tray     
+    180 |    -4.0 paddle_bl |    -0.0 tray      |    -0.0 tray      |    -0.0 tray     
+    210 |    -0.2 r10_23    |    -0.0 tray      |    -6.0 paddle_fl |    -4.6 paddle_fl
+    240 |    -4.7 paddle_bl |   -26.6 paddle_fl |   -25.0 paddle_fl |   -13.6 paddle_fl
+    270 |   -32.2 paddle_fl |   -39.1 paddle_fl |   -25.2 paddle_fl |   -13.8 paddle_fl
+    300 |   -43.8 paddle_fl |   -32.5 paddle_fl |    -2.5 paddle_fl |    -0.0 tray     
+    330 |   -31.2 paddle_fl |    -3.6 paddle_bl |    -0.0 tray      |    -0.0 tray     
+   => 每个 180 deg 周期里，x>=30 的等待球都会被 paddle_flex/blade 打出穿透；
+      托板（球心到轴心 62~93 mm）永远不可能让球'停着等'（叶片扫掠 46~60 mm）
+
+== 4) 托板球心可达范围与容量 ==
+   NECTAR  r=45.97 mm  球心 x<=104 mm（后挡墙 x=150） 相切排放需间距 91.9 mm -> 托板上最多 1 颗
+   POLLEN  r=35.56 mm  球心 x<=114 mm（后挡墙 x=150） 相切排放需间距 71.1 mm -> 托板上最多 2 颗
