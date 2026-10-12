@@ -1,10 +1,10 @@
 # PROJECT STATUS
 
-最后更新：2026-10-11
+最后更新：2026-10-11（R37）
 
 ## CURRENT OBJECTIVE
 
-按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按「每个 SKU 的整个官方部件」处理（多实体保持多实体，不做布尔并集，DEC-0021）；下一步先用实物关闭轴向紧固与高速动态风险，并解决 T06 多球进料（R36 实测：托板上的等待球会被拨杆叶片打飞，见 DEC-0034）。
+按用户最新指令完成 T06/C06-B 官方采购件 CAD 导入，并将电机、舵机等采购总成在工作装配中按「每个 SKU 的整个官方部件」处理（多实体保持多实体，不做布尔并集，DEC-0021）；T06 多球进料已在 R37 按方向 B 落地（等待区搬到拨杆扫掠圆外、托板右端 150→215 mm，容量 NECTAR 2 / POLLEN 3，DEC-0035），并完成自制件重叠清理（DEC-0036）；下一步：外部供料路线随进料口外移到 x = 215 调整（KEI-19）、R37 接入 MuJoCo 多球仿真，以及用实物关闭轴向紧固与高速动态风险。
 
 ## CURRENT MODULE
 
@@ -409,6 +409,29 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 未关闭（TBD）：NECTAR ≥ 2 颗在现有几何下摆不出来（托板只容 1 颗）；(b) 的 CAD 改动方向待用户选定（见 NEXT ACTION 第 0 项）。
 - 同步（KNOWN）：Linear KEI-18 长评论（R36 全结论 + 四条教训）+ 新建 KEI-19（T06.8 — 多球进料方式，Backlog，parent KEI-6）https://linear.app/keithschoolrobotic/issue/KEI-19；Notion [https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6](https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6) 页尾追加「R36 多球进料实测 + 三条口径教训」小节（DEC-0033 / DEC-0034 / V-0035，2026-10-11 已确认落页）。
 
+
+## T06 R37：多球进料定为方向 B（等待区搬出扫掠圆）+ 自制件重叠清理（2026-10-11，DEC-0035 / DEC-0036 / V-0036）
+
+- 用户指令（KNOWN）：`b2+B` —— 先做 (b) 的重叠清理，同时把多球进料方向选为 **(B)（等待区搬到拨杆扫掠圆外）**。
+- 方向 B 的几何改动**只有一处**（KNOWN）：托板/外罩右端（进料口）`TRAY_X1` **150 → 215 mm（+65 mm）**；`TRAY_X0` 由切点向内延 14 mm 到 24.901 mm（为并实体）。外壳 R_IN 107.974 / 扇区 142..275° / 壁厚 7 / 托板倾角 5° / 拨杆轴心 / 叶片 46..58 / TPU 尖 56..60 / 夹口（DEC-0032 热态口径）**全部不变**。
+- 关键更正（CALCULATED）：等待区门槛是 `球心距轴心 ≥ 60 + r`（NECTAR 105.974 / POLLEN 95.560）⇒ 等待区起点 **x ≥ 124.5 / 97.8**。排队时第 k 颗球心 s = (k−1)·2r，所以 **第 2 颗本来就安全**（NECTAR x 126.485 余 6.0 / POLLEN 106.650 余 9.2）—— R36 的「托板球被打飞」是**探针瞬时位**；真正的限制是**容量**。
+- 容量（MEASURED，R37 报告）：**NECTAR 2 颗 / POLLEN 3 颗**，`waiting_balls_all_clear = true`（最紧余量 POLLEN 第 2 颗 +5.938 mm）；第 1 颗是**待推球**，本来就该在扫掠圆内（设计意图，报告里以 `expected_pushed` 单列）。
+- 空域确认（MEASURED）：托板延长段（x 150→215、z ≈ 15）**无任何既有实体**，最近的 `gecko_flywheel_lower_*` 只到 z ≥ 138.3 ⇒ 加长不与任何保留件干涉。
+- (b) 重叠清理（MEASURED，`cad/output/_r37_census3.json` + R37 报告）：
+
+  | 重叠对 | 清理前重叠 | 处理 | 清理后 |
+  |---|---|---|---|
+  | `paddle_hub` × `paddle_arm_1/2` | 295.762 mm³ ×2 | 轮毂+双臂+双叶片并为 **1 个 `paddle_rotor`** | 0 |
+  | `paddle_blade_1/2` × `paddle_flex_tip_1/2` | 5760.000 mm³ ×2 | TPU 尖片径向缩到 **r 58…60** | 0 |
+  | `guide_roof_3` × `guide_wall_3_+1/-1` | 315.000 mm³ ×2 | 侧壁按 **0.5 mm 间隙**让位（同 R27 口径） | 0 |
+  | `feeder_shell_tray` 自身（球道弧 + 托板只相切） | — | 托板向内延 14 mm 后**并为一个实体** | — |
+  | （附）轮毂内孔 Ø4.1 × Ø12 拨杆轴 | 相交（占位孔遗留） | 改为 **Ø12.1 让位孔** | 0 |
+
+- 实测收尾（MEASURED，导出后回读本轮 STEP）：自制件两两布尔交 **全 0**；全部自制件 `Solids() == 1`；拨杆轴 ∩ 拨杆 = 0.000 mm³。剩余多实体件只有 7 个厂商 COTS 件（飞轮/轴），按 DEC-0021 保留原厂装配语义。
+- 几何检验（MEASURED，`tools/inspect_geometry.py`，run label **R005**）：**4/4 `pass`，0 `fail` / 0 `not_run` / 0 `unresolved`，退出码 0，397.1 s** —— bbox_max x = 215.2615（目标 215 ± 0.5）、bbox_max z = 338.7996（目标 338.8 ± 1.0）、体积 930299.217 mm³（相对偏差 7.4e-07）、根实体 23（= 16 部件 + 7 个 COTS 多实体）。报告 `cad/output/inspection/t06_feeder_r37_R005.json`。
+- 产物（KNOWN，大 STEP 已 git-ignore，可再生）：`cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_{nectar,pollen}.step` + 报告 JSON + `_r37_readback.json`；生成器 `cad/paddle_launcher_feeder_a_prime_shared_staging.py`（**父模块 `paddle_launcher_feeder_redesign.py` / `..._shared.py` / `paddle_launcher_constrained.py` 全部未被修改**）。
+- 代价与未关闭（TBD）：机构在 +x **变长 65 mm**，进料口外移到 x = 215 后**外部供料路线需跟着调整**（Linear KEI-19）；R37 几何**尚未接入 MuJoCo 多球仿真**；μ、球质量、索引式舵机控制三项仍未关闭。
+
 ## NEXT ACTION
 
 > **R35 已交付（2026-10-04，DEC-0032 / V-0034）**：飞轮硅胶离心膨胀 dr_hot = 0.8 mm（上界 3.7 mm），**膨胀后飞轮与拨杆不接触**（POLLEN 余 2.71 mm、NECTAR 余 4.75 mm；上界处仍余 1.86 / 0.57 mm 且零接触）→ **送球几何不改**，只把飞轮垫片长度改为按热态外径配（`half_spacing = nip/2 + 48 + dr_hot`）。仿真：R33 冷态配间距 26/36（接触 3 起全在 POLLEN dr 3.7）→ R34 热态配间距 **30/30 零接触**、边缘档 **12/12 零接触**。R35 图纸已导出到桌面。
@@ -416,11 +439,12 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 >
 > **R27 已落地（2026-10-04，DEC-0031）**：共用外罩完成 0.5 mm 让位，`shooter_throat_+55` 5717.5 mm³ / `guide_roof_3` 126.5 mm³ 的交叠实测归零，几何检验 hub 6/6 + shell 7/7 通过 → 下面第 0 项里“待用户决策的既有干涉”已关闭；其余 (a)(b)(c) 三项不变。
 
-0. （当前，等用户决策）**R36 实测表明 (b) 不能按「清理重叠 + 加长托板」直接做**：真正要解决的是「等待球落在叶片扫掠带内」（DEC-0034）。三个方向：
-   (A) **保持单球索引**：托板只放 1 颗（现有几何即可），另加**外部料仓/落料口**把球逐颗投到拾取位 —— 改动最小，多球能力靠料仓而不是靠托板排队；
-   (B) **把等待区搬到扫掠圆外**：等待球球心需距轴心 ≥ 60 + r（NECTAR 106 / POLLEN 96），托板现高度（z ≈ 55）对应 x ≥ 116，需把后挡墙/托板外移约 60–100 mm —— 机构变长，换来回排队能力；
-   (C) **取消托板等待位**：缩短托板，改为从上方/侧向直接落料到拾取位。
-   选定方向后再动 CAD；任何 CAD 改动仍需 `tools/inspect_geometry.py` 出 JSON 报告 + 导出后回读 STEP 复测，**不得覆盖原 STEP、不得改 `cad/paddle_launcher_constrained.py` 与 `feeder_a_prime*` 原文件**。
+0. （R37 已落地，2026-10-11）用户选定 **方向 B** 并完成 (b) 清理：托板右端 150 → 215 mm、拨杆并为 1 个实体、TPU 尖缩到 r 58…60、侧壁 0.5 mm 让位、托板与球道弧并为一个实体、轮毂孔改 Ø12.1。**结果：NECTAR 2 颗 / POLLEN 3 颗等待位全部在扫掠圆外**（除第 1 颗待推球，设计意图）；几何检验 R005 4/4 通过（DEC-0035 / DEC-0036 / V-0036，PROJECT_STATUS R37 段）。
+   本项剩余（按优先级）：
+   (i) **外部供料路线**：进料口外移到 x = 215，料仓/输送要跟着改（等用户指示，Linear KEI-19）；
+   (ii) **(可选) 把 R37 几何接进 MuJoCo 多球仿真**（现有 `simulation/mujoco/_work/r36_multiball.py` 取 R27/R32 几何），验证方向 B 下多颗球能否依次被索引送出；
+   (iii) 若方向 B 的 65 mm 长度不可接受，可回退到 (A) 单球索引 + 外部料仓（DEC-0034 的另两个备选仍保留）。
+   任何后续 CAD 改动仍需 `tools/inspect_geometry.py` 出 JSON 报告 + 导出后回读 STEP 复测，**不得覆盖原 STEP、不得改 `cad/paddle_launcher_constrained.py` 与 `feeder_a_prime*` 原文件**。
 
 0b. （未关闭，并行）DEC-0030 已落实"一套机构兼容两种球"：共用送球段 CAD（R26）已导出、几何检验 spec 已就绪、两球全流程仿真 12/12 通过。按序推进：(a) **台架实测**球—打印外罩摩擦系数，把 μ 从 `ASSUMED` 升为 `MEASURED`（DEC-0028 的开放项，未关闭）；(b) 实现**索引式舵机控制**（停 ≥ 1.2 s → 一次 240–260° 扫掠 → 释放），连续旋转模式禁止使用；(c) 用索引式重跑舵机余量（NECTAR 实测堵转占比 10 %），复核 DEC-0026/0027 的余量口径。
 

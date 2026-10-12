@@ -1,0 +1,502 @@
+{
+  "pairs": [
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_hub",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_arm_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_arm_2",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_blade_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_blade_2",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "feeder_shell_tray",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_arm_1",
+      "overlap_mm3": 295.762,
+      "s": 0.01
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_arm_2",
+      "overlap_mm3": 295.762,
+      "s": 0.01
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_blade_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_blade_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_hub",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_arm_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_blade_1",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_blade_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_1",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "paddle_blade_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "paddle_blade_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_arm_2",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "paddle_blade_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 5760.0,
+      "s": 0.01
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_1",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "paddle_flex_tip_1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 5760.0,
+      "s": 0.01
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_blade_2",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "paddle_flex_tip_2",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_1",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_2",
+      "b": "paddle_shaft_support_bridge",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_2",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_2",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_2",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_flex_tip_2",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_shaft_support_bridge",
+      "b": "guide_roof_3",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_shaft_support_bridge",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_shaft_support_bridge",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "paddle_shaft_support_bridge",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "guide_roof_3",
+      "b": "guide_wall_3_+1",
+      "overlap_mm3": 315.0,
+      "s": 0.01
+    },
+    {
+      "a": "guide_roof_3",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 315.0,
+      "s": 0.01
+    },
+    {
+      "a": "guide_roof_3",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "guide_wall_3_+1",
+      "b": "guide_wall_3_-1",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    },
+    {
+      "a": "guide_wall_3_+1",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.01
+    },
+    {
+      "a": "guide_wall_3_-1",
+      "b": "shooter_throat_+55",
+      "overlap_mm3": 0.0,
+      "s": 0.0
+    }
+  ],
+  "relief": {
+    "relief_targets_removed_mm3": {},
+    "relief_clearance_mm": {},
+    "shell_volume_before_mm3": 243299.38,
+    "shell_volume_after_mm3": 243299.38,
+    "shell_volume_removed_mm3": 0.0,
+    "shell_bbox_after_mm": [
+      -71.47,
+      -54.0,
+      -2.092,
+      150.261,
+      54.0,
+      173.617
+    ]
+  },
+  "solids": {
+    "feeder_shell_tray": 2,
+    "paddle_hub": 1,
+    "paddle_arm_1": 1,
+    "paddle_arm_2": 1,
+    "paddle_blade_1": 1,
+    "paddle_blade_2": 1,
+    "paddle_flex_tip_1": 1,
+    "paddle_flex_tip_2": 1,
+    "paddle_shaft_support_bridge": 1,
+    "guide_roof_3": 1,
+    "guide_wall_3_+1": 1,
+    "guide_wall_3_-1": 1,
+    "shooter_throat_+55": 1
+  }
+}

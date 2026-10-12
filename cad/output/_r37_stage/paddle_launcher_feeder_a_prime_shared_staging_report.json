@@ -1,0 +1,281 @@
+{
+  "units": "mm",
+  "round": "R37 / DEC-0035 (方向 B) + DEC-0036 (清理)",
+  "geometry_change": {
+    "tray_x1_mm": [
+      150.0,
+      215.0
+    ],
+    "tray_x0_root_extension_mm": 14.0,
+    "hub_bore_d_mm": [
+      4.1,
+      12.1
+    ],
+    "flex_tip_radial_range_mm": [
+      56.0,
+      60.0,
+      58.0,
+      60.0
+    ],
+    "flywheel_dr_hot_mm": 0.8
+  },
+  "untouched_inputs": [
+    "cad/paddle_launcher_constrained.py",
+    "cad/paddle_launcher_feeder_a_prime.py",
+    "cad/paddle_launcher_feeder_redesign.py",
+    "cad/paddle_launcher_feeder_a_prime_shared.py",
+    "cad/paddle_launcher_feeder_a_prime_shared_hot.py"
+  ],
+  "paddle_axis_mm": [
+    29.49,
+    0.0,
+    111.46
+  ],
+  "shell_inner_mm": 107.97399999999999,
+  "shell_sector_deg": [
+    142.0,
+    275.0
+  ],
+  "sweep_max_r_mm": 60.0,
+  "feeder_width_mm": 108.0,
+  "variants": {
+    "nectar": {
+      "half_spacing_mm": 89.8,
+      "ball_d_mm": 91.948,
+      "nip_mm": 82.0,
+      "relief": {
+        "relief_targets_removed_mm3": {
+          "shooter_throat_+55": 5717.5021,
+          "guide_roof_3": 90.8564
+        },
+        "relief_clearance_mm": {
+          "shooter_throat_+55": 0.5,
+          "guide_roof_3": 0.5
+        },
+        "shell_volume_before_mm3": 310005.21,
+        "shell_volume_after_mm3": 302656.07,
+        "shell_volume_removed_mm3": 7349.13,
+        "shell_bbox_after_mm": [
+          -85.484,
+          -54.0,
+          -3.514,
+          215.261,
+          54.0,
+          180.043
+        ]
+      },
+      "cleanup": {
+        "guide_wall_relief": {
+          "guide_wall_3_+1": 315.0,
+          "guide_wall_3_-1": 315.0
+        },
+        "single_solid_check": {
+          "guide_roof_3": 1,
+          "guide_wall_3_-1": 1,
+          "guide_wall_3_+1": 1,
+          "paddle_shaft_2106-4008-1920": 2,
+          "paddle_rotor": 1,
+          "paddle_flex_tip_1": 1,
+          "paddle_flex_tip_2": 1,
+          "paddle_shaft_support_bridge": 1,
+          "flywheel_shaft_upper_2106-4008-1680": 2,
+          "gecko_flywheel_upper_1_3613-0014-0096": 2,
+          "gecko_flywheel_upper_2_3613-0014-0096": 2,
+          "flywheel_shaft_lower_2106-4008-1680": 2,
+          "gecko_flywheel_lower_1_3613-0014-0096": 2,
+          "gecko_flywheel_lower_2_3613-0014-0096": 2,
+          "shooter_throat_+55": 1,
+          "feeder_shell_tray": 1
+        }
+      },
+      "checks": {
+        "our_part_overlaps_mm3": {},
+        "shaft_fit_mm3": {
+          "paddle_shaft_2106-4008-1920|paddle_rotor": 0.0,
+          "paddle_shaft_2106-4008-1920|paddle_shaft_support_bridge": 0.0
+        }
+      },
+      "queue": {
+        "ball_r_mm": 45.974,
+        "capacity_balls": 2,
+        "waiting_zone_starts_at_x_mm": 120.401,
+        "waiting_balls_all_clear": true,
+        "slots": [
+          {
+            "slot": 1,
+            "x_mm": 34.894,
+            "z_mm": 49.696,
+            "centre_to_axis_mm": 62.0,
+            "required_min_mm": 105.974,
+            "clear_of_sweep": false,
+            "expected_pushed": true,
+            "margin_mm": -43.974
+          },
+          {
+            "slot": 2,
+            "x_mm": 126.492,
+            "z_mm": 57.71,
+            "centre_to_axis_mm": 110.898,
+            "required_min_mm": 105.974,
+            "clear_of_sweep": true,
+            "expected_pushed": false,
+            "margin_mm": 4.924
+          }
+        ]
+      },
+      "solid_counts": {
+        "guide_roof_3": 1,
+        "guide_wall_3_-1": 1,
+        "guide_wall_3_+1": 1,
+        "paddle_shaft_2106-4008-1920": 2,
+        "paddle_rotor": 1,
+        "paddle_flex_tip_1": 1,
+        "paddle_flex_tip_2": 1,
+        "paddle_shaft_support_bridge": 1,
+        "flywheel_shaft_upper_2106-4008-1680": 2,
+        "gecko_flywheel_upper_1_3613-0014-0096": 2,
+        "gecko_flywheel_upper_2_3613-0014-0096": 2,
+        "flywheel_shaft_lower_2106-4008-1680": 2,
+        "gecko_flywheel_lower_1_3613-0014-0096": 2,
+        "gecko_flywheel_lower_2_3613-0014-0096": 2,
+        "shooter_throat_+55": 1,
+        "feeder_shell_tray": 1
+      },
+      "parts_not_single_solid": [],
+      "cots_multi_solid_parts": [
+        "paddle_shaft_2106-4008-1920",
+        "flywheel_shaft_upper_2106-4008-1680",
+        "gecko_flywheel_upper_1_3613-0014-0096",
+        "gecko_flywheel_upper_2_3613-0014-0096",
+        "flywheel_shaft_lower_2106-4008-1680",
+        "gecko_flywheel_lower_1_3613-0014-0096",
+        "gecko_flywheel_lower_2_3613-0014-0096"
+      ],
+      "status": "pass"
+    },
+    "pollen": {
+      "half_spacing_mm": 80.8,
+      "ball_d_mm": 71.12,
+      "nip_mm": 64.0,
+      "relief": {
+        "relief_targets_removed_mm3": {
+          "shooter_throat_+55": 5717.5021,
+          "guide_roof_3": 90.8564
+        },
+        "relief_clearance_mm": {
+          "shooter_throat_+55": 0.5,
+          "guide_roof_3": 0.5
+        },
+        "shell_volume_before_mm3": 310005.21,
+        "shell_volume_after_mm3": 302656.07,
+        "shell_volume_removed_mm3": 7349.13,
+        "shell_bbox_after_mm": [
+          -85.484,
+          -54.0,
+          -3.514,
+          215.261,
+          54.0,
+          180.043
+        ]
+      },
+      "cleanup": {
+        "guide_wall_relief": {
+          "guide_wall_3_+1": 315.0,
+          "guide_wall_3_-1": 315.0
+        },
+        "single_solid_check": {
+          "guide_roof_3": 1,
+          "guide_wall_3_-1": 1,
+          "guide_wall_3_+1": 1,
+          "paddle_shaft_2106-4008-1920": 2,
+          "paddle_rotor": 1,
+          "paddle_flex_tip_1": 1,
+          "paddle_flex_tip_2": 1,
+          "paddle_shaft_support_bridge": 1,
+          "flywheel_shaft_upper_2106-4008-1680": 2,
+          "gecko_flywheel_upper_1_3613-0014-0096": 2,
+          "gecko_flywheel_upper_2_3613-0014-0096": 2,
+          "flywheel_shaft_lower_2106-4008-1680": 2,
+          "gecko_flywheel_lower_1_3613-0014-0096": 2,
+          "gecko_flywheel_lower_2_3613-0014-0096": 2,
+          "shooter_throat_+55": 1,
+          "feeder_shell_tray": 1
+        }
+      },
+      "checks": {
+        "our_part_overlaps_mm3": {},
+        "shaft_fit_mm3": {
+          "paddle_shaft_2106-4008-1920|paddle_rotor": 0.0,
+          "paddle_shaft_2106-4008-1920|paddle_shaft_support_bridge": 0.0
+        }
+      },
+      "queue": {
+        "ball_r_mm": 35.56,
+        "capacity_balls": 3,
+        "waiting_zone_starts_at_x_mm": 97.772,
+        "waiting_balls_all_clear": true,
+        "slots": [
+          {
+            "slot": 1,
+            "x_mm": 35.801,
+            "z_mm": 39.322,
+            "centre_to_axis_mm": 72.414,
+            "required_min_mm": 95.56,
+            "clear_of_sweep": false,
+            "expected_pushed": true,
+            "margin_mm": -23.146
+          },
+          {
+            "slot": 2,
+            "x_mm": 106.651,
+            "z_mm": 45.52,
+            "centre_to_axis_mm": 101.498,
+            "required_min_mm": 95.56,
+            "clear_of_sweep": true,
+            "expected_pushed": false,
+            "margin_mm": 5.938
+          },
+          {
+            "slot": 3,
+            "x_mm": 177.5,
+            "z_mm": 51.719,
+            "centre_to_axis_mm": 159.612,
+            "required_min_mm": 95.56,
+            "clear_of_sweep": true,
+            "expected_pushed": false,
+            "margin_mm": 64.052
+          }
+        ]
+      },
+      "solid_counts": {
+        "guide_roof_3": 1,
+        "guide_wall_3_-1": 1,
+        "guide_wall_3_+1": 1,
+        "paddle_shaft_2106-4008-1920": 2,
+        "paddle_rotor": 1,
+        "paddle_flex_tip_1": 1,
+        "paddle_flex_tip_2": 1,
+        "paddle_shaft_support_bridge": 1,
+        "flywheel_shaft_upper_2106-4008-1680": 2,
+        "gecko_flywheel_upper_1_3613-0014-0096": 2,
+        "gecko_flywheel_upper_2_3613-0014-0096": 2,
+        "flywheel_shaft_lower_2106-4008-1680": 2,
+        "gecko_flywheel_lower_1_3613-0014-0096": 2,
+        "gecko_flywheel_lower_2_3613-0014-0096": 2,
+        "shooter_throat_+55": 1,
+        "feeder_shell_tray": 1
+      },
+      "parts_not_single_solid": [],
+      "cots_multi_solid_parts": [
+        "paddle_shaft_2106-4008-1920",
+        "flywheel_shaft_upper_2106-4008-1680",
+        "gecko_flywheel_upper_1_3613-0014-0096",
+        "gecko_flywheel_upper_2_3613-0014-0096",
+        "flywheel_shaft_lower_2106-4008-1680",
+        "gecko_flywheel_lower_1_3613-0014-0096",
+        "gecko_flywheel_lower_2_3613-0014-0096"
+      ],
+      "status": "pass"
+    }
+  }
+}

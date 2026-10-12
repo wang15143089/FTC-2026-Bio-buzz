@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1",
+  "design_id": "C06B-FEEDER-R37-STAGING",
+  "note": "R37 检查针对本轮导出的最终 STEP（cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_nectar.step），不回读生成器输入。目标值来自 DEC-0035（托板右端 TRAY_X1 = 215 mm，方向 B）与 DEC-0036（重叠清理后部件/实体清单），两者均已记录在本文件与 config/parameters.yaml 的 t06_feeder_r37 小节。整机包络 z 上限与总体积、根实体数属于回归口径（防止本轮改动意外丢失或增加几何），其目标值取自 R37 生成器报告 cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_report.json。",
+  "checks": [
+    {
+      "id": "T06-R37-GEO-001",
+      "kind": "bbox_max",
+      "requirement": "DEC-0035（方向 B）：托板右端/进料口 x = 215 mm，等待区搬到拨杆扫掠圆外",
+      "part": "step_part",
+      "axis": "x",
+      "target": 215.0,
+      "tolerance": 0.5,
+      "method": "最终 STEP 整机边界框 x 上限（托板是 x 方向最靠右的自制件）",
+      "note": "实测 215.261 来自托板末端倒角；R36 口径为 150 mm"
+    },
+    {
+      "id": "T06-R37-GEO-002",
+      "kind": "bbox_max",
+      "requirement": "DEC-0032 热态配间距：NECTAR half_spacing = 89.8 mm 时飞轮组 z 上限",
+      "part": "step_part",
+      "axis": "z",
+      "target": 338.8,
+      "tolerance": 1.0,
+      "method": "最终 STEP 整机边界框 z 上限",
+      "note": "回归口径：确认（B）只改托板、没有动发射段与飞轮轴向位置"
+    },
+    {
+      "id": "T06-R37-GEO-003",
+      "kind": "volume",
+      "requirement": "DEC-0036：重叠清理只做「并入同一实体 / 让位 / 缩尖片」，不得丢失或重复体积",
+      "part": "step_part",
+      "target": 930299.902,
+      "relative_tolerance": 1e-05,
+      "method": "最终 STEP 所有实体的体积和（平移不变，可按 half_spacing 与 R36 对比）",
+      "note": "回归口径；目标取自 R37 生成器报告，用于发现导出/回读误差"
+    },
+    {
+      "id": "T06-R37-GEO-004",
+      "kind": "part_solid_count",
+      "requirement": "DEC-0021 + DEC-0036：每 SKU 的官方 COTS 部件整体带入；自制件清理后各自单实体",
+      "part": "step_part",
+      "target": 23,
+      "tolerance": 0.0,
+      "method": "最终 STEP 的根实体数（16 个部件；其中 7 个 COTS 件按官方多实体保留）",
+      "note": "回归口径：少于 23 说明有实体在导出时被合并/丢失"
+    }
+  ]
+}

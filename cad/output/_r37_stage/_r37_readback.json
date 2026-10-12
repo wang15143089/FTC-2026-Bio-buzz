@@ -1,0 +1,38 @@
+{
+  "units": "mm",
+  "round": "R37 readback",
+  "variants": {
+    "nectar": {
+      "n_root_solids": 23,
+      "bbox_mm": [
+        -118.43,
+        -96.0,
+        -3.514,
+        215.261,
+        96.0,
+        338.8
+      ],
+      "total_volume_mm3": 930299.9,
+      "gen_status": "pass",
+      "gen_capacity": 2,
+      "gen_half_spacing_mm": 89.8,
+      "gen_tray_bbox_xmax_mm": 215.261
+    },
+    "pollen": {
+      "n_root_solids": 23,
+      "bbox_mm": [
+        -118.43,
+        -96.0,
+        -3.514,
+        215.261,
+        96.0,
+        333.259
+      ],
+      "total_volume_mm3": 930299.9,
+      "gen_status": "pass",
+      "gen_capacity": 3,
+      "gen_half_spacing_mm": 80.8,
+      "gen_tray_bbox_xmax_mm": 215.261
+    }
+  }
+}

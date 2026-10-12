@@ -71,3 +71,11 @@ cad/output/_r35_hot/*.step
 cad/output/_r35_hot/*.stl
 cad/output/_r35_hot/*.glb
 cad/output/_r35_hot/inspection/*.step
+
+# R37 staging exports (DEC-0035 方向 B + DEC-0036 重叠清理): same local-only rule.
+# Each STEP is ~170 MB and fully regenerable with
+# cad/paddle_launcher_feeder_a_prime_shared_staging.py; the *_report.json and
+# _r37_readback.json stay tracked.
+cad/output/_r37_stage/*.step
+cad/output/_r37_stage/*.stl
+cad/output/_r37_stage/*.glb

@@ -428,3 +428,46 @@ Date/version:
 - Date/version: 2026-10-11 / T06-R36
 - 同步（KNOWN）：Linear KEI-18 长评论 + 新建 KEI-19（T06.8 多球进料方式）https://linear.app/keithschoolrobotic/issue/KEI-19；Notion https://app.notion.com/p/3ef7fc7bbcfb8177bf86d310c29afaa6 页尾追加 R36 小节（2026-10-11 已确认）。
 
+
+## DEC-0035 — T06 R37 多球进料方向选定为 B：等待区搬到扫掠圆外，托板右端 150 -> 215 mm
+
+- Decision（KNOWN）: 采纳 DEC-0034 的备选 **方向 B**。对送料段只有**一处几何改动**：托板/外罩右端（进料口）`TRAY_X1` 由 **150.000 mm 加长到 215.000 mm（+65 mm）**，`TRAY_X0` 同时由切点向内延 14 mm 到 24.901 mm（见 DEC-0036 的并实体要求）。除此之外**送球段与发射段几何全部不变**（外壳 R_IN 107.974、扇区 142..275°、壁厚 7、托板倾角 5°、拨杆轴心、叶片 46..58、TPU 尖 56..60、飞轮夹口按 DEC-0032 热态口径）。**不覆盖** R27/R35 的任何源文件与产物。
+- Reason/计算（CALCULATED）: 扫掠带半径实测上限 60 mm（DEC-0034），球心安全下限 = 60 + r_ball ⇒ NECTAR 105.974 / POLLEN 95.560 mm。托板面是绕轴心与 R_IN = 107.974 圆相切的 5° 斜面，球心距轴心 `d(s) = sqrt(62.000² + s²)`（NECTAR）/ `sqrt(72.414² + s²)`（POLLEN），令 `d(s) = 60 + r` 解出等待区起点 **x ≥ 124.5（NECTAR）/ x ≥ 101.0（POLLEN）**。排队时第 k 颗球心 s = (k−1)·2r，于是第 2 颗本来就落在安全区（NECTAR x = 126.485 余 6.0 mm、POLLEN x = 106.650 余 9.2 mm）—— **R36 里「托板球被打飞」是探针瞬时位，不是排队稳态位；真正的限制是容量**（旧托板右端 150 只能停 1 颗 NECTAR / 2 颗 POLLEN）。
+- 实测结果（MEASURED，`cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_report.json`）: 加长到 215 后容量变 **NECTAR 2 颗 / POLLEN 3 颗**。逐球心距轴心：NECTAR 停位 72.414（待推球，扫掠圆内，设计意图）+ 等待球 101.498 / …，POLLEN 停位 72.414 + 101.498 / 159.612；`waiting_balls_all_clear = true`（除第 1 颗待推球，**所有等待球都在扫掠圆外**，最小余量 POLLEN 第 2 颗 +5.938 mm）。
+- 空域确认（MEASURED，`_r37_bbox.py` 后已删除）: 托板延长段（x 150→215、z ≈ 15）**没有任何既有实体**，最近的 `gecko_flywheel_lower_*` 只到 z ≥ 138.3 ⇒ 加长托板不会与任何保留件干涉。
+- 代价（KNOWN + TBD）: 机构在 +x 方向**变长 65 mm**；进料口外移到 x = 215 后，**外部供料路线（料仓/输送）需要跟着调整**，该项由用户后续决定（对应 Linear KEI-19）。
+- Alternatives considered: (A) 保持单球索引 + 外部料仓逐颗落料 —— 不改几何，但多球能力靠料仓而非机构；(C) 取消托板等待位改为上方/侧向落料 —— 要重做上料路径与节拍。三条并列见 DEC-0034。
+- Reversible?: 是。`STAGE_X1` 是派生生成器里的单一常量；改值重跑即得新几何。R27/R35 源文件与产物、R26 让位记录全部保留。
+- Date/version: 2026-10-11 / C06B-FEEDER-A-PRIME-SHARED-R37-STAGING
+
+## DEC-0036 — T06 R37 (b) 重叠清理：四个重叠对的处理口径 + 拨杆并为一个实体
+
+- Decision（MEASURED 驱动）: 对 R37 工作装配内的**自制件**做重叠普查（布尔交，`cad/output/_r37_census3.json`），按「不改变配合语义、不留重叠」的原则处理四个重叠对，并顺手清掉一个遗留占位孔：
+
+  | 重叠对 | 实测重叠 | 处理 |
+  |---|---|---|
+  | `paddle_hub` × `paddle_arm_1` / `_2` | 295.762 mm³ ×2 | 轮毂 + 双臂 + 双叶片 **并为一个 `paddle_rotor` 实体** |
+  | `paddle_blade_1/2` × `paddle_flex_tip_1/2` | 5760.000 mm³ ×2 | TPU 尖片**径向缩到 r = 58…60**（只留伸出叶片的那 2 mm） |
+  | `guide_roof_3` × `guide_wall_3_+1` / `_-1` | 315.000 mm³ ×2 | 侧壁按 **0.5 mm 间隙**让位（复用 R27 的 `RELIEF_CLEARANCE_MM`），让位后实测归零 |
+  | `feeder_shell_tray` 自身 | — | 原是**2 个只相切的实体**（球道弧 + 托板），托板向里延 **14 mm** 使其体积相交后**并为一个实体** |
+  | （附）轮毂内孔 Ø4.1 | 与 Ø12 拨杆轴相交 | 改为 **Ø12.1 让位孔**（原 Ø4.1 是 R25 之前的占位孔遗留） |
+
+- Reason: 用户指令「把重叠的部分删除，或者将有重叠多个实体整理为一个」。上面四处都属**同一个零件的内部自重叠或同名配合面的重复料**，不是功能间隙，因此可以合并/让位；而 `shooter_throat_+55` 与各飞轮/轴的配合**实测无重叠**，一律不动（DEC-0021：COTS 件整体带入、不做布尔并集）。0.5 mm 让位口径与 R27 一致，保证打印件仍有真实装配间隙。
+- Evidence（MEASURED，导出后回读本轮 STEP）: 自制件两两布尔交 **全部为 0**（`our_part_overlaps_mm3 = {}`，两球）；全部自制件 `Solids() == 1`（含 `feeder_shell_tray`、`paddle_rotor`、`guide_wall_3_±1`、`guide_roof_3`、`shooter_throat_+55`、`paddle_flex_tip_1/2`、`paddle_shaft_support_bridge`）；拨杆轴 **Ø12 ∩ `paddle_rotor` = 0.000 mm³**、∩ `paddle_shaft_support_bridge` = 0.000 mm³（让位孔生效）。多实体件只剩 7 个厂商 COTS 件（飞轮/轴/拨杆轴的原厂装配语义，DEC-0021 要求保留）。
+- 实现（KNOWN）: 新增派生生成器 `cad/paddle_launcher_feeder_a_prime_shared_staging.py`，**不修改**父模块 `paddle_launcher_feeder_redesign.py` / `paddle_launcher_feeder_a_prime_shared.py` / `paddle_launcher_constrained.py`；覆盖方式为 `pl.paddle_parts`（拨杆零件表）+ `F.KEEP_EXACT`（把 `paddle_rotor` 加进保留名单，这是第一次 dry-run 报 `KeyError` 的根因）+ `F.TRAY_X0/X1` + 输出目录 `cad/output/_r37_stage/`。
+- Impact: 拨杆由「轮毂 + 2 臂 + 2 叶片 + 2 尖片 = 7 件」变为「1 个刚性本体 + 2 片 TPU 尖 = 3 件」，刚性件仍是**一个可打印/可加工实体**，两片尖片保留为可更换件；运动学（轴心、相位 330°/150°、外缘 r ≤ 60）逐点不变。
+- Reversible?: 是；改动集中在派生生成器，父模块与 R27/R35 产物均在。
+- Date/version: 2026-10-11 / C06B-FEEDER-A-PRIME-SHARED-R37-STAGING
+
+## V-0036 — 验证记录（非决策）：R37 最终 STEP 的回读复测与几何检验 R005
+
+- 目标（KNOWN）: 按 AGENTS.md「CAD 几何检验」要求，对 R37 的**最终导出实体**（不是生成参数）做关键尺寸/体积复测，输出 JSON 报告。
+- 方法（MEASURED）: (1) `_r37_readback.py`（临时脚本）用 cadquery 回读 `cad/output/_r37_stage/*.step`，量整机边界框、根实体数、总体积；(2) `tools/inspect_geometry.py --step <nectar.step> --spec config/t06_feeder_r37_checks.json --run-label R005 --report cad/output/inspection/t06_feeder_r37_R005.json`，4 项检查全部给出目标值/公差/实测值/测量方法。
+- 结果（MEASURED）: **R005 = 4/4 `pass`，0 `fail` / 0 `not_run` / 0 `unresolved`，退出码 0，用时 397.1 s。**
+  - `T06-R37-GEO-001` bbox_max x = **215.2615**（目标 215.0 ± 0.5；超出量来自托板末端倒角）⇒ 方向 B 的 +65 mm 已落在最终几何里。
+  - `T06-R37-GEO-002` bbox_max z = **338.7996**（目标 338.8 ± 1.0）⇒ 只动托板，发射段/飞轮轴向位置未受影响。
+  - `T06-R37-GEO-003` 体积 = **930299.217 mm³**（目标 930299.902，相对 1e-5；差 0.685 mm³ 为 STEP 往返容差）⇒ 清理既没丢料也没重复料。
+  - `T06-R37-GEO-004` 根实体数 = **23**（目标 23 = 16 个部件 + 7 个 COTS 件按官方多实体保留）⇒ 导出未合并/丢失实体。
+  - 回读口径（两球一致）：根实体 23；NECTAR bbox z 上限 338.8 / POLLEN 333.259（只差飞轮轴向位置）；两球总体积同为 930299.9 mm³（体积平移不变，与「只移动飞轮」一致）。
+- 未验证（TBD）: μ（球—PET 打印件）仍为 `ASSUMED`；球质量 0.130 / 0.060 kg 仍为 `ASSUMED`；索引式舵机控制未实机；**R37 几何尚未接入 MuJoCo 多球仿真**（现有 `_work/r36_multiball.py` 取 R27/R32 几何）。
+- Date/version: 2026-10-11 / T06-R37

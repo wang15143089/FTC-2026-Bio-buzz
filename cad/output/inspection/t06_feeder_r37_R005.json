@@ -1,0 +1,125 @@
+{
+  "schema_version": "0.1",
+  "run_label": "R005",
+  "created_at_utc": "2026-10-12T03:17:39.720542+00:00",
+  "duration_s": 396.76,
+  "command": "tools\\inspect_geometry.py --step cad/output/_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_nectar.step --spec config/t06_feeder_r37_checks.json --run-label R005 --report cad/output/inspection/t06_feeder_r37_R005.json --progress-file cad/output/inspection/_r37_progress.json --log-file cad/output/inspection/_r37_run.log",
+  "working_directory": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz",
+  "host": "DESKTOP-2JPFDSA",
+  "interpreter": {
+    "executable": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\.venv-cad\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "dependencies": {
+    "cadquery": "2.6.1",
+    "python": "3.12.14"
+  },
+  "units": "mm",
+  "coordinate_system": "as authored in the STEP file",
+  "design_id": "C06B-FEEDER-R37-STAGING",
+  "solution_status": "candidate_pending_human_review",
+  "inputs": [
+    {
+      "role": "check_requirements",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\config\\t06_feeder_r37_checks.json",
+      "exists": true,
+      "bytes": 2563,
+      "sha256": "CA3B370603EC6DB7AA8DAFF599594F7507959D812963B9D5A32918E72FF54C79"
+    },
+    {
+      "role": "step",
+      "path": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\_r37_stage\\paddle_launcher_feeder_a_prime_shared_staging_nectar.step",
+      "exists": true,
+      "bytes": 177570229,
+      "sha256": "80CB3ED05CEDC283081B255D0780ED42E0DC5892071EB8127E6BC2A2E36B1966"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "pass": 4,
+    "fail": 0,
+    "not_run": 0,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "id": "T06-R37-GEO-001",
+      "kind": "bbox_max",
+      "requirement": "DEC-0035（方向 B）：托板右端/进料口 x = 215 mm，等待区搬到拨杆扫掠圆外",
+      "target": 215.0,
+      "tolerance": 0.5,
+      "method": "bbox_max[x] from final solid bounding box",
+      "status": "pass",
+      "measured": 215.2615,
+      "deviation": 0.2615,
+      "note": "实测 215.261 来自托板末端倒角；R36 口径为 150 mm"
+    },
+    {
+      "id": "T06-R37-GEO-002",
+      "kind": "bbox_max",
+      "requirement": "DEC-0032 热态配间距：NECTAR half_spacing = 89.8 mm 时飞轮组 z 上限",
+      "target": 338.8,
+      "tolerance": 1.0,
+      "method": "bbox_max[z] from final solid bounding box",
+      "status": "pass",
+      "measured": 338.7996,
+      "deviation": -0.0004,
+      "note": "回归口径：确认（B）只改托板、没有动发射段与飞轮轴向位置"
+    },
+    {
+      "id": "T06-R37-GEO-003",
+      "kind": "volume",
+      "requirement": "DEC-0036：重叠清理只做「并入同一实体 / 让位 / 缩尖片」，不得丢失或重复体积",
+      "target": 930299.902,
+      "tolerance": 1e-05,
+      "method": "sum of the volumes of the part's solids, read from the final Brep (packaging-independent)",
+      "status": "pass",
+      "measured": 930299.217,
+      "deviation": 1e-06,
+      "note": "回归口径；目标取自 R37 生成器报告，用于发现导出/回读误差",
+      "tolerance_kind": "relative"
+    },
+    {
+      "id": "T06-R37-GEO-004",
+      "kind": "part_solid_count",
+      "requirement": "DEC-0021 + DEC-0036：每 SKU 的官方 COTS 部件整体带入；自制件清理后各自单实体",
+      "target": 23,
+      "tolerance": 0.0,
+      "method": "最终 STEP 的根实体数（16 个部件；其中 7 个 COTS 件按官方多实体保留）",
+      "status": "pass",
+      "measured": 23,
+      "deviation": 0,
+      "note": "回归口径：少于 23 说明有实体在导出时被合并/丢失"
+    }
+  ],
+  "parts": [
+    {
+      "id": "step_part",
+      "solid_count": 23,
+      "type": "Compound",
+      "valid": true,
+      "volume_mm3": 930299.217,
+      "bbox": {
+        "min_mm": [
+          -118.4295,
+          -96.0,
+          -3.514
+        ],
+        "max_mm": [
+          215.2615,
+          96.0,
+          338.7996
+        ],
+        "size_mm": [
+          333.691,
+          192.0,
+          342.3136
+        ]
+      }
+    }
+  ],
+  "roundtrips": [],
+  "not_verified": [],
+  "human_review": [],
+  "failure_states": []
+}
