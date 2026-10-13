@@ -11,7 +11,8 @@ XML 只描述模型；挡舌（mocap）与"待机停位"（真实舵机位置保
 用法:
   python run_R47_xml.py                                   # 默认 out/R47_launcher_4xPOLLEN_gap064.xml
   python run_R47_xml.py out/R47_launcher_4xNECTAR_gap082.xml --ph 3
-  python run_R47_xml.py --pair                            # 混装模型对（gap064 <-> gap082 自动换档）
+  python run_R47_xml.py out/R47_launcher_mixed4_gap064.xml  # 混装（随机排布），会自动启用换档
+  python run_R47_xml.py --pair --ph 3                      # 手动指定混装 + 起始相位 ph3 (90 deg)
 
   # 3) 开窗口边跑边看（推荐；鼠标可转视角）
   python run_R47_xml.py --view
@@ -19,7 +20,7 @@ XML 只描述模型；挡舌（mocap）与"待机停位"（真实舵机位置保
   python run_R47_xml.py --pair --view --slow 2.0
 窗口操作：左键拖=旋转，右键拖=平移，滚轮=缩放，空格=暂停/继续，Esc=关闭。
 """
-import sys, os, math, time, argparse, importlib.util
+import sys, os, re, math, time, argparse, importlib.util
 
 import mujoco
 
@@ -38,6 +39,23 @@ a = ap.parse_args()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OD = lambda n: os.path.join(HERE, "out", n)
+if a.xml and not os.path.exists(a.xml):        # 允许从仓库根目录用相对路径
+    _alt = os.path.join(HERE, a.xml)
+    if os.path.exists(_alt):
+        a.xml = _alt
+if not a.pair:                      # 混装（随机排布）自动换档
+    _p = a.xml or OD("R47_launcher_4xPOLLEN_gap064.xml")
+    try:
+        _t = open(_p, encoding="utf-8").read()
+        _n = set(82 if float(v) > 0.040 else 64
+                 for v in re.findall(r'name="ball_geom_\d"[^>]*size="([0-9.]+)"', _t))
+    except Exception:
+        _n = set()
+    if len(_n) > 1 and os.path.exists(OD("R47_launcher_mixed4_gap064.xml")) \
+       and os.path.exists(OD("R47_launcher_mixed4_gap082.xml")):
+        a.pair = True
+        print("检测到混装（随机排布）模型 %s，自动启用换档" % os.path.basename(_p))
+
 if a.pair:
     SINGLE = ""
     PAIR_PATHS = {64: OD("R47_launcher_mixed4_gap064.xml"),

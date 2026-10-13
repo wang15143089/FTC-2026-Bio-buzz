@@ -490,6 +490,8 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 改动（KNOWN）：`simulation/mujoco/run_R47_xml.py` 新增 `--view` / `--slow`（`mujoco.viewer.launch_passive` + 实时配速），并按 1 s 输出一行遥测（拨杆角、双轮 rpm、闸门 z、出膛数）。**未改任何驱动口径、几何或判定标准**。
 - 验证（SIMULATED）：`--view --sec 22` 实测遥测 —— 双轮 ±1619 rpm 对向；拨杆停位 188° 后扫掠 188→548→907→1268°；闸门 47.5→116.3→139.5→71.8→47.5→139.5 mm；**t = 12 s 时 4/4 出膛**。混装 `--pair --view` 换档路径亦无报错。
 - 交付说明（KNOWN）：`simulation/mujoco/HOW_TO_VIEW_R47.md`（哪个软件打开哪个文件 + 鼠标操作）。
+- 混装/随机排布版（SIMULATED，`out/_r47v_mix_ph0.log`）：同一脚本新增「自动识别混装并换档」，传入 `mixed4` 文件即按当前球径在 64 / 82 mm 夹口间切换，命令行不用加 `--pair`。实测 `mixed4_gap064 --ph 0`：换档 3 次、**真出膛 4/4**（球1 6.43 / 球2 5.26 / 球3 6.32 / 球4 5.28 m/s），全清 11.28 s（含静置 6 s），每颗平均 1.32 s；带 `--view` 运行 3 次换档均无报错。六相位用 `--ph 0..5`。
+- 顺手修（KNOWN）：`run_R47_xml.py` 的 XML 路径现在支持从仓库根目录给相对路径（`out/...`），原先必须 `cd simulation/mujoco`。
 - 未关闭（TBD）：本机无官方 `simulate.exe`，方案 C 仅备用；`--view` 只是同一台架的口径可视化，不代表实物。
 
 ## NEXT ACTION
