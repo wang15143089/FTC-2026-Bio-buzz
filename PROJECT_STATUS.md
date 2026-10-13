@@ -1,9 +1,10 @@
 # PROJECT STATUS
 
-最后更新：2026-10-12（R47 提速收口 —— 闸板后移 / 减小行程 / 纯几何改喉口三条路判决性否决，改为「外罩内弧 135°→258° + 托板顶面」单侧贴低摩擦胶带（μ≈0.30），零几何改动下 6 相位 x 4 颗真出膛 24/24、全清 6/6、清空 5.22–5.28 s，约 13 倍提速；拨杆侧不动不贴带，DEC-0044 / V-0044）
+最后更新：2026-10-12（R47 交付 MuJoCo 台架 MJCF：4 份 XML（各含 6 相位 keyframe）+ 驱动脚本 run_R47_xml.py，混装 64/82 + 全 POLLEN + 全 NECTAR 三档均 4/4 真出膛，DEC-0045；R47 提速收口 —— 闸板后移 / 减小行程 / 纯几何改喉口三条路判决性否决，改为「外罩内弧 135°→258° + 托板顶面」单侧贴低摩擦胶带（μ≈0.30），零几何改动下 6 相位 x 4 颗真出膛 24/24、全清 6/6、清空 5.22–5.28 s，约 13 倍提速；拨杆侧不动不贴带，DEC-0044 / V-0044）
 
 ## CURRENT OBJECTIVE
 
+- **【2026-10-12 / R47 交付】** 按用户指令「我要你在MUJOCO仿真用的文件」，把 R47 验收口径台架**落盘为独立 MJCF**（此前全部用 `from_xml_string` 字符串建模、从未落盘）：`simulation/mujoco/out/R47_launcher_mixed4_gap064.xml` / `R47_launcher_mixed4_gap082.xml`（混装 POLLEN,NECTAR,POLLEN,NECTAR，分别对应轮间夹口 64 / 82 mm）、`R47_launcher_4xPOLLEN_gap064.xml`、`R47_launcher_4xNECTAR_gap082.xml`（全同种自洽档位）。每份含 6 个 keyframe `ph000/ph030/ph060/ph090/ph120/ph150`，编码初始球列 + 拨杆起始角；编译期数组改动（摩擦 / priority / 径向让位）已按 geom 名回注进 XML 文本，并与捕获模型逐项比对通过（geom 名 / 摩擦 / priority / pos / size、keyframe0 qpos、nq / nv / ngeom / nbody / nu 全等）。**MJCF 无法表达控制逻辑** ⇒ 挡舌（mocap body `gate_leaf` 的 z 47.5↔139.5 mm 抬落）与「待机停位保持」（188°、Kp=40）必须外部驱动，已交付配套 `simulation/mujoco/run_R47_xml.py`；生成脚本 `simulation/mujoco/gen_R47_mjcf.py` 可复算。验收（真出膛速度取 `cvel[bid][3:6]` 模长，峰值只统计出膛前）：4xPOLLEN gap064 4/4（6.21–6.44 m/s、全清 11.11 s）、4xNECTAR gap082 4/4（5.27–5.44 m/s、11.45 s）、混装 `--pair` 4/4 且自动换档 3 次（6.43 / 5.26 / 6.32 / 5.28 m/s）。桌面副本已同步；更早的 `R47_launcher_4ball*.xml` 已按用户指令删除（DEC-0045）。
 **【2026-10-12 / R47 最新恢复点】提速改走「贴低摩擦胶带」**：用户指令「试一试能否通过闸板后移与减小行程来使速度更快，1 分钟太慢了」，本轮把这条路线连同备选一起做尽并**全部判决性否决** —— (1) 闸板后移 x=180->220/240 虽然清空 52.19 -> 35.43 / 16.5 s，但真出膛从 4/4 掉到 **2/4**，原因是后移闸板会连带把整列球往后推、把闸口让给球 ⇒ **闸板失守**，提速是假的（前排球位置与基准逐位一致，证明闸板位置对发射行程零影响）；(2) 缩短扫掠 `--sweep 120/200` 与基准**逐位相同** —— 该参数是死参数，`r38_v8.py` 第 138–139 行把扫掠段硬编码成整圈、第 141 行两段共用同一恒定速度；(3) 三个纯几何旋钮 `--flex-in/--blade-in/--exit-open` 共 5 组在 μ=0.60 下卡滞一律 89 %，**几何救不回来**。真正根因是**摩擦楔自锁**：球在「拨杆叶片顶端 ↔ 外罩出口唇」喉口被楔死，拨杆电机全程贴 0.530 N·m 堵转上限。台架运动学给出算术上限 —— 290 rpm ⇒ 整圈仅 360/(290*6) = 0.207 s，而实测每颗球 15–23 s、卡滞 77–89 % ⇒ **拨杆约 99 % 时间没在转**，「减小行程」的理论收益只有约 0.207 x 4 ≈ 0.8 s，路线在算术上就不成立。改为**零几何改动**的单侧降摩擦：外罩内弧与托板顶面贴低摩擦胶带（等效 μ≈0.30），**拨杆侧不动、不贴带**（用户约束「我没有使用弹性外缘的条件」）。摩擦悬崖：外罩 μ 0.05–0.30 均 5.0–5.2 s / 卡滞 1 %，**0.35 -> 5.41 s / 4 %、0.40 -> 6.76 s / 24 %、0.50 -> 60.4 s / 90 %**，悬崖在 0.40–0.50 之间，**取 0.30 为设计点**。验收（`--liner-shell 0.30 --relief -0.20`，6 相位 0/30/60/90/120/150、mix P>N>P>N、tray 460、gate-x 180、hold 1、μ_ball 0.6、park 188）：**清空 5.28 / 5.23 / 5.22 / 5.23 / 5.23 / 5.23 s，每轮真出膛 4/4、全清 6/6、卡滞 1–2 %、扭矩峰 0.507–0.522 N·m**；恶劣工况 4 x NECTAR 5.33 s / 4/4、4 x POLLEN 5.05 s / 4/4。**胶带厚度（0.2 / 0.5 mm 占位）对节拍无影响 ⇒ 打印件不必预缩，直接贴**。接触测绘定出贴敷位置：外罩内弧 ≈47 % 冲量（极角 **135°–258°**）、叶片推球面 34 %、托板 7 %、出口唇 1.7 % ⇒ **贴外罩内弧 135°→258°（约 123° 弧长）+ 托板顶面**，示意图见 `simulation/mujoco/out/_r47_tape_section.png`。**硬约束：托板倾角 5° ⇒ 托板 μ 必须 > tan5° ≈ 0.09，禁止把外罩/托板降到 0.05**（V-0040 已记录的整队列自滑堆死失效）。相对 R45（66.21 s / 77–89 % 卡滞）约 **13 倍**提速，且未改任何 CAD、未覆盖任何原文件。（DEC-0044 / V-0044）
 
 **【2026-10-12 / R45 最新恢复点】主动索引闸（竖向全宽挡舌 + 真实舵机停位保持）拿到 24/24**：按用户指令「把柱塞改成从侧向摆入的挡舌」先试侧向摆入，被三条互斥约束判死 —— ①闸位 x≈98 处托盘没有 +y 侧导槽壁（壁只到 x=12.5），球可横游到 y≈±54，挡舌必须横跨 108 mm 全宽；②全宽挡舌摆程扫掠半径 106 mm > 球窝球到铰心 100.3 mm，关门必扫球窝球；实测短挡舌 L=40 为 0/4（球从舌尖外侧 y=+42.9 绕过）；③x=98 正上方是下飞轮盘（圆心 x=124, z=179.5, r=48），抬起位 z=139.5 与轮重叠 −18.75 mm，且仿真里挡舌是 `mocap`、飞轮是动力学体 ⇒ mocap 只推别人，不报错但结果被污染。按用户「侧向摆入不行就换路线」改为**自上方竖直下插的全宽挡舌**（只做 z 向平移，无横向扫掠），闸位后移到 **x = 180**、托板加长 **460 mm**。六相位 × 4 颗（mix P>N>P>N、夹口 P64/N82、μ=0.60、hold 3.0）**真出膛 24/24、全清 6/6**（上一版同口径 21/24、5/6，唯一失败轮 ph0=60 只出 1 颗）。**根因不在挡舌而在拨杆待机姿态**：相位机在 settle / settle_tail 段写 `ctrl=0` ⇒ 拨杆变自由摆、重力下垂到 ≈53° ⇒ 弹性指 `paddle_flex_1`（外缘 r=61）正落在球道内的球心半径上（极角 ≈337°，即球道/球窝窗口），与斜托板形成径向夹口，后到的球在 x≈122 被永久楔死（POLLEN 球心 r=72.4 不在此夹口，故只咬 NECTAR）。**真实舵机待机是位置保持、不是自由下垂** ⇒ 台架新增 `--park` / `--park-kp`，相位机写 0 时改为速度伺服保持 J_park（Kp=40 1/s，峰值扭矩 1.6 N·m；25-4 Super Speed 失速 0.530 N·m，侧加 3:1 皮带配重后仍在量级内），补丁放在闸门判决之后 ⇒ 闸门逻辑仍靠 `ctrl==0` 判「拨杆已停」，判据不变。停位角由「挡片极角 = 390 − J 不得落进球道/球窝窗口 [235°,355°]」定为 **J_park ∈ (171°,199°)**，取 **188°**；扫角实测 53–95° 楔死（球停在 x≈116–123）、105–165° 被挡（x≈50–97）、185–205° 进球窝（x≈25–30）；±20° 余量（168/175/195 各跑 ph0=60 单轮全 4/4，非临界设计）。几何检验 `_work/_r45_idxchk16.py 185`：A–F 全段无干涉、抬起位净空 NECTAR +3.3 mm。**口径提醒：台架脚本头部与默认 `GX` 仍是旧的 x=98 描述/取值，本轮实际口径一律以 `--gate-x 180` 为准，判读请回读日志头部 `x=`。**（DEC-0043 / V-0043）
@@ -212,11 +213,14 @@ S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射�
 - `exports/stl/t04_c04b1_*_m3.stl`
 - `exports/drawings/t04_c04b1_capstan_fixture_m3_preview.png`
 - `.gitignore`
+- `simulation/mujoco/out/R47_launcher_mixed4_gap064.xml` / `R47_launcher_mixed4_gap082.xml` / `R47_launcher_4xPOLLEN_gap064.xml` / `R47_launcher_4xNECTAR_gap082.xml`（R47 台架 MJCF 交付）
+- `simulation/mujoco/run_R47_xml.py`（MJCF 驱动脚本，含混装换档）
+- `simulation/mujoco/gen_R47_mjcf.py`（MJCF 生成/校验脚本）
 - `cad/README.md`、`cad/*.py`、`cad/output/*` 和 `docs/engineering/*`（2026-09-24 导入参考基线）
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3；T06-R47-MJCF-1.0（R47 台架 MJCF 交付，候选，待人工接受）。
 
 ## MOTION-ONLY SIMULATION EXTRACT?2026-10-02?
 
@@ -604,3 +608,16 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 陷阱（KNOWN）: ①闸板台架头部 `GX=98` 是旧默认，实际由 `--gate-x 180` 覆盖，判读前回读日志 `x=`；②`--sweep` 是被硬编码覆盖的死参数，不要用于行程实验。
 - 证据（KNOWN）: `simulation/mujoco/out/_r47v30_p0*.log`（验收）、`_r47s_shell*.log`（悬崖）、`_r47g_*.log`（几何否决）、`_r47_ref.log`、`_r47_sw*.log`、`_r47w_*.log`、`_r47_tape_section.png`（剖面示意图）。
 - 未关闭（TBD）: 未实机；μ=0.30 为 `ASSUMED`；胶带选型 / 带宽 / 端头 / 翘边未定；贴带未落 CAD。
+
+## T06 R47 交付：MuJoCo 台架 MJCF（2026-10-12，DEC-0045）
+
+- 触发（KNOWN）: 用户指令「我要你在MUJOCO仿真用的文件」——只要 XML 模型，不要结果 JSON。
+- 交付（KNOWN）: 4 份 MJCF + 1 份驱动脚本 + 1 份生成脚本（见 FILES MODIFIED）；仓库路径 `simulation/mujoco/out/`，桌面同名副本。
+- 口径（SIMULATED）: `--mix POLLEN,NECTAR,POLLEN,NECTAR --tray 460 --gate-x 180 --phases 0 --hold 1 --mu 0.6 --park 188 --liner-shell 0.30 --relief -0.20`。
+- 注入规则（KNOWN）: `shell_*`/`r10_*` → μ 0.30 + priority 2 + 径向让位 −0.20 mm；`tray`/`ramp` → μ 0.30 + priority 2（**不做径向让位**）；`paddle*` → μ 0.70 + priority 2；`gate*` → μ 0.40 + priority 2；球 → μ 0.60 + priority 1。
+- 关键事实（KNOWN）: **MJCF 不能表达挡舌与待机停位保持** —— 挡舌是 `mocap`、停位是外部伺服指令，二者必须由运行脚本注入；只加载 XML 不会动。
+- 结果（SIMULATED）: 4xPOLLEN gap064 ph0 4/4（6.21–6.44 m/s、11.11 s）；4xNECTAR gap082 ph0 4/4（5.27–5.44 m/s、11.45 s）；混装 `--pair` ph0 4/4、换档 3 次（6.43/5.26/6.32/5.28 m/s、11.28 s）。
+- 陷阱（KNOWN）: 混装模型对必须靠脚本换档（单份 XML 只有一个轮间夹口），换档时搬运 `qpos/qvel/ctrl/act`；两档模型结构必须一致（脚本启动即校验 `need` 序列）。
+- 已裁剪（superseded）: 更早的 `R47_launcher_4ball.xml` / `_gap064.xml` / `_gap082.xml`（单相位、无 keyframe 集）按用户指令删除，保留本条记录。
+- 未关闭（TBD）: XML 只含代理几何与验收参数，未含 CAD 细节；挡舌/停位的控制律仍属台架口径，不是实机控制；未实机验证。
+

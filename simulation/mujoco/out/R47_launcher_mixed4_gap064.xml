@@ -1,0 +1,115 @@
+<!--
+  T06 送球+发射台架 R47 验收模型（MuJoCo 3.14，SI 单位 m / kg）
+  球种排布: POLLEN,NECTAR,POLLEN,NECTAR
+  口径: 托板末端 x=460mm  挡舌 x=180mm  球-环境 mu=0.6
+        外罩/托板/球窝摩擦 0.30 + priority 2（托板顶面单侧低摩擦胶带）
+        外罩内弧/唇口径向让位 -0.20mm  拨杆 0.70 + priority 2  挡舌 0.40 + priority 2
+  轮间半间距: nip=64 mm -> HALF_SPACING=80.0 mm（WHEEL_R=48 夹口）
+  飞轮 1620 rpm 对向旋转；拨杆两叉(330/150)，索引式 360 deg/颗、停 1 s、扫 248 deg
+  <keyframe ph000..ph150> = 6 个拨杆起始相位，配 run_R47_xml.py --ph 0..5
+  挡舌 = mocap body "gate_leaf"，需外部驱动 z 47.5mm(挡) <-> 139.5mm(放)
+  挡位角 188 deg 需速度伺服保持（真实舵机行为，脚本里实现）
+-->
+<mujoco model="t06_pollen_launcher_v2">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.0002" gravity="0 0 -9.81" integrator="implicitfast" cone="elliptic"/>
+  <default>
+    <geom friction="0.5 0.01 0.0001" solref="0.008 1" solimp="0.95 0.99 0.001"/>
+    <default class="guide"><geom friction="0.25 0.005 0.0001" rgba="0.2 0.56 0.84 0.45"/></default>
+    <default class="shell"><geom friction="0.25 0.005 0.0001" rgba="0.2 0.56 0.84 0.45"/></default>
+    <default class="flywheel"><geom friction="1.6 0.02 0.0001" solref="0.006 1" rgba="0.18 0.18 0.20 1"/></default>
+    <default class="paddle"><geom friction="0.7 0.01 0.0001" solref="0.006 1" rgba="0.92 0.54 0.12 1"/></default>
+    <default class="ball"><geom friction="0.6 0.02 0.0001" solref="0.010 1" solimp="0.9 0.95 0.002" rgba="0.95 0.85 0.15 1" priority="1"/></default>
+  </default>
+  <worldbody>
+  <body name="gate_leaf" mocap="true" pos="0.180000000 0.000000000 0.047500000">
+    <geom name="gate_blade" type="box" size="0.002500000 0.054000000 0.027500000" pos="0 0 0" friction="0.4000 0.02 0.0001" rgba="0.90 0.22 0.28 1" mass="0.035046" priority="2"/>
+  </body>
+
+    <geom name="catch_floor" type="box" size="2 2 0.01" pos="0.2 0 -0.10" rgba="0.6 0.6 0.6 0.5"/>
+    <light pos="0.2 -0.6 1.0" dir="-0.2 0.6 -1" diffuse="0.8 0.8 0.8"/>
+    <geom name="guide_roof_3" class="guide" type="box" size="0.035000 0.057000 0.001500" pos="-0.095699 0.000000 0.135414" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="guide_wall_3_-1" class="guide" type="box" size="0.035000 0.001500 0.055000" pos="-0.052359 -0.055500 0.101552" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="guide_wall_3_+1" class="guide" type="box" size="0.035000 0.001500 0.055000" pos="-0.052359 0.055500 0.101552" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="shooter_throat_+55" class="guide" type="box" size="0.041500 0.057000 0.001500" pos="-0.048601 0.000000 0.195696" quat="0.898794 0.000000 -0.438371 0.000000"/>
+    <geom name="r10_00" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.061404630 0.000000000 0.175648630" quat="-0.459974 0.000000 -0.887932 0.000000" priority="2"/>
+    <geom name="r10_01" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.067178252 0.000000000 0.166570946" quat="-0.502360 0.000000 -0.864659 0.000000" priority="2"/>
+    <geom name="r10_02" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.072048499 0.000000000 0.156978187" quat="-0.543571 0.000000 -0.839363 0.000000" priority="2"/>
+    <geom name="r10_03" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.075969451 0.000000000 0.146959195" quat="-0.583512 0.000000 -0.812105 0.000000" priority="2"/>
+    <geom name="r10_04" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.078905175 0.000000000 0.136609797" quat="-0.622088 0.000000 -0.782948 0.000000" priority="2"/>
+    <geom name="r10_05" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.080826720 0.000000000 0.126023823" quat="-0.659209 0.000000 -0.751960 0.000000" priority="2"/>
+    <geom name="r10_06" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.081718119 0.000000000 0.115303093" quat="-0.694789 0.000000 -0.719213 0.000000" priority="2"/>
+    <geom name="r10_07" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.081569387 0.000000000 0.104545428" quat="-0.728745 0.000000 -0.684786 0.000000" priority="2"/>
+    <geom name="r10_08" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.080382520 0.000000000 0.093852647" quat="-0.760996 0.000000 -0.648757 0.000000" priority="2"/>
+    <geom name="r10_09" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.078168498 0.000000000 0.083325568" quat="-0.791468 0.000000 -0.611211 0.000000" priority="2"/>
+    <geom name="r10_10" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.074948286 0.000000000 0.073060019" quat="-0.820089 0.000000 -0.572235 0.000000" priority="2"/>
+    <geom name="r10_11" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.070751829 0.000000000 0.063153824" quat="-0.846793 0.000000 -0.531922 0.000000" priority="2"/>
+    <geom name="r10_12" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.065618055 0.000000000 0.053699817" quat="-0.871517 0.000000 -0.490365 0.000000" priority="2"/>
+    <geom name="r10_13" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.059595880 0.000000000 0.044784840" quat="-0.894203 0.000000 -0.447662 0.000000" priority="2"/>
+    <geom name="r10_14" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.052741201 0.000000000 0.036493742" quat="-0.914798 0.000000 -0.403911 0.000000" priority="2"/>
+    <geom name="r10_15" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.045116904 0.000000000 0.028902386" quat="-0.933254 0.000000 -0.359216 0.000000" priority="2"/>
+    <geom name="r10_16" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.036795860 0.000000000 0.022083642" quat="-0.949528 0.000000 -0.313682 0.000000" priority="2"/>
+    <geom name="r10_17" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.027854930 0.000000000 0.016100396" quat="-0.963582 0.000000 -0.267414 0.000000" priority="2"/>
+    <geom name="r10_18" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.018377964 0.000000000 0.011008548" quat="-0.975382 0.000000 -0.220520 0.000000" priority="2"/>
+    <geom name="r10_19" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="-0.008453801 0.000000000 0.006855013" quat="-0.984902 0.000000 -0.173111 0.000000" priority="2"/>
+    <geom name="r10_20" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="0.001824724 0.000000000 0.003679720" quat="-0.992119 0.000000 -0.125297 0.000000" priority="2"/>
+    <geom name="r10_21" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="0.012362784 0.000000000 0.001511617" quat="-0.997016 0.000000 -0.077190 0.000000" priority="2"/>
+    <geom name="r10_22" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="0.023060556 0.000000000 0.000371666" quat="-0.999582 0.000000 -0.028903 0.000000" priority="2"/>
+    <geom name="r10_23" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.007278 0.054000 0.003500" pos="0.033818221 0.000000000 0.000269849" quat="-0.999811 0.000000 0.019452 0.000000" priority="2"/>
+    <geom name="shell_exit_face" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.003500 0.054000 0.001500" pos="-0.058195397 0.000000000 0.179966868" quat="0.325568 0.000000 -0.945519 0.000000" priority="2"/>
+    <geom name="shell_lip_face" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.003500 0.054000 0.001500" pos="0.039188568 0.000000000 0.000609239" quat="-0.737277 0.000000 -0.675590 0.000000" priority="2"/>
+    <geom name="tray" class="shell" friction="0.3000 0.005 0.0001" type="box" size="0.211354 0.054000 0.003000" pos="0.249189 0.000000 0.019329" quat="0.999048 0.000000 -0.043619 0.000000" priority="2"/>
+    <geom name="rear_wall" class="shell" type="box" size="0.003000 0.054000 0.035000" pos="0.463000 0.000000 0.076001" quat="1.000000 0.000000 0.000000 0.000000"/>
+  <body name="flywheel_upper" pos="-0.010737 0.000000 0.284767">
+    <joint name="fw_upper" type="hinge" axis="0 1 0" damping="0.0002"/>
+    <geom name="fw_shaft_upper" class="flywheel" type="cylinder" size="0.004000 0.084000" quat="0.707107 -0.707107 0 0" mass="0.05"/>
+    <geom name="fw_upper_1" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 -0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+    <geom name="fw_upper_2" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+  </body>
+  <body name="flywheel_lower" pos="0.115345 0.000000 0.186261">
+    <joint name="fw_lower" type="hinge" axis="0 1 0" damping="0.0002"/>
+    <geom name="fw_shaft_lower" class="flywheel" type="cylinder" size="0.004000 0.084000" quat="0.707107 -0.707107 0 0" mass="0.05"/>
+    <geom name="fw_lower_1" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 -0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+    <geom name="fw_lower_2" class="flywheel" type="cylinder" size="0.048000 0.012000" pos="0 0.015000 0" quat="0.707107 -0.707107 0 0" mass="0.105"/>
+  </body>
+  <body name="paddle" pos="0.029490 0.000000 0.111460">
+    <joint name="paddle_joint" type="hinge" axis="0 1 0" damping="0.0005"/>
+    <geom name="paddle_hub" class="paddle" friction="0.7000 0.005 0.0001" type="cylinder" size="0.012000 0.017000" quat="0.707107 -0.707107 0 0" mass="0.05" priority="2"/>
+    <geom name="paddle_arm_1" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.018000 0.009000 0.005000" pos="0.024249 0.000000 0.014000" quat="-0.965926 0.000000 0.258819 0.000000" mass="0.01" priority="2"/>
+    <geom name="paddle_blade_1" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.006000 0.048000 0.015000" pos="0.045033 0.000000 0.026000" quat="-0.965926 0.000000 0.258819 0.000000" mass="0.02" priority="2"/>
+    <geom name="paddle_flex_1" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.002000 0.048000 0.017000" pos="0.051095 0.000000 0.029500" quat="-0.965926 0.000000 0.258819 0.000000" mass="0.008" priority="2"/>
+    <geom name="paddle_arm_2" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.018000 0.009000 0.005000" pos="-0.024249 0.000000 -0.014000" quat="0.258819 0.000000 0.965926 0.000000" mass="0.01" priority="2"/>
+    <geom name="paddle_blade_2" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.006000 0.048000 0.015000" pos="-0.045033 0.000000 -0.026000" quat="0.258819 0.000000 0.965926 0.000000" mass="0.02" priority="2"/>
+    <geom name="paddle_flex_2" class="paddle" friction="0.7000 0.005 0.0001" type="box" size="0.002000 0.048000 0.017000" pos="-0.051095 0.000000 -0.029500" quat="0.258819 0.000000 0.965926 0.000000" mass="0.008" priority="2"/>
+  </body>
+    <body name="ball_1" pos="0.011680368 0 0.041270226">
+    <freejoint name="ball_free_1"/>
+    <geom name="ball_geom_1" class="ball" type="sphere" size="0.035560" mass="0.06"/>
+  </body>
+  <body name="ball_2" pos="0.228774000 0 0.066658261">
+    <freejoint name="ball_free_2"/>
+    <geom name="ball_geom_2" class="ball" type="sphere" size="0.045974" mass="0.13"/>
+  </body>
+  <body name="ball_3" pos="0.310595455 0 0.063362931">
+    <freejoint name="ball_free_3"/>
+    <geom name="ball_geom_3" class="ball" type="sphere" size="0.035560" mass="0.06"/>
+  </body>
+  <body name="ball_4" pos="0.392416911 0 0.080975160">
+    <freejoint name="ball_free_4"/>
+    <geom name="ball_geom_4" class="ball" type="sphere" size="0.045974" mass="0.13"/>
+  </body>
+  </worldbody>
+  <actuator>
+    <velocity name="fw_upper_vel" joint="fw_upper" kv="0.5" ctrlrange="-400 400" forcerange="-3.0 3.0"/>
+    <velocity name="fw_lower_vel" joint="fw_lower" kv="0.5" ctrlrange="-400 400" forcerange="-3.0 3.0"/>
+    <velocity name="paddle_vel" joint="paddle_joint" kv="0.017452" ctrlrange="-100 100" forcerange="-0.53 0.53"/>
+  </actuator>
+  <keyframe>
+    <key name="ph000" qpos="0 0 0 0.011680368 0 0.0412702258 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+    <key name="ph030" qpos="0 0 0.523598776 -0.0211754211 0 0.0597221754 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+    <key name="ph060" qpos="0 0 1.04719755 -0.0402309035 0 0.0918951589 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+    <key name="ph090" qpos="0 0 1.57079633 -0.042924 0 0.11146 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+    <key name="ph120" qpos="0 0 2.0943951 -0.042924 0 0.11146 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+    <key name="ph150" qpos="0 0 2.61799388 -0.042924 0 0.11146 1 0 0 0 0.228774 0 0.0666582606 1 0 0 0 0.310595455 0 0.0633629306 1 0 0 0 0.392416911 0 0.0809751601 1 0 0 0"/>
+  </keyframe>
+</mujoco>

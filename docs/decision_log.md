@@ -818,3 +818,27 @@ Date/version:
 - 陷阱（KNOWN，写入历史，本轮第 4 条）: **示意图脚本 `_work/_r47_fig.py` 曾把拨杆硬编码成 3 叉（相位 30/150/270）**，与实际模型不符 —— 仿真模型一直是**两叉**（`r37_multiball.py` 第 54 行 `def parts(phases=(330.0, 150.0))`，第 202 行调用未传参），所有仿真数据（含接触测绘的 `paddle_blade_1/2`、`paddle_flex_1/2`）均基于两叉、有效。已把绘图脚本改为 330/150 两叉并重出 `_r47_tape_section.png`。**教训：示意图的机构相位必须与模型同源，不得在绘图脚本里手写自由度。**
 - 未验证（TBD）: 未实机；μ=0.30 为 `ASSUMED`；胶带选型 / 带宽 / 端头 / 翘边未定；贴带尚未落进 CAD。
 - Date/version: 2026-10-12 / C06B-FEEDER-R47 / 脚本 `_work/_r47_geo.py`、`_work/_r47_run.py`、`_work/_r47_touch.py`、`_work/_r47_fig.py`
+
+## DEC-0045 — 决策：R47 台架落盘为独立 MJCF（4 份 XML + 驱动脚本），并修复混装换档缺陷
+
+- Decision: 按用户 2026-10-12 指令「我要你在MUJOCO仿真用的文件」，把 R47 验收口径台架（DEC-0044 口径）**落盘为独立 MJCF 文件**，交付 4 份 XML 与 1 份驱动脚本；同时修复驱动脚本混装模式把路径字符串当成模型对象传入 `xfer()` 的缺陷。
+- Reason （KNOWN）:
+  1. 此前全部台架（`r37_multiball.py` / `r38_v8.py` / `_r47_geo.py` 等）用 `from_xml_string` 字符串建模，模型从未落盘 ⇒ 外部无法加载、无法复现。
+  2. 模型的摩擦 / priority / 径向让位是在**编译后**直接写编译器数组的（不在 XML 文本里），直接 `mj_saveLastXML` 会丢这些改动 ⇒ 必须按 geom 名回注文本并回读逐项比对。
+  3. **MJCF 无法表达控制逻辑**：挡舌是 `mocap` body（z 47.5↔139.5 mm 抬落）、待机停位保持是外部速度伺服（188°、Kp=40） ⇒ 两者必须由运行脚本注入，只加载 XML 不会动。这是交付包必须含脚本的原因。
+  4. 混装模型对（64 / 82 mm）必须靠脚本换档，且换档时要搬运 `qpos/qvel/ctrl/act` 全状态；两档模型结构必须一致（脚本启动即校验球径序列）。
+- Alternatives: ①只交结果 JSON（已被用户否决）；②只交单个合并 XML（不可行 —— 单份 XML 只能有一个轮间夹口，且 keyframe 无法表达挡舌/停位）；③把挡舌写成 `<equality>` / 位置伺服（会改变模型物理、与已验收口径不一致）。采用②的变体：**四份 XML 各自自洽 + 一份驱动脚本**。
+- Evidence （SIMULATED）:
+  - 4xPOLLEN gap064 ph0：4/4，6.21–6.44 m/s，全清 11.11 s。
+  - 4xNECTAR gap082 ph0：4/4，5.27–5.44 m/s，11.45 s。
+  - 混装 `--pair` ph0：4/4，自动换档 3 次（64→82→64→82），6.43 / 5.26 / 6.32 / 5.28 m/s，11.28 s。
+  - 落盘校验：回读 XML 与捕获模型逐项比对（geom 名 / 摩擦 / priority / pos / size、keyframe0 qpos、nq / nv / ngeom / nbody / nu）全等。
+  - 口径：`--mix POLLEN,NECTAR,POLLEN,NECTAR --tray 460 --gate-x 180 --phases 0 --hold 1 --mu 0.6 --park 188 --liner-shell 0.30 --relief -0.20`。
+- 注入规则（KNOWN，已与模型比对通过）: `shell_*`/`r10_*` → μ 0.30 + priority 2 + 径向让位 −0.20 mm；`tray`/`ramp` → μ 0.30 + priority 2（**不做径向让位**）；`paddle*` → μ 0.70 + priority 2；`gate*` → μ 0.40 + priority 2；球 → μ 0.60 + priority 1。
+- 交付位置: `simulation/mujoco/out/R47_launcher_mixed4_gap064.xml`、`R47_launcher_mixed4_gap082.xml`、`R47_launcher_4xPOLLEN_gap064.xml`、`R47_launcher_4xNECTAR_gap082.xml`；驱动 `simulation/mujoco/run_R47_xml.py`；生成/校验 `simulation/mujoco/gen_R47_mjcf.py`；桌面同名副本。
+- Bugs fixed: 驱动脚本 `--pair` 原先把路径字符串传给 `xfer()` 导致报错 ⇒ 现在启动时把两档都建成 `Rig` 实例并校验球径序列一致。
+- Risks: 四份 XML 与台架脚本存在**双份真源**（台架改参数后必须重新 `gen_R47_mjcf.py`）；桌面副本不受 Git 管理。
+- 已裁剪（superseded）: 更早的 `R47_launcher_4ball.xml` / `_gap064.xml` / `_gap082.xml`（单相位、无 keyframe 集）按用户指令从桌面与 `out/` 删除，保留本条记录。
+- Next step: 若需对外发布，在 `gen_R47_mjcf.py` 加 `--check` 回归；待用户明确接受后把 `T06-R47-MJCF-1.0` 从候选转为接受记录。
+- 未验证（TBD）: 未实机；XML 只含代理几何与验收参数，未含 CAD 细节。
+- Date/version: 2026-10-12 / C06B-FEEDER-R47-MJCF-1.0 / 脚本 `simulation/mujoco/gen_R47_mjcf.py`、`simulation/mujoco/run_R47_xml.py`
