@@ -79,3 +79,10 @@ cad/output/_r35_hot/inspection/*.step
 cad/output/_r37_stage/*.step
 cad/output/_r37_stage/*.stl
 cad/output/_r37_stage/*.glb
+
+# R48 motion-check delivery exports (DEC-0046): same local-only rule.  The STEP
+# copies are ~170 MB and fully regenerable with cad/paddle_launcher_motion_check.py;
+# delivery_readback.json / parts_*.json stay tracked.
+cad/output/_motion_check/*.step
+cad/output/_motion_check/*.stl
+cad/output/_motion_check/*.glb

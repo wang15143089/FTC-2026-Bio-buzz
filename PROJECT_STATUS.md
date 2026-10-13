@@ -1,6 +1,6 @@
 # PROJECT STATUS
 
-最后更新：2026-10-12（R47 交付 MuJoCo 台架 MJCF：4 份 XML（各含 6 相位 keyframe）+ 驱动脚本 run_R47_xml.py，混装 64/82 + 全 POLLEN + 全 NECTAR 三档均 4/4 真出膛，DEC-0045；R47 提速收口 —— 闸板后移 / 减小行程 / 纯几何改喉口三条路判决性否决，改为「外罩内弧 135°→258° + 托板顶面」单侧贴低摩擦胶带（μ≈0.30），零几何改动下 6 相位 x 4 颗真出膛 24/24、全清 6/6、清空 5.22–5.28 s，约 13 倍提速；拨杆侧不动不贴带，DEC-0044 / V-0044）
+最后更新：2026-10-12（R47 交付 MuJoCo 台架 MJCF：4 份 XML（各含 6 相位 keyframe）+ 驱动脚本 run_R47_xml.py，混装 64/82 + 全 POLLEN + 全 NECTAR 三档均 4/4 真出膛，DEC-0045；R47 提速收口 —— 闸板后移 / 减小行程 / 纯几何改喉口三条路判决性否决，改为「外罩内弧 135°→258° + 托板顶面」单侧贴低摩擦胶带（μ≈0.30），零几何改动下 6 相位 x 4 颗真出膛 24/24、全清 6/6、清空 5.22–5.28 s，约 13 倍提速；拨杆侧不动不贴带，DEC-0044 / V-0044）；**2026-10-13 R48 运动部分几何核对 + Fusion 交付**：建立运动部分几何唯一主索引 `docs/engineering/t06-motion-part-geometry-baseline.md`，桌面 R37 STEP 版本核对通过（与仓库 `_r37_stage/` 逐字节相同、且与几何检验 R005 输入同一 SHA256），关键几何独立复算与发布值一致；交付桌面 Fusion 可开运动版 STEP 两份（DEC-0046 / V-0046）
 
 ## CURRENT OBJECTIVE
 
@@ -220,7 +220,7 @@ S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3；T06-R47-MJCF-1.0（R47 台架 MJCF 交付，候选，待人工接受）。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3；T06-R47-MJCF-1.0（R47 台架 MJCF 交付，候选，待人工接受）。T06-MOTION-BASELINE-R48（运动部分几何基准文档 + 桌面 Fusion 运动版 STEP 交付，候选，待人工接受；DEC-0046 / V-0046）。
 
 ## MOTION-ONLY SIMULATION EXTRACT?2026-10-02?
 
@@ -631,3 +631,17 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 已裁剪（superseded）: 更早的 `R47_launcher_4ball.xml` / `_gap064.xml` / `_gap082.xml`（单相位、无 keyframe 集）按用户指令删除，保留本条记录。
 - 未关闭（TBD）: XML 只含代理几何与验收参数，未含 CAD 细节；挡舌/停位的控制律仍属台架口径，不是实机控制；未实机验证。
 
+
+
+## T06 R48 运动部分几何核对 + 桌面 Fusion 交付（2026-10-13，DEC-0046 / V-0046）
+
+- 触发（KNOWN）: 用户指令「使用 Linear、Notion 以及项目中的 .md 整理目前整个机构（最新版）的运动部分的几何位置关系，用于检查 CAD 文件是否版本正确、几何正确，检查完后在桌面上留下完成的文件（可使用 Fusion 打开）。注意识别信息来源的版本，确认是目前版本。」本轮**不做几何改动**，只核对 + 交付。
+- 主索引（KNOWN）: 新建 `docs/engineering/t06-motion-part-geometry-baseline.md` —— 运动部分坐标、半径、相位、间距的唯一主索引；含来源版本表 S1–S14（逐条标注 KNOWN / CALCULATED / SIMULATED / MEASURED）。它不是需求文件，也不是参数第二真源（参数主数据仍为 `config/parameters.yaml`）。
+- 版本判定（KNOWN）: **CAD 产物最新 = `cad/output/_r37_stage/`（2026-10-11 22:16）+ `cad/output/_r39_liner/`（2026-10-12 02:16）；仿真验收最新 = `T06-R47-MJCF-1.0`（2026-10-12，DEC-0045）。二者不是同一代。**
+- 版本核对（MEASURED）: 桌面 `T06_R37_pollen.step` / `T06_R37_nectar.step` 与仓库 `_r37_stage/` STEP **逐字节相同**，SHA256 `80CB3ED05CEDC283081B255D0780ED42E0DC5892071EB8127E6BC2A2E36B1966`，且与几何检验 R005 所测输入同一哈希；R005 4/4 `pass` ⇒ **桌面 R37 文件的版本是正确的，不是旧副本**。
+- 关键几何（MEASURED）: 逐件回读 16 部件 → 体积合计 930299.1 mm³（发布值 930299.9，相对偏差约 9e-7）；拨杆轴心实测 (29.49, 0, 111.46) 与 KNOWN 值零偏差；轮轴距实测 161.60 / 179.60 = 2x80.8 / 2x89.8；冷态夹口 65.60 / 83.60 − 2xdr_hot(0.8) = 热态 64.0 / 82.0；轮轴分离方向 (0.788, 0, −0.6156) 与 52° 球道正交；TPU 尖极角 30° / 210°（**两叉**，与 `r37_multiball.py` 一致）。
+- 交付（KNOWN）: 桌面 `T06_motion_pollen.step` / `T06_motion_nectar.step`（各 18 部件 / 25 实体，热态夹口 64 / 82 mm，Fusion 可直接打开）＋ `T06_motion_check_report.md`（中文核对报告）。生成脚本 `cad/paddle_launcher_motion_check.py`（只读复用 R37/R39 生成器，不改父模块），回读脚本 `cad/_readback_delivery.py`，证据 `cad/output/_motion_check/`。装配树带部件名与颜色（外罩半透明蓝 / 飞轮近黑 / 拨杆橙 / TPU 尖黄 / 贴带红）。
+- 交付回读（MEASURED）: 25 实体、948918.1 mm³（930299.1 + 贴带标注件 18618.8），包围盒 z 上限 333.259 / 338.800（= 上飞轮顶）。含 2 个**贴带位置标注件**（`liner_tape_arc` 10222.5、`liner_tape_tray` 8396.3 mm³）—— 非打印件、非裁带下料件，仅标示 DEC-0044 的贴敷区。
+- **未落地项（KNOWN，判定 `fail`）: CAD 落后已验证仿真 3 项** —— F1 托板右端 `215`（CAD）vs `460`（DEC-0044）；F2 竖向全宽挡舌 `x = 180`、`z 47.5↔139.5`（DEC-0043）**CAD 中无此零件**；F3 贴带区 `135°→258°` ＋ 托板顶面（DEC-0044）未落 CAD（R39 下料带仍为 `142°→275°`）。另有 F4: `config/parameters.yaml` 的 T06 参数块仍停在 R39，R40–R47 无参数条目（`not_run`）。
+- 判读（KNOWN）: R47 的 6/6 全清、24/24 真出膛**依赖挡舌** ⇒ 当前 CAD 不是已验证机构的可制造版本。是否按 R47 口径重做 CAD 属结构级变更，**本轮未改任何几何**，待用户裁定。
+- 未关闭（TBD）: 重做 CAD 与否待裁定；未实机；μ=0.30 为 `ASSUMED`。

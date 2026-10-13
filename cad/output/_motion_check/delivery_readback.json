@@ -1,0 +1,32 @@
+[
+  {
+    "file": "T06_motion_pollen.step",
+    "n_solids": 25,
+    "total_volume_mm3": 948918.082,
+    "bbox_min_mm": [
+      -118.43,
+      -96.0,
+      -3.514
+    ],
+    "bbox_max_mm": [
+      215.261,
+      96.0,
+      333.259
+    ]
+  },
+  {
+    "file": "T06_motion_nectar.step",
+    "n_solids": 25,
+    "total_volume_mm3": 948918.082,
+    "bbox_min_mm": [
+      -118.43,
+      -96.0,
+      -3.514
+    ],
+    "bbox_max_mm": [
+      215.261,
+      96.0,
+      338.8
+    ]
+  }
+]

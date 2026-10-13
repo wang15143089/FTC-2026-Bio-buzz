@@ -842,3 +842,43 @@ Date/version:
 - Next step: 若需对外发布，在 `gen_R47_mjcf.py` 加 `--check` 回归；待用户明确接受后把 `T06-R47-MJCF-1.0` 从候选转为接受记录。
 - 未验证（TBD）: 未实机；XML 只含代理几何与验收参数，未含 CAD 细节。
 - Date/version: 2026-10-12 / C06B-FEEDER-R47-MJCF-1.0 / 脚本 `simulation/mujoco/gen_R47_mjcf.py`、`simulation/mujoco/run_R47_xml.py`
+
+## DEC-0046 — 决策：建立 T06 运动部分几何基准文档，并据以核对 CAD 版本（核对轮 R48，无几何改动）
+
+- Decision （KNOWN）: 新建 `docs/engineering/t06-motion-part-geometry-baseline.md` 作为**运动部分几何位置关系的唯一主索引**（坐标、半径、相位、间距只定义一次并逐项标注来源版本），并用它对 CAD 产物做一次版本与几何核对；按核对结果交付一份带部件名、Fusion 可直接打开的运动部分装配到桌面。本轮**不修改任何几何、不覆盖任何原 STEP**，生成脚本 `cad/paddle_launcher_motion_check.py` 只读复用 R37/R39 生成器。
+- Reason （KNOWN）: 用户 2026-10-13 指令「使用 linear、notion 以及项目中的 .md 整理目前整个机构（最新版）的运动部分的几何位置关系，用于检查 CAD 文件是否版本正确、几何正确……注意识别信息来源的版本，确认是目前版本」。此前几何事实散落在 R37/R39 参数块、DEC-0035/0036/0039/0043/0044、Linear KEI-17..20 与 Notion 页中，且 `docs/engineering/launcher-feeder-baseline.md` 仍是三叶片旧基线（R27 前），没有一份能直接用来判版本的文件。
+- 来源版本（本条记录的判定依据）: `PROJECT_STATUS.md` §LATEST DESIGN VERSION（2026-10-12，`T06-R47-MJCF-1.0` 候选）；`config/parameters.yaml` → `t06_feeder_r37`（DEC-0035/0036）、`t06_liner_r39`（DEC-0039）——**这是 parameters.yaml 里最新的两个 T06 块**；`docs/decision_log.md` DEC-0032/0035/0036/0039/0043/0044/0045；Linear KEI-20（2026-10-13T00:05Z）；Notion「Decision — Redo the POLLEN feeder as a coaxial one-piece shell with a 5 deg gravity tray」（最后编辑 2026-10-13T00:05Z）。
+- 版本判定 （KNOWN）: **CAD 产物最新 = `_r37_stage/`（2026-10-11 22:16）+ `_r39_liner/`（2026-10-12 02:16）；仿真验收最新 = `T06-R47-MJCF-1.0`（2026-10-12）。二者不是同一代。** KEI-20 自己也写明「CAD 侧未落进：竖向挡舌 + x=180 闸位 + 托板 460 mm；外罩内弧 135°→258° 与托板顶面的贴带区」。
+- 核对结论 （MEASURED）:
+  1. 桌面 `T06_R37_pollen.step` / `T06_R37_nectar.step` 与仓库 `_r37_stage/paddle_launcher_feeder_a_prime_shared_staging_*.step` **逐字节相同**（SHA256 `80CB3ED05CEDC283081B255D0780ED42E0DC5892071EB8127E6BC2A2E36B1966`），且与 R005 几何检验所测文件同一哈希 ⇒ 桌面 R37 文件版本正确。
+  2. 回归 R005 4/4 pass：托板右端 215.2615（目标 215 ± 0.5）、飞轮组 z 上限 338.7996（338.8 ± 1.0）、体积 930299.217（930299.902，相对偏差 1e-6）、根实体 23。
+  3. 本轮独立复算：16 部件体积合计 **930299.1 mm³**（发布值 930299.9，差 0.8 mm³）；拨杆轴心实测 **(29.49, 0, 111.46)** 与 KNOWN 值零偏差；轮轴距 **161.60 / 179.60** = 2 × 80.8 / 2 × 89.8；冷态夹口 65.60 / 83.60 − 2 × dr_hot = 热态 64.0 / 82.0（DEC-0032）✔；轮轴分离方向 −38° 与 52° 球道正交 ✔；TPU 尖实测极角 30°/210°（两片相隔 180°，**两叉**，与 `r37_multiball.py` 一致）。
+  4. R39 内衬单体 5/5 pass（内弧偏移 +0.4876、外弧 −0.0002、托板面 −0.4608、扇区 142.0–275.0°）。
+- 交付 （KNOWN）: 桌面 `T06_motion_pollen.step`（SHA256 `57EBA523…C0EAA9`）/ `T06_motion_nectar.step`（`2342C3D3…4E1C181`），各 18 部件 / 25 实体，带部件名与颜色（外罩半透明蓝、飞轮近黑、拨杆橙、TPU 尖黄、贴带红）；回读 948918.082 mm³、包围盒 z 上限 333.259 / 338.800。仓库副本 `cad/output/_motion_check/`，并附 `T06_motion_check_report.md`。
+- 版本不一致（须用户决策，本轮**未改 CAD**）:
+  - F1 **托板右端**：CAD 215.0（DEC-0035）vs 最新口径 **460**（DEC-0044 验收；中途另有 R44 的 350，DEC-0042 亦未落地）⇒ `fail`。
+  - F2 **竖向全宽挡舌**：CAD 里**不存在该零件**（R37 的 13 个自制件无 gate，`cad/*.py` 无生成器）⇒ 而 R47 的 6/6 全清、24/24 真出膛**依赖挡舌**（DEC-0043）⇒ `fail`，缺件。
+  - F3 **贴带区**：CAD 无贴带；R39 下料带扇区 142°→275°，而 R47 实测贴敷区为 **135°→258°** + 托板顶面 ⇒ `fail`，未落地且扇区口径不同。
+  - F4 **参数主数据**：`config/parameters.yaml` 最新 T06 块 = `t06_liner_r39`，R40–R47 全部决策无参数条目 ⇒ `not_run`。
+- Alternatives: ①直接把 CAD 改到 R47 口径（改托板长度 + 新增挡舌 + 贴带区）—— 否决：属结构级变更，未经用户确认，且会覆盖「当前 CAD 基线」的版本语义；②只交检查报告不改文件 —— 否决：用户明确要桌面交付件；③把 R39 预缩变体当作交付 —— 否决：DEC-0044 已判定「不需要预缩」，且预缩会让交付件与仿真所验面差 0.5 mm。采用「**CAD 原样 + 贴带区标注件 + 版本表**」。
+- Risks （KNOWN）: ①交付件里的 `liner_tape_arc` / `liner_tape_tray` 是**贴敷位置标注件**，不是打印件也不是裁带下料件（下料件仍为 `_r39_liner/liner_tape_*.step`）；②CAD 版本落后于仿真版本，**当前 CAD 不得当作已验证机构的可制造版本**；③桌面副本不受 Git 管理。
+- Next step: 等用户就 F1–F3 决策；若确认按 R47 口径重做 CAD，需先落 X=180 挡舌零件与托板 460 mm 的新 DEC，再改 `_r37_stage` 之后的新生成器（**不得改** `cad/paddle_launcher_constrained.py` / `feeder_a_prime*` 原文件）；同时把 R40–R47 的口径补进 `config/parameters.yaml`（F4）。
+- 未验证（TBD）: 未实机；μ ≈ 0.30 仍为 `ASSUMED`；胶带选型/带宽/端头/翘边未定。
+- Date/version: 2026-10-13 / `T06-MOTION-BASELINE-R48` / 脚本 `cad/paddle_launcher_motion_check.py`、`cad/_readback_delivery.py`；证据 `cad/output/_motion_check/parts_{pollen,nectar}.json`、`delivery_readback.json`、`docs/engineering/t06-motion-part-geometry-baseline.md`
+
+## V-0046 — 验证记录（非决策）：R48 运动部分几何核对（CAD 版本 + 几何 + 交付回读）
+
+- 目的 （KNOWN）: 用可追溯的几何基准判「最新 CAD 文件是否版本正确、几何正确」，并为后续仿真/制造提供一份位置关系明确、Fusion 可开的运动部分装配。
+- 方法 （MEASURED）:
+  - 版本同一性：对桌面与仓库 STEP 取 SHA256 与 R005 报告中的输入哈希逐一比对。
+  - 几何复算：`cad/paddle_launcher_motion_check.py` 调 R37 staging 生成器取最终实体，逐件量 `n_solids` / 体积 / 包围盒 / 质心；由包围盒中心反推拨杆轴心与飞轮轴心。
+  - 交付回读：`cad/_readback_delivery.py` 用 `cq.importers.importStep` 回读导出的桌面 STEP，量根实体数 / 体积 / 包围盒。
+  - 量具纪律：遵守 V-0039 —— 球道面偏差用导出网格 + 射线求交，本轮不涉及该量具；本轮量的是实体包围盒与体积，不做 OCC `distance` 判读。
+- 结果 （MEASURED）:
+  - 版本：桌面 = 仓库 = R005 输入，SHA256 三者相同（`80CB3ED0…`）⇒ pass。
+  - 几何：16 部件体积合计 930299.1 mm³ vs 发布 930299.9（差 0.8 mm³，相对 8.6e-7）⇒ pass；拨杆轴心 0 偏差；轮轴距/夹口/dr_hot 关系全部成立 ⇒ pass。
+  - 交付：25 实体、948918.082 mm³（930299.1 + 18618.8 贴带件 = 948917.9）⇒ pass。
+  - 不一致项：F1 托板 215 vs 460（fail）、F2 挡舌缺件（fail）、F3 贴带区未落地（fail）、F4 参数主数据滞后（not_run）。
+- 状态: `pass`（CAD 版本与几何本身）\+ `fail`（与最新仿真口径的版本一致性，见 F1–F3）\+ `not_run`（F4）。**不得**据此把 `T06-R47-MJCF-1.0` 或 CAD 标为最终。
+- 未验证项: 与 DEC-0046 的 TBD 相同（未实机、μ 假设、工艺未定）。
+- Date/version: 2026-10-13 / 产物 `cad/output/_motion_check/`
