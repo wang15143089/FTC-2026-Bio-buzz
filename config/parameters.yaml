@@ -477,3 +477,33 @@ t06_gate_drive_r49:
   servo_margin: {value: {"pin_tangential_force_N_at_stall": 27.6, "gate_resistance_N": "<1", "margin": ">20x", "full_stroke_time_s": 0.16}, status: "CALCULATED", source: "T = F r => F = 1.059 / 0.03835；140 deg 行程按 0.07 s/60 deg"}
   acceptance: {value: {"harness": "simulation/mujoco/run_R47_xml.py（R47 台架 MJCF）", "gates_mm": [67.5, 139.5], "ramp_s": 0.15, "model": "R47_launcher_4xPOLLEN_gap064.xml", "phases_deg": [0, 30, 60, 90, 120, 150], "result_file": "simulation/mujoco/out/_r49_reg.log"}, status: "SIMULATED", source: "V-0047"}
   open_question: {value: "新行程的 6 相位 x 4 颗回归见 V-0047；支架横梁收边后 zip-tie 绑扎路径与 25-3 出线方向未实机验证；μ=0.30 贴带仍为 ASSUMED。", status: "TBD"}
+# ---------------------------------------------------------------------------
+# 2026-10-13 DEC-0048（R50）：T06 发射部分驱动化 + 支撑结构。
+# 触发：用户指令「给飞轮加上马达，给拨杆加上舵机（两者已经确定型号，注意查找），
+#       同时给整个发射部分加上支撑结构。……尽可能使用简洁快速方案」。
+# 本轮在 R37 运动件与 R49 闸门之上补齐三条链，R37/R47/R49 的生成器与产物一律不覆盖：
+#   1) 飞轮驱动 x2：马达 5203-2402-0003 + 夹具 1401-0043-0036 + 联轴器 4007-4008-4008
+#   2) 拨杆驱动 x1：舵机 2000-0025-0004（25-4 Super Speed）+ 支架 1802-0043-0001
+#                   + 联轴器 4001-0025-4008（25T -> 8 mm REX）
+#   3) 支撑框架：双侧 6 mm 打印面板（三轴心 R34 凸台 + 44 mm 连杆轮廓 + 三条腿）
+#                 + 3 根横梁（底部横梁带 4 个底盘安装孔）
+# 生成器：cad/paddle_launcher_shooter_drive_r50.py（只读复用 R37 staging / R49 闸门 / 采购件 STEP）
+# 视图：cad/paddle_launcher_shooter_drive_r50_view.py -> cad/output/_r50_drive/r50_shooter_drive_view.png
+t06_shooter_drive_r50:
+  note: "发射部分驱动化：两台飞轮马达直驱 + 拨杆 25-4 舵机直驱 + 双侧板/三横梁支撑框架。"
+  version: {value: "T06-SHOOTER-DRIVE-R50", status: "KNOWN", source: "docs/decision_log.md DEC-0048"}
+  flywheel_motor: {value: {sku: "5203-2402-0003", count: 2, output: "8 mm REX 轴，轴端 y = -88.0", body_bbox_mm: {x: [-30.12, 7.38], y: [-219.17, -88.0], z: [266.51, 304.01]}, n_solids: 66, note: "上飞轮与下飞轮各一台，均在 -Y 侧直驱、无外置齿轮"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json；SKU 沿用 C06B-COTS-0.1 / DEC-0021"}
+  motor_clamp: {value: {sku: "1401-0043-0036", count: 2, y_mm: [-120.0, -112.0], volume_mm3: 5017.8}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  motor_coupler: {value: {sku: "4007-4008-4008", count: 2, y_mm: [-96.5, -75.5], centre_y_mm: -86.0, volume_mm3: 4319.9, note: "跨在飞轮轴 -84 端与马达轴 -88 尖端之间；旧中心 -87.0 已 superseded"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  paddle_servo: {value: {sku: "2000-0025-0004", series: "goBILDA 2000 Series Dual Mode Servo (25-4, Super Speed)", count: 1, control_mode: "双模式：出厂为位置模式（300 度行程 + 5 kOhm 电位器反馈），可用 3102 系列编程器切连续旋转", stall_torque_Nm: 0.530, speed_rpm: 290, spline: "25T", body_bbox_mm: {x: [12.34, 66.64], y: [101.5, 145.6], z: [101.31, 121.46]}, n_solids: 11}, status: "KNOWN", source: "config/parameters.yaml index_drive_servo（DEC-0026 用户选型）；goBILDA 官方产品页 2026-10-13 联网核对"}
+  servo_frame: {value: {sku: "1802-0043-0001", count: 1, y_mm: [96.0, 102.0], volume_mm3: 5932.3, note: "官方件含 9 实体，工作模型只用最大实体"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  servo_coupler: {value: {sku: "4001-0025-4008", kind: "25T 花键 -> 8 mm REX", count: 1, y_mm: [88.0, 105.0], centre_y_mm: 96.5, volume_mm3: 1861.3, orientation: "相对到货姿态原地翻转 180 度：REX 孔 88.0..96.0 套住拨杆轴 +96 端，25T 花键孔 102.1..105.0 咬住 101.5 起的舵机花键，与舵机壳面留 0.6"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json；官方 STEP 局部孔位实测"}
+  bearing: {value: {sku: "1611-0514-4008", count: 6, y_mm: {-1: -68.0, 1: 82.0}, note: "由 4 增至 6：R50 框架把拨杆轴也改成轴承座"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  axle_centres_xz_mm: {value: {upper: [-11.368, 285.259], lower: [115.975, 185.769], paddle: [29.49, 111.46]}, status: "MEASURED", source: "从最终 R37 实体量取（飞轮取 bbox 中心、拨杆取 F.PADDLE_CX/CZ），非手输"}
+  y_stack_mm: {value: {motor_body: [-219.17, -112.0], motor_clamp: [-120.0, -112.0], motor_bridge: [-112.0, -68.0], motor_coupler: [-96.5, -75.5], plate_neg: [-71.0, -65.0], flywheel_shaft: [-84.0, 84.0], paddle_shaft: [-96.0, 96.0], paddle_bridge_r37: [73.0, 79.0], plate_pos: [79.0, 85.0], servo_coupler: [88.0, 105.0], servo_frame: [96.0, 102.0], servo_case: [101.5, 145.6]}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json 与生成器常量逐项对照"}
+  support_frame: {value: {plates: 2, plate_thickness_mm: 6.0, plate_y_mm: {"-1": [-71.0, -65.0], "+1": [79.0, 85.0]}, plate_volume_mm3: 189479.7, boss_r_mm: 34.0, bar_width_mm: 44.0, axle_bore_dia_mm: 14.1, plate_bbox_mm: {x: [-45.37, 149.97], z: [-18.0, 332.0]}, note: "面板画成凸台 + 连杆 + 腿的轮廓而不是整板：所有轮廓都落在 |y| >= 65 的空区，只有三个轴孔是实孔"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  support_rails: {value: {count: 3, rail_1: {x: [38.0, 92.0], z: [314.0, 332.0], volume_mm3: 151632.0}, rail_2: {x: [96.0, 132.0], z: [104.0, 128.0], volume_mm3: 134784.0}, rail_3: {x: [40.0, 92.0], z: [-18.0, -5.0], volume_mm3: 104591.8, note: "底盘接口横梁，带 4 个 O4.6 安装孔"}, rail_y_mm: [-71.0, 85.0]}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  foot_holes_mm: {value: [[52.0, -50.0], [80.0, -50.0], [52.0, 50.0], [80.0, 50.0]], status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  printed_volume: {value: {frame_total_mm3: 815311.2, breakdown_mm3: {plates: 378959.4, rails: 391007.8, motor_bridges: 36608.0, servo_bridges: 8736.0}, est_mass_g_at_1_27: 1035.4}, status: "CALCULATED", source: "cad/output/_r50_drive/parts_pollen.json 体积求和；PETG 1.27 g/cm3 为 ASSUMED"}
+  interference_check: {value: {method: "布尔求交（cq.Workplane 组包后 intersect）", clashes_new_vs_old_nonzero: 7, all_nonzero_explained_as_radial_fits: true, detail_mm3: {motor_coupler_x_shaft: 25.308, flywheel_bearing_x_shaft: [5.883, 6.725], servo_coupler_x_paddle_shaft: 21.739}, drive_stack_zero_pairs: ["servo_frame x servo_coupler", "servo_coupler x servo_bridge_-28/+28", "servo_coupler x shooter_frame_neg/pos"], servo_coupler_x_servo_mm3: 3.182, note: "舵机联轴器 x 舵机 3.182 为 25T 花键齿顶轻咬，判为可接受"}, status: "MEASURED", source: "cad/output/_r50_drive/parts_pollen.json"}
+  open_question: {value: "①拨杆舵机工作模式：25-4 与 R49 的 25-3 同为双模式，本轮按位置模式（300 度、能保持拨杆位）记录，实机是否切连续旋转待裁定；②调隙机构（2000-0025-0002 + 曲柄/拉杆/滑座，DEC-0037）不在本装配内，+Y 工位现归拨杆舵机，整机上调隙链落位需另行确认；③打印件 815.3 cm3 ≈ 1035 g PETG 偏重，是否挖空横梁/面板待裁定；④TBD：未实机、未做结构强度与振动分析。", status: "TBD"}

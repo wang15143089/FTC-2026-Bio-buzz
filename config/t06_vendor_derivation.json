@@ -82,6 +82,13 @@
       "datum_radius_mm": 10.0,
       "note": "Facts MEASURED_FROM_OFFICIAL_CAD: same case and spline geometry as 2000-0025-0002 (continuous-rotation firmware variant); output spline r=10.0 at (x=-10.0, y=0.0)."
     },
+    "2000-0025-0004": {
+      "source_axis": [0, 0, 1],
+      "datum": "axis_mid",
+      "lateral_datum": "axis",
+      "datum_radius_mm": 10.0,
+      "note": "Facts MEASURED_FROM_OFFICIAL_CAD: goBILDA 25-4 Super Speed, the servo the user fixed in DEC-0026 / DEC-0043 for the paddle indexer (config/parameters.yaml index_drive_servo). Downloaded 2026-10-13 from the manifest source_url_pattern; same case and 25T spline as 2000-0025-0002/0003 (11 solids, bbox 54.3 x 20.15 x 44.1), output spline r=10.0 at (x=-10.0, y=0.0) in the supplier frame, so the same pinned radius keeps it coaxial with its 25T coupler."
+    },
     "2106-4008-1680": {
       "source_axis": [0, 1, 0],
       "datum": "axis_mid",

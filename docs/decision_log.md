@@ -923,3 +923,33 @@ Date/version:
 - 状态: `pass`（几何 / 干涉 / 出膛）；`not_run`（实机、zip-tie 绑扎、25-3 出线）。
 - 未验证项: 未实机；挡舌 40.0 拦球裕度只由仿真支撑；`μ = 0.30` 为 `ASSUMED`。
 - Date/version: 2026-10-12 / 产物 `cad/output/_r49_gate/`、`simulation/mujoco/out/_r49_reg.log`
+
+## DEC-0048 — T06 发射部分驱动化 + 支撑结构（R50）
+
+- Decision （KNOWN）: 在 R37 运动件与 R49 闸门之上补齐发射部分的驱动链与承载框架，**R37/R47/R49 的生成器与产物一律只读复用、不覆盖**：(1) 飞轮驱动 x2 = goBILDA `5203-2402-0003` 马达 + `1401-0043-0036` 夹具 + `4007-4008-4008` 联轴器，上下飞轮各自直驱，两台马达统一在 -Y 侧；(2) 拨杆驱动 x1 = goBILDA `2000-0025-0004`（25-4 Super Speed）+ `1802-0043-0001` 支架 + `4001-0025-4008`（25T -> 8 mm REX）联轴器，置于 +Y 侧；(3) 支撑框架 = 双侧 6 mm 打印面板（三个轴心 R34 凸台 + 44 mm 连杆轮廓 + 三条腿）+ 3 根横梁（底部横梁带 4 个 O4.6 底盘安装孔）。生成器 `cad/paddle_launcher_shooter_drive_r50.py`，视图 `cad/paddle_launcher_shooter_drive_r50_view.py`。
+- Reason: (1) 用户指令「给飞轮加上马达，给拨杆加上舵机（两者已经确定型号，注意查找），同时给整个发射部分加上支撑结构」；(2) 型号不是新选型而是**沿用已固定口径** —— 飞轮马达链来自 C06B-COTS-0.1 / DEC-0021，拨杆舵机来自 DEC-0026 的 `index_drive_servo`（`config/parameters.yaml` 第 284 行）；(3) 面板画成凸台/连杆轮廓而不是整块板：所有轮廓都落在 |y| >= 65、机体（外罩与导轨 |y| <= 57、拨杆转子 |y| <= 48）之外的空白区，只有三根轴穿过面板，因此面板不需要任何让位孔；(4) 拨杆轴在 -Y/+Y 两侧都改用 `1611-0514-4008` 轴承座（轴承 4 -> 6），使拨杆轴由框架承担径向载荷而不是只靠送料桥。
+- Alternatives considered: ①用外置齿轮同步两飞轮 —— 否决：C06B-COTS-0.1 已明确保留两根独立直驱轴、外置齿轮数为 0；②把拨杆舵机放在 -Y 侧与马达同侧 —— 否决：-Y 侧 y -219..-68 已被两台马达 + 夹具 + 联轴器 + 马达桥占满，无可用工位；③支撑框架做成单侧板 —— 否决：单侧悬臂使飞轮轴与拨杆轴都成悬臂梁，且 DEC-0037 口径下飞轮座要承受径向交变载荷；④面板做成整块矩形板再开让位孔 —— 否决：与机体（外罩 / 导轨 / 闸门支架）干涉面太多，挖孔量远大于直接用轮廓；⑤横梁挖空 / 桁架 —— 本轮未做，见 Risks。
+- Evidence （MEASURED / CALCULATED）: `cad/output/_r50_drive/parts_pollen.json`（51 件，`build_s = 2428.2`）：面板 2 x 189479.7 mm³、横梁 151632.0 / 134784.0 / 104591.8 mm³、马达桥 4 x 9152.0、伺服桥 2 x 4368.0 mm³ ⇒ 打印件合计 815311.2 mm³（≈ 1035 g @ PETG 1.27 g/cm³，密度为 ASSUMED）。轴向堆叠实测与生成器常量逐项一致：马达体 -219.17..-112.00、夹具 -120..-112、马达桥 -112..-68、联轴器 -96.5..-75.5、面板 -71..-65 / 79..85、飞轮轴 -84..84、拨杆轴 -96..96、舵机联轴器 88.0..105.0、舵机支架 96..102、舵机体 101.5..145.6。轴心从最终实体量取：上 (-11.368, 285.259)、下 (115.975, 185.769)、拨杆 (29.490, 111.460)。干涉复检（布尔求交）7 处非零，**全部是轴 / 轴承 / 联轴器的正常径向配合**（联轴器 x 飞轮轴 25.308 x2、轴承 x 轴 5.883 / 6.725 x4、舵机联轴器 x 拨杆轴 21.739）；`servo_frame x servo_coupler`、`servo_coupler x servo_bridge_-28/+28`、`servo_coupler x shooter_frame_neg/pos` **全部 0 mm³**；`servo_coupler x servo = 3.182 mm³` 为 25T 花键齿顶轻咬，判为可接受。
+- 修掉的隐患（MEASURED）: 舵机联轴器原本用 `Shape.mirror("XZ")` 定姿态 —— 那是绕**世界** XZ 平面镜像，把件搬到 y -105.0..-88.0（马达侧），**与舵机完全不接**（旧姿态实测 `servo_coupler x servo = 0`、`servo_coupler x paddle_shaft = 119.232 mm³`，纯属错误穿模）。改为「平移到原点 -> 绕自身 X 直径翻转 180 度 -> 平移回位」后，联轴器落在 y 88.0..105.0，径向剖面实测：y 88.0..96.0 为 REX 通孔（r >= 4.0，套住止于 96.0 的拨杆轴端）、y 96.5..100.0 为 R5.0 本体、y 100.5..101.5 为 25T 花键孔、y 102.0..105.0 为花键孔径全开。注意 `Shape.rotate` 的两个向量是「点 + 方向」而不是「起点 + 终点」，把放置中心当起点会让件绕近似 Y 轴自旋 —— 因此翻转必须在原点做。
+- Risks: ①打印件 815.3 cm³ ≈ 1035 g PETG，**偏重**，横梁（391.0 cm³）与面板（379.0 cm³）都还有挖空余量，本轮未做；②结构强度与振动完全未验（无计算、无实机）；③舵机联轴器与舵机壳面只留 0.6 mm，实机装配公差与舵机支架厚度偏差可能吃掉；④-Y 侧马达外伸到 y = -219.17，整机底盘落位时该侧突出量需与底盘 / 立柱复核；⑤桌面副本不受 Git 管理。
+- Next step: 用户先看三视图与 STEP 是否接受；接受后再决定是否挖空横梁 / 面板减重、以及 25-4 是否切连续旋转（影响拨杆能否按 DEC-0037 的两档刚性定位工作）。
+- 未验证（TBD）: 未实机；未做强度 / 振动 / 热分析；拨杆舵机控制律（位置 vs 连续旋转）与 DEC-0037 调隙链的整机落位未裁定。
+- Date/version: 2026-10-13 / `T06-SHOOTER-DRIVE-R50` / 脚本 `cad/paddle_launcher_shooter_drive_r50.py`、视图 `cad/paddle_launcher_shooter_drive_r50_view.py`；证据 `cad/output/_r50_drive/parts_pollen.json`、`r50_shooter_drive_view.png`、`config/parameters.yaml → t06_shooter_drive_r50`、`references/vendor/gobilda/t06/manifest.json`
+
+## V-0048 — 验证记录（非决策）：R50 发射部分驱动链与支撑框架
+
+- 目的 （KNOWN）: 确认新增的两台飞轮马达、拨杆舵机与支撑框架**几何上接得上、彼此不干涉**，且不改变已验收的 R37 运动件与 R49 闸门口径。测试标准：(1) 驱动链接合面对得上；(2) 舵机联轴器同时咬住拨杆轴端与舵机花键；(3) 新增件对既有件无非预期干涉；(4) 轴心与轴向堆叠口径与既有验收记录一致。
+- 方法 （MEASURED）:
+  - 几何：`cad/paddle_launcher_shooter_drive_r50.py` 生成后 `dump()` 逐件量 `n_solids` / 体积 / 包围盒，落 `parts_pollen.json`（51 件）。
+  - 姿态：对舵机联轴器做径向剖面探测（逐 y 切片求最大半径），确认通孔 / 花键孔 / 本体的轴向分布。
+  - 干涉：布尔求交（`cq.Workplane.newObject` 组包后 `intersect`），分两组 —— 新增件 x 既有件（R37 / R49），以及驱动链内部相邻对（9 对）。
+  - 量具纪律: 沿用 V-0039 / V-0046 / V-0047，不以 TUI 目视为判据；轴心从最终实体量取，不手输。
+- 结果 （MEASURED）:
+  - 飞轮链接合：`motor_coupler x flywheel_shaft = 25.308 mm³ x2`（圆轴 vs REX 剖面建模差）、`flywheel_bearing x shaft = 5.883 / 6.725 mm³ x4` —— 均为径向配合 ⇒ `pass`。
+  - 舵机链接合：`servo_coupler x servo = 3.182 mm³`（花键齿顶）、`servo_coupler x paddle_shaft = 21.739 mm³`、`servo_frame x servo_coupler = 0`、`servo_coupler x servo_bridge_-28/+28 = 0`、`servo_coupler x shooter_frame_neg/pos = 0` ⇒ `pass`。
+  - 偏差记录与修正：旧姿态（`Shape.mirror("XZ")`）下 `servo_coupler x servo = 0`、`servo_coupler x paddle_shaft = 119.232 mm³` ⇒ 说明**此前生成的 JSON / STEP 里舵机联轴器在错误位置**；本轮已重刷 JSON 与桌面 + 仓库 STEP ⇒ `pass`（修正后）。
+  - 结构强度 / 质量 / 实机装配 ⇒ `not_run`。
+- 状态: `pass`（几何 / 姿态 / 干涉）；`not_run`（实机、强度、振动、减重）。
+- 未验证项: 打印件 815311.2 mm³ 的实机质量与刚度；舵机联轴器 0.6 mm 壳面间隙的装配裕度；整机底盘落位。
+- 交付件回读 （MEASURED）: 用 `cad/_r50_readback.py`（`cq.Assembly.load`）回读**桌面交付件** `T06_shooter_drive_R50_pollen.step`：加载 407.6 s、**51 个 children**（与生成器 `parts_pollen.json` 的 51 件同名同数）；逐件比对体积与包围盒，**0 处漂移**（阈值 体积 2 % / 包围盒 0.5 mm）；总体积 回读 2077828.0 mm³ vs 生成器 2077829.4 mm³，相对偏差 **6.5e-07** ⇒ 导出没有丢件或改形，落盘文件 = 被测模型。报告 `cad/output/_r50_drive/delivery_readback.json`。全程 686.8 s。`pass`
+- Date/version: 2026-10-13 / 产物 `cad/output/_r50_drive/`（`parts_pollen.json`、`r50_shooter_drive_view.png`、`delivery_readback.json`、`T06_shooter_drive_R50_pollen.step`）

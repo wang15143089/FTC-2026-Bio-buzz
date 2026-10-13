@@ -94,3 +94,11 @@ cad/output/_r49_gate/*.step
 cad/output/_r49_gate/*.stl
 cad/output/_r49_gate/*.glb
 cad/output/_r49_gate/tris_ctx_*.pkl
+
+# R50 shooter-drive delivery exports (DEC-0048): same local-only rule.  The STEP
+# copy is ~363 MB and fully regenerable with cad/paddle_launcher_shooter_drive_r50.py;
+# the *_view.png / parts_*.json stay tracked.
+cad/output/_r50_drive/*.step
+cad/output/_r50_drive/*.stl
+cad/output/_r50_drive/*.glb
+cad/output/_r50_drive/*.pkl

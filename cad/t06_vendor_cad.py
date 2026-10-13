@@ -55,7 +55,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 MOTOR_SKU = "5203-2402-0003"
 SONIC_HUB_SKU = "1309-0016-4008"
-SERVO_SKUS = ("2000-0025-0002", "2000-0025-0003")
+SERVO_SKUS = ("2000-0025-0002", "2000-0025-0003", "2000-0025-0004")
 
 
 @lru_cache(maxsize=None)
