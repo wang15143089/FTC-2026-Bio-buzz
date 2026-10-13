@@ -484,6 +484,14 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 未关闭（TBD）：86 只有仿真 + 反解支撑，**无实物**；μ = 0.60 与球质量仍为 `ASSUMED`；86 距死点 0.80 mm 的装配公差未核算；NECTAR 热态夹口 87.6 mm 为按 86 基准的**计算外推**（未实测）。zip-tie 弹性夹口方案（`r38_v3/v4/v6/v7`）已回滚并归档到 `simulation/mujoco/_work/_superseded_r38_tie/`。
 - 证据（KNOWN）：`config/parameters.yaml`（`t06_gap_recalc_r38` 块 + `flywheel_nip` 86 / `flywheel_half_spacing` 91）、`docs/decision_log.md`（DEC-0037 / V-0038）、`simulation/mujoco/out/_r38_v8n86.json`、`out/_r38_gap_recalc.json`、`out/_r38_log_v8n86.txt`；分析脚本 `simulation/mujoco/_work/_recalc_nip86/`。
 
+## T06 R47 台架可视化：一条命令看全流程（2026-10-12）
+
+- 用户反馈（KNOWN）：直接打开 R47 XML 时「拨杆完全没动」。根因（KNOWN）：MJCF 只描述几何与驱动器，飞轮 ctrl、拨杆停位/扫掠、闸门 mocap 都是外部控制逻辑，通用查看器无法体现。
+- 改动（KNOWN）：`simulation/mujoco/run_R47_xml.py` 新增 `--view` / `--slow`（`mujoco.viewer.launch_passive` + 实时配速），并按 1 s 输出一行遥测（拨杆角、双轮 rpm、闸门 z、出膛数）。**未改任何驱动口径、几何或判定标准**。
+- 验证（SIMULATED）：`--view --sec 22` 实测遥测 —— 双轮 ±1619 rpm 对向；拨杆停位 188° 后扫掠 188→548→907→1268°；闸门 47.5→116.3→139.5→71.8→47.5→139.5 mm；**t = 12 s 时 4/4 出膛**。混装 `--pair --view` 换档路径亦无报错。
+- 交付说明（KNOWN）：`simulation/mujoco/HOW_TO_VIEW_R47.md`（哪个软件打开哪个文件 + 鼠标操作）。
+- 未关闭（TBD）：本机无官方 `simulate.exe`，方案 C 仅备用；`--view` 只是同一台架的口径可视化，不代表实物。
+
 ## NEXT ACTION
 
 ### 0.1（当前主任务，2026-10-12 起）送球机构优化迭代循环

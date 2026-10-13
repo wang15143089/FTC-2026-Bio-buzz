@@ -12,10 +12,18 @@ XML 只描述模型；挡舌（mocap）与"待机停位"（真实舵机位置保
   python run_R47_xml.py                                   # 默认 out/R47_launcher_4xPOLLEN_gap064.xml
   python run_R47_xml.py out/R47_launcher_4xNECTAR_gap082.xml --ph 3
   python run_R47_xml.py --pair                            # 混装模型对（gap064 <-> gap082 自动换档）
+
+  # 3) 开窗口边跑边看（推荐；鼠标可转视角）
+  python run_R47_xml.py --view
+  python run_R47_xml.py out/R47_launcher_4xPOLLEN_gap064.xml --view
+  python run_R47_xml.py --pair --view --slow 2.0
+窗口操作：左键拖=旋转，右键拖=平移，滚轮=缩放，空格=暂停/继续，Esc=关闭。
 """
-import sys, os, math, argparse, importlib.util
+import sys, os, math, time, argparse, importlib.util
 
 import mujoco
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ap = argparse.ArgumentParser()
 ap.add_argument("xml", nargs="?", default="")
@@ -24,6 +32,8 @@ ap.add_argument("--ph", type=int, default=0, help="起始相位 keyframe 索引 
 ap.add_argument("--sec", type=float, default=40.0, help="仿真总时长上限 s")
 ap.add_argument("--fw-rpm", type=float, default=1620.0)
 ap.add_argument("--park", type=float, default=188.0)
+ap.add_argument("--view", action="store_true", help="开 MuJoCo 交互窗口边跑边看")
+ap.add_argument("--slow", type=float, default=1.0, help="慢放倍数（1.0=实时，2.0=两倍慢）")
 a = ap.parse_args()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -62,6 +72,8 @@ class Rig(object):
         self.mc = int(m.body_mocapid[gb]) if gb >= 0 else -1
         self.fw = [gid(mujoco.mjtObj.mjOBJ_ACTUATOR, "fw_upper_vel"),
                    gid(mujoco.mjtObj.mjOBJ_ACTUATOR, "fw_lower_vel")]
+        self.wj = [gid(mujoco.mjtObj.mjOBJ_JOINT, "fw_upper"),
+                   gid(mujoco.mjtObj.mjOBJ_JOINT, "fw_lower")]
         self.balls, self.need = [], []
         for k in range(1, 9):
             b = gid(mujoco.mjtObj.mjOBJ_BODY, "ball_%d" % k)
@@ -102,6 +114,32 @@ rig = PAIR[64] if PAIR else Rig(SINGLE)
 cur_nip = rig.need[0]
 rig.reset(a.ph)
 PH0 = [0.0, 30.0, 60.0, 90.0, 120.0, 150.0][min(a.ph, 5)]
+
+VIEW, SLOW, VW, T0 = bool(a.view), max(0.05, float(a.slow)), None, 0.0
+TPRINT = 0.0
+if VIEW:
+    import mujoco.viewer
+    T0 = time.time()
+
+
+def open_view(r):
+    """开（或换）一个交互窗口，并把机位定到一眼能看到全部机构的侧视。"""
+    global VW
+    if VW is not None:
+        try:
+            VW.close()
+        except Exception:
+            pass
+    VW = mujoco.viewer.launch_passive(r.m, r.d)
+    VW.cam.azimuth = 90.0
+    VW.cam.elevation = -8.0
+    VW.cam.distance = 0.60
+    VW.cam.lookat[:] = (0.140, 0.0, 0.120)
+    return VW
+
+
+if VIEW:
+    open_view(rig)
 nb = len(rig.balls)
 dt = rig.m.opt.timestep
 kt = max(1, int(round(0.002 / dt)))
@@ -172,6 +210,21 @@ for i in range(int(a.sec / dt)):
         er = math.remainder(math.radians(a.park) - float(d.qpos[rig.jid]), 2.0 * math.pi)
         d.ctrl[rig.aid] = max(-100.0, min(100.0, PKP * er))
     mujoco.mj_step(m, d)
+    if VIEW and t >= TPRINT:
+        TPRINT = t + 1.0
+        _pd = math.degrees(float(d.qpos[int(m.jnt_qposadr[rig.jid])]))
+        _rp = [float(d.qvel[int(m.jnt_dofadr[j])]) * 60.0 / (2.0 * math.pi) for j in rig.wj]
+        _gz = float(d.mocap_pos[rig.mc][2]) * 1000.0 if rig.mc >= 0 else float("nan")
+        _no = sum(1 for k in range(nb) if exits[k] is not None)
+        print("  t=%6.2fs  paddle=%7.1fdeg  fw=%+7.0f/%+7.0f rpm  gate=%6.1fmm  out=%d/%d"
+              % (t, _pd, _rp[0], _rp[1], _gz, _no, nb), flush=True)
+    if VIEW:
+        if not VW.is_running():
+            break
+        VW.sync()
+        lag = t / SLOW - (time.time() - T0)
+        if lag > 0.0:
+            time.sleep(min(0.05, lag))
     if i % kt:
         continue
     for k, bid in enumerate(rig.balls):
@@ -198,6 +251,8 @@ for i in range(int(a.sec / dt)):
         if nxt is not None and nxt != cur_nip and pend_t is not None and t - pend_t >= SW_DELAY:
             rig.xfer(PAIR[nxt])
             rig, cur_nip, nswitch = PAIR[nxt], nxt, nswitch + 1
+            if VIEW:
+                open_view(rig)
             print("  [换档] t=%6.2f s  轮间夹口 -> %d mm（%s，状态已搬运）" % (t, nxt, rig.name))
     if all((exits[k] is not None) or (spilled[k] is not None) for k in range(nb)):
         if t_done is None:
@@ -220,3 +275,8 @@ ts = [exits[k][0] for k in range(nb) if exits[k]]
 print("真出膛 %d/%d" % (nok, nb))
 if ts:
     print("全清 %.2f s（含静置 %.0f s）；从静置结束算每颗平均 %.2f s" % (max(ts), SETTLE, (max(ts) - SETTLE) / max(nok, 1)))
+if VIEW:
+    print("窗口保持打开，看完按 Esc 或关窗口结束。")
+    while VW.is_running():
+        VW.sync()
+        time.sleep(0.02)
