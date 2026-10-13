@@ -454,3 +454,26 @@ t06_motion_baseline_r48:
   delivery_files: {value: {"pollen": {"path": "C:/Users/admin/OneDrive/Desktop/T06_motion_pollen.step", "parts": 18, "solids": 25, "sha256": "57EBA5232206765E940E800DB2E45F5D7F637532668681540E8B2A0073C0EAA9"}, "nectar": {"path": "C:/Users/admin/OneDrive/Desktop/T06_motion_nectar.step", "parts": 18, "solids": 25, "sha256": "2342C3D3FB0E657B71E0552E9DFC67C0B66143396586DAFF5A51DC5374E1C181"}}, status: "MEASURED", source: "V-0046；桌面副本即 Fusion 装配输入"}
   delivery_readback: {value: {"solids": 25, "total_volume_mm3": 948918.082, "bbox_z_max_mm": {"POLLEN": 333.259, "NECTAR": 338.8}, "tape_markers": {"liner_tape_arc_mm3": 10222.5, "liner_tape_tray_mm3": 8396.3, "note": "贴带位置标注件，非打印件、非裁带下料件"}}, status: "MEASURED", source: "V-0046；930299.1 + 18618.8"}
   open_question: {value: "F1 托板右端 CAD 215 vs 仿真 460；F2 竖向全宽挡舌（DEC-0043）CAD 中无此零件；F3 贴带区 135-258 度 + 托板顶面（DEC-0044）未落 CAD（R39 下料带仍为 142-275 度）；F4 R40-R47 无参数条目。R47 的 6/6 全清、24/24 真出膛依赖挡舌，是否按 R47 口径重做 CAD 待用户裁定。", status: "TBD"}
+
+# ---------------------------------------------------------------------------
+# 2026-10-12 DEC-0047（R49）：T06 闸门驱动（竖向挡舌 + 曲柄滑块 + 25-3 位置舵机）。
+# 触发：用户指令「用 25-3，把突出的深蓝部分剪掉，让其与绿色底部平齐，同步改动并完善 CAD 图」。
+# 本轮相对 DEC-0043（R45 主动索引闸）的三处改动：
+#   1) 舵机  2000-0025-0002 (25-2) -> 2000-0025-0003 (25-3 Speed；默认位置模式，能保持闸门位)
+#   2) 行程  92 mm（中心 47.5 -> 139.5）-> 72 mm（中心 67.5 -> 139.5；挡舌下端 40.0）
+#   3) 支架横梁由 x 165..205 / y 34..72 收到 x 176..204 / y 34..62，与绿腿外面齐平
+# 生成器：cad/paddle_launcher_gate_drive_r49.py（只读复用 R37 staging / R39 内衬 / 采购件 STEP，不覆盖原文件）
+t06_gate_drive_r49:
+  note: "闸门驱动：竖向挡舌 5 x 108 x 55 + 曲柄滑块 + goBILDA 25-3 位置舵机；支架横梁与绿腿齐平。"
+  version: {value: "T06-GATE-DRIVE-R49", status: "KNOWN", source: "docs/decision_log.md DEC-0047"}
+  servo: {value: {sku: "2000-0025-0003", series: "goBILDA 2000 Series Dual Mode Servo (25-3, Speed)", control_mode: "位置模式（出厂默认，能保持闸门位）", stall_torque_Nm: 1.059, speed: "0.07 s/60 deg（约 145 rpm，7.4 V）", voltage_V: 7.4, interface_note: "外壳与花键和 2000-0025-0002 完全相同 => 支架 / 曲柄 / 连杆接口不变，只改 SKU"}, status: "KNOWN", source: "goBILDA 2000-0025-0003 官方规格（2026-10-12 联网核实）；用户选型指令"}
+  superseded_servo: {value: "2000-0025-0002（25-2 STD Speed/Torque，DEC-0043 口径）", status: "SUPERSEDED", source: "用户 2026-10-12 指令「用 25-3」"}
+  crank_slider: {value: {"crank_centre_mm": [190.0, 0.0, 240.0], "crank_radius_mm": 38.35, "rod_length_mm": 90.0, "dx_mm": 10.0, "sweep_deg": [20.0, 160.0], "dead_point_clearance_deg": 20.0, "pin_clearance_mm": 20.0, "closed_blade_centre_z_mm": 67.482, "open_blade_centre_z_mm": 139.557, "stroke_mm": 72.074, "closed_pin_z_mm": 116.982, "open_pin_z_mm": 189.057}, status: "CALCULATED", source: "z_pin = CRANK_CZ + CRANK_R sin(phi)；blade_centre = z_pin - GATE_H/2 - PIN_DZ；cad/paddle_launcher_gate_drive_r49.py、cad/output/_r49_gate/parts_pollen.json"}
+  stroke_change: {value: {"old_mm": 92.0, "old_z_mm": [47.5, 139.5], "new_mm": 72.074, "new_z_mm": [67.482, 139.557], "blade_lower_edge_mm": {"old": 20.0, "new": 40.0}, "basis": "pollen 待机球心 z 约 55.1、球顶 90.7；挡舌下端 40.0 比球心低 15 mm 仍能拦住，打开后闸口净空 21 mm", "trigger": "用户指令「挡板不一定要有那么大的行程，最下端低于 pollen 中心即可」"}, status: "CALCULATED", source: "DEC-0047；DEC-0043 口径已 superseded"}
+  gate_blade: {value: {"size_mm": [5.0, 108.0, 55.0], "x_mm": [177.5, 182.5], "y_mm": [-54.0, 54.0], "centre_x_mm": 180.0, "chisel_h_mm": 12.0, "chisel_flat_mm": 1.5, "volume_mm3": 27432.0, "note": "下端双面 12 mm 倒角（抗卡楔），CHISEL_FLAT 1.5 mm 平顶"}, status: "MEASURED", source: "cad/output/_r49_gate/parts_pollen.json"}
+  gate_frame: {value: {"volume_mm3": 44704.0, "volume_before_trim_mm3": 56352.0, "rail_x_mm": [176.0, 204.0], "rail_y_mm": [34.0, 62.0], "rail_z_mm": [190.0, 198.0], "leg_x_mm": [176.0, 204.0], "post_x_mm": [165.0, 205.0], "post_bbox_mm": [175.0, 34.0, 13.29, 204.0, 62.0, 198.0], "note": "横梁（侧梁）原来左伸到 x=165、外伸到 y=72，比绿腿外面凸出；本轮收到与绿腿外面齐平（x 176..204 / y 34..62）"}, status: "MEASURED", source: "用户 2026-10-12 截图圈选 + 指令「剪掉突出的深蓝部分，与绿色底部齐平」"}
+  y_layers_mm: {value: {"servo": [-22.05, 17.95], "crank_plate": [17.95, 22.95], "hub_boss_r15": [17.95, 26.0], "rod": [22.95, 26.95], "rail": [34.0, 62.0]}, status: "CALCULATED", source: "cad/paddle_launcher_gate_drive_r49.py 常量"}
+  interference_check: {value: {"method": "布尔求交（cq.Workplane 组包后 intersect）", "pairs": ["frame x bracket", "frame x blade", "frame x rod"], "poses": 2, "combinations": 56, "result": "全部 0 mm^3"}, status: "MEASURED", source: "DEC-0047；脚本 _r48_hit.py（只读）"}
+  servo_margin: {value: {"pin_tangential_force_N_at_stall": 27.6, "gate_resistance_N": "<1", "margin": ">20x", "full_stroke_time_s": 0.16}, status: "CALCULATED", source: "T = F r => F = 1.059 / 0.03835；140 deg 行程按 0.07 s/60 deg"}
+  acceptance: {value: {"harness": "simulation/mujoco/run_R47_xml.py（R47 台架 MJCF）", "gates_mm": [67.5, 139.5], "ramp_s": 0.15, "model": "R47_launcher_4xPOLLEN_gap064.xml", "phases_deg": [0, 30, 60, 90, 120, 150], "result_file": "simulation/mujoco/out/_r49_reg.log"}, status: "SIMULATED", source: "V-0047"}
+  open_question: {value: "新行程的 6 相位 x 4 颗回归见 V-0047；支架横梁收边后 zip-tie 绑扎路径与 25-3 出线方向未实机验证；μ=0.30 贴带仍为 ASSUMED。", status: "TBD"}

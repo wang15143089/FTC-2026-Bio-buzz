@@ -1,0 +1,24 @@
+{
+  "panels": [
+    {
+      "pose": "A  关闭位（挡球）  crank 20°",
+      "blade_centre_mm": 67.482,
+      "blade_bottom_mm": 39.982,
+      "yoke_pin_mm": 116.982,
+      "crank_pin_mm": [
+        203.116,
+        203.963
+      ]
+    },
+    {
+      "pose": "B  打开位（放行）  crank 160°",
+      "blade_centre_mm": 139.557,
+      "blade_bottom_mm": 112.057,
+      "yoke_pin_mm": 189.057,
+      "crank_pin_mm": [
+        203.116,
+        276.037
+      ]
+    }
+  ]
+}

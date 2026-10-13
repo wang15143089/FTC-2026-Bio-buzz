@@ -86,3 +86,11 @@ cad/output/_r37_stage/*.glb
 cad/output/_motion_check/*.step
 cad/output/_motion_check/*.stl
 cad/output/_motion_check/*.glb
+
+# R49 gate-drive delivery exports (DEC-0047): same local-only rule.  The STEP
+# copy is ~187 MB and fully regenerable with cad/paddle_launcher_gate_drive_r49.py;
+# the *_view.png / parts_*.json stay tracked.
+cad/output/_r49_gate/*.step
+cad/output/_r49_gate/*.stl
+cad/output/_r49_gate/*.glb
+cad/output/_r49_gate/tris_ctx_*.pkl

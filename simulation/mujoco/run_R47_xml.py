@@ -4,7 +4,9 @@
 XML 只描述模型；挡舌（mocap）与"待机停位"（真实舵机位置保持）是控制逻辑，须外部驱动。
 本脚本按 R47 验收口径驱动：
   飞轮 1620 rpm 对向旋转 -> 静置 6 s -> 每颗球: 停 1 s -> 290 rpm 扫 248 deg -> 回位 360 deg/颗
-  挡舌: 拨杆停稳后 0.10 s 抬到 z=139.5 mm，被送那颗球尾缘越过闸口面即落回 z=47.5 mm（最长抬 3 s）
+  挡舌: 拨杆停稳后 0.10 s 抬到 z=139.5 mm（下端 112.0），被送那颗球尾缘越过闸口面即落回
+        z=72.5 mm（下端 45.0，低于 POLLEN 球心 55.1 mm 约 10 mm）（最长抬 3 s）
+        行程 67 mm（--gate-dn / --gate-up 可改；92 mm 旧口径见 R47/DEC-0043）
   停位: 舵机速度伺服保持 188 deg（真实舵机不自由下垂）
   混装模型对: 每颗球按球径选轮间夹口（POLLEN 64 mm / NECTAR 82 mm），换档时搬运完整状态
 
@@ -35,6 +37,10 @@ ap.add_argument("--fw-rpm", type=float, default=1620.0)
 ap.add_argument("--park", type=float, default=188.0)
 ap.add_argument("--view", action="store_true", help="开 MuJoCo 交互窗口边跑边看")
 ap.add_argument("--slow", type=float, default=1.0, help="慢放倍数（1.0=实时，2.0=两倍慢）")
+ap.add_argument("--gate-ramp", type=float, default=0.15, help="挡舌全行程用时 s（真实舵机速度）")
+ap.add_argument("--gate-dn", type=float, default=67.5, help="挡舌关闭位中心 z mm（下端 = z-27.5；67.5 -> 40.0）")
+ap.add_argument("--gate-up", type=float, default=139.5, help="挡舌开启位中心 z mm（下端 z-27.5）")
+ap.add_argument("--gatelog", default="", help="把挡舌行程 + 挡舌接触载荷写成 CSV")
 a = ap.parse_args()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -69,9 +75,46 @@ spec.loader.exec_module(pv2)
 
 MM = 0.001
 RPM, SWEEP, HOLD, SETTLE, XLIM, SW_DELAY = 290.0, 248.0, 1.0, 6.0, 40.0, 0.25
-GX, GT, GMARG, GDELAY, GMAXOPEN, GRAMP = 180.0, 5.0, 3.0, 0.10, 3.00, 0.15
-GZ_DN, GZ_UP, PKP = 47.5, 139.5, 40.0
+GX, GT, GMARG, GDELAY, GMAXOPEN = 180.0, 5.0, 3.0, 0.10, 3.00
+GRAMP = max(0.01, float(a.gate_ramp))
+GZ_DN, GZ_UP, PKP = float(a.gate_dn), float(a.gate_up), 40.0
 W = RPM * 2.0 * math.pi / 60.0
+
+
+def gate_load(m, d, ggeom):
+    """挡舌受到的接触合力（世界系：Fx 沿球道，Fz 沿行程）；用于给闸门驱动选型。
+
+    MuJoCo 约定 ``mj_contactForce`` 给出的是 geom1 作用在 geom2 上的力，故
+    geom1=挡舌时取负号。``frame`` 是行主序 3x3 接触系，v_world = R @ v_local。
+
+    只把「球」的载荷算作设计载荷；与托板/外罩等静态件的接触单独统计 —— 仿真里
+    托板是整块平板（真实件要在 x=180 开槽让挡舌穿过），那部分接触是建模假象。
+    """
+    import numpy as _np
+    fx = fz = fnorm = 0.0
+    fxo = fzo = fno = 0.0
+    res = _np.zeros(6)
+    for ci in range(d.ncon):
+        c = d.contact[ci]
+        if c.geom1 != ggeom and c.geom2 != ggeom:
+            continue
+        other = c.geom2 if c.geom1 == ggeom else c.geom1
+        oname = mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, int(other)) or ""
+        mujoco.mj_contactForce(m, d, ci, res)
+        R = c.frame
+        wx = R[0] * res[0] + R[1] * res[1] + R[2] * res[2]
+        wz = R[6] * res[0] + R[7] * res[1] + R[8] * res[2]
+        s = 1.0 if c.geom2 == ggeom else -1.0
+        mag = math.sqrt(wx * wx + wz * wz)
+        if oname.startswith("ball_geom"):
+            fx += s * wx
+            fz += s * wz
+            fnorm += mag
+        else:
+            fxo += s * wx
+            fzo += s * wz
+            fno += mag
+    return fx, fz, fnorm, fxo, fzo, fno
 
 
 class Rig(object):
@@ -88,6 +131,7 @@ class Rig(object):
         self.jid = gid(mujoco.mjtObj.mjOBJ_JOINT, "paddle_joint")
         gb = gid(mujoco.mjtObj.mjOBJ_BODY, "gate_leaf")
         self.mc = int(m.body_mocapid[gb]) if gb >= 0 else -1
+        self.gg = gid(mujoco.mjtObj.mjOBJ_GEOM, "gate_blade")
         self.fw = [gid(mujoco.mjtObj.mjOBJ_ACTUATOR, "fw_upper_vel"),
                    gid(mujoco.mjtObj.mjOBJ_ACTUATOR, "fw_lower_vel")]
         self.wj = [gid(mujoco.mjtObj.mjOBJ_JOINT, "fw_upper"),
@@ -132,6 +176,11 @@ rig = PAIR[64] if PAIR else Rig(SINGLE)
 cur_nip = rig.need[0]
 rig.reset(a.ph)
 PH0 = [0.0, 30.0, 60.0, 90.0, 120.0, 150.0][min(a.ph, 5)]
+print("### 挡舌口径(实跑): x=%.1f 厚%.0f 宽%.0f 高%.0f  中心 %.1f -> %.1f mm"
+      "  下端 %.1f -> %.1f mm  行程 %.0f mm"
+      "  全行程用时 %.2f s = %.0f mm/s  (--gate-ramp)  闸门逻辑: 停稳+%.2f s 抬起"
+      % (GX, GT, 108.0, 55.0, GZ_DN, GZ_UP, GZ_DN - 27.5, GZ_UP - 27.5, GZ_UP - GZ_DN, GRAMP,
+         (GZ_UP - GZ_DN) / GRAMP, GDELAY), flush=True)
 
 VIEW, SLOW, VW, T0 = bool(a.view), max(0.05, float(a.slow)), None, 0.0
 TPRINT = 0.0
@@ -168,6 +217,7 @@ phase, t_ph, kk, J0 = "settle", 0.0, 0, None
 sweep_end = reindex_end = 0.0
 cmd, g, t_park, started = 0.0, 0.0, None, False
 pend, pend_t, nswitch, t_done = cur_nip, None, 0, None
+glog, glast, glup = [], [0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0]
 
 for i in range(int(a.sec / dt)):
     t = i * dt
@@ -245,6 +295,28 @@ for i in range(int(a.sec / dt)):
             time.sleep(min(0.05, lag))
     if i % kt:
         continue
+    if a.gatelog:
+        _fx, _fz, _fn, _ox, _oz, _on = gate_load(m, d, rig.gg)
+        _gz = float(d.mocap_pos[rig.mc][2]) * 1000.0 if rig.mc >= 0 else float("nan")
+        glog.append((round(t, 3), round(cmd, 4), round(g, 4), round(_gz, 2),
+                     round(_fx, 4), round(_fz, 4), round(_fn, 4), round(_on, 4)))
+        if abs(_fz) > glast[0]:
+            glast[0], glast[1] = abs(_fz), t
+        if abs(_fx) > glast[2]:
+            glast[2], glast[3] = abs(_fx), t
+        if 1e-6 < g < 1.0 - 1e-6:
+            if abs(_fz) > glup[0]:
+                glup[0], glup[1] = abs(_fz), t
+            if abs(_fx) > glup[2]:
+                glup[2], glup[3] = abs(_fx), t
+        if _on > 1.0:
+            print("  [挡舌撞静态件] t=%.3f s 合 %.1f N（建模假象，真实件此处开槽）" % (t, _on), flush=True)
+        elif _fn > 20.0:
+            _bs = "  ".join("b%d x=%6.1f z=%5.1f" % (k + 1, d.xpos[b][0] * 1000.0,
+                                                    d.xpos[b][2] * 1000.0)
+                            for k, b in enumerate(rig.balls))
+            print("  [挡舌受载] t=%.3f s 舌面 z=%6.1f mm  Fx=%8.1f N  Fz=%8.1f N | %s"
+                  % (t, _gz, _fx, _fz, _bs), flush=True)
     for k, bid in enumerate(rig.balls):
         p = d.xpos[bid] * 1000.0
         v = math.sqrt(float((d.cvel[bid][3:6] ** 2).sum()))
@@ -293,6 +365,17 @@ ts = [exits[k][0] for k in range(nb) if exits[k]]
 print("真出膛 %d/%d" % (nok, nb))
 if ts:
     print("全清 %.2f s（含静置 %.0f s）；从静置结束算每颗平均 %.2f s" % (max(ts), SETTLE, (max(ts) - SETTLE) / max(nok, 1)))
+if a.gatelog:
+    with open(a.gatelog, "w", encoding="utf-8", newline="") as f:
+        f.write("t_s,cmd,g_frac,gate_z_mm,Fx_ball_N,Fz_ball_N,Fabs_ball_N,Fabs_static_N\n")
+        for row in glog:
+            f.write("%.3f,%.4f,%.4f,%.2f,%.4f,%.4f,%.4f,%.4f\n" % row)
+    print("挡舌载荷（接触合力，作用在挡舌上；Fz<0 = 球把挡舌往下拖，抬升要克服）")
+    print("  全程峰 |Fz| = %.2f N @ t=%.2f s ；峰 |Fx| = %.2f N @ t=%.2f s"
+          % (glast[0], glast[1], glast[2], glast[3]))
+    print("  行程段峰 |Fz| = %.2f N @ t=%.2f s ；峰 |Fx| = %.2f N @ t=%.2f s"
+          % (glup[0], glup[1], glup[2], glup[3]))
+    print("  CSV -> %s（%d 行，采样 2 ms）" % (a.gatelog, len(glog)))
 if VIEW:
     print("窗口保持打开，看完按 Esc 或关窗口结束。")
     while VW.is_running():
