@@ -1,0 +1,44 @@
+{
+ "pollen": {
+  "n_candidates": 15,
+  "overlap_mm3": {
+   "bearing_carriage_lower_-1": 0.0,
+   "bearing_carriage_upper_-1": 0.0,
+   "bearing_insert_lower_-1_1611-0514-4008": 0.0,
+   "bearing_insert_upper_-1_1611-0514-4008": 0.0,
+   "carriage_guide_lower_-1_+26.5": 0.0,
+   "carriage_guide_lower_-1_-26.5": 0.0,
+   "carriage_guide_upper_-1_+26.5": 0.0,
+   "carriage_guide_upper_-1_-26.5": 0.0,
+   "flywheel_shaft_lower_2106-4008-1680": 0.0,
+   "flywheel_shaft_upper_2106-4008-1680": 0.0,
+   "motor_bridge_lower_+17": 0.0,
+   "motor_bridge_lower_-17": 0.0,
+   "motor_bridge_upper_+17": 0.0,
+   "motor_bridge_upper_-17": 0.0,
+   "paddle_shaft_2106-4008-1920": 0.0
+  },
+  "nonzero": {}
+ },
+ "nectar": {
+  "n_candidates": 15,
+  "overlap_mm3": {
+   "bearing_carriage_lower_-1": 0.0,
+   "bearing_carriage_upper_-1": 0.0,
+   "bearing_insert_lower_-1_1611-0514-4008": 0.0,
+   "bearing_insert_upper_-1_1611-0514-4008": 0.0,
+   "carriage_guide_lower_-1_+26.5": 0.0,
+   "carriage_guide_lower_-1_-26.5": 0.0,
+   "carriage_guide_upper_-1_+26.5": 0.0,
+   "carriage_guide_upper_-1_-26.5": 0.0,
+   "flywheel_shaft_lower_2106-4008-1680": 0.0,
+   "flywheel_shaft_upper_2106-4008-1680": 0.0,
+   "motor_bridge_lower_+17": 0.0,
+   "motor_bridge_lower_-17": 0.0,
+   "motor_bridge_upper_+17": 0.0,
+   "motor_bridge_upper_-17": 0.0,
+   "paddle_shaft_2106-4008-1920": 0.0
+  },
+  "nonzero": {}
+ }
+}

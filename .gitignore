@@ -102,3 +102,22 @@ cad/output/_r50_drive/*.step
 cad/output/_r50_drive/*.stl
 cad/output/_r50_drive/*.glb
 cad/output/_r50_drive/*.pkl
+
+# R51 shooter base swap (DEC-0049): 2026-10-01 whole-robot baseline readback +
+# sliding-window drive exports.  STEP copies are ~414 MB and fully regenerable with
+# cad/paddle_launcher_shooter_drive_r51.py; manifest.json / report_r51.json /
+# plate_booleans_r51.json / *.png stay tracked.
+cad/output/_r51_base/tris/
+cad/output/_r51_base/*.step
+cad/output/_r51_drive/*.step
+cad/output/_r51_drive/*.stl
+cad/output/_r51_drive/*.glb
+cad/output/_r51_drive/*.pkl
+
+# R52 shooter assembly (DEC-0050): R37 feeder + R49 gate on the R51 base.
+# STEP copies are ~445 MB and fully regenerable with cad/paddle_launcher_shooter_drive_r52.py;
+# readback_r52.json / report_r52_*.json / *.png stay tracked.
+cad/output/_r52_drive/*.step
+cad/output/_r52_drive/*.stl
+cad/output/_r52_drive/*.glb
+cad/output/_r52_drive/*.pkl

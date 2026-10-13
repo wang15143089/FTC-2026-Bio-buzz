@@ -211,3 +211,26 @@ y −105 … −88（马达侧）、与舵机完全不接。改为「平移到�
 - 4.2 节的 F1（托板 460）与 F3（贴带区 135°→258°）未关闭；F2 已由 R49 的
   `T06_gate_drive_R49_pollen.step` 关闭，但尚未并入 R37 基线装配。
 - 舵机联轴器与舵机壳面只留 0.6 mm 装配裕度。
+## 8. R51 追加：发射部分换基线 + 滑窗开口（2026-10-13，DEC-0049 / V-0049）
+
+> **血统提醒（重要）**：第 2 节与第 7 节的**轴向堆叠 / 支撑框架**属于 **R50 血统**（`paddle_launcher_shooter_drive_r50.py` 自造的 `shooter_frame_neg/pos` + `shooter_rail_1/2/3`）。R50 已被判 **SUPERSEDED** —— 那个框架把上下两根飞轮轴刚性连成一体、夹口锁死（用户判据：「两个飞轮不能连在一起，这样没法调间隙」）。**当前有效血统是本节与第 9 节的 R51 / R52**。R50 的第 7 节内容作为驱动链型号与轴向堆叠的历史证据保留，**不再代表当前 CAD**。
+
+- 基线（KNOWN）: `cad/output/paddle_launcher_feasible_pollen.step`（2026-10-01 22:36，414.3 MB，98 件）= 「只保留运动部分」之前最新一版全整机，即 `paddle_launcher_motion_only.py --profile motion_free` 的父装配。回读证据 `cad/output/_r51_base/manifest.json`。
+- 与 R37/R49 的继承关系（KNOWN）: R51 = 该基线上「拨杆舵机换 25-4」+「侧板开口换 59x56 滑窗」两处改动；R37 送球件与 R49 闸门在此底座上**原样保留 / 换装**（见第 9 节）。
+- 侧板滑窗（MEASURED）: 窗 `59.0 x 56.0 mm`，n 跨 `56.5..112.5`，板厚 4 mm（y ±70），导轨侧隙 0.5 mm；老 `8.4 x 9` 轴槽作废。
+- 夹口行程（CALCULATED）: 半间距 80.0..91.2 ⇒ 夹口 **64.0..86.4 mm**；pollen 滑座 n 跨 61.0..99.0、nectar 72.0..110.0，两者都在窗内；导轨 n 跨 58.5..110.5 也在窗内。
+- 调隙链（CALCULATED）: `2000-0025-0002` -> 12 mm 曲柄 -> 65 mm 拉杆 -> 十字头 -> 两根 110 mm 连杆 -> 滑座耳片；`crosshead_u_mm` pollen -57.498 / nectar -43.798，曲柄角 96.682° / 19.331°。
+- 轴隔离（MEASURED，核心）: `rigid_link_between_axles = []`；bbox 候选只有侧板 `shooter_side_plate_-1`，布尔对上下滑座 0.0 / 0.0 mm³；两滑座互不接触、两根飞轮轴互不接触；侧板专项 15 组布尔在两档下全 0 mm³（`cad/output/_r51_drive/plate_booleans_r51.json`）。
+- 交付（KNOWN）: `cad/output/_r51_drive/T06_shooter_assembly_R51_{pollen,nectar}.step`（98 件 / 434.4 MB）；视图 `r51_shooter_view_*.png`、`r51_drive_support_sheet_pollen.png`、`paddle_lineage_compare.png`；桌面同名副本。
+
+## 9. R52 追加：R37 送球件 + R49 闸门换装到 R51 底座（2026-10-13，DEC-0050 / V-0050）
+
+- 组成（KNOWN）: R51 底座（滑窗侧板 + 滑座 + 导轨 + 底盘纵梁 + 调隙链）+ R37 送球件 6 件（`feeder_shell_tray`、`paddle_rotor`、`paddle_flex_tip_1/2`、`paddle_shaft_2106-4008-1920`、`paddle_shaft_support_bridge`，**世界坐标不动**）+ R49 闸门 9 件 + 拨杆驱动（`2000-0025-0004` + `1802-0043-0001` + `4001-0025-4008`）+ 新增支撑（`servo_bridge_±26`、`feeder_mount_±1`、两侧板 `O14.1` 拨杆轴承座）。共 **90 件**。
+- 侧板（MEASURED）: R51 滑窗板 + 拨杆轴轴承座 `O14.1`（局部 xz `[-111.801, -58.398]`，孔 r 7.05）。
+- 关键几何（MEASURED）: 拨杆轴 `[29.49, 111.46]`、上轴 `[-10.737, 284.767]`、下轴 `[115.345, 186.261]`、轴距 160.0、叶尖 r 59.908；夹口 pollen 64.0 / nectar 86.0；叶尖到下轮面 pollen 5.961 / nectar 8.55 mm，到上轮面 70.006 mm；拨杆轴到上 / 下轴 177.914 / 113.869 mm。
+- 轴向（Y，MEASURED）: 拨杆舵机壳面 y 101.5；拨杆轴承 y -70.0 / +76.0；送球件坐标与 R37 验收口径一致（`r37_frozen_coordinates = true`）。
+- 支撑（MEASURED）: `feeder_mount_±1` x -80..168、y 53.5..63、z 16..30（0.5 mm 咬合托板壁、搁在底盘纵梁顶面）；`servo_bridge_±26` 与 `gap_servo_frame` 仅 1.372 mm³ 接触。
+- 闸门让位（MEASURED）: `gate_frame` 对 R37 `feeder_shell_tray` 让位 **530.017 mm³**（只切闸门侧）。
+- 干涉与一致性（MEASURED）: R37/R49 vs R51 底座 **0**、闸门 vs 送球 **0**、新增件 vs 其余 5 处**全为正常配合**（见 DEC-0050）；回读各 **282 solids**、体积偏差 -0.0001 %、包围盒 6 面偏差 0.00 mm。
+- 交付（KNOWN）: `cad/output/_r52_drive/T06_shooter_assembly_R52_{pollen,nectar}.step`（90 件 / 444.6、444.7 MB）+ 装配图 `r52_assembly_sheet_*.png`；桌面 `T06_R52_装配图_*.png`、`T06_shooter_assembly_R52_*.step`。
+- 未验证（TBD）: 滑座锁紧 / 微调件、`feeder_mount` 连接强度、拨杆舵机工作模式、打印件质量、实机；R52 生成器的轴隔离检查跳过了侧板（证据见第 8 节与 `cad/_r52_axle_isolation_step.py`）。

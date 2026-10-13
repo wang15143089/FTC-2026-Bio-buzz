@@ -1,0 +1,1379 @@
+{
+  "source": "C:\\Users\\admin\\OneDrive\\文档\\ChatGPT\\FTC 2026 biobuzz\\cad\\output\\paddle_launcher_feasible_pollen.step",
+  "tolerance_mm": 1.2,
+  "n_parts": 98,
+  "parts": [
+    {
+      "part": "base_rail_-72",
+      "key": "000_base_rail_-72",
+      "volume_mm3": 93898.7,
+      "n_tri": 3916,
+      "bbox_mm": [
+        -170.0,
+        -81.0,
+        2.0,
+        210.0,
+        -63.0,
+        16.0
+      ]
+    },
+    {
+      "part": "base_rail_+72",
+      "key": "001_base_rail__72",
+      "volume_mm3": 93898.7,
+      "n_tri": 3916,
+      "bbox_mm": [
+        -170.0,
+        63.0,
+        2.0,
+        210.0,
+        81.0,
+        16.0
+      ]
+    },
+    {
+      "part": "guide_floor_1",
+      "key": "002_guide_floor_1",
+      "volume_mm3": 23940.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -150.0,
+        -57.0,
+        14.5,
+        -80.0,
+        57.0,
+        17.5
+      ]
+    },
+    {
+      "part": "guide_roof_1",
+      "key": "003_guide_roof_1",
+      "volume_mm3": 23525.0,
+      "n_tri": 24,
+      "bbox_mm": [
+        -150.0,
+        -57.0,
+        124.5,
+        -80.0,
+        57.0,
+        127.5
+      ]
+    },
+    {
+      "part": "guide_wall_1_-1",
+      "key": "004_guide_wall_1_-1",
+      "volume_mm3": 23100.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -150.0,
+        -57.0,
+        16.0,
+        -80.0,
+        -54.0,
+        126.0
+      ]
+    },
+    {
+      "part": "guide_wall_1_+1",
+      "key": "005_guide_wall_1__1",
+      "volume_mm3": 23100.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -150.0,
+        54.0,
+        16.0,
+        -80.0,
+        57.0,
+        126.0
+      ]
+    },
+    {
+      "part": "guide_floor_2",
+      "key": "006_guide_floor_2",
+      "volume_mm3": 1196.5,
+      "n_tri": 20,
+      "bbox_mm": [
+        -80.66,
+        -57.0,
+        14.65,
+        -75.21,
+        57.0,
+        18.42
+      ]
+    },
+    {
+      "part": "guide_roof_2",
+      "key": "007_guide_roof_2",
+      "volume_mm3": 18810.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -128.88,
+        -57.0,
+        113.52,
+        -78.13,
+        57.0,
+        140.33
+      ]
+    },
+    {
+      "part": "guide_wall_2_-1",
+      "key": "008_guide_wall_2_-1",
+      "volume_mm3": 17904.3,
+      "n_tri": 276,
+      "bbox_mm": [
+        -128.22,
+        -57.0,
+        16.0,
+        -30.57,
+        -54.0,
+        138.98
+      ]
+    },
+    {
+      "part": "guide_wall_2_+1",
+      "key": "009_guide_wall_2__1",
+      "volume_mm3": 17904.3,
+      "n_tri": 276,
+      "bbox_mm": [
+        -128.22,
+        54.0,
+        16.0,
+        -30.57,
+        57.0,
+        138.98
+      ]
+    },
+    {
+      "part": "guide_floor_3",
+      "key": "010_guide_floor_3",
+      "volume_mm3": 233.9,
+      "n_tri": 16,
+      "bbox_mm": [
+        11.67,
+        -57.0,
+        93.07,
+        13.71,
+        57.0,
+        95.94
+      ]
+    },
+    {
+      "part": "guide_roof_3",
+      "key": "011_guide_roof_3",
+      "volume_mm3": 23940.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -118.43,
+        -57.0,
+        106.91,
+        -72.97,
+        57.0,
+        163.92
+      ]
+    },
+    {
+      "part": "guide_wall_3_-1",
+      "key": "012_guide_wall_3_-1",
+      "volume_mm3": 22638.2,
+      "n_tri": 520,
+      "bbox_mm": [
+        -117.25,
+        -57.0,
+        40.11,
+        12.53,
+        -54.0,
+        162.99
+      ]
+    },
+    {
+      "part": "guide_wall_3_+1",
+      "key": "013_guide_wall_3__1",
+      "volume_mm3": 22638.2,
+      "n_tri": 520,
+      "bbox_mm": [
+        -117.25,
+        54.0,
+        40.11,
+        12.53,
+        57.0,
+        162.99
+      ]
+    },
+    {
+      "part": "paddle_support_cheek_-1",
+      "key": "014_paddle_support_cheek_-1",
+      "volume_mm3": 92291.0,
+      "n_tri": 2588,
+      "bbox_mm": [
+        -109.0,
+        -65.01,
+        1.0,
+        15.0,
+        -58.99,
+        155.0
+      ]
+    },
+    {
+      "part": "paddle_support_cheek_+1",
+      "key": "015_paddle_support_cheek__1",
+      "volume_mm3": 92291.0,
+      "n_tri": 2588,
+      "bbox_mm": [
+        -109.0,
+        58.99,
+        1.0,
+        15.0,
+        65.01,
+        155.0
+      ]
+    },
+    {
+      "part": "paddle_shaft_2106-4008-1920",
+      "key": "016_paddle_shaft_2106-4008-1920",
+      "volume_mm3": 7886.7,
+      "n_tri": 23374,
+      "bbox_mm": [
+        -52.93,
+        -96.11,
+        66.85,
+        -40.85,
+        96.11,
+        79.15
+      ]
+    },
+    {
+      "part": "paddle_hub",
+      "key": "017_paddle_hub",
+      "volume_mm3": 32812.2,
+      "n_tri": 1008,
+      "bbox_mm": [
+        -65.0,
+        -17.01,
+        54.99,
+        -29.0,
+        17.01,
+        91.01
+      ]
+    },
+    {
+      "part": "paddle_arm_1",
+      "key": "018_paddle_arm_1",
+      "volume_mm3": 5760.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -35.23,
+        -9.0,
+        54.03,
+        -1.71,
+        9.0,
+        73.43
+      ]
+    },
+    {
+      "part": "paddle_hinge_1",
+      "key": "019_paddle_hinge_1",
+      "volume_mm3": 6468.5,
+      "n_tri": 944,
+      "bbox_mm": [
+        -8.25,
+        -50.0,
+        82.21,
+        1.75,
+        50.0,
+        92.22
+      ]
+    },
+    {
+      "part": "paddle_blade_1",
+      "key": "020_paddle_blade_1",
+      "volume_mm3": 34560.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -7.89,
+        -48.0,
+        40.81,
+        12.8,
+        48.0,
+        73.05
+      ]
+    },
+    {
+      "part": "paddle_flex_tip_1",
+      "key": "021_paddle_flex_tip_1",
+      "volume_mm3": 13056.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        1.01,
+        -48.0,
+        38.29,
+        15.32,
+        48.0,
+        71.86
+      ]
+    },
+    {
+      "part": "paddle_arm_2",
+      "key": "022_paddle_arm_2",
+      "volume_mm3": 5760.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -84.53,
+        -9.0,
+        38.5,
+        -54.06,
+        9.0,
+        67.35
+      ]
+    },
+    {
+      "part": "paddle_hinge_2",
+      "key": "023_paddle_hinge_2",
+      "volume_mm3": 6468.5,
+      "n_tri": 944,
+      "bbox_mm": [
+        -86.18,
+        -50.0,
+        98.78,
+        -76.18,
+        50.0,
+        108.78
+      ]
+    },
+    {
+      "part": "paddle_blade_2",
+      "key": "024_paddle_blade_2",
+      "volume_mm3": 34560.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -100.14,
+        -48.0,
+        23.04,
+        -71.15,
+        48.0,
+        53.37
+      ]
+    },
+    {
+      "part": "paddle_flex_tip_2",
+      "key": "025_paddle_flex_tip_2",
+      "volume_mm3": 13056.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -102.96,
+        -48.0,
+        20.22,
+        -77.24,
+        48.0,
+        48.16
+      ]
+    },
+    {
+      "part": "paddle_arm_3",
+      "key": "026_paddle_arm_3",
+      "volume_mm3": 5760.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -61.45,
+        -9.0,
+        85.65,
+        -45.02,
+        9.0,
+        119.03
+      ]
+    },
+    {
+      "part": "paddle_hinge_3",
+      "key": "027_paddle_hinge_3",
+      "volume_mm3": 6468.5,
+      "n_tri": 944,
+      "bbox_mm": [
+        -61.56,
+        -50.0,
+        23.0,
+        -51.56,
+        50.0,
+        33.01
+      ]
+    },
+    {
+      "part": "paddle_blade_3",
+      "key": "028_paddle_blade_3",
+      "volume_mm3": 34560.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -73.73,
+        -48.0,
+        114.88,
+        -41.89,
+        48.0,
+        132.85
+      ]
+    },
+    {
+      "part": "paddle_flex_tip_3",
+      "key": "029_paddle_flex_tip_3",
+      "volume_mm3": 13056.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -76.1,
+        -48.0,
+        124.24,
+        -42.01,
+        48.0,
+        135.22
+      ]
+    },
+    {
+      "part": "paddle_cr_servo_2000-0025-0003",
+      "key": "030_paddle_cr_servo_2000-0025-0003",
+      "volume_mm3": 31109.1,
+      "n_tri": 93116,
+      "bbox_mm": [
+        -64.16,
+        101.48,
+        62.85,
+        -9.84,
+        145.61,
+        83.02
+      ]
+    },
+    {
+      "part": "paddle_shaft_support_bridge",
+      "key": "031_paddle_shaft_support_bridge",
+      "volume_mm3": 19247.6,
+      "n_tri": 2392,
+      "bbox_mm": [
+        -76.0,
+        73.0,
+        43.0,
+        -18.0,
+        79.0,
+        103.0
+      ]
+    },
+    {
+      "part": "paddle_servo_frame_1802-0043-0001",
+      "key": "032_paddle_servo_frame_1802-0043-0001",
+      "volume_mm3": 5932.3,
+      "n_tri": 77684,
+      "bbox_mm": [
+        -78.38,
+        95.99,
+        51.49,
+        -15.62,
+        102.01,
+        94.51
+      ]
+    },
+    {
+      "part": "paddle_servo_coupler_4001-0025-4008",
+      "key": "033_paddle_servo_coupler_4001-0025-4008",
+      "volume_mm3": 1861.3,
+      "n_tri": 8038,
+      "bbox_mm": [
+        -56.66,
+        85.5,
+        66.12,
+        -40.12,
+        102.5,
+        79.89
+      ]
+    },
+    {
+      "part": "one_way_finger_-1",
+      "key": "034_one_way_finger_-1",
+      "volume_mm3": 2006.4,
+      "n_tri": 12,
+      "bbox_mm": [
+        -43.6,
+        -38.6,
+        36.59,
+        14.47,
+        -37.4,
+        93.63
+      ]
+    },
+    {
+      "part": "one_way_finger_+1",
+      "key": "035_one_way_finger__1",
+      "volume_mm3": 2006.4,
+      "n_tri": 12,
+      "bbox_mm": [
+        -43.6,
+        37.4,
+        36.59,
+        14.47,
+        38.6,
+        93.63
+      ]
+    },
+    {
+      "part": "shooter_side_plate_-1",
+      "key": "036_shooter_side_plate_-1",
+      "volume_mm3": 286477.7,
+      "n_tri": 3440,
+      "bbox_mm": [
+        -147.22,
+        -72.01,
+        33.58,
+        213.85,
+        -67.99,
+        401.02
+      ]
+    },
+    {
+      "part": "shooter_side_plate_+1",
+      "key": "037_shooter_side_plate__1",
+      "volume_mm3": 286477.7,
+      "n_tri": 3440,
+      "bbox_mm": [
+        -147.22,
+        67.99,
+        33.58,
+        213.85,
+        72.01,
+        401.02
+      ]
+    },
+    {
+      "part": "flywheel_shaft_upper_2106-4008-1680",
+      "key": "038_flywheel_shaft_upper_2106-4008-1680",
+      "volume_mm3": 6868.7,
+      "n_tri": 23374,
+      "bbox_mm": [
+        -16.89,
+        -84.11,
+        280.02,
+        -4.59,
+        84.11,
+        290.92
+      ]
+    },
+    {
+      "part": "gecko_flywheel_upper_1",
+      "key": "039_gecko_flywheel_upper_1",
+      "volume_mm3": 95767.3,
+      "n_tri": 261644,
+      "bbox_mm": [
+        -58.77,
+        -27.02,
+        236.73,
+        37.29,
+        -2.98,
+        332.8
+      ]
+    },
+    {
+      "part": "sonic_hub_upper_1",
+      "key": "040_sonic_hub_upper_1",
+      "volume_mm3": 4204.0,
+      "n_tri": 89478,
+      "bbox_mm": [
+        -26.74,
+        -27.01,
+        268.85,
+        5.26,
+        -17.0,
+        300.68
+      ]
+    },
+    {
+      "part": "gecko_flywheel_upper_2",
+      "key": "041_gecko_flywheel_upper_2",
+      "volume_mm3": 95767.3,
+      "n_tri": 261662,
+      "bbox_mm": [
+        -58.77,
+        2.98,
+        236.73,
+        37.29,
+        27.02,
+        332.8
+      ]
+    },
+    {
+      "part": "sonic_hub_upper_2",
+      "key": "042_sonic_hub_upper_2",
+      "volume_mm3": 4204.0,
+      "n_tri": 89478,
+      "bbox_mm": [
+        -26.74,
+        16.99,
+        268.85,
+        5.26,
+        27.0,
+        300.68
+      ]
+    },
+    {
+      "part": "bearing_carriage_upper_-1",
+      "key": "043_bearing_carriage_upper_-1",
+      "volume_mm3": 18710.7,
+      "n_tri": 1456,
+      "bbox_mm": [
+        -39.87,
+        -76.0,
+        254.95,
+        18.4,
+        -64.0,
+        314.59
+      ]
+    },
+    {
+      "part": "bearing_insert_upper_-1",
+      "key": "044_bearing_insert_upper_-1",
+      "volume_mm3": 524.0,
+      "n_tri": 16240,
+      "bbox_mm": [
+        -18.24,
+        -72.51,
+        277.26,
+        -3.23,
+        -67.49,
+        292.27
+      ]
+    },
+    {
+      "part": "carriage_guide_upper_-1_-26.5",
+      "key": "045_carriage_guide_upper_-1_-26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -52.63,
+        -75.0,
+        248.68,
+        -8.57,
+        -65.0,
+        284.63
+      ]
+    },
+    {
+      "part": "carriage_guide_upper_-1_+26.5",
+      "key": "046_carriage_guide_upper_-1__26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -20.0,
+        -75.0,
+        290.44,
+        24.06,
+        -65.0,
+        326.4
+      ]
+    },
+    {
+      "part": "bearing_carriage_upper_+1",
+      "key": "047_bearing_carriage_upper__1",
+      "volume_mm3": 18710.7,
+      "n_tri": 1456,
+      "bbox_mm": [
+        -39.87,
+        64.0,
+        254.95,
+        18.4,
+        76.0,
+        314.59
+      ]
+    },
+    {
+      "part": "bearing_insert_upper_+1",
+      "key": "048_bearing_insert_upper__1",
+      "volume_mm3": 524.0,
+      "n_tri": 16240,
+      "bbox_mm": [
+        -18.24,
+        67.49,
+        277.26,
+        -3.23,
+        72.51,
+        292.27
+      ]
+    },
+    {
+      "part": "carriage_guide_upper_+1_-26.5",
+      "key": "049_carriage_guide_upper__1_-26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -52.63,
+        65.0,
+        248.68,
+        -8.57,
+        75.0,
+        284.63
+      ]
+    },
+    {
+      "part": "carriage_guide_upper_+1_+26.5",
+      "key": "050_carriage_guide_upper__1__26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -20.0,
+        65.0,
+        290.44,
+        24.06,
+        75.0,
+        326.4
+      ]
+    },
+    {
+      "part": "motor_clamp_upper_1401-0043-0036",
+      "key": "051_motor_clamp_upper_1401-0043-0036",
+      "volume_mm3": 5017.8,
+      "n_tri": 56286,
+      "bbox_mm": [
+        -38.87,
+        -120.01,
+        256.2,
+        17.39,
+        -111.99,
+        313.33
+      ]
+    },
+    {
+      "part": "motor_bridge_upper_-17",
+      "key": "052_motor_bridge_upper_-17",
+      "volume_mm3": 8736.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -33.91,
+        -112.0,
+        260.22,
+        -8.5,
+        -70.0,
+        282.53
+      ]
+    },
+    {
+      "part": "motor_bridge_upper_+17",
+      "key": "053_motor_bridge_upper__17",
+      "volume_mm3": 8736.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -12.98,
+        -112.0,
+        287.01,
+        12.44,
+        -70.0,
+        309.32
+      ]
+    },
+    {
+      "part": "motor_upper_5203-2402-0003",
+      "key": "054_motor_upper_5203-2402-0003",
+      "volume_mm3": 50752.6,
+      "n_tri": 366370,
+      "bbox_mm": [
+        -29.49,
+        -219.18,
+        266.01,
+        8.01,
+        -87.99,
+        303.52
+      ]
+    },
+    {
+      "part": "motor_coupler_upper_4007-4008-4008",
+      "key": "055_motor_coupler_upper_4007-4008-4008",
+      "volume_mm3": 4319.8,
+      "n_tri": 27990,
+      "bbox_mm": [
+        -21.25,
+        -97.51,
+        274.26,
+        -0.23,
+        -76.49,
+        295.28
+      ]
+    },
+    {
+      "part": "flywheel_shaft_lower_2106-4008-1680",
+      "key": "056_flywheel_shaft_lower_2106-4008-1680",
+      "volume_mm3": 6868.7,
+      "n_tri": 23374,
+      "bbox_mm": [
+        109.19,
+        -84.11,
+        181.51,
+        121.5,
+        84.11,
+        192.41
+      ]
+    },
+    {
+      "part": "gecko_flywheel_lower_1",
+      "key": "057_gecko_flywheel_lower_1",
+      "volume_mm3": 95767.3,
+      "n_tri": 261654,
+      "bbox_mm": [
+        67.31,
+        -27.02,
+        138.23,
+        163.38,
+        -2.98,
+        234.29
+      ]
+    },
+    {
+      "part": "sonic_hub_lower_1",
+      "key": "058_sonic_hub_lower_1",
+      "volume_mm3": 4204.0,
+      "n_tri": 89478,
+      "bbox_mm": [
+        99.34,
+        -27.01,
+        170.35,
+        131.34,
+        -17.0,
+        202.18
+      ]
+    },
+    {
+      "part": "gecko_flywheel_lower_2",
+      "key": "059_gecko_flywheel_lower_2",
+      "volume_mm3": 95767.3,
+      "n_tri": 261666,
+      "bbox_mm": [
+        67.31,
+        2.98,
+        138.23,
+        163.38,
+        27.02,
+        234.29
+      ]
+    },
+    {
+      "part": "sonic_hub_lower_2",
+      "key": "060_sonic_hub_lower_2",
+      "volume_mm3": 4204.0,
+      "n_tri": 89478,
+      "bbox_mm": [
+        99.34,
+        16.99,
+        170.35,
+        131.34,
+        27.0,
+        202.18
+      ]
+    },
+    {
+      "part": "bearing_carriage_lower_-1",
+      "key": "061_bearing_carriage_lower_-1",
+      "volume_mm3": 18710.7,
+      "n_tri": 1456,
+      "bbox_mm": [
+        86.21,
+        -76.0,
+        156.44,
+        144.48,
+        -64.0,
+        216.08
+      ]
+    },
+    {
+      "part": "bearing_insert_lower_-1",
+      "key": "062_bearing_insert_lower_-1",
+      "volume_mm3": 524.0,
+      "n_tri": 16240,
+      "bbox_mm": [
+        107.84,
+        -72.51,
+        178.76,
+        122.85,
+        -67.49,
+        193.76
+      ]
+    },
+    {
+      "part": "carriage_guide_lower_-1_-26.5",
+      "key": "063_carriage_guide_lower_-1_-26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        80.55,
+        -75.0,
+        144.63,
+        124.6,
+        -65.0,
+        180.59
+      ]
+    },
+    {
+      "part": "carriage_guide_lower_-1_+26.5",
+      "key": "064_carriage_guide_lower_-1__26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        113.18,
+        -75.0,
+        186.4,
+        157.23,
+        -65.0,
+        222.35
+      ]
+    },
+    {
+      "part": "bearing_carriage_lower_+1",
+      "key": "065_bearing_carriage_lower__1",
+      "volume_mm3": 18710.7,
+      "n_tri": 1456,
+      "bbox_mm": [
+        86.21,
+        64.0,
+        156.44,
+        144.48,
+        76.0,
+        216.08
+      ]
+    },
+    {
+      "part": "bearing_insert_lower_+1",
+      "key": "066_bearing_insert_lower__1",
+      "volume_mm3": 524.0,
+      "n_tri": 16240,
+      "bbox_mm": [
+        107.84,
+        67.49,
+        178.76,
+        122.85,
+        72.51,
+        193.76
+      ]
+    },
+    {
+      "part": "carriage_guide_lower_+1_-26.5",
+      "key": "067_carriage_guide_lower__1_-26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        80.55,
+        65.0,
+        144.63,
+        124.6,
+        75.0,
+        180.59
+      ]
+    },
+    {
+      "part": "carriage_guide_lower_+1_+26.5",
+      "key": "068_carriage_guide_lower__1__26.5",
+      "volume_mm3": 2600.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        113.18,
+        65.0,
+        186.4,
+        157.23,
+        75.0,
+        222.35
+      ]
+    },
+    {
+      "part": "motor_clamp_lower_1401-0043-0036",
+      "key": "069_motor_clamp_lower_1401-0043-0036",
+      "volume_mm3": 5017.8,
+      "n_tri": 56286,
+      "bbox_mm": [
+        87.21,
+        -120.01,
+        157.7,
+        143.48,
+        -111.99,
+        214.82
+      ]
+    },
+    {
+      "part": "motor_bridge_lower_-17",
+      "key": "070_motor_bridge_lower_-17",
+      "volume_mm3": 8736.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        92.17,
+        -112.0,
+        161.71,
+        117.59,
+        -70.0,
+        184.02
+      ]
+    },
+    {
+      "part": "motor_bridge_lower_+17",
+      "key": "071_motor_bridge_lower__17",
+      "volume_mm3": 8736.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        113.1,
+        -112.0,
+        188.5,
+        138.52,
+        -70.0,
+        210.81
+      ]
+    },
+    {
+      "part": "motor_lower_5203-2402-0003",
+      "key": "072_motor_lower_5203-2402-0003",
+      "volume_mm3": 50752.6,
+      "n_tri": 366364,
+      "bbox_mm": [
+        96.59,
+        -219.18,
+        167.51,
+        134.1,
+        -87.99,
+        205.01
+      ]
+    },
+    {
+      "part": "motor_coupler_lower_4007-4008-4008",
+      "key": "073_motor_coupler_lower_4007-4008-4008",
+      "volume_mm3": 4319.8,
+      "n_tri": 27990,
+      "bbox_mm": [
+        104.83,
+        -97.51,
+        175.75,
+        125.85,
+        -76.49,
+        196.77
+      ]
+    },
+    {
+      "part": "carriage_link_spacer_upper",
+      "key": "074_carriage_link_spacer_upper",
+      "volume_mm3": 452.8,
+      "n_tri": 944,
+      "bbox_mm": [
+        -4.66,
+        86.0,
+        293.95,
+        5.35,
+        93.0,
+        303.95
+      ]
+    },
+    {
+      "part": "carriage_link_pin_upper",
+      "key": "075_carriage_link_pin_upper",
+      "volume_mm3": 226.2,
+      "n_tri": 416,
+      "bbox_mm": [
+        -1.66,
+        82.0,
+        296.95,
+        2.35,
+        100.0,
+        300.95
+      ]
+    },
+    {
+      "part": "main_spacing_link_upper",
+      "key": "076_main_spacing_link_upper",
+      "volume_mm3": 4787.3,
+      "n_tri": 2164,
+      "bbox_mm": [
+        -6.66,
+        92.8,
+        183.2,
+        23.9,
+        99.2,
+        305.95
+      ]
+    },
+    {
+      "part": "carriage_link_spacer_lower",
+      "key": "077_carriage_link_spacer_lower",
+      "volume_mm3": 970.3,
+      "n_tri": 944,
+      "bbox_mm": [
+        121.43,
+        86.0,
+        195.44,
+        131.43,
+        101.0,
+        205.45
+      ]
+    },
+    {
+      "part": "carriage_link_pin_lower",
+      "key": "078_carriage_link_pin_lower",
+      "volume_mm3": 326.7,
+      "n_tri": 416,
+      "bbox_mm": [
+        124.43,
+        82.0,
+        198.44,
+        128.43,
+        108.0,
+        202.45
+      ]
+    },
+    {
+      "part": "main_spacing_link_lower",
+      "key": "079_main_spacing_link_lower",
+      "volume_mm3": 4787.3,
+      "n_tri": 2164,
+      "bbox_mm": [
+        9.9,
+        100.8,
+        183.2,
+        133.43,
+        107.2,
+        207.45
+      ]
+    },
+    {
+      "part": "crosshead",
+      "key": "080_crosshead",
+      "volume_mm3": 8250.7,
+      "n_tri": 716,
+      "bbox_mm": [
+        -4.08,
+        88.0,
+        167.67,
+        25.57,
+        112.0,
+        196.98
+      ]
+    },
+    {
+      "part": "crosshead_through_pin",
+      "key": "081_crosshead_through_pin",
+      "volume_mm3": 716.3,
+      "n_tri": 416,
+      "bbox_mm": [
+        14.9,
+        86.0,
+        188.2,
+        18.9,
+        143.0,
+        192.21
+      ]
+    },
+    {
+      "part": "crosshead_guide_-15",
+      "key": "082_crosshead_guide_-15",
+      "volume_mm3": 2000.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        11.67,
+        77.0,
+        160.12,
+        40.24,
+        87.0,
+        194.72
+      ]
+    },
+    {
+      "part": "crosshead_guide_+15",
+      "key": "083_crosshead_guide__15",
+      "volume_mm3": 2000.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -11.97,
+        77.0,
+        178.59,
+        16.6,
+        87.0,
+        213.19
+      ]
+    },
+    {
+      "part": "crosshead_guide_stop_-82",
+      "key": "084_crosshead_guide_stop_-82",
+      "volume_mm3": 1350.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -10.36,
+        77.0,
+        160.62,
+        14.0,
+        87.0,
+        181.18
+      ]
+    },
+    {
+      "part": "crosshead_guide_stop_-42",
+      "key": "085_crosshead_guide_stop_-42",
+      "volume_mm3": 1350.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        14.27,
+        77.0,
+        192.14,
+        38.62,
+        87.0,
+        212.7
+      ]
+    },
+    {
+      "part": "gap_servo_frame_1802-0043-0001",
+      "key": "086_gap_servo_frame_1802-0043-0001",
+      "volume_mm3": 5932.3,
+      "n_tri": 77684,
+      "bbox_mm": [
+        -56.53,
+        85.99,
+        104.3,
+        11.07,
+        92.01,
+        174.65
+      ]
+    },
+    {
+      "part": "gap_servo_standoff_-143_-23",
+      "key": "087_gap_servo_standoff_-143_-23",
+      "volume_mm3": 480.7,
+      "n_tri": 500,
+      "bbox_mm": [
+        -20.61,
+        71.0,
+        105.67,
+        -14.61,
+        88.0,
+        111.67
+      ]
+    },
+    {
+      "part": "gap_servo_standoff_-143_+23",
+      "key": "088_gap_servo_standoff_-143__23",
+      "volume_mm3": 480.7,
+      "n_tri": 500,
+      "bbox_mm": [
+        -56.86,
+        71.0,
+        133.99,
+        -50.86,
+        88.0,
+        139.99
+      ]
+    },
+    {
+      "part": "gap_servo_standoff_-97_-23",
+      "key": "089_gap_servo_standoff_-97_-23",
+      "volume_mm3": 480.7,
+      "n_tri": 500,
+      "bbox_mm": [
+        7.71,
+        71.0,
+        141.92,
+        13.71,
+        88.0,
+        147.92
+      ]
+    },
+    {
+      "part": "gap_servo_standoff_-97_+23",
+      "key": "090_gap_servo_standoff_-97__23",
+      "volume_mm3": 480.7,
+      "n_tri": 500,
+      "bbox_mm": [
+        -28.54,
+        71.0,
+        170.24,
+        -22.54,
+        88.0,
+        176.24
+      ]
+    },
+    {
+      "part": "gap_servo_2000-0025-0002",
+      "key": "091_gap_servo_2000-0025-0002",
+      "volume_mm3": 31109.1,
+      "n_tri": 93130,
+      "bbox_mm": [
+        -39.31,
+        77.89,
+        121.98,
+        8.47,
+        122.02,
+        175.68
+      ]
+    },
+    {
+      "part": "servo_spline_hub_1908-0025-0032",
+      "key": "092_servo_spline_hub_1908-0025-0032",
+      "volume_mm3": 3024.3,
+      "n_tri": 27856,
+      "bbox_mm": [
+        -37.57,
+        121.0,
+        124.95,
+        -5.58,
+        129.01,
+        156.95
+      ]
+    },
+    {
+      "part": "servo_crank",
+      "key": "093_servo_crank",
+      "volume_mm3": 846.1,
+      "n_tri": 2354,
+      "bbox_mm": [
+        -36.83,
+        129.0,
+        135.95,
+        -16.57,
+        135.0,
+        152.19
+      ]
+    },
+    {
+      "part": "servo_drag_link",
+      "key": "094_servo_drag_link",
+      "volume_mm3": 2700.4,
+      "n_tri": 2344,
+      "bbox_mm": [
+        -37.83,
+        136.0,
+        141.19,
+        22.91,
+        142.0,
+        196.21
+      ]
+    },
+    {
+      "part": "servo_crank_joint_pin",
+      "key": "095_servo_crank_joint_pin",
+      "volume_mm3": 188.5,
+      "n_tri": 416,
+      "bbox_mm": [
+        -33.83,
+        128.0,
+        145.19,
+        -29.83,
+        143.0,
+        149.19
+      ]
+    },
+    {
+      "part": "shooter_throat_-55",
+      "key": "096_shooter_throat_-55",
+      "volume_mm3": 28386.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        11.35,
+        -57.0,
+        94.35,
+        64.81,
+        57.0,
+        161.6
+      ]
+    },
+    {
+      "part": "shooter_throat_+55",
+      "key": "097_shooter_throat__55",
+      "volume_mm3": 28386.0,
+      "n_tri": 12,
+      "bbox_mm": [
+        -75.33,
+        -57.0,
+        162.07,
+        -21.87,
+        57.0,
+        229.32
+      ]
+    }
+  ]
+}

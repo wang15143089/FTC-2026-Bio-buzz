@@ -1,0 +1,86 @@
+{
+ "pollen": {
+  "step_mb": 444.6,
+  "import_s": 417.6,
+  "n_solids": 282,
+  "n_parts_expected": 90,
+  "volume_mm3_readback": 2275074.9,
+  "volume_mm3_expected": 2275076.1,
+  "volume_delta_pct": -0.0001,
+  "bbox_readback_mm": [
+   -170.0,
+   -219.17,
+   -3.51,
+   232.0,
+   145.6,
+   401.02
+  ],
+  "bbox_expected_mm": [
+   -170.0,
+   -219.17,
+   -3.51,
+   232.0,
+   145.6,
+   401.02
+  ],
+  "bbox_delta_mm": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "nip_mm": 64.0,
+  "axle_isolation_hits": 0,
+  "clashes": 0,
+  "gate_vs_feeder": 0,
+  "paddle_axis_mm": [
+   29.49,
+   111.46
+  ],
+  "paddle_tip_to_lower_wheel_mm": 5.961
+ },
+ "nectar": {
+  "step_mb": 444.7,
+  "import_s": 403.8,
+  "n_solids": 282,
+  "n_parts_expected": 90,
+  "volume_mm3_readback": 2275074.9,
+  "volume_mm3_expected": 2275076.1,
+  "volume_delta_pct": -0.0001,
+  "bbox_readback_mm": [
+   -170.0,
+   -219.17,
+   -3.51,
+   232.0,
+   145.6,
+   401.02
+  ],
+  "bbox_expected_mm": [
+   -170.0,
+   -219.17,
+   -3.51,
+   232.0,
+   145.6,
+   401.02
+  ],
+  "bbox_delta_mm": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "nip_mm": 86.0,
+  "axle_isolation_hits": 0,
+  "clashes": 0,
+  "gate_vs_feeder": 0,
+  "paddle_axis_mm": [
+   29.49,
+   111.46
+  ],
+  "paddle_tip_to_lower_wheel_mm": 8.55
+ }
+}

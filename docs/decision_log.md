@@ -953,3 +953,43 @@ Date/version:
 - 未验证项: 打印件 815311.2 mm³ 的实机质量与刚度；舵机联轴器 0.6 mm 壳面间隙的装配裕度；整机底盘落位。
 - 交付件回读 （MEASURED）: 用 `cad/_r50_readback.py`（`cq.Assembly.load`）回读**桌面交付件** `T06_shooter_drive_R50_pollen.step`：加载 407.6 s、**51 个 children**（与生成器 `parts_pollen.json` 的 51 件同名同数）；逐件比对体积与包围盒，**0 处漂移**（阈值 体积 2 % / 包围盒 0.5 mm）；总体积 回读 2077828.0 mm³ vs 生成器 2077829.4 mm³，相对偏差 **6.5e-07** ⇒ 导出没有丢件或改形，落盘文件 = 被测模型。报告 `cad/output/_r50_drive/delivery_readback.json`。全程 686.8 s。`pass`
 - Date/version: 2026-10-13 / 产物 `cad/output/_r50_drive/`（`parts_pollen.json`、`r50_shooter_drive_view.png`、`delivery_readback.json`、`T06_shooter_drive_R50_pollen.step`）
+
+## DEC-0049 — T06 发射部分换基线到 2026-10-01 全整机，侧板开口改 59x56 滑窗（R51）
+
+- Decision （KNOWN）: 发射部分（shooter）**换基线**为 `cad/output/paddle_launcher_feasible_pollen.step`（2026-10-01 22:36，414.3 MB / 98 件）—— 即用户说的「只保留运动部分」**之前最新一版**（它是 `paddle_launcher_motion_only.py --profile motion_free` 的父装配）。在该基线上只做两处改动，产物记作 **R51**：(1) 拨杆舵机 `2000-0025-0003` -> `2000-0025-0004`（DEC-0026 的 `index_drive_servo`；2000 系列外壳与花键相同 ⇒ 支架 / 曲柄 / 联轴器接口不变）；(2) **侧板开口由 `8.4 x 9` 轴槽改成 `59 x 56` 滑窗**。R37 / R47 / R49 / R50 的生成器与产物一律**只读复用、不覆盖**；新产物写入 `cad/output/_r51_drive/`，生成器 `cad/paddle_launcher_shooter_drive_r51.py`。同时把 R50 的支撑框架判为**不满足需求**（见 DEC-0048 的 SUPERSEDED 补记）。
+- Reason: (1) 用户指令「两个飞轮不能连在一起，这样没法调间隙。你应该使用在『只保留运动部分』之前最新一版的 CAD 做基础来进行改动。先把那一版 CAD 找出来截张侧视图给我」；(2) 10-01 基线**已经是**「两轴各自独立 + 调隙链」的正确拓扑：每根飞轮轴坐在自己的**滑动轴承滑座**上，分别由 DEC-0037 调隙链（`2000-0025-0002` -> 12 mm 曲柄 -> 65 mm 拉杆 -> 十字头 -> 两根 110 mm 连杆 -> 滑座耳片）定位；(3) 基线唯一的真缺陷是侧板开口：老 `8.4 x 9` 轴槽只覆盖半间距 80..89（夹口 64..82），**够不到 NECTAR 已被接受的 86 mm 夹口**（半间距 91），而且被 `46 x 12 x 38` 滑座与两根 `5 x 10 x 52` 导轨**同时跨占**（板与运动的滑座抢同一块料）。改成 59 x 56 滑窗后，两档都被覆盖（半间距 80.0..91.2 ⇒ 夹口 64.0..86.4），滑座与导轨以 0.5 mm 侧隙从窗中通过，导轨改顶在窗壁上作侧向导向 —— 正好是原侧板注释一直想表达的设计意图。
+- Alternatives considered: ①**留在 R50 框架上再加调隙机构** —— 否决：R50 的框架本身就是跨接两轴的刚体，任何加装都只是把锁死点换个位置；②**用「只保留运动部分」后的运动版做基础** —— 否决：那是抽取版（18 件），既不是用户指的基线，也缺驱动、底座与调隙链；③**在 R50 的 6 mm 面板上开双轴独立轴承座** —— 否决：面板是「三凸台 + 连杆 + 三腿」整板，要变成可动滑座等于重画底座，成本高于直接用 10-01 已含滑座 / 导轨 / 调隙链的底座；④**手动滑窗 + 螺栓锁位（不用舵机）** —— 未采用：用户此前已明确「我调整间隙采用的是舵机方案」，故保留 DEC-0037 的舵机调隙链；⑤**改小滑座或导轨以塞进老轴槽** —— 否决：会动到 DEC-0037 的连杆几何与滑座刚度，收益小于改开口。
+- Evidence （MEASURED / CALCULATED）: 基线版本判定：`cad/output/_r51_base/manifest.json` = `cq.Assembly.load` 直接回读 10-01 STEP，**98 件**逐件记录体积 / 包围盒 / 三角数；侧视图 `cad/output/_r51_base/r51_base_side_view.png` 已交付桌面 `T06_基线_2026-10-01_侧视图.png`。R51 实测（`cad/output/_r51_drive/report_r51.json`，98 件 / 434.4 MB / 两变体）：开口覆盖 `pollen` 滑座 n 跨距 61.0..99.0、`nectar` 72.0..110.0，**两者都在窗内 56.5..112.5**，`carriage_inside_window = true`、`rails_inside_window = true`、导轨侧隙 0.5 mm；夹口行程 64.0..86.4。**轴隔离（本轮核心判据）**：bbox 保守筛选（超集）只剩**一个**候选 `shooter_side_plate_-1`，布尔求交对它 vs 上下滑座 = **0.0 / 0.0 mm³**（`touches_both = false`）；`carriages_touch_each_other = false`、`shafts_touch_each_other = false` ⇒ `rigid_link_between_axles = []`。侧板专项（`cad/output/_r51_drive/plate_booleans_r51.json`）：15 组候选（两滑座 / 导轨 x4 / 两飞轮轴 / 拨杆轴 / 轴承座 x2 / 马达桥 x4）在两档夹口下**全部 0 mm³**。驱动链沿用基线：联轴器 x 飞轮轴 24.724 x2、舵机联轴器 x 拨杆轴 92.315。
+- Risks: ①滑座在滑窗内只靠两侧导轨定位，缺锁紧 / 微调件（滑窗只保证「能滑」，没保证「滑到位置后不自走」）；②R51 是 98 件全整机底座，打印件质量与刚度均未统计；③桌面 `T06_shooter_drive_R50_*.step` 仍在（superseded 但按规则不删）；④未实机。
+- Next step: 把 R37 送球件与 R49 闸门搬到该底座上（已由 DEC-0050 完成）；后续按用户裁定决定是否给滑座加锁紧 / 微调，以及拨杆舵机工作模式。
+- 未验证（TBD）: 未实机；结构强度 / 振动未验；滑座锁紧方式未定；打印件质量未统计。
+- Date/version: 2026-10-13 / `T06-SHOOTER-DRIVE-R51` / 脚本 `cad/paddle_launcher_shooter_drive_r51.py`；证据 `cad/output/_r51_base/manifest.json`、`cad/output/_r51_drive/{report_r51.json,plate_booleans_r51.json,r51_shooter_view_*.png,r51_drive_support_sheet_pollen.png}`；`config/parameters.yaml -> t06_shooter_drive_r51`
+
+## V-0049 — 验证记录（非决策）：R51 两根飞轮轴是否真的解耦（滑窗开口）
+
+- 目的 （KNOWN）: 证明「两根飞轮轴不再被任何刚性件连在一起、夹口可在两档之间调」，并且滑窗开口确实覆盖 pollen / nectar 两档 —— 这是用户判据「两个飞轮不能连在一起，这样没法调间隙」的直接验收项。测试标准：(1) 除滑座 / 轴 / 飞轮 / 轮毂之外，**没有任何件同时接触上下两个滑座**；(2) 侧板本身与两滑座 / 导轨 / 轴 / 轴承座 / 马达桥的布尔交为 0；(3) 两档滑座行程都落在窗内；(4) 导出 STEP 与被测模型一致。
+- 方法 （MEASURED）: `cad/paddle_launcher_shooter_drive_r51.py` 生成后逐件量体积 / 包围盒 -> `report_r51.json`；隔离性用**两级筛选** —— 先 bbox（保守超集，先证「没有漏网候选」），再对幸存者做真实布尔求交；侧板另跑 `plate_booleans_r51.json`（两档各 15 组）；开口覆盖用滑座 / 导轨的 n 跨距与窗 56.5..112.5 直接比大小；量具纪律沿用 V-0039 / V-0046 / V-0047（不以 TUI 目视为判据）。
+- 结果 （MEASURED）: (1) `rigid_link_between_axles = []`，bbox 候选只有 1 个且布尔 0.0 / 0.0 ⇒ `pass`；(2) 15 组布尔**全 0**（两档）⇒ `pass`；(3) 两档 `carriage_inside_window` / `rails_inside_window` 均 true，导轨侧隙 0.5 mm ⇒ `pass`；(4) 交付 STEP 98 件 / 434.4 MB，两变体各 1 份。结构强度、锁紧方式、实机 ⇒ `not_run`。
+- 状态: `pass`（隔离 / 开口覆盖 / 交付件数量与体积）；`not_run`（强度、锁紧、实机）。
+- 未验证项: 滑座在窗内的锁紧与重复定位精度；打印件质量与刚度；整机装配。
+- Date/version: 2026-10-13 / 产物 `cad/output/_r51_drive/`、`cad/output/_r51_base/`
+
+## DEC-0050 — T06 R52：把 R37 送球件 + R49 闸门搬到 R51 独立轴底座上
+
+- Decision （KNOWN）: 在 R51 底座之上把**已验收的送球与闸门件原样搬过来**，产物记作 **R52**（当前最新发射总成）：(1) 送球件 = `ST.build_variant_stage` 的 `R37_FEEDER_NAMES` **6 件**（`feeder_shell_tray`、`paddle_rotor`、`paddle_flex_tip_1/2`、`paddle_shaft_2106-4008-1920`、`paddle_shaft_support_bridge`），**世界坐标一律不动**（`r37_frozen_coordinates = true`）；(2) 闸门 = `G49.drive_parts(G49.PHI_DN, 0)` 9 件，并让 `gate_frame` 对 R37 托板做 **530.017 mm³ 让位**（只切闸门侧、不动 R37 只读件）；(3) 侧板 = R51 滑窗板 + 在 R37 拨杆轴处挖 `O14.1` 轴承座（用 `world_xz_to_local()` 反算）；(4) 新增支撑 = `servo_bridge_±26` + `feeder_mount_±1`（x -80..168、y 53.5..63、z 16..30，0.5 mm 咬住托板壁、搁在底盘纵梁顶面、距闸门支架 >= 7 mm）；(5) 拨杆驱动沿用 R50 已验证的 +Y 堆叠（`2000-0025-0004` + `1802-0043-0001` + `4001-0025-4008` + `1611-0514-4008` x2）。生成器 `cad/paddle_launcher_shooter_drive_r52.py`；产物 `cad/output/_r52_drive/`。R51 / R37 / R49 生成器与产物只读复用。
+- Reason: 用户指令「把 R37 + R49 那套送球件搬到这个独立轴底座上」—— 即：把已经过 MuJoCo 验收的送球 + 闸门几何放到**两根飞轮轴解耦**的底座上，形成一版可继续做仿真的发射总成。
+- Alternatives considered: ①把送球件按新底座重新建模 —— 否决：会破坏 R37 的验收口径（球道 / 球窝 / 叶尖半径都是量出来的），且违背「不覆盖原文件」；②改 R37 件的坐标去适配底座 —— 否决：同上，且 DEC-0035/0036 的几何证据会失效；③新做一版闸门支架 —— 否决：R49 的曲柄滑块与行程（92 -> 72 mm）已验证，直接搬 + 让位更省。
+- Evidence （MEASURED）: `cad/output/_r52_drive/report_r52_{pollen,nectar}.json`：90 件；夹口 pollen 64.0 / nectar 86.0；拨杆轴实测 `[29.49, 111.46]`（与 R37 一致）；上轴 `[-10.737, 284.767]`、下轴 `[115.345, 186.261]`、轴距 160.0；叶尖 r 59.908，叶尖到下轮面 pollen 5.961 mm / nectar 8.55 mm；`imported_vs_base = []`（R37/R49 与 R51 底座 0 干涉）、`gate_vs_feeder = []`、`new_vs_rest` 5 处**全部是正常配合**（`feeder_mount ±1 x feeder_shell_tray` 81.651 x2 咬合、`paddle_bearing_-1 x 侧板` 10.285 轴承座配合、`paddle_servo_coupler x paddle_shaft` 21.739 花键、`servo_bridge_-26 x gap_servo_frame` 1.372 接触）；`gate_frame_relief_mm3 = 530.017`。交付 `T06_shooter_assembly_R52_{pollen,nectar}.step`（90 件 / 444.6、444.7 MB），回读（`cad/_r52_readback.py`）：各 **282 solids**、体积偏差 **-0.0001 %**、包围盒 6 面偏差 **0.00 mm**，`bbox = [-170.0, -219.17, -3.51, 232.0, 145.6, 401.02]`。桌面已放装配图与 STEP。
+- Risks: ①`feeder_mount ±1` 与托板只 0.5 mm 咬合，是「搁着 + 咬壁」的简化连接，强度未验；②R52 生成器的 `axle_isolation` 把 `shooter_side_plate_` 放进了 skip 列表 ⇒ **侧板在该轮没做布尔**，侧板证据来自 R51 的 15 组布尔（全 0）与本轮新增的 STEP 级复核 `cad/_r52_axle_isolation_step.py`（直接读交付 STEP）；③拨杆舵机工作模式（位置 vs 连续旋转）仍未裁定；④打印件质量未统计；⑤未实机。
+- Next step: 用 R52 作为运动部分做仿真（送球 + 发射全流程口径沿用 R47 台架）；如需给滑座加锁紧 / 微调件，在 R51 底座上做增量修改。
+- 未验证（TBD）: 未实机；结构强度 / 振动未验；打印件质量未统计；送球件与底座的连接强度未验。
+- Date/version: 2026-10-13 / `T06-SHOOTER-DRIVE-R52` / 脚本 `cad/paddle_launcher_shooter_drive_r52.py`；证据 `cad/output/_r52_drive/{report_r52_pollen.json,report_r52_nectar.json,readback_r52.json,r52_assembly_sheet_*.png}`；`config/parameters.yaml -> t06_shooter_drive_r52`
+
+## V-0050 — 验证记录（非决策）：R52 换装后的干涉与交付一致性
+
+- 目的 （KNOWN）: 确认「R37 送球件 + R49 闸门」搬到 R51 底座后**接得上、不打架、不改已验收口径**，且导出的 STEP 与被测模型一致。测试标准：(1) 送球 / 闸门件与 R51 底座 0 干涉；(2) 闸门不与送球件干涉；(3) 拨杆轴心与 R37 验收值一致；(4) 回读交付 STEP 与生成器逐项一致。
+- 方法 （MEASURED）: `cad/paddle_launcher_shooter_drive_r52.py` 生成后逐件量体积 / 包围盒 -> `report_r52_{pollen,nectar}.json`；干涉用布尔求交分组比对（R37+R49 vs 底座、闸门 vs 送球、新增件 vs 其余）；发货前落盘报告、再出图、再导 STEP；导出后用 `cad/_r52_readback.py` 重新 `importStep` 回读（注意：该脚本的 `axle_isolation_hits` 是**从报告里复制的**，不是从 STEP 重新推导的，故不算独立证据）。
+- 结果 （MEASURED）: 干涉 3 组判定 —— `imported_vs_base` 0 处、`gate_vs_feeder` 0 处、`new_vs_rest` 5 处（**全部为正常配合**，见 DEC-0050 明细）⇒ `pass`；轴心与 R37 一致（拨杆 `[29.49, 111.46]`）⇒ `pass`；回读 282 solids、体积偏差 -0.0001 %、包围盒偏差 0.00 mm ⇒ `pass`。结构强度、锁紧、实机 ⇒ `not_run`。
+- 状态: `pass`（干涉 / 轴心 / 交付一致性）；`not_run`（强度、实机）。
+- 未验证项: `feeder_mount` 连接强度；滑座锁紧；拨杆舵机工作模式；实机装配。
+- Date/version: 2026-10-13 / 产物 `cad/output/_r52_drive/`
