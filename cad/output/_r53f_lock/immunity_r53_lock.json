@@ -1,0 +1,109 @@
+{
+  "caliber": "T06 R53h 锁紧件对换档的几何免疫 + 夹紧件保持力口径",
+  "units": "mm / N / N.m",
+  "inputs": {
+    "spring_rate_n_per_mm": 1.24,
+    "spring_free_mm": 8.4,
+    "spring_installed_mm": 6.0,
+    "studs_per_carriage": 8,
+    "faces": 2.0,
+    "preload_nominal_n_per_stud": 2.976,
+    "preload_lower_bound_n_per_stud": 2.232,
+    "sources": [
+      "cad/output/_r53f_lock/caliber_clamp_interface.json",
+      "cad/output/_r53g_limit/report_r53g_preload_limit.json",
+      "cad/output/_r53e_match/report_r53e_match.json"
+    ]
+  },
+  "immunity": {
+    "law": "preload(L) = k x (free - L)，L = 限位环长度（k = 1.24 N/mm，free = 8.4 mm）",
+    "ring_len_nominal_mm": 6.0,
+    "ring_len_for_60pct_margin_mm": {
+      "mu0.30": -2.923,
+      "mu0.60": 2.739
+    },
+    "ring_len_for_hard_stall_mm": {
+      "mu0.60": -1.277,
+      "mu0.30": null
+    },
+    "safe_ring_window_mm": [
+      2.739,
+      8.4
+    ],
+    "statement": "支配工况是 mu 0.60：环长 2.74 mm 才会吃掉 60 % 堵转余量，硬顶停要 -1.28 mm（负值，几何不可能）；mu 0.30 对应 -2.92 mm。=> 只要环长不超过弹簧自由长 8.4 mm，锁紧件在几何上不可能顶停 25-2",
+    "statement2": "环长 >= 8.4 mm 或螺母未拧到端面 => 预载 <= 0 => 摩擦更小、换档更轻松；失效方向只有「锁不住」，没有「顶停」",
+    "print_tolerance_mm": 0.2,
+    "print_tolerance_n": 0.248,
+    "margin_to_lower_bound_mm": 3.261,
+    "status": "CALCULATED"
+  },
+  "hold": {
+    "recoil_peak_per_carriage_n": {
+      "pollen": 37.5,
+      "nectar": 81.3
+    },
+    "servo_hold_per_carriage_n": {
+      "pollen": 112.3,
+      "nectar": 389.9
+    },
+    "servo_margin_x": {
+      "pollen": 2.99,
+      "nectar": 4.8
+    },
+    "table": {
+      "mu0.30_preload_nominal": {
+        "preload_n_per_stud": 2.976,
+        "friction_per_carriage_n": 14.28,
+        "friction_both_carriages_n": 28.57,
+        "vs_pollen_recoil_peak_x": 2.63,
+        "vs_nectar_recoil_peak_x": 5.69
+      },
+      "mu0.30_preload_lower_bound": {
+        "preload_n_per_stud": 2.232,
+        "friction_per_carriage_n": 10.71,
+        "friction_both_carriages_n": 21.43,
+        "vs_pollen_recoil_peak_x": 3.5,
+        "vs_nectar_recoil_peak_x": 7.59
+      },
+      "mu0.60_preload_nominal": {
+        "preload_n_per_stud": 2.976,
+        "friction_per_carriage_n": 28.57,
+        "friction_both_carriages_n": 57.14,
+        "vs_pollen_recoil_peak_x": 1.31,
+        "vs_nectar_recoil_peak_x": 2.85
+      },
+      "mu0.60_preload_lower_bound": {
+        "preload_n_per_stud": 2.232,
+        "friction_per_carriage_n": 21.43,
+        "friction_both_carriages_n": 42.85,
+        "vs_pollen_recoil_peak_x": 1.75,
+        "vs_nectar_recoil_peak_x": 3.79
+      }
+    },
+    "verdict": "夹紧件保持力 14.3 N/滑座（mu 0.30、名义预载 2.976 N/颗）只有发射反力峰值 37.5 / 81.3 N 的 1/2.61、1/5.65 => 断电/无指令时夹紧件挡不住发射反力；发射时守住夹口的是通电的 25-2（余量 3.0x / 4.8x）。R53b 的「弹簧常压 => 断电也锁」应读作「挡得住 14.3 N/滑座以内的漂移」",
+    "status": "CALCULATED"
+  },
+  "torque": {
+    "ring_section_mm2": 24.75,
+    "bearing_stress_at_nominal_mpa": 0.1202,
+    "bearing_stress_at_10x_mpa": 1.202,
+    "material_yield_mpa": 50.0,
+    "crush_limit_n": 1237.5,
+    "k_factor": 0.2,
+    "m4_d_mm": 4.0,
+    "over_torque_example_n_m": 3.0,
+    "over_torque_axial_n": 3750.0,
+    "crush_stress_at_over_torque_mpa": 151.5,
+    "torque_cap_n_m": 1.0,
+    "statement": "螺母拧到与环端面贴合后轴向力由环承担：预载只由环长决定，力矩不再改变预载（几何免疫的工程实现）。名义预载下环端面应力 0.120 MPa，10 倍也只有 1.20 MPa，远低于 50 MPa 屈服。只有把环做长到超过弹簧自由长再强拧（约 3.0 N.m 量级）才会压溃环，按 1.0 N.m 上限 + 尼龙锁紧螺母 + 螺纹胶 243 即可排除。",
+    "status": "CALCULATED"
+  },
+  "verdict": "锁紧件不会影响正常位置改变：失效方向只有「锁不住」（预载 <= 0），没有「顶停」。发射时守住夹口的是通电 25-2（余量 3.0x / 4.8x）。",
+  "tbd": [
+    "限位环 PET 压缩强度实测",
+    "弹簧 k 实测",
+    "台架 50 次来回后预载衰减",
+    "实机验证"
+  ],
+  "status": "CALCULATED"
+}
