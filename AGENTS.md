@@ -2,6 +2,15 @@
 
 本仓库使用 [Linear — FTC 2026 biobuzz](https://linear.app/keithschoolrobotic/project/ftc-2026-biobuzz-c4695fa110f5) 管理“还需要做什么”，使用 [Notion — FTC Robot Project](https://app.notion.com/p/3e27fc7bbcfb81159c11c41464b523fc) 保存“已经知道什么以及为什么”，GitHub 保存可复算、可生成和可审查的工程产物。
 
+## 工作根路径（2026-10-13 起生效）
+
+所有生成、仿真、导出与交付文件一律从 `C:\FTC design\FTC 2026 biobuzz` 调用。
+
+- `C:\FTC design\FTC 2026 biobuzz`：本仓库工作根路径（Canonical），后续所有脚本、仿真与交付输出默认写入此处。
+- `C:\FTC design\FTC 2026 biobuzz\deliverables\`：桌面交付件归档区（默认不纳入 Git）。
+- `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：2026-10-13 之前的旧路径，保留为历史副本，不再作为工作路径。
+- Python 解释器：`C:\FTC design\FTC 2026 biobuzz\.venv-cad\Scripts\python.exe`。
+
 ## 每次恢复工作的固定顺序
 
 1. 完整阅读本文件、`README.md` 与 `PROJECT_STATUS.md`。

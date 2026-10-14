@@ -723,3 +723,12 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - V-0053 动力学 50 次来回（CALCULATED）: 换档 **0.325..0.358 s（均 0.338 s）**、**0 次堵转 / 0 次超时**、到位误差 **≤ 0.133 mm**（用户口径 1 mm）、首末次之差 **-0.009 mm（不累积）**；链条等效刚度 pollen 332.9 / nectar 258.9 N/mm。
 - 交付（KNOWN）: 桌面 `T06_shooter_assembly_R53b_pollen.step` / `_nectar.step`（各 446 MB）、`T06_R53b_自动锁紧方案.png`、`T06_R53b_夹紧剖面.png`、`T06_R53c_fullstroke_check.png`、`T06_R53d_dynamic_check.png`；仓库 `cad/output/_r53b_auto/`（junction 到桌面）、`cad/output/_r53c_stroke/`、`cad/output/_r53d_dyn/`。
 - 未关闭（TBD）: ①**端点无机械硬限位**（最大档距死点 0.337 mm）⇒ 必须在舵机编程器 + 固件卡住约 **19.3 .. 96.7 deg**；②弹簧 k / 预载、PET mu、E、J、Kp 全为 ASSUMED，实物未测；③实机未验（50 次来回后预载是否衰减）；④**已答（KNOWN，用户 2026-10-13）**：换档**需要比赛中在线进行**，见 0.6 节 V-0054（0.354 s/次、12 次/场、占空比 3.6 %、全程无人介入）；⑤是否要加凸轮做主动解锁：**不需要**（换档与保持都由已有 `2000-0025-0002` 完成，见 V-0054）。
+
+
+## 工作根路径（2026-10-13）
+
+- 工作根路径已迁移至 `C:\FTC design\FTC 2026 biobuzz`（`KNOWN`，用户指令 2026-10-13）；旧路径 `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz` 保留为历史副本，不再作为调用路径。
+- 迁移方式：robocopy 全量复制，排除 `__pycache__` / `.pytest_cache`；核对结果：仓库 **14311 个文件 / 18.414 GB** 与源逐字节一致，HEAD = `aecce3d`。
+- 桌面交付件（**66 个文件 / 5.980 GB**，含 T06 R51–R53f 装配 STEP、审查图、COTS BOM）已归档到 `deliverables\`，逐文件名与字节校验一致，默认不纳入 Git。桌面上的 3 个目录（`2025 WPILib Tools` / `网站` / `PythonProjects`）与不属于本项目的个人文件未拰选过滤，仍保留在桌面。
+- Python 解释器：`.venv-cad\Scripts\python.exe`。复制后已验证 `sys.executable` / `sys.prefix` 指向新路径且 `import cadquery` 正常（无需重建 venv）。
+- 后续所有生成、仿真、导出与交付默认输出到该根路径；`AGENTS.md` 已写入同一约定。

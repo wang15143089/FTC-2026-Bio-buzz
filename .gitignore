@@ -131,3 +131,6 @@ cad/output/_r53b_auto/*.stl
 cad/output/_r53b_auto/*.glb
 cad/output/_r53f_lock/*.step
 cad/output/_r53f_lock/_run_*.log
+
+# Desktop delivery archive (2026-10-13 copy).  Local-only; not a build input.
+deliverables/
