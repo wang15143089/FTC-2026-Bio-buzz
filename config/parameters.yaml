@@ -566,3 +566,16 @@ t06_gap_chain_fullstroke_r53c:
   switch_time: {value: {sec_worst_case: 0.304, rpm_under_load: 44.6, crank_span_deg: 81.38}, status: "CALCULATED", source: "厂商堵转-空载线折算；25-2 空载 60 rpm"}
   endpoint_limit: {value: "最大档 91.2 距曲柄-拉杆共线死点 91.537 只有 0.337 mm；滑窗 59 x 56 无硬限位 => 必须在舵机端（编程器 + 固件）把行程端点卡在约 19.33 .. 96.68 deg 曲柄角，禁止越界", status: "TBD", source: "V-0052"}
   open_question: {value: "①弹簧实测 k / 预载未验（采购件未定型号）；②PET 打印件 mu = 0.30 仍为 ASSUMED；③静/动摩擦差导致的换档到位偏差未测；④实机未验。", status: "TBD"}
+
+t06_gap_chain_dynamic_r53d:
+  note: "R53d 动力学复核：常闭弹簧夹锁着时，现有 25-2 调隙舵机 50 次来回自动换档全部到位、0 堵转、到位误差 < 0.14 mm。不新增几何，只新增计算。"
+  version: {value: "T06-GAP-CHAIN-DYNAMIC-R53D", status: "CALCULATED", source: "docs/decision_log.md V-0053"}
+  model: {value: {servo: "T(w) = T_stall (1 - |w|/w_noload)，T_stall 2.471 N.m，空载 60 rpm", load: "T_load = 2 f |dh/dtheta|，f = 2 面 x 8 螺柱 x 3 N x mu", integrator: "J d2theta/dt2 = T_motor - sgn*T_load，J = 1.0e-4 kg.m2，Kp = 200 N.m/rad", geometry: "与 R53c 同源（精确式 + 二分反解）", error_model: "e = 弹性绕紧 + 静动摩擦差 + 舵机回差；有界、不累积"}, status: "CALCULATED", source: "cad/paddle_launcher_gap_chain_dynamic_r53d.py"}
+  switch_time_s: {value: {min: 0.325, max: 0.358, mean: 0.338, directions: "两方向对称"}, status: "CALCULATED", source: "cad/output/_r53d_dyn/report_r53d_dynamic.json"}
+  worst_torque: {value: {Nm_mu0.30: 0.317, Nm_mu0.60: 0.634, pct_of_stall_mu0.60: 27.2, margin_x_mu0.60: 3.7}, status: "CALCULATED"}
+  arrival_error_mm: {value: {min: 0.051, max: 0.133, mean: 0.092, user_limit: 1.0, drift_first_to_last: -0.009}, status: "CALCULATED"}
+  chain_stiffness_N_per_mm: {value: {pollen: 332.9, nectar: 258.9}, status: "CALCULATED", source: "PET E = 2 GPa (ASSUMED) + 主连杆 Ø6.4x110 x2 并联 / 拉杆 Ø6.0x65 串联"}
+  stalled_cycles: {value: {n: 50, stalled: 0, timeout: 0, all_arrived: true}, status: "CALCULATED"}
+  endpoint_limit: {value: "沿用 V-0052：滑窗无机械硬限位，必须在舵机编程器 + 固件把行程端点卡在约 19.33 .. 96.68 deg 曲柄角", status: "TBD", source: "V-0052"}
+  open_question: {value: "①mu / E / J / Kp 与厂商 2.471 N.m、60 rpm 均未实测；②实机未验；③换档是否需要比赛在线进行（若只需赛前选定，可进一步简化）。", status: "TBD"}
+
