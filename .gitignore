@@ -150,3 +150,5 @@ cad/output/_r55_frame/cache/
 cad/output/_r55_frame/_run_*.log
 cad/output/_r55_run.log
 cad/output/_r55_fit_probe.log
+cad/output/_r55_print_probe.log
+cad/output/_r55_vs_r54_diff.log
