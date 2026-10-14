@@ -1,0 +1,385 @@
+{
+  "caliber": "T06 R53h-2 弹簧采购包络 + 限位环长反解（让锁紧件不顶停换档舵机）",
+  "units": "mm / N / N/mm",
+  "inputs": {
+    "ring_len_mm": 6.0,
+    "preload_target_n_per_stud": 2.976,
+    "cap_60pct_n_per_stud": 7.02,
+    "cap_hard_n_per_stud": 12.0,
+    "floor_n_per_stud": 1.5,
+    "design_spring": {
+      "k_n_per_mm": 1.24,
+      "free_len_mm": 8.4,
+      "preload_n_per_stud": 2.976
+    },
+    "spring_size_limits": {
+      "od_max_mm": 5.6,
+      "id_min_mm": 4.1,
+      "why": "弹簧在限位环内（环内径 5.7）、套在 M4 螺柱外（Ø4.0），安装长 6.0 mm"
+    },
+    "sources": [
+      "cad/output/_r53f_lock/report_r53f_pollen.json",
+      "cad/output/_r53g_limit/report_r53g_preload_limit.json"
+    ]
+  },
+  "rule": "预载 = k x (L0 - 6.0)。只要 k x (L0 - 6.0) <= 7.02 N（60 % 堵转余量门槛，mu 0.60），锁紧件就不可能顶停 25-2；>= 1.5 N 才算夹得住。",
+  "envelope": {
+    "L0_6.5": {
+      "travel_mm": 0.5,
+      "k_max_60pct_n_per_mm": 14.04,
+      "k_max_hard_n_per_mm": 24.0,
+      "k_min_floor_n_per_mm": 3.0,
+      "k_for_target_preload_n_per_mm": 5.952,
+      "preload_at_spec_k_n": 0.62
+    },
+    "L0_7.0": {
+      "travel_mm": 1.0,
+      "k_max_60pct_n_per_mm": 7.02,
+      "k_max_hard_n_per_mm": 12.0,
+      "k_min_floor_n_per_mm": 1.5,
+      "k_for_target_preload_n_per_mm": 2.976,
+      "preload_at_spec_k_n": 1.24
+    },
+    "L0_7.5": {
+      "travel_mm": 1.5,
+      "k_max_60pct_n_per_mm": 4.68,
+      "k_max_hard_n_per_mm": 8.0,
+      "k_min_floor_n_per_mm": 1.0,
+      "k_for_target_preload_n_per_mm": 1.984,
+      "preload_at_spec_k_n": 1.86
+    },
+    "L0_8.0": {
+      "travel_mm": 2.0,
+      "k_max_60pct_n_per_mm": 3.51,
+      "k_max_hard_n_per_mm": 6.0,
+      "k_min_floor_n_per_mm": 0.75,
+      "k_for_target_preload_n_per_mm": 1.488,
+      "preload_at_spec_k_n": 2.48
+    },
+    "L0_8.4": {
+      "travel_mm": 2.4,
+      "k_max_60pct_n_per_mm": 2.925,
+      "k_max_hard_n_per_mm": 5.0,
+      "k_min_floor_n_per_mm": 0.625,
+      "k_for_target_preload_n_per_mm": 1.24,
+      "preload_at_spec_k_n": 2.976
+    },
+    "L0_8.8": {
+      "travel_mm": 2.8,
+      "k_max_60pct_n_per_mm": 2.507,
+      "k_max_hard_n_per_mm": 4.286,
+      "k_min_floor_n_per_mm": 0.536,
+      "k_for_target_preload_n_per_mm": 1.0629,
+      "preload_at_spec_k_n": 3.472
+    },
+    "L0_9.0": {
+      "travel_mm": 3.0,
+      "k_max_60pct_n_per_mm": 2.34,
+      "k_max_hard_n_per_mm": 4.0,
+      "k_min_floor_n_per_mm": 0.5,
+      "k_for_target_preload_n_per_mm": 0.992,
+      "preload_at_spec_k_n": 3.72
+    },
+    "L0_9.5": {
+      "travel_mm": 3.5,
+      "k_max_60pct_n_per_mm": 2.006,
+      "k_max_hard_n_per_mm": 3.429,
+      "k_min_floor_n_per_mm": 0.429,
+      "k_for_target_preload_n_per_mm": 0.8503,
+      "preload_at_spec_k_n": 4.34
+    },
+    "L0_10.0": {
+      "travel_mm": 4.0,
+      "k_max_60pct_n_per_mm": 1.755,
+      "k_max_hard_n_per_mm": 3.0,
+      "k_min_floor_n_per_mm": 0.375,
+      "k_for_target_preload_n_per_mm": 0.744,
+      "preload_at_spec_k_n": 4.96
+    },
+    "L0_11.0": {
+      "travel_mm": 5.0,
+      "k_max_60pct_n_per_mm": 1.404,
+      "k_max_hard_n_per_mm": 2.4,
+      "k_min_floor_n_per_mm": 0.3,
+      "k_for_target_preload_n_per_mm": 0.5952,
+      "preload_at_spec_k_n": 6.2
+    },
+    "L0_12.0": {
+      "travel_mm": 6.0,
+      "k_max_60pct_n_per_mm": 1.17,
+      "k_max_hard_n_per_mm": 2.0,
+      "k_min_floor_n_per_mm": 0.25,
+      "k_for_target_preload_n_per_mm": 0.496,
+      "preload_at_spec_k_n": 7.44
+    }
+  },
+  "adjust": {
+    "L0_7.0_k_0.80": {
+      "ring_len_for_target_mm": 3.28,
+      "ring_len_min_for_60pct_mm": -1.775,
+      "preload_with_cad_ring_n": 0.8,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_1.00": {
+      "ring_len_for_target_mm": 4.024,
+      "ring_len_min_for_60pct_mm": -0.02,
+      "preload_with_cad_ring_n": 1.0,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_1.24": {
+      "ring_len_for_target_mm": 4.6,
+      "ring_len_min_for_60pct_mm": 1.339,
+      "preload_with_cad_ring_n": 1.24,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_1.50": {
+      "ring_len_for_target_mm": 5.016,
+      "ring_len_min_for_60pct_mm": 2.32,
+      "preload_with_cad_ring_n": 1.5,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_2.00": {
+      "ring_len_for_target_mm": 5.512,
+      "ring_len_min_for_60pct_mm": 3.49,
+      "preload_with_cad_ring_n": 2.0,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_2.50": {
+      "ring_len_for_target_mm": 5.81,
+      "ring_len_min_for_60pct_mm": 4.192,
+      "preload_with_cad_ring_n": 2.5,
+      "verdict": "ok"
+    },
+    "L0_7.0_k_3.00": {
+      "ring_len_for_target_mm": 6.008,
+      "ring_len_min_for_60pct_mm": 4.66,
+      "preload_with_cad_ring_n": 3.0,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_0.80": {
+      "ring_len_for_target_mm": 4.28,
+      "ring_len_min_for_60pct_mm": -0.775,
+      "preload_with_cad_ring_n": 1.6,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_1.00": {
+      "ring_len_for_target_mm": 5.024,
+      "ring_len_min_for_60pct_mm": 0.98,
+      "preload_with_cad_ring_n": 2.0,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_1.24": {
+      "ring_len_for_target_mm": 5.6,
+      "ring_len_min_for_60pct_mm": 2.339,
+      "preload_with_cad_ring_n": 2.48,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_1.50": {
+      "ring_len_for_target_mm": 6.016,
+      "ring_len_min_for_60pct_mm": 3.32,
+      "preload_with_cad_ring_n": 3.0,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_2.00": {
+      "ring_len_for_target_mm": 6.512,
+      "ring_len_min_for_60pct_mm": 4.49,
+      "preload_with_cad_ring_n": 4.0,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_2.50": {
+      "ring_len_for_target_mm": 6.81,
+      "ring_len_min_for_60pct_mm": 5.192,
+      "preload_with_cad_ring_n": 5.0,
+      "verdict": "ok"
+    },
+    "L0_8.0_k_3.00": {
+      "ring_len_for_target_mm": 7.008,
+      "ring_len_min_for_60pct_mm": 5.66,
+      "preload_with_cad_ring_n": 6.0,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_0.80": {
+      "ring_len_for_target_mm": 4.68,
+      "ring_len_min_for_60pct_mm": -0.375,
+      "preload_with_cad_ring_n": 1.92,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_1.00": {
+      "ring_len_for_target_mm": 5.424,
+      "ring_len_min_for_60pct_mm": 1.38,
+      "preload_with_cad_ring_n": 2.4,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_1.24": {
+      "ring_len_for_target_mm": 6.0,
+      "ring_len_min_for_60pct_mm": 2.739,
+      "preload_with_cad_ring_n": 2.976,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_1.50": {
+      "ring_len_for_target_mm": 6.416,
+      "ring_len_min_for_60pct_mm": 3.72,
+      "preload_with_cad_ring_n": 3.6,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_2.00": {
+      "ring_len_for_target_mm": 6.912,
+      "ring_len_min_for_60pct_mm": 4.89,
+      "preload_with_cad_ring_n": 4.8,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_2.50": {
+      "ring_len_for_target_mm": 7.21,
+      "ring_len_min_for_60pct_mm": 5.592,
+      "preload_with_cad_ring_n": 6.0,
+      "verdict": "ok"
+    },
+    "L0_8.4_k_3.00": {
+      "ring_len_for_target_mm": 7.408,
+      "ring_len_min_for_60pct_mm": 6.06,
+      "preload_with_cad_ring_n": 7.2,
+      "verdict": "over_60pct"
+    },
+    "L0_9.0_k_0.80": {
+      "ring_len_for_target_mm": 5.28,
+      "ring_len_min_for_60pct_mm": 0.225,
+      "preload_with_cad_ring_n": 2.4,
+      "verdict": "ok"
+    },
+    "L0_9.0_k_1.00": {
+      "ring_len_for_target_mm": 6.024,
+      "ring_len_min_for_60pct_mm": 1.98,
+      "preload_with_cad_ring_n": 3.0,
+      "verdict": "ok"
+    },
+    "L0_9.0_k_1.24": {
+      "ring_len_for_target_mm": 6.6,
+      "ring_len_min_for_60pct_mm": 3.339,
+      "preload_with_cad_ring_n": 3.72,
+      "verdict": "ok"
+    },
+    "L0_9.0_k_1.50": {
+      "ring_len_for_target_mm": 7.016,
+      "ring_len_min_for_60pct_mm": 4.32,
+      "preload_with_cad_ring_n": 4.5,
+      "verdict": "ok"
+    },
+    "L0_9.0_k_2.00": {
+      "ring_len_for_target_mm": 7.512,
+      "ring_len_min_for_60pct_mm": 5.49,
+      "preload_with_cad_ring_n": 6.0,
+      "verdict": "ok"
+    },
+    "L0_9.0_k_2.50": {
+      "ring_len_for_target_mm": 7.81,
+      "ring_len_min_for_60pct_mm": 6.192,
+      "preload_with_cad_ring_n": 7.5,
+      "verdict": "over_60pct"
+    },
+    "L0_9.0_k_3.00": {
+      "ring_len_for_target_mm": 8.008,
+      "ring_len_min_for_60pct_mm": 6.66,
+      "preload_with_cad_ring_n": 9.0,
+      "verdict": "over_60pct"
+    },
+    "L0_10.0_k_0.80": {
+      "ring_len_for_target_mm": 6.28,
+      "ring_len_min_for_60pct_mm": 1.225,
+      "preload_with_cad_ring_n": 3.2,
+      "verdict": "ok"
+    },
+    "L0_10.0_k_1.00": {
+      "ring_len_for_target_mm": 7.024,
+      "ring_len_min_for_60pct_mm": 2.98,
+      "preload_with_cad_ring_n": 4.0,
+      "verdict": "ok"
+    },
+    "L0_10.0_k_1.24": {
+      "ring_len_for_target_mm": 7.6,
+      "ring_len_min_for_60pct_mm": 4.339,
+      "preload_with_cad_ring_n": 4.96,
+      "verdict": "ok"
+    },
+    "L0_10.0_k_1.50": {
+      "ring_len_for_target_mm": 8.016,
+      "ring_len_min_for_60pct_mm": 5.32,
+      "preload_with_cad_ring_n": 6.0,
+      "verdict": "ok"
+    },
+    "L0_10.0_k_2.00": {
+      "ring_len_for_target_mm": 8.512,
+      "ring_len_min_for_60pct_mm": 6.49,
+      "preload_with_cad_ring_n": 8.0,
+      "verdict": "over_60pct"
+    },
+    "L0_10.0_k_2.50": {
+      "ring_len_for_target_mm": 8.81,
+      "ring_len_min_for_60pct_mm": 7.192,
+      "preload_with_cad_ring_n": 10.0,
+      "verdict": "over_60pct"
+    },
+    "L0_10.0_k_3.00": {
+      "ring_len_for_target_mm": 9.008,
+      "ring_len_min_for_60pct_mm": 7.66,
+      "preload_with_cad_ring_n": 12.0,
+      "verdict": "over_60pct"
+    },
+    "L0_12.0_k_0.80": {
+      "ring_len_for_target_mm": 8.28,
+      "ring_len_min_for_60pct_mm": 3.225,
+      "preload_with_cad_ring_n": 4.8,
+      "verdict": "ok"
+    },
+    "L0_12.0_k_1.00": {
+      "ring_len_for_target_mm": 9.024,
+      "ring_len_min_for_60pct_mm": 4.98,
+      "preload_with_cad_ring_n": 6.0,
+      "verdict": "ok"
+    },
+    "L0_12.0_k_1.24": {
+      "ring_len_for_target_mm": 9.6,
+      "ring_len_min_for_60pct_mm": 6.339,
+      "preload_with_cad_ring_n": 7.44,
+      "verdict": "over_60pct"
+    },
+    "L0_12.0_k_1.50": {
+      "ring_len_for_target_mm": 10.016,
+      "ring_len_min_for_60pct_mm": 7.32,
+      "preload_with_cad_ring_n": 9.0,
+      "verdict": "over_60pct"
+    },
+    "L0_12.0_k_2.00": {
+      "ring_len_for_target_mm": 10.512,
+      "ring_len_min_for_60pct_mm": 8.49,
+      "preload_with_cad_ring_n": 12.0,
+      "verdict": "over_60pct"
+    },
+    "L0_12.0_k_2.50": {
+      "ring_len_for_target_mm": 10.81,
+      "ring_len_min_for_60pct_mm": 9.192,
+      "preload_with_cad_ring_n": 15.0,
+      "verdict": "over_60pct"
+    },
+    "L0_12.0_k_3.00": {
+      "ring_len_for_target_mm": 11.008,
+      "ring_len_min_for_60pct_mm": 9.66,
+      "preload_with_cad_ring_n": 18.0,
+      "verdict": "over_60pct"
+    }
+  },
+  "spec": {
+    "requirement": "k x (L0 - 6.0) in [1.5, 7.0] N，OD <= 5.6 mm，ID >= 4.1 mm，安装长 6.0 mm",
+    "k_cap_at_L0_8p4": {
+      "k_n_per_mm": 2.925,
+      "note": "在 L0 = 8.4 mm 时，弹簧刚度不得超过此值，否则 CAD 的 6.0 mm 环会吃掉 60 % 堵转余量"
+    },
+    "if_out_of_window": "按实测 (k, L0) 反解环长 L = L0 - 2.976/k（下限 L0 - 7.02/k），改打印环长而不是改装配力矩"
+  },
+  "status": "CALCULATED",
+  "tbd": [
+    "实测购得弹簧的 k 与 L0",
+    "限位环打印长度与 PET 压缩强度",
+    "台架 50 次来回后预载衰减",
+    "实机"
+  ]
+}
