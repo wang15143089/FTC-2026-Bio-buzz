@@ -552,7 +552,7 @@ t06_shooter_lock_r53b:
   interference: {value: {lock_vs_rest_mm3: 0, lock_vs_carriage_mm3: 0, axle_isolation_hits: [], plate_vs_rest_nonzero: 5, note: "plate_vs_rest 的 5 处与 R52 同源，是 gap_servo_standoff x 侧板 28.274 x4 与 paddle_bearing_-1 x 侧板 10.285 的正常配合"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
   nip: {value: {pollen: 64.0, nectar: 86.0, half_spacing_mm: {pollen: 80.0, nectar: 91.0}}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
   delivery: {value: {n_parts: 114, pollen_step_mb: 446.3, nectar_step_mb: 446.4, files: ["T06_shooter_assembly_R53b_pollen.step", "T06_shooter_assembly_R53b_nectar.step"], note: "cad/output/_r53b_auto 是指向桌面的 junction，文件直接落在桌面"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
-  open_question: {value: "①比赛中是否需要在线切换 POLLEN / NECTAR（还是赛前调好一档就够）—— 未答；②是否还有空闲舵机通道（决定要不要做舵机主动解锁/夹紧）—— 未答；③弹簧/螺柱/尼龙螺母尚未按实物采购核对；④打印件质量、实机均未验。", status: "TBD"}
+  open_question: {value: "①比赛中是否需要在线切换 POLLEN / NECTAR —— **已答：需要**（用户 2026-10-13，见 t06_gap_chain_match_r53e.online_switch_required，本项关闭）；②是否还有空闲舵机通道 —— **已答：不需要**（换档与保持都由已有 2000-0025-0002 完成，V-0054）；③弹簧/螺柱/尼龙螺母尚未按实物采购核对；④打印件质量、实机均未验。", status: "TBD"}
 
 t06_gap_chain_fullstroke_r53c:
   note: "R53c 全行程复核：证明常闭弹簧夹不妨碍现有 25-2 调隙舵机自动换档（DEC-0037 链 + R53b 夹紧件）。不新增几何，只新增计算。"
