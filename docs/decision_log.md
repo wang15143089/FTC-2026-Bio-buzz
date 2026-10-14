@@ -1070,6 +1070,9 @@ Date/version:
 - 结论（KNOWN）: 换档（含比赛中在线换档）仍由**已有**的 `2000-0025-0002` 完成；限位环**不可能**影响正常位置改变（预载上限被几何锁死），失效方向只剩螺母松脱（掉预载、掉夹紧，不伤换档）=> 尼龙锁紧螺母 + 螺纹胶 243。
 - 状态: `pass`（几何）；`not_run`（台架 50 次来回后复测预载衰减）。
 - 未验证项（TBD）: ①限位环实际打印长度与材料压缩强度未实测；②弹簧 k = 1.24 N/mm 与 PET mu 仍未实测；③实机未验。
+- 报告自洽修正（本轮补）: R53f 首版报告里 `clamp_calc.preload_n_per_stud` 还是 R53b 的 **3.0 N**，与 `seat.preload_n_per_stud_geometric = 2.976` 自相矛盾。生成器已改为写报告前用几何值覆写：`preload_n_per_stud = 2.976`、`preload_source = "geometric: SPRING_RATE x (SPRING_FREE - ring length)"`，并补 mu = 0.30 / 0.60 的摩擦与「舵机仍能推动」判定（全链 28.6 / 57.1 N < 0.6 x 112 N = 67.2 N 预算）。重跑后 STEP 与上一版**逐字节相同**（60 余分钟内只改了报告字段）。
+- 教训（溯源陷阱，务必记住）: `cad/output/_r53f_lock/report_r53b_*.json` **不是** R53b 基线，而是 R53b 模块在 R53f 运行时写入的**同名副产物**（里面已有 16 件环，`n_parts = 130`）；真基线在 `cad/output/_r53b_auto/report_r53b_*.json`（`n_parts = 114`）。副产物已改名为 `report_r53f_deps_r53b_module_*.json`，生成器里加了自动改名；凡引用报告必须核对 `caliber` / `n_parts`，不能只看文件名。
+- 逐件对比（MEASURED）: `cad/_r53f_compare_base.py` -> `cad/output/_r53f_lock/compare_r53f_vs_r53b.json`（真 R53b vs R53f）：两档均 **+16 件（全为 `carriage_clamp_seat_*`）、-0 件、位移 0 件（共有件 volume 与 bbox 逐件相等）、包围盒偏差 0.00 mm** => R53b 的其余每一个零件几何与位置完全未变。
 - Date/version: 2026-10-13 / 产物 `cad/output/_r53f_lock/report_r53f_{pollen,nectar}.json`、桌面 STEP `T06_shooter_assembly_R53f_{pollen,nectar}.step`、图 `cad/output/_r53f_lock/T06_R53f_限位环剖面.png`（桌面同名；**采用方案 vs 已否决方案的并排剖面**，脚本 `cad/_r53f_section.py`）
 
 ## V-0056 - 验证记录（非决策）：R53g 锁紧件预载上限 —— 拧过头多少才顶停 25-2

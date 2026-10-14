@@ -1,0 +1,108 @@
+{
+ "note": "R53f 逐件对比：基线取自 _r53b_auto（真 R53b），不是 _r53f_lock 里的同名副产物。",
+ "tool": "cad/_r53f_compare_base.py",
+ "variants": {
+  "pollen": {
+   "baseline": "cad/output/_r53b_auto/report_r53b_pollen.json",
+   "new": "cad/output/_r53f_lock/report_r53f_pollen.json",
+   "n_parts_base": 114,
+   "n_parts_new": 130,
+   "added": [
+    "carriage_clamp_seat_lower_+1_+36_+12",
+    "carriage_clamp_seat_lower_+1_+36_-12",
+    "carriage_clamp_seat_lower_+1_-36_+12",
+    "carriage_clamp_seat_lower_+1_-36_-12",
+    "carriage_clamp_seat_lower_-1_+36_+12",
+    "carriage_clamp_seat_lower_-1_+36_-12",
+    "carriage_clamp_seat_lower_-1_-36_+12",
+    "carriage_clamp_seat_lower_-1_-36_-12",
+    "carriage_clamp_seat_upper_+1_+36_+12",
+    "carriage_clamp_seat_upper_+1_+36_-12",
+    "carriage_clamp_seat_upper_+1_-36_+12",
+    "carriage_clamp_seat_upper_+1_-36_-12",
+    "carriage_clamp_seat_upper_-1_+36_+12",
+    "carriage_clamp_seat_upper_-1_+36_-12",
+    "carriage_clamp_seat_upper_-1_-36_+12",
+    "carriage_clamp_seat_upper_-1_-36_-12"
+   ],
+   "added_count": 16,
+   "added_all_are_seats": true,
+   "added_volume_mm3": [
+    148.49
+   ],
+   "removed": [],
+   "moved": [],
+   "moved_count": 0,
+   "bbox_base_mm": [
+    -170.0,
+    -219.17,
+    -3.51,
+    232.0,
+    145.6,
+    401.02
+   ],
+   "bbox_new_mm": [
+    -170.0,
+    -219.17,
+    -3.51,
+    232.0,
+    145.6,
+    401.02
+   ],
+   "bbox_delta_max_mm": 0.0,
+   "seat_count": 16,
+   "verdict": "除 16 件限位环外，R53b 的每一件几何与位置完全未变"
+  },
+  "nectar": {
+   "baseline": "cad/output/_r53b_auto/report_r53b_nectar.json",
+   "new": "cad/output/_r53f_lock/report_r53f_nectar.json",
+   "n_parts_base": 114,
+   "n_parts_new": 130,
+   "added": [
+    "carriage_clamp_seat_lower_+1_+36_+12",
+    "carriage_clamp_seat_lower_+1_+36_-12",
+    "carriage_clamp_seat_lower_+1_-36_+12",
+    "carriage_clamp_seat_lower_+1_-36_-12",
+    "carriage_clamp_seat_lower_-1_+36_+12",
+    "carriage_clamp_seat_lower_-1_+36_-12",
+    "carriage_clamp_seat_lower_-1_-36_+12",
+    "carriage_clamp_seat_lower_-1_-36_-12",
+    "carriage_clamp_seat_upper_+1_+36_+12",
+    "carriage_clamp_seat_upper_+1_+36_-12",
+    "carriage_clamp_seat_upper_+1_-36_+12",
+    "carriage_clamp_seat_upper_+1_-36_-12",
+    "carriage_clamp_seat_upper_-1_+36_+12",
+    "carriage_clamp_seat_upper_-1_+36_-12",
+    "carriage_clamp_seat_upper_-1_-36_+12",
+    "carriage_clamp_seat_upper_-1_-36_-12"
+   ],
+   "added_count": 16,
+   "added_all_are_seats": true,
+   "added_volume_mm3": [
+    148.49
+   ],
+   "removed": [],
+   "moved": [],
+   "moved_count": 0,
+   "bbox_base_mm": [
+    -170.0,
+    -219.17,
+    -3.51,
+    232.0,
+    145.6,
+    401.02
+   ],
+   "bbox_new_mm": [
+    -170.0,
+    -219.17,
+    -3.51,
+    232.0,
+    145.6,
+    401.02
+   ],
+   "bbox_delta_max_mm": 0.0,
+   "seat_count": 16,
+   "verdict": "除 16 件限位环外，R53b 的每一件几何与位置完全未变"
+  }
+ }
+}

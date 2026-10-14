@@ -73,21 +73,22 @@
  ],
  "clamp_calc": {
   "studs_per_carriage": 8,
-  "preload_n_per_stud": 3.0,
+  "preload_n_per_stud": 2.976,
   "spring_rate_n_per_mm": 1.24,
   "spring_installed_mm": 6.0,
   "spring_free_mm": 8.4,
   "mu_0.30": {
-   "friction_per_carriage_n": 14.4,
-   "friction_total_n": 28.8,
+   "friction_per_carriage_n": 14.3,
+   "friction_total_n": 28.6,
    "servo_can_still_slide_it": true
   },
   "mu_0.60": {
-   "friction_per_carriage_n": 28.8,
-   "friction_total_n": 57.6,
+   "friction_per_carriage_n": 28.6,
+   "friction_total_n": 57.1,
    "servo_can_still_slide_it": true
   },
-  "note": "CALCULATED. mu=0.30 = PET-on-PET as printed; mu=0.60 = if a 1 mm elastic high-friction pad is taped onto the ear faces (NOT modelled). Servo push budget ~112 N, see the R53b sheet: the clamp must stay well under it or the servo cannot change the gap any more."
+  "note": "CALCULATED. mu=0.30 = PET-on-PET as printed; mu=0.60 = if a 1 mm elastic high-friction pad is taped onto the ear faces (NOT modelled). Servo push budget ~112 N, see the R53b sheet: the clamp must stay well under it or the servo cannot change the gap any more.",
+  "preload_source": "geometric: SPRING_RATE x (SPRING_FREE - ring length); the build-time nut torque no longer sets it"
  },
  "lock_travel": {
   "slot_z_mm": [

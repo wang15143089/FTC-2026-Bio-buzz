@@ -86,6 +86,9 @@ B.build = build_capture
 def run(name, export=False):
     t0 = time.time()
     meta = B.run(name, export=False)
+    deps = OUT / ("report_r53b_%s.json" % name)
+    if deps.exists():
+        deps.replace(OUT / ("report_r53f_deps_r53b_module_%s.json" % name))
     seats = sorted(r["part"] for r in meta["parts"] if "clamp_seat" in r["part"])
     preload = B.SPRING_RATE * (B.SPRING_FREE - SEAT_L)
     seat_area = 3.141592653589793 * (SEAT_OD_R ** 2 - SEAT_BORE_R ** 2)
@@ -110,6 +113,18 @@ def run(name, export=False):
                "3D 打印 +/-0.2 mm 直接换算成 +/-0.25 N（名义 2.98 N）。",
         "parts": seats,
     }
+    clamp = B.clamp_calc()
+    clamp["preload_n_per_stud"] = round(preload, 3)
+    clamp["preload_source"] = ("geometric: SPRING_RATE x (SPRING_FREE - ring length); "
+                              "the build-time nut torque no longer sets it")
+    for mu in (0.30, 0.60):
+        f_car = mu * 2.0 * 8 * preload
+        clamp["mu_%.2f" % mu] = {
+            "friction_per_carriage_n": round(f_car, 1),
+            "friction_total_n": round(2.0 * f_car, 1),
+            "servo_can_still_slide_it": bool(2.0 * f_car < 0.6 * 112.0),
+        }
+    meta["clamp_calc"] = clamp
     (OUT / ("report_r53f_%s.json" % name)).write_text(
         json.dumps(meta, indent=1, ensure_ascii=False), encoding="utf-8")
 
