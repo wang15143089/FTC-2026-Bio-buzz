@@ -1,0 +1,31 @@
+{
+  "caliber": "T06 R53f 夹紧态口径：0.30 mm 耳-板间隙是建模态 running clearance",
+  "units": "mm / N",
+  "inputs": {
+    "plate_t_mm": 4.0,
+    "ear_t_mm": 3.0,
+    "ear_gap_mm": 0.3,
+    "seat_len_mm": 6.0,
+    "spring_installed_mm": 6.0,
+    "spring_free_mm": 8.4,
+    "spring_rate_n_per_mm": 1.24
+  },
+  "steps": {
+    "modeled_chain_mm": 16.6,
+    "modeled_ear_gap_total_mm": 0.6,
+    "clamped_spring_len_mm": 6.0,
+    "clamped_preload_n_per_stud": 2.9760000000000004,
+    "loose_spring_len_mm": 6.600000000000001,
+    "loose_preload_n_per_stud": 2.231999999999999
+  },
+  "answer": {
+    "ear_gap_in_assembly_mm": 0.0,
+    "friction_faces_per_stud": 2,
+    "preload_nominal_n_per_stud": 2.9760000000000004,
+    "preload_lower_bound_n_per_stud": 2.231999999999999,
+    "assembly_instruction": "螺母拧到限位环端面贴合（preload = k x (free - ring))",
+    "note": "0.30 mm 只存在于 CAD 建模态，装配后归零；夹紧摩擦只在归零后成立"
+  },
+  "status": "CALCULATED",
+  "source": "docs/decision_log.md V-0055（夹紧态口径说明）"
+}
