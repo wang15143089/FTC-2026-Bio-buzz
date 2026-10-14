@@ -539,3 +539,17 @@ t06_shooter_drive_r52:
   delivery: {value: {n_parts: 90, pollen_step_mb: 444.6, nectar_step_mb: 444.7, n_solids: 282, volume_delta_pct: -0.0001, bbox_delta_mm: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], bbox_mm: [-170.0, -219.17, -3.51, 232.0, 145.6, 401.02], files: ["T06_shooter_assembly_R52_pollen.step", "T06_shooter_assembly_R52_nectar.step"], readback: "cad/output/_r52_drive/readback_r52.json"}, status: "MEASURED", source: "cad/_r52_readback.py 回读交付 STEP"}
   r37_frozen_coordinates: {value: true, status: "MEASURED", source: "cad/output/_r52_drive/report_r52_pollen.json（送球件世界坐标未动，与 R37 验收口径一致）"}
   open_question: {value: "①送球件与 R51 底座之间只加了 feeder_mount ±1（y 53.5..63，0.5 mm 咬合托板壁），整机强度未验；②打印件质量未统计；③拨杆舵机工作模式（位置 / 连续旋转）仍未裁定；④未实机。", status: "TBD"}
+
+t06_shooter_lock_r53b:
+  note: "R53b：R52 底座 + 滑座常闭弹簧夹（32 件）+ 侧板两侧各 2 条锁紧长槽。取消人工蝶形螺母；换档仍由已有 25-2 调隙舵机自动完成。这是当前最新发射总成。"
+  version: {value: "T06-SHOOTER-LOCK-R53B", status: "KNOWN", source: "docs/decision_log.md DEC-0051"}
+  base: {value: "R52.build(name, half) + clamp_parts(half)，并删掉 8 件自由导轨 carriage_guide_*", status: "KNOWN", source: "cad/paddle_launcher_shooter_lock_r53b.py"}
+  clamp_stack: {value: {stud: "M4 螺柱 Ø4.0 x 约 30 + Ø7.0 头 3.0", spring: "压缩弹簧 Ø5.5（线径 0.6）自由长 8.4 / 装好 6.0", washer: "M4 平垫 Ø9.0 x 1.0", nut: "M4 尼龙锁紧螺母（装配时设定一次）"}, status: "ASSUMED", source: "cad/paddle_launcher_shooter_lock_r53b.py 常量（采购前需按实物核对）"}
+  preload: {value: {preload_n_per_stud: 3.0, spring_rate_n_per_mm: 1.24, spring_free_mm: 8.4, spring_installed_mm: 6.0, note: "k 由自由长/装好长按线性弹簧估算；预载刻意取小，保证现有调隙舵机推得动"}, status: "CALCULATED", source: "cad/output/_r53b_auto/report_r53_pollen.json clamp_calc"}
+  friction: {value: {studs_per_carriage: 8, faces_per_stud: 2, mu_0.30_total_n: 28.8, mu_0.60_total_n: 57.6, servo_can_still_slide_it: true, servo_push_budget_n: 112.0}, status: "CALCULATED", source: "cad/output/_r53b_auto/report_r53_pollen.json clamp_calc"}
+  lock_slot: {value: {slot_mm: [5.2, 44.0], slot_n_ranges_mm: [[63.5, 107.5], [-107.5, -63.5]], u_mm: [-36.0, 36.0], bolt_n_needed_mm: [68.0, 79.0, 92.0, 103.0], slack_mm: 4.5, note: "两侧各 4 条；只开 +n 一侧会让下滑座 8 颗螺柱穿 4 mm 实心侧板"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_pollen.json lock_travel"}
+  ear_plate: {value: {ear_half_width_mm: 42.0, ear_thickness_mm: 3.0, running_clearance_mm: 0.3, gap_measured_mm: 0.3}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json ear_to_plate_min_gap_mm"}
+  interference: {value: {lock_vs_rest_mm3: 0, lock_vs_carriage_mm3: 0, axle_isolation_hits: [], plate_vs_rest_nonzero: 5, note: "plate_vs_rest 的 5 处与 R52 同源，是 gap_servo_standoff x 侧板 28.274 x4 与 paddle_bearing_-1 x 侧板 10.285 的正常配合"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
+  nip: {value: {pollen: 64.0, nectar: 86.0, half_spacing_mm: {pollen: 80.0, nectar: 91.0}}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
+  delivery: {value: {n_parts: 114, pollen_step_mb: 446.3, nectar_step_mb: 446.4, files: ["T06_shooter_assembly_R53b_pollen.step", "T06_shooter_assembly_R53b_nectar.step"], note: "cad/output/_r53b_auto 是指向桌面的 junction，文件直接落在桌面"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
+  open_question: {value: "①比赛中是否需要在线切换 POLLEN / NECTAR（还是赛前调好一档就够）—— 未答；②是否还有空闲舵机通道（决定要不要做舵机主动解锁/夹紧）—— 未答；③弹簧/螺柱/尼龙螺母尚未按实物采购核对；④打印件质量、实机均未验。", status: "TBD"}
