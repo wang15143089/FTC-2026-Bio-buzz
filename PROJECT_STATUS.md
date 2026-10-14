@@ -725,10 +725,13 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 未关闭（TBD）: ①**端点无机械硬限位**（最大档距死点 0.337 mm）⇒ 必须在舵机编程器 + 固件卡住约 **19.3 .. 96.7 deg**；②弹簧 k / 预载、PET mu、E、J、Kp 全为 ASSUMED，实物未测；③实机未验（50 次来回后预载是否衰减）；④**已答（KNOWN，用户 2026-10-13）**：换档**需要比赛中在线进行**，见 0.6 节 V-0054（0.354 s/次、12 次/场、占空比 3.6 %、全程无人介入）；⑤是否要加凸轮做主动解锁：**不需要**（换档与保持都由已有 `2000-0025-0002` 完成，见 V-0054）。
 
 
-## 工作根路径（2026-10-13）
+## 工作根路径（2026-10-13 起生效，2026-10-14 联接已生效）
 
-- 工作根路径已迁移至 `C:\FTC design\FTC 2026 biobuzz`（`KNOWN`，用户指令 2026-10-13）。
+- Canonical 工作根路径：`C:\FTC design\FTC 2026 biobuzz`（`KNOWN`，用户指令 2026-10-13）。
 - 迁移方式：robocopy 全量复制，排除 `__pycache__` / `.pytest_cache`；核对结果：仓库 **14311 个文件 / 18.4136 GB** 与源逐字节一致。
-- 桌面交付件已按“仅项目相关”收敛到 `deliverables\`：**48 个文件 / 5.651 GB**（T06 R51–R53f 装配 STEP、审查图、COTS BOM、R47 MuJoCo XML/结果、a' 供料几何）；另外 18 个非项目文件（快捷方式、个人 PDF、字习项目包等）已从该目录删除，桌面原件未动。
-- 旧路径 `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：内容已清空（删前已校验与 Canonical 第字节一致）；目录联接**尚未建立** —— 该目录仍被本次 Codex 会话作为工作目录持有句柄，`Delete` / `Move` 均返回 “being used by another process”。待办：完全退出 Codex 后运行 `C:\FTC design\link_old_path.cmd`（已过 parse 检查与锁检测演练），然后以 Canonical 路径重开会话。
-- 后续所有生成、仿真、导出与交付默认输出到 Canonical 路径；`AGENTS.md` 已写入同一约定。
+- 桌面交付件收敛在 `deliverables\`：**48 个文件 / 5.651 GB**（T06 R51–R53f 装配 STEP、审查图、COTS BOM、R47 MuJoCo XML/结果、a' 供料几何），默认不纳入 Git。
+- `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：**2026-10-14 已改为目录联接**（`Junction` -> Canonical，建立脚本 `C:\FTC design\link_old_path.ps1` / `.cmd`，日志 `link_old_path.log`）。
+  - 实测（`MEASURED` 2026-10-14）：经旧路径读 `AGENTS.md` 6970 B、`git log` = `9881e8b`、`git status` 与 origin 同步；写入测试文件立即出现在 Canonical 路径（确认为真联接而非副本），随后已清理。
+  - 待观察风险：OneDrive 仍在运行，可能删除该 reparse point（尚未建立监控）；被删后重运脚本即可。
+  - 待办：本机 18 GB gitignored CAD 输出目前**无云端备份**，需为 `C:\FTC design` 安排独立备份。
+- Python 解释器：`.venv-cad\Scripts\python.exe`，经新路径验证 `sys.prefix` 与 `import cadquery` 正常。
