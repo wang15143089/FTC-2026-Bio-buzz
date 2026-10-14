@@ -598,6 +598,7 @@ t06_lock_seat_r53f:
   rejected_option: {value: "第一版螺柱外细套筒 Ø4.5/Ø4.3 x 6.0：径向间隙只有 0.25 mm => 壁厚 0.25 mm、截面 1.38 mm2，PET 压缩屈服约 50 MPa => 约 69 N，手拧会压溃，已否决", status: "CALCULATED", source: "docs/decision_log.md V-0055"}
   geometry: {value: {parts: {pollen: 130, nectar: 130}, parts_before_r53f: 114, ring_volume_mm3: 148.49, ring_axial_mm: [75.3, 81.3], lock_vs_rest: 0, lock_vs_carriage: 0, axle_isolation_hits: 0, ear_to_plate_min_gap_mm: 0.3, slot_coverage_z_mm: [68.0, 79.0, 92.0, 103.0], slot_slack_mm: 4.5}, status: "MEASURED", source: "cad/output/_r53f_lock/report_r53f_{pollen,nectar}.json"}
   step: {value: {pollen_mb: 446.5, nectar_mb: 446.6, desktop: "T06_shooter_assembly_R53f_{pollen,nectar}.step"}, status: "MEASURED"}
+  figure: {value: "cad/output/_r53f_lock/T06_R53f_限位环剖面.png（桌面同名；采用方案 vs 已否决方案的并排剖面，脚本 cad/_r53f_section.py）", status: "KNOWN"}
   readback: {value: {n_solids: 370, volume_delta_pct: -0.0001, bbox_delta_mm: 0.0, nip_mm: {pollen: 64.0, nectar: 86.0}, ring_count: 16}, status: "MEASURED", source: "cad/_r53f_readback.py -> cad/output/_r53f_lock/readback_r53f.json"}
   open_question: {value: "①限位环打印长度与压缩强度未实测（1.24 kN 为材料估算）；②弹簧 k = 1.24 N/mm 未实测；③台架 50 次来回后的预载衰减未测；④实机未验。", status: "TBD"}
 

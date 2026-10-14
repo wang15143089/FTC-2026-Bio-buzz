@@ -1070,7 +1070,7 @@ Date/version:
 - 结论（KNOWN）: 换档（含比赛中在线换档）仍由**已有**的 `2000-0025-0002` 完成；限位环**不可能**影响正常位置改变（预载上限被几何锁死），失效方向只剩螺母松脱（掉预载、掉夹紧，不伤换档）=> 尼龙锁紧螺母 + 螺纹胶 243。
 - 状态: `pass`（几何）；`not_run`（台架 50 次来回后复测预载衰减）。
 - 未验证项（TBD）: ①限位环实际打印长度与材料压缩强度未实测；②弹簧 k = 1.24 N/mm 与 PET mu 仍未实测；③实机未验。
-- Date/version: 2026-10-13 / 产物 `cad/output/_r53f_lock/report_r53f_{pollen,nectar}.json`、桌面 STEP `T06_shooter_assembly_R53f_{pollen,nectar}.step`
+- Date/version: 2026-10-13 / 产物 `cad/output/_r53f_lock/report_r53f_{pollen,nectar}.json`、桌面 STEP `T06_shooter_assembly_R53f_{pollen,nectar}.step`、图 `cad/output/_r53f_lock/T06_R53f_限位环剖面.png`（桌面同名；**采用方案 vs 已否决方案的并排剖面**，脚本 `cad/_r53f_section.py`）
 
 ## V-0056 - 验证记录（非决策）：R53g 锁紧件预载上限 —— 拧过头多少才顶停 25-2
 
