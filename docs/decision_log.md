@@ -1138,3 +1138,16 @@ Date/version:
 - 判定: solids = 1 **pass**；6 个 M3 接头全部 pass（0 个 skipped，每孔材料 >= 20 mm3 门槛）；厂商件 / 闸门实体 100 % 剔除 **pass**。
 - 未验证项（TBD）: ①螺栓长度与扳手空间（4 条腿的螺母侧在导轨下方 z < 2，需核对可达性）；②打印朝向与支撑策略；③O3.4 打印孔径公差与 PET 收缩（1 mm 级误差按用户口径可接受）；④闸门实体本版未建模，其孔位只按 R49 包络 x[166,232] z[14,258] 预留；⑤R49/R53 既有件与新主体的接口一致性未复核。
 - Date/version: 2026-10-14 / 脚本 `cad/paddle_launcher_shooter_assembly_r54.py`、`cad/r54_joint_schematic.py` / 产物 `cad/output/_r54_frame/`（report + 2 个 STEP + sections/ 4 张图）
+
+
+## DEC-0054 - 决策：T06 后续只交付 pollen 版（nectar 不是第二台机构）
+
+- 判据（KNOWN）: 用户 2026-10-14 指令「你以后只给 pollen 版就行了，两版实际是同机构不同时间的不同状态」。
+- 决策（KNOWN）:
+  1. 后续 CAD / STEP / 仿真 / 图 **只出 pollen 口径**，不再另出 nectar 交付件。
+  2. nectar 与 pollen 的关系重述为 **同一机构在换档行程两端的不同状态**（沿 DEC-0037 / DEC-0051 的调隙链：半间距 80.0 -> 91.0 mm），而不是两台独立机构；机间唯一变化量是**飞轮间隙**。
+  3. 兼容性要求不变：同一套送球件必须能吃两种球径（DEC-0035 以来的口径继续有效），只是**不再单独发布 nectar 版本产物**。
+  4. 历史 nectar 产物按 superseded 记录保留，不删除、不覆盖（`cad/output/_r51_*` / `_r52_*` / `_r53b_auto/` 与 `deliverables\` 中的 nectar STEP）。
+- 影响: `cad/paddle_launcher_shooter_assembly_r54.py` 的 `HALF` 双档定义保留（换档计算仍需要 nectar 端点），但**默认交付变体 = pollen**；`report_r54_pollen.json` 为唯一交付报告。
+- 未验证项（TBD）: 无（本决策只收敛输出范围，不改几何）。
+- Date/version: 2026-10-14 / 关联 Linear KEI（R54 问题）、Notion 项目页 DEC-0053/0054 记录

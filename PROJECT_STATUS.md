@@ -506,6 +506,7 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 
 - 已交付（2026-10-14，DEC-0053）: **1 个打印件** `shooter_frame_R54_merged`（12 件 + 16 筋 + 2 补缝块 + 4 导轨腿，solids = 1）+ **6 个 M3 贯穿接头**；STEP `cad/output/_r54_frame/T06_shooter_frame_R54_pollen.step`（0.99 MB，单件，可直接打印）与 `T06_shooter_assembly_R54_pollen.step`（4.1 MB，含保留件）；图 `cad/output/_r54_frame/sections/`（y0 / y64 剖面 + 装配剖视 + 接头示意图）。
 - 已知无效连接（已修）: 原 4 个「机架孔」只穿 `feeder_mount`，不穿 `base_rail`；侧板与导轨之间原本是 17.6 mm 悬空。
+- 输出范围（KNOWN，2026-10-14 用户口径，DEC-0054）: 后续**只交付 pollen 版**；nectar 与 pollen 是**同一机构在换档行程两端的不同状态**（半间距 80.0 -> 91.0 mm，唯一变化量是飞轮间隙），不再另出 nectar 交付件；历史 nectar 产物按 superseded 保留。
 - 剩余（TBD，按优先级）: (i) 检查螺母侧可达性（4 条腿下方 z < 2）与螺栓长度选型；(ii) 打印朝向 / 支撑；(iii) O3.4 打印孔径与 PET 收缩实测（用户口径 1 mm 误差可接受）；(iv) 闸门实体本版未做，只按 R49 包络预留 4 个孔；(v) R49 / R53 既有件与新主体的接口一致性复核（本轮未做）。
 
 ### 0.1（当前主任务，2026-10-12 起）送球机构优化迭代循环
