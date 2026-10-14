@@ -1186,6 +1186,23 @@ Date/version:
   - 总判定 `VERDICT: PASS (4/4 rail joints through + 4/4 gate reserved holes)`。
 - 螺栓选型（CALCULATED）: 夹持长度 = 导轨 14 mm（z 2..16）+ 腿 28 / 32 mm => **42.0 mm（x = 60）/ 46.0 mm（x = 76）**；+ 平垫 1.0 + M3 螺母 2.4 => 推荐 **M3 x 50（x = 60）/ M3 x 55（x = 76）**，或统一 4 x M3 x 55。螺母与螺丝刀都在打印件外部，**无嵌入件**。
 - 影响: DEC-0055 的 `fail` 判定解除，6 / 6 接头现在可装配；修法 B / C 未采用（保留为备选，不删除记录）。
-- 未验证项（TBD）: ①四腿 y 向加宽到 68..84 后与侧板 / 外罩 / 托板的实体干涉（本轮只按轴线探针验证，未做全实体干涉体检查）；②O3.4 打印孔径与 PET 收缩实测；③打印朝向 / 前底裙悬垂支撑；④闸门实体仍只预留孔。
+- 未验证项（TBD）: ①四腿 y 向加宽到 68..84 后与侧板 / 外罩 / 托板的全实体干涉 => **已由 V-0059 复核 PASS（0.000 mm3 重叠）**；②O3.4 打印孔径与 PET 收缩实测；③打印朝向 / 前底裙悬垂支撑；④闸门实体仍只预留孔。
 - Date/version: 2026-10-14 / 产物 `cad/output/_r55_frame/T06_shooter_frame_R55_pollen.step`、`T06_shooter_assembly_R55_pollen.step`、`report_r55_pollen.json`、`report_r55_joint_reachability.json`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
 
+
+## V-0059 - 验证记录（非决策）：R55 加宽后腿的全实体干涉复核 —— frame n (assembly - frame) = 0.000 mm3
+
+- 目的（KNOWN）: DEC-0055 修法 A 把 4 条导轨腿从 y 68..80 加宽到 **y 68..84**（螺栓轴 y = ±76）。R55 的通过证据（`report_r55_joint_reachability.json`）只按**孔轴探针**验证，不能排除新增材料与保留件 / 托板 / 外罩发生体干涉。本记录补这次全实体复核。
+- 方法（CALCULATED，只读）: `cad/_r55_fit_probe.py` -> `cad/output/_r55_frame/report_r55_fit_probe.json`。核心判据 = **`frame ∩ (assembly - frame)` 的实体体积**；装配内的保留件用差集取得，因此任何保留件咬进打印件都会计入重叠体积。只读 STEP，不写任何交付件。
+- 实测（MEASURED）:
+  1. **干涉 = 0.000 mm3**：`frame`（1 solid，V = 1 058 193 mm3）与 `assembly - frame`（138 solids，V = 478 355 mm3）的重叠体积 **0.000 mm3**，无任何 > 0.01 mm3 的重叠体 => **pass**。
+  2. 新增材料条带（x 54..82，y 80..84，z 16..48）：`frame` 2 880.00 mm3，其他件 **0.00 mm3**。
+  3. 腿脚投影盒（x=60：x 54..66 / y 68..84 / z 16..44；x=76：x 70..82）内其他件均为 **0.00 mm3**。
+  4. `strip_y80_84_full`（全幅 x 0..220）里其他件 2 940 mm3 = **底座导轨 y 80..81 那一条**（导轨 y 63..81）；与腿只是**相切**，明确不计入重叠 —— 与判据 1 的 0.000 mm3 一致。
+  5. 导轨外侧下方（x 40..100，y 84..100，z -12..20）`frame` 与 `other` 都是 **0.00 mm3** => 螺母 / 扳手侧仍然全空。
+  6. 腿顶上方**全装配** 6 x 6 x 22 mm 立柱（x = 60 / 76，y = ±76，z 从腿顶 +0.3 起）：4 处全部 **0.00 mm3** => 螺栓头与螺丝刀进刀路径在**整机装配状态**下依然通畅（不只是打印件）。
+  7. 腿柱体积核对：x=60 处 5 121.8 mm3、x=76 处 5 853.5 mm3；理想 12x16x28 = 5 376 / 12x16x32 = 6 144 减去 O3.4 孔 254.2 mm3 后 = 5 121.8 / 5 889.8（x=76 实测 5 853.5，差 36 mm3 = 腿顶与侧板熔合处倒角，0.6 %）=> 腿在加宽后确实是**实心 12 x 16 柱**，没有被别的实体掏空或留下薄壁。
+  8. 腿顶上方**打印件自身**只有 y ±68..72 的侧板（x=60 盒内 821.5 mm3 = 2 x 4 x 13 x 7.9），与螺栓头包络横向让位 1.25 mm（与 `report_r55_joint_reachability.json` 的 `head_space = 0.00` 一致）。
+- 判定: 干涉复核 **pass**；DEC-0055 修法 A 在「几何可装配」这一层已闭环（穿孔 / 可达 / 无干涉三件事都有 STEP 回读证据）。
+- 未验证项（TBD）: ①打印朝向 / 前底裙 z -3.51..3 悬垂支撑；②O3.4 打印孔径与 PET 收缩实测；③闸门实体未建模；④R49 / R53 既有件与新主体的接口一致性复核（本轮只做干涉，不做接口尺寸对齐）。
+- Date/version: 2026-10-14 / 产物 `cad/_r55_fit_probe.py` -> `cad/output/_r55_frame/report_r55_fit_probe.json`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页

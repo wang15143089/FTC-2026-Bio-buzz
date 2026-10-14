@@ -510,8 +510,8 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - **已解决（MEASURED，2026-10-14，DEC-0055 修法 A -> R55）: 6 / 6 个 M3 接头全部可装配** —— 4 条导轨腿的螺栓轴由 y = ±70 外移到 **y = ±76.0**（腿宽 y 由 68..80 加宽到 **68..84**，仍是 12 x 16 mm 柱）；腿与导轨各钻 O3.4，螺栓从腿顶进、螺母在导轨下方、侧板只挡 1.25 mm 不碍螺丝刀。**回读新 STEP 实测（`cad/output/_r55_frame/report_r55_joint_reachability.json`）**：4/4 通孔（轴线体积 0.000 mm3）、孔径确为 O3.4（O3.5 探针余量 11.9 mm3）、孔两侧各约 6.79 mm3 实心壁、导轨 3.96 mm3 完整、螺母腔（z -20..1.5）与头顶空间全空。旧孔位 y = ±70 为盲孔的证据：`cad/output/_r54_frame/report_r54_joint_reachability.json`。
 - **R55 交付件（MEASURED）**: `cad/output/_r55_frame/T06_shooter_frame_R55_pollen.step`（0.96 MB，solids = 1，V = 1 058 193 mm3，y 包络 ±84.0）+ `T06_shooter_assembly_R55_pollen.step`（4.0 MB）；闸门 4 个预留孔沿用 R54 仍 pass（O3.4 通畅、侧板外 y 85..115 全空）。R54 按 superseded 原样保留。生成 `cad/paddle_launcher_shooter_assembly_r55.py`，复核 `cad/_r55_joint_reachability.py`，构建日志 `cad/output/_r55_run.log`（2417.9 s）。
 - **螺栓选型（CALCULATED）**: 夹持长度 x = 60 处 **42.0 mm**、x = 76 处 **46.0 mm**（导轨 z 2..16 + 腿 z 16..44 / 48）；加平垫 1.0 + M3 螺母 2.4 ⇒ 推荐 **M3 x 50（x = 60）/ M3 x 55（x = 76）**，或统一用 4 x M3 x 55。螺母与螺丝刀全在打印件之外，无需嵌入件。
-- **NEXT ACTION**: 同步本轮文档 + Linear KEI-24 + Notion，提交推送；随后按剩余 TBD 推进。
-- 剩余（TBD，按优先级）: (i) 打印朝向 / 支撑（前底裙 z -3.51..3 平放时是悬垂）; (ii) O3.4 打印孔径与 PET 收缩实测（用户口径 1 mm 误差可接受）; (iii) 闸门实体本版仍未做（只按 R49 包络预留 4 个孔，孔位可达性 pass）; (iv) R49 / R53 既有件与新主体的接口一致性复核（本轮未做）; (v) 四腿加宽后（y 68..84）与侧板 / 外罩的干涉复核（本轮只按轴线探针验证）。
+- **NEXT ACTION**: 按剩余 TBD 顺序推进 —— (i) 打印朝向 / 前底裙 z -3.51..3 悬垂支撑策略（建议出朝向示意图）；(ii) O3.4 打印孔径与 PET 收缩实测口径；(iii) 闸门实体建模（目前只有 4 个预留孔）；(iv) R49 / R53 既有件与新主体的接口一致性复核。
+- 剩余（TBD，按优先级）: (i) 打印朝向 / 支撑（前底裙 z -3.51..3 平放时是悬垂）; (ii) O3.4 打印孔径与 PET 收缩实测（用户口径 1 mm 误差可接受）; (iii) 闸门实体本版仍未做（只按 R49 包络预留 4 个孔，孔位可达性 pass）; (iv) R49 / R53 既有件与新主体的接口一致性复核（本轮未做）; (v) 四腿加宽后（y 68..84）的实体干涉复核 => **已做，V-0059 PASS**（`frame ∩ (assembly - frame)` = **0.000 mm3**，138 个保留件无一咬入；腿顶上方整机 6 x 6 x 22 mm 进刀柱 4 处全空）。
 
 ### 0.1（当前主任务，2026-10-12 起）送球机构优化迭代循环
 
