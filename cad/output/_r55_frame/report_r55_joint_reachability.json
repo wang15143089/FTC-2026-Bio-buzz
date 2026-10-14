@@ -1,0 +1,262 @@
+{
+ "units": "mm",
+ "revision": "R55 (DEC-0055 fix A)",
+ "source": "T06_shooter_frame_R55_pollen.step",
+ "method": "read-only probe of the exported STEPs",
+ "joints": [
+  {
+   "id": "rail_x60_-1",
+   "axis": [
+    60.0,
+    -76.0
+   ],
+   "frame_axis_mm3": 0.0,
+   "assy_axis_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 11.922,
+   "wall_in_mm3": 6.79,
+   "wall_out_mm3": 6.79,
+   "plate_above_tab_mm3": 3.96,
+   "tab_y_span": [
+    [
+     55.0,
+     63.0,
+     1.13
+    ],
+    [
+     68.0,
+     74.33,
+     1.78
+    ],
+    [
+     77.67,
+     84.0,
+     1.78
+    ]
+   ],
+   "tab_bottom_z": 16.0,
+   "nut_space_mm3": 0.0,
+   "head_space_mm3": 0.0,
+   "driver_space_mm3": 0.0,
+   "plate_to_head_gap_mm": 1.25,
+   "head_washer_clearance_mm": 1.0,
+   "rail_bottom_z": 2.0,
+   "rail_top_z": 16.0,
+   "grip_mm": 42.0,
+   "required_bolt_shank_mm": 45.4,
+   "through_hole": true,
+   "bore_is_34": true,
+   "walls_present": true,
+   "plate_intact": true,
+   "nut_reachable": true,
+   "head_reachable": true,
+   "pass": true
+  },
+  {
+   "id": "rail_x60_+1",
+   "axis": [
+    60.0,
+    76.0
+   ],
+   "frame_axis_mm3": 0.0,
+   "assy_axis_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 11.922,
+   "wall_in_mm3": 6.79,
+   "wall_out_mm3": 6.79,
+   "plate_above_tab_mm3": 3.96,
+   "tab_y_span": [
+    [
+     55.0,
+     63.0,
+     1.13
+    ],
+    [
+     68.0,
+     74.33,
+     1.78
+    ],
+    [
+     77.67,
+     84.0,
+     1.78
+    ]
+   ],
+   "tab_bottom_z": 16.0,
+   "nut_space_mm3": 0.0,
+   "head_space_mm3": 0.0,
+   "driver_space_mm3": 0.0,
+   "plate_to_head_gap_mm": 1.25,
+   "head_washer_clearance_mm": 1.0,
+   "rail_bottom_z": 2.0,
+   "rail_top_z": 16.0,
+   "grip_mm": 42.0,
+   "required_bolt_shank_mm": 45.4,
+   "through_hole": true,
+   "bore_is_34": true,
+   "walls_present": true,
+   "plate_intact": true,
+   "nut_reachable": true,
+   "head_reachable": true,
+   "pass": true
+  },
+  {
+   "id": "rail_x76_-1",
+   "axis": [
+    76.0,
+    -76.0
+   ],
+   "frame_axis_mm3": 0.0,
+   "assy_axis_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 11.922,
+   "wall_in_mm3": 6.79,
+   "wall_out_mm3": 6.79,
+   "plate_above_tab_mm3": 3.96,
+   "tab_y_span": [
+    [
+     68.0,
+     74.33,
+     1.78
+    ],
+    [
+     77.67,
+     84.0,
+     1.78
+    ]
+   ],
+   "tab_bottom_z": 16.0,
+   "nut_space_mm3": 0.0,
+   "head_space_mm3": 0.0,
+   "driver_space_mm3": 0.0,
+   "plate_to_head_gap_mm": 1.25,
+   "head_washer_clearance_mm": 1.0,
+   "rail_bottom_z": 2.0,
+   "rail_top_z": 16.0,
+   "grip_mm": 46.0,
+   "required_bolt_shank_mm": 49.4,
+   "through_hole": true,
+   "bore_is_34": true,
+   "walls_present": true,
+   "plate_intact": true,
+   "nut_reachable": true,
+   "head_reachable": true,
+   "pass": true
+  },
+  {
+   "id": "rail_x76_+1",
+   "axis": [
+    76.0,
+    76.0
+   ],
+   "frame_axis_mm3": 0.0,
+   "assy_axis_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 11.922,
+   "wall_in_mm3": 6.79,
+   "wall_out_mm3": 6.79,
+   "plate_above_tab_mm3": 3.96,
+   "tab_y_span": [
+    [
+     68.0,
+     74.33,
+     1.78
+    ],
+    [
+     77.67,
+     84.0,
+     1.78
+    ]
+   ],
+   "tab_bottom_z": 16.0,
+   "nut_space_mm3": 0.0,
+   "head_space_mm3": 0.0,
+   "driver_space_mm3": 0.0,
+   "plate_to_head_gap_mm": 1.25,
+   "head_washer_clearance_mm": 1.0,
+   "rail_bottom_z": 2.0,
+   "rail_top_z": 16.0,
+   "grip_mm": 46.0,
+   "required_bolt_shank_mm": 49.4,
+   "through_hole": true,
+   "bore_is_34": true,
+   "walls_present": true,
+   "plate_intact": true,
+   "nut_reachable": true,
+   "head_reachable": true,
+   "pass": true
+  }
+ ],
+ "gate_reserved": {
+  "gate_reserved_x190_z200": {
+   "axis_material_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 4.335,
+   "outside_mm3": [
+    0.0,
+    0.0
+   ],
+   "plate_ring_y": [
+    [
+     -72.0,
+     -68.0,
+     48.63
+    ],
+    [
+     68.0,
+     72.0,
+     48.63
+    ]
+   ],
+   "through_hole": true,
+   "bore_is_34": true,
+   "outside_free": true,
+   "pass": true
+  },
+  "gate_reserved_x206_z220": {
+   "axis_material_mm3": 0.0,
+   "probe_34_mm3": 0.0,
+   "probe_35_mm3": 4.335,
+   "outside_mm3": [
+    0.0,
+    0.0
+   ],
+   "plate_ring_y": [
+    [
+     -72.0,
+     -68.0,
+     45.79
+    ],
+    [
+     68.0,
+     72.0,
+     45.79
+    ]
+   ],
+   "through_hole": true,
+   "bore_is_34": true,
+   "outside_free": true,
+   "pass": true
+  }
+ },
+ "bolt_stack": {
+  "rail_z": [
+   2.0,
+   16.0
+  ],
+  "tab_heights_mm": {
+   "x=60": 28.0,
+   "x=76": 32.0
+  },
+  "grip_mm": {
+   "x=60": 42.0,
+   "x=76": 46.0
+  },
+  "washer_mm": 1.0,
+  "nut_m3_mm": 2.4,
+  "recommended": "M3x50 for x=60, M3x55 for x=76 (or 4x M3x55); plain washer + M3 nut under the rail",
+  "note": "nut and driver are both outside the printed part; nothing is embedded"
+ },
+ "verdict": "PASS (4/4 rail joints through + 4/4 gate reserved holes)",
+ "elapsed_s": 76.7
+}

@@ -1171,3 +1171,21 @@ Date/version:
 - 判定: 4 / 6 接头 **fail（不可装配）**；闸门预留孔 **pass**。按用户口径在此**停住不往下做**，等待选择 A / B / C。
 - 未验证项（TBD）: ①用户选 A / B / C；②改后必须回读新 STEP 复核 6 个孔的真实可达性；③螺栓长度与螺母规格选型；④打印朝向与支撑策略。
 - Date/version: 2026-10-14 / 关联 Linear KEI-24（T06.16），Notion Mechanical Design - Scoring Mechanism 页
+
+### DEC-0055 更新（2026-10-14，已闭环）：用户选定修法 A -> R55 实施并复核 PASS
+
+- 裁决（KNOWN）: 用户 2026-10-14 回复「就A了」=> 采纳修法 A。
+- 实施（KNOWN）: 新建 `cad/paddle_launcher_shooter_assembly_r55.py`（由 R54 逐串改写；R54 脚本与产物原样保留，按 superseded 记录）。改动只在接头处：
+  1. 螺栓轴 y = ±70.0 -> **±76.0**（`BOLT_Y = 76.0`）；腿的 y 向宽度 12 -> **16 mm**（`TAB_WY = 16.0`，腿 y 68..84），x 向仍 12 mm，z 跨不变（x = 60: 16..44；x = 76: 16..48）。
+  2. 钻头加长到 **60 mm**（z -4..56），一次穿透「腿 + 导轨」并从下方退出；`DRILLABLE` 白名单同步修正（原先腿的钻头会误切 `guide_floor_*`）。
+  3. 新增 `verify_joints()`，把接头检查写进 `report_r55_pollen.json`（注意：该字段是**钻孔前**测量，`through_hole` 为过期值，不作为通过证据）。
+- 构建（MEASURED，`cad/output/_r55_run.log`，2417.9 s）: **solids = 1**，V = **1 058 193 mm3**（R54 = 1 052 724），bbox x[-147.22, 215.26] y[**-84.00**, 99.00] z[-3.51, 401.02]；4 个接头 0 skipped（`material_mm3` = 254.22 @ x=60 / 290.53 @ x=76），闸门 2 个预留孔各 72.63 mm3。
+- 回读复核（MEASURED，`cad/_r55_joint_reachability.py` -> `cad/output/_r55_frame/report_r55_joint_reachability.json`）: 判据 = 沿孔轴的**穿透性**（frame + assembly 轴线体积 < 0.05 mm3）、**孔径确实是 O3.4**、孔两侧有实心壁、导轨不被切穿、螺母腔可达、螺丝刀头顶空间可达。
+  - 4/4 接头：`through = 0.000 / 0.000`，`bore34 = True`（O3.5 探针余量 11.9 mm3），孔两侧壁各约 6.79 mm3，导轨剩 3.96 mm3 完整，螺母腔（z -20..1.5）与头顶空间均 0.00 mm3 => **PASS**。
+  - 4/4 闸门预留孔（x = 190 z = 200 / x = 206 z = 220）：`axis = 0.000`、`probe34 = 0.000`、`probe35 = 4.33`、侧板外 y 85..115 全空 => **PASS**。
+  - 总判定 `VERDICT: PASS (4/4 rail joints through + 4/4 gate reserved holes)`。
+- 螺栓选型（CALCULATED）: 夹持长度 = 导轨 14 mm（z 2..16）+ 腿 28 / 32 mm => **42.0 mm（x = 60）/ 46.0 mm（x = 76）**；+ 平垫 1.0 + M3 螺母 2.4 => 推荐 **M3 x 50（x = 60）/ M3 x 55（x = 76）**，或统一 4 x M3 x 55。螺母与螺丝刀都在打印件外部，**无嵌入件**。
+- 影响: DEC-0055 的 `fail` 判定解除，6 / 6 接头现在可装配；修法 B / C 未采用（保留为备选，不删除记录）。
+- 未验证项（TBD）: ①四腿 y 向加宽到 68..84 后与侧板 / 外罩 / 托板的实体干涉（本轮只按轴线探针验证，未做全实体干涉体检查）；②O3.4 打印孔径与 PET 收缩实测；③打印朝向 / 前底裙悬垂支撑；④闸门实体仍只预留孔。
+- Date/version: 2026-10-14 / 产物 `cad/output/_r55_frame/T06_shooter_frame_R55_pollen.step`、`T06_shooter_assembly_R55_pollen.step`、`report_r55_pollen.json`、`report_r55_joint_reachability.json`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+

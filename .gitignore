@@ -142,3 +142,10 @@ deliverables/
 cad/output/_r54_frame/*.step
 cad/output/_r54_frame/cache/
 cad/output/_r54_frame/_run_*.log
+
+# R55 rail-leg bolt-axis fix (DEC-0055 fix A): STEP copies are ~5 MB and fully regenerable with
+#   cad/paddle_launcher_shooter_assembly_r55.py <variant> --step
+cad/output/_r55_frame/*.step
+cad/output/_r55_frame/cache/
+cad/output/_r55_frame/_run_*.log
+cad/output/_r55_run.log
