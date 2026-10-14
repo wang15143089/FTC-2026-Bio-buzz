@@ -134,3 +134,11 @@ cad/output/_r53f_lock/_run_*.log
 
 # Desktop delivery archive (2026-10-13 copy).  Local-only; not a build input.
 deliverables/
+
+# R54 printed-frame consolidation (DEC-0053): one printed frame + plain M3
+# through-bolts.  STEP copies are ~5 MB and fully regenerable with
+#   cad/paddle_launcher_shooter_assembly_r54.py <variant> --step
+# report_r54_*.json and sections/*.png stay tracked.
+cad/output/_r54_frame/*.step
+cad/output/_r54_frame/cache/
+cad/output/_r54_frame/_run_*.log
