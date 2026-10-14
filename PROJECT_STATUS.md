@@ -507,7 +507,9 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 已交付（2026-10-14，DEC-0053）: **1 个打印件** `shooter_frame_R54_merged`（12 件 + 16 筋 + 2 补缝块 + 4 导轨腿，solids = 1）+ **6 个 M3 贯穿接头**；STEP `cad/output/_r54_frame/T06_shooter_frame_R54_pollen.step`（0.99 MB，单件，可直接打印）与 `T06_shooter_assembly_R54_pollen.step`（4.1 MB，含保留件）；图 `cad/output/_r54_frame/sections/`（y0 / y64 剖面 + 装配剖视 + 接头示意图）。
 - 已知无效连接（已修）: 原 4 个「机架孔」只穿 `feeder_mount`，不穿 `base_rail`；侧板与导轨之间原本是 17.6 mm 悬空。
 - 输出范围（KNOWN，2026-10-14 用户口径，DEC-0054）: 后续**只交付 pollen 版**；nectar 与 pollen 是**同一机构在换档行程两端的不同状态**（半间距 80.0 -> 91.0 mm，唯一变化量是飞轮间隙），不再另出 nectar 交付件；历史 nectar 产物按 superseded 保留。
-- 剩余（TBD，按优先级）: (i) 检查螺母侧可达性（4 条腿下方 z < 2）与螺栓长度选型；(ii) 打印朝向 / 支撑；(iii) O3.4 打印孔径与 PET 收缩实测（用户口径 1 mm 误差可接受）；(iv) 闸门实体本版未做，只按 R49 包络预留 4 个孔；(v) R49 / R53 既有件与新主体的接口一致性复核（本轮未做）。
+- **阻塞（MEASURED，2026-10-14，DEC-0055）: 4 / 6 个 M3 接头不可装配** —— 4 条导轨腿的孔轴 (x 60/76, y ±70) 正好落在侧板 y 68..72 的 V 形下缘上：沿孔轴只在 z 38..80 有料，z 17..38 是空腔 ⇒ 盲孔，螺栓出不去；打印件与导轨零重叠（0.00 mm3）。闸门预留孔 2 条（4 孔）**可达 OK**。空间侧实测都够（外侧 y 83..120 全空、导轨下方 z -20..1 全空），问题只在孔不通。证据 `cad/output/_r54_frame/report_r54_joint_reachability.json` + `report_r54_fit_probe.json`（可复算 `cad/_r54_joint_reachability.py` / `_r54_fit_probe.py` / `_r54_axis_shift_probe.py`）。
+- **NEXT ACTION（待用户裁决后立即执行）**: 三选一 —— **A（推荐）**螺栓轴外移到 y = ±74.5（实测该处腿是实心 12 x 12 柱、z 16 → 44 / 48、底面已贴导轨顶面、柱顶以上无料），腿与导轨各钻 O3.4，M3 x 50 + 螺母在导轨下；**B** 外侧 C 形夹箍（不钻导轨，+2 件）；**C** 把侧板下缘 V 形在 x 54..82 段抬高到 z >= 52 保留原孔位。选定后：改 `cad/paddle_launcher_shooter_assembly_r54.py`（或新建 R55）→ 重跑 → **回读新 STEP 复核 6 孔** → 同步 Linear / Notion。同时修 `drill_holes` 的 `DRILLABLE` 白名单（现在腿的钻头会误切 `guide_floor_*`）。
+- 剩余（TBD，按优先级）: (i) 螺栓长度与螺母规格选型（可达性已实测）; (ii) 打印朝向 / 支撑（前底裙 z -3.51..3 平放时是悬垂）; (iii) O3.4 打印孔径与 PET 收缩实测（用户口径 1 mm 误差可接受）；(iv) 闸门实体本版未做，只按 R49 包络预留 4 个孔（孔位可达性 pass）；(v) R49 / R53 既有件与新主体的接口一致性复核（本轮未做）。
 
 ### 0.1（当前主任务，2026-10-12 起）送球机构优化迭代循环
 

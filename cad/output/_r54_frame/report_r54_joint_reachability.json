@@ -1,0 +1,151 @@
+{
+ "units": "mm",
+ "source": "T06_shooter_frame_R54_pollen.step",
+ "import_s": 1.2,
+ "rail": {
+  "y": [
+   63.0,
+   81.0
+  ],
+  "z": [
+   2.0,
+   16.0
+  ]
+ },
+ "verdict": {
+  "rail_leg_joints": "NOT ASSEMBLABLE (4 of 6): axis is solid above z=38 (plate + tab crown) so no head-side access; the lower end opens below the chassis rail bottom (z=2) so no nut side and no wrench space.",
+  "gate_reserved_holes": "OK (2 of 6): frame has material only in the two side plates (y +-68..72) and both outer faces are free."
+ },
+ "evidence": {
+  "hole_axis_material_z": {
+   "x60_-1": [
+    [
+     38.0,
+     70.0,
+     9.05
+    ]
+   ],
+   "x60_+1": [
+    [
+     38.0,
+     70.0,
+     9.05
+    ]
+   ],
+   "x76_-1": [
+    [
+     38.0,
+     70.0,
+     9.05
+    ]
+   ],
+   "x76_+1": [
+    [
+     38.0,
+     70.0,
+     9.05
+    ]
+   ]
+  },
+  "frame_in_rail_envelope_mm3_-1": 0,
+  "frame_in_rail_envelope_mm3_+1": 0,
+  "gate_reserved": {
+   "x190_z200": {
+    "material_y": [
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ]
+    ],
+    "outside_mm3": [
+     0,
+     0
+    ]
+   },
+   "x206_z220": {
+    "material_y": [
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      -72.0,
+      -68.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ],
+     [
+      68.0,
+      72.0,
+      0.78
+     ]
+    ],
+    "outside_mm3": [
+     0,
+     0
+    ]
+   }
+  }
+ }
+}
