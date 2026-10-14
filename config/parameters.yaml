@@ -579,3 +579,12 @@ t06_gap_chain_dynamic_r53d:
   endpoint_limit: {value: "沿用 V-0052：滑窗无机械硬限位，必须在舵机编程器 + 固件把行程端点卡在约 19.33 .. 96.68 deg 曲柄角", status: "TBD", source: "V-0052"}
   open_question: {value: "①mu / E / J / Kp 与厂商 2.471 N.m、60 rpm 均未实测；②实机未验；③换档是否需要比赛在线进行（若只需赛前选定，可进一步简化）。", status: "TBD"}
 
+t06_gap_chain_match_r53e:
+  note: "R53e 比赛中在线换档工况复核：换档 0.354 s/次、12 次/场占空比 3.6%；发射反力 37.5 / 81.3 N 每滑座 < 舵机保持 112 / 390 N => 夹口守得住（偏移峰 0.41 mm、发射后回弹 0.00 mm）。"
+  version: {value: "T06-GAP-CHAIN-MATCH-R53E", status: "CALCULATED", source: "docs/decision_log.md V-0054"}
+  online_switch_required: {value: true, status: "KNOWN", source: "用户 2026-10-13 裁定：换档需要比赛中在线进行，且不得人工介入"}
+  switch_sequence: {value: {span_deg: 77.35, t_switch_s: 0.354, settle_s: 0.05, sequence_total_s: 0.45, switches_per_match_assumed: 12, duty: 0.036, servo_work_per_switch_J: 0.634}, status: "CALCULATED", source: "cad/paddle_launcher_gap_chain_match_r53e.py"}
+  servo_degrees: {value: {pollen: 96.682, nectar: 19.331}, status: "CALCULATED"}
+  recoil_hold: {value: {f_separation_per_carriage_peak_N: {pollen: 37.5, nectar: 81.3}, servo_hold_per_carriage_N: {pollen: 112.3, nectar: 389.9}, clamp_friction_per_carriage_N: 14.4, gap_peak_offset_mm: 0.41, gap_residual_mm: 0.0, note: "发射时守住夹口的是舵机；夹紧件负责断电保持与抗蠕变"}, status: "CALCULATED", source: "cad/output/_r53e_match/report_r53e_match.json"}
+  endpoint_safety: {value: {h_dead_point_mm: 91.537, margin_mm: 0.537, firmware_window_deg: [19.33, 96.68]}, status: "CALCULATED", source: "cad/output/_r53e_match/report_r53e_match.json"}
+  open_question: {value: "①发射反力为估算（球质量 / 出射速度 / 接触时间 / mu_ball 均 ASSUMED），实机应实测出膛速度反推；②夹紧件预载仍由装配时拧螺母一次设定，若要零人工设定可改定长套筒；③实机未验。", status: "TBD"}
