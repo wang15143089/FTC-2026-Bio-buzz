@@ -7,8 +7,10 @@
 所有生成、仿真、导出与交付文件一律从 `C:\FTC design\FTC 2026 biobuzz` 调用。
 
 - `C:\FTC design\FTC 2026 biobuzz`：本仓库工作根路径（Canonical），后续所有脚本、仿真与交付输出默认写入此处。
-- `C:\FTC design\FTC 2026 biobuzz\deliverables\`：桌面交付件归档区（默认不纳入 Git）。
-- `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：2026-10-13 之前的旧路径，保留为历史副本，不再作为工作路径。
+- `C:\FTC design\FTC 2026 biobuzz\deliverables\`：项目相关桌面交付件归档区（**48 个文件 / 5.651 GB**，默认不纳入 Git）。
+- `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：旧路径。内容已于 2026-10-13 清空（字节校验一致后删除），计划改为指向 Canonical 的目录联接；只要它还是普通空目录，一律使用 Canonical 路径。
+  - 启用方式：完全退出 Codex 后运行 `C:\FTC design\link_old_path.cmd`（脚本会自动等待锁释放并校验）。
+  - 代价：联接生效后 OneDrive 不再同步本项目，且 OneDrive 可能删除该 reparse point；若被删，重新运行脚本即可。
 - Python 解释器：`C:\FTC design\FTC 2026 biobuzz\.venv-cad\Scripts\python.exe`。
 
 ## 每次恢复工作的固定顺序

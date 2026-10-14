@@ -727,8 +727,8 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 
 ## 工作根路径（2026-10-13）
 
-- 工作根路径已迁移至 `C:\FTC design\FTC 2026 biobuzz`（`KNOWN`，用户指令 2026-10-13）；旧路径 `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz` 保留为历史副本，不再作为调用路径。
-- 迁移方式：robocopy 全量复制，排除 `__pycache__` / `.pytest_cache`；核对结果：仓库 **14311 个文件 / 18.414 GB** 与源逐字节一致，HEAD = `aecce3d`。
-- 桌面交付件（**66 个文件 / 5.980 GB**，含 T06 R51–R53f 装配 STEP、审查图、COTS BOM）已归档到 `deliverables\`，逐文件名与字节校验一致，默认不纳入 Git。桌面上的 3 个目录（`2025 WPILib Tools` / `网站` / `PythonProjects`）与不属于本项目的个人文件未拰选过滤，仍保留在桌面。
-- Python 解释器：`.venv-cad\Scripts\python.exe`。复制后已验证 `sys.executable` / `sys.prefix` 指向新路径且 `import cadquery` 正常（无需重建 venv）。
-- 后续所有生成、仿真、导出与交付默认输出到该根路径；`AGENTS.md` 已写入同一约定。
+- 工作根路径已迁移至 `C:\FTC design\FTC 2026 biobuzz`（`KNOWN`，用户指令 2026-10-13）。
+- 迁移方式：robocopy 全量复制，排除 `__pycache__` / `.pytest_cache`；核对结果：仓库 **14311 个文件 / 18.4136 GB** 与源逐字节一致。
+- 桌面交付件已按“仅项目相关”收敛到 `deliverables\`：**48 个文件 / 5.651 GB**（T06 R51–R53f 装配 STEP、审查图、COTS BOM、R47 MuJoCo XML/结果、a' 供料几何）；另外 18 个非项目文件（快捷方式、个人 PDF、字习项目包等）已从该目录删除，桌面原件未动。
+- 旧路径 `C:\Users\admin\OneDrive\文档\ChatGPT\FTC 2026 biobuzz`：内容已清空（删前已校验与 Canonical 第字节一致）；目录联接**尚未建立** —— 该目录仍被本次 Codex 会话作为工作目录持有句柄，`Delete` / `Move` 均返回 “being used by another process”。待办：完全退出 Codex 后运行 `C:\FTC design\link_old_path.cmd`（已过 parse 检查与锁检测演练），然后以 Canonical 路径重开会话。
+- 后续所有生成、仿真、导出与交付默认输出到 Canonical 路径；`AGENTS.md` 已写入同一约定。
