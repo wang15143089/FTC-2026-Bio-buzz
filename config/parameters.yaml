@@ -553,3 +553,16 @@ t06_shooter_lock_r53b:
   nip: {value: {pollen: 64.0, nectar: 86.0, half_spacing_mm: {pollen: 80.0, nectar: 91.0}}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
   delivery: {value: {n_parts: 114, pollen_step_mb: 446.3, nectar_step_mb: 446.4, files: ["T06_shooter_assembly_R53b_pollen.step", "T06_shooter_assembly_R53b_nectar.step"], note: "cad/output/_r53b_auto 是指向桌面的 junction，文件直接落在桌面"}, status: "MEASURED", source: "cad/output/_r53b_auto/report_r53_{pollen,nectar}.json"}
   open_question: {value: "①比赛中是否需要在线切换 POLLEN / NECTAR（还是赛前调好一档就够）—— 未答；②是否还有空闲舵机通道（决定要不要做舵机主动解锁/夹紧）—— 未答；③弹簧/螺柱/尼龙螺母尚未按实物采购核对；④打印件质量、实机均未验。", status: "TBD"}
+
+t06_gap_chain_fullstroke_r53c:
+  note: "R53c 全行程复核：证明常闭弹簧夹不妨碍现有 25-2 调隙舵机自动换档（DEC-0037 链 + R53b 夹紧件）。不新增几何，只新增计算。"
+  version: {value: "T06-GAP-CHAIN-FULLSTROKE-R53C", status: "CALCULATED", source: "docs/decision_log.md V-0052"}
+  model: {value: {main_link_mm: 110.0, drag_link_mm: 65.0, crank_radius_mm: 12.0, u_of_h: "u = 18 - sqrt(110^2 - h^2)", d_of_u: "d = u + 120", theta_of_u: "d(theta) = r cos theta + sqrt(L^2 - r^2 sin^2 theta)，theta(h) 二分反解", principle: "虚功 T dtheta = sum(F_friction dh) => T_req = 2 f |dh/dtheta|, dh/dtheta = (18-u)/h * du/dtheta"}, status: "CALCULATED", source: "cad/paddle_launcher_gap_chain_fullstroke_r53c.py"}
+  travel: {value: {half_mm: [80.0, 91.2], step_mm: 0.05, n_points: 225, crank_deg: [96.682, 15.301], crank_span_deg: 81.38, dead_point_half_mm: 91.537, margin_to_dead_point_mm: 0.337}, status: "CALCULATED"}
+  worst_case: {value: {half_mm: 80.05, crank_deg: 96.422, torque_Nm_mu0.30: 0.317, torque_Nm_mu0.60: 0.634, pct_of_stall_mu0.30: 12.8, pct_of_stall_mu0.60: 25.6, margin_x_mu0.30: 7.80, margin_x_mu0.60: 3.90}, status: "CALCULATED", source: "cad/output/_r53c_stroke/report_r53c_fullstroke.json"}
+  member_forces: {value: {main_link_max_N_mu0.60: 39.6, drag_link_max_N_mu0.60: 55.3, crosshead_max_N_mu0.60: 54.4, pct_of_main_buckling: 29.6, pct_of_drag_buckling: 18.6, buckling_limits_N: {main_6p4x110: 134.0, drag_6p0x65: 297.0}, note: "E = 2 GPa 仍为 ASSUMED"}, status: "CALCULATED"}
+  formula_correction: {value: "旧式 -u r sin/(u - r cos) 若按 DEC-0037 的 u = 18 - sqrt(110^2-h^2) 代入与精确几何不符（pollen 高报 4.8%，nectar 低报 32%）；该式隐含 u 从曲柄中心起算（= d）；R53c 起以 d(theta) = r cos theta + sqrt(L^2 - r^2 sin^2 theta) + 二分反解为准", status: "CALCULATED", source: "docs/decision_log.md V-0052"}
+  budget_correction: {value: {crosshead_push_budget_N: 212.0, required_N: {mu_0.30: 27.2, mu_0.60: 54.4}, note: "T_stall/|du/dtheta| = 2471/11.658；V-0051 引用的 112 N 是降额口径（约 53%%），不应再作为预算引用"}, status: "CALCULATED", source: "docs/decision_log.md V-0052"}
+  switch_time: {value: {sec_worst_case: 0.304, rpm_under_load: 44.6, crank_span_deg: 81.38}, status: "CALCULATED", source: "厂商堵转-空载线折算；25-2 空载 60 rpm"}
+  endpoint_limit: {value: "最大档 91.2 距曲柄-拉杆共线死点 91.537 只有 0.337 mm；滑窗 59 x 56 无硬限位 => 必须在舵机端（编程器 + 固件）把行程端点卡在约 19.33 .. 96.68 deg 曲柄角，禁止越界", status: "TBD", source: "V-0052"}
+  open_question: {value: "①弹簧实测 k / 预载未验（采购件未定型号）；②PET 打印件 mu = 0.30 仍为 ASSUMED；③静/动摩擦差导致的换档到位偏差未测；④实机未验。", status: "TBD"}
