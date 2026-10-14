@@ -1,0 +1,1912 @@
+{
+ "units": "mm",
+ "caliber": "T06 R53f = R53b + rigid length stop ring (preload set by geometry)",
+ "variant": "nectar",
+ "half_spacing_mm": 91.0,
+ "nip_mm": 86.0,
+ "changes_vs_r52": [
+  "deleted 8 free carriage guide rails",
+  "carriage ears x 23 -> +-42, 3 mm thick, 0.3 mm running clearance",
+  "side plate lock slots 5.2 x 44 at x = +-36",
+  "48 M4 stud + washer + nyloc nut + preload spring clamp parts",
+  "wing nut deleted: clamping is by spring, set once at build time"
+ ],
+ "removed_rails": [
+  "carriage_guide_lower_+1_+26.5",
+  "carriage_guide_lower_+1_-26.5",
+  "carriage_guide_lower_-1_+26.5",
+  "carriage_guide_lower_-1_-26.5",
+  "carriage_guide_upper_+1_+26.5",
+  "carriage_guide_upper_+1_-26.5",
+  "carriage_guide_upper_-1_+26.5",
+  "carriage_guide_upper_-1_-26.5"
+ ],
+ "clamp_parts": [
+  "carriage_clamp_seat_lower_+1_+36_+12",
+  "carriage_clamp_seat_lower_+1_+36_-12",
+  "carriage_clamp_seat_lower_+1_-36_+12",
+  "carriage_clamp_seat_lower_+1_-36_-12",
+  "carriage_clamp_seat_lower_-1_+36_+12",
+  "carriage_clamp_seat_lower_-1_+36_-12",
+  "carriage_clamp_seat_lower_-1_-36_+12",
+  "carriage_clamp_seat_lower_-1_-36_-12",
+  "carriage_clamp_seat_upper_+1_+36_+12",
+  "carriage_clamp_seat_upper_+1_+36_-12",
+  "carriage_clamp_seat_upper_+1_-36_+12",
+  "carriage_clamp_seat_upper_+1_-36_-12",
+  "carriage_clamp_seat_upper_-1_+36_+12",
+  "carriage_clamp_seat_upper_-1_+36_-12",
+  "carriage_clamp_seat_upper_-1_-36_+12",
+  "carriage_clamp_seat_upper_-1_-36_-12",
+  "carriage_clamp_spring_lower_+1_+36_+12",
+  "carriage_clamp_spring_lower_+1_+36_-12",
+  "carriage_clamp_spring_lower_+1_-36_+12",
+  "carriage_clamp_spring_lower_+1_-36_-12",
+  "carriage_clamp_spring_lower_-1_+36_+12",
+  "carriage_clamp_spring_lower_-1_+36_-12",
+  "carriage_clamp_spring_lower_-1_-36_+12",
+  "carriage_clamp_spring_lower_-1_-36_-12",
+  "carriage_clamp_spring_upper_+1_+36_+12",
+  "carriage_clamp_spring_upper_+1_+36_-12",
+  "carriage_clamp_spring_upper_+1_-36_+12",
+  "carriage_clamp_spring_upper_+1_-36_-12",
+  "carriage_clamp_spring_upper_-1_+36_+12",
+  "carriage_clamp_spring_upper_-1_+36_-12",
+  "carriage_clamp_spring_upper_-1_-36_+12",
+  "carriage_clamp_spring_upper_-1_-36_-12",
+  "carriage_clamp_stud_lower_+1_+36_+12",
+  "carriage_clamp_stud_lower_+1_+36_-12",
+  "carriage_clamp_stud_lower_+1_-36_+12",
+  "carriage_clamp_stud_lower_+1_-36_-12",
+  "carriage_clamp_stud_lower_-1_+36_+12",
+  "carriage_clamp_stud_lower_-1_+36_-12",
+  "carriage_clamp_stud_lower_-1_-36_+12",
+  "carriage_clamp_stud_lower_-1_-36_-12",
+  "carriage_clamp_stud_upper_+1_+36_+12",
+  "carriage_clamp_stud_upper_+1_+36_-12",
+  "carriage_clamp_stud_upper_+1_-36_+12",
+  "carriage_clamp_stud_upper_+1_-36_-12",
+  "carriage_clamp_stud_upper_-1_+36_+12",
+  "carriage_clamp_stud_upper_-1_+36_-12",
+  "carriage_clamp_stud_upper_-1_-36_+12",
+  "carriage_clamp_stud_upper_-1_-36_-12"
+ ],
+ "clamp_calc": {
+  "studs_per_carriage": 8,
+  "preload_n_per_stud": 3.0,
+  "spring_rate_n_per_mm": 1.24,
+  "spring_installed_mm": 6.0,
+  "spring_free_mm": 8.4,
+  "mu_0.30": {
+   "friction_per_carriage_n": 14.4,
+   "friction_total_n": 28.8,
+   "servo_can_still_slide_it": true
+  },
+  "mu_0.60": {
+   "friction_per_carriage_n": 28.8,
+   "friction_total_n": 57.6,
+   "servo_can_still_slide_it": true
+  },
+  "note": "CALCULATED. mu=0.30 = PET-on-PET as printed; mu=0.60 = if a 1 mm elastic high-friction pad is taped onto the ear faces (NOT modelled). Servo push budget ~112 N, see the R53b sheet: the clamp must stay well under it or the servo cannot change the gap any more."
+ },
+ "lock_travel": {
+  "slot_z_mm": [
+   63.5,
+   107.5
+  ],
+  "bolt_z_needed_mm": [
+   68.0,
+   79.0,
+   92.0,
+   103.0
+  ],
+  "covered": true,
+  "slack_mm": [
+   4.5,
+   4.5
+  ]
+ },
+ "ear_to_plate_min_gap_mm": {
+  "upper_-1": 0.3,
+  "lower_-1": 0.3,
+  "upper_+1": 0.3,
+  "lower_+1": 0.3
+ },
+ "axle_isolation_hits": [],
+ "lock_vs_rest_clashes": [],
+ "lock_vs_carriage_clashes": [],
+ "plate_vs_rest_clashes": [
+  {
+   "a": "shooter_side_plate_+1",
+   "b": "gap_servo_standoff_-143_+23",
+   "volume_mm3": 28.274
+  },
+  {
+   "a": "shooter_side_plate_+1",
+   "b": "gap_servo_standoff_-143_-23",
+   "volume_mm3": 28.274
+  },
+  {
+   "a": "shooter_side_plate_+1",
+   "b": "gap_servo_standoff_-97_+23",
+   "volume_mm3": 28.274
+  },
+  {
+   "a": "shooter_side_plate_+1",
+   "b": "gap_servo_standoff_-97_-23",
+   "volume_mm3": 28.274
+  },
+  {
+   "a": "shooter_side_plate_-1",
+   "b": "paddle_bearing_-1_1611-0514-4008",
+   "volume_mm3": 10.285
+  }
+ ],
+ "geometry": {
+  "paddle_axis_measured_mm": [
+   29.49,
+   111.46
+  ],
+  "paddle_axis_generator_mm": [
+   29.49,
+   111.46
+  ],
+  "upper_axle_measured_mm": [
+   -19.405,
+   291.539
+  ],
+  "lower_axle_measured_mm": [
+   124.013,
+   179.489
+  ],
+  "wheel_od_mm": 96.0,
+  "wheel_r_mm": 48.0,
+  "rotor_tip_r_mm": 59.908,
+  "axle_separation_mm": 182.0,
+  "nip_mm": 86.0,
+  "nip_from_settings_mm": 64.0,
+  "paddle_to_upper_axle_mm": 186.599,
+  "paddle_tip_to_upper_wheel_face_mm": 78.691,
+  "paddle_to_lower_axle_mm": 116.458,
+  "paddle_tip_to_lower_wheel_face_mm": 8.55
+ },
+ "kinematics": {
+  "main_link_length_mm": 110.0,
+  "crosshead_u_mm": -43.7980582219215,
+  "servo_crank_angle_deg": 19.331372520065653,
+  "servo_drag_link_length_mm": 65.0
+ },
+ "n_parts": 130,
+ "parts": [
+  {
+   "part": "base_rail_+72",
+   "n_solids": 1,
+   "volume_mm3": 93898.67,
+   "bbox_mm": [
+    -170.0,
+    63.0,
+    2.0,
+    210.0,
+    81.0,
+    16.0
+   ]
+  },
+  {
+   "part": "base_rail_-72",
+   "n_solids": 1,
+   "volume_mm3": 93898.67,
+   "bbox_mm": [
+    -170.0,
+    -81.0,
+    2.0,
+    210.0,
+    -63.0,
+    16.0
+   ]
+  },
+  {
+   "part": "bearing_carriage_lower_+1",
+   "n_solids": 1,
+   "volume_mm3": 28142.4,
+   "bbox_mm": [
+    83.183,
+    64.0,
+    134.695,
+    164.843,
+    76.0,
+    224.283
+   ]
+  },
+  {
+   "part": "bearing_carriage_lower_-1",
+   "n_solids": 1,
+   "volume_mm3": 28142.4,
+   "bbox_mm": [
+    83.183,
+    -76.0,
+    134.695,
+    164.843,
+    -64.0,
+    224.283
+   ]
+  },
+  {
+   "part": "bearing_carriage_upper_+1",
+   "n_solids": 1,
+   "volume_mm3": 28142.4,
+   "bbox_mm": [
+    -60.235,
+    64.0,
+    246.745,
+    21.425,
+    76.0,
+    336.333
+   ]
+  },
+  {
+   "part": "bearing_carriage_upper_-1",
+   "n_solids": 1,
+   "volume_mm3": 28142.4,
+   "bbox_mm": [
+    -60.235,
+    -76.0,
+    246.745,
+    21.425,
+    -64.0,
+    336.333
+   ]
+  },
+  {
+   "part": "bearing_insert_lower_+1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    116.513,
+    67.5,
+    171.989,
+    131.513,
+    72.5,
+    186.989
+   ]
+  },
+  {
+   "part": "bearing_insert_lower_-1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    116.513,
+    -72.5,
+    171.989,
+    131.513,
+    -67.5,
+    186.989
+   ]
+  },
+  {
+   "part": "bearing_insert_upper_+1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    -26.905,
+    67.5,
+    284.039,
+    -11.905,
+    72.5,
+    299.039
+   ]
+  },
+  {
+   "part": "bearing_insert_upper_-1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    -26.905,
+    -72.5,
+    284.039,
+    -11.905,
+    -67.5,
+    299.039
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    132.72,
+    75.3,
+    211.245,
+    140.72,
+    81.3,
+    219.245
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    151.633,
+    75.3,
+    196.469,
+    159.633,
+    81.3,
+    204.469
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    88.393,
+    75.3,
+    154.508,
+    96.393,
+    81.3,
+    162.508
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    107.305,
+    75.3,
+    139.732,
+    115.305,
+    81.3,
+    147.732
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    132.72,
+    -81.3,
+    211.245,
+    140.72,
+    -75.3,
+    219.245
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    151.633,
+    -81.3,
+    196.469,
+    159.633,
+    -75.3,
+    204.469
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    88.393,
+    -81.3,
+    154.508,
+    96.393,
+    -75.3,
+    162.508
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    107.305,
+    -81.3,
+    139.732,
+    115.305,
+    -75.3,
+    147.732
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -10.698,
+    75.3,
+    323.296,
+    -2.698,
+    81.3,
+    331.296
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    8.215,
+    75.3,
+    308.52,
+    16.215,
+    81.3,
+    316.52
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -55.025,
+    75.3,
+    266.559,
+    -47.025,
+    81.3,
+    274.559
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -36.113,
+    75.3,
+    251.783,
+    -28.113,
+    81.3,
+    259.783
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -10.698,
+    -81.3,
+    323.296,
+    -2.698,
+    -75.3,
+    331.296
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    8.215,
+    -81.3,
+    308.52,
+    16.215,
+    -75.3,
+    316.52
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -55.025,
+    -81.3,
+    266.559,
+    -47.025,
+    -75.3,
+    274.559
+   ]
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 148.49,
+   "bbox_mm": [
+    -36.113,
+    -81.3,
+    251.783,
+    -28.113,
+    -75.3,
+    259.783
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_+1_+36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    133.97,
+    75.3,
+    212.495,
+    139.47,
+    81.3,
+    217.995
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_+1_+36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    152.883,
+    75.3,
+    197.719,
+    158.383,
+    81.3,
+    203.219
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_+1_-36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    89.643,
+    75.3,
+    155.758,
+    95.143,
+    81.3,
+    161.258
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_+1_-36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    108.555,
+    75.3,
+    140.982,
+    114.055,
+    81.3,
+    146.482
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_-1_+36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    133.97,
+    -81.3,
+    212.495,
+    139.47,
+    -75.3,
+    217.995
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_-1_+36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    152.883,
+    -81.3,
+    197.719,
+    158.383,
+    -75.3,
+    203.219
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_-1_-36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    89.643,
+    -81.3,
+    155.758,
+    95.143,
+    -75.3,
+    161.258
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_lower_-1_-36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    108.555,
+    -81.3,
+    140.982,
+    114.055,
+    -75.3,
+    146.482
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_+1_+36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -9.448,
+    75.3,
+    324.546,
+    -3.948,
+    81.3,
+    330.046
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_+1_+36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    9.465,
+    75.3,
+    309.77,
+    14.965,
+    81.3,
+    315.27
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_+1_-36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -53.775,
+    75.3,
+    267.809,
+    -48.275,
+    81.3,
+    273.309
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_+1_-36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -34.863,
+    75.3,
+    253.033,
+    -29.363,
+    81.3,
+    258.533
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_-1_+36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -9.448,
+    -81.3,
+    324.546,
+    -3.948,
+    -75.3,
+    330.046
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_-1_+36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    9.465,
+    -81.3,
+    309.77,
+    14.965,
+    -75.3,
+    315.27
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_-1_-36_+12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -53.775,
+    -81.3,
+    267.809,
+    -48.275,
+    -75.3,
+    273.309
+   ]
+  },
+  {
+   "part": "carriage_clamp_spring_upper_-1_-36_-12",
+   "n_solids": 4,
+   "volume_mm3": 12.34,
+   "bbox_mm": [
+    -34.863,
+    -81.3,
+    253.033,
+    -29.363,
+    -75.3,
+    258.533
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_+1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    131.72,
+    61.7,
+    210.245,
+    141.72,
+    86.2,
+    220.245
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_+1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    150.633,
+    61.7,
+    195.469,
+    160.633,
+    86.2,
+    205.469
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_+1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    87.393,
+    61.7,
+    153.508,
+    97.393,
+    86.2,
+    163.508
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_+1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    106.305,
+    61.7,
+    138.732,
+    116.305,
+    86.2,
+    148.732
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_-1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    131.72,
+    -86.2,
+    210.245,
+    141.72,
+    -61.7,
+    220.245
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_-1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    150.633,
+    -86.2,
+    195.469,
+    160.633,
+    -61.7,
+    205.469
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_-1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    87.393,
+    -86.2,
+    153.508,
+    97.393,
+    -61.7,
+    163.508
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_lower_-1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    106.305,
+    -86.2,
+    138.732,
+    116.305,
+    -61.7,
+    148.732
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_+1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -11.698,
+    61.7,
+    322.296,
+    -1.698,
+    86.2,
+    332.296
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_+1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    7.215,
+    61.7,
+    307.52,
+    17.215,
+    86.2,
+    317.52
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_+1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -56.025,
+    61.7,
+    265.559,
+    -46.025,
+    86.2,
+    275.559
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_+1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -37.113,
+    61.7,
+    250.783,
+    -27.113,
+    86.2,
+    260.783
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_-1_+36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -11.698,
+    -86.2,
+    322.296,
+    -1.698,
+    -61.7,
+    332.296
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_-1_+36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    7.215,
+    -86.2,
+    307.52,
+    17.215,
+    -61.7,
+    317.52
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_-1_-36_+12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -56.025,
+    -86.2,
+    265.559,
+    -46.025,
+    -61.7,
+    275.559
+   ]
+  },
+  {
+   "part": "carriage_clamp_stud_upper_-1_-36_-12",
+   "n_solids": 1,
+   "volume_mm3": 557.61,
+   "bbox_mm": [
+    -37.113,
+    -86.2,
+    250.783,
+    -27.113,
+    -61.7,
+    260.783
+   ]
+  },
+  {
+   "part": "carriage_link_pin_lower",
+   "n_solids": 1,
+   "volume_mm3": 326.73,
+   "bbox_mm": [
+    133.095,
+    82.0,
+    191.673,
+    137.095,
+    108.0,
+    195.673
+   ]
+  },
+  {
+   "part": "carriage_link_pin_upper",
+   "n_solids": 1,
+   "volume_mm3": 226.19,
+   "bbox_mm": [
+    -10.323,
+    82.0,
+    303.723,
+    -6.323,
+    100.0,
+    307.723
+   ]
+  },
+  {
+   "part": "carriage_link_spacer_lower",
+   "n_solids": 1,
+   "volume_mm3": 970.28,
+   "bbox_mm": [
+    130.095,
+    86.0,
+    188.673,
+    140.095,
+    101.0,
+    198.673
+   ]
+  },
+  {
+   "part": "carriage_link_spacer_upper",
+   "n_solids": 1,
+   "volume_mm3": 452.8,
+   "bbox_mm": [
+    -13.323,
+    86.0,
+    300.723,
+    -3.323,
+    93.0,
+    310.723
+   ]
+  },
+  {
+   "part": "crosshead",
+   "n_solids": 1,
+   "volume_mm3": 8250.73,
+   "bbox_mm": [
+    4.358,
+    88.0,
+    178.468,
+    34.007,
+    112.0,
+    207.773
+   ]
+  },
+  {
+   "part": "crosshead_guide_+15",
+   "n_solids": 1,
+   "volume_mm3": 2000.0,
+   "bbox_mm": [
+    -11.971,
+    77.0,
+    178.593,
+    16.596,
+    87.0,
+    213.192
+   ]
+  },
+  {
+   "part": "crosshead_guide_-15",
+   "n_solids": 1,
+   "volume_mm3": 2000.0,
+   "bbox_mm": [
+    11.67,
+    77.0,
+    160.123,
+    40.236,
+    87.0,
+    194.722
+   ]
+  },
+  {
+   "part": "crosshead_guide_stop_-42",
+   "n_solids": 1,
+   "volume_mm3": 1350.0,
+   "bbox_mm": [
+    14.269,
+    77.0,
+    192.136,
+    38.623,
+    87.0,
+    212.699
+   ]
+  },
+  {
+   "part": "crosshead_guide_stop_-82",
+   "n_solids": 1,
+   "volume_mm3": 1350.0,
+   "bbox_mm": [
+    -10.358,
+    77.0,
+    160.616,
+    13.997,
+    87.0,
+    181.179
+   ]
+  },
+  {
+   "part": "crosshead_through_pin",
+   "n_solids": 1,
+   "volume_mm3": 716.28,
+   "bbox_mm": [
+    23.339,
+    86.0,
+    199.001,
+    27.339,
+    143.0,
+    203.001
+   ]
+  },
+  {
+   "part": "feeder_mount_+1",
+   "n_solids": 1,
+   "volume_mm3": 32984.0,
+   "bbox_mm": [
+    -80.0,
+    53.5,
+    16.0,
+    168.0,
+    63.0,
+    30.0
+   ]
+  },
+  {
+   "part": "feeder_mount_-1",
+   "n_solids": 1,
+   "volume_mm3": 32984.0,
+   "bbox_mm": [
+    -80.0,
+    -63.0,
+    16.0,
+    168.0,
+    -53.5,
+    30.0
+   ]
+  },
+  {
+   "part": "feeder_shell_tray",
+   "n_solids": 1,
+   "volume_mm3": 302656.07,
+   "bbox_mm": [
+    -85.484,
+    -54.0,
+    -3.514,
+    215.261,
+    54.0,
+    180.043
+   ]
+  },
+  {
+   "part": "flywheel_shaft_lower_2106-4008-1680",
+   "n_solids": 2,
+   "volume_mm3": 6868.71,
+   "bbox_mm": [
+    117.863,
+    -84.0,
+    174.739,
+    130.163,
+    84.0,
+    185.639
+   ]
+  },
+  {
+   "part": "flywheel_shaft_upper_2106-4008-1680",
+   "n_solids": 2,
+   "volume_mm3": 6868.71,
+   "bbox_mm": [
+    -25.555,
+    -84.0,
+    286.789,
+    -13.255,
+    84.0,
+    297.689
+   ]
+  },
+  {
+   "part": "gap_servo_2000-0025-0002",
+   "n_solids": 11,
+   "volume_mm3": 31109.63,
+   "bbox_mm": [
+    -39.308,
+    77.9,
+    121.988,
+    8.47,
+    122.0,
+    175.677
+   ]
+  },
+  {
+   "part": "gap_servo_frame_1802-0043-0001",
+   "n_solids": 1,
+   "volume_mm3": 5932.3,
+   "bbox_mm": [
+    -56.526,
+    86.0,
+    104.3,
+    11.066,
+    92.0,
+    174.65
+   ]
+  },
+  {
+   "part": "gap_servo_standoff_-143_+23",
+   "n_solids": 1,
+   "volume_mm3": 480.66,
+   "bbox_mm": [
+    -56.86,
+    71.0,
+    133.989,
+    -50.86,
+    88.0,
+    139.989
+   ]
+  },
+  {
+   "part": "gap_servo_standoff_-143_-23",
+   "n_solids": 1,
+   "volume_mm3": 480.66,
+   "bbox_mm": [
+    -20.612,
+    71.0,
+    105.668,
+    -14.612,
+    88.0,
+    111.668
+   ]
+  },
+  {
+   "part": "gap_servo_standoff_-97_+23",
+   "n_solids": 1,
+   "volume_mm3": 480.66,
+   "bbox_mm": [
+    -28.54,
+    71.0,
+    170.237,
+    -22.54,
+    88.0,
+    176.237
+   ]
+  },
+  {
+   "part": "gap_servo_standoff_-97_-23",
+   "n_solids": 1,
+   "volume_mm3": 480.66,
+   "bbox_mm": [
+    7.709,
+    71.0,
+    141.917,
+    13.709,
+    88.0,
+    147.917
+   ]
+  },
+  {
+   "part": "gate_blade",
+   "n_solids": 1,
+   "volume_mm3": 27432.0,
+   "bbox_mm": [
+    177.5,
+    -54.0,
+    39.982,
+    182.5,
+    54.0,
+    94.982
+   ]
+  },
+  {
+   "part": "gate_bracket",
+   "n_solids": 3,
+   "volume_mm3": 49508.0,
+   "bbox_mm": [
+    166.0,
+    -42.0,
+    198.0,
+    232.0,
+    42.0,
+    258.0
+   ]
+  },
+  {
+   "part": "gate_crank",
+   "n_solids": 1,
+   "volume_mm3": 7459.19,
+   "bbox_mm": [
+    175.0,
+    17.95,
+    195.93,
+    211.746,
+    26.0,
+    255.0
+   ]
+  },
+  {
+   "part": "gate_frame",
+   "n_solids": 2,
+   "volume_mm3": 44173.98,
+   "bbox_mm": [
+    175.0,
+    -62.0,
+    14.0,
+    204.0,
+    62.0,
+    198.0
+   ]
+  },
+  {
+   "part": "gate_pin_crank",
+   "n_solids": 1,
+   "volume_mm3": 138.23,
+   "bbox_mm": [
+    201.116,
+    17.0,
+    201.963,
+    205.116,
+    28.0,
+    205.963
+   ]
+  },
+  {
+   "part": "gate_pin_yoke",
+   "n_solids": 1,
+   "volume_mm3": 490.09,
+   "bbox_mm": [
+    178.0,
+    -12.0,
+    114.982,
+    182.0,
+    27.0,
+    118.982
+   ]
+  },
+  {
+   "part": "gate_rod",
+   "n_solids": 1,
+   "volume_mm3": 3187.19,
+   "bbox_mm": [
+    175.651,
+    22.95,
+    115.826,
+    207.466,
+    26.95,
+    205.119
+   ]
+  },
+  {
+   "part": "gate_servo",
+   "n_solids": 11,
+   "volume_mm3": 31109.63,
+   "bbox_mm": [
+    172.85,
+    -22.05,
+    230.0,
+    227.15,
+    22.05,
+    250.15
+   ]
+  },
+  {
+   "part": "gate_yoke",
+   "n_solids": 1,
+   "volume_mm3": 5962.91,
+   "bbox_mm": [
+    174.0,
+    -10.0,
+    94.982,
+    186.0,
+    10.0,
+    120.982
+   ]
+  },
+  {
+   "part": "gecko_flywheel_lower_1_3613-0014-0096",
+   "n_solids": 2,
+   "volume_mm3": 95767.31,
+   "bbox_mm": [
+    76.013,
+    -27.0,
+    131.49,
+    172.012,
+    -3.0,
+    227.488
+   ]
+  },
+  {
+   "part": "gecko_flywheel_lower_2_3613-0014-0096",
+   "n_solids": 2,
+   "volume_mm3": 95767.31,
+   "bbox_mm": [
+    76.013,
+    3.0,
+    131.49,
+    172.012,
+    27.0,
+    227.488
+   ]
+  },
+  {
+   "part": "gecko_flywheel_upper_1_3613-0014-0096",
+   "n_solids": 2,
+   "volume_mm3": 95767.31,
+   "bbox_mm": [
+    -67.405,
+    -27.0,
+    243.54,
+    28.594,
+    -3.0,
+    339.538
+   ]
+  },
+  {
+   "part": "gecko_flywheel_upper_2_3613-0014-0096",
+   "n_solids": 2,
+   "volume_mm3": 95767.31,
+   "bbox_mm": [
+    -67.405,
+    3.0,
+    243.54,
+    28.594,
+    27.0,
+    339.538
+   ]
+  },
+  {
+   "part": "guide_roof_3",
+   "n_solids": 1,
+   "volume_mm3": 23940.0,
+   "bbox_mm": [
+    -118.43,
+    -57.0,
+    106.91,
+    -72.969,
+    57.0,
+    163.917
+   ]
+  },
+  {
+   "part": "guide_wall_3_+1",
+   "n_solids": 1,
+   "volume_mm3": 23100.0,
+   "bbox_mm": [
+    -117.248,
+    54.0,
+    40.11,
+    12.53,
+    57.0,
+    162.994
+   ]
+  },
+  {
+   "part": "guide_wall_3_-1",
+   "n_solids": 1,
+   "volume_mm3": 23100.0,
+   "bbox_mm": [
+    -117.248,
+    -57.0,
+    40.11,
+    12.53,
+    -54.0,
+    162.994
+   ]
+  },
+  {
+   "part": "main_spacing_link_lower",
+   "n_solids": 1,
+   "volume_mm3": 4787.32,
+   "bbox_mm": [
+    18.339,
+    100.8,
+    186.673,
+    142.095,
+    107.2,
+    208.001
+   ]
+  },
+  {
+   "part": "main_spacing_link_upper",
+   "n_solids": 1,
+   "volume_mm3": 4787.32,
+   "bbox_mm": [
+    -15.323,
+    92.8,
+    194.001,
+    32.339,
+    99.2,
+    312.723
+   ]
+  },
+  {
+   "part": "motor_bridge_lower_+17",
+   "n_solids": 1,
+   "volume_mm3": 8736.0,
+   "bbox_mm": [
+    121.772,
+    -112.0,
+    181.729,
+    147.186,
+    -70.0,
+    204.041
+   ]
+  },
+  {
+   "part": "motor_bridge_lower_-17",
+   "n_solids": 1,
+   "volume_mm3": 8736.0,
+   "bbox_mm": [
+    100.84,
+    -112.0,
+    154.937,
+    126.253,
+    -70.0,
+    177.248
+   ]
+  },
+  {
+   "part": "motor_bridge_upper_+17",
+   "n_solids": 1,
+   "volume_mm3": 8736.0,
+   "bbox_mm": [
+    -21.646,
+    -112.0,
+    293.78,
+    3.768,
+    -70.0,
+    316.091
+   ]
+  },
+  {
+   "part": "motor_bridge_upper_-17",
+   "n_solids": 1,
+   "volume_mm3": 8736.0,
+   "bbox_mm": [
+    -42.578,
+    -112.0,
+    266.987,
+    -17.165,
+    -70.0,
+    289.299
+   ]
+  },
+  {
+   "part": "motor_clamp_lower_1401-0043-0036",
+   "n_solids": 2,
+   "volume_mm3": 5017.81,
+   "bbox_mm": [
+    95.881,
+    -120.0,
+    150.926,
+    152.145,
+    -112.0,
+    208.052
+   ]
+  },
+  {
+   "part": "motor_clamp_upper_1401-0043-0036",
+   "n_solids": 2,
+   "volume_mm3": 5017.81,
+   "bbox_mm": [
+    -47.537,
+    -120.0,
+    262.976,
+    8.727,
+    -112.0,
+    320.102
+   ]
+  },
+  {
+   "part": "motor_coupler_lower_4007-4008-4008",
+   "n_solids": 1,
+   "volume_mm3": 4319.85,
+   "bbox_mm": [
+    113.513,
+    -97.5,
+    168.989,
+    134.513,
+    -76.5,
+    189.989
+   ]
+  },
+  {
+   "part": "motor_coupler_upper_4007-4008-4008",
+   "n_solids": 1,
+   "volume_mm3": 4319.85,
+   "bbox_mm": [
+    -29.905,
+    -97.5,
+    281.039,
+    -8.905,
+    -76.5,
+    302.039
+   ]
+  },
+  {
+   "part": "motor_lower_5203-2402-0003",
+   "n_solids": 66,
+   "volume_mm3": 50752.56,
+   "bbox_mm": [
+    105.263,
+    -219.17,
+    160.739,
+    142.763,
+    -88.0,
+    198.239
+   ]
+  },
+  {
+   "part": "motor_upper_5203-2402-0003",
+   "n_solids": 66,
+   "volume_mm3": 50752.56,
+   "bbox_mm": [
+    -38.155,
+    -219.17,
+    272.789,
+    -0.655,
+    -88.0,
+    310.289
+   ]
+  },
+  {
+   "part": "paddle_bearing_+1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    21.99,
+    73.5,
+    103.96,
+    36.99,
+    78.5,
+    118.96
+   ]
+  },
+  {
+   "part": "paddle_bearing_-1_1611-0514-4008",
+   "n_solids": 3,
+   "volume_mm3": 524.01,
+   "bbox_mm": [
+    21.99,
+    -72.5,
+    103.96,
+    36.99,
+    -67.5,
+    118.96
+   ]
+  },
+  {
+   "part": "paddle_flex_tip_1",
+   "n_solids": 1,
+   "volume_mm3": 6528.0,
+   "bbox_mm": [
+    71.219,
+    -48.0,
+    125.738,
+    89.952,
+    48.0,
+    156.182
+   ]
+  },
+  {
+   "part": "paddle_flex_tip_2",
+   "n_solids": 1,
+   "volume_mm3": 6528.0,
+   "bbox_mm": [
+    -30.972,
+    -48.0,
+    66.738,
+    -12.239,
+    48.0,
+    97.182
+   ]
+  },
+  {
+   "part": "paddle_rotor",
+   "n_solids": 1,
+   "volume_mm3": 92960.05,
+   "bbox_mm": [
+    -28.239,
+    -48.0,
+    69.47,
+    87.219,
+    48.0,
+    153.45
+   ]
+  },
+  {
+   "part": "paddle_servo_2000-0025-0004",
+   "n_solids": 11,
+   "volume_mm3": 31109.63,
+   "bbox_mm": [
+    12.34,
+    101.5,
+    101.31,
+    66.64,
+    145.6,
+    121.46
+   ]
+  },
+  {
+   "part": "paddle_servo_coupler_4001-0025-4008",
+   "n_solids": 1,
+   "volume_mm3": 1861.3,
+   "bbox_mm": [
+    19.834,
+    88.0,
+    104.585,
+    36.365,
+    105.0,
+    118.335
+   ]
+  },
+  {
+   "part": "paddle_servo_frame_1802-0043-0001",
+   "n_solids": 1,
+   "volume_mm3": 5932.3,
+   "bbox_mm": [
+    -1.885,
+    96.0,
+    89.96,
+    60.865,
+    102.0,
+    132.96
+   ]
+  },
+  {
+   "part": "paddle_shaft_2106-4008-1920",
+   "n_solids": 2,
+   "volume_mm3": 7886.7,
+   "bbox_mm": [
+    23.565,
+    -96.0,
+    105.31,
+    35.64,
+    96.0,
+    117.61
+   ]
+  },
+  {
+   "part": "paddle_shaft_support_bridge",
+   "n_solids": 1,
+   "volume_mm3": 19247.63,
+   "bbox_mm": [
+    0.49,
+    73.0,
+    81.46,
+    58.49,
+    79.0,
+    141.46
+   ]
+  },
+  {
+   "part": "servo_bridge_+26",
+   "n_solids": 1,
+   "volume_mm3": 8600.0,
+   "bbox_mm": [
+    50.49,
+    79.0,
+    89.96,
+    60.49,
+    99.0,
+    132.96
+   ]
+  },
+  {
+   "part": "servo_bridge_-26",
+   "n_solids": 1,
+   "volume_mm3": 8600.0,
+   "bbox_mm": [
+    -1.51,
+    79.0,
+    89.96,
+    8.49,
+    99.0,
+    132.96
+   ]
+  },
+  {
+   "part": "servo_crank",
+   "n_solids": 1,
+   "volume_mm3": 846.15,
+   "bbox_mm": [
+    -26.576,
+    129.0,
+    135.953,
+    -12.735,
+    135.0,
+    157.321
+   ]
+  },
+  {
+   "part": "servo_crank_joint_pin",
+   "n_solids": 1,
+   "volume_mm3": 188.5,
+   "bbox_mm": [
+    -19.735,
+    128.0,
+    150.321,
+    -15.735,
+    143.0,
+    154.321
+   ]
+  },
+  {
+   "part": "servo_drag_link",
+   "n_solids": 1,
+   "volume_mm3": 2700.42,
+   "bbox_mm": [
+    -23.735,
+    136.0,
+    146.321,
+    31.339,
+    142.0,
+    207.001
+   ]
+  },
+  {
+   "part": "servo_spline_hub_1908-0025-0032",
+   "n_solids": 1,
+   "volume_mm3": 3024.35,
+   "bbox_mm": [
+    -37.566,
+    121.0,
+    124.963,
+    -5.586,
+    129.0,
+    156.943
+   ]
+  },
+  {
+   "part": "shooter_side_plate_+1",
+   "n_solids": 1,
+   "volume_mm3": 256808.47,
+   "bbox_mm": [
+    -147.215,
+    68.0,
+    33.582,
+    213.849,
+    72.0,
+    401.024
+   ]
+  },
+  {
+   "part": "shooter_side_plate_-1",
+   "n_solids": 1,
+   "volume_mm3": 256808.47,
+   "bbox_mm": [
+    -147.215,
+    -72.0,
+    33.582,
+    213.849,
+    -68.0,
+    401.024
+   ]
+  },
+  {
+   "part": "shooter_throat_+55",
+   "n_solids": 1,
+   "volume_mm3": 28386.0,
+   "bbox_mm": [
+    -75.333,
+    -57.0,
+    162.07,
+    -21.869,
+    57.0,
+    229.322
+   ]
+  },
+  {
+   "part": "sonic_hub_lower_1_1309-0016-4008",
+   "n_solids": 3,
+   "volume_mm3": 4203.98,
+   "bbox_mm": [
+    108.013,
+    -27.0,
+    163.573,
+    140.013,
+    -17.0,
+    195.404
+   ]
+  },
+  {
+   "part": "sonic_hub_lower_2_1309-0016-4008",
+   "n_solids": 3,
+   "volume_mm3": 4203.98,
+   "bbox_mm": [
+    108.013,
+    17.0,
+    163.573,
+    140.013,
+    27.0,
+    195.404
+   ]
+  },
+  {
+   "part": "sonic_hub_upper_1_1309-0016-4008",
+   "n_solids": 3,
+   "volume_mm3": 4203.98,
+   "bbox_mm": [
+    -35.405,
+    -27.0,
+    275.624,
+    -3.405,
+    -17.0,
+    307.455
+   ]
+  },
+  {
+   "part": "sonic_hub_upper_2_1309-0016-4008",
+   "n_solids": 3,
+   "volume_mm3": 4203.98,
+   "bbox_mm": [
+    -35.405,
+    17.0,
+    275.624,
+    -3.405,
+    27.0,
+    307.455
+   ]
+  }
+ ],
+ "changes_vs_r53b": [
+  "deleted 8 free carriage guide rails",
+  "carriage ears x 23 -> +-42, 3 mm thick, 0.3 mm running clearance",
+  "side plate lock slots 5.2 x 44 at x = +-36",
+  "48 M4 stud + washer + nyloc nut + preload spring clamp parts",
+  "wing nut deleted: clamping is by spring, set once at build time",
+  "16 rigid length stop rings O8.0/O5.7 x 6.0 mm, one per stud, around the spring",
+  "preload is now k x (free - ring) = 2.98 N per stud, whatever torque the nut sees",
+  "ring wall 1.15 mm / section 24.7 mm2 (~1.2 kN in PET) => a thin sleeve inside the spring (0.25 mm wall, ~69 N) was rejected",
+  "off-the-shelf equivalent: 6.0 mm slice of an O8 x O6 nylon/PU tube"
+ ],
+ "seat": {
+  "count_per_variant": 16,
+  "od_mm": 8.0,
+  "bore_mm": 5.7,
+  "length_mm": 6.0,
+  "section_mm2": 24.75,
+  "preload_n_per_stud_geometric": 2.976,
+  "print_tolerance_effect_n": 0.248,
+  "why": "平垫压到限位环端面就到底（6.0 mm）；再拧只压环，预载不再增长。反向失效是螺母松脱（掉预载、掉夹紧），不伤换档 => 尼龙锁紧螺母 + 螺纹胶 243。3D 打印 +/-0.2 mm 直接换算成 +/-0.25 N（名义 2.98 N）。",
+  "parts": [
+   "carriage_clamp_seat_lower_+1_+36_+12",
+   "carriage_clamp_seat_lower_+1_+36_-12",
+   "carriage_clamp_seat_lower_+1_-36_+12",
+   "carriage_clamp_seat_lower_+1_-36_-12",
+   "carriage_clamp_seat_lower_-1_+36_+12",
+   "carriage_clamp_seat_lower_-1_+36_-12",
+   "carriage_clamp_seat_lower_-1_-36_+12",
+   "carriage_clamp_seat_lower_-1_-36_-12",
+   "carriage_clamp_seat_upper_+1_+36_+12",
+   "carriage_clamp_seat_upper_+1_+36_-12",
+   "carriage_clamp_seat_upper_+1_-36_+12",
+   "carriage_clamp_seat_upper_+1_-36_-12",
+   "carriage_clamp_seat_upper_-1_+36_+12",
+   "carriage_clamp_seat_upper_-1_+36_-12",
+   "carriage_clamp_seat_upper_-1_-36_+12",
+   "carriage_clamp_seat_upper_-1_-36_-12"
+  ]
+ },
+ "step_mb": 446.6
+}

@@ -121,3 +121,13 @@ cad/output/_r52_drive/*.step
 cad/output/_r52_drive/*.stl
 cad/output/_r52_drive/*.glb
 cad/output/_r52_drive/*.pkl
+# R53 family (DEC-0051 / DEC-0052, V-0051..V-0056): preloaded spring clamp, then the
+# rigid fixed-length stop ring that pins the clamp preload to geometry.
+# STEP copies are ~446 MB and fully regenerable with
+#   cad/paddle_launcher_shooter_lock_r53b.py / _r53f.py
+# report_r53*.json and *.png stay tracked; _run_*.log is a transient console log.
+cad/output/_r53b_auto/*.step
+cad/output/_r53b_auto/*.stl
+cad/output/_r53b_auto/*.glb
+cad/output/_r53f_lock/*.step
+cad/output/_r53f_lock/_run_*.log

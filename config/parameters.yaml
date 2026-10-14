@@ -588,3 +588,27 @@ t06_gap_chain_match_r53e:
   recoil_hold: {value: {f_separation_per_carriage_peak_N: {pollen: 37.5, nectar: 81.3}, servo_hold_per_carriage_N: {pollen: 112.3, nectar: 389.9}, clamp_friction_per_carriage_N: 14.4, gap_peak_offset_mm: 0.41, gap_residual_mm: 0.0, note: "发射时守住夹口的是舵机；夹紧件负责断电保持与抗蠕变"}, status: "CALCULATED", source: "cad/output/_r53e_match/report_r53e_match.json"}
   endpoint_safety: {value: {h_dead_point_mm: 91.537, margin_mm: 0.537, firmware_window_deg: [19.33, 96.68]}, status: "CALCULATED", source: "cad/output/_r53e_match/report_r53e_match.json"}
   open_question: {value: "①发射反力为估算（球质量 / 出射速度 / 接触时间 / mu_ball 均 ASSUMED），实机应实测出膛速度反推；②夹紧件预载仍由装配时拧螺母一次设定，若要零人工设定可改定长套筒；③实机未验。", status: "TBD"}
+
+t06_lock_seat_r53f:
+  note: "R53f 定长限位环：把锁紧件预载从「靠手感」变成「靠几何」。每根 M4 螺柱、弹簧外面套一个刚性环，平垫压到环端面即到底，再拧只压环、预载不再增长；换档仍由已有 25-2 完成。"
+  version: {value: "T06-LOCK-SEAT-R53F", status: "KNOWN", source: "docs/decision_log.md V-0055 / DEC-0052"}
+  ring: {value: {od_mm: 8.0, bore_mm: 5.7, length_mm: 6.0, wall_mm: 1.15, section_mm2: 24.75, count_per_variant: 16, per_stud: 1, position: "套在 Ø5.5 弹簧外面（径向占 R2.85..R4.0，平垫 R5.0 仍完整压住端面）"}, status: "KNOWN", source: "DEC-0052"}
+  preload: {value: {nominal_n_per_stud: 2.976, spring_rate_n_per_mm: 1.24, spring_free_mm: 8.4, spring_installed_mm: 6.0, print_tolerance_0p2mm_effect_n: 0.248}, status: "CALCULATED", source: "cad/paddle_launcher_shooter_lock_r53f.py"}
+  off_the_shelf: {value: "6.0 mm 长的 Ø8 x Ø6 尼龙/PU 管切段（等价成品件）", status: "ASSUMED", source: "DEC-0052"}
+  rejected_option: {value: "第一版螺柱外细套筒 Ø4.5/Ø4.3 x 6.0：径向间隙只有 0.25 mm => 壁厚 0.25 mm、截面 1.38 mm2，PET 压缩屈服约 50 MPa => 约 69 N，手拧会压溃，已否决", status: "CALCULATED", source: "docs/decision_log.md V-0055"}
+  geometry: {value: {parts: {pollen: 130, nectar: 130}, parts_before_r53f: 114, ring_volume_mm3: 148.49, ring_axial_mm: [75.3, 81.3], lock_vs_rest: 0, lock_vs_carriage: 0, axle_isolation_hits: 0, ear_to_plate_min_gap_mm: 0.3, slot_coverage_z_mm: [68.0, 79.0, 92.0, 103.0], slot_slack_mm: 4.5}, status: "MEASURED", source: "cad/output/_r53f_lock/report_r53f_{pollen,nectar}.json"}
+  step: {value: {pollen_mb: 446.5, nectar_mb: 446.6, desktop: "T06_shooter_assembly_R53f_{pollen,nectar}.step"}, status: "MEASURED"}
+  readback: {value: {n_solids: 370, volume_delta_pct: -0.0001, bbox_delta_mm: 0.0, nip_mm: {pollen: 64.0, nectar: 86.0}, ring_count: 16}, status: "MEASURED", source: "cad/_r53f_readback.py -> cad/output/_r53f_lock/readback_r53f.json"}
+  open_question: {value: "①限位环打印长度与压缩强度未实测（1.24 kN 为材料估算）；②弹簧 k = 1.24 N/mm 未实测；③台架 50 次来回后的预载衰减未测；④实机未验。", status: "TBD"}
+
+t06_preload_limit_r53g:
+  note: "R53g 预载上限扫描：锁紧件预载拧到多少才顶停 25-2（即开始影响正常位置改变）。结论：手拧有 4 倍以上过拧空间 => 支持 DEC-0052 的定长限位环。不新增几何，只新增计算。"
+  version: {value: "T06-PRELOAD-LIMIT-R53G", status: "CALCULATED", source: "docs/decision_log.md V-0056"}
+  nominal_preload_n: {value: 2.976, status: "CALCULATED"}
+  stall_fraction_pct: {value: {mu0p60: 25.6, mu0p30: 12.8}, status: "CALCULATED"}
+  switch_time_s: {value: {mu0p60: 0.354, mu0p30: 0.325}, status: "CALCULATED"}
+  threshold_60pct_stall_n: {value: {mu0p60: 7.02, mu0p30: 14.04}, status: "CALCULATED"}
+  hard_stall_n: {value: {mu0p60: 12.0, mu0p30: null, note: "mu = 0.60 时 12.0 N 把换档拖到 2.7 s 后失效；mu = 0.30 在 20 N 内都不顶停"}, status: "CALCULATED"}
+  method: {value: {model: "与 R53d/R53e 同源：T_load = 2 f |dh/dth|，f = 2 面 x 8 螺柱 x 预载 x mu；T(w) = T_stall (1 - |w|/w_noload)", assumed: ["J = 1.0e-4 kg.m2", "Kp = 200 N.m/rad", "T_stall 2.471 N.m / 空载 60 rpm", "mu 0.30 / 0.60"], sweep: "预载 1.0 -> 20.0 N，step 0.5，两档 mu 各一遍"}, status: "CALCULATED", source: "cad/paddle_launcher_gap_chain_preload_limit_r53g.py"}
+  arrival_criterion: {value: "到位判据 = 停稳 0.05 s 且残余角误差 < 5.0e-3 rad（到位时残余 = 静差 ≈ T_load / Kp ≈ 8e-4 rad）。务必保留：第一版把「靠静差停住（w = 0）」误判成卡死，得出假的硬上限 1.0 / 1.5 N，已作废。", status: "KNOWN"}
+  open_question: {value: "①mu / J / Kp / T_stall / 空载转速均未实测；②限位环压溃载荷与打印公差未实测（69 N / 1.24 kN 为材料估算）；③实机未验。", status: "TBD"}

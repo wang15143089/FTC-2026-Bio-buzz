@@ -1,0 +1,490 @@
+{
+ "units": "mm, N, N.m, s",
+ "question": "锁紧件预载拧到多少会把 25-2 顶停（即开始影响正常位置改变）？",
+ "model": "与 R53d/R53e 同源：T_load = 2 f |dh/dth|，f = 2 面 x 8 螺柱 x 预载 x mu；T(w) = T_stall (1 - |w|/w_noload)；J = 1.0e-4 kg.m2、Kp = 200 N.m/rad（ASSUMED）",
+ "nominal_preload_n": 3.0,
+ "sweep": {
+  "mu0.30": {
+   "rows": [
+    {
+     "preload_n": 1.0,
+     "ok": true,
+     "t_s": 0.3093,
+     "pct_of_stall": 4.3
+    },
+    {
+     "preload_n": 1.5,
+     "ok": true,
+     "t_s": 0.313,
+     "pct_of_stall": 6.4
+    },
+    {
+     "preload_n": 2.0,
+     "ok": true,
+     "t_s": 0.3168,
+     "pct_of_stall": 8.5
+    },
+    {
+     "preload_n": 2.5,
+     "ok": true,
+     "t_s": 0.3208,
+     "pct_of_stall": 10.7
+    },
+    {
+     "preload_n": 3.0,
+     "ok": true,
+     "t_s": 0.3249,
+     "pct_of_stall": 12.8
+    },
+    {
+     "preload_n": 3.5,
+     "ok": true,
+     "t_s": 0.3293,
+     "pct_of_stall": 15.0
+    },
+    {
+     "preload_n": 4.0,
+     "ok": true,
+     "t_s": 0.3338,
+     "pct_of_stall": 17.1
+    },
+    {
+     "preload_n": 4.5,
+     "ok": true,
+     "t_s": 0.3384,
+     "pct_of_stall": 19.2
+    },
+    {
+     "preload_n": 5.0,
+     "ok": true,
+     "t_s": 0.3434,
+     "pct_of_stall": 21.4
+    },
+    {
+     "preload_n": 5.5,
+     "ok": true,
+     "t_s": 0.3484,
+     "pct_of_stall": 23.5
+    },
+    {
+     "preload_n": 6.0,
+     "ok": true,
+     "t_s": 0.3537,
+     "pct_of_stall": 25.6
+    },
+    {
+     "preload_n": 6.5,
+     "ok": true,
+     "t_s": 0.3593,
+     "pct_of_stall": 27.8
+    },
+    {
+     "preload_n": 7.0,
+     "ok": true,
+     "t_s": 0.3652,
+     "pct_of_stall": 29.9
+    },
+    {
+     "preload_n": 7.5,
+     "ok": true,
+     "t_s": 0.3713,
+     "pct_of_stall": 32.1
+    },
+    {
+     "preload_n": 8.0,
+     "ok": true,
+     "t_s": 0.3778,
+     "pct_of_stall": 34.2
+    },
+    {
+     "preload_n": 8.5,
+     "ok": true,
+     "t_s": 0.3845,
+     "pct_of_stall": 36.3
+    },
+    {
+     "preload_n": 9.0,
+     "ok": true,
+     "t_s": 0.3916,
+     "pct_of_stall": 38.5
+    },
+    {
+     "preload_n": 9.5,
+     "ok": true,
+     "t_s": 0.3992,
+     "pct_of_stall": 40.6
+    },
+    {
+     "preload_n": 10.0,
+     "ok": true,
+     "t_s": 0.4074,
+     "pct_of_stall": 42.7
+    },
+    {
+     "preload_n": 10.5,
+     "ok": true,
+     "t_s": 0.4157,
+     "pct_of_stall": 44.9
+    },
+    {
+     "preload_n": 11.0,
+     "ok": true,
+     "t_s": 0.4247,
+     "pct_of_stall": 47.0
+    },
+    {
+     "preload_n": 11.5,
+     "ok": true,
+     "t_s": 0.4343,
+     "pct_of_stall": 49.2
+    },
+    {
+     "preload_n": 12.0,
+     "ok": true,
+     "t_s": 0.4447,
+     "pct_of_stall": 51.3
+    },
+    {
+     "preload_n": 12.5,
+     "ok": true,
+     "t_s": 0.4556,
+     "pct_of_stall": 53.4
+    },
+    {
+     "preload_n": 13.0,
+     "ok": true,
+     "t_s": 0.4675,
+     "pct_of_stall": 55.6
+    },
+    {
+     "preload_n": 13.5,
+     "ok": true,
+     "t_s": 0.4801,
+     "pct_of_stall": 57.7
+    },
+    {
+     "preload_n": 14.0,
+     "ok": true,
+     "t_s": 0.4938,
+     "pct_of_stall": 59.8
+    },
+    {
+     "preload_n": 14.5,
+     "ok": true,
+     "t_s": 0.5089,
+     "pct_of_stall": 62.0
+    },
+    {
+     "preload_n": 15.0,
+     "ok": true,
+     "t_s": 0.5253,
+     "pct_of_stall": 64.1
+    },
+    {
+     "preload_n": 15.5,
+     "ok": true,
+     "t_s": 0.5432,
+     "pct_of_stall": 66.3
+    },
+    {
+     "preload_n": 16.0,
+     "ok": true,
+     "t_s": 0.5628,
+     "pct_of_stall": 68.4
+    },
+    {
+     "preload_n": 16.5,
+     "ok": true,
+     "t_s": 0.5847,
+     "pct_of_stall": 70.5
+    },
+    {
+     "preload_n": 17.0,
+     "ok": true,
+     "t_s": 0.6092,
+     "pct_of_stall": 72.7
+    },
+    {
+     "preload_n": 17.5,
+     "ok": true,
+     "t_s": 0.6371,
+     "pct_of_stall": 74.8
+    },
+    {
+     "preload_n": 18.0,
+     "ok": true,
+     "t_s": 0.6684,
+     "pct_of_stall": 76.9
+    },
+    {
+     "preload_n": 18.5,
+     "ok": true,
+     "t_s": 0.7046,
+     "pct_of_stall": 79.1
+    },
+    {
+     "preload_n": 19.0,
+     "ok": true,
+     "t_s": 0.7472,
+     "pct_of_stall": 81.2
+    },
+    {
+     "preload_n": 19.5,
+     "ok": true,
+     "t_s": 0.7979,
+     "pct_of_stall": 83.4
+    },
+    {
+     "preload_n": 20.0,
+     "ok": true,
+     "t_s": 0.8596,
+     "pct_of_stall": 85.5
+    }
+   ],
+   "limit_hard_n": null,
+   "limit_60pct_stall_n": 14.04
+  },
+  "mu0.60": {
+   "rows": [
+    {
+     "preload_n": 1.0,
+     "ok": true,
+     "t_s": 0.3168,
+     "pct_of_stall": 8.5
+    },
+    {
+     "preload_n": 1.5,
+     "ok": true,
+     "t_s": 0.3249,
+     "pct_of_stall": 12.8
+    },
+    {
+     "preload_n": 2.0,
+     "ok": true,
+     "t_s": 0.3338,
+     "pct_of_stall": 17.1
+    },
+    {
+     "preload_n": 2.5,
+     "ok": true,
+     "t_s": 0.3434,
+     "pct_of_stall": 21.4
+    },
+    {
+     "preload_n": 3.0,
+     "ok": true,
+     "t_s": 0.3537,
+     "pct_of_stall": 25.6
+    },
+    {
+     "preload_n": 3.5,
+     "ok": true,
+     "t_s": 0.3652,
+     "pct_of_stall": 29.9
+    },
+    {
+     "preload_n": 4.0,
+     "ok": true,
+     "t_s": 0.3778,
+     "pct_of_stall": 34.2
+    },
+    {
+     "preload_n": 4.5,
+     "ok": true,
+     "t_s": 0.3916,
+     "pct_of_stall": 38.5
+    },
+    {
+     "preload_n": 5.0,
+     "ok": true,
+     "t_s": 0.4074,
+     "pct_of_stall": 42.7
+    },
+    {
+     "preload_n": 5.5,
+     "ok": true,
+     "t_s": 0.4247,
+     "pct_of_stall": 47.0
+    },
+    {
+     "preload_n": 6.0,
+     "ok": true,
+     "t_s": 0.4447,
+     "pct_of_stall": 51.3
+    },
+    {
+     "preload_n": 6.5,
+     "ok": true,
+     "t_s": 0.4675,
+     "pct_of_stall": 55.6
+    },
+    {
+     "preload_n": 7.0,
+     "ok": true,
+     "t_s": 0.4938,
+     "pct_of_stall": 59.8
+    },
+    {
+     "preload_n": 7.5,
+     "ok": true,
+     "t_s": 0.5253,
+     "pct_of_stall": 64.1
+    },
+    {
+     "preload_n": 8.0,
+     "ok": true,
+     "t_s": 0.5628,
+     "pct_of_stall": 68.4
+    },
+    {
+     "preload_n": 8.5,
+     "ok": true,
+     "t_s": 0.6092,
+     "pct_of_stall": 72.7
+    },
+    {
+     "preload_n": 9.0,
+     "ok": true,
+     "t_s": 0.6684,
+     "pct_of_stall": 76.9
+    },
+    {
+     "preload_n": 9.5,
+     "ok": true,
+     "t_s": 0.7472,
+     "pct_of_stall": 81.2
+    },
+    {
+     "preload_n": 10.0,
+     "ok": true,
+     "t_s": 0.8596,
+     "pct_of_stall": 85.5
+    },
+    {
+     "preload_n": 10.5,
+     "ok": true,
+     "t_s": 1.0379,
+     "pct_of_stall": 89.8
+    },
+    {
+     "preload_n": 11.0,
+     "ok": true,
+     "t_s": 1.3879,
+     "pct_of_stall": 94.0
+    },
+    {
+     "preload_n": 11.5,
+     "ok": true,
+     "t_s": 2.731,
+     "pct_of_stall": 98.3
+    },
+    {
+     "preload_n": 12.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 102.6
+    },
+    {
+     "preload_n": 12.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 106.9
+    },
+    {
+     "preload_n": 13.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 111.1
+    },
+    {
+     "preload_n": 13.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 115.4
+    },
+    {
+     "preload_n": 14.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 119.7
+    },
+    {
+     "preload_n": 14.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 124.0
+    },
+    {
+     "preload_n": 15.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 128.2
+    },
+    {
+     "preload_n": 15.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 132.5
+    },
+    {
+     "preload_n": 16.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 136.8
+    },
+    {
+     "preload_n": 16.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 141.1
+    },
+    {
+     "preload_n": 17.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 145.3
+    },
+    {
+     "preload_n": 17.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 149.6
+    },
+    {
+     "preload_n": 18.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 153.9
+    },
+    {
+     "preload_n": 18.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 158.2
+    },
+    {
+     "preload_n": 19.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 162.4
+    },
+    {
+     "preload_n": 19.5,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 166.7
+    },
+    {
+     "preload_n": 20.0,
+     "ok": false,
+     "t_s": null,
+     "pct_of_stall": 171.0
+    }
+   ],
+   "limit_hard_n": 12.0,
+   "limit_60pct_stall_n": 7.02
+  }
+ },
+ "conclusion": "名义 2.98 N（R53f 限位环锁定值）时最不利占堵转 25.6 %（mu = 0.60）；吃掉 60 % 堵转余量的门槛是 7.0 N（mu = 0.60）/ 14.0 N（mu = 0.30）；真正顶停出现在 12.0 N（mu = 0.60，0.35 s -> 2.7 s -> 失效），mu = 0.30 在 20 N 内不顶停。=> 靠手感拧螺母有 4 倍以上过拧空间，落在危险区完全可能 => R53f 用定长限位环把预载锁在 2.98 N 几何值，从根上消掉这条路径。",
+ "status": "CALCULATED"
+}
