@@ -1286,7 +1286,7 @@ Date/version:
 - 未验证项（TBD）: `base_rail` 处置；拆分件打印朝向 / 支撑 / 排版（DEC-0062 移交）。
 - Date/version: 2026-10-14 / 产物 `cad/output/_r56_frame/split/report_r56_split.json`、`cad/output/_r56_frame/audit_r56_h2d.json`、剖面图 `cad/output/_r56_frame/split/r56_split_sections.png`
 
-## DEC-0064 - 决策：R57 删除底座导轨，改由一块落地底板承担接地与连接基准（并把整机最低点交给底板）
+## DEC-0064（SUPERSEDED by DEC-0065，2026-10-15） - 决策：R57 删除底座导轨，改由一块落地底板承担接地与连接基准（并把整机最低点交给底板）
 
 - 判据（KNOWN）: 用户 2026-10-14 指令「可以不可以不要这根轨道而是改为一个可以放在地上的平面（确保这是整个机构最低点）」。「这根轨道」= R55/R56 的 `base_rail_+72` / `base_rail_-72`（各 380 x 18 x 14、y ±72、z 2..16）。该件是 H2D 建板审计里**最后一个未消解项**（380 mm 超单喷嘴 325 mm 共 55 mm，见 DEC-0063 TBD 1）。用户同轮重申 1 mm 级误差可接受。
 - 决策 1 - 删导轨、加底板（KNOWN）: 删除 `base_rail_±72`，新增 **`floor_plate_R57` = 315 x 210 x 6 mm 平板 + 4 个 12 x 16 mm 凸台**（x = 60 / 76、y = ±76，凸台顶面 z = 16 = 导轨腿底面）；**单件**，包络 **315 x 210 x 27.5 mm**，进得了 H2D 单喷嘴 325 x 320 x 325。
@@ -1301,7 +1301,7 @@ Date/version:
 - Date/version: 2026-10-14 / 产物 `cad/paddle_launcher_shooter_assembly_r57.py`、`cad/_mk_r57.py`、`cad/_r57_audit.py`、`cad/_r57_h2d_audit.py`、`cad/_r57_floor_probe.py`、`cad/_r57_column_probe.py`、`cad/_r57_plate_figure.py` -> `cad/output/_r57_frame/`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
 
 
-## V-0063 - 验证记录（非决策）：R57 底板「整机最低点 + 4 个 M3 贯穿 + H2D 单件」复核
+## V-0063（SUPERSEDED by DEC-0065，2026-10-15） - 验证记录（非决策）：R57 底板「整机最低点 + 4 个 M3 贯穿 + H2D 单件」复核
 
 - 目的（KNOWN）: 用户要求的三条（删导轨 / 落地平面 / **底板必须是全机构最低点**）必须用**最终交付几何**证明，不能只看参数；同时「主体未被误改」也必须证明。
 - 方法（MEASURED，只回读）: ①`cad/_r57_audit.py` 回读 `T06_floor_plate_R57_pollen.step`、`T06_shooter_frame_R57_pollen.step` 与 `report_r57_pollen.json`，逐项判 pass/fail；②`cad/_r57_h2d_audit.py` 遍历 R57 报告里全部单体判建板；③R57 与 R56 主体 STEP 布尔差分。
@@ -1318,3 +1318,36 @@ Date/version:
 - 未验证项（TBD）: 见 DEC-0064（底板覆盖面 / 打印排版 / PET 收缩）。
 - Date/version: 2026-10-14 / 产物 `cad/output/_r57_frame/audit_r57.json`、`cad/output/_r57_frame/audit_r57_h2d.json`、`cad/output/_r57_plate/r57_floor_plate.png`
 
+## DEC-0065 - 决策：R59 删除落地底板，改回两条滑轨并向下加厚，使滑轨底面成为整机唯一接地点
+
+- 判据（KNOWN）: 用户 2026-10-15 指令「不要地板了，就把那两条滑轨加厚使其能避免外罩最低点接触地面」。即撤销 DEC-0064（R57 落地底板 `floor_plate_R57`，315 x 210 x 6 + 4 凸台，底面 z = -11.5），**保留** `base_rail_+72` / `base_rail_-72` 并向下加厚。用户同轮重申 1 mm 级误差可接受、简单高效、不必对极端工况考虑太多。
+- 决策 1 - 删底板（KNOWN）: 生成器里 `make_floor_plate()` 整体删除；`verify_joints()` 的 `PLATE_ZB` / `PLATE_NAME` / `below_plate_blockers` 改为 `SOLE_ZB` / `rail_names` / `below_sole_blockers`。交付件里 `floor_plate` 命中 **0 件**（审计 `floor_plate_removed` PASS）。
+- 决策 2 - 滑轨加厚（KNOWN）: 原导轨 x -170..210、y ±63..81、z 2..16（厚 14）。新增**鞋底** box（x -170..210, y ±63..81, z **-8..2**）fuse 进原导轨，成品 z 全为 **[-7, 16]（厚 23 mm）**，截面外轮廓（y 63..81）不变、**只向下长厚**。
+- 决策 3 - 为什么可以零让位（MEASURED，`cad/_r59_probe.py`）: 加厚区 x -170..210 / y ±63..81 / z -8..2 与主体相交 **0.0000 mm³** => 整片鞋底可以直接 fuse，**不需要任何开窗 / 让位**（与 DEC-0064 的「板顶取 -5.5 避开主体」是同一类实测判据的延续）。主体最低实体仍为 **z = -3.51**（x 20..40 托板底面）。
+- 决策 4 - 接地与离地间隙（KNOWN + MEASURED）: `SOLE_ZB = -7.0` => 滑轨底面 **z = -7.00 = 全机构最低点**，比外罩/托板最低点低 **3.49 mm**（判据 >= 3.0 mm，PASS）。交付件里 `lowest_point_of_assembly` = 4 件滑轨 @ z = -7.00。
+- 决策 5 - 打印分件（KNOWN）: 加厚后滑轨 x 向 380 mm，仍超 H2D 单喷嘴 **325 mm** 共 55 mm => 在 **x = 114** 纵向切成 front / rear 两件（`base_rail_+_front` / `_rear`、`base_rail_-_front` / `_rear`）。分缝**避开全部 8 个底盘孔**（孔在 x = -150…186 步距 48，最近孔 x = 90 / 138 各留 24 mm），**4 个 M3 接头孔全部落在 front 件上**，故 rear 件无需任何螺纹接口。
+- 决策 6 - 连接（KNOWN，沿用「不用自攻、都贯穿、一头螺栓一头螺母」）: 4 个 **Ø3.2** 通孔贯穿 滑轨 front 件 + 凸耳；鞋底**底面**开 4 个 **Ø6 x 2.45** 螺母窝（`NUT_POCKET = 7.0` 对边、`NUT_DEPTH = 2.5`），实测 `all_4_bolt_holes_clear` 4/4 clear、`nut_pockets_empty` 4/4 empty、`rail_floor_under_nut` 4/4 solid（28.4 mm³）、`nothing_protrudes_below_sole` **0.000 mm³** => 螺母整颗藏进窝内，**不会凸出鞋底底面**，因此不破坏「滑轨底面 = 唯一接地点」这一条。
+- Alternatives（已否决）: ①R58 的加长底板方案（325 mm 单件地板，脚本 `cad/paddle_launcher_shooter_assembly_r58.py`）—— **未验收即被用户本轮指令取代**，标 SUPERSEDED；②保留地板但减薄 —— 用户明确「不要地板了」，否决；③只加厚不拆分滑轨（单件 380 mm）—— 超 H2D 325 mm，否决。
+- 主体零改动（MEASURED，回归判据）: R59 主体 V = **1 103 726.2 mm³**、bbox x[-147.22, 285.26] y[-84, 99] z[-3.51, 401.02]，与 R56 / R57 **逐位相同** => DEC-0063 的三件拆分与搭接 M3 对 R59 逐块仍然有效，**无需重跑拆分**。
+- 影响: 整机接地由「一块大平板」回到「两条窄滑轨加厚」；零件数变化为 导轨 2 件 -> 4 件、底板 1 件走出；H2D 建板争议在本线**仍全部清零**（4 件滑轨最坏 284.0 mm < 325 mm）。
+- 未验证项（TBD）: ①鞋底底面取 -7.0（离地 3.49 mm）是否符合用户预期，或需更大间隙（用户待确认）；②加厚滑轨自行拆成 front / rear 两件是否被接受（若否可改回单件并标 TBD）；③滑轨打印朝向 / 支撑 / 排版按 DEC-0062 移交他人；④PET 收缩对 Ø3.2 打印孔与 Ø6 螺母窝的影响（沿用既有 TBD，本轮未测）。
+- 教训（MEASURED，必须保留）: 审计探针第一版把底盘孔轴线误设为接头凸耳的 **`BOLT_Y = 76`**（R54 起把 `BOLT_Y` 当参考轴），导致 `chassis_holes_through` 误判 FAIL。实际**底盘孔在导轨中心线 y = ±72，而接头凸耳轴线在 y = ±76，两者不是同一条轴线**。修正为 `yy = RAIL_CY if "_+" in n else -RAIL_CY` 后 16/16 through。=> **审计探针一律使用对应特征自己的实测基准；参考轴不得跨特征复用。** 另一处 `rail_floor_under_nut` 阈值 100 mm³ 定得过高（10 x 14 剖面扣掉 Ø4.4 孔后理论约 28 mm³、实测 28.4），已降至 **> 20 mm³**。
+- Date/version: 2026-10-15 / 产物 `cad/paddle_launcher_shooter_assembly_r59.py`、`cad/_r59_probe.py`、`cad/_r59_audit.py`、`cad/_r59_h2d_audit.py`、`cad/_r59_rail_figure.py`、`cad/_r59_runall.py` -> `cad/output/_r59_frame/`、示意图 `cad/output/_r59_rail/r59_thickened_rail.png`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+
+## V-0064 - 验证记录（非决策）：R59「滑轨底面 = 整机最低点 + 4 个 M3 贯穿 + H2D 分件」复核
+
+- 目的（KNOWN）: 用户要求的「外罩最低点不接触地面（由加厚滑轨接地）」必须用**最终交付几何**证明，不能只看参数；同时「主体未被误改」也必须证明。
+- 方法（MEASURED，只回读）: ①`cad/_r59_audit.py` 回读 `T06_shooter_frame_R59_pollen.step` / `T06_shooter_assembly_R59_pollen.step` / `report_r59_pollen.json` 等，逐项判 pass/fail（18 项）；②`cad/_r59_h2d_audit.py` 遍历 R59 报告里全部单体判建板；③R59 与 R56 / R57 主体体积与 bbox 对比。
+- 实测（MEASURED）:
+  - **`FAILED: 0`，18/18 PASS**。
+  - 滑轨：`base_rail_present` = 2 rails / 4 pieces（pass）；x[-170, 210] y[-81, 81] z[-7, 16]，4 件合计 V = 307 290 mm³；front x[-170, 114] V = 114 665.3、rear x[114, 210] V = 38 979.5。
+  - 最低点：`lowest_point_of_assembly` = `base_rail_R59` @ **z = -7.00**（pass）；`rail_below_frame` -7.00 vs 主体 -3.51（pass）；`ground_clearance_to_frame` = **3.49 mm >= 3.0**（pass）。
+  - 无干涉：`sole_zone_free_of_frame` = **0.0000 mm³**；`frame_rail_interference` = **0.0000 mm³**（均 pass）。
+  - 主体未改：`frame_volume_vs_R56` / `frame_volume_vs_R57` 均 = **1 103 726.2 mm³**；`frame_bbox_vs_R57` x[-147.22, 285.26] y[-84.0, 99.0] z[-3.51, 401.02] 完全一致（均 pass）。
+  - 4 个 M3 接头：`tab_hole` = `rail_hole` = `pocket` = `below` = **0.000**，`sole_floor` = 28.4 mm³；`all_4_bolt_holes_clear` **4/4 clear**、`nut_pockets_empty` **4/4 empty**、`rail_floor_under_nut` **4/4 solid**、`nothing_protrudes_below_sole` **0.000 mm³**（均 pass）。
+  - 底盘孔：`chassis_holes_through` **16/16 through**（pass）。
+  - H2D：`rail_pieces_H2D_fit` worst **284.0 mm <= 325**（pass）；`cad/_r59_h2d_audit.py` **79 单体 78 PASS**，唯一 FAIL = `shooter_frame_R59_merged` 432.5 x 183.0 x 404.5（已由 DEC-0063 拆分消解）。
+  - 生成器内 `joint_verification`：**4/4 pass=True**（`axis_empty = 0.000`、孔壁 in/out = 6.79 / 6.79、`nut_pocket = 0.00`）。
+- 判定: 用户要求 **pass**；几何审计 **18/18 pass、0 fail**；H2D 审计剩余唯一项为已消解的融合主体。**结论成立，且主体对外接口零改动。**
+- 未验证项（TBD）: 见 DEC-0065（离地间隙取值待确认 / 滑轨分件是否接受 / 打印排版 / PET 收缩）。
+- Date/version: 2026-10-15 / 产物 `cad/output/_r59_frame/audit_r59.json`、`cad/output/_r59_frame/audit_r59_h2d.json`、`cad/output/_r59_rail/r59_thickened_rail.png`
