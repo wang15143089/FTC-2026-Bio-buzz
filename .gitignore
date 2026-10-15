@@ -152,3 +152,15 @@ cad/output/_r55_run.log
 cad/output/_r55_fit_probe.log
 cad/output/_r55_print_probe.log
 cad/output/_r55_vs_r54_diff.log
+
+# R56 tray lengthening + two-plane print split for the H2D (DEC-0063).
+# STEP copies + the per-part BREP cache are regenerable with
+#   cad/paddle_launcher_shooter_assembly_r56.py pollen --step
+#   cad/t06_print_split.py
+# report_r56_*.json / report_r56_split.json / audit_r56_h2d.json / *.png stay tracked.
+cad/output/_r56_frame/*.step
+cad/output/_r56_frame/split/*.step
+cad/output/_r56_frame/cache/
+cad/output/_r56_frame/*.log
+cad/output/_r56_frame/*.err
+cad/output/_r56_probe/

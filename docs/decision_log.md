@@ -1256,3 +1256,32 @@ Date/version:
 - 影响: 本目标的验收范围收敛为「装配合理性 + 极少零件数 + M3 连接设计 + 剔除厂商件 + 仔细验证」；打印相关退出范围。
 - 未验证项（TBD）: 无（移交项不在本目标内）。
 - Date/version: 2026-10-14 / 关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+
+## DEC-0063 - 决策：R56 托板加长 285 mm + 两平面拆分让打印件进 H2D 建板
+
+- 判据（KNOWN）: 用户 2026-10-14 指令「不用（跳过两条 TBD）……把托板加长，确认所有单体的尺寸都在拓竹 H2D 打印能力内」；用户同轮重申误差 1 mm 级可接受、不过度谨慎。建板判据取拓竹官方**单喷嘴 325 x 320 x 325 mm**（KNOWN，官方 tech-specs；双喷嘴交集 300 x 320 x 320、并集 350 x 320 x 325），即最保守的一档。
+- 决策 1 - 托板加长（CALCULATED）: `STAGE_X1 / TRAY_X1` 由 215 -> **285 mm**，只改这一个参数，其余全部沿用 R55。容量枚举 `cad/_r56_tray_pick.py`：215 -> POLLEN 3 / NECTAR 2（R55）；**285 -> POLLEN 4 / NECTAR 3**；356 -> POLLEN 5 / NECTAR 4，即 285 之后增到 356 才再多一颗。=> 取 **285**（增容 1 颗，同时把 380 mm 一级的超长件留出余量）。
+- 决策 2 - 拆分（KNOWN）: R56 主体是**一个**融合实体 432.5 x 183.0 x 404.5 mm，任何摆向下都进不了 H2D，因此沿 **x = 100（送球段 / 发射段）** 与 **z = 300（上部侧板 / 下部框架）** 两个平面拆成 **8 块 / 3 个打印件**：`frameP_1_rear_lower`、`frameP_2_front_lower`、`frameP_3_top`。
+- 为什么选这两个平面（CALCULATED）: 两平面都落在**天然分缝**上 —— x = 100 是托板根部与侧板前段的分界（侧板 x -147.2..213.8 连续穿过，因此该缝必须靠搭接块补强），z = 300 落在侧板上段与下滑窗板之间。worst lump 303.5 mm，余量 21.5 mm。
+- 接头设计（KNOWN，沿用用户 2026-10-14 的口径「不用自攻，两个构件都贯穿，一头螺栓一头螺母」）: S1 侧板搭接（每侧 x 75..115 / z 95..133，咬 943 mm3，2 x M3，两个孔都放 x = 108 > 100 的 P2 一侧，否则孔只锁在自己那块板上）、S2 侧板搭接（每侧 x 55..125 / z 265..320，咬 1400 mm3，2 x M3）、`feeder_mount` 榫舌 x2（口袋 1020 mm3，无螺栓）、**托板搭接（咬 3910 mm3，无螺栓）**。
+- Alternatives（已否决）: ①不拆、换大幅面机器 —— 用户已明确要求确认 H2D 能力，换机不解决问题；②把托板搭接也上螺栓 —— 螺栓头或螺母会落在球道上，否决（托板只承球、侧板搭接已承担框架载荷）；③S1 搭接块放在 z > 133 —— 下轴承滑座在 52 deg 滑窗内扫掠，pollen 角点实测 (113.2, 134.7)、nectar 档沿槽再滑 11 mm，z > 133 全是车位，否决。
+- 教训（MEASURED，必须保留）: 托板搭接第一版 **bite = 0**，P1 因此多出一个**孤立实体**（solids = 2）。根因：脚本沿用了 R37 的**移位前**枢轴线 `ztop(x) = PIVOT_Z + (x - PIV_X) tan 5`，它比**实建**托板面高 **17.15 mm**（R37 枢轴被 `PIVOT_NEW` 整体下移）。实建托板面实测为 **z = 0.55 + x tan 5**（y = 0 处 1 mm 柱扫 x = 40..280，与直线偏差 < 0.02 mm，板厚 6.11 mm）。改到实测面后 bite = 3910 mm3、P1 回到 **1 个实体**。=> **凡落在托板上的几何一律用实测面，不许用 R37 枢轴线。**
+- 影响: T06 打印主体第一次有了**可打印**的交付形态（3 件，最坏 303.5 mm），且对外接口（4 条导轨腿 <-> `base_rail` 的 M3、滑窗、闸门预留孔）全部不变。
+- 未验证项（TBD）:
+  1. **`base_rail_±72` = 380.0 x 18.0 x 14.0 mm，超 H2D 单喷嘴 325 mm 共 55 mm**（全清单里唯一仍未消解的项）。它是复用件，且是 4 条导轨腿 M3 连接的接口基准（PROJECT_STATUS 0.5 / V-0061），其长度由底盘接口给定 => **未擅自改，等用户裁定**（打印件 or 采购件；若为打印件，沿 x = 20 拆成两块 190 mm 可保留全部 8 个 O4.6 孔与外轮廓不变）。
+  2. 拆分件的**打印朝向 / 支撑 / 排版**仍按 DEC-0062 移交他人。
+- Date/version: 2026-10-14 / 产物 `cad/paddle_launcher_shooter_assembly_r56.py`、`cad/t06_print_split.py` -> `cad/output/_r56_frame/`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+
+
+## V-0062 - 验证记录（非决策）：R56 拆分 3 件 + 全单体 H2D 建板审计
+
+- 目的（KNOWN）: 「确认所有单体的尺寸都在拓竹 H2D 打印能力内」这句话必须对**整个交付清单**给结论，不能只对拆分件给结论；同时「拆分后仍能装配」也必须用几何证明，而不是看代码。
+- 方法（CALCULATED，只读 + 回读）: ①`cad/t06_print_split.py` 落盘 3 个单件 STEP + 1 个装配 STEP + `report_r56_split.json`，脚本内置每块 `fits()`、块级尺寸、3 件两两干涉、M3 孔同轴残留、**回读 STEP 复测尺寸 / 体积 / 偏差**；②`cad/_r56_h2d_audit.py` 遍历 `report_r56_pollen.json` 的**全部 77 个单体**，判据 = 原向或旋转后能进 325 x 320 x 325。
+- 实测（MEASURED）:
+  - **拆分（631.3 s）**：`frameP_1_rear_lower` 277.2 x 183.0 x 303.5 / V = 769 496 mm3 / **1 实体**；`frameP_2_front_lower` 185.3 x 144.0 x 296.8 / V = 234 503 mm3 / 5 实体；`frameP_3_top` 247.6 x 147.0 x 136.0 / V = 120 676 mm3 / 2 实体。三块 `fits_all = True`，worst lump **303.5 mm（余量 21.5 mm）**。
+  - **装配性**：3 件两两干涉 **0.000 / 0.000 / 0.000 mm3**（`piece_overlap_ok = True`）；8 个 M3 孔（S1 x 108 z 105 / z 124 各两侧，S2 x 75 / x 110 z 282 各两侧）同轴残留全部 **<= 0.05 mm3**（`bolt_holes_ok = True`）；托板搭接 bite = **3910 mm3**、`feeder_mount` 榫舌口袋 **1020 mm3 x 2**；回读 STEP 与内存件体积差 **<= 0.04 mm3**。
+  - **H2D 审计（77 单体）**：**74 个 PASS**（最大 PASS 件 `main_spacing_link_lower` 123.5 mm）；**3 个 FAIL** = `shooter_frame_R56_merged` 432.5 x 183.0 x 404.5（已由拆分消解）、`base_rail_+72` 与 `base_rail_-72` 各 380.0 x 18.0 x 14.0（**未消解，见 DEC-0063 TBD 1**）。拆出的 8 块逐块列在同一份 `audit_r56_h2d.json` 里，全部 PASS。
+  - **`third_party_clash` 的解释（MEASURED）**: S1 / S2 报 `[('shooter_side_plate_±1', 1513.48 / 3850.0)]`、托板搭接报 `[('feeder_shell_tray', 9774.88)]` —— 这**不是**第三方干涉，而是搭接块**有意咬进目标件**的那 1 mm 层在原始零件清单里的同名列（原始成员件在装配报告里仍以独立条目存在）。判据是 `piece_overlap` = 0 与孔同轴，而不是这个字段。
+- 判定: 拆分 **pass**；H2D 审计 **pass（74/77）**，剩余 1 项（2 件）为接口件待用户裁定。
+- 未验证项（TBD）: `base_rail` 处置；拆分件打印朝向 / 支撑 / 排版（DEC-0062 移交）。
+- Date/version: 2026-10-14 / 产物 `cad/output/_r56_frame/split/report_r56_split.json`、`cad/output/_r56_frame/audit_r56_h2d.json`、剖面图 `cad/output/_r56_frame/split/r56_split_sections.png`

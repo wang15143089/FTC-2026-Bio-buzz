@@ -1,0 +1,492 @@
+{
+ "units": "mm",
+ "source": "T06_shooter_frame_R56_pollen.step",
+ "limits_mm": [
+  325.0,
+  320.0,
+  325.0
+ ],
+ "cut_x": 100.0,
+ "cut_z": 300.0,
+ "tabs": [
+  {
+   "seam": "S1",
+   "side": 1,
+   "x": [
+    75.0,
+    115.0
+   ],
+   "z": [
+    95.0,
+    133.0
+   ],
+   "owner": "frameP_1_rear_lower",
+   "relieved": [
+    "frameP_2_front_lower"
+   ],
+   "bolts": [
+    {
+     "x": 108.0,
+     "z": 105.0
+    },
+    {
+     "x": 108.0,
+     "z": 124.0
+    }
+   ],
+   "bite_mm3": 943.5,
+   "third_party_clash": [
+    [
+     "shooter_side_plate_+1",
+     1513.48
+    ]
+   ],
+   "bite_ok": true,
+   "clean_ok": false
+  },
+  {
+   "seam": "S1",
+   "side": -1,
+   "x": [
+    75.0,
+    115.0
+   ],
+   "z": [
+    95.0,
+    133.0
+   ],
+   "owner": "frameP_1_rear_lower",
+   "relieved": [
+    "frameP_2_front_lower"
+   ],
+   "bolts": [
+    {
+     "x": 108.0,
+     "z": 105.0
+    },
+    {
+     "x": 108.0,
+     "z": 124.0
+    }
+   ],
+   "bite_mm3": 943.5,
+   "third_party_clash": [
+    [
+     "shooter_side_plate_-1",
+     1513.48
+    ]
+   ],
+   "bite_ok": true,
+   "clean_ok": false
+  },
+  {
+   "seam": "S2",
+   "side": 1,
+   "x": [
+    55.0,
+    125.0
+   ],
+   "z": [
+    265.0,
+    320.0
+   ],
+   "owner": "frameP_3_top",
+   "relieved": [
+    "frameP_1_rear_lower",
+    "frameP_2_front_lower"
+   ],
+   "bolts": [
+    {
+     "x": 75.0,
+     "z": 282.0
+    },
+    {
+     "x": 110.0,
+     "z": 282.0
+    }
+   ],
+   "bite_mm3": 1400.0,
+   "third_party_clash": [
+    [
+     "shooter_side_plate_+1",
+     3850.0
+    ]
+   ],
+   "bite_ok": true,
+   "clean_ok": false
+  },
+  {
+   "seam": "S2",
+   "side": -1,
+   "x": [
+    55.0,
+    125.0
+   ],
+   "z": [
+    265.0,
+    320.0
+   ],
+   "owner": "frameP_3_top",
+   "relieved": [
+    "frameP_1_rear_lower",
+    "frameP_2_front_lower"
+   ],
+   "bolts": [
+    {
+     "x": 75.0,
+     "z": 282.0
+    },
+    {
+     "x": 110.0,
+     "z": 282.0
+    }
+   ],
+   "bite_mm3": 1400.0,
+   "third_party_clash": [
+    [
+     "shooter_side_plate_-1",
+     3850.0
+    ]
+   ],
+   "bite_ok": true,
+   "clean_ok": false
+  }
+ ],
+ "tongues": [
+  {
+   "side": 1,
+   "owner": "frameP_1_rear_lower",
+   "relieved": "frameP_2_front_lower",
+   "tongue": [
+    88.0,
+    115.0
+   ],
+   "pocket_mm3": 1020.0,
+   "pocket_ok": true
+  },
+  {
+   "side": -1,
+   "owner": "frameP_1_rear_lower",
+   "relieved": "frameP_2_front_lower",
+   "tongue": [
+    88.0,
+    115.0
+   ],
+   "pocket_mm3": 1020.0,
+   "pocket_ok": true
+  }
+ ],
+ "tray_lap": {
+  "x": [
+   80.0,
+   130.0
+  ],
+  "half_y": 50.0,
+  "bite_mm3": 3910.0,
+  "third_party_clash": [
+   [
+    "feeder_shell_tray",
+    9774.88
+   ]
+  ],
+  "bite_ok": true,
+  "clean_ok": false
+ },
+ "piece_overlap_mm3": {
+  "frameP_1_rear_lower^frameP_2_front_lower": 0.0,
+  "frameP_1_rear_lower^frameP_3_top": 0.0,
+  "frameP_2_front_lower^frameP_3_top": 0.0
+ },
+ "piece_overlap_ok": true,
+ "bolt_holes": [
+  {
+   "seam": "S1",
+   "side": 1,
+   "x": 108.0,
+   "z": 105.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S1",
+   "side": 1,
+   "x": 108.0,
+   "z": 124.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S1",
+   "side": -1,
+   "x": 108.0,
+   "z": 105.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S1",
+   "side": -1,
+   "x": 108.0,
+   "z": 124.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S2",
+   "side": 1,
+   "x": 75.0,
+   "z": 282.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S2",
+   "side": 1,
+   "x": 110.0,
+   "z": 282.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S2",
+   "side": -1,
+   "x": 75.0,
+   "z": 282.0,
+   "material_left": [],
+   "ok": true
+  },
+  {
+   "seam": "S2",
+   "side": -1,
+   "x": 110.0,
+   "z": 282.0,
+   "material_left": [],
+   "ok": true
+  }
+ ],
+ "bolt_holes_ok": true,
+ "lumps": {
+  "frameP_1_rear_lower": [
+   {
+    "x": [
+     -147.22,
+     130.0
+    ],
+    "y": [
+     -84.0,
+     99.0
+    ],
+    "z": [
+     -3.51,
+     300.0
+    ],
+    "dims_mm": [
+     277.2,
+     183.0,
+     303.5
+    ],
+    "volume_mm3": 769496.3,
+    "solids": 1,
+    "fits": true
+   }
+  ],
+  "frameP_2_front_lower": [
+   {
+    "x": [
+     100.0,
+     213.85
+    ],
+    "y": [
+     68.0,
+     72.0
+    ],
+    "z": [
+     75.66,
+     300.0
+    ],
+    "dims_mm": [
+     113.8,
+     4.0,
+     224.3
+    ],
+    "volume_mm3": 51990.8,
+    "solids": 1,
+    "fits": true
+   },
+   {
+    "x": [
+     100.0,
+     213.85
+    ],
+    "y": [
+     -72.0,
+     -68.0
+    ],
+    "z": [
+     75.66,
+     300.0
+    ],
+    "dims_mm": [
+     113.8,
+     4.0,
+     224.3
+    ],
+    "volume_mm3": 51990.8,
+    "solids": 1,
+    "fits": true
+   },
+   {
+    "x": [
+     100.0,
+     285.26
+    ],
+    "y": [
+     -54.0,
+     54.0
+    ],
+    "z": [
+     3.23,
+     25.42
+    ],
+    "dims_mm": [
+     185.3,
+     108.0,
+     22.2
+    ],
+    "volume_mm3": 114473.0,
+    "solids": 1,
+    "fits": true
+   },
+   {
+    "x": [
+     100.0,
+     168.0
+    ],
+    "y": [
+     -63.0,
+     -53.5
+    ],
+    "z": [
+     16.0,
+     30.0
+    ],
+    "dims_mm": [
+     68.0,
+     9.5,
+     14.0
+    ],
+    "volume_mm3": 8024.0,
+    "solids": 1,
+    "fits": true
+   },
+   {
+    "x": [
+     100.0,
+     168.0
+    ],
+    "y": [
+     53.5,
+     63.0
+    ],
+    "z": [
+     16.0,
+     30.0
+    ],
+    "dims_mm": [
+     68.0,
+     9.5,
+     14.0
+    ],
+    "volume_mm3": 8024.0,
+    "solids": 1,
+    "fits": true
+   }
+  ],
+  "frameP_3_top": [
+   {
+    "x": [
+     -69.9,
+     177.67
+    ],
+    "y": [
+     -73.5,
+     -68.0
+    ],
+    "z": [
+     265.0,
+     401.02
+    ],
+    "dims_mm": [
+     247.6,
+     5.5,
+     136.0
+    ],
+    "volume_mm3": 60338.0,
+    "solids": 1,
+    "fits": true
+   },
+   {
+    "x": [
+     -69.9,
+     177.67
+    ],
+    "y": [
+     68.0,
+     73.5
+    ],
+    "z": [
+     265.0,
+     401.02
+    ],
+    "dims_mm": [
+     247.6,
+     5.5,
+     136.0
+    ],
+    "volume_mm3": 60338.0,
+    "solids": 1,
+    "fits": true
+   }
+  ]
+ },
+ "all_lumps_fit": true,
+ "n_lumps": 8,
+ "elapsed_s": 631.3,
+ "readback": {
+  "frameP_1_rear_lower": {
+   "dims_mm": [
+    277.2,
+    183.0,
+    303.5
+   ],
+   "volume_mm3": 769496.3,
+   "solids": 1,
+   "fits": true
+  },
+  "frameP_2_front_lower": {
+   "dims_mm": [
+    185.3,
+    144.0,
+    296.8
+   ],
+   "volume_mm3": 234502.6,
+   "solids": 5,
+   "fits": true
+  },
+  "frameP_3_top": {
+   "dims_mm": [
+    247.6,
+    147.0,
+    136.0
+   ],
+   "volume_mm3": 120676.0,
+   "solids": 2,
+   "fits": true
+  }
+ },
+ "readback_volume_delta_mm3": {
+  "frameP_1_rear_lower": 0.03,
+  "frameP_2_front_lower": -0.01,
+  "frameP_3_top": -0.03
+ }
+}
