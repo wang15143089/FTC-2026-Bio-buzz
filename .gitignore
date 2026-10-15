@@ -164,3 +164,14 @@ cad/output/_r56_frame/cache/
 cad/output/_r56_frame/*.log
 cad/output/_r56_frame/*.err
 cad/output/_r56_probe/
+# R57 base-rail removal -> ONE ground plate whose underside is the lowest point (DEC-0064).
+# STEP copies + the per-part BREP cache are regenerable with
+#   cad/paddle_launcher_shooter_assembly_r57.py pollen --step
+# report_r57_pollen.json / audit_r57.json / audit_r57_h2d.json / sections/*.png stay tracked.
+cad/output/_r57_frame/*.step
+cad/output/_r57_frame/cache/
+cad/output/_r57_frame/*.log
+cad/output/_r57_frame/*.err
+cad/output/_r57_probe/
+cad/output/_r57_run.log
+cad/output/_r57_run.err

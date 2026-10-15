@@ -1,0 +1,169 @@
+{
+ "units": "mm",
+ "checks": [
+  {
+   "id": "plate_H2D_fit",
+   "target": "<= 325 x 320 x 325",
+   "measured": "315.0 x 210.0 x 27.5",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "read back T06_floor_plate_R57_pollen.step, AABB"
+  },
+  {
+   "id": "lowest_point_of_assembly",
+   "target": "floor_plate_R57",
+   "measured": "floor_plate_R57 @ z=-11.50",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "min z over all R57 parts"
+  },
+  {
+   "id": "plate_below_frame",
+   "target": "plate underside below frame zmin (-3.51)",
+   "measured": "plate bottom z=-11.50 vs frame z=-3.51",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "read-back AABB"
+  },
+  {
+   "id": "base_rail_deleted",
+   "target": "0 parts",
+   "measured": "0 parts",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R57 report part list"
+  },
+  {
+   "id": "frame_volume_vs_R56",
+   "target": "1103726.2 mm3",
+   "measured": "1103726.2 mm3",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "R57 frame STEP read-back vs R56 report"
+  },
+  {
+   "id": "frame_plate_interference",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "boolean intersect"
+  },
+  {
+   "id": "all_4_bolt_holes_clear",
+   "target": "0 material in O3.2",
+   "measured": "4/4 clear",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O3.2 probe through tab + pillar + plate"
+  },
+  {
+   "id": "nut_pockets_empty",
+   "target": "0 material in O6 x 2.45 deep",
+   "measured": "4/4 empty",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O6 probe z -11.5..-9.05"
+  },
+  {
+   "id": "pillar_tops_flush_with_tab_bottom",
+   "target": "z = 16.0 for 4/4",
+   "measured": "4/4 at 15..15.9",
+   "tol": 0.1,
+   "verdict": "pass",
+   "method": "10 x 14 x 0.9 slab just under the tab"
+  },
+  {
+   "id": "plate_print_note",
+   "target": "single printed part, no joint",
+   "measured": "412 cm3, PETG ~523 g",
+   "tol": null,
+   "verdict": "info",
+   "method": "volume x 1.27 g/cm3"
+  }
+ ],
+ "joints": [
+  {
+   "x": 60.0,
+   "y": -76.0,
+   "tab_hole_mm3": 0.0,
+   "pillar_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "pillar_top_mm3": 117.829,
+   "nut_ceiling_mm3": 52.368,
+   "pass": true
+  },
+  {
+   "x": 60.0,
+   "y": 76.0,
+   "tab_hole_mm3": 0.0,
+   "pillar_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "pillar_top_mm3": 117.829,
+   "nut_ceiling_mm3": 52.368,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": -76.0,
+   "tab_hole_mm3": 0.0,
+   "pillar_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "pillar_top_mm3": 117.829,
+   "nut_ceiling_mm3": 52.368,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": 76.0,
+   "tab_hole_mm3": 0.0,
+   "pillar_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "pillar_top_mm3": 117.829,
+   "nut_ceiling_mm3": 52.368,
+   "pass": true
+  }
+ ],
+ "plate": {
+  "bbox": {
+   "x": [
+    -137.0,
+    178.0
+   ],
+   "y": [
+    -105.0,
+    105.0
+   ],
+   "z": [
+    -11.5,
+    16.0
+   ]
+  },
+  "volume_mm3": 412014.1,
+  "dims_mm": [
+   315.0,
+   210.0,
+   27.5
+  ]
+ },
+ "frame": {
+  "bbox": {
+   "x": [
+    -147.22,
+    285.26
+   ],
+   "y": [
+    -84.0,
+    99.0
+   ],
+   "z": [
+    -3.51,
+    401.02
+   ]
+  },
+  "volume_mm3": 1103726.2
+ },
+ "allowance_mm": {
+  "plate_top_to_frame_lowest": 19.51
+ }
+}
