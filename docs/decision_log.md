@@ -1408,3 +1408,14 @@ Date/version:
 - 判定: 用户「包含所有需要打印的部分」**pass**（45 件，无 COTS 渗入）；滑轨单件保持不变；唯一未消解项仍是用户已接受的单件滑轨 380 mm。
 - 未验证项（TBD）: 见 DEC-0067（单件滑轨进 H2D / 45 件打印排版 / PET 收缩）。
 - Date/version: 2026-10-16 / 产物 `cad/output/_r60_frame/audit_r60.json`、`cad/output/_r60_frame/audit_r60_h2d.json`、`cad/output/_r60_frame/report_r60_pollen.json`
+
+## V-0067 - 记录（非决策）：R60B 打印集拆件为 45 个独立 STEP（2026-10-16）
+
+- 判据（KNOWN）: 用户 2026-10-16 回复「可以」= 放行分件（承接「待完全合格后，将 .STEP 文件中的各个 3D 打印部件拆成独立的 .STEP 文件，放在一个文件夹里」）；同轮追加「记得到时候把两段滑轨拼在一起」（**含义待澄清**，见 TBD）。
+- 方法（MEASURED，只回读）: `cad/_r60b_split.py` 从交付件 `T06_print_set_R60_pollen.step` 回读 45 个 solid，按 **(体积, bbox) 唯一匹配** 反查 `report_r60_pollen.json` 的 45 个具名打印件（键不唯一则 assert 失败），每个 solid 用 `cq.Assembly` 单独导出为 `cad/output/_r60b_parts/<part>.step`。**不重跑生成器**（避免二次写者污染交付件）。
+- 实测（MEASURED）:
+  - 45 个文件 + `parts_index.json`，合计 2.83 MB；每件 **1 solid**、体积与打印集一致，**0 失败**；体积合计 **1 738 472.5 mm³**（与打印集报告求和同值）。
+  - 两件最大：`shooter_frame_R60_merged` 1 103 726.2 mm³；四条 `bearing_carriage_*` 各 28 142.4 mm³。滑轨两件各 **173 711.5 mm³**（380 mm 单件，**未再拆分**）。
+- 判定: 用户「拆成独立 .STEP 放一个文件夹」**pass**（45 件，全部回读 1 solid）。
+- 未验证项（TBD）: ①「把两段滑轨拼在一起」的确切含义（左右两条合一件 / 还是仅仅不许再拆）；若指前者且要求**外形真正连成一件**，需加连接筋 = 几何改动，须重跑生成器与审计；②45 件各自的打印朝向 / 支撑 / 排版；③PET 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r60b_parts/`（45 个 `.step` + `parts_index.json`）、脚本 `cad/_r60b_split.py`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页

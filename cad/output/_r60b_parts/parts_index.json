@@ -1,0 +1,908 @@
+{
+ "units": "mm",
+ "source": "T06_print_set_R60_pollen.step",
+ "n_parts": 45,
+ "sum_volume_mm3": 1738472.5,
+ "parts": [
+  {
+   "part": "base_rail_+72",
+   "file": "base_rail_+72.step",
+   "volume_mm3": 173711.5,
+   "bbox": {
+    "x": [
+     -170.0,
+     210.0
+    ],
+    "y": [
+     63.0,
+     81.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "kb": 83.1
+  },
+  {
+   "part": "base_rail_-72",
+   "file": "base_rail_-72.step",
+   "volume_mm3": 173711.5,
+   "bbox": {
+    "x": [
+     -170.0,
+     210.0
+    ],
+    "y": [
+     -81.0,
+     -63.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "kb": 83.2
+  },
+  {
+   "part": "bearing_carriage_lower_+1",
+   "file": "bearing_carriage_lower_+1.step",
+   "volume_mm3": 28142.4,
+   "bbox": {
+    "x": [
+     74.51,
+     156.17
+    ],
+    "y": [
+     64.0,
+     76.0
+    ],
+    "z": [
+     141.47,
+     231.06
+    ]
+   },
+   "kb": 173.6
+  },
+  {
+   "part": "bearing_carriage_lower_-1",
+   "file": "bearing_carriage_lower_-1.step",
+   "volume_mm3": 28142.4,
+   "bbox": {
+    "x": [
+     74.51,
+     156.17
+    ],
+    "y": [
+     -76.0,
+     -64.0
+    ],
+    "z": [
+     141.47,
+     231.06
+    ]
+   },
+   "kb": 173.9
+  },
+  {
+   "part": "bearing_carriage_upper_+1",
+   "file": "bearing_carriage_upper_+1.step",
+   "volume_mm3": 28142.4,
+   "bbox": {
+    "x": [
+     -51.57,
+     30.09
+    ],
+    "y": [
+     64.0,
+     76.0
+    ],
+    "z": [
+     239.97,
+     329.56
+    ]
+   },
+   "kb": 173.8
+  },
+  {
+   "part": "bearing_carriage_upper_-1",
+   "file": "bearing_carriage_upper_-1.step",
+   "volume_mm3": 28142.4,
+   "bbox": {
+    "x": [
+     -51.57,
+     30.09
+    ],
+    "y": [
+     -76.0,
+     -64.0
+    ],
+    "z": [
+     239.97,
+     329.56
+    ]
+   },
+   "kb": 174.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_+12",
+   "file": "carriage_clamp_seat_lower_+1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     124.05,
+     132.05
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     218.02,
+     226.02
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_-12",
+   "file": "carriage_clamp_seat_lower_+1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     142.96,
+     150.96
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     203.24,
+     211.24
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_+12",
+   "file": "carriage_clamp_seat_lower_+1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     79.72,
+     87.72
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     161.28,
+     169.28
+    ]
+   },
+   "kb": 11.7
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_-12",
+   "file": "carriage_clamp_seat_lower_+1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     98.64,
+     106.64
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     146.5,
+     154.5
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_+12",
+   "file": "carriage_clamp_seat_lower_-1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     124.05,
+     132.05
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     218.02,
+     226.02
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_-12",
+   "file": "carriage_clamp_seat_lower_-1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     142.96,
+     150.96
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     203.24,
+     211.24
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_+12",
+   "file": "carriage_clamp_seat_lower_-1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     79.72,
+     87.72
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     161.28,
+     169.28
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_-12",
+   "file": "carriage_clamp_seat_lower_-1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     98.64,
+     106.64
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     146.5,
+     154.5
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_+12",
+   "file": "carriage_clamp_seat_upper_+1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -2.03,
+     5.97
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     316.52,
+     324.52
+    ]
+   },
+   "kb": 11.7
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_-12",
+   "file": "carriage_clamp_seat_upper_+1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     16.88,
+     24.88
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     301.75,
+     309.75
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_+12",
+   "file": "carriage_clamp_seat_upper_+1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -46.36,
+     -38.36
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     259.79,
+     267.79
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_-12",
+   "file": "carriage_clamp_seat_upper_+1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -27.44,
+     -19.44
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     245.01,
+     253.01
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_+12",
+   "file": "carriage_clamp_seat_upper_-1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -2.03,
+     5.97
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     316.52,
+     324.52
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_-12",
+   "file": "carriage_clamp_seat_upper_-1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     16.88,
+     24.88
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     301.75,
+     309.75
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_+12",
+   "file": "carriage_clamp_seat_upper_-1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -46.36,
+     -38.36
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     259.79,
+     267.79
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_-12",
+   "file": "carriage_clamp_seat_upper_-1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "bbox": {
+    "x": [
+     -27.44,
+     -19.44
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     245.01,
+     253.01
+    ]
+   },
+   "kb": 11.8
+  },
+  {
+   "part": "carriage_link_spacer_lower",
+   "file": "carriage_link_spacer_lower.step",
+   "volume_mm3": 970.3,
+   "bbox": {
+    "x": [
+     121.43,
+     131.43
+    ],
+    "y": [
+     86.0,
+     101.0
+    ],
+    "z": [
+     195.45,
+     205.45
+    ]
+   },
+   "kb": 11.7
+  },
+  {
+   "part": "carriage_link_spacer_upper",
+   "file": "carriage_link_spacer_upper.step",
+   "volume_mm3": 452.8,
+   "bbox": {
+    "x": [
+     -4.66,
+     5.34
+    ],
+    "y": [
+     86.0,
+     93.0
+    ],
+    "z": [
+     293.95,
+     303.95
+    ]
+   },
+   "kb": 11.7
+  },
+  {
+   "part": "crosshead",
+   "file": "crosshead.step",
+   "volume_mm3": 8250.7,
+   "bbox": {
+    "x": [
+     -4.08,
+     25.57
+    ],
+    "y": [
+     88.0,
+     112.0
+    ],
+    "z": [
+     167.67,
+     196.98
+    ]
+   },
+   "kb": 70.8
+  },
+  {
+   "part": "crosshead_guide_+15",
+   "file": "crosshead_guide_+15.step",
+   "volume_mm3": 2000.0,
+   "bbox": {
+    "x": [
+     -11.97,
+     16.6
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     178.59,
+     213.19
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "crosshead_guide_-15",
+   "file": "crosshead_guide_-15.step",
+   "volume_mm3": 2000.0,
+   "bbox": {
+    "x": [
+     11.67,
+     40.24
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     160.12,
+     194.72
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "crosshead_guide_stop_-42",
+   "file": "crosshead_guide_stop_-42.step",
+   "volume_mm3": 1350.0,
+   "bbox": {
+    "x": [
+     14.27,
+     38.62
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     192.14,
+     212.7
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "crosshead_guide_stop_-82",
+   "file": "crosshead_guide_stop_-82.step",
+   "volume_mm3": 1350.0,
+   "bbox": {
+    "x": [
+     -10.36,
+     14.0
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     160.62,
+     181.18
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "gap_servo_standoff_-143_+23",
+   "file": "gap_servo_standoff_-143_+23.step",
+   "volume_mm3": 480.7,
+   "bbox": {
+    "x": [
+     -56.86,
+     -50.86
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     133.99,
+     139.99
+    ]
+   },
+   "kb": 7.9
+  },
+  {
+   "part": "gap_servo_standoff_-143_-23",
+   "file": "gap_servo_standoff_-143_-23.step",
+   "volume_mm3": 480.7,
+   "bbox": {
+    "x": [
+     -20.61,
+     -14.61
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     105.67,
+     111.67
+    ]
+   },
+   "kb": 7.9
+  },
+  {
+   "part": "gap_servo_standoff_-97_+23",
+   "file": "gap_servo_standoff_-97_+23.step",
+   "volume_mm3": 480.7,
+   "bbox": {
+    "x": [
+     -28.54,
+     -22.54
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     170.24,
+     176.24
+    ]
+   },
+   "kb": 7.9
+  },
+  {
+   "part": "gap_servo_standoff_-97_-23",
+   "file": "gap_servo_standoff_-97_-23.step",
+   "volume_mm3": 480.7,
+   "bbox": {
+    "x": [
+     7.71,
+     13.71
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     141.92,
+     147.92
+    ]
+   },
+   "kb": 7.9
+  },
+  {
+   "part": "main_spacing_link_lower",
+   "file": "main_spacing_link_lower.step",
+   "volume_mm3": 4787.3,
+   "bbox": {
+    "x": [
+     9.9,
+     133.43
+    ],
+    "y": [
+     100.8,
+     107.2
+    ],
+    "z": [
+     183.2,
+     207.45
+    ]
+   },
+   "kb": 135.2
+  },
+  {
+   "part": "main_spacing_link_upper",
+   "file": "main_spacing_link_upper.step",
+   "volume_mm3": 4787.3,
+   "bbox": {
+    "x": [
+     -6.66,
+     23.9
+    ],
+    "y": [
+     92.8,
+     99.2
+    ],
+    "z": [
+     183.2,
+     305.95
+    ]
+   },
+   "kb": 134.7
+  },
+  {
+   "part": "motor_bridge_lower_+17",
+   "file": "motor_bridge_lower_+17.step",
+   "volume_mm3": 8736.0,
+   "bbox": {
+    "x": [
+     113.1,
+     138.52
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     188.5,
+     210.81
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "motor_bridge_lower_-17",
+   "file": "motor_bridge_lower_-17.step",
+   "volume_mm3": 8736.0,
+   "bbox": {
+    "x": [
+     92.17,
+     117.59
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     161.71,
+     184.02
+    ]
+   },
+   "kb": 18.7
+  },
+  {
+   "part": "motor_bridge_upper_+17",
+   "file": "motor_bridge_upper_+17.step",
+   "volume_mm3": 8736.0,
+   "bbox": {
+    "x": [
+     -12.98,
+     12.44
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     287.01,
+     309.32
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "motor_bridge_upper_-17",
+   "file": "motor_bridge_upper_-17.step",
+   "volume_mm3": 8736.0,
+   "bbox": {
+    "x": [
+     -33.91,
+     -8.5
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     260.22,
+     282.53
+    ]
+   },
+   "kb": 18.6
+  },
+  {
+   "part": "paddle_flex_tip_1",
+   "file": "paddle_flex_tip_1.step",
+   "volume_mm3": 6528.0,
+   "bbox": {
+    "x": [
+     71.22,
+     89.95
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     125.74,
+     156.18
+    ]
+   },
+   "kb": 18.4
+  },
+  {
+   "part": "paddle_flex_tip_2",
+   "file": "paddle_flex_tip_2.step",
+   "volume_mm3": 6528.0,
+   "bbox": {
+    "x": [
+     -30.97,
+     -12.24
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     66.74,
+     97.18
+    ]
+   },
+   "kb": 18.4
+  },
+  {
+   "part": "paddle_rotor",
+   "file": "paddle_rotor.step",
+   "volume_mm3": 92960.0,
+   "bbox": {
+    "x": [
+     -28.24,
+     87.22
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     69.47,
+     153.45
+    ]
+   },
+   "kb": 71.6
+  },
+  {
+   "part": "servo_crank",
+   "file": "servo_crank.step",
+   "volume_mm3": 846.1,
+   "bbox": {
+    "x": [
+     -36.83,
+     -16.58
+    ],
+    "y": [
+     129.0,
+     135.0
+    ],
+    "z": [
+     135.95,
+     152.19
+    ]
+   },
+   "kb": 148.4
+  },
+  {
+   "part": "servo_drag_link",
+   "file": "servo_drag_link.step",
+   "volume_mm3": 2700.4,
+   "bbox": {
+    "x": [
+     -37.83,
+     22.9
+    ],
+    "y": [
+     136.0,
+     142.0
+    ],
+    "z": [
+     141.19,
+     196.2
+    ]
+   },
+   "kb": 154.5
+  },
+  {
+   "part": "shooter_frame_R60_merged",
+   "file": "shooter_frame_R60_merged.step",
+   "volume_mm3": 1103726.2,
+   "bbox": {
+    "x": [
+     -147.22,
+     285.26
+    ],
+    "y": [
+     -84.0,
+     99.0
+    ],
+    "z": [
+     -3.51,
+     401.02
+    ]
+   },
+   "kb": 946.1
+  }
+ ]
+}
