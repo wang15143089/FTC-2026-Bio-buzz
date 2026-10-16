@@ -1419,3 +1419,59 @@ Date/version:
 - 判定: 用户「拆成独立 .STEP 放一个文件夹」**pass**（45 件，全部回读 1 solid）。
 - 未验证项（TBD）: ①「把两段滑轨拼在一起」的确切含义（左右两条合一件 / 还是仅仅不许再拆）；若指前者且要求**外形真正连成一件**，需加连接筋 = 几何改动，须重跑生成器与审计；②45 件各自的打印朝向 / 支撑 / 排版；③PET 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
 - Date/version: 2026-10-16 / 产物 `cad/output/_r60b_parts/`（45 个 `.step` + `parts_index.json`）、脚本 `cad/_r60b_split.py`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+
+## DEC-0068 - 决策：R61 把左右两条滑轨合为一件（新增 4 根跨轨筋），并把单件 383.3 mm 超 H2D 记为已知偏差
+
+- 判据（KNOWN）: 用户 2026-10-16 指令「② 要把左右两条滑轨合成**一件**」。
+- 决策 1 - 合体方式（CALCULATED）: 不靠贴面，而是**加料连接**：在净空带内新增 4 根跨轨筋，`RAIL_RIB_X = (-160, -125, -90, -55) mm`（筋中心）、厚 `RAIL_RIB_T = 10.0 mm`、半宽 `RAIL_RIB_WY = 66.0 mm`（每侧咬进滑轨 3 mm），高度贯穿 `z [-10, 16]`。筋只能落在净空带内：`cad/_r62_probe.py` 实测 x > -40 全区间已被主体楔形腹板占满（clash 约 6 504 mm³），故 4 根筋必须全部落在 x ≤ -55。
+- 决策 2 - 超限判据（MEASURED）: 合体后单件 380 × 162 × 26 mm，按 45° 摆放下**最小外接方 383.3 mm**，超 Bambu Lab H2D 单喷嘴 325 mm 共 **58.3 mm**。
+- 决策 3 - 偏差处置（KNOWN，已被 DEC-0069 关闭）: 用户本轮要求「合一件」，故 58.3 mm 超限记为**用户已知并接受**的例外（audit 里 `accepted_exception`），并注明「合体滑轨按两段打印后螺栓回接，TBD」。
+- 影响: 打印集 45 -> **44 件**（两条滑轨 2 -> 1），打印集体积不变（1 869 512.4 mm³）；装配实体 81 -> **80**。
+- 关联: Linear KEI-24、Notion「Mechanical Design - Scoring Mechanism」；产物 `cad/paddle_launcher_shooter_assembly_r61.py`。
+
+## V-0068 - 验证记录（非决策）：R61「两轨合一件（4 筋）」复核 —— 26 项 25 PASS + 1 user-accepted
+
+- 目的（KNOWN）: ①证明两条滑轨在几何上真的连成**一个实体**；②证明加筋只落在净空带内、不碰主体也不碰其它打印件；③量化单件是否进得了 H2D。
+- 方法（MEASURED，只回读）: `cad/_r61_audit.py` 回读 `T06_base_rail_R61_pollen.step`、frame STEP、打印集 STEP 与 `report_r61_pollen.json`。
+- 实测（MEASURED）:
+  - `rail_join_is_1_solid` PASS：合体滑轨导出 **1 solid**，V **478 463 mm³**，bbox x[-170, 210] y[-81, 81] z[-10, 16]。
+  - `rail_ribs_4_full_section` PASS：4/4 筋满截面 10 × 120 × 26 mm。
+  - `rib_band_clear_of_frame` / `rib_band_clear_of_other_parts` PASS：筋带内主体 **0.0000 mm³**、其它打印件 **0.0000 mm³**（0 件）。
+  - 主体回归：frame V **1 103 726.2 mm³**，bbox 与 R60B 逐位相同 ⇒ 合体动作对主体零改动。
+  - 打印集 44 件、**1 869 512.4 mm³**（与 R60B 45 件总体积同值 ⇒ 合体只把 2 件并成 1 件，未增删材料），3.14 MB。
+  - 唯一 FAIL：`rail_pieces_H2D_fit` 383.3 mm（超 58.3 mm），标 `accepted_exception: user, 2026-10-16`（DEC-0068）。
+- 判定: 用户「合一件」**pass**；单件 H2D 可打印性**未通过**，作为已知偏差保留。
+- 未验证项（TBD）: 合体件如何进打印机（DEC-0068 当时口径：两段打印后螺栓回接）。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r61_frame/audit_r61.json`、`cad/output/_r61_audit.log`
+
+## DEC-0069 - 决策：R62 在 x = -40 处把合体滑轨**纯切分**为 3 件 H2D 合规件（消解 DEC-0068 的 58.3 mm 超限）
+
+- 判据（KNOWN）: 用户 2026-10-16 指令「尝试把超限该零件，拆成符合尺寸的」。
+- 决策 1 - 拆分面唯一（MEASURED）: `cad/_r62_probe.py` 实测 x > -40 的轨间**净空为 0**（主体楔形腹板自 x = -40 起完全占据两轨之间，clash ≈ 6 504 mm³）⇒ 跨轨连接只能存在于 x ≤ -40 ⇒ 拆分面只能取 **x = -40**（`RAIL_SPLIT_X = -40.0`）。前段再按 y = 0 一分为二（左右两轨本来就在 y = ±72 上分离）。
+- 决策 2 - 纯切分（CALCULATED）: **不加不减材料**（`material_added_or_removed_mm3 = 0.0`）。生成器内部断言：三件体积和 == 合体体积、逐件 1 solid、逐件最小外接方 ≤ 325。切面平整（每轨 1.0 × 18.0 × 26.0 = **468.00 mm³** 满截面）⇒ 对接面可整体贴合，回接用已存在的 4 处 M3 接头孔（x = 60 / 76）。
+- 决策 3 - 分段与判定（CALCULATED）:
+  - `base_rail_rear_joined` 后段 x [-170, -40]：**130 × 162 × 26 mm**，含全部 4 根筋 + 两侧轨尾，最小外接方 **206.5 mm**；
+  - `base_rail_front_+72` / `base_rail_front_-72` 前段各 **250 × 18 × 26 mm**，最小外接方 **189.5 mm**；
+  - 三件**全部 PASS** H2D 单喷嘴 325 mm。⇒ DEC-0068 的 `accepted_exception` 关闭。
+- 影响: 打印集 44 -> **46 件**（合体件 1 -> 3）；装配实体 80 -> **82**；4 个 M3 接头孔全部落在前段件上，后段件无螺纹接口。
+- 关联: 关闭 DEC-0068；Linear KEI-24、Notion「Mechanical Design - Scoring Mechanism」；产物 `cad/paddle_launcher_shooter_assembly_r62.py`。
+
+## V-0069 - 验证记录（非决策）：R62「x = -40 纯切分 3 件」复核 —— 30 项全 PASS（FAILED: 0）
+
+- 目的（KNOWN）: ①证明三件都进得了 H2D（消解 DEC-0068）；②证明切分是**纯切分**（交付 STEP 上材料零增减）；③证明拆分只动滑轨、主体零改动。
+- 方法（MEASURED，只回读）: 重跑 `cad/paddle_launcher_shooter_assembly_r62.py pollen --step`（**162.5 s**）后，`cad/_r62_audit.py` 回读 `T06_base_rail_R62_pollen.step`、frame STEP、打印集 STEP、装配 STEP 与 `report_r62_pollen.json`。
+- 实测（MEASURED）:
+  - `rail_pieces_H2D_fit` **PASS**：三件最差 **189.5 mm** ≤ 325 ⇒ DEC-0068 的 58.3 mm 超限消解；本轮 `FAILED: 0`（user-accepted exceptions: 0）。
+  - `rail_split_faces` PASS：rear xmax = front xmin = **-40.0 mm**（三件同值）。
+  - `rail_pieces_are_single_solids` PASS：回读 3 solids，每件 1 solid。
+  - `rail_split_volume_vs_R61` PASS：三件体积和 **478 463.0 mm³** == R61 合体件（回读）478 463.0 mm³，差 **0.0 mm³** ⇒ 纯切分在交付 STEP 上成立。
+  - `rail_pieces_where_expected` PASS：三件各按 (体积, bbox) 唯一匹配报告记录，且各自完全落在自己的半空间内。
+  - `rail_seam_flush` PASS：切面处每轨满截面 **468.00 mm³**（y+72 / y-72 各 468.00）。
+  - `rail_piece_dims` PASS：后段 130.0 × 162.0 × 26.0；两个前段各 250.0 × 18.0 × 26.0。
+  - 主体回归：`frame_volume_vs_R56` / `frame_volume_vs_R57` / `frame_bbox_vs_R57` 逐位 PASS ⇒ 拆分只动滑轨。
+  - 打印集：**46 bodies**、**1 869 512.4 mm³**（报告 1 869 512.5）、**3.17 MB**；`print_set_excludes_all_cots` PASS（65 件 COTS 全部排除）。
+  - 接头：4/4 螺栓孔净、4/4 螺母窝空、4/4 螺母下方有料、4/4 无凸出。
+- 注意（CALCULATED）: 生成器日志里的合体体积是 `.clean()` **之前**的内存值 479 316.5 mm³；导出的两个 STEP 回读均为 **478 463.0 mm³**（R61 与 R62 一致）⇒ 交付件上没有材料增减，差异只是 fuse/clean 的中间值，不是几何改动。
+- 判定: 用户「拆成符合尺寸的」**pass**（30/30）。
+- 未验证项（TBD）: ①前后段对接面的回接件（连接片 / 搭板）尚未出图；②46 件的打印朝向 / 支撑 / 排版；③PET 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r62_frame/audit_r62.json`、`report_r62_pollen.json`、`T06_print_set_R62_pollen.step`、`T06_base_rail_R62_pollen.step`、`cad/output/_r62_frame/sections/r62_rail_split_detail.png`；脚本 `cad/_r62_audit.py`、`cad/_r62_fig.py`

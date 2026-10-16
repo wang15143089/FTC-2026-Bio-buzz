@@ -1,0 +1,450 @@
+{
+ "units": "mm",
+ "checks": [
+  {
+   "id": "base_rail_present",
+   "target": "1 joined base rail (left + right + 4 ribs)",
+   "measured": "1 piece(s): base_rail_joined",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R61 report part list"
+  },
+  {
+   "id": "rail_print_split_removed",
+   "target": "0 split rail pieces",
+   "measured": "0 split pieces",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R61 report part list"
+  },
+  {
+   "id": "floor_plate_removed",
+   "target": "0 parts",
+   "measured": "0 parts",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R61 report part list"
+  },
+  {
+   "id": "lowest_point_of_assembly",
+   "target": "a base_rail_R60 piece @ z=-10.00",
+   "measured": "base_rail_joined @ z=-10.00",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "min z over all R60 parts"
+  },
+  {
+   "id": "rail_below_frame",
+   "target": "rail underside below frame zmin (-3.51)",
+   "measured": "rail bottom z=-10.00 vs frame z=-3.51",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "read-back AABB"
+  },
+  {
+   "id": "ground_clearance_to_frame",
+   "target": ">= 3.0 mm",
+   "measured": "6.49 mm",
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "frame zmin - rail zmin, read-back AABB"
+  },
+  {
+   "id": "sole_zone_free_of_frame",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "frame intersect the two sole boxes (x -170..210, y +-63..81, z -6.95..1.95)"
+  },
+  {
+   "id": "frame_rail_interference",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "boolean intersect"
+  },
+  {
+   "id": "frame_volume_vs_R56",
+   "target": "1103726.2 mm3",
+   "measured": "1103726.2 mm3",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "R60 frame STEP read-back vs R56 report"
+  },
+  {
+   "id": "frame_volume_vs_R57",
+   "target": "1103726.2 mm3",
+   "measured": "1103726.2 mm3",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "R60 frame STEP read-back vs R57 report"
+  },
+  {
+   "id": "frame_bbox_vs_R57",
+   "target": "{\"x\": [-147.22, 285.26], \"y\": [-84.0, 99.0], \"z\": [-3.51, 401.02]}",
+   "measured": "{\"x\": [-147.22, 285.26], \"y\": [-84.0, 99.0], \"z\": [-3.51, 401.02]}",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "read-back AABB comparison"
+  },
+  {
+   "id": "all_4_bolt_holes_clear",
+   "target": "0 material in O3.2",
+   "measured": "4/4 clear",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O3.2 probe through tab (frame) + thickened rail"
+  },
+  {
+   "id": "nut_pockets_empty",
+   "target": "0 material in O6 x 2.45 deep",
+   "measured": "4/4 empty",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O6 probe z SOLE_ZB..SOLE_ZB+2.45"
+  },
+  {
+   "id": "rail_floor_under_nut",
+   "target": "> 20 mm3 for 4/4",
+   "measured": "4/4 solid",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "10 x 14 x 0.4 slab at the sole underside"
+  },
+  {
+   "id": "nothing_protrudes_below_sole",
+   "target": "0.000 mm3 for 4/4",
+   "measured": "0.000 mm3 max",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "10 x 14 x 3.9 slab below the sole underside"
+  },
+  {
+   "id": "chassis_holes_through",
+   "target": "0 material in O3.8",
+   "measured": "16/16 through",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O3.8 probe z -8..17 in the joined base rail, both rails, per chassis hole x"
+  },
+  {
+   "id": "rail_single_piece_length",
+   "target": "380.0 mm x 162.0 mm x 26.0 mm, 1 piece",
+   "measured": "380.0 x 162.0 x 26.0 mm, 1 piece",
+   "tol": 0.1,
+   "verdict": "pass",
+   "method": "read-back AABB of the joined base rail (x -170..210, y +-81)"
+  },
+  {
+   "id": "rail_pieces_H2D_fit",
+   "target": "<= 325 mm min enclosing square (H2D single nozzle)",
+   "measured": "min square 383.3 mm = 58.3 mm over",
+   "tol": 0.0,
+   "verdict": "fail",
+   "method": "min area enclosing square of the joined 380 x 162 footprint (45 deg) against single-nozzle 325 x 320 x 325",
+   "accepted_exception": "user, 2026-10-16: ONE rail piece is wanted, so the 58.3 mm overshoot is a KNOWN, user-accepted deviation (DEC-0068); the joined rail is printed as two segments and bolted back, TBD"
+  },
+  {
+   "id": "print_set_parts",
+   "target": "44 printed bodies (report)",
+   "measured": "44 bodies",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "T06_print_set_R61_pollen.step read back, body count vs report print_set"
+  },
+  {
+   "id": "print_set_volume_no_cots_leak",
+   "target": "print set volume == sum of its printed bodies",
+   "measured": "1869512.4 mm3 (report 1869512.5)",
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "read-back volume vs summed report volume of the same 44 bodies; any COTS body leaking in would break this"
+  },
+  {
+   "id": "print_set_excludes_all_cots",
+   "target": "0 COTS bodies inside the print set",
+   "measured": "65 COTS bodies excluded (36 no-SKU hardware + 29 vendor SKU)",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "report print_set list vs both COTS buckets"
+  },
+  {
+   "id": "print_set_matches_assembly",
+   "target": "print set zmin == rail zmin (floor contact)",
+   "measured": "{\"x\": [-170.0, 285.26], \"y\": [-112.0, 142.0], \"z\": [-10.0, 401.02]}",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "print set zmin must equal rail zmin (-10.0)"
+  },
+  {
+   "id": "rail_ribs_4_full_section",
+   "target": "4/4 ribs full 10 x 120 x 26",
+   "measured": "4/4 full",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "read-back material inside each rib envelope (core y +-60), 4 ribs"
+  },
+  {
+   "id": "rib_band_clear_of_frame",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "frame intersect rib band x -166..-49, y +-60, z -10..16"
+  },
+  {
+   "id": "rib_band_clear_of_other_parts",
+   "target": "0.000 mm3 in the rib band",
+   "measured": "0.0000 mm3 in 0 part(s) []",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "boolean intersect of every other printed body with the rib band x -166..-49, y +-60, z -11..17"
+  },
+  {
+   "id": "rail_join_is_1_solid",
+   "target": "1 solid in the joined rail STEP",
+   "measured": "1 solid(s)",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "T06_base_rail_R61_pollen.step read back"
+  }
+ ],
+ "joints": [
+  {
+   "x": 60.0,
+   "y": -76.0,
+   "piece": "base_rail_joined",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 60.0,
+   "y": 76.0,
+   "piece": "base_rail_joined",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": -76.0,
+   "piece": "base_rail_joined",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": 76.0,
+   "piece": "base_rail_joined",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  }
+ ],
+ "chassis_holes": [
+  {
+   "piece": "base_rail_joined",
+   "x": -150.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -102.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -54.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -6.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 42.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 90.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 138.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 186.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -150.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -102.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -54.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": -6.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 42.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 90.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 138.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_joined",
+   "x": 186.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  }
+ ],
+ "rail_pieces": [
+  {
+   "part": "base_rail_joined",
+   "dims_mm": [
+    380.0,
+    162.0,
+    26.0
+   ]
+  }
+ ],
+ "rail_min_enclosing_square_mm": 383.25,
+ "print_set": {
+  "n_solids": 44,
+  "bbox": {
+   "x": [
+    -170.0,
+    285.26
+   ],
+   "y": [
+    -112.0,
+    142.0
+   ],
+   "z": [
+    -10.0,
+    401.02
+   ]
+  },
+  "volume_mm3": 1869512.4
+ },
+ "rail_ribs": [
+  {
+   "x": -160.0,
+   "material_mm3": 30105.6,
+   "full_mm3": 30105.6,
+   "pass": true
+  },
+  {
+   "x": -125.0,
+   "material_mm3": 30105.6,
+   "full_mm3": 30105.6,
+   "pass": true
+  },
+  {
+   "x": -90.0,
+   "material_mm3": 30105.6,
+   "full_mm3": 30105.6,
+   "pass": true
+  },
+  {
+   "x": -55.0,
+   "material_mm3": 30105.6,
+   "full_mm3": 30105.6,
+   "pass": true
+  }
+ ],
+ "rails": {
+  "bbox": {
+   "x": [
+    -170.0,
+    210.0
+   ],
+   "y": [
+    -81.0,
+    81.0
+   ],
+   "z": [
+    -10.0,
+    16.0
+   ]
+  },
+  "volume_mm3": 478463.0
+ },
+ "frame": {
+  "bbox": {
+   "x": [
+    -147.22,
+    285.26
+   ],
+   "y": [
+    -84.0,
+    99.0
+   ],
+   "z": [
+    -3.51,
+    401.02
+   ]
+  },
+  "volume_mm3": 1103726.2
+ },
+ "allowance_mm": {
+  "frame_lowest_above_sole": 6.49
+ }
+}
