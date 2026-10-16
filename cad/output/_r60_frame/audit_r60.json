@@ -148,16 +148,32 @@
   },
   {
    "id": "print_set_parts",
-   "target": "3 printed bodies (frame + 2 rails)",
-   "measured": "3 bodies",
+   "target": "45 printed bodies (report)",
+   "measured": "45 bodies",
    "tol": 0.0,
    "verdict": "pass",
-   "method": "T06_print_set_R60_pollen.step read back"
+   "method": "T06_print_set_R60_pollen.step read back, body count vs report print_set"
+  },
+  {
+   "id": "print_set_volume_no_cots_leak",
+   "target": "print set volume == sum of its printed bodies",
+   "measured": "1738472.4 mm3 (report 1738472.5)",
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "read-back volume vs summed report volume of the same 45 bodies; any COTS body leaking in would break this"
+  },
+  {
+   "id": "print_set_excludes_all_cots",
+   "target": "0 COTS bodies inside the print set",
+   "measured": "65 COTS bodies excluded (36 no-SKU hardware + 29 vendor SKU)",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "report print_set list vs both COTS buckets"
   },
   {
    "id": "print_set_matches_assembly",
-   "target": "print set bbox == frame + 2 rails",
-   "measured": "{\"x\": [-170.0, 285.26], \"y\": [-84.0, 99.0], \"z\": [-10.0, 401.02]}",
+   "target": "print set zmin == rail zmin (floor contact)",
+   "measured": "{\"x\": [-170.0, 285.26], \"y\": [-112.0, 142.0], \"z\": [-10.0, 401.02]}",
    "tol": 0.05,
    "verdict": "pass",
    "method": "print set zmin must equal rail zmin (-10.0)"
@@ -326,22 +342,22 @@
   }
  ],
  "print_set": {
-  "n_solids": 3,
+  "n_solids": 45,
   "bbox": {
    "x": [
     -170.0,
     285.26
    ],
    "y": [
-    -84.0,
-    99.0
+    -112.0,
+    142.0
    ],
    "z": [
     -10.0,
     401.02
    ]
   },
-  "volume_mm3": 1451149.3
+  "volume_mm3": 1738472.4
  },
  "rails": {
   "bbox": {
