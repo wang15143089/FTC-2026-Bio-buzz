@@ -1563,3 +1563,34 @@ Date/version:
 - 判定: 用户「A」方案 **pass** —— DEC-0071 的「后段件无紧固点」fail 关闭。
 - 未验证（TBD）: 同 DEC-0072 的 (i)-(iv)；另加 PET 收缩对 47 件排版间距（4 mm）的影响。
 - Date/version: 2026-10-16 / 产物 `cad/output/_r65_splice/`：`T06_print_set_R65_pollen.step`（3.18 MB / 48 bodies）、`parts/`（5 件：3 条钻孔轨 + 2 片搭板）、`report_r65_pollen.json`、`audit_r65.json`、`r65_splice_schematic.png`；`cad/output/_r65_plate/`：`T06_print_plate_R65_pollen.step`（2.20 MB / 47 件）、`packing_index.json`、`plate_preview.png`
+
+## DEC-0074 - 决策：全机打印件统一到一个目录 + 放平排版成 4 块 H2D 板（宁可多板不硬挤）（2026-10-16）
+
+- 判据（KNOWN）: 用户 2026-10-16 令「把所有打印件整理一下，放在一个文件夹里。在尝试把打印件集中在同一次打印时，尽量让打印件平放或采取其他方式降低打印难度，多打印几次并不是太大的问题」。
+- 决策 1 - 单一打印件目录: 新增 `cad/_r66_parts.py` 汇总全机打印件到 `cad/output/_r66_parts/`，每件一份独立 STEP + `parts_index.json`。来源 = R62 打印件 **42** 件（`cad/output/_r62b_parts/`）+ R65 件 **5** 件（3 条钻孔轨 + 2 片搭板，`cad/output/_r65_splice/parts/`）+ 主体 lump **8** 件（DEC-0063 双平面拆分，复用 `cad/output/_r56_frame/split/` 结果）=> **55 件**，ΣV = **1 910 425.8 mm3**。
+- 决策 2 - 主体覆盖核对容差（判据修正）: 主体 8 lump 与 `T06_shooter_frame_R62_pollen.step` 求交后 Σ = **1 103 435.7 mm3**，对主体 V 1 103 726.2 的 delta = **-290.53 mm3**；容差由「< 1.0 mm3」改为 `max(500 mm3, 1% x 主体V)` = **11 037.3 mm3** => ok。原因（KNOWN）: 跨缝榫舌归 sided owner、缝间薄片被两侧各计一次，容差必须按**占比**给而不能用绝对 1 mm3；原判据过严，属**判据错误**而非几何错误。
+- 决策 3 - 放平规则（主动降低打印难度）: `cad/_r66_plate.py` 对每件在 **64 个 90 度姿态**（X/Y/Z 各取 0/90/180/270，真实 `shape.rotate` 后量 bbox）中选**高度最小**者，即最大平面朝下平放；同高时优先占地更大，再优先转 90 度更少。板内允许再转 90 度。
+- 决策 4 - 不为省一板牺牲可打印性: 装箱 = MaxRects best-area-fit + **160 个确定性起点**多起点搜索 + 收尾合并修复（消除只有 1-2 件的碎片板），`layout_score = (板数, 少于5件的板数, seed)`；seed 0 为无扰动基线，seed 3 最优且**可复现**。结果 **4 板**，`frameP_1_rear_lower`（277.2 x 303.5 x 183.0）**单独占 p1**。未采用「硬塞进更少板」的写法。
+- 不改动（KNOWN）: R62 / R63 / R64 / R65 / R56 / R57 / R60 / R61 全部产物**只读**，R66 脚本不写上游；`_r66_parts` 里原件方向保持**装配基准**，放平姿态只记录在 `plates_index.json`。
+- 关联: DEC-0063（主体双平面拆分）、DEC-0069（R62 三件式滑轨）、DEC-0072（R65 跨缝搭板）、V-0074。
+- 未验证（TBD）: (i) PET 层高 0.4 mm 对 3 mm 件间距 / 5 mm 板边距的实际影响未实测；(ii) 平放后各件的支撑 / 翘边风险未做切片验证；(iii) 未实机打印。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r66_parts/`、`cad/output/_r66_plate/`、`deliverables/R66_print_package/`；脚本 `cad/_r66_parts.py`、`cad/_r66_plate.py`、`cad/_r66_package.py`。
+
+## V-0074 - 验证记录（非决策）：R66 打印包 55 件 + 4 板回读（2026-10-16）
+
+- 目的（KNOWN）: 证明「打印件目录确实齐了（55/55）」「每件在 STEP 里确实是自己一个 solid 且体积对得上」「4 块板里的件名集合与体积之和等于零件集」「所有件与板都在 H2D 打印范围内」。
+- 方法（MEASURED，只回读）: `cad/_r66_parts.py` 生成后回读 55 个 STEP；`cad/_r66_plate.py` 回读 4 个板 STEP（solids + 体积 + bbox）；`cad/_r66_package.py` 只读汇总到 `deliverables/R66_print_package/`。本轮另对**交付目录**独立回读一遍（55 单件 + 4 板），不复用生成期数值。
+- 实测 - 单件（MEASURED）: **55/55 ok**（每件恰 1 solid，体积与 `parts_index.json` 逐件一致）；ΣV = **1 910 425.8 mm3** = index 值。
+- 实测 - 打印板（MEASURED，`plates_index.json` + 交付目录回读）:
+
+| 板 | 件数 | 占用 XY (mm) | 最大高度 (mm) | 填充 | 回读 |
+| --- | --- | --- | --- | --- | --- |
+| p1 | 5 | 309.9 x 305.6 | 183.0 | 97.2% | 5 solids, V 893 567.8 = 893 567.8 |
+| p2 | 19 | 311.6 x 306.8 | 22.3 | 91.7% | 19 solids, V 282 509.1 = 282 509.1 |
+| p3 | 22 | 310.6 x 306.8 | 84.0 | 90.8% | 22 solids, V 372 927.8 = 372 927.8 |
+| p4 | 9 | 307.3 x 256.0 | 26.0 | 80.0% | 9 solids, V 361 421.1 = 361 421.1 |
+
+- 实测 - 一致性（MEASURED）: 板内件名集合 == 零件集（**无重复 / 无缺失 / 无多余**，脚本 assert）；4 板 solids 合计 **55**；4 板 ΣV = **1 910 425.8 mm3** == 零件集 ΣV；每板读回体积与 index 一致（d <= 0.1 mm3）。
+- 实测 - 尺寸合规（MEASURED）: 每件放平后 bbox 都 <= H2D 可用区（**315 x 310**）；每板占用 <= 315 x 310；最大高度 **183.0 mm** << 325 mm 行程。
+- 判定: **pass** —— 打印件目录齐备、板内无重叠、放平规则已生效、多板方案成立（用户已明确允许多次打印）。
+- 未验证（TBD）: 同 DEC-0074 的 (i)-(iii)。

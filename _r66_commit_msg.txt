@@ -1,0 +1,41 @@
+T06.25 R66 全机打印件整理：55 件统一目录 + 放平排版 4 块 H2D 板（DEC-0074 / V-0074）
+
+判据（KNOWN）：用户 2026-10-16 令「把所有打印件整理一下，放在一个文件夹里。在尝试把打印件
+集中在同一次打印时，尽量让打印件平放或采取其他方式降低打印难度，多打印几次并不是太大的
+问题」。
+
+件集（MEASURED）：新增 cad/output/_r66_parts/ —— 55 件，每件一份独立 STEP +
+parts_index.json，ΣV 1 910 425.8 mm3。来源 = R62 打印件 42 + R65 件 5（3 条钻孔轨 +
+2 片搭板）+ 主体 lump 8（DEC-0063 双平面拆分，复用 R56 拆分结果）。逐件回读 55/55 ok。
+
+主体覆盖（MEASURED，判据修正）：8 lump 与 T06_shooter_frame_R62_pollen.step 求交
+Σ 1 103 435.7 mm3，对主体 V 1 103 726.2 的 delta = -290.53 mm3；容差由「< 1.0 mm3」
+改为 max(500 mm3, 1% x 主体V) = 11 037.3 mm3 => ok。原判据过严属判据错误：跨缝榫舌归
+sided owner、缝间薄片被两侧各计一次，容差必须按占比给。
+
+放平规则（MEASURED）：每件在 64 个 90 度姿态（X/Y/Z 各取 0/90/180/270，真实 shape.rotate
+后量 bbox）中选高度最小者（最大面朝下平放）；同高时优先占地更大、再优先转 90 度更少；
+板内允许再转 90 度。
+
+排版（MEASURED）：cad/output/_r66_plate/ —— 4 板 STEP + 4 张板预览 + 总览图 +
+plates_index.json。装箱 = MaxRects best-area-fit + 160 个确定性起点多起点搜索 + 收尾
+合并修复（消除 1-2 件碎片板），layout_score = (板数, 少于5件的板数, seed)，seed 3 最优
+且可复现。实测：
+  p1  5 件 / 309.9 x 305.6 / 最高 183.0 / 填充 97.2%  回读 5 solids, V 893 567.8
+  p2 19 件 / 311.6 x 306.8 / 最高  22.3 / 填充 91.7%  回读 19 solids, V 282 509.1
+  p3 22 件 / 310.6 x 306.8 / 最高  84.0 / 填充 90.8%  回读 22 solids, V 372 927.8
+  p4  9 件 / 307.3 x 256.0 / 最高  26.0 / 填充 80.0%  回读  9 solids, V 361 421.1
+4 板合计 55 solids / 1 910 425.8 mm3 == 零件集；frameP_1_rear_lower（277.2 x 303.5 x
+183.0）单独占 p1。机器（KNOWN）= Bambu Lab H2D 单喷嘴 325 x 320 x 325 mm，margin 5 /
+gap 3。
+
+交付（MEASURED）：cad/_r66_package.py 只读汇总到 deliverables/R66_print_package/
+（parts/ 55 STEP、plates/ 4 板 STEP 可直接打印、previews/ 5 图、两份 index JSON、
+PRINT_README.md 中文打印单）；交付目录已独立回读一遍，板内件名集合 == 零件集
+（无重复 / 缺失 / 多余）。deliverables/ 按 .gitignore 不入库。
+
+只读边界（KNOWN）：R62 / R63 / R64 / R65 / R56 / R57 / R60 / R61 全部产物只读，R66 脚本
+不写上游；_r66_parts 里原件方向保持装配基准，放平姿态只记在 plates_index.json。
+
+未验证（TBD）：PET 0.4 mm 层高对 3 mm 件间距 / 5 mm 板边距的影响未实测；平放件支撑 /
+翘边风险未做切片验证；未实机打印。

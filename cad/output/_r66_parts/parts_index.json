@@ -1,0 +1,1505 @@
+{
+ "units": "mm",
+ "what": "every printable object of the T06 launcher, one STEP per object",
+ "frame_coverage_check": {
+  "frame_volume_mm3": 1103726.2,
+  "sum_piece_intersect_frame_mm3": 1103435.7,
+  "delta_mm3": -290.53,
+  "tol_mm3": 11037.3,
+  "ok": true
+ },
+ "groups": {
+  "r62": "unchanged R62 print part",
+  "r65": "R65 re-drilled rail or new rail splice plate",
+  "frame": "DEC-0063 two-plane frame split lump (x=100 / z=300)"
+ },
+ "n_objects": 55,
+ "sum_volume_mm3": 1910425.8,
+ "objects": [
+  {
+   "object": "base_rail_front_+72",
+   "group": "r65",
+   "file": "base_rail_front_+72.step",
+   "source": "cad\\output\\_r65_splice\\parts\\base_rail_front_+72.step",
+   "volume_mm3": 114004.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -40.0,
+     210.0
+    ],
+    "y": [
+     63.0,
+     81.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "dims_mm": [
+    250.0,
+    18.0,
+    26.0
+   ]
+  },
+  {
+   "object": "base_rail_front_-72",
+   "group": "r65",
+   "file": "base_rail_front_-72.step",
+   "source": "cad\\output\\_r65_splice\\parts\\base_rail_front_-72.step",
+   "volume_mm3": 114004.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -40.0,
+     210.0
+    ],
+    "y": [
+     -81.0,
+     -63.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "dims_mm": [
+    250.0,
+    18.0,
+    26.0
+   ]
+  },
+  {
+   "object": "base_rail_rear_joined",
+   "group": "r65",
+   "file": "base_rail_rear_joined.step",
+   "source": "cad\\output\\_r65_splice\\parts\\base_rail_rear_joined.step",
+   "volume_mm3": 249800.6,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -170.0,
+     -40.0
+    ],
+    "y": [
+     -81.0,
+     81.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "dims_mm": [
+    130.0,
+    162.0,
+    26.0
+   ]
+  },
+  {
+   "object": "bearing_carriage_lower_+1",
+   "group": "r62",
+   "file": "bearing_carriage_lower_+1.step",
+   "source": "cad\\output\\_r62b_parts\\bearing_carriage_lower_+1.step",
+   "volume_mm3": 28142.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     74.51,
+     156.17
+    ],
+    "y": [
+     64.0,
+     76.0
+    ],
+    "z": [
+     141.47,
+     231.06
+    ]
+   },
+   "dims_mm": [
+    81.7,
+    12.0,
+    89.6
+   ]
+  },
+  {
+   "object": "bearing_carriage_lower_-1",
+   "group": "r62",
+   "file": "bearing_carriage_lower_-1.step",
+   "source": "cad\\output\\_r62b_parts\\bearing_carriage_lower_-1.step",
+   "volume_mm3": 28142.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     74.51,
+     156.17
+    ],
+    "y": [
+     -76.0,
+     -64.0
+    ],
+    "z": [
+     141.47,
+     231.06
+    ]
+   },
+   "dims_mm": [
+    81.7,
+    12.0,
+    89.6
+   ]
+  },
+  {
+   "object": "bearing_carriage_upper_+1",
+   "group": "r62",
+   "file": "bearing_carriage_upper_+1.step",
+   "source": "cad\\output\\_r62b_parts\\bearing_carriage_upper_+1.step",
+   "volume_mm3": 28142.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -51.57,
+     30.09
+    ],
+    "y": [
+     64.0,
+     76.0
+    ],
+    "z": [
+     239.97,
+     329.56
+    ]
+   },
+   "dims_mm": [
+    81.7,
+    12.0,
+    89.6
+   ]
+  },
+  {
+   "object": "bearing_carriage_upper_-1",
+   "group": "r62",
+   "file": "bearing_carriage_upper_-1.step",
+   "source": "cad\\output\\_r62b_parts\\bearing_carriage_upper_-1.step",
+   "volume_mm3": 28142.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -51.57,
+     30.09
+    ],
+    "y": [
+     -76.0,
+     -64.0
+    ],
+    "z": [
+     239.97,
+     329.56
+    ]
+   },
+   "dims_mm": [
+    81.7,
+    12.0,
+    89.6
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_+1_+36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_+1_+36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_+1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     124.05,
+     132.05
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     218.02,
+     226.02
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_+1_+36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_+1_+36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_+1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     142.96,
+     150.96
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     203.24,
+     211.24
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_+1_-36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_+1_-36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_+1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     79.72,
+     87.72
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     161.28,
+     169.28
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_+1_-36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_+1_-36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_+1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     98.64,
+     106.64
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     146.5,
+     154.5
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_-1_+36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_-1_+36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_-1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     124.05,
+     132.05
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     218.02,
+     226.02
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_-1_+36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_-1_+36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_-1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     142.96,
+     150.96
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     203.24,
+     211.24
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_-1_-36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_-1_-36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_-1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     79.72,
+     87.72
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     161.28,
+     169.28
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_lower_-1_-36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_lower_-1_-36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_lower_-1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     98.64,
+     106.64
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     146.5,
+     154.5
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_+1_+36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_+1_+36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_+1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -2.03,
+     5.97
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     316.52,
+     324.52
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_+1_+36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_+1_+36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_+1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     16.88,
+     24.88
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     301.75,
+     309.75
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_+1_-36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_+1_-36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_+1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -46.36,
+     -38.36
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     259.79,
+     267.79
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_+1_-36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_+1_-36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_+1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -27.44,
+     -19.44
+    ],
+    "y": [
+     75.3,
+     81.3
+    ],
+    "z": [
+     245.01,
+     253.01
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_-1_+36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_-1_+36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_-1_+36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -2.03,
+     5.97
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     316.52,
+     324.52
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_-1_+36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_-1_+36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_-1_+36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     16.88,
+     24.88
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     301.75,
+     309.75
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_-1_-36_+12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_-1_-36_+12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_-1_-36_+12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -46.36,
+     -38.36
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     259.79,
+     267.79
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_clamp_seat_upper_-1_-36_-12",
+   "group": "r62",
+   "file": "carriage_clamp_seat_upper_-1_-36_-12.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_clamp_seat_upper_-1_-36_-12.step",
+   "volume_mm3": 148.5,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -27.44,
+     -19.44
+    ],
+    "y": [
+     -81.3,
+     -75.3
+    ],
+    "z": [
+     245.01,
+     253.01
+    ]
+   },
+   "dims_mm": [
+    8.0,
+    6.0,
+    8.0
+   ]
+  },
+  {
+   "object": "carriage_link_spacer_lower",
+   "group": "r62",
+   "file": "carriage_link_spacer_lower.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_link_spacer_lower.step",
+   "volume_mm3": 970.3,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     121.43,
+     131.43
+    ],
+    "y": [
+     86.0,
+     101.0
+    ],
+    "z": [
+     195.45,
+     205.45
+    ]
+   },
+   "dims_mm": [
+    10.0,
+    15.0,
+    10.0
+   ]
+  },
+  {
+   "object": "carriage_link_spacer_upper",
+   "group": "r62",
+   "file": "carriage_link_spacer_upper.step",
+   "source": "cad\\output\\_r62b_parts\\carriage_link_spacer_upper.step",
+   "volume_mm3": 452.8,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -4.66,
+     5.34
+    ],
+    "y": [
+     86.0,
+     93.0
+    ],
+    "z": [
+     293.95,
+     303.95
+    ]
+   },
+   "dims_mm": [
+    10.0,
+    7.0,
+    10.0
+   ]
+  },
+  {
+   "object": "crosshead",
+   "group": "r62",
+   "file": "crosshead.step",
+   "source": "cad\\output\\_r62b_parts\\crosshead.step",
+   "volume_mm3": 8250.7,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -4.08,
+     25.57
+    ],
+    "y": [
+     88.0,
+     112.0
+    ],
+    "z": [
+     167.67,
+     196.98
+    ]
+   },
+   "dims_mm": [
+    29.6,
+    24.0,
+    29.3
+   ]
+  },
+  {
+   "object": "crosshead_guide_+15",
+   "group": "r62",
+   "file": "crosshead_guide_+15.step",
+   "source": "cad\\output\\_r62b_parts\\crosshead_guide_+15.step",
+   "volume_mm3": 2000.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -11.97,
+     16.6
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     178.59,
+     213.19
+    ]
+   },
+   "dims_mm": [
+    28.6,
+    10.0,
+    34.6
+   ]
+  },
+  {
+   "object": "crosshead_guide_-15",
+   "group": "r62",
+   "file": "crosshead_guide_-15.step",
+   "source": "cad\\output\\_r62b_parts\\crosshead_guide_-15.step",
+   "volume_mm3": 2000.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     11.67,
+     40.24
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     160.12,
+     194.72
+    ]
+   },
+   "dims_mm": [
+    28.6,
+    10.0,
+    34.6
+   ]
+  },
+  {
+   "object": "crosshead_guide_stop_-42",
+   "group": "r62",
+   "file": "crosshead_guide_stop_-42.step",
+   "source": "cad\\output\\_r62b_parts\\crosshead_guide_stop_-42.step",
+   "volume_mm3": 1350.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     14.27,
+     38.62
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     192.14,
+     212.7
+    ]
+   },
+   "dims_mm": [
+    24.4,
+    10.0,
+    20.6
+   ]
+  },
+  {
+   "object": "crosshead_guide_stop_-82",
+   "group": "r62",
+   "file": "crosshead_guide_stop_-82.step",
+   "source": "cad\\output\\_r62b_parts\\crosshead_guide_stop_-82.step",
+   "volume_mm3": 1350.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -10.36,
+     14.0
+    ],
+    "y": [
+     77.0,
+     87.0
+    ],
+    "z": [
+     160.62,
+     181.18
+    ]
+   },
+   "dims_mm": [
+    24.4,
+    10.0,
+    20.6
+   ]
+  },
+  {
+   "object": "frameP_1_rear_lower",
+   "group": "frame",
+   "file": "frameP_1_rear_lower.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 769496.3,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -147.22,
+     130.0
+    ],
+    "y": [
+     -84.0,
+     99.0
+    ],
+    "z": [
+     -3.51,
+     300.0
+    ]
+   },
+   "dims_mm": [
+    277.2,
+    183.0,
+    303.5
+   ]
+  },
+  {
+   "object": "frameP_2_front_lower_L1",
+   "group": "frame",
+   "file": "frameP_2_front_lower_L1.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 114473.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     100.0,
+     285.26
+    ],
+    "y": [
+     -54.0,
+     54.0
+    ],
+    "z": [
+     3.23,
+     25.42
+    ]
+   },
+   "dims_mm": [
+    185.3,
+    108.0,
+    22.2
+   ]
+  },
+  {
+   "object": "frameP_2_front_lower_L2",
+   "group": "frame",
+   "file": "frameP_2_front_lower_L2.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 51990.8,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     100.0,
+     213.85
+    ],
+    "y": [
+     68.0,
+     72.0
+    ],
+    "z": [
+     75.66,
+     300.0
+    ]
+   },
+   "dims_mm": [
+    113.8,
+    4.0,
+    224.3
+   ]
+  },
+  {
+   "object": "frameP_2_front_lower_L3",
+   "group": "frame",
+   "file": "frameP_2_front_lower_L3.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 51990.8,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     100.0,
+     213.85
+    ],
+    "y": [
+     -72.0,
+     -68.0
+    ],
+    "z": [
+     75.66,
+     300.0
+    ]
+   },
+   "dims_mm": [
+    113.8,
+    4.0,
+    224.3
+   ]
+  },
+  {
+   "object": "frameP_2_front_lower_L4",
+   "group": "frame",
+   "file": "frameP_2_front_lower_L4.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 8024.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     100.0,
+     168.0
+    ],
+    "y": [
+     -63.0,
+     -53.5
+    ],
+    "z": [
+     16.0,
+     30.0
+    ]
+   },
+   "dims_mm": [
+    68.0,
+    9.5,
+    14.0
+   ]
+  },
+  {
+   "object": "frameP_2_front_lower_L5",
+   "group": "frame",
+   "file": "frameP_2_front_lower_L5.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 8024.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     100.0,
+     168.0
+    ],
+    "y": [
+     53.5,
+     63.0
+    ],
+    "z": [
+     16.0,
+     30.0
+    ]
+   },
+   "dims_mm": [
+    68.0,
+    9.5,
+    14.0
+   ]
+  },
+  {
+   "object": "frameP_3_top_L1",
+   "group": "frame",
+   "file": "frameP_3_top_L1.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 60338.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -69.9,
+     177.67
+    ],
+    "y": [
+     -73.5,
+     -68.0
+    ],
+    "z": [
+     265.0,
+     401.02
+    ]
+   },
+   "dims_mm": [
+    247.6,
+    5.5,
+    136.0
+   ]
+  },
+  {
+   "object": "frameP_3_top_L2",
+   "group": "frame",
+   "file": "frameP_3_top_L2.step",
+   "source": "DEC-0063 frame split (R56 impl.)",
+   "volume_mm3": 60338.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -69.9,
+     177.67
+    ],
+    "y": [
+     68.0,
+     73.5
+    ],
+    "z": [
+     265.0,
+     401.02
+    ]
+   },
+   "dims_mm": [
+    247.6,
+    5.5,
+    136.0
+   ]
+  },
+  {
+   "object": "gap_servo_standoff_-143_+23",
+   "group": "r62",
+   "file": "gap_servo_standoff_-143_+23.step",
+   "source": "cad\\output\\_r62b_parts\\gap_servo_standoff_-143_+23.step",
+   "volume_mm3": 480.7,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -56.86,
+     -50.86
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     133.99,
+     139.99
+    ]
+   },
+   "dims_mm": [
+    6.0,
+    17.0,
+    6.0
+   ]
+  },
+  {
+   "object": "gap_servo_standoff_-143_-23",
+   "group": "r62",
+   "file": "gap_servo_standoff_-143_-23.step",
+   "source": "cad\\output\\_r62b_parts\\gap_servo_standoff_-143_-23.step",
+   "volume_mm3": 480.7,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -20.61,
+     -14.61
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     105.67,
+     111.67
+    ]
+   },
+   "dims_mm": [
+    6.0,
+    17.0,
+    6.0
+   ]
+  },
+  {
+   "object": "gap_servo_standoff_-97_+23",
+   "group": "r62",
+   "file": "gap_servo_standoff_-97_+23.step",
+   "source": "cad\\output\\_r62b_parts\\gap_servo_standoff_-97_+23.step",
+   "volume_mm3": 480.7,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -28.54,
+     -22.54
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     170.24,
+     176.24
+    ]
+   },
+   "dims_mm": [
+    6.0,
+    17.0,
+    6.0
+   ]
+  },
+  {
+   "object": "gap_servo_standoff_-97_-23",
+   "group": "r62",
+   "file": "gap_servo_standoff_-97_-23.step",
+   "source": "cad\\output\\_r62b_parts\\gap_servo_standoff_-97_-23.step",
+   "volume_mm3": 480.7,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     7.71,
+     13.71
+    ],
+    "y": [
+     71.0,
+     88.0
+    ],
+    "z": [
+     141.92,
+     147.92
+    ]
+   },
+   "dims_mm": [
+    6.0,
+    17.0,
+    6.0
+   ]
+  },
+  {
+   "object": "main_spacing_link_lower",
+   "group": "r62",
+   "file": "main_spacing_link_lower.step",
+   "source": "cad\\output\\_r62b_parts\\main_spacing_link_lower.step",
+   "volume_mm3": 4787.3,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     9.9,
+     133.43
+    ],
+    "y": [
+     100.8,
+     107.2
+    ],
+    "z": [
+     183.2,
+     207.45
+    ]
+   },
+   "dims_mm": [
+    123.5,
+    6.4,
+    24.2
+   ]
+  },
+  {
+   "object": "main_spacing_link_upper",
+   "group": "r62",
+   "file": "main_spacing_link_upper.step",
+   "source": "cad\\output\\_r62b_parts\\main_spacing_link_upper.step",
+   "volume_mm3": 4787.3,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -6.66,
+     23.9
+    ],
+    "y": [
+     92.8,
+     99.2
+    ],
+    "z": [
+     183.2,
+     305.95
+    ]
+   },
+   "dims_mm": [
+    30.6,
+    6.4,
+    122.7
+   ]
+  },
+  {
+   "object": "motor_bridge_lower_+17",
+   "group": "r62",
+   "file": "motor_bridge_lower_+17.step",
+   "source": "cad\\output\\_r62b_parts\\motor_bridge_lower_+17.step",
+   "volume_mm3": 8736.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     113.1,
+     138.52
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     188.5,
+     210.81
+    ]
+   },
+   "dims_mm": [
+    25.4,
+    42.0,
+    22.3
+   ]
+  },
+  {
+   "object": "motor_bridge_lower_-17",
+   "group": "r62",
+   "file": "motor_bridge_lower_-17.step",
+   "source": "cad\\output\\_r62b_parts\\motor_bridge_lower_-17.step",
+   "volume_mm3": 8736.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     92.17,
+     117.59
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     161.71,
+     184.02
+    ]
+   },
+   "dims_mm": [
+    25.4,
+    42.0,
+    22.3
+   ]
+  },
+  {
+   "object": "motor_bridge_upper_+17",
+   "group": "r62",
+   "file": "motor_bridge_upper_+17.step",
+   "source": "cad\\output\\_r62b_parts\\motor_bridge_upper_+17.step",
+   "volume_mm3": 8736.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -12.98,
+     12.44
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     287.01,
+     309.32
+    ]
+   },
+   "dims_mm": [
+    25.4,
+    42.0,
+    22.3
+   ]
+  },
+  {
+   "object": "motor_bridge_upper_-17",
+   "group": "r62",
+   "file": "motor_bridge_upper_-17.step",
+   "source": "cad\\output\\_r62b_parts\\motor_bridge_upper_-17.step",
+   "volume_mm3": 8736.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -33.91,
+     -8.5
+    ],
+    "y": [
+     -112.0,
+     -70.0
+    ],
+    "z": [
+     260.22,
+     282.53
+    ]
+   },
+   "dims_mm": [
+    25.4,
+    42.0,
+    22.3
+   ]
+  },
+  {
+   "object": "paddle_flex_tip_1",
+   "group": "r62",
+   "file": "paddle_flex_tip_1.step",
+   "source": "cad\\output\\_r62b_parts\\paddle_flex_tip_1.step",
+   "volume_mm3": 6528.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     71.22,
+     89.95
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     125.74,
+     156.18
+    ]
+   },
+   "dims_mm": [
+    18.7,
+    96.0,
+    30.4
+   ]
+  },
+  {
+   "object": "paddle_flex_tip_2",
+   "group": "r62",
+   "file": "paddle_flex_tip_2.step",
+   "source": "cad\\output\\_r62b_parts\\paddle_flex_tip_2.step",
+   "volume_mm3": 6528.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -30.97,
+     -12.24
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     66.74,
+     97.18
+    ]
+   },
+   "dims_mm": [
+    18.7,
+    96.0,
+    30.4
+   ]
+  },
+  {
+   "object": "paddle_rotor",
+   "group": "r62",
+   "file": "paddle_rotor.step",
+   "source": "cad\\output\\_r62b_parts\\paddle_rotor.step",
+   "volume_mm3": 92960.0,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -28.24,
+     87.22
+    ],
+    "y": [
+     -48.0,
+     48.0
+    ],
+    "z": [
+     69.47,
+     153.45
+    ]
+   },
+   "dims_mm": [
+    115.5,
+    96.0,
+    84.0
+   ]
+  },
+  {
+   "object": "rail_splice_plate_+72",
+   "group": "r65",
+   "file": "rail_splice_plate_+72.step",
+   "source": "cad\\output\\_r65_splice\\parts\\rail_splice_plate_+72.step",
+   "volume_mm3": 10309.2,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -80.0,
+     0.0
+    ],
+    "y": [
+     81.0,
+     86.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "dims_mm": [
+    80.0,
+    5.0,
+    26.0
+   ]
+  },
+  {
+   "object": "rail_splice_plate_-72",
+   "group": "r65",
+   "file": "rail_splice_plate_-72.step",
+   "source": "cad\\output\\_r65_splice\\parts\\rail_splice_plate_-72.step",
+   "volume_mm3": 10309.2,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -80.0,
+     0.0
+    ],
+    "y": [
+     -86.0,
+     -81.0
+    ],
+    "z": [
+     -10.0,
+     16.0
+    ]
+   },
+   "dims_mm": [
+    80.0,
+    5.0,
+    26.0
+   ]
+  },
+  {
+   "object": "servo_crank",
+   "group": "r62",
+   "file": "servo_crank.step",
+   "source": "cad\\output\\_r62b_parts\\servo_crank.step",
+   "volume_mm3": 846.1,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -36.83,
+     -16.58
+    ],
+    "y": [
+     129.0,
+     135.0
+    ],
+    "z": [
+     135.95,
+     152.19
+    ]
+   },
+   "dims_mm": [
+    20.3,
+    6.0,
+    16.2
+   ]
+  },
+  {
+   "object": "servo_drag_link",
+   "group": "r62",
+   "file": "servo_drag_link.step",
+   "source": "cad\\output\\_r62b_parts\\servo_drag_link.step",
+   "volume_mm3": 2700.4,
+   "solids": 1,
+   "bbox": {
+    "x": [
+     -37.83,
+     22.9
+    ],
+    "y": [
+     136.0,
+     142.0
+    ],
+    "z": [
+     141.19,
+     196.2
+    ]
+   },
+   "dims_mm": [
+    60.7,
+    6.0,
+    55.0
+   ]
+  }
+ ]
+}

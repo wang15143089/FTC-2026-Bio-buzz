@@ -1,0 +1,69 @@
+base_rail_front_+72                            as-drawn  250.0 x   18.0 x   26.0 -> flat  250.0 x   26.0 x H  18.0 (X+90 Y+0 Z+0)
+base_rail_front_-72                            as-drawn  250.0 x   18.0 x   26.0 -> flat  250.0 x   26.0 x H  18.0 (X+90 Y+0 Z+0)
+base_rail_rear_joined                          as-drawn  130.0 x  162.0 x   26.0 -> flat  130.0 x  162.0 x H  26.0 (X+0 Y+0 Z+0)
+bearing_carriage_lower_+1                      as-drawn   81.7 x   12.0 x   89.6 -> flat   81.7 x   89.6 x H  12.0 (X+90 Y+0 Z+0)
+bearing_carriage_lower_-1                      as-drawn   81.7 x   12.0 x   89.6 -> flat   81.7 x   89.6 x H  12.0 (X+90 Y+0 Z+0)
+bearing_carriage_upper_+1                      as-drawn   81.7 x   12.0 x   89.6 -> flat   81.7 x   89.6 x H  12.0 (X+90 Y+0 Z+0)
+bearing_carriage_upper_-1                      as-drawn   81.7 x   12.0 x   89.6 -> flat   81.7 x   89.6 x H  12.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_+1_+36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_+1_+36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_+1_-36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_+1_-36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_-1_+36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_-1_+36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_-1_-36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_lower_-1_-36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_+1_+36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_+1_+36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_+1_-36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_+1_-36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_-1_+36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_-1_+36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_-1_-36_+12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_clamp_seat_upper_-1_-36_-12           as-drawn    8.0 x    6.0 x    8.0 -> flat    8.0 x    8.0 x H   6.0 (X+90 Y+0 Z+0)
+carriage_link_spacer_lower                     as-drawn   10.0 x   15.0 x   10.0 -> flat   10.0 x   15.0 x H  10.0 (X+0 Y+0 Z+0)
+carriage_link_spacer_upper                     as-drawn   10.0 x    7.0 x   10.0 -> flat   10.0 x   10.0 x H   7.0 (X+90 Y+0 Z+0)
+crosshead                                      as-drawn   29.6 x   24.0 x   29.3 -> flat   29.6 x   29.3 x H  24.0 (X+90 Y+0 Z+0)
+crosshead_guide_+15                            as-drawn   28.6 x   10.0 x   34.6 -> flat   28.6 x   34.6 x H  10.0 (X+90 Y+0 Z+0)
+crosshead_guide_-15                            as-drawn   28.6 x   10.0 x   34.6 -> flat   28.6 x   34.6 x H  10.0 (X+90 Y+0 Z+0)
+crosshead_guide_stop_-42                       as-drawn   24.4 x   10.0 x   20.6 -> flat   24.4 x   20.6 x H  10.0 (X+90 Y+0 Z+0)
+crosshead_guide_stop_-82                       as-drawn   24.4 x   10.0 x   20.6 -> flat   24.4 x   20.6 x H  10.0 (X+90 Y+0 Z+0)
+frameP_1_rear_lower                            as-drawn  277.2 x  183.0 x  303.5 -> flat  277.2 x  303.5 x H 183.0 (X+90 Y+0 Z+0)
+frameP_2_front_lower_L1                        as-drawn  185.3 x  108.0 x   22.2 -> flat  185.3 x  108.0 x H  22.2 (X+0 Y+0 Z+0)
+frameP_2_front_lower_L2                        as-drawn  113.8 x    4.0 x  224.3 -> flat  113.8 x  224.3 x H   4.0 (X+90 Y+0 Z+0)
+frameP_2_front_lower_L3                        as-drawn  113.8 x    4.0 x  224.3 -> flat  113.8 x  224.3 x H   4.0 (X+90 Y+0 Z+0)
+frameP_2_front_lower_L4                        as-drawn   68.0 x    9.5 x   14.0 -> flat   68.0 x   14.0 x H   9.5 (X+90 Y+0 Z+0)
+frameP_2_front_lower_L5                        as-drawn   68.0 x    9.5 x   14.0 -> flat   68.0 x   14.0 x H   9.5 (X+90 Y+0 Z+0)
+frameP_3_top_L1                                as-drawn  247.6 x    5.5 x  136.0 -> flat  247.6 x  136.0 x H   5.5 (X+90 Y+0 Z+0)
+frameP_3_top_L2                                as-drawn  247.6 x    5.5 x  136.0 -> flat  247.6 x  136.0 x H   5.5 (X+90 Y+0 Z+0)
+gap_servo_standoff_-143_+23                    as-drawn    6.0 x   17.0 x    6.0 -> flat    6.0 x   17.0 x H   6.0 (X+0 Y+0 Z+0)
+gap_servo_standoff_-143_-23                    as-drawn    6.0 x   17.0 x    6.0 -> flat    6.0 x   17.0 x H   6.0 (X+0 Y+0 Z+0)
+gap_servo_standoff_-97_+23                     as-drawn    6.0 x   17.0 x    6.0 -> flat    6.0 x   17.0 x H   6.0 (X+0 Y+0 Z+0)
+gap_servo_standoff_-97_-23                     as-drawn    6.0 x   17.0 x    6.0 -> flat    6.0 x   17.0 x H   6.0 (X+0 Y+0 Z+0)
+main_spacing_link_lower                        as-drawn  123.5 x    6.4 x   24.2 -> flat  123.5 x   24.2 x H   6.4 (X+90 Y+0 Z+0)
+main_spacing_link_upper                        as-drawn   30.6 x    6.4 x  122.7 -> flat   30.6 x  122.7 x H   6.4 (X+90 Y+0 Z+0)
+motor_bridge_lower_+17                         as-drawn   25.4 x   42.0 x   22.3 -> flat   25.4 x   42.0 x H  22.3 (X+0 Y+0 Z+0)
+motor_bridge_lower_-17                         as-drawn   25.4 x   42.0 x   22.3 -> flat   25.4 x   42.0 x H  22.3 (X+0 Y+0 Z+0)
+motor_bridge_upper_+17                         as-drawn   25.4 x   42.0 x   22.3 -> flat   25.4 x   42.0 x H  22.3 (X+0 Y+0 Z+0)
+motor_bridge_upper_-17                         as-drawn   25.4 x   42.0 x   22.3 -> flat   25.4 x   42.0 x H  22.3 (X+0 Y+0 Z+0)
+paddle_flex_tip_1                              as-drawn   18.7 x   96.0 x   30.4 -> flat   30.4 x   96.0 x H  18.7 (X+0 Y+90 Z+0)
+paddle_flex_tip_2                              as-drawn   18.7 x   96.0 x   30.4 -> flat   30.4 x   96.0 x H  18.7 (X+0 Y+90 Z+0)
+paddle_rotor                                   as-drawn  115.5 x   96.0 x   84.0 -> flat  115.5 x   96.0 x H  84.0 (X+0 Y+0 Z+0)
+rail_splice_plate_+72                          as-drawn   80.0 x    5.0 x   26.0 -> flat   80.0 x   26.0 x H   5.0 (X+90 Y+0 Z+0)
+rail_splice_plate_-72                          as-drawn   80.0 x    5.0 x   26.0 -> flat   80.0 x   26.0 x H   5.0 (X+90 Y+0 Z+0)
+servo_crank                                    as-drawn   20.3 x    6.0 x   16.2 -> flat   20.3 x   16.2 x H   6.0 (X+90 Y+0 Z+0)
+servo_drag_link                                as-drawn   60.7 x    6.0 x   55.0 -> flat   60.7 x   55.0 x H   6.0 (X+90 Y+0 Z+0)
+  trial seed   0 -> 5 plates [5, 18, 25, 5, 2]
+  trial seed   1 -> 5 plates [4, 39, 6, 2, 4]
+  trial seed   2 -> 5 plates [35, 12, 5, 2, 1]
+  trial seed  40 -> 5 plates [4, 40, 5, 5, 1]
+  trial seed  80 -> 5 plates [42, 3, 6, 2, 2]
+  trial seed 120 -> 5 plates [27, 22, 4, 1, 1]
+layout chosen: seed 3 -> 4 plates [5, 19, 22, 9]
+p1:  5 parts | solids 5 (want 5) | V 893567.8 / 893567.8 (d=0.00) | extent 309.9 x 305.6 of 315.0 x 310.0 | fill 97% | max H 183.0
+p2: 19 parts | solids 19 (want 19) | V 282509.1 / 282509.2 (d=-0.14) | extent 311.6 x 306.8 of 315.0 x 310.0 | fill 92% | max H 22.3
+p3: 22 parts | solids 22 (want 22) | V 372927.8 / 372927.9 (d=-0.09) | extent 310.6 x 306.8 of 315.0 x 310.0 | fill 91% | max H 84.0
+p4:  9 parts | solids 9 (want 9) | V 361421.1 / 361421.1 (d=0.01) | extent 307.3 x 256.0 of 315.0 x 310.0 | fill 80% | max H 26.0
+wrote cad\output\_r66_plate\plates_index.json
+wrote per-plate previews
+wrote cad\output\_r66_plate\r66_plates_overview.png

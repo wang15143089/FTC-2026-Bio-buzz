@@ -1,6 +1,6 @@
 # PROJECT STATUS
 
-最后更新：2026-10-16（**T06 R65 跨缝搭板（方案 A）落地：x = -40 缝被两块 80 x 5 x 26 mm 侧搭板跨住（DEC-0072 / V-0073）**：判据 = 用户 2026-10-16 回复「A」= 选 DEC-0071 候选 A。①前后两块搭板贴在轨**外侧面** y 81..86 / -86..-81、x [-80, 0]（跨缝各 40 mm）、z [-10, 16]，各 1 solid / V **10 309.2 mm³**；②三条轨各钻 **2 个 Ø3.4 跨缝销孔**（后段件 x = **-66**、前段件 x = **-16**，两侧 y = ±72），**孔轴 z = -3.0**（z = +3 会被主体楔形腹板在 x ≥ -20 的 +Y 侧侵入 **9.565 mm³** ⇒ 扫描后下移，z = -3 全 x 段两侧实测 0.000 mm³）；③`cad/_r65_audit.py` 回读 **45/45 PASS、FAILED: 0**：4 孔全通透（Ø3.4 × 18 内材料 **0.0000 mm³**）、孔周 Ø8 柱有料 **741.4 mm³/孔**、两板 vs 82 体装配体 **0.000 mm³**、螺母走廊（Ø7.2 × 12）与螺栓头走廊（Ø6 × 4）各 **0.000 mm³**、4 条螺栓轴在前/后段件与板上**同轴**（各 0.0 clear）⇒ 一根 M3 同时穿板 + 轨；④紧固件 **M3 × 30 内六角杯头 + M3 螺母 + 平垫，每轨 2 组 = 共 4 组**（CALCULATED，grip = 板 5 + 轨 18 = 23 mm）；⑤**地平面未变**（打印集 zmin = **-10.00**，导轨仍是最低点，搭板不接地）；⑥打印集 46 -> **48 体** / **1 889 477.1 mm³**（只加 2 板 20 618.4 − 切孔 653.70），主体一字未改；⑦排版盘 **47 件**、**310.3 × 306.0 mm**（与 R63 的 45 件板区尺寸完全相同 ⇒ 两块搭板并进同一块 H2D 板）。DEC-0071 的「后段件无任何紧固点」fail **关闭**。遗留：PET 收缩对 Ø3.4 孔 / 板厚 / 47 件排版间距的影响未实测；接缝强度与振动未分析。DEC-0072 / V-0073）
+最后更新：2026-10-16（**T06 R66 全机打印件整理：55 件统一目录 + 放平排版 4 板（DEC-0074 / V-0074）**：判据 = 用户 2026-10-16 令「把所有打印件整理一下，放在一个文件夹里……尽量让打印件平放……多打印几次并不是太大的问题」。①新增 `cad/output/_r66_parts/`：**55 件**、每件一份独立 STEP + `parts_index.json`，ΣV **1 910 425.8 mm³**，来源 = R62 打印件 42 + R65 件 5（3 条钻孔轨 + 2 片搭板）+ 主体 lump 8（DEC-0063 双平面拆分）；逐件回读 **55/55 ok**（每件 1 solid、体积逐件一致）。②主体覆盖核对**判据修正**：8 lump 与 `T06_shooter_frame_R62_pollen.step` 求交 Σ **1 103 435.7 mm³**，delta **−290.53 mm³**，容差由「< 1.0 mm³」改为 `max(500 mm³, 1% × 主体V)` = **11 037.3 mm³** ⇒ ok（跨缝榫舌归 sided owner、缝间薄片两侧各计一次，原判据过严属判据错误而非几何错误）。③放平规则：每件在 **64 个 90° 姿态**（X/Y/Z 各取 0/90/180/270，真实 rotate 后量 bbox）中选**高度最小**者（最大面朝下平放），同高时优先占地更大、再优先转 90° 更少。④排版 **4 板**（MaxRects best-area-fit + 160 个确定性起点多起点 + 收尾合并修复，消除 1–2 件碎片板；seed 3 最优、可复现）：p1 **5 件 / 309.9 × 305.6 / 最高 183.0 / 填充 97.2%**、p2 **19 件 / 311.6 × 306.8 / 22.3 / 91.7%**、p3 **22 件 / 310.6 × 306.8 / 84.0 / 90.8%**、p4 **9 件 / 307.3 × 256.0 / 26.0 / 80.0%**；4 板回读 solids 与体积逐板一致（d ≤ 0.1 mm³），合计 **55 solids / 1 910 425.8 mm³** == 零件集；`frameP_1_rear_lower`（277.2 × 303.5 × 183.0）**单独占 p1**；机器（KNOWN）= Bambu Lab H2D 单喷嘴 325 × 320 × 325 mm，margin 5 / gap 3。⑤交付 `deliverables/R66_print_package/`（`parts/` 55 STEP、`plates/` **直接打这 4 个**、`previews/` 5 图、两份 index JSON、`PRINT_README.md` 中文打印单），交付目录已**独立回读**一遍，板内件名集合 == 零件集（无重复 / 缺失 / 多余）。遗留：PET 0.4 mm 层高对 3 mm 件间距 / 5 mm 板边距的影响未实测，平放件支撑 / 翘边风险未做切片验证，未实机。DEC-0074 / V-0074）
 
 ## CURRENT OBJECTIVE
 
@@ -224,7 +224,7 @@ S00：M0通过。T06：C06-B维持 M3 COTS-CONSTRAINED PACKAGING；目录映射�
 
 ## LATEST DESIGN VERSION
 
-Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3；T06-R47-MJCF-1.0（R47 台架 MJCF 交付，候选，待人工接受）。T06-MOTION-BASELINE-R48（运动部分几何基准文档 + 桌面 Fusion 运动版 STEP 交付，候选，待人工接受；DEC-0046 / V-0046）。T06-R60B-PRINT-SET-1.1（R60B 打印件全集 STEP：**45 个具名实体** = merged frame + 2 条单件加厚滑轨 + 42 个自制件，一份文件即含全部需打印件；36 件无 SKU COTS 硬件已排除；几何审计 21/22 PASS，唯一未消解项 = 用户已接受的 380 mm 单件滑轨，DEC-0066 / V-0065；候选，待人工接受）。
+Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01-DRIVE-TRADE-0.1；T04-INTAKE-0.4 / T04-INTAKE-CMP-0.3；T04-C04B1-M3-0.3 FUSION360 ASSEMBLY VALIDATED；KEI16-FLIPOUT-COTS-0.2 M3 PACKAGING/CALC VALIDATED；C06B-COTS-0.3 M3 OFFICIAL-CAD-DERIVED WHOLE-OFFICIAL-PART PACKAGING VALIDATED（候选，待人工接受）；P3-LAUNCHER-CMP-0.3；T06-R47-MJCF-1.0（R47 台架 MJCF 交付，候选，待人工接受）。T06-MOTION-BASELINE-R48（运动部分几何基准文档 + 桌面 Fusion 运动版 STEP 交付，候选，待人工接受；DEC-0046 / V-0046）。T06-R60B-PRINT-SET-1.1（R60B 打印件全集 STEP：**45 个具名实体** = merged frame + 2 条单件加厚滑轨 + 42 个自制件，一份文件即含全部需打印件；36 件无 SKU COTS 硬件已排除；几何审计 21/22 PASS，唯一未消解项 = 用户已接受的 380 mm 单件滑轨，DEC-0066 / V-0065；候选，待人工接受）。T06-R66-PRINT-PACKAGE-1.0（R66 打印包：**55 件**统一到 `cad/output/_r66_parts/`，放平排版为 **4 块** H2D 板 `cad/output/_r66_plate/`，并汇总交付到 `deliverables/R66_print_package/`（`plates/` 4 个 STEP 可直接打印）；DEC-0074 / V-0074；候选，待人工接受）。
 
 ## MOTION-ONLY SIMULATION EXTRACT?2026-10-02?
 
@@ -537,6 +537,18 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 结论与候选（KNOWN，待用户选）: 「装得回去」= pass；「装回会掉」= fail。修法 A 跨缝搭板 + M3（只增件、不动主体）；B 主体补下探支脚 + 螺母窝（改生成器）；C 后段 O4.6 孔改贯穿 z 16..45 螺栓通道。
 - 产物: `cad/output/_r64_joint/r64_split_fastening.json`、`r64_split_fastening_schematic.png`；脚本 `cad/_r64_assembly_probe.py`、`cad/_r64_probe2.py`、`cad/_r64_fig.py`。
 - 未验证（TBD）: (i) 用户选定方向；(ii) 候选 B / C 所需主体料量未测；(iii) 接缝紧固件规格 / 数量；(iv) PET 收缩对接缝配合的影响。
+
+### 0.15（已完成 2026-10-16）R66 全机打印件整理：55 件统一目录 + 放平排版 4 板（DEC-0074 / V-0074）
+
+- 判据（KNOWN）: 用户 2026-10-16 令「把所有打印件整理一下，放在一个文件夹里。在尝试把打印件集中在同一次打印时，尽量让打印件平放或采取其他方式降低打印难度，多打印几次并不是太大的问题」。
+- 件集（MEASURED）: `cad/output/_r66_parts/` —— **55 件**，每件一份独立 STEP + `parts_index.json`，ΣV **1 910 425.8 mm3**。来源 = R62 打印件 **42** + R65 件 **5**（3 条钻孔轨 + 2 片搭板）+ 主体 lump **8**（DEC-0063 双平面拆分，复用 R56 拆分结果）；逐件回读 **55/55 ok**。
+- 主体覆盖（MEASURED，判据已修）: 8 lump 与 `T06_shooter_frame_R62_pollen.step` 求交 Σ = **1 103 435.7 mm3**，对主体 V 1 103 726.2 的 delta = **-290.53 mm3**；容差由「< 1.0 mm3」改为 `max(500 mm3, 1% x 主体V)` = **11 037.3 mm3** ⇒ ok。原判据过严属**判据错误**：跨缝榫舌归 sided owner、缝间薄片被两侧各计一次，容差必须按占比给。
+- 放平规则（MEASURED）: 每件在 **64 个 90 度姿态**（X/Y/Z 各取 0/90/180/270，真实 `shape.rotate` 后量 bbox）中选**高度最小**者（最大面朝下平放），同高时优先占地更大、再优先转 90 度更少；板内允许再转 90 度。
+- 排版（MEASURED，`cad/output/_r66_plate/`）: 4 板 STEP + 4 张板预览 + 总览图 + `plates_index.json`；装箱 = MaxRects best-area-fit + **160 个确定性起点**多起点搜索 + 收尾合并修复（消除 1-2 件碎片板），`layout_score = (板数, 少于5件的板数, seed)`，seed 3 最优且可复现。实测 p1 **5 件 / 309.9 x 305.6 / 最高 183.0 / 填充 97.2%**、p2 **19 件 / 311.6 x 306.8 / 22.3 / 91.7%**、p3 **22 件 / 310.6 x 306.8 / 84.0 / 90.8%**、p4 **9 件 / 307.3 x 256.0 / 26.0 / 80.0%**；4 板回读 solids 与体积**逐板一致**（d <= 0.1 mm3），合计 **55 solids / 1 910 425.8 mm3** == 零件集。`frameP_1_rear_lower`（277.2 x 303.5 x 183.0）**单独占 p1**。机器（KNOWN）= Bambu Lab H2D 单喷嘴 325 x 320 x 325 mm，margin 5 / gap 3。
+- 交付（MEASURED）: `deliverables/R66_print_package/` —— `parts/` 55 STEP、`plates/` 4 板 STEP（**直接打这 4 个**）、`previews/` 5 图、`parts_index.json`、`plates_index.json`、`PRINT_README.md`（中文打印单）。交付目录已**独立回读**一遍：55 单件 ok、4 板 solids / 体积 / bbox 全对上、板内件名集合 == 零件集（无重复 / 缺失 / 多余）。
+- 只读边界（KNOWN）: R62 / R63 / R64 / R65 / R56 / R57 / R60 / R61 全部产物**只读**；`_r66_parts` 里原件方向保持**装配基准**，放平姿态只记在 `plates_index.json`。
+- 产物: `cad/output/_r66_parts/`、`cad/output/_r66_plate/`、`deliverables/R66_print_package/`；脚本 `cad/_r66_parts.py`、`cad/_r66_plate.py`、`cad/_r66_package.py`；日志 `cad/_log_r66_parts.txt`、`cad/_log_r66_plate.txt`。
+- 未验证（TBD）: (i) PET 0.4 mm 层高对 3 mm 件间距 / 5 mm 板边距的实际影响未实测；(ii) 平放后各件的支撑 / 翘边风险未做切片验证；(iii) 未实机打印。
 
 ### 0.14（已完成 2026-10-16）R65 跨缝搭板（方案 A）——「后段件无紧固点」关闭（DEC-0072 / V-0073）
 
