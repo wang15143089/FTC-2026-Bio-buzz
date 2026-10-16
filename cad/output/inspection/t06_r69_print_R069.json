@@ -1,0 +1,306 @@
+{
+ "schema_version": "0.1",
+ "design_id": "T06-R69-print",
+ "run_label": "R069",
+ "what": "R69 print set: 3-way split of the shroud/side-plate body, 8 bolted ears, option-C 380 mm rails, flat packing onto H2D plates",
+ "inputs": {
+  "parts": "cad/output/_r69_parts",
+  "plates": "cad/output/_r69_plate",
+  "retired": "cad/output/_r66_parts/frameP_1_rear_lower.step"
+ },
+ "checks": [
+  {
+   "id": "R69-V1",
+   "kind": "volume (split + joint net)",
+   "target": 7417.0,
+   "measured": 7416.931,
+   "tolerance": 1.0,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "sum of the three delivered STEP volumes minus the retired frameP_1_rear_lower STEP volume",
+   "note": "y = +-68 split plane, then +8 bolted ears (+7919.9 mm3) and -8 x d3.4 drillings (-502.9 mm3)"
+  },
+  {
+   "id": "R69-V2 shroud_tray_mid",
+   "kind": "solid_count",
+   "target": 1,
+   "measured": 1,
+   "tolerance": 0,
+   "unit": "solids",
+   "verdict": "pass",
+   "method": "read from the delivered STEP"
+  },
+  {
+   "id": "R69-V2 side_plate_left",
+   "kind": "solid_count",
+   "target": 1,
+   "measured": 1,
+   "tolerance": 0,
+   "unit": "solids",
+   "verdict": "pass",
+   "method": "read from the delivered STEP"
+  },
+  {
+   "id": "R69-V2 side_plate_right",
+   "kind": "solid_count",
+   "target": 1,
+   "measured": 1,
+   "tolerance": 0,
+   "unit": "solids",
+   "verdict": "pass",
+   "method": "read from the delivered STEP"
+  },
+  {
+   "id": "R69-V2 base_rail_+72",
+   "kind": "solid_count",
+   "target": 1,
+   "measured": 1,
+   "tolerance": 0,
+   "unit": "solids",
+   "verdict": "pass",
+   "method": "read from the delivered STEP"
+  },
+  {
+   "id": "R69-V2 base_rail_-72",
+   "kind": "solid_count",
+   "target": 1,
+   "measured": 1,
+   "tolerance": 0,
+   "unit": "solids",
+   "verdict": "pass",
+   "method": "read from the delivered STEP"
+  },
+  {
+   "id": "R69-V3 +72",
+   "kind": "bbox_size",
+   "target": 380.0,
+   "measured": 380.0,
+   "tolerance": 0.05,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "x extent of the delivered joined rail STEP",
+   "note": "option C: front + rear unified"
+  },
+  {
+   "id": "R69-V3 -72",
+   "kind": "bbox_size",
+   "target": 380.0,
+   "measured": 380.0,
+   "tolerance": 0.05,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "x extent of the delivered joined rail STEP",
+   "note": "option C: front + rear unified"
+  },
+  {
+   "id": "R69-V4",
+   "kind": "clearance (bolt corridor)",
+   "target": 0.0,
+   "measured": 0.0,
+   "tolerance": 0.5,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "3.0 mm probe cylinder along the M3 axis, from the nut seat to outside the plate, intersected with all three delivered parts",
+   "note": "8 stations, 4 per side"
+  },
+  {
+   "id": "R69-V5 hole",
+   "kind": "clearance (d3.4)",
+   "target": 0.0,
+   "measured": 0.0,
+   "tolerance": 0.5,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "3.4 mm plug through the ear and the plate must be empty",
+   "note": "M3 clearance hole"
+  },
+  {
+   "id": "R69-V5 ring",
+   "kind": "material at 4.0 mm",
+   "target": null,
+   "measured": 101.185,
+   "tolerance": null,
+   "unit": "mm3",
+   "verdict": "pass",
+   "method": "a 4.0 mm plug must still hit material, i.e. the hole is not oversized",
+   "note": "value only; no requirement target"
+  },
+  {
+   "id": "R69-V6",
+   "kind": "fill fraction (ears)",
+   "target": 1.0,
+   "measured": 1.0,
+   "tolerance": 0.05,
+   "unit": "-",
+   "verdict": "pass",
+   "method": "9.4 x (ear depth - 0.6) x 3.5 sample box inside each ear, offset in +x so the d3.4 bolt hole is excluded, intersected with the delivered mid body",
+   "note": "8 ears"
+  },
+  {
+   "id": "R69-V7 p1",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    311.1,
+    306.3,
+    18.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "30 solids"
+  },
+  {
+   "id": "R69-V7 p2",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    287.1,
+    287.1,
+    18.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "1 solids"
+  },
+  {
+   "id": "R69-V7 p3",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    307.2,
+    306.7,
+    31.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "6 solids"
+  },
+  {
+   "id": "R69-V7 p4",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    307.2,
+    284.0,
+    16.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "5 solids"
+  },
+  {
+   "id": "R69-V7 p5",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    232.8,
+    306.4,
+    136.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "2 solids"
+  },
+  {
+   "id": "R69-V7 p6",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    275.0,
+    247.6,
+    5.5
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "2 solids"
+  },
+  {
+   "id": "R69-V7 p7",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    230.7,
+    224.3,
+    4.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "2 solids"
+  },
+  {
+   "id": "R69-V7 p8",
+   "kind": "bed fit",
+   "target": [
+    315.0,
+    310.0,
+    325.0
+   ],
+   "measured": [
+    265.3,
+    305.0,
+    30.0
+   ],
+   "tolerance": 0.0,
+   "unit": "mm",
+   "verdict": "pass",
+   "method": "bounding box of the delivered plate STEP vs the usable H2D envelope",
+   "note": "6 solids"
+  },
+  {
+   "id": "R69-V8",
+   "kind": "object accounting",
+   "target": 54,
+   "measured": 54,
+   "tolerance": 0,
+   "unit": "objects",
+   "verdict": "pass",
+   "method": "every object of parts_index.json appears exactly once across the plates",
+   "note": "sum V plates = 1766184.3 mm3"
+  }
+ ],
+ "n_checks": 21,
+ "n_fail": 0,
+ "status": "pass"
+}
