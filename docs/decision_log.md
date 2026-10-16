@@ -1475,3 +1475,16 @@ Date/version:
 - 判定: 用户「拆成符合尺寸的」**pass**（30/30）。
 - 未验证项（TBD）: ①前后段对接面的回接件（连接片 / 搭板）尚未出图；②46 件的打印朝向 / 支撑 / 排版；③PET 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
 - Date/version: 2026-10-16 / 产物 `cad/output/_r62_frame/audit_r62.json`、`report_r62_pollen.json`、`T06_print_set_R62_pollen.step`、`T06_base_rail_R62_pollen.step`、`cad/output/_r62_frame/sections/r62_rail_split_detail.png`；脚本 `cad/_r62_audit.py`、`cad/_r62_fig.py`
+
+## V-0070 - 记录（非决策）：R62 打印集拆件 = 46 个独立 STEP + R62 H2D 单体审计（2026-10-16）
+
+- 判据（KNOWN）: 承接用户「待完全合格后，将 .STEP 文件中的各个 3D 打印部件拆成独立的 .STEP 文件，放在一个文件夹里」。R62 已满足合格条件：`cad/output/_r62_frame/audit_r62.json` **30/30 PASS**，且三条滑轨全部进 H2D。
+- 方法（MEASURED，只回读）: ①`cad/_r62b_split.py` 从交付件 `T06_print_set_R62_pollen.step` 回读 46 个 solid，按 **(体积, bbox) 唯一匹配** 反查 `report_r62_pollen.json` 的 46 个具名打印件（键不唯一则 assert 失败），每件用 `cq.Assembly` 单独导出到 `cad/output/_r62b_parts/`；**不重跑生成器**（避免二次写者污染交付件）。②`cad/_r62_h2d_audit.py` 对报告里 82 个单体做 H2D 单喷嘴 **325 × 320 × 325 mm** 包络判定，并复核 DEC-0063 主体双平面拆分后各 lump。
+- 实测（MEASURED）:
+  - 拆件：**46 个 `.step` + `parts_index.json`，合计 2.90 MB**；逐件回读 **1 solid 且体积一致，0 失败**；体积合计 **1 869 512.5 mm³** == 打印集报告求和。
+  - 体积前三：`shooter_frame_R62_merged` **1 103 726.2 mm³**（946.1 KB）、`base_rail_rear_joined` **250 127.4 mm³**（110.0 KB）、`bearing_carriage_*` 4 件各 **28 142.4 mm³**；三条滑轨件分别为 250 127.4 / 114 167.8 / 114 167.8 mm³。
+  - H2D 单体：82 个单体里**只有 1 项不落入包络** = `shooter_frame_R62_merged`（432.5 × 183.0 × 404.5 mm），标 `accepted_exception`（DEC-0063，用户接受的双平面拆分）；按 DEC-0063 拆开是 **8 个 lump，全部 PASS，最差 303.5 mm（余量 21.5 mm）**。
+  - 滑轨 H2D：`base_rail_front_±72` 各 250.0 × 18.0 × 26.0 **PASS**、`base_rail_rear_joined` 130.0 × 162.0 × 26.0 **PASS** ⇒ R61 的 383.3 mm 已接受偏差在 H2D 单体层面**关闭**。
+- 判定: 用户「拆成独立 .STEP 放一个文件夹」**pass**（46 件，全部回读 1 solid、体积吻合）。
+- 未验证项（TBD）: ①前 / 后段对接面的回接件（连接片 / 搭板）尚未出图；②46 件的打印朝向 / 支撑 / 排版（本轮只给单体，未排版）；③PET 层高 0.4 mm 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r62b_parts/`（46 个 `.step` + `parts_index.json`）、`cad/output/_r62_frame/audit_r62_h2d.json`；脚本 `cad/_r62b_split.py`、`cad/_r62_h2d_audit.py`

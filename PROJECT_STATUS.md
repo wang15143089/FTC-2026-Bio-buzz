@@ -526,7 +526,9 @@ Framework v0.7.2；Requirements v0.1 APPROVED；Architecture v0.1 APPROVED；T01
 - 口径提醒（CALCULATED）: 生成器日志的合体体积 **479 316.5 mm³** 是 `.clean()` 之前的**内存值**；导出的 STEP 回读 R61 / R62 都是 **478 463.0 mm³** ⇒ 交付件上纯切分成立，差异不是几何改动。
 - 产物: `cad/output/_r62_frame/` 下 `T06_base_rail_R62_pollen.step`（259 KB）、`T06_print_set_R62_pollen.step`（46 bodies / 3.17 MB）、`T06_shooter_assembly_R62_pollen.step`（4.2 MB）、`T06_shooter_frame_R62_pollen.step`（958 KB）、`report_r62_pollen.json`、`audit_r62.json`；剖面图 `sections/r62_pollen_section_y0.png`、`sections/r62_pollen_section_y76.png`、`sections/r62_pollen_assembly_y0.png`、`sections/r62_rail_split_detail.png`、`sections/r62_print_set_46.png`；脚本 `cad/paddle_launcher_shooter_assembly_r62.py`、`cad/_r62_audit.py`、`cad/_r62_fig.py`。
 - 未验证（TBD）: ①前/后段对接面的**回接件**（连接片 / 搭板）尚未出图 —— 对接面平整（每轨 468 mm²）可整体贴合；②46 件的打印朝向 / 支撑 / 排版；③PET 收缩对 Ø3.2 孔与 Ø6 螺母窝的影响。
-- 下一步: 等用户放行后把打印集拆成 **46 个独立 STEP**（承接 R60B 的 `cad/_r60b_split.py`，只回读交付件、不重跑生成器）。
+- 拆件（V-0070，MEASURED，只回读）: `cad/_r62b_split.py` 从交付件 `T06_print_set_R62_pollen.step` 回读，按 (体积, bbox) 唯一匹配反查报告，导出 **46 个独立 `.step` + `parts_index.json` 到 `cad/output/_r62b_parts/`（合计 2.90 MB）**；逐件回读 **1 solid 且体积吻合，0 失败**；体积合计 **1 869 512.5 mm³** == 打印集求和。
+- H2D 单体审计（V-0070）: `cad/_r62_h2d_audit.py` 对报告 82 个单体判定，**只有 1 项超包络 = `shooter_frame_R62_merged`**（432.5 × 183.0 × 404.5 mm），标 `accepted_exception`（DEC-0063 双平面拆分，用户已接受）；按 DEC-0063 拆开为 **8 个 lump 全部 PASS，最差 303.5 mm（余量 21.5 mm）**；三条滑轨件**全部 PASS** ⇒ R61 的 383.3 mm 偏差在 H2D 单体层面关闭。
+- 未验证（TBD）: ①前后段对接面的回接件（连接片 / 搭板）尚未出图；②46 件打印朝向 / 支撑 / 排版（本轮只交单体）；③PET 收缩。
 
 ### 0.10（SUPERSEDED by 0.11 / DEC-0069，2026-10-16）R60B 滑轨下压 + 打印件单件化 + 打印件全集 STEP（45 件，DEC-0066 / V-0065）
 
