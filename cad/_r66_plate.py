@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""R66 step 2: lay every printable object FLAT and pack the prints onto as many Bambu H2D
+"""R67 step 2: lay every printable object FLAT and pack the prints onto as many Bambu H2D
 plates as it takes. Several print runs are explicitly acceptable, so the packer is
 deliberately NOT tuned for maximum density: a plate is closed as soon as the next part no
 longer fits comfortably.
@@ -414,7 +414,7 @@ for pi, packed in enumerate(plates, start=1):
     fig, ax = plt.subplots(figsize=(7.2, 7.1))
     ext = report["plates"][pi - 1]["used_extent_mm"]
     draw_plate(ax, pi, packed,
-               "R66 plate %d/%d - %d parts, max height %.0f mm\nused %.0f x %.0f mm of "
+               "R67 plate %d/%d - %d parts, max height %.0f mm\nused %.0f x %.0f mm of "
                "%.0f x %.0f mm usable | gap %.0f, margin %.0f"
                % (pi, len(plates), len(packed), report["plates"][pi - 1]["max_height_mm"],
                   ext[0], ext[1], W, H, GAP, MARGIN))
@@ -438,7 +438,7 @@ for pi, packed in enumerate(plates, start=1):
 for k in range(n, rows_n * cols):
     axes[k // cols][k % cols].axis("off")
 tot_parts = report["n_objects"]
-fig.suptitle("R66 - all %d printable objects laid flat on %d Bambu H2D plate(s) "
+fig.suptitle("R67 - all %d printable objects laid flat on %d Bambu H2D plate(s) "
              "(bed %.0f x %.0f x %.0f mm, gap %.0f mm, margin %.0f mm)"
              % (tot_parts, n, BED_X, BED_Y, BED_Z, GAP, MARGIN), fontsize=11)
 fig.tight_layout(rect=(0, 0, 1, 0.97))
