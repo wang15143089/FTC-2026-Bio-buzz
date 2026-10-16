@@ -1,0 +1,383 @@
+{
+ "units": "mm",
+ "checks": [
+  {
+   "id": "base_rail_present",
+   "target": "2 rails, 1 printed piece each",
+   "measured": "2 rails / 2 pieces",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R60 report part list"
+  },
+  {
+   "id": "rail_print_split_removed",
+   "target": "0 split rail pieces",
+   "measured": "0 split pieces",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R60 report part list"
+  },
+  {
+   "id": "floor_plate_removed",
+   "target": "0 parts",
+   "measured": "0 parts",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "R60 report part list"
+  },
+  {
+   "id": "lowest_point_of_assembly",
+   "target": "a base_rail_R60 piece @ z=-10.00",
+   "measured": "base_rail_R60 @ z=-10.00",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "min z over all R60 parts"
+  },
+  {
+   "id": "rail_below_frame",
+   "target": "rail underside below frame zmin (-3.51)",
+   "measured": "rail bottom z=-10.00 vs frame z=-3.51",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "read-back AABB"
+  },
+  {
+   "id": "ground_clearance_to_frame",
+   "target": ">= 3.0 mm",
+   "measured": "6.49 mm",
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "frame zmin - rail zmin, read-back AABB"
+  },
+  {
+   "id": "sole_zone_free_of_frame",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "frame intersect the two sole boxes (x -170..210, y +-63..81, z -6.95..1.95)"
+  },
+  {
+   "id": "frame_rail_interference",
+   "target": "0.000 mm3",
+   "measured": "0.0000 mm3",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "boolean intersect"
+  },
+  {
+   "id": "frame_volume_vs_R56",
+   "target": "1103726.2 mm3",
+   "measured": "1103726.2 mm3",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "R60 frame STEP read-back vs R56 report"
+  },
+  {
+   "id": "frame_volume_vs_R57",
+   "target": "1103726.2 mm3",
+   "measured": "1103726.2 mm3",
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "R60 frame STEP read-back vs R57 report"
+  },
+  {
+   "id": "frame_bbox_vs_R57",
+   "target": "{\"x\": [-147.22, 285.26], \"y\": [-84.0, 99.0], \"z\": [-3.51, 401.02]}",
+   "measured": "{\"x\": [-147.22, 285.26], \"y\": [-84.0, 99.0], \"z\": [-3.51, 401.02]}",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "read-back AABB comparison"
+  },
+  {
+   "id": "all_4_bolt_holes_clear",
+   "target": "0 material in O3.2",
+   "measured": "4/4 clear",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O3.2 probe through tab (frame) + thickened rail"
+  },
+  {
+   "id": "nut_pockets_empty",
+   "target": "0 material in O6 x 2.45 deep",
+   "measured": "4/4 empty",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O6 probe z SOLE_ZB..SOLE_ZB+2.45"
+  },
+  {
+   "id": "rail_floor_under_nut",
+   "target": "> 20 mm3 for 4/4",
+   "measured": "4/4 solid",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "10 x 14 x 0.4 slab at the sole underside"
+  },
+  {
+   "id": "nothing_protrudes_below_sole",
+   "target": "0.000 mm3 for 4/4",
+   "measured": "0.000 mm3 max",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "10 x 14 x 3.9 slab below the sole underside"
+  },
+  {
+   "id": "chassis_holes_through",
+   "target": "0 material in O3.8",
+   "measured": "16/16 through",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O3.8 probe z -8..17 in each rail piece, per chassis hole x"
+  },
+  {
+   "id": "rail_single_piece_length",
+   "target": "380.0 mm long, 2 pieces",
+   "measured": "380.0 mm, 2 pieces",
+   "tol": 0.1,
+   "verdict": "pass",
+   "method": "read-back AABB, one printed rail per side (x -170..210)"
+  },
+  {
+   "id": "rail_pieces_H2D_fit",
+   "target": "<= 325 mm longest side (H2D single nozzle)",
+   "measured": "worst 380.0 mm = 55.0 mm over",
+   "tol": 0.0,
+   "verdict": "fail",
+   "method": "read-back AABB per printed piece against single-nozzle 325 x 320 x 325",
+   "accepted_exception": "user, 2026-10-16: a single rail per side is wanted, so the 55 mm overshoot is a KNOWN, user-accepted deviation (DEC-0066), TBD"
+  },
+  {
+   "id": "print_set_parts",
+   "target": "3 printed bodies (frame + 2 rails)",
+   "measured": "3 bodies",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "T06_print_set_R60_pollen.step read back"
+  },
+  {
+   "id": "print_set_matches_assembly",
+   "target": "print set bbox == frame + 2 rails",
+   "measured": "{\"x\": [-170.0, 285.26], \"y\": [-84.0, 99.0], \"z\": [-10.0, 401.02]}",
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "print set zmin must equal rail zmin (-10.0)"
+  }
+ ],
+ "joints": [
+  {
+   "x": 60.0,
+   "y": -76.0,
+   "piece": "base_rail_-72",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 60.0,
+   "y": 76.0,
+   "piece": "base_rail_+72",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": -76.0,
+   "piece": "base_rail_-72",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  },
+  {
+   "x": 76.0,
+   "y": 76.0,
+   "piece": "base_rail_+72",
+   "tab_hole_mm3": 0.0,
+   "rail_hole_mm3": 0.0,
+   "pocket_empty_mm3": 0.0,
+   "sole_floor_mm3": 28.4,
+   "nothing_below_sole_mm3": 0.0,
+   "pass": true
+  }
+ ],
+ "chassis_holes": [
+  {
+   "piece": "base_rail_+72",
+   "x": -150.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": -102.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": -54.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": -6.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": 42.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": 90.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": 138.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_+72",
+   "x": 186.0,
+   "y": 72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": -150.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": -102.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": -54.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": -6.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": 42.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": 90.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": 138.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  },
+  {
+   "piece": "base_rail_-72",
+   "x": 186.0,
+   "y": -72.0,
+   "material_mm3": 0.0
+  }
+ ],
+ "rail_pieces": [
+  {
+   "part": "base_rail_+72",
+   "dims_mm": [
+    380.0,
+    18.0,
+    26.0
+   ]
+  },
+  {
+   "part": "base_rail_-72",
+   "dims_mm": [
+    380.0,
+    18.0,
+    26.0
+   ]
+  }
+ ],
+ "print_set": {
+  "n_solids": 3,
+  "bbox": {
+   "x": [
+    -170.0,
+    285.26
+   ],
+   "y": [
+    -84.0,
+    99.0
+   ],
+   "z": [
+    -10.0,
+    401.02
+   ]
+  },
+  "volume_mm3": 1451149.3
+ },
+ "rails": {
+  "bbox": {
+   "x": [
+    -170.0,
+    210.0
+   ],
+   "y": [
+    -81.0,
+    81.0
+   ],
+   "z": [
+    -10.0,
+    16.0
+   ]
+  },
+  "volume_mm3": 347423.0
+ },
+ "frame": {
+  "bbox": {
+   "x": [
+    -147.22,
+    285.26
+   ],
+   "y": [
+    -84.0,
+    99.0
+   ],
+   "z": [
+    -3.51,
+    401.02
+   ]
+  },
+  "volume_mm3": 1103726.2
+ },
+ "allowance_mm": {
+  "frame_lowest_above_sole": 6.49
+ }
+}

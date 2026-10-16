@@ -1318,7 +1318,7 @@ Date/version:
 - 未验证项（TBD）: 见 DEC-0064（底板覆盖面 / 打印排版 / PET 收缩）。
 - Date/version: 2026-10-14 / 产物 `cad/output/_r57_frame/audit_r57.json`、`cad/output/_r57_frame/audit_r57_h2d.json`、`cad/output/_r57_plate/r57_floor_plate.png`
 
-## DEC-0065 - 决策：R59 删除落地底板，改回两条滑轨并向下加厚，使滑轨底面成为整机唯一接地点
+## DEC-0065（部分 SUPERSEDED by DEC-0066：决策 1 / 决策 5，2026-10-16） - 决策：R59 删除落地底板，改回两条滑轨并向下加厚，使滑轨底面成为整机唯一接地点
 
 - 判据（KNOWN）: 用户 2026-10-15 指令「不要地板了，就把那两条滑轨加厚使其能避免外罩最低点接触地面」。即撤销 DEC-0064（R57 落地底板 `floor_plate_R57`，315 x 210 x 6 + 4 凸台，底面 z = -11.5），**保留** `base_rail_+72` / `base_rail_-72` 并向下加厚。用户同轮重申 1 mm 级误差可接受、简单高效、不必对极端工况考虑太多。
 - 决策 1 - 删底板（KNOWN）: 生成器里 `make_floor_plate()` 整体删除；`verify_joints()` 的 `PLATE_ZB` / `PLATE_NAME` / `below_plate_blockers` 改为 `SOLE_ZB` / `rail_names` / `below_sole_blockers`。交付件里 `floor_plate` 命中 **0 件**（审计 `floor_plate_removed` PASS）。
@@ -1334,7 +1334,7 @@ Date/version:
 - 教训（MEASURED，必须保留）: 审计探针第一版把底盘孔轴线误设为接头凸耳的 **`BOLT_Y = 76`**（R54 起把 `BOLT_Y` 当参考轴），导致 `chassis_holes_through` 误判 FAIL。实际**底盘孔在导轨中心线 y = ±72，而接头凸耳轴线在 y = ±76，两者不是同一条轴线**。修正为 `yy = RAIL_CY if "_+" in n else -RAIL_CY` 后 16/16 through。=> **审计探针一律使用对应特征自己的实测基准；参考轴不得跨特征复用。** 另一处 `rail_floor_under_nut` 阈值 100 mm³ 定得过高（10 x 14 剖面扣掉 Ø4.4 孔后理论约 28 mm³、实测 28.4），已降至 **> 20 mm³**。
 - Date/version: 2026-10-15 / 产物 `cad/paddle_launcher_shooter_assembly_r59.py`、`cad/_r59_probe.py`、`cad/_r59_audit.py`、`cad/_r59_h2d_audit.py`、`cad/_r59_rail_figure.py`、`cad/_r59_runall.py` -> `cad/output/_r59_frame/`、示意图 `cad/output/_r59_rail/r59_thickened_rail.png`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
 
-## V-0064 - 验证记录（非决策）：R59「滑轨底面 = 整机最低点 + 4 个 M3 贯穿 + H2D 分件」复核
+## V-0064（SUPERSEDED by V-0065，2026-10-16） - 验证记录（非决策）：R59「滑轨底面 = 整机最低点 + 4 个 M3 贯穿 + H2D 分件」复核
 
 - 目的（KNOWN）: 用户要求的「外罩最低点不接触地面（由加厚滑轨接地）」必须用**最终交付几何**证明，不能只看参数；同时「主体未被误改」也必须证明。
 - 方法（MEASURED，只回读）: ①`cad/_r59_audit.py` 回读 `T06_shooter_frame_R59_pollen.step` / `T06_shooter_assembly_R59_pollen.step` / `report_r59_pollen.json` 等，逐项判 pass/fail（18 项）；②`cad/_r59_h2d_audit.py` 遍历 R59 报告里全部单体判建板；③R59 与 R56 / R57 主体体积与 bbox 对比。
@@ -1351,3 +1351,33 @@ Date/version:
 - 判定: 用户要求 **pass**；几何审计 **18/18 pass、0 fail**；H2D 审计剩余唯一项为已消解的融合主体。**结论成立，且主体对外接口零改动。**
 - 未验证项（TBD）: 见 DEC-0065（离地间隙取值待确认 / 滑轨分件是否接受 / 打印排版 / PET 收缩）。
 - Date/version: 2026-10-15 / 产物 `cad/output/_r59_frame/audit_r59.json`、`cad/output/_r59_frame/audit_r59_h2d.json`、`cad/output/_r59_rail/r59_thickened_rail.png`
+
+## DEC-0066 - 决策：R60 滑轨底面再下压至 z = -10（厚 26 mm）+ 撤销 x = 114 拆分改回单件滑轨 + 新增「打印件全集」STEP
+
+- 判据（KNOWN）: 用户 2026-10-16 指令「可以，下压，让 .STEP 文件包含所有需要打印的部分（不要再把滑轨分成两部分）」。即：①滑轨底面在 DEC-0065 的 -7.0 基础上继续下压；②撤销 DEC-0065 决策 5 的 x = 114 拆分，滑轨改回**每侧单件**；③交付一份包含全部需打印件的 `.STEP`。
+- 决策 1 - 下压（KNOWN + MEASURED）: `SOLE_ZB = -7.0 -> -10.0`。滑轨 z [-10, 16]、**厚 26 mm**（R59 为 23 mm）。`cad/_r60_probe.py` 实测 R59 主体在 x -170..210 / y ±63..81 / z -14..+2 **0.0000 mm³**（另全机切片 z -25..-4 亦为 0）=> 下压 3 mm **不需要任何让位**。离地间隙 3.49 -> **6.49 mm**。
+- 决策 2 - 滑轨还原单件（KNOWN）: 删 `SPLIT_X` / `rail_names()` / `RAIL_PIECE_NAMES`（4 -> 2 件），`base_rail_-72` / `base_rail_+72` 各 x [-170, 210] = **380 mm 单件**。与 DEC-0063 TBD 1 / DEC-0065 TBD ② 的用户裁定一致：**要单件**。
+- 决策 3 - 新增打印件全集 STEP（KNOWN）: 导出 `T06_print_set_R60_pollen.step`，一份文件 3 个具名实体（`shooter_frame_R60_merged` + `base_rail_-72` + `base_rail_+72`）= 全部需打印件，省去从装配件里挑件。
+- 决策 4 - 螺栓升级（CALCULATED）: 夹持厚度随滑轨加厚 +12 mm：x = 60 处 42.0 -> **54.0 mm**、x = 76 处 46.0 -> **58.0 mm**；加平垫 1.0 + 螺母 2.4 => **M3 x 58（x = 60）/ M3 x 63（x = 76）**（R59 为 M3 x 50 / M3 x 55），ISO 4762 内六角。
+- 决策 5 - H2D 超限的处置（KNOWN，用户接受）: 单件滑轨 **380.0 x 18.0 x 26.0**，超 H2D 单喷嘴 325 mm 共 **55 mm**。这是用户明确要求单件后的**已知、用户接受**的偏差（`accepted_exception`，TBD，未消解）。frame 432.5 x 183.0 x 404.5 仍按 DEC-0063 三块拆分消解（拆后最差 lump **303.5 mm** PASS）。
+- 主体零改动（MEASURED，回归判据）: R60 vs R59 主体**对称差 0.000 mm³**；V = **1 103 726.2 mm³**、bbox x[-147.22, 285.26] y[-84, 99] z[-3.51, 401.02] => DEC-0063 拆分与搭接 M3 对 R60 逐块仍然有效。
+- Alternatives（已否决）: ①保留 DEC-0065 的 x = 114 拆分 —— 用户明确「不要再把滑轨分成两部分」，否决；②下压同时让位 / 开窗避开主体 —— `_r60_probe.py` 实测该区域主体 0.0000 mm³，**不需要**，否决；③把滑轨改成采购件规避 H2D 超限 —— 用户未要求，且会改掉接口基准，暂不做（如需可走 TBD）。
+- 影响: 零件数 4 件滑轨 -> 2 件；新增 1 份打印件全集 STEP；H2D 剩余唯一未消解项是**已被用户接受的单件滑轨 380 mm**（DEC-0063 TBD 1 在本轮由用户裁定为「单件」）。
+- 未验证项（TBD）: ① 380 mm 单件滑轨如何进 H2D（切成两块加搭接 / 换大幅面机 / 改为采购件）—— 用户已接受现状，具体路径未定；② 滑轨打印朝向 / 支撑 / 排版按 DEC-0062 移交他人；③ PET 收缩对 Ø3.2 打印孔与 Ø6 螺母窝的影响（沿用既有 TBD，本轮未测）。
+- Date/version: 2026-10-16 / 产物 `cad/paddle_launcher_shooter_assembly_r60.py`、`cad/_mk_r60.py`、`cad/_r60_probe.py`、`cad/_r60_audit.py`、`cad/_r60_h2d_audit.py`、`cad/_r60_framediff.py`、`cad/_r60_rail_figure.py` -> `cad/output/_r60_frame/`、示意图 `cad/output/_r60_rail/r60_thickened_rail.png`；关联 Linear KEI-24、Notion Mechanical Design - Scoring Mechanism 页
+
+## V-0065 - 验证记录（非决策）：R60「滑轨下压 3 mm + 单件滑轨 + 打印件全集 STEP」复核
+
+- 目的（KNOWN）: ①证明下压 3 mm 不与主体干涉；②证明主体未被误改；③证明交付的「打印件全集」STEP 与装配件一致。
+- 方法（MEASURED，只回读）: ①`cad/_r60_probe.py` 在 R59 主体上对鞋底区做布尔交；②`cad/_r60_framediff.py` 对 R60 与 R59 主体做对称差；③`cad/_r60_audit.py`（20 项，回读交付 STEP）与 `cad/_r60_h2d_audit.py`（77 单体）。
+- 实测（MEASURED）:
+  - 下压无干涉: 鞋底区 x -170..210 / y ±63..81 / z -14..+2 与主体相交 **0.0000 mm³**；z -25..-4 全机切片 0 mm³。
+  - 主体未改: R60 vs R59 主体**对称差 0.000 mm³**；V = 1 103 726.2 mm³、bbox x[-147.22, 285.26] y[-84, 99] z[-3.51, 401.02]。
+  - 滑轨: `base_rail_present` = 2 rails / 2 pieces（pass）；各 x[-170, 210] / y ±63..81 / z[-10, 16]，V 各 173 711.5 mm³（合计 347 423.0）；`rail_print_split_removed` PASS。
+  - 接地: `lowest_point_of_assembly` = 两条滑轨 @ **z = -10.00**；`ground_clearance_to_frame` = **6.49 mm**；`nothing_protrudes_below_sole` 0.000 mm³。
+  - 连接: `all_4_bolt_holes_clear` 4/4 clear、`nut_pockets_empty` 4/4 empty、`rail_floor_under_nut` 4/4 solid、`chassis_holes_through` 16/16 through；生成器 `joint_verification` 4/4 pass=True。
+  - 打印件全集: `print_set_parts` = 3 具名实体、`print_set_matches_assembly` PASS；总 V = 1 451 149.3 mm³、包络 x[-170, 285.26] y[-84, 99] z[-10, 401.02]。
+  - 审计: 几何 **19/20 PASS**，唯一 FAIL = `rail_pieces_H2D_fit`（380.0 mm，超 325 共 55.0 mm，`accepted_exception`，DEC-0066）；H2D **77 单体 74 可用**（frame 由 DEC-0063 拆分消解，拆后最差 lump 303.5 mm；两条 rail 标 `accepted_exception`）。
+- 判定: 用户要求①~③ **pass**；唯一未消解项为用户已明确接受的单件滑轨长度。
+- 未验证项（TBD）: 见 DEC-0066（380 mm 单件如何进 H2D / 打印排版 / PET 收缩）。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r60_frame/audit_r60.json`、`cad/output/_r60_frame/audit_r60_h2d.json`、`cad/output/_r60_rail/r60_thickened_rail.png`
