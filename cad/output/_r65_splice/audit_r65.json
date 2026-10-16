@@ -1,0 +1,372 @@
+{
+ "units": "mm",
+ "question": "does the R65 side splice plate + 2x M3 per rail fix the rear rail piece to the whole?",
+ "target_delivery": "cad\\output\\_r65_splice\\T06_print_set_R65_pollen.step",
+ "n_checks": 45,
+ "n_pass": 45,
+ "n_fail": 0,
+ "failed": [],
+ "hole_residual_mm3": 0.0,
+ "checks": [
+  {
+   "check": "print_set_solids",
+   "target": 48,
+   "actual": 48,
+   "tol": 0,
+   "verdict": "pass",
+   "method": "readback solids"
+  },
+  {
+   "check": "print_set_volume_mm3",
+   "target": 1889477.1,
+   "actual": 1889477.1,
+   "tol": 1.0,
+   "verdict": "pass",
+   "method": "sum of solid volumes"
+  },
+  {
+   "check": "hole rear_joined x=-66 y=72 is open (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 18 mm column inside rail"
+  },
+  {
+   "check": "hole wall rear_joined x=-66 y=72 (mm3)",
+   "target": ">300",
+   "actual": 741.4,
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O8 x 18 mm column material around the hole"
+  },
+  {
+   "check": "hole rear_joined x=-66 y=-72 is open (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 18 mm column inside rail"
+  },
+  {
+   "check": "hole wall rear_joined x=-66 y=-72 (mm3)",
+   "target": ">300",
+   "actual": 741.4,
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O8 x 18 mm column material around the hole"
+  },
+  {
+   "check": "hole front_+72 x=-16 y=72 is open (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 18 mm column inside rail"
+  },
+  {
+   "check": "hole wall front_+72 x=-16 y=72 (mm3)",
+   "target": ">300",
+   "actual": 741.4,
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O8 x 18 mm column material around the hole"
+  },
+  {
+   "check": "hole front_-72 x=-16 y=-72 is open (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 18 mm column inside rail"
+  },
+  {
+   "check": "hole wall front_-72 x=-16 y=-72 (mm3)",
+   "target": ">300",
+   "actual": 741.4,
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "O8 x 18 mm column material around the hole"
+  },
+  {
+   "check": "rail_splice_plate_+72 y position",
+   "target": "(81.0, 86.0)",
+   "actual": "81.0..86.0",
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "readback bbox"
+  },
+  {
+   "check": "rail_splice_plate_+72 spans the seam",
+   "target": "0..-80 in x",
+   "actual": "-80..0",
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "plate x extent straddles x=-40"
+  },
+  {
+   "check": "rail_splice_plate_+72 sits on the rail (zmin)",
+   "target": -10.0,
+   "actual": -10.0,
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "readback bbox zmin, must not go below the rail sole"
+  },
+  {
+   "check": "rail_splice_plate_+72 single solid",
+   "target": 1,
+   "actual": 1,
+   "tol": 0,
+   "verdict": "pass",
+   "method": "Solid count"
+  },
+  {
+   "check": "rail_splice_plate_+72 hole open x=-66",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 5 mm column inside the plate"
+  },
+  {
+   "check": "rail_splice_plate_+72 hole open x=-16",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 5 mm column inside the plate"
+  },
+  {
+   "check": "rail_splice_plate_-72 y position",
+   "target": "(-86.0, -81.0)",
+   "actual": "-86.0..-81.0",
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "readback bbox"
+  },
+  {
+   "check": "rail_splice_plate_-72 spans the seam",
+   "target": "0..-80 in x",
+   "actual": "-80..0",
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "plate x extent straddles x=-40"
+  },
+  {
+   "check": "rail_splice_plate_-72 sits on the rail (zmin)",
+   "target": -10.0,
+   "actual": -10.0,
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "readback bbox zmin, must not go below the rail sole"
+  },
+  {
+   "check": "rail_splice_plate_-72 single solid",
+   "target": 1,
+   "actual": 1,
+   "tol": 0,
+   "verdict": "pass",
+   "method": "Solid count"
+  },
+  {
+   "check": "rail_splice_plate_-72 hole open x=-66",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 5 mm column inside the plate"
+  },
+  {
+   "check": "rail_splice_plate_-72 hole open x=-16",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "O3.4 x 5 mm column inside the plate"
+  },
+  {
+   "check": "rail_splice_plate_+72 vs rest of assembly",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "assembly (all 82 bodies incl. COTS) minus the 3 rails, plate bbox + 1 mm"
+  },
+  {
+   "check": "rail_splice_plate_-72 vs rest of assembly",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "assembly (all 82 bodies incl. COTS) minus the 3 rails, plate bbox + 1 mm"
+  },
+  {
+   "check": "rail_splice_plate_+72 nut space x=-66 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O7.2 x 12 mm nut corridor against the inner rail face (y 51..63)"
+  },
+  {
+   "check": "rail_splice_plate_+72 nut space x=-16 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O7.2 x 12 mm nut corridor against the inner rail face (y 51..63)"
+  },
+  {
+   "check": "rail_splice_plate_-72 nut space x=-66 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O7.2 x 12 mm nut corridor against the inner rail face (y -75..-63)"
+  },
+  {
+   "check": "rail_splice_plate_-72 nut space x=-16 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O7.2 x 12 mm nut corridor against the inner rail face (y -75..-63)"
+  },
+  {
+   "check": "rail_splice_plate_+72 bolt-head space x=-66 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O6 x 4 mm cap-head corridor just outside the plate (y 86..90)"
+  },
+  {
+   "check": "rail_splice_plate_+72 bolt-head space x=-16 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O6 x 4 mm cap-head corridor just outside the plate (y 86..90)"
+  },
+  {
+   "check": "rail_splice_plate_-72 bolt-head space x=-66 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O6 x 4 mm cap-head corridor just outside the plate (y -86..-90)"
+  },
+  {
+   "check": "rail_splice_plate_-72 bolt-head space x=-16 (mm3)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.02,
+   "verdict": "pass",
+   "method": "O6 x 4 mm cap-head corridor just outside the plate (y -86..-90)"
+  },
+  {
+   "check": "rear does not protrude past the seam",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "rear material in x -39.5..-39.0"
+  },
+  {
+   "check": "front fills its side of the seam",
+   "target": "234.0",
+   "actual": 234.0,
+   "tol": 0.5,
+   "verdict": "pass",
+   "method": "front material in x -40..-39.5, full section 0.5 x 18 x 26 = 234"
+  },
+  {
+   "check": "bolt @x=-66 y=72 goes through rear",
+   "target": "0.0 (clear)",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "the bolt axis is a clear hole"
+  },
+  {
+   "check": "...and the plate has the matching hole (y=72)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "both parts share the same hole axis -> one M3 passes both"
+  },
+  {
+   "check": "bolt @x=-66 y=-72 goes through rear",
+   "target": "0.0 (clear)",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "the bolt axis is a clear hole"
+  },
+  {
+   "check": "...and the plate has the matching hole (y=-72)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "both parts share the same hole axis -> one M3 passes both"
+  },
+  {
+   "check": "bolt @x=-16 y=72 goes through front",
+   "target": "0.0 (clear)",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "the bolt axis is a clear hole"
+  },
+  {
+   "check": "...and the plate has the matching hole (y=72)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "both parts share the same hole axis -> one M3 passes both"
+  },
+  {
+   "check": "bolt @x=-16 y=-72 goes through front",
+   "target": "0.0 (clear)",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "the bolt axis is a clear hole"
+  },
+  {
+   "check": "...and the plate has the matching hole (y=-72)",
+   "target": "0.0",
+   "actual": 0.0,
+   "tol": 0.01,
+   "verdict": "pass",
+   "method": "both parts share the same hole axis -> one M3 passes both"
+  },
+  {
+   "check": "print set zmin (ground plane)",
+   "target": -10.0,
+   "actual": -10.0,
+   "tol": 0.05,
+   "verdict": "pass",
+   "method": "rails remain the lowest feature"
+  },
+  {
+   "check": "rail_splice_plate_+72 H2D fit",
+   "target": "<=325x320x325",
+   "actual": "80 x 5 x 26",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "single nozzle envelope"
+  },
+  {
+   "check": "rail_splice_plate_-72 H2D fit",
+   "target": "<=325x320x325",
+   "actual": "80 x 5 x 26",
+   "tol": 0.0,
+   "verdict": "pass",
+   "method": "single nozzle envelope"
+  }
+ ]
+}
