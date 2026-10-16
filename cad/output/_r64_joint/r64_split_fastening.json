@@ -1,0 +1,62 @@
+{
+ "units": "mm",
+ "question": "after the x=-40 split, can the 3 rail pieces be assembled and stay together?",
+ "split_plane_x": -40.0,
+ "seam": {
+  "kind": "flat butt joint, no tongue / no lap / no cross bolt",
+  "rail_section_mm2": 468.0,
+  "faces_all_at_x": -40.0
+ },
+ "frame_contact_on_rail_top_z16_22_mm3": {
+  "rear_+72": 0.0,
+  "rear_-72": 0.0,
+  "front_+72": 1763.05,
+  "front_-72": 1763.05
+ },
+ "m3_rail_tab_joints": [
+  {
+   "x": 60.0,
+   "y": 76.0,
+   "piece": "base_rail_front_+72"
+  },
+  {
+   "x": 60.0,
+   "y": -76.0,
+   "piece": "base_rail_front_-72"
+  },
+  {
+   "x": 76.0,
+   "y": 76.0,
+   "piece": "base_rail_front_+72"
+  },
+  {
+   "x": 76.0,
+   "y": -76.0,
+   "piece": "base_rail_front_-72"
+  }
+ ],
+ "chassis_holes_O4.6": {
+  "rear_joined": [
+   -150.0,
+   -102.0,
+   -54.0
+  ],
+  "front_+72": [
+   -6.0,
+   42.0,
+   90.0,
+   138.0,
+   186.0
+  ],
+  "front_-72": [
+   -6.0,
+   42.0,
+   90.0,
+   138.0,
+   186.0
+  ],
+  "frame_material_above_any_of_them_mm3": 0.0
+ },
+ "rear_piece_frame_intersection_mm3": 0.0,
+ "conclusion": "each piece lands correctly (seam flush) but the rear joined piece has no fastener to the frame; its 6 O4.6 holes have neither frame material above nor support below, so it can only be tied to an external chassis."
+}
