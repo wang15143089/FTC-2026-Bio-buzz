@@ -1,0 +1,846 @@
+{
+ "units": "mm",
+ "source": "cad/output/_r62b_parts/parts_index.json (R62 print set)",
+ "excluded": [
+  "shooter_frame_R62_merged: exceeds 325 mm bed, split by DEC-0063"
+ ],
+ "bed_mm": [
+  325.0,
+  320.0,
+  325.0
+ ],
+ "bed": "Bambu Lab H2D",
+ "margin_mm": 5.0,
+ "gap_mm": 4.0,
+ "orientation": "unchanged (pure XY translation, no rotation)",
+ "algorithm": "MaxRects best-short-side-fit, no rotation",
+ "n_parts": 45,
+ "sum_volume_mm3": 765786.2,
+ "used_extent_mm": [
+  310.3,
+  306.0
+ ],
+ "readback": {
+  "solids": 45,
+  "solids_ok": true,
+  "volume_ok": true,
+  "bbox_ok": true,
+  "bbox_mm": [
+   310.28,
+   306.0,
+   122.75
+  ]
+ },
+ "parts": [
+  {
+   "part": "base_rail_front_+72",
+   "volume_mm3": 114167.8,
+   "plate_xy_mm": [
+    5.0,
+    271.0
+   ],
+   "translate_mm": [
+    45.0,
+    208.0,
+    10.0
+   ],
+   "footprint_mm": [
+    250.0,
+    18.0
+   ],
+   "height_mm": 26.0
+  },
+  {
+   "part": "base_rail_front_-72",
+   "volume_mm3": 114167.8,
+   "plate_xy_mm": [
+    5.0,
+    293.0
+   ],
+   "translate_mm": [
+    45.0,
+    374.0,
+    10.0
+   ],
+   "footprint_mm": [
+    250.0,
+    18.0
+   ],
+   "height_mm": 26.0
+  },
+  {
+   "part": "base_rail_rear_joined",
+   "volume_mm3": 250127.4,
+   "plate_xy_mm": [
+    5.0,
+    5.0
+   ],
+   "translate_mm": [
+    175.0,
+    86.0,
+    10.0
+   ],
+   "footprint_mm": [
+    130.0,
+    162.0
+   ],
+   "height_mm": 26.0
+  },
+  {
+   "part": "bearing_carriage_lower_+1",
+   "volume_mm3": 28142.4,
+   "plate_xy_mm": [
+    168.41,
+    21.0
+   ],
+   "translate_mm": [
+    93.895,
+    -43.0,
+    -141.467
+   ],
+   "footprint_mm": [
+    81.7,
+    12.0
+   ],
+   "height_mm": 89.6
+  },
+  {
+   "part": "bearing_carriage_lower_-1",
+   "volume_mm3": 28142.4,
+   "plate_xy_mm": [
+    168.41,
+    37.0
+   ],
+   "translate_mm": [
+    93.895,
+    113.0,
+    -141.467
+   ],
+   "footprint_mm": [
+    81.7,
+    12.0
+   ],
+   "height_mm": 89.6
+  },
+  {
+   "part": "bearing_carriage_upper_+1",
+   "volume_mm3": 28142.4,
+   "plate_xy_mm": [
+    139.0,
+    151.0
+   ],
+   "translate_mm": [
+    190.567,
+    87.0,
+    -239.973
+   ],
+   "footprint_mm": [
+    81.7,
+    12.0
+   ],
+   "height_mm": 89.6
+  },
+  {
+   "part": "bearing_carriage_upper_-1",
+   "volume_mm3": 28142.4,
+   "plate_xy_mm": [
+    168.41,
+    5.0
+   ],
+   "translate_mm": [
+    219.977,
+    81.0,
+    -239.973
+   ],
+   "footprint_mm": [
+    81.7,
+    12.0
+   ],
+   "height_mm": 89.6
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    159.0,
+    92.0
+   ],
+   "translate_mm": [
+    34.948,
+    16.7,
+    -218.017
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_+36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    151.0,
+    43.0
+   ],
+   "translate_mm": [
+    8.036,
+    -32.3,
+    -203.242
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    139.0,
+    53.0
+   ],
+   "translate_mm": [
+    59.275,
+    -22.3,
+    -161.281
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_+1_-36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    139.0,
+    63.0
+   ],
+   "translate_mm": [
+    40.363,
+    -12.3,
+    -146.505
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    139.0,
+    43.0
+   ],
+   "translate_mm": [
+    14.948,
+    124.3,
+    -218.017
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_+36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    151.0,
+    53.0
+   ],
+   "translate_mm": [
+    8.036,
+    134.3,
+    -203.242
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    151.0,
+    63.0
+   ],
+   "translate_mm": [
+    71.275,
+    144.3,
+    -161.281
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_lower_-1_-36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    163.0,
+    53.0
+   ],
+   "translate_mm": [
+    64.363,
+    134.3,
+    -146.505
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    163.0,
+    63.0
+   ],
+   "translate_mm": [
+    165.029,
+    -12.3,
+    -316.523
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_+36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    168.41,
+    105.0
+   ],
+   "translate_mm": [
+    151.527,
+    29.7,
+    -301.747
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    171.0,
+    92.0
+   ],
+   "translate_mm": [
+    217.357,
+    16.7,
+    -259.786
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_+1_-36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    173.0,
+    81.0
+   ],
+   "translate_mm": [
+    200.445,
+    5.7,
+    -245.011
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    175.0,
+    53.0
+   ],
+   "translate_mm": [
+    177.029,
+    134.3,
+    -316.523
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_+36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    175.0,
+    63.0
+   ],
+   "translate_mm": [
+    158.117,
+    144.3,
+    -301.747
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_+12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    168.41,
+    115.0
+   ],
+   "translate_mm": [
+    214.767,
+    196.3,
+    -259.786
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_clamp_seat_upper_-1_-36_-12",
+   "volume_mm3": 148.5,
+   "plate_xy_mm": [
+    168.41,
+    125.0
+   ],
+   "translate_mm": [
+    195.855,
+    206.3,
+    -245.011
+   ],
+   "footprint_mm": [
+    8.0,
+    6.0
+   ],
+   "height_mm": 8.0
+  },
+  {
+   "part": "carriage_link_spacer_lower",
+   "volume_mm3": 970.3,
+   "plate_xy_mm": [
+    289.8,
+    143.0
+   ],
+   "translate_mm": [
+    168.374,
+    57.0,
+    -195.445
+   ],
+   "footprint_mm": [
+    10.0,
+    15.0
+   ],
+   "height_mm": 10.0
+  },
+  {
+   "part": "carriage_link_spacer_upper",
+   "volume_mm3": 452.8,
+   "plate_xy_mm": [
+    159.0,
+    81.0
+   ],
+   "translate_mm": [
+    163.655,
+    -5.0,
+    -293.951
+   ],
+   "footprint_mm": [
+    10.0,
+    7.0
+   ],
+   "height_mm": 10.0
+  },
+  {
+   "part": "crosshead",
+   "volume_mm3": 8250.7,
+   "plate_xy_mm": [
+    224.66,
+    53.0
+   ],
+   "translate_mm": [
+    228.737,
+    -35.0,
+    -167.672
+   ],
+   "footprint_mm": [
+    29.6,
+    24.0
+   ],
+   "height_mm": 29.3
+  },
+  {
+   "part": "crosshead_guide_+15",
+   "volume_mm3": 2000.0,
+   "plate_xy_mm": [
+    224.66,
+    153.0
+   ],
+   "translate_mm": [
+    236.631,
+    76.0,
+    -178.593
+   ],
+   "footprint_mm": [
+    28.6,
+    10.0
+   ],
+   "height_mm": 34.6
+  },
+  {
+   "part": "crosshead_guide_-15",
+   "volume_mm3": 2000.0,
+   "plate_xy_mm": [
+    257.23,
+    153.0
+   ],
+   "translate_mm": [
+    245.56,
+    76.0,
+    -160.123
+   ],
+   "footprint_mm": [
+    28.6,
+    10.0
+   ],
+   "height_mm": 34.6
+  },
+  {
+   "part": "crosshead_guide_stop_-42",
+   "volume_mm3": 1350.0,
+   "plate_xy_mm": [
+    139.0,
+    19.0
+   ],
+   "translate_mm": [
+    124.731,
+    -58.0,
+    -192.136
+   ],
+   "footprint_mm": [
+    24.3,
+    10.0
+   ],
+   "height_mm": 20.6
+  },
+  {
+   "part": "crosshead_guide_stop_-82",
+   "volume_mm3": 1350.0,
+   "plate_xy_mm": [
+    139.0,
+    5.0
+   ],
+   "translate_mm": [
+    149.358,
+    -72.0,
+    -160.616
+   ],
+   "footprint_mm": [
+    24.4,
+    10.0
+   ],
+   "height_mm": 20.6
+  },
+  {
+   "part": "gap_servo_standoff_-143_+23",
+   "volume_mm3": 480.7,
+   "plate_xy_mm": [
+    309.28,
+    164.0
+   ],
+   "translate_mm": [
+    366.14,
+    93.0,
+    -133.989
+   ],
+   "footprint_mm": [
+    6.0,
+    17.0
+   ],
+   "height_mm": 6.0
+  },
+  {
+   "part": "gap_servo_standoff_-143_-23",
+   "volume_mm3": 480.7,
+   "plate_xy_mm": [
+    139.0,
+    81.0
+   ],
+   "translate_mm": [
+    159.612,
+    10.0,
+    -105.668
+   ],
+   "footprint_mm": [
+    6.0,
+    17.0
+   ],
+   "height_mm": 6.0
+  },
+  {
+   "part": "gap_servo_standoff_-97_+23",
+   "volume_mm3": 480.7,
+   "plate_xy_mm": [
+    149.0,
+    81.0
+   ],
+   "translate_mm": [
+    177.54,
+    10.0,
+    -170.237
+   ],
+   "footprint_mm": [
+    6.0,
+    17.0
+   ],
+   "height_mm": 6.0
+  },
+  {
+   "part": "gap_servo_standoff_-97_-23",
+   "volume_mm3": 480.7,
+   "plate_xy_mm": [
+    309.28,
+    143.0
+   ],
+   "translate_mm": [
+    301.571,
+    72.0,
+    -141.917
+   ],
+   "footprint_mm": [
+    6.0,
+    17.0
+   ],
+   "height_mm": 6.0
+  },
+  {
+   "part": "main_spacing_link_lower",
+   "volume_mm3": 4787.3,
+   "plate_xy_mm": [
+    147.19,
+    167.0
+   ],
+   "translate_mm": [
+    137.286,
+    66.2,
+    -183.205
+   ],
+   "footprint_mm": [
+    123.5,
+    6.4
+   ],
+   "height_mm": 24.2
+  },
+  {
+   "part": "main_spacing_link_upper",
+   "volume_mm3": 4787.3,
+   "plate_xy_mm": [
+    274.72,
+    167.0
+   ],
+   "translate_mm": [
+    281.375,
+    74.2,
+    -183.205
+   ],
+   "footprint_mm": [
+    30.6,
+    6.4
+   ],
+   "height_mm": 122.8
+  },
+  {
+   "part": "motor_bridge_lower_+17",
+   "volume_mm3": 8736.0,
+   "plate_xy_mm": [
+    281.73,
+    5.0
+   ],
+   "translate_mm": [
+    168.626,
+    117.0,
+    -188.502
+   ],
+   "footprint_mm": [
+    25.4,
+    42.0
+   ],
+   "height_mm": 22.3
+  },
+  {
+   "part": "motor_bridge_lower_-17",
+   "volume_mm3": 8736.0,
+   "plate_xy_mm": [
+    281.73,
+    51.0
+   ],
+   "translate_mm": [
+    189.558,
+    163.0,
+    -161.709
+   ],
+   "footprint_mm": [
+    25.4,
+    42.0
+   ],
+   "height_mm": 22.3
+  },
+  {
+   "part": "motor_bridge_upper_+17",
+   "volume_mm3": 8736.0,
+   "plate_xy_mm": [
+    281.73,
+    97.0
+   ],
+   "translate_mm": [
+    294.708,
+    209.0,
+    -287.007
+   ],
+   "footprint_mm": [
+    25.4,
+    42.0
+   ],
+   "height_mm": 22.3
+  },
+  {
+   "part": "motor_bridge_upper_-17",
+   "volume_mm3": 8736.0,
+   "plate_xy_mm": [
+    139.0,
+    105.0
+   ],
+   "translate_mm": [
+    172.91,
+    217.0,
+    -260.215
+   ],
+   "footprint_mm": [
+    25.4,
+    42.0
+   ],
+   "height_mm": 22.3
+  },
+  {
+   "part": "paddle_flex_tip_1",
+   "volume_mm3": 6528.0,
+   "plate_xy_mm": [
+    124.46,
+    171.0
+   ],
+   "translate_mm": [
+    53.241,
+    219.0,
+    -125.738
+   ],
+   "footprint_mm": [
+    18.7,
+    96.0
+   ],
+   "height_mm": 30.4
+  },
+  {
+   "part": "paddle_flex_tip_2",
+   "volume_mm3": 6528.0,
+   "plate_xy_mm": [
+    259.0,
+    5.0
+   ],
+   "translate_mm": [
+    289.972,
+    53.0,
+    -66.738
+   ],
+   "footprint_mm": [
+    18.7,
+    96.0
+   ],
+   "height_mm": 30.4
+  },
+  {
+   "part": "paddle_rotor",
+   "volume_mm3": 92960.0,
+   "plate_xy_mm": [
+    5.0,
+    171.0
+   ],
+   "translate_mm": [
+    33.239,
+    219.0,
+    -69.47
+   ],
+   "footprint_mm": [
+    115.5,
+    96.0
+   ],
+   "height_mm": 84.0
+  },
+  {
+   "part": "servo_crank",
+   "volume_mm3": 846.1,
+   "plate_xy_mm": [
+    139.0,
+    33.0
+   ],
+   "translate_mm": [
+    175.827,
+    -96.0,
+    -135.953
+   ],
+   "footprint_mm": [
+    20.2,
+    6.0
+   ],
+   "height_mm": 16.2
+  },
+  {
+   "part": "servo_drag_link",
+   "volume_mm3": 2700.4,
+   "plate_xy_mm": [
+    224.66,
+    143.0
+   ],
+   "translate_mm": [
+    262.487,
+    7.0,
+    -141.19
+   ],
+   "footprint_mm": [
+    60.7,
+    6.0
+   ],
+   "height_mm": 55.0
+  }
+ ]
+}
