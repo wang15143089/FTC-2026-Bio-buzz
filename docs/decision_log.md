@@ -1594,3 +1594,36 @@ Date/version:
 - 实测 - 尺寸合规（MEASURED）: 每件放平后 bbox 都 <= H2D 可用区（**315 x 310**）；每板占用 <= 315 x 310；最大高度 **183.0 mm** << 325 mm 行程。
 - 判定: **pass** —— 打印件目录齐备、板内无重叠、放平规则已生效、多板方案成立（用户已明确允许多次打印）。
 - 未验证（TBD）: 同 DEC-0074 的 (i)-(iii)。
+
+## DEC-0075 - 决策：放平判据修正 —— 由「64 个 90 度姿态」扩到「每个平面法向朝下」（拨杆摊平）（2026-10-16）
+
+- 判据（KNOWN）: 用户 2026-10-16 令「进行修改，把拨杆放平」；附 3 张 Bambu Studio 截图，其中含 `paddle_rotor` 的 p3 外形 **310.587 x 306.836 x 83.98 mm**、V 372 929 mm3，三块板都报「超出右 / 左喷嘴可打印范围」（点「自动重新分组」可解，说明是排布超界而非几何超界）。
+- 现象（MEASURED）: R66 排版把 `paddle_rotor` 以 **H 84.0** 立着放（占 p3），但它在床面上的**实际接触面积 = 0 mm2** —— 不是平放，而是靠一条斜棱虚撑。
+- 根因（MEASURED）: `cad/output/_r66_parts/paddle_rotor.step` 的真实几何是**绕 Y 轴旋转的转子**，两块桨叶板在自身图框里**斜 30 度**（as-drawn bbox **115.46 x 96.0 x 83.98**，V **92 960 mm3**，24 个面 / 22 个平面，最大平面 2880 mm2 法向 **(-0.866, 0, -0.5)** = 端部鳍片侧面）。DEC-0074 的放平规则只枚举 **64 个 90 度姿态**，永远转不平 ⇒ 选出来的「最矮」仍是**最矮的斜立姿态**。属**判据不完备**，不是几何错误。
+- 决策（判据修正）: `cad/_r66_plate.py` 的候选集改为 **64 个 90 度姿态 ∪ 每个平面法向分别朝 +Z / -Z 各一个姿态**（用 `BRepAdaptor_Surface` + `TopExp_Explorer` 取平面法向，n / -n 去重，绕垂直轴转**精确角度**，不是 90 度步进）；`choose_pose()` 的 key 改为 `(是否超界, 高度, -占地, 轴优先, meta)` ⇒ **离床最矮者胜，同高取占地更小**。板内仍允许再转 90 度。
+- 独立复核（MEASURED）: 另写只读脚本对 `paddle_rotor` 绕 Y 做 **1 度全周扫描**（360 个姿态，真实 rotate 后量 bbox）：**H 30.0 是全局最矮**，对应姿态 = 绕 Y 转 ±30 度 / ±150 度，footprint **116.0 x 96.0**，贴床**平面**面积 **1152 mm2**（z 偏差 0.000）。脚本 `cad/_r66_paddle_orient.py`（`cad/output/_r66_plate/paddle_orient_study.{png,json}`）、`cad/_r66_paddle_ortho.py`（`paddle_ortho.png` 正投影三视图）、`cad/_r66_paddle_after.py`（`paddle_before_after.png`，前后对照主图）。
+- 附加收益（MEASURED）: 新判据同时把其它「自身图框里斜 30 度」的件也摆平了 —— `crosshead`（H 20）、`crosshead_guide_±15`（H 5）、`crosshead_guide_stop_-42/-82`（H 5）、`motor_bridge_*`（H 8）、`frameP_2_front_lower_L1`（H 6）、`paddle_flex_tip_1/2`（H 2.0），全部由斜立改为**平面贴床**。件集与件数不变，仍 **55 件**。
+- 版本命名（KNOWN）: 板件与交付包本次**升版为 R67**（`T06_print_plate_R67_pollen_pN.step`、`deliverables/R67_print_package/`）；R66 包作 SUPERSEDED 处理（`deliverables/R66_print_package/` 已删除）。脚本内的上游目录名 `cad/output/_r66_parts/`、`cad/output/_r66_plate/` 保留（件集本身未变）。
+- 不改动（KNOWN）: `cad/output/_r66_parts/` 里原件方向仍保持**装配基准**，放平姿态只记在 `plates_index.json` 的 `pose` 字段（新增 `type: axis | face_down`）。
+- 关联: DEC-0074（R66 打印包）、V-0074、V-0075。
+- 未验证（TBD）: 同 DEC-0074 的 (i)-(iii)；另加「桨叶摊平后大面积贴床，PET 翘边 / 首层附着风险未做切片验证」。
+- Date/version: 2026-10-16 / 产物 `cad/output/_r66_plate/`（**R67 修订**，seed 17 / 4 板）、`deliverables/R67_print_package/`；脚本 `cad/_r66_plate.py`、`cad/_r66_package.py`；日志 `cad/_log_r66_plate.txt`。
+
+## V-0075 - 验证记录（非决策）：R67 放平判据修正后的 4 板回读（2026-10-16）
+
+- 目的（KNOWN）: 证明「拨杆确实摊平了」，且改判据没有破坏板内无重叠 / 体积守恒 / 尺寸合规 / 件名集合。
+- 方法（MEASURED，只回读）: `cad/_r66_plate.py` 重跑（确定性，seed 17，24 s），逐板回读 STEP 的 solids + 体积 + bbox；`cad/_r66_package.py` 汇总到 `deliverables/R67_print_package/`；另对 `paddle_rotor` 做 1 度全周姿态扫描独立复核。
+- 实测 - 拨杆（MEASURED）: `paddle_rotor` **H 84.0 -> 30.0**（as-drawn 115.5 x 96.0 x 84.0 -> 放平 116.0 x 96.0），姿态 = 面 `[0.5, 0, -0.866]` 朝下 / 绕 `[0, -1, 0]` 转 **150 度**，贴床平面面积 **1152 mm2**（原姿态 **0 mm2**）；`paddle_flex_tip_1/2` 同法降到 **H 2.0**（34 x 96）。
+- 实测 - 打印板（MEASURED，`plates_index.json` + 交付目录回读）:
+
+| 板 | 件数 | 占用 XY (mm) | 最大高度 (mm) | 填充 | 回读 |
+| --- | --- | --- | --- | --- | --- |
+| p1 | 8 | 310.8 x 306.7 | 183.0 | 96.9% | 8 solids, V 802 510.3 |
+| p2 | 28 | 306.7 x 306.6 | 20.0 | 93.6% | 28 solids, V 291 198.7 |
+| p3 | 14 | 309.0 x 297.1 | 30.0 | 87.1% | 14 solids, V 344 636.2 |
+| p4 | 5 | 291.1 x 253.3 | 26.0 | 91.8% | 5 solids, V 472 080.6 |
+
+- 实测 - 一致性（MEASURED）: 4 板 solids 合计 **55** == 件集；4 板 ΣV **1 910 425.8 mm3** == 零件集 ΣV；每板读回体积与 index 一致（d <= 0.15 mm3）；板内两两 footprint 无重叠（脚本 assert，含 3 mm 间距）。
+- 实测 - 尺寸合规（MEASURED）: 每板占用 <= H2D 可用区 **315 x 310**（p1 310.8 x 306.7 为最大，均小于 R66 的 311.6 x 306.8）；最大高度 **183.0 mm** << 325 mm 行程；`zmin = 0.000`（每件贴床）。
+- 判定: **pass** —— 用户判据「把拨杆放平」达成（84 -> 30，且 1 度全周扫描证明 30 是全局最矮）；件集、体积守恒、板内无重叠均未破坏。
+- 未验证（TBD）: 同 DEC-0074 的 (i)-(iii)；切片器（Bambu Studio）实跑未做，「超出喷嘴可打印范围」报错是否消失以切片器实跑为准。

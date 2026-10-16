@@ -12,9 +12,9 @@ Orientation rule (simple, mechanical, checked on the real solid):
 READ-ONLY on delivered geometry: reads cad/output/_r66_parts/*.step + parts_index.json.
 
 Writes -> cad/output/_r66_plate/
-  T06_print_plate_R66_pollen_p<N>.step   one body per part, already oriented + positioned
+  T06_print_plate_R67_pollen_p<N>.step   one body per part, already oriented + positioned
   plate_p<N>_preview.png                 top view footprint plot of that plate
-  r66_plates_overview.png                all plates in one figure
+  r67_plates_overview.png                all plates in one figure
   plates_index.json                      every part's pose, placement and readback numbers
 """
 import json
@@ -22,6 +22,13 @@ import random
 from pathlib import Path
 
 import cadquery as cq
+import numpy as np
+from OCP.BRepAdaptor import BRepAdaptor_Surface
+from OCP.GeomAbs import GeomAbs_Plane
+from OCP.TopAbs import TopAbs_FACE
+from OCP.TopExp import TopExp_Explorer
+from OCP.TopoDS import TopoDS
+
 
 SRC = Path("cad/output/_r66_parts")
 DEST = Path("cad/output/_r66_plate")
@@ -29,7 +36,7 @@ DEST.mkdir(parents=True, exist_ok=True)
 
 # a previous run may have needed more plates: drop its stale plate files first, so the
 # folder always matches this run
-for stale in (list(DEST.glob("T06_print_plate_R66_pollen_p*.step"))
+for stale in (list(DEST.glob("T06_print_plate_R67_pollen_p*.step"))
               + list(DEST.glob("plate_p*_preview.png"))):
     stale.unlink()
 
@@ -52,18 +59,86 @@ def posed(shape, a, b, c):
     return s
 
 
+def face_dirs(shape, tol_deg=2.0):
+    """unique normals of the part's flat faces, as unit vectors.
+
+    Directions that are the same plane (n and -n) collapse to one entry: the flip is a
+    separate candidate anyway, added by normal_candidates.
+    """
+    seen = []
+    ex = TopExp_Explorer(shape.wrapped, TopAbs_FACE)
+    while ex.More():
+        f = TopoDS.Face_s(ex.Current())
+        try:
+            surf = BRepAdaptor_Surface(f)
+            if surf.GetType() == GeomAbs_Plane:
+                d = surf.Plane().Axis().Direction()
+                v = np.array([d.X(), d.Y(), d.Z()], float)
+                v = v / np.linalg.norm(v)
+                if not any(abs(float(np.dot(v, w))) > np.cos(np.radians(tol_deg)) for w in seen):
+                    seen.append(v)
+        except Exception:
+            pass
+        ex.Next()
+    return seen
+
+
+def rot_to(n, target):
+    """axis + degrees that carry direction n onto direction target."""
+    n = np.asarray(n, float)
+    n = n / np.linalg.norm(n)
+    t = np.asarray(target, float)
+    t = t / np.linalg.norm(t)
+    v = np.cross(n, t)
+    s = float(np.linalg.norm(v))
+    c = float(np.dot(n, t))
+    if s < 1e-9:
+        return (1.0, 0.0, 0.0), (0.0 if c > 0 else 180.0)
+    return tuple(v / s), float(np.degrees(np.arccos(max(-1.0, min(1.0, c)))))
+
+
+def normal_candidates(shape):
+    """lay the part with every one of its own face normals pointing at the bed.
+
+    T06 parts are drawn as flat plates tilted 30 deg inside their own frame, so a search
+    over 90 deg poses only can never seat them: it leaves the paddle standing on an edge
+    (H 84 where 30 is reachable). Turning the part until one of its real flat faces lies on
+    the bed is the exact statement of printing it flat.
+    """
+    out = []
+    for v in face_dirs(shape):
+        for target in ((0.0, 0.0, -1.0), (0.0, 0.0, 1.0)):
+            axis, ang = rot_to(v, target)
+            s = shape.rotate((0, 0, 0), axis, ang)
+            out.append((s, s.BoundingBox(), "face",
+                        {"type": "face_down",
+                         "face_normal": [round(float(x), 4) for x in v],
+                         "rot_axis": [round(float(x), 5) for x in axis],
+                         "rot_deg": round(float(ang), 3)}))
+    return out
+
+
 def choose_pose(shape):
-    best = None
+    """Flattest bed-fitting pose: least height first, then least footprint.
+
+    Candidates are the 64 axis-aligned poses plus the largest-face-down poses, so this can
+    only ever come out at least as flat as the old 90 deg-only rule.
+    """
+    cands = []
     for a in ANGLES:
         for b in ANGLES:
             for c in ANGLES:
                 s = posed(shape, a, b, c)
-                bb = s.BoundingBox()
-                fits = bb.xlen <= W + 1e-6 and bb.ylen <= H + 1e-6
-                key = (0 if fits else 1, round(bb.zlen, 2),
-                       -round(bb.xlen * bb.ylen, 1), (a + b + c) // 90, a, b, c)
-                if best is None or key < best[0]:
-                    best = (key, (a, b, c), s, bb)
+                cands.append((s, s.BoundingBox(), "axis",
+                              {"type": "axis", "angles_deg_XYZ": [a, b, c]}))
+    cands += normal_candidates(shape)
+    best = None
+    for s, bb, tag, meta in cands:
+        fits = bb.xlen <= W + 1e-6 and bb.ylen <= H + 1e-6
+        key = (0 if fits else 1, round(bb.zlen, 2), -round(bb.xlen * bb.ylen, 1),
+               0 if tag == "axis" else 1, str(meta))
+        if best is None or key < best[0]:
+            best = (key, meta, s, bb, tag)
     return best
 
 
@@ -160,17 +235,21 @@ idx = json.loads((SRC / "parts_index.json").read_text(encoding="utf-8"))
 work = []
 for o in idx["objects"]:
     raw = cq.importers.importStep(str(SRC / o["file"])).val()
-    key, (a, b, c), s, bb = choose_pose(raw)
+    key, meta, s, bb, tag = choose_pose(raw)
     work.append({"object": o["object"], "group": o["group"], "file": o["file"],
-                 "shape": s, "angles": [a, b, c],
+                 "shape": s, "pose": meta,
                  "dx": bb.xlen, "dy": bb.ylen, "dz": bb.zlen,
                  "vol": o["volume_mm3"], "as_drawn_dims": o["dims_mm"],
                  "area": bb.xlen * bb.ylen,
                  "fits": key[0] == 0})
-    print("%-46s as-drawn %6.1f x %6.1f x %6.1f -> flat %6.1f x %6.1f x H %5.1f "
-          "(X%+d Y%+d Z%+d)%s"
+    if tag == "axis":
+        note = "X%+d Y%+d Z%+d" % tuple(meta["angles_deg_XYZ"])
+    else:
+        note = "face %s -> bed | axis %s %+.1f deg" % (
+            meta["face_normal"], meta["rot_axis"], meta["rot_deg"])
+    print("%-40s as-drawn %6.1f x %6.1f x %6.1f -> bed %6.1f x %6.1f  H %5.1f  [%s]%s"
           % (o["object"], o["dims_mm"][0], o["dims_mm"][1], o["dims_mm"][2],
-             bb.xlen, bb.ylen, bb.zlen, a, b, c, "" if key[0] == 0 else "  !! DOES NOT FIT"),
+             bb.xlen, bb.ylen, bb.zlen, note, "" if key[0] == 0 else "  !! DOES NOT FIT"),
           flush=True)
 
 def rect_dims(r, sw):
@@ -224,8 +303,10 @@ print("layout chosen: seed %d -> %d plates %s"
 report = {"units": "mm", "what": "every printable object of the T06 launcher, laid flat",
           "source": "cad/output/_r66_parts", "bed": "Bambu Lab H2D, single nozzle",
           "bed_mm": [BED_X, BED_Y, BED_Z], "margin_mm": MARGIN, "gap_mm": GAP,
-          "orientation_rule": "smallest height among bed-fitting 90 deg poses (largest face "
-                              "down); tie-break larger footprint, then fewest 90 deg turns",
+          "orientation_rule": "least bed height among bed-fitting poses; candidates are the "
+                              "64 axis-aligned poses plus one pose per flat-face normal "
+                              "of the part turned onto the bed (exact tilt, not a 90 deg "
+                              "step); tie-break smaller footprint",
           "algorithm": "MaxRects best-area-fit with in-plane 90 deg turns, then a "
                        "deterministic %d-seed multi-start over the packer sort key, then a "
                        "plate-merge repair pass" % N_SEEDS,
@@ -236,7 +317,7 @@ PALETTE = [(0.85, 0.35, 0.30), (0.30, 0.60, 0.85), (0.45, 0.75, 0.40),
            (0.90, 0.70, 0.25), (0.65, 0.45, 0.80), (0.35, 0.75, 0.75)]
 
 for pi, packed in enumerate(plates, start=1):
-    assy = cq.Assembly(name="T06_print_plate_R66_pollen_p%d" % pi)
+    assy = cq.Assembly(name="T06_print_plate_R67_pollen_p%d" % pi)
     rows = []
     for i, (r, px, py, sw) in enumerate(packed):
         s = r["shape"] if not sw else r["shape"].rotate((0, 0, 0), (0, 0, 1), 90)
@@ -246,17 +327,18 @@ for pi, packed in enumerate(plates, start=1):
         col = PALETTE[i % len(PALETTE)]
         assy.add(s, name=r["object"], color=cq.Color(col[0], col[1], col[2], 1.0))
         fdx, fdy = rect_dims(r, sw)
+        pose = dict(r["pose"])
+        if sw:
+            pose["pack_in_plane_deg"] = 90
         rows.append({"object": r["object"], "group": r["group"],
-                     "volume_mm3": r["vol"],
-                     "angles_deg_XYZ": [r["angles"][0], r["angles"][1],
-                                        (r["angles"][2] + 90) % 360 if sw else r["angles"][2]],
+                     "volume_mm3": r["vol"], "pose": pose,
                      "in_plane_90_deg_turn": sw,
                      "as_drawn_dims_mm": r["as_drawn_dims"],
                      "footprint_mm": [round(fdx, 1), round(fdy, 1)],
                      "height_mm": round(r["dz"], 1),
                      "bed_xy_mm": [round(MARGIN + px, 2), round(MARGIN + py, 2)],
                      "translate_mm": [round(v, 3) for v in tv]})
-    out = DEST / ("T06_print_plate_R66_pollen_p%d.step" % pi)
+    out = DEST / ("T06_print_plate_R67_pollen_p%d.step" % pi)
     assy.export(str(out), exportType="STEP")
 
     # no-overlap check on the placed footprints (+ gap)
@@ -360,5 +442,5 @@ fig.suptitle("R66 - all %d printable objects laid flat on %d Bambu H2D plate(s) 
              "(bed %.0f x %.0f x %.0f mm, gap %.0f mm, margin %.0f mm)"
              % (tot_parts, n, BED_X, BED_Y, BED_Z, GAP, MARGIN), fontsize=11)
 fig.tight_layout(rect=(0, 0, 1, 0.97))
-fig.savefig(DEST / "r66_plates_overview.png", dpi=150)
-print("wrote", DEST / "r66_plates_overview.png", flush=True)
+fig.savefig(DEST / "r67_plates_overview.png", dpi=150)
+print("wrote", DEST / "r67_plates_overview.png", flush=True)

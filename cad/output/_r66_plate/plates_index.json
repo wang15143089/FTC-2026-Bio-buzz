@@ -10,133 +10,145 @@
  ],
  "margin_mm": 5.0,
  "gap_mm": 3.0,
- "orientation_rule": "smallest height among bed-fitting 90 deg poses (largest face down); tie-break larger footprint, then fewest 90 deg turns",
+ "orientation_rule": "least bed height among bed-fitting poses; candidates are the 64 axis-aligned poses plus one pose per flat-face normal of the part turned onto the bed (exact tilt, not a 90 deg step); tie-break smaller footprint",
  "algorithm": "MaxRects best-area-fit with in-plane 90 deg turns, then a deterministic 160-seed multi-start over the packer sort key, then a plate-merge repair pass",
- "packing_seed": 3,
+ "packing_seed": 17,
  "n_objects": 55,
  "n_plates": 4,
  "plates": [
   {
    "plate": 1,
-   "step": "T06_print_plate_R66_pollen_p1.step",
-   "n_objects": 5,
-   "sum_volume_mm3": 893567.8,
+   "step": "T06_print_plate_R67_pollen_p1.step",
+   "n_objects": 8,
+   "sum_volume_mm3": 802510.3,
    "max_height_mm": 183.0,
    "used_extent_mm": [
-    309.9,
-    305.6
+    310.8,
+    306.7
    ],
-   "fill_percent": 97.2,
+   "fill_percent": 96.9,
    "readback": {
-    "solids": 5,
+    "solids": 8,
     "solids_ok": true,
     "volume_ok": true,
     "bbox_mm": [
-     309.86,
-     305.56,
+     310.77,
+     306.75,
      183.0
     ]
    },
    "objects": [
     {
-     "object": "base_rail_front_-72",
-     "group": "r65",
-     "volume_mm3": 114004.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
+     "object": "carriage_clamp_seat_lower_+1_+36_+12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
-      250.0,
-      18.0,
-      26.0
+      8.0,
+      6.0,
+      8.0
      ],
      "footprint_mm": [
-      26.0,
-      250.0
+      8.0,
+      8.0
      ],
-     "height_mm": 18.0,
+     "height_mm": 6.0,
      "bed_xy_mm": [
       285.22,
-      5.0
+      303.75
      ],
      "translate_mm": [
-      295.215,
-      45.0,
-      81.0
+      161.163,
+      85.729,
+      81.3
      ]
     },
     {
-     "object": "carriage_link_spacer_lower",
+     "object": "carriage_clamp_seat_lower_+1_+36_-12",
      "group": "r62",
-     "volume_mm3": 970.3,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
-      10.0,
-      15.0,
-      10.0
+      8.0,
+      6.0,
+      8.0
      ],
      "footprint_mm": [
-      10.0,
-      15.0
+      8.0,
+      8.0
      ],
-     "height_mm": 10.0,
+     "height_mm": 6.0,
      "bed_xy_mm": [
-      304.45,
-      290.3
+      296.22,
+      303.75
      ],
      "translate_mm": [
-      183.026,
-      204.305,
-      -195.445
+      153.251,
+      100.505,
+      81.3
      ]
     },
     {
-     "object": "crosshead",
+     "object": "carriage_clamp_seat_lower_+1_-36_+12",
      "group": "r62",
-     "volume_mm3": 8250.7,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
-      29.6,
-      24.0,
-      29.3
+      8.0,
+      6.0,
+      8.0
      ],
      "footprint_mm": [
-      29.6,
-      29.3
+      8.0,
+      8.0
      ],
-     "height_mm": 24.0,
+     "height_mm": 6.0,
      "bed_xy_mm": [
-      285.22,
-      258.0
+      307.22,
+      303.75
      ],
      "translate_mm": [
-      289.292,
-      454.977,
-      -88.0
+      227.49,
+      142.466,
+      81.3
      ]
     },
     {
      "object": "frameP_1_rear_lower",
      "group": "frame",
      "volume_mm3": 769496.3,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       277.2,
@@ -154,61 +166,176 @@
      ],
      "translate_mm": [
       152.215,
-      305.0,
-      84.0
+      8.514,
+      99.0
      ]
     },
     {
-     "object": "servo_crank",
+     "object": "main_spacing_link_upper",
      "group": "r62",
-     "volume_mm3": 846.1,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
+     "volume_mm3": 4787.3,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
-      20.3,
-      6.0,
-      16.2
+      30.6,
+      6.4,
+      122.7
      ],
      "footprint_mm": [
-      16.2,
-      20.3
+      30.6,
+      122.7
      ],
-     "height_mm": 6.0,
+     "height_mm": 6.4,
      "bed_xy_mm": [
       285.22,
-      290.3
+      5.0
      ],
      "translate_mm": [
-      149.262,
-      327.132,
-      -129.0
+      291.87,
+      -178.205,
+      99.2
+     ]
+    },
+    {
+     "object": "motor_bridge_lower_-17",
+     "group": "r62",
+     "volume_mm3": 8736.0,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      25.4,
+      42.0,
+      22.3
+     ],
+     "footprint_mm": [
+      26.0,
+      42.0
+     ],
+     "height_mm": 8.0,
+     "bed_xy_mm": [
+      285.22,
+      130.75
+     ],
+     "translate_mm": [
+      274.434,
+      242.746,
+      204.789
+     ]
+    },
+    {
+     "object": "motor_bridge_upper_-17",
+     "group": "r62",
+     "volume_mm3": 8736.0,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      25.4,
+      42.0,
+      22.3
+     ],
+     "footprint_mm": [
+      26.0,
+      42.0
+     ],
+     "height_mm": 8.0,
+     "bed_xy_mm": [
+      285.22,
+      258.75
+     ],
+     "translate_mm": [
+      114.434,
+      370.746,
+      204.789
+     ]
+    },
+    {
+     "object": "rail_splice_plate_-72",
+     "group": "r65",
+     "volume_mm3": 10309.2,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
+     "as_drawn_dims_mm": [
+      80.0,
+      5.0,
+      26.0
+     ],
+     "footprint_mm": [
+      26.0,
+      80.0
+     ],
+     "height_mm": 5.0,
+     "bed_xy_mm": [
+      285.22,
+      175.75
+     ],
+     "translate_mm": [
+      301.215,
+      255.746,
+      -81.0
      ]
     }
    ]
   },
   {
    "plate": 2,
-   "step": "T06_print_plate_R66_pollen_p2.step",
-   "n_objects": 19,
-   "sum_volume_mm3": 282509.1,
-   "max_height_mm": 22.3,
+   "step": "T06_print_plate_R67_pollen_p2.step",
+   "n_objects": 28,
+   "sum_volume_mm3": 291198.7,
+   "max_height_mm": 20.0,
    "used_extent_mm": [
-    311.6,
-    306.8
+    306.7,
+    306.6
    ],
-   "fill_percent": 91.7,
+   "fill_percent": 93.6,
    "readback": {
-    "solids": 19,
+    "solids": 28,
     "solids_ok": true,
     "volume_ok": true,
     "bbox_mm": [
-     311.64,
-     306.83,
-     22.31
+     306.73,
+     306.57,
+     20.0
     ]
    },
    "objects": [
@@ -216,11 +343,15 @@
      "object": "base_rail_front_+72",
      "group": "r65",
      "volume_mm3": 114004.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       250.0,
@@ -237,20 +368,23 @@
       5.0
      ],
      "translate_mm": [
-      293.048,
+      299.048,
       45.0,
-      -63.0
+      81.0
      ]
     },
     {
-     "object": "carriage_clamp_seat_lower_+1_+36_+12",
+     "object": "carriage_clamp_seat_lower_+1_-36_-12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -263,24 +397,27 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      308.64,
-      298.0
+      200.0,
+      300.57
      ],
      "translate_mm": [
-      184.591,
-      524.017,
-      -75.3
+      101.363,
+      154.068,
+      81.3
      ]
     },
     {
-     "object": "carriage_clamp_seat_lower_+1_+36_-12",
+     "object": "carriage_clamp_seat_lower_-1_+36_+12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -293,24 +430,27 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      176.0,
-      293.17
+      279.73,
+      301.0
      ],
      "translate_mm": [
-      33.036,
-      504.413,
+      155.679,
+      82.983,
       -75.3
      ]
     },
     {
-     "object": "carriage_clamp_seat_lower_+1_-36_+12",
+     "object": "carriage_clamp_seat_lower_-1_+36_-12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -323,24 +463,225 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      187.0,
-      293.17
+      290.73,
+      301.0
      ],
      "translate_mm": [
-      107.275,
-      462.452,
+      147.767,
+      97.758,
       -75.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_lower_-1_-36_+12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      301.73,
+      258.0
+     ],
+     "translate_mm": [
+      222.007,
+      96.719,
+      -75.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_lower_-1_-36_-12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      301.73,
+      269.0
+     ],
+     "translate_mm": [
+      203.095,
+      122.495,
+      -75.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_upper_+1_+36_+12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      292.73,
+      280.0
+     ],
+     "translate_mm": [
+      294.761,
+      -36.523,
+      81.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_upper_+1_+36_-12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      301.73,
+      291.0
+     ],
+     "translate_mm": [
+      284.849,
+      -10.747,
+      81.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_upper_+1_-36_+12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      303.73,
+      280.0
+     ],
+     "translate_mm": [
+      350.089,
+      20.214,
+      81.3
+     ]
+    },
+    {
+     "object": "carriage_clamp_seat_upper_+1_-36_-12",
+     "group": "r62",
+     "volume_mm3": 148.5,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      8.0,
+      6.0,
+      8.0
+     ],
+     "footprint_mm": [
+      8.0,
+      8.0
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      301.73,
+      302.0
+     ],
+     "translate_mm": [
+      329.176,
+      56.989,
+      81.3
      ]
     },
     {
      "object": "carriage_link_spacer_upper",
      "group": "r62",
      "volume_mm3": 452.8,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       10.0,
@@ -353,24 +694,72 @@
      ],
      "height_mm": 7.0,
      "bed_xy_mm": [
-      147.0,
-      287.14
+      187.0,
+      300.57
      ],
      "translate_mm": [
-      151.655,
-      591.09,
-      -86.0
+      191.655,
+      6.622,
+      93.0
+     ]
+    },
+    {
+     "object": "crosshead",
+     "group": "r62",
+     "volume_mm3": 8250.7,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      29.6,
+      24.0,
+      29.3
+     ],
+     "footprint_mm": [
+      22.0,
+      24.0
+     ],
+     "height_mm": 20.0,
+     "bed_xy_mm": [
+      149.0,
+      284.57
+     ],
+     "translate_mm": [
+      56.219,
+      196.573,
+      160.291
      ]
     },
     {
      "object": "crosshead_guide_+15",
      "group": "r62",
      "volume_mm3": 2000.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       -0.788,
+       0.0,
+       0.6157
+      ],
+      "rot_axis": [
+       -0.0,
+       -1.0,
+       -0.0
+      ],
+      "rot_deg": 128.0
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       28.6,
@@ -378,29 +767,39 @@
       34.6
      ],
      "footprint_mm": [
-      28.6,
-      34.6
+      40.0,
+      10.0
      ],
-     "height_mm": 10.0,
+     "height_mm": 5.0,
      "bed_xy_mm": [
-      168.35,
-      255.57
+      58.25,
+      292.57
      ],
      "translate_mm": [
-      180.316,
-      468.764,
-      -77.0
+      234.04,
+      215.573,
+      121.281
      ]
     },
     {
      "object": "crosshead_guide_-15",
      "group": "r62",
      "volume_mm3": 2000.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       -0.788,
+       0.0,
+       0.6157
+      ],
+      "rot_axis": [
+       -0.0,
+       -1.0,
+       -0.0
+      ],
+      "rot_deg": 128.0,
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       28.6,
@@ -408,89 +807,112 @@
       34.6
      ],
      "footprint_mm": [
-      34.6,
-      28.6
+      10.0,
+      40.0
      ],
-     "height_mm": 10.0,
+     "height_mm": 5.0,
      "bed_xy_mm": [
-      130.75,
-      255.57
+      279.73,
+      258.0
      ],
      "translate_mm": [
-      -29.377,
-      243.903,
-      -77.0
+      366.731,
+      433.789,
+      91.281
      ]
     },
     {
-     "object": "frameP_2_front_lower_L4",
-     "group": "frame",
-     "volume_mm3": 8024.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "object": "crosshead_guide_stop_-42",
+     "group": "r62",
+     "volume_mm3": 1350.0,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
-      68.0,
-      9.5,
-      14.0
+      24.4,
+      10.0,
+      20.6
      ],
      "footprint_mm": [
-      68.0,
-      14.0
+      27.0,
+      10.0
      ],
-     "height_mm": 9.5,
+     "height_mm": 5.0,
      "bed_xy_mm": [
       5.0,
-      289.13
+      292.57
      ],
      "translate_mm": [
-      -95.0,
-      319.132,
-      63.0
+      -85.281,
+      215.573,
+      178.289
      ]
     },
     {
-     "object": "frameP_2_front_lower_L5",
-     "group": "frame",
-     "volume_mm3": 8024.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
+     "object": "crosshead_guide_stop_-82",
+     "group": "r62",
+     "volume_mm3": 1350.0,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0,
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
-      68.0,
-      9.5,
-      14.0
+      24.4,
+      10.0,
+      20.6
      ],
      "footprint_mm": [
-      68.0,
-      14.0
+      10.0,
+      27.0
      ],
-     "height_mm": 9.5,
+     "height_mm": 5.0,
      "bed_xy_mm": [
-      76.0,
-      289.13
+      174.0,
+      284.57
      ],
      "translate_mm": [
-      -24.0,
-      319.132,
-      -53.5
+      261.0,
+      194.292,
+      138.289
      ]
     },
     {
      "object": "frameP_3_top_L1",
      "group": "frame",
      "volume_mm3": 60338.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       247.6,
@@ -507,20 +929,24 @@
       5.0
      ],
      "translate_mm": [
-      -260.0,
+      406.024,
       74.901,
-      73.5
+      -68.0
      ]
     },
     {
      "object": "frameP_3_top_L2",
      "group": "frame",
      "volume_mm3": 60338.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       247.6,
@@ -537,20 +963,23 @@
       5.0
      ],
      "translate_mm": [
-      -120.976,
+      545.048,
       74.901,
-      -68.0
+      73.5
      ]
     },
     {
      "object": "gap_servo_standoff_-143_+23",
      "group": "r62",
      "volume_mm3": 480.7,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       6.0,
@@ -563,11 +992,11 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      308.64,
+      292.73,
       258.0
      ],
      "translate_mm": [
-      365.503,
+      349.592,
       187.0,
       -133.989
      ]
@@ -576,29 +1005,33 @@
      "object": "gap_servo_standoff_-143_-23",
      "group": "r62",
      "volume_mm3": 480.7,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       6.0,
       17.0,
       6.0
      ],
      "footprint_mm": [
-      6.0,
-      17.0
+      17.0,
+      6.0
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      308.64,
-      278.0
+      5.0,
+      305.57
      ],
      "translate_mm": [
-      329.255,
-      207.0,
+      93.0,
+      326.184,
       -105.668
      ]
     },
@@ -606,11 +1039,15 @@
      "object": "gap_servo_standoff_-97_+23",
      "group": "r62",
      "volume_mm3": 480.7,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       6.0,
@@ -623,12 +1060,12 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      147.0,
-      300.14
+      58.25,
+      305.57
      ],
      "translate_mm": [
-      235.0,
-      328.679,
+      146.252,
+      334.112,
       -170.237
      ]
     },
@@ -636,71 +1073,55 @@
      "object": "gap_servo_standoff_-97_-23",
      "group": "r62",
      "volume_mm3": 480.7,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       6.0,
       17.0,
       6.0
      ],
      "footprint_mm": [
-      6.0,
-      17.0
+      17.0,
+      6.0
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      167.0,
-      293.17
+      78.25,
+      305.57
      ],
      "translate_mm": [
-      159.291,
-      222.171,
+      166.252,
+      297.864,
       -141.917
-     ]
-    },
-    {
-     "object": "main_spacing_link_upper",
-     "group": "r62",
-     "volume_mm3": 4787.3,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
-     "as_drawn_dims_mm": [
-      30.6,
-      6.4,
-      122.7
-     ],
-     "footprint_mm": [
-      122.7,
-      30.6
-     ],
-     "height_mm": 6.4,
-     "bed_xy_mm": [
-      5.0,
-      255.57
-     ],
-     "translate_mm": [
-      -178.205,
-      262.228,
-      -92.8
      ]
     },
     {
      "object": "motor_bridge_lower_+17",
      "group": "r62",
      "volume_mm3": 8736.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0,
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       25.4,
@@ -709,58 +1130,176 @@
      ],
      "footprint_mm": [
       42.0,
-      25.4
+      26.0
      ],
-     "height_mm": 22.3,
+     "height_mm": 8.0,
      "bed_xy_mm": [
-      263.64,
-      286.41
+      104.0,
+      284.57
      ],
      "translate_mm": [
-      193.643,
-      173.31,
-      -188.502
+      34.0,
+      273.792,
+      238.789
      ]
     },
     {
-     "object": "motor_bridge_upper_-17",
+     "object": "motor_bridge_upper_+17",
      "group": "r62",
      "volume_mm3": 8736.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.6157,
+       0.0,
+       0.788
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 142.0
+     },
+     "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       25.4,
       42.0,
       22.3
      ],
      "footprint_mm": [
-      42.0,
-      25.4
+      26.0,
+      42.0
      ],
-     "height_mm": 22.3,
+     "height_mm": 8.0,
      "bed_xy_mm": [
-      263.64,
-      258.0
+      187.0,
+      255.57
      ],
      "translate_mm": [
-      193.643,
-      291.91,
-      -260.215
+      16.219,
+      367.573,
+      238.789
+     ]
+    },
+    {
+     "object": "paddle_flex_tip_2",
+     "group": "r62",
+     "volume_mm3": 6528.0,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       -0.866,
+       0.0,
+       -0.5
+      ],
+      "rot_axis": [
+       0.0,
+       -1.0,
+       -0.0
+      ],
+      "rot_deg": 60.0,
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
+     "as_drawn_dims_mm": [
+      18.7,
+      96.0,
+      30.4
+     ],
+     "footprint_mm": [
+      96.0,
+      34.0
+     ],
+     "height_mm": 2.0,
+     "bed_xy_mm": [
+      5.0,
+      255.57
+     ],
+     "translate_mm": [
+      53.0,
+      354.355,
+      -21.269
+     ]
+    },
+    {
+     "object": "rail_splice_plate_+72",
+     "group": "r65",
+     "volume_mm3": 10309.2,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      80.0,
+      5.0,
+      26.0
+     ],
+     "footprint_mm": [
+      80.0,
+      26.0
+     ],
+     "height_mm": 5.0,
+     "bed_xy_mm": [
+      104.0,
+      255.57
+     ],
+     "translate_mm": [
+      184.0,
+      265.573,
+      86.0
+     ]
+    },
+    {
+     "object": "servo_crank",
+     "group": "r62",
+     "volume_mm3": 846.1,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      20.3,
+      6.0,
+      16.2
+     ],
+     "footprint_mm": [
+      20.3,
+      16.2
+     ],
+     "height_mm": 6.0,
+     "bed_xy_mm": [
+      35.0,
+      292.57
+     ],
+     "translate_mm": [
+      71.827,
+      156.62,
+      135.0
      ]
     },
     {
      "object": "servo_drag_link",
      "group": "r62",
      "volume_mm3": 2700.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       60.7,
@@ -773,36 +1312,36 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      199.91,
+      216.0,
       255.57
      ],
      "translate_mm": [
-      237.739,
-      451.777,
-      -136.0
+      253.827,
+      114.382,
+      142.0
      ]
     }
    ]
   },
   {
    "plate": 3,
-   "step": "T06_print_plate_R66_pollen_p3.step",
-   "n_objects": 22,
-   "sum_volume_mm3": 372927.8,
-   "max_height_mm": 84.0,
+   "step": "T06_print_plate_R67_pollen_p3.step",
+   "n_objects": 14,
+   "sum_volume_mm3": 344636.2,
+   "max_height_mm": 30.0,
    "used_extent_mm": [
-    310.6,
-    306.8
+    309.0,
+    297.1
    ],
-   "fill_percent": 90.8,
+   "fill_percent": 87.1,
    "readback": {
-    "solids": 22,
+    "solids": 14,
     "solids_ok": true,
     "volume_ok": true,
     "bbox_mm": [
-     310.59,
-     306.84,
-     83.98
+     309.0,
+     297.09,
+     30.0
     ]
    },
    "objects": [
@@ -810,71 +1349,47 @@
      "object": "bearing_carriage_lower_+1",
      "group": "r62",
      "volume_mm3": 28142.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       81.7,
       12.0,
       89.6
      ],
      "footprint_mm": [
-      89.6,
-      81.7
+      81.7,
+      89.6
      ],
      "height_mm": 12.0,
      "bed_xy_mm": [
-      215.0,
-      5.0
+      232.34,
+      116.0
      ],
      "translate_mm": [
-      73.533,
-      -69.515,
-      -64.0
+      157.824,
+      -25.467,
+      76.0
      ]
     },
     {
      "object": "bearing_carriage_lower_-1",
      "group": "r62",
      "volume_mm3": 28142.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      81.7,
-      12.0,
-      89.6
-     ],
-     "footprint_mm": [
-      81.7,
-      89.6
-     ],
-     "height_mm": 12.0,
-     "bed_xy_mm": [
-      215.0,
-      89.66
-     ],
-     "translate_mm": [
-      140.485,
-      320.715,
-      76.0
-     ]
-    },
-    {
-     "object": "bearing_carriage_upper_+1",
-     "group": "r62",
-     "volume_mm3": 28142.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       81.7,
@@ -888,293 +1403,26 @@
      "height_mm": 12.0,
      "bed_xy_mm": [
       232.34,
-      182.25
+      208.59
      ],
      "translate_mm": [
-      283.905,
-      511.809,
+      157.824,
+      67.121,
       -64.0
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_lower_+1_-36_-12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      215.0,
-      182.25
-     ],
-     "translate_mm": [
-      116.363,
-      336.753,
-      -75.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_lower_-1_+36_+12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      199.0,
-      123.46
-     ],
-     "translate_mm": [
-      74.948,
-      349.476,
-      81.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_lower_-1_+36_-12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      199.0,
-      134.46
-     ],
-     "translate_mm": [
-      56.036,
-      345.7,
-      81.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_lower_-1_-36_+12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      232.34,
-      303.84
-     ],
-     "translate_mm": [
-      152.614,
-      473.117,
-      81.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_lower_-1_-36_-12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      243.34,
-      303.84
-     ],
-     "translate_mm": [
-      144.701,
-      458.341,
-      81.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_upper_+1_+36_+12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      254.34,
-      303.84
-     ],
-     "translate_mm": [
-      256.368,
-      628.359,
-      -75.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_upper_+1_+36_-12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      265.34,
-      303.84
-     ],
-     "translate_mm": [
-      248.455,
-      613.583,
-      -75.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_upper_+1_-36_+12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      276.34,
-      303.84
-     ],
-     "translate_mm": [
-      322.695,
-      571.623,
-      -75.3
-     ]
-    },
-    {
-     "object": "carriage_clamp_seat_upper_+1_-36_-12",
-     "group": "r62",
-     "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      8.0,
-      6.0,
-      8.0
-     ],
-     "footprint_mm": [
-      8.0,
-      8.0
-     ],
-     "height_mm": 6.0,
-     "bed_xy_mm": [
-      287.34,
-      303.84
-     ],
-     "translate_mm": [
-      314.783,
-      556.847,
-      -75.3
      ]
     },
     {
      "object": "carriage_clamp_seat_upper_-1_+36_+12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -1187,24 +1435,27 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      298.34,
-      303.84
+      292.97,
+      76.0
      ],
      "translate_mm": [
-      300.368,
-      628.359,
-      81.3
+      294.999,
+      -240.523,
+      -75.3
      ]
     },
     {
      "object": "carriage_clamp_seat_upper_-1_+36_-12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -1217,24 +1468,27 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      299.66,
-      89.66
+      303.97,
+      76.0
      ],
      "translate_mm": [
-      282.777,
-      399.407,
-      81.3
+      287.086,
+      -225.747,
+      -75.3
      ]
     },
     {
      "object": "carriage_clamp_seat_upper_-1_-36_+12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -1247,24 +1501,27 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      307.59,
-      5.0
+      292.97,
+      87.0
      ],
      "translate_mm": [
-      353.945,
-      272.786,
-      81.3
+      339.326,
+      -172.786,
+      -75.3
      ]
     },
     {
      "object": "carriage_clamp_seat_upper_-1_-36_-12",
      "group": "r62",
      "volume_mm3": 148.5,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       8.0,
@@ -1277,54 +1534,100 @@
      ],
      "height_mm": 6.0,
      "bed_xy_mm": [
-      307.59,
-      16.0
+      303.97,
+      87.0
      ],
      "translate_mm": [
-      335.033,
-      269.011,
-      81.3
+      331.414,
+      -158.011,
+      -75.3
+     ]
+    },
+    {
+     "object": "carriage_link_spacer_lower",
+     "group": "r62",
+     "volume_mm3": 970.3,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      10.0,
+      15.0,
+      10.0
+     ],
+     "footprint_mm": [
+      10.0,
+      15.0
+     ],
+     "height_mm": 10.0,
+     "bed_xy_mm": [
+      292.97,
+      98.0
+     ],
+     "translate_mm": [
+      171.543,
+      12.0,
+      -195.445
      ]
     },
     {
      "object": "frameP_2_front_lower_L1",
      "group": "frame",
      "volume_mm3": 114473.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       -0.0872,
+       0.0,
+       0.9962
+      ],
+      "rot_axis": [
+       -0.0,
+       -1.0,
+       -0.0
+      ],
+      "rot_deg": 175.0
+     },
+     "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       185.3,
       108.0,
       22.2
      ],
      "footprint_mm": [
-      108.0,
-      185.3
+      186.0,
+      108.0
      ],
-     "height_mm": 22.2,
+     "height_mm": 6.0,
      "bed_xy_mm": [
-      5.0,
+      104.0,
       5.0
      ],
      "translate_mm": [
+      389.87,
       59.0,
-      -95.0,
-      -3.231
+      0.503
      ]
     },
     {
      "object": "frameP_2_front_lower_L2",
      "group": "frame",
      "volume_mm3": 51990.8,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       113.8,
@@ -1338,23 +1641,133 @@
      "height_mm": 4.0,
      "bed_xy_mm": [
       5.0,
-      193.26
+      124.0
      ],
      "translate_mm": [
-      -70.662,
-      93.261,
-      -68.0
+      305.0,
+      24.0,
+      72.0
      ]
     },
     {
-     "object": "paddle_flex_tip_2",
+     "object": "frameP_2_front_lower_L4",
+     "group": "frame",
+     "volume_mm3": 8024.0,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
+     "in_plane_90_deg_turn": true,
+     "as_drawn_dims_mm": [
+      68.0,
+      9.5,
+      14.0
+     ],
+     "footprint_mm": [
+      14.0,
+      68.0
+     ],
+     "height_mm": 9.5,
+     "bed_xy_mm": [
+      292.97,
+      5.0
+     ],
+     "translate_mm": [
+      322.969,
+      -95.0,
+      -53.5
+     ]
+    },
+    {
+     "object": "frameP_2_front_lower_L5",
+     "group": "frame",
+     "volume_mm3": 8024.0,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      68.0,
+      9.5,
+      14.0
+     ],
+     "footprint_mm": [
+      68.0,
+      14.0
+     ],
+     "height_mm": 9.5,
+     "bed_xy_mm": [
+      104.0,
+      240.85
+     ],
+     "translate_mm": [
+      4.0,
+      224.849,
+      63.0
+     ]
+    },
+    {
+     "object": "main_spacing_link_lower",
+     "group": "r62",
+     "volume_mm3": 4787.3,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      123.5,
+      6.4,
+      24.2
+     ],
+     "footprint_mm": [
+      123.5,
+      24.2
+     ],
+     "height_mm": 6.4,
+     "bed_xy_mm": [
+      5.0,
+      277.85
+     ],
+     "translate_mm": [
+      -4.904,
+      94.645,
+      107.2
+     ]
+    },
+    {
+     "object": "paddle_flex_tip_1",
      "group": "r62",
      "volume_mm3": 6528.0,
-     "angles_deg_XYZ": [
-      0,
-      90,
-      90
-     ],
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.866,
+       0.0,
+       0.5
+      ],
+      "rot_axis": [
+       -0.0,
+       1.0,
+       0.0
+      ],
+      "rot_deg": 120.0,
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       18.7,
@@ -1363,28 +1776,38 @@
      ],
      "footprint_mm": [
       96.0,
-      30.4
+      34.0
      ],
-     "height_mm": 18.7,
+     "height_mm": 2.0,
      "bed_xy_mm": [
-      116.0,
-      152.46
+      5.0,
+      240.85
      ],
      "translate_mm": [
-      164.0,
-      85.721,
-      -12.239
+      53.0,
+      176.067,
+      141.269
      ]
     },
     {
      "object": "paddle_rotor",
      "group": "r62",
      "volume_mm3": 92960.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "face_down",
+      "face_normal": [
+       0.5,
+       0.0,
+       -0.866
+      ],
+      "rot_axis": [
+       0.0,
+       -1.0,
+       0.0
+      ],
+      "rot_deg": 150.0,
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       115.5,
@@ -1393,112 +1816,89 @@
      ],
      "footprint_mm": [
       96.0,
-      115.5
+      116.0
      ],
-     "height_mm": 84.0,
+     "height_mm": 30.0,
      "bed_xy_mm": [
-      116.0,
+      5.0,
       5.0
      ],
      "translate_mm": [
-      164.0,
-      33.239,
-      -69.47
-     ]
-    },
-    {
-     "object": "rail_splice_plate_+72",
-     "group": "r65",
-     "volume_mm3": 10309.2,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      80.0,
-      5.0,
-      26.0
-     ],
-     "footprint_mm": [
-      80.0,
-      26.0
-     ],
-     "height_mm": 5.0,
-     "bed_xy_mm": [
-      232.34,
-      274.84
-     ],
-     "translate_mm": [
-      312.338,
-      290.836,
-      -81.0
-     ]
-    },
-    {
-     "object": "rail_splice_plate_-72",
-     "group": "r65",
-     "volume_mm3": 10309.2,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      80.0,
-      5.0,
-      26.0
-     ],
-     "footprint_mm": [
-      80.0,
-      26.0
-     ],
-     "height_mm": 5.0,
-     "bed_xy_mm": [
-      116.0,
-      123.46
-     ],
-     "translate_mm": [
-      196.0,
-      139.459,
-      86.0
+      53.0,
+      144.269,
+      96.782
      ]
     }
    ]
   },
   {
    "plate": 4,
-   "step": "T06_print_plate_R66_pollen_p4.step",
-   "n_objects": 9,
-   "sum_volume_mm3": 361421.1,
+   "step": "T06_print_plate_R67_pollen_p4.step",
+   "n_objects": 5,
+   "sum_volume_mm3": 472080.6,
    "max_height_mm": 26.0,
    "used_extent_mm": [
-    307.3,
-    256.0
+    291.1,
+    253.3
    ],
-   "fill_percent": 80.0,
+   "fill_percent": 91.8,
    "readback": {
-    "solids": 9,
+    "solids": 5,
     "solids_ok": true,
     "volume_ok": true,
     "bbox_mm": [
-     307.26,
-     256.03,
+     291.1,
+     253.34,
      26.0
     ]
    },
    "objects": [
     {
+     "object": "base_rail_front_-72",
+     "group": "r65",
+     "volume_mm3": 114004.4,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
+     "in_plane_90_deg_turn": false,
+     "as_drawn_dims_mm": [
+      250.0,
+      18.0,
+      26.0
+     ],
+     "footprint_mm": [
+      250.0,
+      26.0
+     ],
+     "height_mm": 18.0,
+     "bed_xy_mm": [
+      5.0,
+      232.34
+     ],
+     "translate_mm": [
+      45.0,
+      242.338,
+      -63.0
+     ]
+    },
+    {
      "object": "base_rail_rear_joined",
      "group": "r65",
      "volume_mm3": 249800.6,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      90
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       0,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
       130.0,
@@ -1521,14 +1921,17 @@
      ]
     },
     {
-     "object": "bearing_carriage_upper_-1",
+     "object": "bearing_carriage_upper_+1",
      "group": "r62",
      "volume_mm3": 28142.4,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       81.7,
@@ -1546,79 +1949,56 @@
      ],
      "translate_mm": [
       173.417,
-      467.561,
+      -101.973,
       76.0
      ]
     },
     {
-     "object": "crosshead_guide_stop_-42",
+     "object": "bearing_carriage_upper_-1",
      "group": "r62",
-     "volume_mm3": 1350.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
+     "volume_mm3": 28142.4,
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ],
+      "pack_in_plane_deg": 90
+     },
      "in_plane_90_deg_turn": true,
      "as_drawn_dims_mm": [
-      24.4,
-      10.0,
-      20.6
+      81.7,
+      12.0,
+      89.6
      ],
      "footprint_mm": [
-      20.6,
-      24.4
+      89.6,
+      81.7
      ],
-     "height_mm": 10.0,
-     "bed_xy_mm": [
-      230.07,
-      138.0
-     ],
-     "translate_mm": [
-      37.936,
-      123.731,
-      -77.0
-     ]
-    },
-    {
-     "object": "crosshead_guide_stop_-82",
-     "group": "r62",
-     "volume_mm3": 1350.0,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
-     "as_drawn_dims_mm": [
-      24.4,
-      10.0,
-      20.6
-     ],
-     "footprint_mm": [
-      20.6,
-      24.4
-     ],
-     "height_mm": 10.0,
+     "height_mm": 12.0,
      "bed_xy_mm": [
       206.51,
       138.0
      ],
      "translate_mm": [
-      45.894,
-      148.358,
-      -77.0
+      536.07,
+      189.567,
+      -64.0
      ]
     },
     {
      "object": "frameP_2_front_lower_L3",
      "group": "frame",
      "volume_mm3": 51990.8,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      0
-     ],
+     "pose": {
+      "type": "axis",
+      "angles_deg_XYZ": [
+       270,
+       0,
+       0
+      ]
+     },
      "in_plane_90_deg_turn": false,
      "as_drawn_dims_mm": [
       113.8,
@@ -1636,128 +2016,8 @@
      ],
      "translate_mm": [
       -95.0,
-      305.0,
-      72.0
-     ]
-    },
-    {
-     "object": "main_spacing_link_lower",
-     "group": "r62",
-     "volume_mm3": 4787.3,
-     "angles_deg_XYZ": [
-      90,
-      0,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
-     "as_drawn_dims_mm": [
-      123.5,
-      6.4,
-      24.2
-     ],
-     "footprint_mm": [
-      24.2,
-      123.5
-     ],
-     "height_mm": 6.4,
-     "bed_xy_mm": [
-      286.85,
-      5.0
-     ],
-     "translate_mm": [
-      103.645,
-      -4.904,
-      -100.8
-     ]
-    },
-    {
-     "object": "motor_bridge_lower_-17",
-     "group": "r62",
-     "volume_mm3": 8736.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      25.4,
-      42.0,
-      22.3
-     ],
-     "footprint_mm": [
-      25.4,
-      42.0
-     ],
-     "height_mm": 22.3,
-     "bed_xy_mm": [
-      286.85,
-      131.52
-     ],
-     "translate_mm": [
-      194.678,
-      243.522,
-      -161.709
-     ]
-    },
-    {
-     "object": "motor_bridge_upper_+17",
-     "group": "r62",
-     "volume_mm3": 8736.0,
-     "angles_deg_XYZ": [
-      0,
-      0,
-      0
-     ],
-     "in_plane_90_deg_turn": false,
-     "as_drawn_dims_mm": [
-      25.4,
-      42.0,
-      22.3
-     ],
-     "footprint_mm": [
-      25.4,
-      42.0
-     ],
-     "height_mm": 22.3,
-     "bed_xy_mm": [
-      206.51,
-      176.52
-     ],
-     "translate_mm": [
-      219.487,
-      288.522,
-      -287.007
-     ]
-    },
-    {
-     "object": "paddle_flex_tip_1",
-     "group": "r62",
-     "volume_mm3": 6528.0,
-     "angles_deg_XYZ": [
-      0,
-      90,
-      90
-     ],
-     "in_plane_90_deg_turn": true,
-     "as_drawn_dims_mm": [
-      18.7,
-      96.0,
-      30.4
-     ],
-     "footprint_mm": [
-      96.0,
-      30.4
-     ],
-     "height_mm": 18.7,
-     "bed_xy_mm": [
-      121.85,
-      230.59
-     ],
-     "translate_mm": [
-      169.849,
-      104.85,
-      89.952
+      -70.662,
+      -68.0
      ]
     }
    ]

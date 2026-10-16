@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""R66 print package assembler (read-only inputs, one delivery folder out).
+"""R67 print package assembler (read-only inputs, one delivery folder out).
 
 In : cad/output/_r66_parts (55 object STEP + parts_index.json)
      cad/output/_r66_plate (4 plate STEP + 4 previews + overview + plates_index.json)
-Out: deliverables/R66_print_package/
+Out: deliverables/R67_print_package/
        parts/     55 STEP
        plates/    4 plate STEP
        previews/  4 plate previews + overview
@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PARTS_DIR = ROOT / 'cad' / 'output' / '_r66_parts'
 PLATE_DIR = ROOT / 'cad' / 'output' / '_r66_plate'
-OUT_DIR = ROOT / 'deliverables' / 'R66_print_package'
+OUT_DIR = ROOT / 'deliverables' / 'R67_print_package'
 
 BT = chr(96)
 
@@ -73,8 +73,10 @@ def main():
 
     L = []
     add = L.append
-    add('# R66 打印包（POLLEN 版）')
+    add('# R67 打印包（POLLEN 版）')
     add('')
+    add('> 版本：**R67 修订**（DEC-0075 / V-0075）。相对上一版 R66 只有一处改动：放平判据由「64 个 90 度姿态」扩为「64 个 90 度姿态 ∪ 该件每个平面法向朝下的姿态」，'
+        '拨杆 ' + c('paddle_rotor') + ' 因此从斜立（H 84.0 mm、贴床面接触 0 mm²）改为摊平（H 30.0 mm、贴床面 1152 mm²）；件集与其余件姿态未变。')
     add('单位 mm。所有件均为独立实体，板内无重叠、无干涉。')
     add('')
     add('## 目录')
@@ -106,8 +108,9 @@ def main():
            plates['margin_mm'], plates['gap_mm']))
     add('')
     add('## 摆放规则（主动降低打印难度）')
-    add('1. 每件在 64 个 90 度姿态（X / Y / Z 各取 0 / 90 / 180 / 270）中选**高度最小**者，即最大平面朝下平放；')
-    add('   同高时优先占地更大，再优先转 90 度更少。')
+    add('1. 每件在「64 个 90 度姿态」+「该件每个平面法向分别朝下的姿态」里选**离床最矮**者；')
+    add('   同高时优先占地更小。T06 的拨杆 / 摇臂等件在自身图框里是斜 30 度的平板，只枚举 90 度')
+    add('   姿态永远摆不平（拨杆原来 84 mm 高、且没有任何平面贴床），必须按真实面法向摆。')
     add('2. 板内允许再转 90 度；装箱用 MaxRects best-area-fit。')
     add('3. 不硬塞：' + c('frameP_1_rear_lower') + ' 外形 277.2 x 303.5 x 183.0，单独占 p1，其余件铺 p2 / p3 / p4。')
     add('4. 160 个确定性起点的多起点搜索 + 收尾合并修复，消除 1-2 件的碎片板；宁可多打一板也不硬挤。')
@@ -117,18 +120,24 @@ def main():
     for p in plates['plates']:
         add('### p%d — %d 件，最大高度 %.1f mm' % (p['plate'], p['n_objects'], p['max_height_mm']))
         add('')
-        add('| 件 | 来源 | 原始外形 (mm) | 放平后占地 (mm) | 高 (mm) | 姿态 XYZ (deg) | 板内 XY (mm) |')
+        add('| 件 | 来源 | 原始外形 (mm) | 放平后占地 (mm) | 高 (mm) | 放平姿态 | 板内 XY (mm) |')
         add('| --- | --- | --- | --- | --- | --- | --- |')
         for o in sorted(p['objects'], key=lambda x: -x['volume_mm3']):
             turn = ' +90' if o.get('in_plane_90_deg_turn') else ''
+            pz = o.get('pose', {})
+            if pz.get('type') == 'axis':
+                sit = 'X%g/Y%g/Z%g' % tuple(pz['angles_deg_XYZ'])
+            else:
+                sit = '面 %s 朝下, 绕 %s 转 %g' % (
+                    ','.join('%.2f' % v for v in pz['face_normal']),
+                    ','.join('%g' % v for v in pz['rot_axis']), pz['rot_deg'])
             add('| ' + o['object'] + ' | ' + o['group'] + ' | ' + dims(o, 'as_drawn_dims_mm')
                 + ' | %.1f x %.1f | %.1f | %s%s | %.1f, %.1f |'
                 % (o['footprint_mm'][0], o['footprint_mm'][1], o['height_mm'],
-                   '/'.join('%g' % a for a in o['angles_deg_XYZ']), turn,
-                   o['bed_xy_mm'][0], o['bed_xy_mm'][1]))
+                   sit, turn, o['bed_xy_mm'][0], o['bed_xy_mm'][1]))
         add('')
     add('## 打印注意')
-    add('- 直接打印 ' + c('plates/') + ' 里 4 个 STEP；不要改动件在板上的姿态，一改就破坏了最大面朝下的平放条件。')
+    add('- 直接打印 ' + c('plates/') + ' 里 4 个 STEP；不要改动件在板上的姿态，一改就破坏了贴床面朝下的平放条件。')
     add('- 20 个 ' + c('carriage_clamp_seat_*') + ' 小件（8 x 8 x 6）全部集中在 p3，便于整体清件，避免散失。')
     add('- 4 板最高件依次为 %.1f / %.1f / %.1f / %.1f mm，都远低于 H2D 的 325 mm 行程。'
         % tuple(p['max_height_mm'] for p in plates['plates']))
@@ -140,7 +149,7 @@ def main():
     add('')
     add('    python cad/_r66_parts.py      # 生成 parts/ 与 parts_index.json')
     add('    python cad/_r66_plate.py      # 生成 plates/ 与 previews/')
-    add('    python cad/_r66_package.py    # 汇总到 deliverables/R66_print_package/')
+    add('    python cad/_r66_package.py    # 汇总到 deliverables/R67_print_package/')
     add('')
 
     (OUT_DIR / 'PRINT_README.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
