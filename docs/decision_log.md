@@ -1681,3 +1681,27 @@ Date/version:
 - 排版脚本的三处必要修正（KNOWN，属**判据不完备**而非几何错误）: ①380 mm 整轨允许**板内斜放**（30…60 度取最优）；②放平判据补上 **H ≤ 325 mm**（原判据只查 XY，会把 380 mm 轨竖着摆、超行程）；③件集来源沿用 R66 目录（`_r69_parts` 只含 5 个新件，其余 49 件仍读 `_r66_parts`）。
 - 判定: **pass** —— 3 拆几何、耳片 / 钻孔、方案 C 轨道、8 板排版全部有回读证据；件集 ΣV **1 766 184.4 mm³** == 8 板 ΣV **1 766 184.3 mm³**。
 - 未验证（TBD）: 切片器实跑未做；0.2 mm 胶缝在 PET 0.4 mm 层高下的成型未实测；环氧强度未测；PET 翘边 / 首层附着未做切片验证；未实机。
+
+## DEC-0077 — Bambu Studio 报“超界 / 超高”：旧中间件被误用；补出单件平放 STEP
+
+- 日期：2026-10-16
+- 状态：ACTIVE（R69 补充，不改动 R69 几何）
+- 现象（USER）：Bambu Studio 导入两个 STEP 报「物体位于盘的边界上或超过了高度限制」：
+  - 对象 1：403.691 x 136 x 232.835 mm，V 537 144 mm³
+  - 对象 2：361.064 x 31 x 385.024 mm，V 312 153 mm³
+- 根因（MEASURED，回读 STEP）：这两个对象**不是** R69 的交付件，而是 R69 拆分过程中的**裁切前中间件**：
+  - `cad/output/_r69_split/mid.step` → **403.7 x 136.0 x 232.8 mm，V 537 144.3 mm³**（与截图 1 一致）
+  - `cad/output/_r69_split/plate_R.step` → **361.1 x 31.0 x 385.0 mm，V 312 150.0 mm³**（与截图 2 一致，差值来自网格化）
+  - 最终件分别是 `shroud_tray_mid`（248.4 x 136.0 x 232.8，V 414 543.1）与 `side_plate_right`（262.2 x 31.0 x 284.0，V 199 554.9）。
+- 处置：
+  1. 把 `_r69_split/`、`_r69_p1/` 移入 `cad/output/_superseded/` 并加 `_SUPERSEDED` 后缀 + README，防止再次误用。
+  2. 新增 `cad/_r69_parts_flat.py`：从**已验收的整板 STEP** 里取每个实体（变换已烘焙），
+     平移到 min-Z = 0、XY 居中，逐件导出到 `deliverables/R69_print_package/parts_flat/`。
+  3. 生成 `parts_flat_index.json` 与 `previews/bambu_fix_dimensions.png`。
+- 方法（MEASURED）：`cad/_r69_parts_flat.py`（导出）+ `cad/_r69_parts_flat_verify.py`（逐件回读）。
+- 结果（MEASURED）：
+  - 54/54 件全部**单实体**、`zmin = 0.000`、bbox ≤ **315 x 310 x 325 mm**；
+  - 最大高度 **136.0 mm**（`shroud_tray_mid`），最大平面尺寸 **287.09 mm**（`base_rail_±72`）；
+  - ΣV **1 766 184.4 mm³**，与 R69 验收值完全一致（无几何变动）。
+- 判定：**pass**（问题为文件误用，几何本身无缺陷）。
+- 未验证（TBD）：Bambu Studio 实机切片未跑（本机无切片器自动化）。
